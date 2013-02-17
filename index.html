@@ -1,9 +1,65 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!doctype html>
+<html lang="en">
 <head>
-    <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Book Crossing</title>
+  <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
 
+  <section id="bookapp">
+    <header id="header">     
+    </header>
+    <section id="main">      
+      <label for="toggle-all">Recently shared books</label>
+      <ul id="sharedBook-list"></ul>
+    </section>
+    <footer id="footer"></footer>
+  </section>
+
+    <script type="text/template" id="Script1">
+    <div class="view">
+      <input class="toggle" type="checkbox" <%= isBeingReaded ? 'checked' : '' %>>
+      <label><%= title %></label>
+      <button class="destroy"></button>
+    </div>
+    <input class="edit" value="<%= title %>">
+  </script>
+
+    <script type="text/template" id="Script2">
+    <span id="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
+    <ul id="filters">
+      <li>
+        <a class="selected" href="#/">All</a>
+      </li>
+      <li>
+        <a href="#/active">Active</a>
+      </li>
+      <li>
+        <a href="#/completed">Completed</a>
+      </li>
+    </ul>
+    <% if (completed) { %>
+    <button id="clear-completed">Clear completed (<%= completed %>)</button>
+    <% } %>
+  </script>
+  
+
+  <script src="js/libs/jquery/jquery-1.8.3.min.js"></script>
+  <script src="js/libs/jquery/jquery.mobile.config.js"></script>
+  <script src="js/libs/jquery/jquery.mobile-1.2.0.min.js"></script>
+  <script src="js/libs/backbone/underscore-min.js"></script>
+  <script src="js/libs/backbone/backbone-min.js"></script>
+  <script src="js/libs/backbone/backbone-localStorage.js"></script>
+  
+  <script src="js/models/book.js"></script>  
+  <script type="text/template" id="item-template"></script>
+  <script type="text/template" id="stats-template"></script>  
+  <script src="js/collections/books.js"></script>
+  <script src="js/views/book.js"></script>
+  <script src="js/views/app.js"></script>
+  <script src="js/routers/router.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
