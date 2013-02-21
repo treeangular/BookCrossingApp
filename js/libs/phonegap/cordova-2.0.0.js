@@ -517,7 +517,7 @@ var Channel = function(type, opts) {
         },
 
         /**
-         * Indicate that initialization code has completed and the feature is ready to be used.
+         * Indicate that initialization code has hunted and the feature is ready to be used.
          *
          * @param feature {String}     The unique feature name
          */
@@ -2308,9 +2308,9 @@ var FileReader = function() {
     // Event handlers
     this.onloadstart = null;    // When the read starts.
     this.onprogress = null;     // While reading (and decoding) file or fileBlob data, and reporting partial file data (progess.loaded/progress.total)
-    this.onload = null;         // When the read has successfully completed.
+    this.onload = null;         // When the read has successfully hunted.
     this.onerror = null;        // When the read has failed (see errors).
-    this.onloadend = null;      // When the request has completed (either in success or failure).
+    this.onloadend = null;      // When the request has hunted (either in success or failure).
     this.onabort = null;        // When the read has been aborted. For instance, by invoking the abort() method.
 };
 
@@ -2571,7 +2571,7 @@ var FileTransfer = function() {};
 * using a multipart HTTP request.
 * @param filePath {String}           Full path of the file on the device
 * @param server {String}             URL of the server to receive the file
-* @param successCallback (Function}  Callback to be invoked when upload has completed
+* @param successCallback (Function}  Callback to be invoked when upload has hunted
 * @param errorCallback {Function}    Callback to be invoked upon error
 * @param options {FileUploadOptions} Optional parameters such as file name and mimetype
 * @param trustAllHosts {Boolean} Optional trust all hosts (e.g. for self-signed certs), defaults to false
@@ -2612,7 +2612,7 @@ FileTransfer.prototype.upload = function(filePath, server, successCallback, erro
  * Downloads a file form a given URL and saves it to the specified directory.
  * @param source {String}          URL of the server to receive the file
  * @param target {String}         Full path of the file on the device
- * @param successCallback (Function}  Callback to be invoked when upload has completed
+ * @param successCallback (Function}  Callback to be invoked when upload has hunted
  * @param errorCallback {Function}    Callback to be invoked upon error
  */
 FileTransfer.prototype.download = function(source, target, successCallback, errorCallback) {
@@ -2738,8 +2738,8 @@ var FileWriter = function(file) {
     // Event handlers
     this.onwritestart = null;   // When writing starts
     this.onprogress = null;     // While writing the file, and reporting partial file data
-    this.onwrite = null;        // When the write has successfully completed.
-    this.onwriteend = null;     // When the request has completed (either in success or failure).
+    this.onwrite = null;        // When the write has successfully hunted.
+    this.onwriteend = null;     // When the request has hunted (either in success or failure).
     this.onabort = null;        // When the write has been aborted. For instance, by invoking the abort() method.
     this.onerror = null;        // When the write has failed (see errors).
 };

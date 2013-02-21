@@ -13,18 +13,18 @@ var BookList = Backbone.Collection.extend({
     model: app.Book,
 
     // Save all of the book items under the `"books"` namespace.
-    localStorage: new Backbone.LocalStorage('books-backbone'),
+    //localStorage: new Backbone.LocalStorage('books-backbone'),
 
-    // Filter down the list of all book items that are finished.
-    completed: function () {
+    // Filter down the list of all book items that are hunted right now.
+  /*  hunted: function () {
         return this.filter(function (book) {
-            return book.get('isBeingReaded');
+            return book.get('isHunted');
         });
     },
 
     // Filter down the list to only book items that are not being readed.
     remaining: function () {
-        return this.without.apply(this, this.isBeingReaded());
+        return this.without.apply(this, this.isHunted());
     },
 
     // We keep the Books in sequential order, despite being saved by unordered
@@ -39,7 +39,7 @@ var BookList = Backbone.Collection.extend({
     // Books are sorted by their original insertion order.
     comparator: function (book) {
         return book.get('order');
-    }
+    }*/
 });
 
 // Create our global collection of **Books**.

@@ -12,22 +12,52 @@
     <header id="header">     
     </header>
     <section id="main">      
-      <label for="toggle-all">Recently shared books</label>
-      <ul id="sharedBook-list"></ul>
+      
     </section>
     <footer id="footer"></footer>
   </section>
 
-    <script type="text/template" id="Script1">
+  <script type="text/template" id="label-template">   
+      <div class="view">
+          <div data-role="controlgroup" data-mini="true">
+               <label for="bookNameLabel">Name</label>
+               <input name="bookName" id="bookName" type="text" />
+           </div>       
+          <div data-role="controlgroup" data-mini="true">
+               <label for="bookDescriptionLabel">Description</label>
+               <input name="bookDescription" id="bookDescription" type="text" />
+          </div>
+          <div data-role="controlgroup" data-mini="true">
+               <label for="bookIsbnLabel">ISBN</label>
+               <input name="bookIsbn" id="bookIsbn" type="text" />
+          </div>  
+          <div data-role="fieldcontain" data-mini="true">
+		       <input id="labelBookButton" type="button" value="Label the book!" >           
+	      </div>
+    </div>    
+  </script>
+
+  <script type="text/template" id="labelAccepted-template">
+   
+   <div class="view">
+      <div data-role="controlgroup" data-mini="true">
+           <label for="laberRegistrationLabel">Write this number down into the book</label>
+           <input name="laberRegistration" id="laberRegistration" readonly type="text" />
+       </div>      
+    </div>
+    
+  </script>
+
+    <script type="text/template" id="item-template">
     <div class="view">
-      <input class="toggle" type="checkbox" <%= isBeingReaded ? 'checked' : '' %>>
+      <input class="toggle" type="checkbox" <%= isHunted ? 'checked' : '' %>>
       <label><%= title %></label>
       <button class="destroy"></button>
     </div>
     <input class="edit" value="<%= title %>">
   </script>
 
-    <script type="text/template" id="Script2">
+    <script type="text/template" id="stats-template">
     <span id="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
     <ul id="filters">
       <li>
@@ -37,11 +67,11 @@
         <a href="#/active">Active</a>
       </li>
       <li>
-        <a href="#/completed">Completed</a>
+        <a href="#/hunted">hunted</a>
       </li>
     </ul>
-    <% if (completed) { %>
-    <button id="clear-completed">Clear completed (<%= completed %>)</button>
+    <% if (hunted) { %>
+    <button id="clear-hunted">Clear hunted (<%= hunted %>)</button>
     <% } %>
   </script>
   
@@ -51,11 +81,8 @@
   <script src="js/libs/jquery/jquery.mobile-1.2.0.min.js"></script>
   <script src="js/libs/backbone/underscore-min.js"></script>
   <script src="js/libs/backbone/backbone-min.js"></script>
-  <script src="js/libs/backbone/backbone-localStorage.js"></script>
-  
-  <script src="js/models/book.js"></script>  
-  <script type="text/template" id="item-template"></script>
-  <script type="text/template" id="stats-template"></script>  
+  <script src="js/libs/backbone/backbone-localStorage.js"></script>  
+  <script src="js/models/book.js"></script>    
   <script src="js/collections/books.js"></script>
   <script src="js/views/book.js"></script>
   <script src="js/views/app.js"></script>

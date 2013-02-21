@@ -12,14 +12,16 @@ app.Book = Backbone.Model.extend({
     // and ensure that each book created has `title` and `description` keys.
     defaults: {
         title: 'No title',
-        description: 'No description',
-        isBeingReaded: false,
+        description: 'No description',        
+        label: 'No label',
+        cover: 'No cover'
+
     },
 
-    // Toggle the `isBeingReaded` state of this todo item.
+    // Toggle the `isHunted` state of this todo item.
     toggle: function () {
         this.save({
-            isBeingReaded: !this.get('isBeingReaded')
+            isHunted: !this.get('isHunted')
         });
     }
 

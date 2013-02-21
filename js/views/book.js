@@ -9,16 +9,18 @@ var app = app || {};
 app.BookView = Backbone.View.extend({
 
     //... is a list tag.
-    tagName: 'li',
+    tagName: 'div',
+    //className: ".labelBookButton",
 
     // Cache the template function for a single item.
-    template: _.template($('#item-template').html()),
+    template: _.template($('#label-template').html()),
+    templateAccepted: _.template($('#labelAccepted-template').html()),
 
     // The DOM events specific to an item.
     events: {
-        'dblclick label': 'edit',
-        'keypress .edit': 'updateOnEnter',
-        'blur .edit': 'close'
+        'click #labelBookButton': 'generateUniqueLabel',
+        //'keypress labelBookButton': 'generateUniqueLabel',
+        //'blur .edit': 'close'
     },
 
     // The BookView listens for changes to its model, re-rendering. Since there's
@@ -26,6 +28,14 @@ app.BookView = Backbone.View.extend({
     // app, we set a direct reference on the model for convenience.
     initialize: function () {
         this.model.on('change', this.render, this);
+    },
+
+    generateUniqueLabel: function () {
+        alert("click on ");
+        this.$el.html(this.templateAccepted(this.model.toJSON()));
+        console.debug("WTF!");
+        //this.laberRegistration = 
+
     },
 
     // Re-renders the book item to the current state of the model and

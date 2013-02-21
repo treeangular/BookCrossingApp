@@ -13,7 +13,9 @@ app.AppView = Backbone.View.extend({
     el: '#bookapp',
 
     // Our template for the line of statistics at the bottom of the app.
-    statsTemplate: _.template($('#stats-template').html()),
+    //statsTemplate: _.template($('#stats-template').html()),
+
+    labelTemplate: _.template($('#label-template').html()),
 
     // At initialization we bind to the relevant events on the `Books`
     // collection, when items are added or changed. Kick things off by
@@ -23,40 +25,50 @@ app.AppView = Backbone.View.extend({
         //this.allCheckbox = this.$('#toggle-all')[0];
         this.$footer = this.$('#footer');
         this.$main = this.$('#main');
+               
+        this.$main.html(this.labelTemplate({
+           // completed: completed,
+            //remaining: remaining
+        }));
 
-        window.app.Books.on('add', this.addOne, this);
-        window.app.Books.on('reset', this.addAll, this);
-        window.app.Books.on('all', this.render, this);
+        //window.app.Books.on('add', this.addOne, this);
+        //window.app.Books.on('reset', this.addAll, this);
+        //window.app.Books.on('all', this.render, this);
 
-        app.Books.fetch();
+        //app.Books.fetch();
     },
 
     // Re-rendering the App just means refreshing the statistics -- the rest
     // of the app doesn't change.
     render: function () {
-        var completed = app.Books.completed().length;
+        //var hunted = app.Books.hunted().length;
         //var remaining = app.Books.remaining().length;
 
+        this.$main.show();
+        this.$footer.show();
+
+        /* 
         if (app.Books.length) {
             this.$main.show();
             this.$footer.show();
 
-           /* this.$footer.html(this.statsTemplate({
-                completed: completed,
+            this.$footer.html(this.statsTemplate({
+                hunted: hunted,
                 remaining: remaining
-            }));*/
+            }));
 
         } else {
             this.$main.hide();
             this.$footer.hide();
-        }
+            }*/
+
 
         //this.allCheckbox.checked = !remaining;
     },
 
     // Add a single book item to the list by creating a view for it, and
     // appending its element to the `<ul>`.
-    addOne: function (book) {
+    /*addOne: function (book) {
         var view = new app.BookView({ model: book });
         $('#book-list').append(view.render().el);
     },
@@ -65,6 +77,6 @@ app.AppView = Backbone.View.extend({
     addAll: function () {
         this.$('#book-list').html('');
         app.Books.each(this.addOne, this);
-    }
+    }*/
 
 });
