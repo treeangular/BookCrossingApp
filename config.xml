@@ -10,7 +10,7 @@
 
   <author email="arcayne@gmail.com">bookCrossing</author>
 
-  <icon src="css/bg.png" gap:role="default" />
+  <icon src="css/images/logo.png" gap:role="default" />
 
   <feature name="http://api.phonegap.com/1.0/network"/>
   <feature name="http://api.phonegap.com/1.0/geolocation"/>
@@ -20,7 +20,7 @@
 
   <!-- Splash Screens -->
   <gap:splash src="splash.png" />
-  <gap:splash src="css/bg.png" gap:platform="android" gap:density="ldpi" />
-  <gap:splash src="css/bg.png" gap:platform="android" gap:density="mdpi" />
-  <gap:splash src="css/bg.png" gap:platform="android" gap:density="hdpi" />
+  <gap:splash src="css/images/logo.png" gap:platform="android" gap:density="ldpi" />
+  <gap:splash src="css//images/logo.png" gap:platform="android" gap:density="mdpi" />
+  <gap:splash src="css/images/logo.png" gap:platform="android" gap:density="hdpi" />
 </widget>

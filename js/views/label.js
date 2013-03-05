@@ -9,6 +9,8 @@ var app = app || {};
 // The DOM element for label...
 app.LabelView = Backbone.View.extend({
 
+    el: '#main',
+
     //... is a list tag.
     tagName: 'li',
 

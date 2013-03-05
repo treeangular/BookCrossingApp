@@ -9,7 +9,7 @@ var app = app || {};
 app.BookView = Backbone.View.extend({
 
     //... is a list tag.
-    tagName: 'div',
+    tagName: 'body',
     //className: ".labelBookButton",
 
     // Cache the template function for a single item.
@@ -18,7 +18,8 @@ app.BookView = Backbone.View.extend({
 
     // The DOM events specific to an item.
     events: {
-        'click #labelBookButton': 'generateUniqueLabel',
+        "click input[type=button]": "generateUniqueLabel"
+        //'click #labelBookButton': 'generateUniqueLabel',
         //'keypress labelBookButton': 'generateUniqueLabel',
         //'blur .edit': 'close'
     },
