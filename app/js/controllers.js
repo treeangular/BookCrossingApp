@@ -16,3 +16,6 @@ SignInCtrl.$inject = [];
 
 function SignUpCtrl() { }
 SignUpCtrl.$inject = [];
+
+function SignCtrl() { }
+SignCtrl.$inject = [];
