@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns		= "http://www.w3.org/ns/widgets"
+        xmlns:gap	= "http://phonegap.com/ns/1.0"
+        id		   = "com.thegoldwarriors.bookCrossing"
+        version 	= "1.0.0">
+
+  <name>bookCrossing</name>
+
+  <description>"bookCrossing.</description>
+
+  <author email="arcayne@gmail.com">bookCrossing</author>
+
+  <icon src="img/logo.png" gap:role="default" />
+
+  <feature name="http://api.phonegap.com/1.0/network"/>
+  <feature name="http://api.phonegap.com/1.0/geolocation"/>
+
+  <preference name="phonegap-version" value="2.0.0" />
+  <preference name="target-device" value="universal" />
+
+  <!-- Splash Screens -->
+  <gap:splash src="splash.png" />
+  <gap:splash src="img/logo.png" gap:platform="android" gap:density="ldpi" />
+  <gap:splash src="img/logo.png" gap:platform="android" gap:density="mdpi" />
+  <gap:splash src="img/logo.png" gap:platform="android" gap:density="hdpi" />
+</widget>
