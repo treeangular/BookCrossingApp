@@ -2,20 +2,25 @@
 
 /* Controllers */
 
-
-function MyCtrl1() {}
-MyCtrl1.$inject = [];
-
-
-function MyCtrl2() {
-}
-MyCtrl2.$inject = [];
-
 function SignInCtrl() {}
 SignInCtrl.$inject = [];
 
-function SignUpCtrl() { }
+function SignUpCtrl($scope) {
+
+    
+   // $scope.master = {};
+    
+    $scope.signUserUp = function() {
+        //$scope.master = angular.copy(user);
+       // console.write(user);
+        console.write("End of signUserUp");
+    };
+
+}
 SignUpCtrl.$inject = [];
 
 function SignCtrl() { }
 SignCtrl.$inject = [];
+
+function MainCtrl() { }
+MainCtrl.$inject = [];

@@ -1,17 +1,17 @@
-﻿<div id="loginwrapper">
-	<form name="login-form" class="login-form" action="signup2.html" method="post">
+﻿<div id="loginwrapper" ng-controller="SignUpCtrl">
+	<form name="login-form" class="login-form">
 		<div class="loginheader">
-		<h1>Sign up</h1>
+		    <h1>Sign up</h1>
 		</div>
 		<div class="content">
-		<input name="username" type="text" class="input username" placeholder="Email" />
-		<input name="password" type="password" class="input password" placeholder="Password" />
-		<input name="passwordAgain" type="password" class="input password" placeholder="Confirm Password" />
+		    <input name="username" type="email" class="input username" ng-model="user.email" required placeholder="Email" />
+		    <input name="password" type="password" class="input password" ng-model="user.password" required placeholder="Password" />
+		    <input name="passwordAgain" type="password" class="input password" required placeholder="Confirm Password" />
 		</div>
 
-		<div class="footer">
-		<input type="submit" name="submit" value="Register" class="buttonleft" />
-		<a href="javascript:navigator_Go('index.html');"><input type="button" name="submit" value="Cancel" class="buttonright" /></a>
+		<div class="footer" >
+		    <button ng-click="signUserUp()" type="submit" class="buttonleft" >Register</button>
+		    <a href="#/sign"><input type="button" name="submit" value="Cancel" class="buttonright" /></a>
 		</div>		
 	</form>
 </div>
