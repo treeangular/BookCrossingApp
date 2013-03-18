@@ -2,21 +2,30 @@
 
 /* Controllers */
     
-function SignInCtrl($scope, DataService) {
+function SignInCtrl($scope, DataService, $location) {
 
     $scope.signInUser = function (user) {
         DataService.signIn(user.Email, user.Password, function (result) {
             //How do I change to another view now?!!? Locate ?? 
             $scope.$apply(function () {
                 $scope.registerResult = result ? "Success" : "Failed";
+
+                if (result) {
+                    $scope.registerResult = "Success";
+                    $location.path('/main');
+                } else {
+                    $scope.registerResult = "Fail!";
+                    $location.path('/');
+                }
+
             }); 
         });
     };
 };
     
-SignInCtrl.$inject = ['$scope', 'DataService'];
+SignInCtrl.$inject = ['$scope', 'DataService', '$location'];
 
-function SignUpCtrl($scope, DataService) {
+function SignUpCtrl($scope, DataService, $location) {
         // $scope.master = {};
     $scope.registerNewUser = function (user) {
         
@@ -25,36 +34,33 @@ function SignUpCtrl($scope, DataService) {
                 $scope.$apply(function () {
                     $scope.registerResult = result ? "Success" : "Failed";
                 });
-            });
+            if (result) {
+                $scope.registerResult = "Success";
+                $location.path('/main');
+            }
+            else {
+                $scope.registerResult = "Fail!";
+                $location.path('/');
+            }
+        });
         };
 };
 //Dependency injection - http://stackoverflow.com/questions/11847376/angular-js-scope-error
-SignUpCtrl.$inject = ['$scope', 'DataService'];
+SignUpCtrl.$inject = ['$scope', 'DataService', '$location'];
 
-function SignCtrl() {
-   /* //Check localStorge for user info.
-    var dbShell = window.openDatabase("BookCrossingApp", 2, "BookCrossingApp", 1000000);
-    //doLog("db was opened");
-    //run transaction to create initial tables
-    dbShell.transaction(setupTable, dbErrorHandler, getEntries);
+function SignCtrl($scope, DataService, $location) {
 
-    function setupTable(tx) {
-        //doLog("Going to create the table if it dosent exist");
-        tx.executeSql("CREATE TABLE IF NOT EXISTS dreams(id INTEGER PRIMARY KEY,title,body,updated)");
-    }
-
-    function dbErrorHandler(err) {
-        //alert("DB Error: " + err.message + "\nCode=" + err.code);
-
-        try {
-            // doLog("dbErrorHandler WebSql Error: " + err.message + "\nCode=" + err.code);
-        } catch (e) {
-            // doLog("dbErrorHandler Parse Error: " + err);
+    DataService.isCurrentUser(function(result) {
+        if (result) {
+            $location.path('/main');
         }
-    }*/
+        else {
+            $location.path('/');
+        }
 
+    });
 }
-//SignCtrl.$inject = [];
+SignUpCtrl.$inject = ['$scope', 'DataService', '$location'];
 
 function MainCtrl() { }
 MainCtrl.$inject = [];

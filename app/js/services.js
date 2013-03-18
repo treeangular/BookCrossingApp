@@ -41,13 +41,13 @@ angular.module('DataServices', [])
             
             //Sign In User
             signIn: function signIn(email, password, callback) {
-                
+
                 Parse.User.logIn(email, password, {
-                    success: function (user) {
+                    success: function(user) {
                         // Do stuff after successful login.
                         callback(true);
                     },
-                    error: function (user, error) {
+                    error: function(user, error) {
                         // The login failed. Check error to see why.
                         alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
@@ -56,6 +56,7 @@ angular.module('DataServices', [])
                 });
             },
             
+            //Register new user
             registerNewUser: function registerNewUser(user, callback) {
                 var newUser = new Parse.User();
 
@@ -64,18 +65,30 @@ angular.module('DataServices', [])
                 newUser.set("email", user.Email);
 
                 newUser.signUp(null, {
-                    success: function (userr) {
+                    success: function(userr) {
                         // Hooray! Let them use the app now.
                         callback(true);
                     },
-                    error: function (userr, error) {
+                    error: function(userr, error) {
                         // Show the error message somewhere and let the user try again.
                         alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false);
                     }
                 });
-            }
+            },
+            
+            isCurrentUser: function isCurrentUser(callback) {
+                var currentUser = Parse.User.current();
+                if (currentUser) {
+                    // do stuff with the user
+                    callback(true);
+                } else {
+                    // show the signup or login page
+                    callback(false);
+                }
+        }
+
         };
 
         return ParseService;
