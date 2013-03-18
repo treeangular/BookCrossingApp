@@ -2,8 +2,91 @@
 
 /* Services */
 
+/**
+ * DataService Module
+ *
+ *  A collection of services that provide a variety of back-end options for saving
+ *  and retrieving data. Parse.com is Backend-as-a-Service company.
+ *  They provide easy to use databases for mobile and HTML5 applications.
+ */
+var PARSE_APP_ID = "khg4ef8Mks6oP2AjjVlvYHnoEIzLnsaW7Tb23jow";
+var PARSE_JS_ID = "8KZKpONdEWQZNBteRkJWCtBks3YxuO55THQhQ7qI";
+var PARSE_REST_API_KEY = "CYIfNsDlxO1pDea17LxzEjzDn9E9ZQLbzk5oaigg";
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('myApp.services', []).
-  value('version', '0.1');
+
+angular.module('DataServices', [])
+
+/**
+ * Parse Service
+ * Use Parse.com as a back-end for the application.
+ */
+    .factory('ParseService', function () {
+        // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
+
+        try {
+            Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
+        } catch(e) {
+            console.log(e);
+        } 
+        
+
+    /**
+    * ParseService Object
+    * This is what is used by the main controller to save and retrieve data from Parse.com.
+    * Moving all the Parse.com specific stuff into a service allows me to later swap it out 
+    * with another back-end service provider without modifying my controller much, if at all.
+    */        
+        var ParseService = {
+            name: "Parse",
+            
+            //Sign In User
+            signIn: function signIn(email, password, callback) {
+                
+                Parse.User.logIn(email, password, {
+                    success: function (user) {
+                        // Do stuff after successful login.
+                        callback(true);
+                    },
+                    error: function (user, error) {
+                        // The login failed. Check error to see why.
+                        alert("Error: " + error.code + " " + error.message);
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false);
+                    }
+                });
+            },
+            
+            registerNewUser: function registerNewUser(user, callback) {
+                var newUser = new Parse.User();
+
+                newUser.set("username", user.Email);
+                newUser.set("password", user.Password);
+                newUser.set("email", user.Email);
+
+                newUser.signUp(null, {
+                    success: function (userr) {
+                        // Hooray! Let them use the app now.
+                        callback(true);
+                    },
+                    error: function (userr, error) {
+                        // Show the error message somewhere and let the user try again.
+                        alert("Error: " + error.code + " " + error.message);
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false);
+                    }
+                });
+            }
+        };
+
+        return ParseService;
+    })
+
+.factory('DataService', function (ParseService, $location) {
+    // Use the BackboneService by default
+    var serviceToUse = ParseService;
+
+    return serviceToUse;
+});
+
+
+

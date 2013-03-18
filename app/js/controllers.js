@@ -1,85 +1,35 @@
 'use strict';
 
 /* Controllers */
-
-function SignInCtrl($scope) {
     
-    var PARSE_APP_ID = "khg4ef8Mks6oP2AjjVlvYHnoEIzLnsaW7Tb23jow";
-    var PARSE_JS_ID = "8KZKpONdEWQZNBteRkJWCtBks3YxuO55THQhQ7qI";
+function SignInCtrl($scope, DataService) {
 
-    function initParse() {
-        Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
-    }
-
-    //this should be done in starting =>Actually if this fails for us is like being offline
-    //Should be online a $rootScope property so we can check it at any time?!
-    initParse();
-
-    $scope.signInUser = function () {
-        Parse.User.logIn($scope.userEmail, $scope.userPassword, {
-            success: function() {
-                //location(#/main);
-                //$.mobile.changePage("main.html", { transition: "slide" });
-                $scope.$apply(function() {
-                    $scope.registerResult = "Register was succesful for user" + email;
-                });
-            },
-            error: function(error) {
-                //Desired functionallyty
-                /*
-                Show error - Go to mode offline - Go back to login page
-                */
-                $scope.registerResult = "Error: " + error.code + " " + error.message + ". Getting into offline mode => No new user can be added at this moment.";
-                alert("Error: " + error.code + " " + error.message);
-            }
+    $scope.signInUser = function (user) {
+        DataService.signIn(user.Email, user.Password, function (result) {
+            //How do I change to another view now?!!? Locate ?? 
+            $scope.$apply(function () {
+                $scope.registerResult = result ? "Success" : "Failed";
+            }); 
         });
     };
-   
-
-}
-
-
-//SignInCtrl.$inject = [];
-
-function SignUpCtrl($scope) {
-   // $scope.master = {};
+};
     
-    //this should be done in starting =>Actually if this fails for us is like being offline
-    //Should be online a $rootScope property so we can check it at any time?!
-    initParse();
+SignInCtrl.$inject = ['$scope', 'DataService'];
 
-
-    $scope.signUpUser = function(user) {
-       // $scope.master = angular.copy(user);
-        $scope.registerResult = "Register was succesful for user" + user.email;
-    };
-    
-    $scope.registerNewUser = function () {
-        var newUser = new Parse.User();
-        newUser.save({
-            email: $scope.userEmail,
-            password: $scope.userPassword
-        }, {
-            success: function (registersuccess) {
+function SignUpCtrl($scope, DataService) {
+        // $scope.master = {};
+    $scope.registerNewUser = function (user) {
+        
+        DataService.registerNewUser(user, function (result) {
+                //How do I change to another view now?!!? Locate ?? 
                 $scope.$apply(function () {
-                    $scope.registerResult = "Register was succesful for user" + email;
+                    $scope.registerResult = result ? "Success" : "Failed";
                 });
-            },
-            error: function (error) {
-                //Desired functionallyty
-                /*
-                Show error - Go to mode offline - Go back to login page
-                */
-                $scope.registerResult = "Error: " + error.code + " " + error.message + ". Getting into offline mode => No new user can be added at this moment.";
-                alert("Error: " + error.code + " " + error.message);
-            }
-        });
-    };
-
-
-}
+            });
+        };
+};
 //Dependency injection - http://stackoverflow.com/questions/11847376/angular-js-scope-error
-//SignUpCtrl.$inject = ['$scope'];
+SignUpCtrl.$inject = ['$scope', 'DataService'];
 
 function SignCtrl() {
    /* //Check localStorge for user info.

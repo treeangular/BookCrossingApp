@@ -1,11 +1,11 @@
 ﻿<div id="loginwrapper">
-	<form name="login-form" class="login-form" ng-submit="signInUser()" >
+	<form name="login-form" class="login-form" ng-submit="signInUser(user)" >
 		<div class="loginheader">
 		<h1>Sign in</h1>
 		</div>
 		<div class="content">
-			<input name="username" type="text" class="input username" placeholder="Email" ng-model="userEmail" required />
-			<input name="password" type="password" class="input password" placeholder="Password" ng-model="userPassword" required />
+			<input name="username" type="text" class="input username" placeholder="Email" ng-model="user.Email" required />
+			<input name="password" type="password" class="input password" placeholder="Password" ng-model="user.Password" required />
 		</div>
 	    <div class="footer">
 	        <input type="submit" value="Connect" class="buttonleft" />

@@ -1,21 +1,33 @@
 'use strict';
 
-
 // Declare app level module which depends on filters, and services
-angular.module('bookCrossingApp', ['myApp.filters', 'myApp.services', 'myApp.directives']).
-  config(['$routeProvider', function($routeProvider) {
-   // $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: MyCtrl1});
-   // $routeProvider.when('/view2', { templateUrl: 'partials/partial2.html', controller: MyCtrl2 });
-    $routeProvider.when('/sign', { templateUrl: 'partials/sign.html', controller: SignCtrl });
-    $routeProvider.when('/signIn', { templateUrl: 'partials/signIn.html', controller: SignInCtrl });
-    $routeProvider.when('/signUp', { templateUrl: 'partials/signUp.html', controller: SignUpCtrl});
-    $routeProvider.when('/main', { templateUrl: 'partials/main.html', controller: MainCtrl });
-    $routeProvider.otherwise({ redirectTo: '/sign' });
-  }])/*.    TRY INITIALIZE PARSE?!?!?
-  run((function($rootScope) {
-  });*/
-
+var app = angular.module('bookCrossingApp', ['myApp.filters', 'DataServices', 'myApp.directives']);
 /*
-myApp.run(function ($rootScope, $location, $http, $timeout, FooService) {
-    $rootScope.foo = FooService;
+app.config(function (ParseProvider) {
+    ParseProvider.initialize(PARSE_APP_ID, PARSE_REST_API_KEY);
+});*/
+
+app.config( function ($routeProvider) {
+   
+    //ParseProvider.initialize(PARSE_APP_ID, PARSE_REST_API_KEY);
+    
+    //Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
+
+    //return $routeProvider.when('/sign', { templateUrl: 'partials/sign.html', controller: SignCtrl }).
+    //when('/signIn', { templateUrl: 'partials/signIn.html', controller: SignInCtrl }).
+    //when('/signUp', { templateUrl: 'partials/signUp.html', controller: SignUpCtrl }).
+    //when('/main', { templateUrl: 'partials/main.html', controller: MainCtrl }).
+    //otherwise({ redirectTo: '/sign' });
+    
+    $routeProvider.when('/sign', { templateUrl: 'partials/sign.html', controller: SignCtrl }).
+    when('/signIn', { templateUrl: 'partials/signIn.html', controller: SignInCtrl }).
+    when('/signUp', { templateUrl: 'partials/signUp.html', controller: SignUpCtrl }).
+    when('/main', { templateUrl: 'partials/main.html', controller: MainCtrl }).
+    otherwise({ redirectTo: '/sign' });
+
+});
+
+/*app.run(function (Parse) {
+    return Parse.auth.resumeSession();
+});
 */
