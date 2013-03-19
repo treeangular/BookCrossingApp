@@ -87,7 +87,28 @@ angular.module('DataServices', [])
                     // show the signup or login page
                     callback(false);
                 }
-        }
+
+            },        
+
+            getActions: function getActions(callback)
+            {
+                var Action = Parse.Object.extend("action");
+                var query = new Parse.Query(Action);
+                query.find({
+                    success: function (results) {
+                        $scope.$apply(function () {
+                            $scope.actions = results.map(function (obj) {
+                                return { user: obj.get("user"), action: obj.get("action"), book: obj.get("book"), parseObject: obj };
+                            });
+                        });
+                        callback(true);
+                    },
+                    error: function (error) {
+                        alert("Error: " + error.code + " " + error.message);
+                        callback(false);
+                    }
+                });
+            }
 
         };
 

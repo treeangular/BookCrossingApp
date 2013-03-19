@@ -1,19 +1,11 @@
 ﻿<div id="layout">
 <div id="header">BookCrossingApp</div>
 <div id="wrapper"><div id="scroller">
+<div ng-controller="MainCtrl">
 <ul id="thelist">
-	<li>Joan58 ha liberado el El perfume cerca de ti.</li>
-	<li>Javi85 ha comentado El perfume.</li>
-	<li>Javi85 ha comentado El perfume.</li>
-	<li>Javi85 ha comentado El perfume.</li>
-	<li>Joan58 ha liberado el El perfume cerca de ti.</li>
-	<li>Javi85 ha comentado El perfume.</li>
-	<li>Javi85 ha comentado El perfume.</li>
-	<li>Javi85 ha comentado El perfume.</li>
-	<li>Joan58 ha liberado el El perfume cerca de ti.</li>
-	<li>Javi85 ha comentado El perfume.</li>
-	<li>Javi85 ha comentado El perfume.</li>
+	<li ng-repeat="action in actions">{{action}}</li>	
 </ul>
+</div> 
 </div></div>
 <div id="footer">
 <nav id="tabbar">

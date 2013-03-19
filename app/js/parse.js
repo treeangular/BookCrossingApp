@@ -147,8 +147,6 @@ function AmIalreadyLoggedIn() {
     return rtv;
 }
 
-
-
 function SetCurrentUser(user) {
     currentUser = user;
 }

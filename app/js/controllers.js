@@ -62,5 +62,19 @@ function SignCtrl($scope, DataService, $location) {
 }
 SignUpCtrl.$inject = ['$scope', 'DataService', '$location'];
 
-function MainCtrl() { }
-MainCtrl.$inject = [];
+function MainCtrl($scope, DataService, $location)
+{   
+    $scope.actions = DataService.getActions(function (result)
+    {
+        if (result)
+        {
+            alert("Success");
+        }
+        else
+        {
+            alert("Fail");
+        }
+    });
+
+}
+MainCtrl.$inject = ['$scope', 'DataService'];
