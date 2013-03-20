@@ -129,6 +129,20 @@ angular.module('DataServices', [])
                         callback(false,error);
                     }
                 });
+            },
+
+            GetBookRegistrationId: function GetBookRegistrationId(callback) {
+
+                Parse.Cloud.run('GetBookId', {}, {
+                    success: function (result) {
+                        callback(true, result);
+                    },
+                    error: function (error) {
+                        callback(false, error);
+                    }
+                });
+
+
             }
         };
 

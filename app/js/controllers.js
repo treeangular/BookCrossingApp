@@ -99,6 +99,18 @@ function AddBookCtrl($scope, DataService, $location) {
         });
     };
 
+   // $scope.registrationCode = function () {
+
+        DataService.GetBookRegistrationId(function (isResult, result) {
+
+            $scope.$apply(function () {
+                $scope.registerResult = isResult ? result : "Error: Retriving New Book Code";
+            });
+
+        });
+
+    //}
+
 }
 AddBookCtrl.$inject = ['$scope', 'DataService', '$location'];
 
