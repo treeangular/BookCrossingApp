@@ -29,18 +29,18 @@ function SignUpCtrl($scope, DataService, $location) {
         // $scope.master = {};
     $scope.registerNewUser = function (user) {
         
-        DataService.registerNewUser(user, function (result) {
+        DataService.registerNewUser(user, function (isResult,result) {
                 //How do I change to another view now?!!? Locate ?? 
                 $scope.$apply(function () {
-                    $scope.registerResult = result ? "Success" : "Failed";
+                    $scope.registerResult = isResult ? "Success" : result;
                 });
-            if (result) {
-                $scope.registerResult = "Success";
+            if (isResult) {
+                //$scope.registerResult = "Success";
                 $location.path('/main');
             }
             else {
                 $scope.registerResult = "Fail!";
-                $location.path('/');
+                //$location.path('/');
             }
         });
         };
@@ -62,19 +62,43 @@ function SignCtrl($scope, DataService, $location) {
 }
 SignUpCtrl.$inject = ['$scope', 'DataService', '$location'];
 
-function MainCtrl($scope, DataService, $location)
-{   
-    $scope.actions = DataService.getActions(function (result)
-    {
-        if (result)
-        {
-            alert("Success");
-        }
-        else
-        {
-            alert("Fail");
-        }
-    });
 
+function MainCtrl($scope, DataService, $location)
+{
+    
+    //$scope.bookList = function() {
+        
+            // Call the service and fetch the list of signatures that match the given petition ID
+            DataService.getBooks(function (results) {
+                $scope.$apply(function () {
+                    // Apply the results to the signatureList model so it will refresh the table in the view
+                    $scope.bookList = results;
+                });
+            });
+       
+    //};
 }
 MainCtrl.$inject = ['$scope', 'DataService'];
+
+function AddBookCtrl($scope, DataService, $location) {
+
+    $scope.registerNewBook = function (book) {
+        DataService.registerBook(book, function (isResult, result) {
+            //How do I change to another view now?!!? Locate ?? 
+            $scope.$apply(function () {
+                $scope.registerResult = isResult ? "Success" : result;
+            });
+            if (isResult) {
+                //$scope.registerResult = "Success";
+                $location.path('/main');
+            }
+            else {
+                $scope.registerResult = "Fail!";
+                //$location.path('/');
+            }
+        });
+    };
+
+}
+AddBookCtrl.$inject = ['$scope', 'DataService', '$location'];
+

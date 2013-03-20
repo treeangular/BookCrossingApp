@@ -1,0 +1,27 @@
+﻿<div id="layout" ng-controller="AddBookCtrl">
+    <div id="header">BookCrossingApp</div>
+    <form name="registerNewBook-form" class="login-form" ng-submit="registerNewBook(book)">
+        <div class="content">
+            <input name="bookName" type="text" class="input username" ng-model="book.title"  placeholder="Book title" />
+            <input name="bookDescription" type="text" class="input username" ng-model="book.Description"  placeholder="Description" />
+            <input name="bookDescription" type="text" class="input username" ng-model="book.RegisterId"  placeholder="BookId" readonly />
+            <div class="footer" >
+                <input type="submit" value="Register Book" class="buttonleft" />
+            </div>
+        </div>
+    </form>
+    {{registerResult}}
+</div>
+
+<div id="footer">
+<nav id="tabbar">
+    <ul >
+     <!-- Action & navigation -->
+		<li><a href="#main" class="current flip"><div class="home"></div></a></li>    
+		<li><a href="#addBook" class="flip"><div class="addBook"></div></a></li>
+		<li><a href="#addZobc" class="flip"><div class="addZobc"></div></a></li>
+		<li><a href="#library" class="flip"><div class="library"></div></a></li>
+		<li><a href="#about" id="li_tab" class="flip"><div class="more"></div></a></li>
+    </ul>
+</nav>
+</div>

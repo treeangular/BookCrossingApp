@@ -9,9 +9,9 @@
  *  and retrieving data. Parse.com is Backend-as-a-Service company.
  *  They provide easy to use databases for mobile and HTML5 applications.
  */
-var PARSE_APP_ID = "khg4ef8Mks6oP2AjjVlvYHnoEIzLnsaW7Tb23jow";
-var PARSE_JS_ID = "8KZKpONdEWQZNBteRkJWCtBks3YxuO55THQhQ7qI";
-var PARSE_REST_API_KEY = "CYIfNsDlxO1pDea17LxzEjzDn9E9ZQLbzk5oaigg";
+var PARSE_APP_ID = "bqfSO3dVttG65a8CIkC1SdqC0CCqiqYsp1EfsjL8"; //"khg4ef8Mks6oP2AjjVlvYHnoEIzLnsaW7Tb23jow";
+var PARSE_JS_ID = "50VsxVt1NAKOhpuTK8JD37aklHvkT0V7QxBbVPxl"; //"8KZKpONdEWQZNBteRkJWCtBks3YxuO55THQhQ7qI";
+//var PARSE_REST_API_KEY = "CYIfNsDlxO1pDea17LxzEjzDn9E9ZQLbzk5oaigg";
 
 
 angular.module('DataServices', [])
@@ -29,7 +29,9 @@ angular.module('DataServices', [])
             console.log(e);
         } 
         
-
+        var Book = Parse.Object.extend("book");
+        var BookCollection = Parse.Collection.extend({ model: Book });
+        
     /**
     * ParseService Object
     * This is what is used by the main controller to save and retrieve data from Parse.com.
@@ -67,13 +69,13 @@ angular.module('DataServices', [])
                 newUser.signUp(null, {
                     success: function(userr) {
                         // Hooray! Let them use the app now.
-                        callback(true);
+                        callback(true,null);
                     },
                     error: function(userr, error) {
                         // Show the error message somewhere and let the user try again.
                         alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
-                        callback(false);
+                        callback(false,error);
                     }
                 });
             },
@@ -88,28 +90,46 @@ angular.module('DataServices', [])
                     callback(false);
                 }
 
-            },        
+            },
 
-            getActions: function getActions(callback)
+            getBooks: function getBooks(callback)
             {
-                var Action = Parse.Object.extend("action");
-                var query = new Parse.Query(Action);
-                query.find({
+               
+                // Instantiate a petition collection
+                var books = new BookCollection();
+                
+                // Use Parse's fetch method (a modified version of backbone.js fetch) to get all the petitions.
+                books.fetch({
                     success: function (results) {
-                        $scope.$apply(function () {
-                            $scope.actions = results.map(function (obj) {
-                                return { user: obj.get("user"), action: obj.get("action"), book: obj.get("book"), parseObject: obj };
-                            });
-                        });
-                        callback(true);
+                        // Send the petition collection back to the caller if it is succesfully populated. 
+                        callback(results);
                     },
-                    error: function (error) {
-                        alert("Error: " + error.code + " " + error.message);
-                        callback(false);
+                    error: function (results, error) {
+                        alert("Collection Error: " + error.message);
+                    }
+                });
+            },
+            
+            registerBook: function registerBook(bookk,callback) {
+                
+                var book = new Book();
+
+                book.set("title", bookk.title);
+                book.set("description", bookk.Description);
+                book.set("bookId", bookk.RegisterId);
+
+                book.save(null, {
+                    success: function(book) {
+                        // The object was saved successfully.
+                        callback(true,null);
+                    },
+                    error: function(book, error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        callback(false,error);
                     }
                 });
             }
-
         };
 
         return ParseService;
