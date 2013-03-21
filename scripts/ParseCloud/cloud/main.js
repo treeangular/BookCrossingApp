@@ -13,11 +13,11 @@ Parse.Cloud.define("GetBookId", function(request, response) {
 	response.success(randomstring);
 });
 
-Parse.Cloud.afterSave("book", function(request) {
-	var action = new Action();
+Parse.Cloud.afterSave("Book", function(request) {
+    var action = new Parse.Object("Action");
 
     action.set("Action", "BookRegistered");
-    action.set("BookId", request.object.get("title"));
+    action.set("BookId", request.object.id);
     action.set("UserId", request.user);
 
     action.save(null, {

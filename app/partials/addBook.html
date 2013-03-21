@@ -4,13 +4,18 @@
         <div class="content">
             <input name="bookName" type="text" class="input username" ng-model="book.title"  placeholder="Book title" />
             <input name="bookDescription" type="text" class="input username" ng-model="book.Description"  placeholder="Description" />
-            <input name="bookDescription" type="text" class="input username" ng-model="book.RegisterId"  placeholder={{registrationCode}} readonly />
+            <input name="bookDescription" type="text" class="input username" ng-model="book.RegistrationId"  placeholder= {{registrationCode}} readonly />
             <div class="footer" >
                 <input type="submit" value="Register Book" class="buttonleft" />
             </div>
+
+             Debug View:
+            <pre>Book: = {{book}}</pre>
+            <pre>Worked:= {{registerResult}}</pre>    
         </div>
     </form>
-    {{registerResult}}
+
+   
 </div>
 
 <div id="footer">

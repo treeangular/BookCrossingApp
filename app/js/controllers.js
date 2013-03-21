@@ -100,15 +100,17 @@ function AddBookCtrl($scope, DataService, $location) {
     };
 
    // $scope.registrationCode = function () {
-
+  //  var registrationIdFromServer;
         DataService.GetBookRegistrationId(function (isResult, result) {
-
             $scope.$apply(function () {
-                $scope.registerResult = isResult ? result : "Error: Retriving New Book Code";
+                $scope.registrationCode = isResult ? $scope.book = { RegistrationId: result } : "Error: Retriving New Book Code";
+               // registrationIdFromServer = result;
+               // $scope.book = { RegistrationId: registrationIdFromServer };
+                
             });
-
         });
 
+        
     //}
 
 }

@@ -29,7 +29,8 @@ angular.module('DataServices', [])
             console.log(e);
         } 
         
-        var Book = Parse.Object.extend("book");
+        //Create Object/Table names with capital first letter, following Parse guidelines.
+        var Book = Parse.Object.extend("Book");
         var BookCollection = Parse.Collection.extend({ model: Book });
         
     /**
@@ -116,7 +117,8 @@ angular.module('DataServices', [])
 
                 book.set("title", bookk.title);
                 book.set("description", bookk.Description);
-                book.set("bookId", bookk.RegisterId);
+                book.set("registrationId", bookk.RegistrationId);
+                book.setACL(new Parse.ACL(Parse.User.current()));
 
                 book.save(null, {
                     success: function(book) {
