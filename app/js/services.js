@@ -32,6 +32,8 @@ angular.module('DataServices', [])
         //Create Object/Table names with capital first letter, following Parse guidelines.
         var Book = Parse.Object.extend("Book");
         var BookCollection = Parse.Collection.extend({ model: Book });
+        var Action = Parse.Object.extend("Action");
+        var ActionCollection = Parse.Collection.extend({ model: Action });
         
     /**
     * ParseService Object
@@ -90,6 +92,49 @@ angular.module('DataServices', [])
                     // show the signup or login page
                     callback(false);
                 }
+
+            },
+
+            getActions: function getActions(callback)
+            {
+                var actions = new ActionCollection();
+                
+                actions.fetch({
+
+                    success: function (results) {
+
+                        callback(results);
+                    },
+
+                    error: function(results, error){
+                        alert("Collection Error: "+error.message);
+                    }
+                });
+            },
+
+            getWholeActions: function getWholeActions(callback)
+            {
+                var query = new Parse.Query(Action);
+ 
+                // Retrieve the most recent ones
+                query.descending("createdAt");
+ 
+                // Only retrieve the last ten
+                query.limit(10);
+ 
+                // Include the post data with each comment
+                query.include("bookPointer");
+                query.include("userPointer");
+                query.include("actionTypePointer");
+ 
+                query.find({
+                    success: function(actions) {
+                        // Comments now contains the last ten comments, and the "post" field
+                        // has been populated. For example:
+                        callback(actions);
+                        
+                    }
+                });
 
             },
 

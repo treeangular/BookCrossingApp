@@ -64,19 +64,18 @@ SignUpCtrl.$inject = ['$scope', 'DataService', '$location'];
 
 
 function MainCtrl($scope, DataService, $location)
-{
-    
-    //$scope.bookList = function() {
-        
-            // Call the service and fetch the list of signatures that match the given petition ID
-            DataService.getBooks(function (results) {
-                $scope.$apply(function () {
-                    // Apply the results to the signatureList model so it will refresh the table in the view
-                    $scope.bookList = results;
-                });
-            });
+{   
+    // Call the service and fetch the list of signatures that match the given petition ID
+    DataService.getWholeActions(function (results) {
+        $scope.$apply(function () {
+            
+            //if the object is complex 
+            $scope.actionList = results;
+            //Todo hev: try to understand 
+            //$scope.actionList = results.models;
+        });
+    });
        
-    //};
 }
 MainCtrl.$inject = ['$scope', 'DataService'];
 
