@@ -163,7 +163,9 @@ angular.module('DataServices', [])
                 book.set("title", bookk.title);
                 book.set("description", bookk.Description);
                 book.set("registrationId", bookk.RegistrationId);
-                book.setACL(new Parse.ACL(Parse.User.current()));
+                var newAcl = new Parse.ACL(Parse.User.current());
+                newAcl.setPublicReadAccess(true);
+                book.setACL(newAcl);
 
                 book.save(null, {
                     success: function(book) {
