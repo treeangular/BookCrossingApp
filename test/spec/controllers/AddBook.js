@@ -3,7 +3,7 @@
 describe('Controller: AddBookCtrl', function() {
 
   // load the controller's module
-  beforeEach(module('BookCrossingAppYeomanApp'));
+  beforeEach(module('BookCrossingApp'));
 
   var AddBookCtrl,
     scope;

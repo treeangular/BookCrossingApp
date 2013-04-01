@@ -3,7 +3,7 @@
 describe('Controller: SignCtrl', function() {
 
   // load the controller's module
-  beforeEach(module('BookCrossingAppYeomanApp'));
+  beforeEach(module('BookCrossingApp'));
 
   var SignCtrl,
     scope;
