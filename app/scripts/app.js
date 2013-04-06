@@ -52,6 +52,18 @@ BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'views/AddBook.html',
         controller: 'AddBookCtrl'
       })
+      .when('/AddZobc', {
+        templateUrl: 'views/AddZobc.html',
+        controller: 'AddZobcCtrl'
+      })
+      .when('/MyLibrary', {
+        templateUrl: 'views/MyLibrary.html',
+        controller: 'MyLibraryCtrl'
+      })
+      .when('/SignUpDetails', {
+        templateUrl: 'views/SignUpDetails.html',
+        controller: 'SignUpDetailsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

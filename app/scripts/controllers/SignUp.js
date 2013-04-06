@@ -10,7 +10,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, DataService, $locatio
             });
             if (isResult) {
                 //$scope.registerResult = "Success";
-                $location.path('/Main');
+                $location.path('/SignUpDetails');
             }
             else {
                 $scope.registerResult = "Fail!";
