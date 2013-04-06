@@ -25,7 +25,6 @@ var BookCrossingApp = angular.module('BookCrossingApp', ['DataServices']);
 
 //});
 
-
 BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -68,3 +67,16 @@ BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
         redirectTo: '/'
       });
   }]);
+
+
+BookCrossingApp.run(function ($rootScope, $location) {
+
+    /* PG */
+    $rootScope.deviceready = false;
+    document.addEventListener('deviceready', function () {
+        console.log("Report: deviceready");
+        $rootScope.deviceready = true;
+    }, false);
+    /* /PG */
+
+});

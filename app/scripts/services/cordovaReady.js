@@ -14,6 +14,7 @@ BookCrossingApp.factory('cordovaReady', function () {
                 fn.apply(this, args);
             });
             impl = fn;
+            navigator.notification.alert("haaaaaaa");
         }, false);
 
         return function () {
