@@ -39,19 +39,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Sign.html" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="Sign.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/views/Sign.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="31" selection-start="415" selection-end="415" vertical-scroll-proportion="-6.5384617">
+                <state line="5" column="84" selection-start="202" selection-end="202" vertical-scroll-proportion="0.14886165">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="AddBook.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="AddBook.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/scripts/controllers/AddBook.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="20" column="60" selection-start="746" selection-end="746" vertical-scroll-proportion="0.58219177">
+                <state line="28" column="20" selection-start="942" selection-end="942" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -70,10 +70,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="Sign.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="Sign.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Sign.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="61" selection-start="196" selection-end="196" vertical-scroll-proportion="0.14237855">
+                <state line="4" column="0" selection-start="99" selection-end="99" vertical-scroll-proportion="0.113902844">
                   <folding />
                 </state>
               </provider>
@@ -546,13 +546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Sign.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="31" selection-start="415" selection-end="415" vertical-scroll-proportion="-6.5384617">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="52" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.0">
@@ -560,16 +553,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Sign.js">
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/AddBook.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="61" selection-start="196" selection-end="196" vertical-scroll-proportion="0.14237855">
+        <state line="28" column="20" selection-start="942" selection-end="942" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/AddBook.js">
+    <entry file="file://$PROJECT_DIR$/app/views/Sign.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="60" selection-start="746" selection-end="746" vertical-scroll-proportion="0.58219177">
+        <state line="5" column="84" selection-start="202" selection-end="202" vertical-scroll-proportion="0.14886165">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Sign.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="99" selection-end="99" vertical-scroll-proportion="0.113902844">
           <folding />
         </state>
       </provider>
