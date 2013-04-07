@@ -25,6 +25,21 @@ var BookCrossingApp = angular.module('BookCrossingApp', ['DataServices']);
 
 //});
 
+BookCrossingApp.run(function ($rootScope, $location) {
+
+    /* PG */
+    $rootScope.deviceready = false;
+    document.addEventListener('deviceready', function () {
+        console.log("Report: deviceready");
+        navigator.notification.alert("Corodova device ready triggered!");
+        $rootScope.deviceready = true;
+        $rootScope.status = "DeviceReady";
+    }, false);
+    /* /PG */
+
+});
+
+
 BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -69,15 +84,4 @@ BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
   }]);
 
 
-BookCrossingApp.run(function ($rootScope, $location) {
 
-    /* PG */
-    $rootScope.deviceready = false;
-    document.addEventListener('deviceready', function () {
-        console.log("Report: deviceready");
-        navigator.notification.alert("Corodova device ready triggered!");
-        $rootScope.deviceready = true;
-    }, false);
-    /* /PG */
-
-});
