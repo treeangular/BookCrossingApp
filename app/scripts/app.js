@@ -33,7 +33,6 @@ BookCrossingApp.run(function ($rootScope, $location) {
         console.log("Report: deviceready");
         navigator.notification.alert("Corodova device ready triggered!");
         $rootScope.deviceready = true;
-        $rootScope.status = "DeviceReady";
     }, false);
     /* /PG */
 
