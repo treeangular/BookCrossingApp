@@ -4,14 +4,14 @@
     <list default="true" id="b9eb7519-9939-4d30-b139-420f3379413e" name="Default" comment="" />
     <ignored path="bookCrossingAppYo.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/app.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365279853518" ignored="false" />
-    <file path="/index.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365279192140" ignored="false" />
-    <file path="/index.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365279623380" ignored="false" />
-    <file path="/Sign.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365276521987" ignored="false" />
-    <file path="/Sign.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365276269628" ignored="false" />
-    <file path="/a.dummy" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365270322111" ignored="false" />
-    <file path="/karma.conf.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365184056446" ignored="false" />
     <file path="/main.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365183109075" ignored="false" />
+    <file path="/karma.conf.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365184056446" ignored="false" />
+    <file path="/a.dummy" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365270322111" ignored="false" />
+    <file path="/Sign.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365276269628" ignored="false" />
+    <file path="/Sign.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365276521987" ignored="false" />
+    <file path="/index.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365279623380" ignored="false" />
+    <file path="/index.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365279192140" ignored="false" />
+    <file path="/app.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365279853518" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +30,44 @@
     <favorites_list name="bookCrossingAppYo" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="AddBook.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/AddBook.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="35" selection-start="970" selection-end="985" vertical-scroll-proportion="0.6690519">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddBook.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/AddBook.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="26" selection-start="112" selection-end="127" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataServices.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/spec/controllers/services/DataServices.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="5" selection-start="396" selection-end="461" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Services.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="155" column="24" selection-start="5732" selection-end="5744" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -91,7 +128,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -124,20 +160,149 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bookCrossingAppYo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookCrossingApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bookCrossingAppYo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookCrossingApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bookCrossingAppYo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookCrossingApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bookCrossingAppYo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookCrossingApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bookCrossingAppYo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookCrossingApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bookCrossingAppYo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookCrossingApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testmarc" />
+    <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testmarc" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -187,13 +352,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17200297" sideWeight="0.675705" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17125838" sideWeight="0.675705" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -265,24 +430,10 @@
           <option name="timeStamp" value="1" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="9" />
+      <option name="time" value="54" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="25" selection-start="2273" selection-end="2273" vertical-scroll-proportion="0.44423077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Sign.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="6" selection-start="402" selection-end="402" vertical-scroll-proportion="0.31894934">
@@ -292,91 +443,83 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/services/cordovaReady.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="53" selection-start="425" selection-end="467" vertical-scroll-proportion="0.48658317">
-          <folding />
-        </state>
+        <state line="16" column="53" selection-start="425" selection-end="467" vertical-scroll-proportion="0.48658317" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/karma.conf.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="22" selection-start="1170" selection-end="1170" vertical-scroll-proportion="0.66547406">
-          <folding />
-        </state>
+        <state line="51" column="22" selection-start="1170" selection-end="1170" vertical-scroll-proportion="0.66547406" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="24" selection-start="2367" selection-end="2367" vertical-scroll-proportion="0.6386404">
+        <state line="93" column="24" selection-start="2367" selection-end="2367" vertical-scroll-proportion="0.6386404" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/services/cordovaReady.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="7" selection-start="461" selection-end="461" vertical-scroll-proportion="0.5474061" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/SignUpDetails.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="7" selection-start="625" selection-end="625" vertical-scroll-proportion="0.6994633" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/SignUp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="7" selection-start="594" selection-end="594" vertical-scroll-proportion="0.6994633" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/SignIn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="7" selection-start="594" selection-end="594" vertical-scroll-proportion="0.6994633" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/Sign.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="7" selection-start="641" selection-end="641" vertical-scroll-proportion="0.7602862" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/MyLibrary.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="7" selection-start="609" selection-end="609" vertical-scroll-proportion="0.6994633" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="7" selection-start="708" selection-end="708" vertical-scroll-proportion="0.7906977" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/AddZobc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="7" selection-start="601" selection-end="601" vertical-scroll-proportion="0.6994633" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/AddBook.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="26" selection-start="112" selection-end="127" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="155" column="24" selection-start="5732" selection-end="5744" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/spec/controllers/services/DataServices.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="5" selection-start="396" selection-end="461" vertical-scroll-proportion="0.5474061">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/services/cordovaReady.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="7" selection-start="461" selection-end="461" vertical-scroll-proportion="0.5474061">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/SignUpDetails.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="7" selection-start="625" selection-end="625" vertical-scroll-proportion="0.6994633">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/SignUp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="7" selection-start="594" selection-end="594" vertical-scroll-proportion="0.6994633">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/SignIn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="7" selection-start="594" selection-end="594" vertical-scroll-proportion="0.6994633">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/Sign.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="7" selection-start="641" selection-end="641" vertical-scroll-proportion="0.7602862">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/MyLibrary.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="7" selection-start="609" selection-end="609" vertical-scroll-proportion="0.6994633">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/Main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="7" selection-start="708" selection-end="708" vertical-scroll-proportion="0.7906977">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/AddZobc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="7" selection-start="601" selection-end="601" vertical-scroll-proportion="0.6994633">
+        <state line="18" column="5" selection-start="396" selection-end="461" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/spec/controllers/controllers/AddBook.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="7" selection-start="600" selection-end="600" vertical-scroll-proportion="0.6994633">
+        <state line="28" column="35" selection-start="970" selection-end="985" vertical-scroll-proportion="0.6690519">
           <folding />
         </state>
       </provider>
