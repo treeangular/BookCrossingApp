@@ -9,7 +9,5 @@ BookCrossingApp.controller('SignCtrl', function ($scope, DataService, $location)
         else {
             $location.path('/');
         }
-
-        $scope.status = "CurretnUser";
     });
 });

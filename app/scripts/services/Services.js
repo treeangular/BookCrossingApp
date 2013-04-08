@@ -61,6 +61,12 @@ angular.module('DataServices', [])
                 });
             },
 
+            signOut: function signOut()
+            {
+                Parse.User.logOut();
+                console.log("UserLogged out . . .");
+            },
+
             //Register new user
             registerNewUser: function registerNewUser(user, callback) {
                 var newUser = new Parse.User();

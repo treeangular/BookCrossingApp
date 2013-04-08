@@ -4,8 +4,13 @@
             <h1>Profile Setting</h1>
         </div>
         <div class="content">
+
+            <img id="preview" src="placeholder.png" height="100px" width="100px" />
+            <input type="file" name="image" onchange="previewImage(this)" accept="image/*"/>
+
             <input name="nick" type="text" class="input username" placeholder="Nick name" />
-            <input name="language" type="text" class="input username" placeholder="Language" />
+
+
             <select class="select" type="text"  name="browser" >
                 <option value="Preferred genre">Favorite genre</option>
                 <option value="safari">Action</option>
@@ -38,3 +43,4 @@
         </div>
     </form>
 </div>
+
