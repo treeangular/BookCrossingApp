@@ -28,14 +28,14 @@ var BookCrossingApp = angular.module('BookCrossingApp', ['DataServices']);
 BookCrossingApp.run(function ($rootScope, $location) {
 
     /* PG */
-    $rootScope.deviceready = false;
+ /*   $rootScope.deviceready = false;
     document.addEventListener('deviceready', function () {
         console.log("Report: deviceready");
         //navigator.notification.alert("Corodova device ready triggered!");
         //TODO: DEJ What after it is ready, should we actually wait unitl it happens?!
         // use cordova ready service instead??
         $rootScope.deviceready = true;
-    }, false);
+    }, false);  */
     /* /PG */
 
 });

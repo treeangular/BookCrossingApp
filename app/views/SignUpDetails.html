@@ -1,15 +1,14 @@
-<div id="loginwrapper">
-    <form name="login-form" class="login-form" action="main.html" method="post">
+<div id="loginwrapper" ng-controller="SignUpDetailsCtrl">
+    <form name="SignUpDetails-form" class="login-form" ng-submit="updateUserProfile(user)">
         <div class="loginheader">
-            <h1>Profile Setting</h1>
+            <h2>Complete your profile</h2>
         </div>
         <div class="content">
 
-            <img id="preview" src="placeholder.png" height="100px" width="100px" />
-            <input type="file" name="image" onchange="previewImage(this)" accept="image/*"/>
+            <img id="preview" src="../styles/img/CustomAvatarContest.png" height="100px" width="100px" />
+            <input type="file" name="image" accept="image/*"/>
 
             <input name="nick" type="text" class="input username" placeholder="Nick name" />
-
 
             <select class="select" type="text"  name="browser" >
                 <option value="Preferred genre">Favorite genre</option>
@@ -35,11 +34,16 @@
                 <option value="opera">Western</option>
                 <option value="safari">Young Adult</option>
             </select>
+
+            <select class="select" type="text"  name="browser" >
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+            </select>
         </div>
 
         <div class="footer">
-            <input type="submit" name="submit" value="Accept" class="buttonleft" />
-            <input type="submit" name="submit" value="Skip" class="buttonright" />
+            <a> <input type="submit" value="Save" class="buttonleft" /></a>
+            <a ng-href="#/Main"><input  value="Skip" class="buttonright" /></a>
         </div>
     </form>
 </div>

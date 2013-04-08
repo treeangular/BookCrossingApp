@@ -17,8 +17,7 @@ var PARSE_JS_ID = "50VsxVt1NAKOhpuTK8JD37aklHvkT0V7QxBbVPxl"; //"8KZKpONdEWQZNBt
 angular.module('DataServices', [])
 
 /**
- * Parse Service
- * Use Parse.com as a back-end for the application.
+ * Parse Service com as a back-end for the application.
  */
     .factory('ParseService', function () {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
