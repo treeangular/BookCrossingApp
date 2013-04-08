@@ -9,19 +9,21 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, DataService, $locatio
             //How do I change to another view now?!!? Locate ?? 
             $scope.$apply(function () {
                 isSuccess = isResult ? true : false;
+
+                if (isSuccess)
+                {
+                    //$scope.registerResult = "Success";
+                    $location.path('/SignUpDetails');
+                }
+                else
+                {
+                    //Show notification window with error!
+                }
             });
         });
 
-        $location.path('/SignUpDetails');
+        console.log(isSuccess);
 
-        if (isSuccess)
-        {
-             //$scope.registerResult = "Success";
-             $location.path('/SignUpDetails');
-        }
-        else
-        {
-            //Show notification window with error!
-        }
+
     };
 });

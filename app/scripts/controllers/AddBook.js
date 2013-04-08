@@ -2,20 +2,30 @@
 
 BookCrossingApp.controller('AddBookCtrl', function ($scope, DataService, $location) {
     $scope.registerNewBook = function (book) {
+
+        var isSuccess;
+
         DataService.registerBook(book, function (isResult, result) {
             //How do I change to another view now?!!? Locate ?? 
             $scope.$apply(function () {
-                $scope.registerResult = isResult ? "Success" : result;
+                isSuccess = isResult ? true : false;
+
+                if (isSuccess)
+                {
+                    $location.path('/main');
+                }
+                else
+                {
+                    $scope.registerResult = "Fail!";
+                    //$location.path('/');
+                }
+
             });
-            if (isResult) {
-                //$scope.registerResult = "Success";
-                $location.path('/main');
-            }
-            else {
-                $scope.registerResult = "Fail!";
-                //$location.path('/');
-            }
         });
+
+        console.log(isSuccess);
+
+
     };
 
     DataService.GetBookRegistrationId(function (isResult, result) {
