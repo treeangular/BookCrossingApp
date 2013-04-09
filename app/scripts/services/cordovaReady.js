@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.factory('cordovaReady', function () {
+BookCrossingApp.factory('phonegapReady', function () {
     return function (fn) {
 
         var queue = [];
@@ -14,7 +14,7 @@ BookCrossingApp.factory('cordovaReady', function () {
                 fn.apply(this, args);
             });
             impl = fn;
-            navigator.notification.alert("haaaaaaa");
+            console.log("Service phonegapReady detected deviceready");
         }, false);
 
         return function () {
