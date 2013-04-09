@@ -3,7 +3,7 @@
 describe('Controller: AddBookCtrl', function() {
 
     var scope;
-    var ParseService;
+    var ParseServiceMock;
     var AddBookCtrl;
     var q;
     var deferred;
@@ -11,14 +11,14 @@ describe('Controller: AddBookCtrl', function() {
 //  // load the controller's module
   beforeEach(module('BookCrossingApp'));
 
-    // define the mock people service
+    // define the mock Parse service
     beforeEach(function() {
-        ParseService = {
-            registerBook: function() {
-            deferred = q.defer();
-            return deferred.promise;
+        ParseServiceMock = {
+
+            registerBook: function(book) {
+
             },
-            GetBookRegistrationId: function()
+            getBookRegistrationId: function()
             {
 
             }
@@ -26,17 +26,23 @@ describe('Controller: AddBookCtrl', function() {
        };
     });
         // inject the required services and instantiate the controller
-    beforeEach(inject(function($rootScope, $controller, $q) {
-         scope = $rootScope.$new();
-         q = $q;
+    beforeEach(inject(function($rootScope, $controller) {
+        scope = $rootScope.$new();
         AddBookCtrl = $controller('AddBookCtrl', {
-            $scope: scope, $DataService: ParseService
+            $scope: scope, DataService: ParseServiceMock
         });
         }));
-    it('should call Parse Service method', function () {
 
-        spyOn(ParseService, 'registerBook').andCallThrough();
+    it('should call registerBook Parse Service method', function () {
+
+        var book = {title: "Hola que ase!"}
+        //spyOn(ParseService, 'registerBook').andCallThrough();
+        spyOn(ParseServiceMock, 'registerBook').andCallThrough();
+        scope.registerNewBook(book);
+        expect(ParseServiceMock.registerBook).toHaveBeenCalled();
+
     });
+
     it('Dummy test', function () {
         expect(true).toBe(true);
     });

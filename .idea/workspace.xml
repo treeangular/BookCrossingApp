@@ -40,79 +40,62 @@
     <favorites_list name="bookCrossingAppYo" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="AddBook.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/scripts/controllers/AddBook.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="2" column="39" selection-start="43" selection-end="54" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AddBook.js" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/test/spec/controllers/AddBook.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="37" column="41" selection-start="956" selection-end="956" vertical-scroll-proportion="0.62152135">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DataServices.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/spec/services/DataServices.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="cordovaReady.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/spec/services/cordovaReady.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="camera.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/spec/directives/camera.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="4" column="36" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Services.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="184" column="33" selection-start="6815" selection-end="6836" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="Settings.js" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/test/spec/controllers/Settings.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="7" selection-start="360" selection-end="360" vertical-scroll-proportion="0.46703297">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="AddBook.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/AddBook.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="37" selection-start="751" selection-end="772" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddBook.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/spec/controllers/AddBook.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="7" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.63506263">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataServices.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/spec/services/DataServices.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cordovaReady.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/spec/services/cordovaReady.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="camera.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/spec/directives/camera.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="36" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Services.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="160" column="63" selection-start="5922" selection-end="5930" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -129,14 +112,14 @@
         <option value="$PROJECT_DIR$/app/views/SignUp.html" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/SignUp.js" />
         <option value="$PROJECT_DIR$/app/views/SignUpDetails.html" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/AddBook.js" />
-        <option value="$PROJECT_DIR$/app/scripts/services/Services.js" />
         <option value="$PROJECT_DIR$/app/scripts/directives/camera.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/cordovaReady.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/scripts/app.js" />
         <option value="$PROJECT_DIR$/test/spec/directives/camera.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/Settings.js" />
+        <option value="$PROJECT_DIR$/app/scripts/services/Services.js" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/AddBook.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/AddBook.js" />
       </list>
     </option>
@@ -516,7 +499,7 @@
           <option name="timeStamp" value="1" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="101" />
+      <option name="time" value="169" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -581,6 +564,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/Settings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="7" selection-start="360" selection-end="360" vertical-scroll-proportion="0.46703297">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/spec/directives/camera.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="36" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
@@ -604,28 +594,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="33" selection-start="6815" selection-end="6836" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/Settings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="360" selection-end="360" vertical-scroll-proportion="0.46703297">
+        <state line="160" column="63" selection-start="5922" selection-end="5930" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/AddBook.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="39" selection-start="43" selection-end="54" vertical-scroll-proportion="0.0">
+        <state line="30" column="37" selection-start="751" selection-end="772" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/spec/controllers/AddBook.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="41" selection-start="956" selection-end="956" vertical-scroll-proportion="0.62152135">
+        <state line="43" column="7" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.63506263">
           <folding />
         </state>
       </provider>
