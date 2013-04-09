@@ -2,24 +2,37 @@
 
 describe('Controller: SignUpCtrl', function() {
 
-//  // load the controller's module
-//  beforeEach(module('BookCrossingApp'));
-//
-//  var SignUpCtrl,
-//    scope;
-//
-//  // Initialize the controller and a mock scope
-//  beforeEach(inject(function($controller) {
-//    scope = {};
-//    SignUpCtrl = $controller('SignUpCtrl', {
-//      $scope: scope
-//    });
-//  }));
-//
-//  it('should attach a list of awesomeThings to the scope', function() {
-//    expect(scope.awesomeThings.length).toBe(3);
-//  });
-    it('Dummy test', function () {
-        expect(true).toBe(true);
+    var scope;
+    var ParseServiceMock;
+    var SignInCtrl;
+
+    // load the controller's module
+    beforeEach(module('BookCrossingApp'));
+
+    // define the mock Parse service
+    beforeEach(function() {
+        ParseServiceMock = {
+            registerNewUser:function (user) {
+            }
+        };
     });
+    // inject the required services and instantiate the controller
+    beforeEach(inject(function($rootScope, $controller) {
+        scope = $rootScope.$new();
+        SignInCtrl = $controller('SignUpCtrl', {
+            $scope: scope, DataService: ParseServiceMock
+        });
+    }));
+
+    it('should call signUp Parse Service method', function () {
+
+        var user = {username:"JavitoFoo", email:"javierhertfelderFoo@gmail.com", password:"123"};
+
+        spyOn(ParseServiceMock, 'registerNewUser').andCallThrough();
+        scope.registerNewUser(user);
+        expect(ParseServiceMock.registerNewUser).toHaveBeenCalled();
+
+
+    });
+
 });
