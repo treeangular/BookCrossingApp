@@ -22,6 +22,9 @@
     <file path="/SignUp.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365435812715" ignored="false" />
     <file path="/SignUpDetails.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365452559175" ignored="false" />
     <file path="/cordovaReady.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365539855542" ignored="false" />
+    <file path="/Main.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365761067095" ignored="false" />
+    <file path="/config.xml" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365762535801" ignored="false" />
+    <file path="/Geolocation.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365762733375" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,71 +43,97 @@
     <favorites_list name="bookCrossingAppYo" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="cordovaReady.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/services/cordovaReady.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="22" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="47" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Services.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="160" column="63" selection-start="5922" selection-end="5930" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Geolocation.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/spec/services/Geolocation.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="33" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="2" selection-start="527" selection-end="527" vertical-scroll-proportion="0.30357143">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataServices.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/spec/services/DataServices.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="5" selection-start="395" selection-end="461" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="49" selection-start="637" selection-end="637" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="vertical" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="Main.js" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Main.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="14" column="31" selection-start="644" selection-end="644" vertical-scroll-proportion="0.43087557">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Services.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="180" column="85" selection-start="6766" selection-end="6766" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SignUp.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/SignUp.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="8" column="130" selection-start="578" selection-end="578" vertical-scroll-proportion="-5.230769">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DataServices.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/spec/services/DataServices.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="18" column="5" selection-start="395" selection-end="461" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="13" column="49" selection-start="637" selection-end="637" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="SignIn.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/SignIn.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="6" column="120" selection-start="282" selection-end="290" vertical-scroll-proportion="-3.9230769">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Geolocation.js" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/scripts/services/Geolocation.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="21" column="73" selection-start="932" selection-end="932" vertical-scroll-proportion="0.71495324">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/config.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="15" column="78" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="cordovaReady.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/scripts/services/cordovaReady.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="3" column="25" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -114,7 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/SignUp.html" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/SignUp.js" />
         <option value="$PROJECT_DIR$/app/views/SignUpDetails.html" />
         <option value="$PROJECT_DIR$/app/scripts/directives/camera.js" />
@@ -124,12 +152,13 @@
         <option value="$PROJECT_DIR$/app/scripts/services/Services.js" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/AddBook.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/AddBook.js" />
-        <option value="$PROJECT_DIR$/app/scripts/services/Geolocation.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/cordovaReady.js" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/Main.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/test/spec/services/Geolocation.js" />
+        <option value="$PROJECT_DIR$/app/views/SignUp.html" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/Main.js" />
         <option value="$PROJECT_DIR$/app/config.xml" />
+        <option value="$PROJECT_DIR$/app/scripts/services/Geolocation.js" />
       </list>
     </option>
   </component>
@@ -207,59 +236,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bookCrossingAppYo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BookCrossingApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="directives" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bookCrossingAppYo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BookCrossingApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -274,6 +251,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bookCrossingAppYo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BookCrossingApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -352,7 +355,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26614583" sideWeight="0.670282" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12291667" sideWeight="0.670282" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3991323" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329718" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -436,16 +439,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/Sign.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="6" selection-start="402" selection-end="402" vertical-scroll-proportion="0.31894934" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/AddBook.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="904" selection-end="904" vertical-scroll-proportion="0.28076923" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/spec/controllers/Settings.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="7" selection-start="360" selection-end="360" vertical-scroll-proportion="0.46703297" />
@@ -471,21 +464,14 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/services/Geolocation.js">
+    <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="58" selection-start="455" selection-end="455" vertical-scroll-proportion="0.25274727" />
+        <state line="45" column="63" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.42692307" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/services/cordovaReady.js">
+    <entry file="file://$PROJECT_DIR$/test/spec/services/DataServices.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="22" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="47" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
+        <state line="18" column="5" selection-start="395" selection-end="461" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -497,35 +483,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
+    <entry file="file://$PROJECT_DIR$/app/views/SignIn.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="63" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.42692307" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="63" selection-start="5922" selection-end="5930" vertical-scroll-proportion="0.0">
+        <state line="6" column="120" selection-start="282" selection-end="290" vertical-scroll-proportion="-3.9230769">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/services/DataServices.js">
+    <entry file="file://$PROJECT_DIR$/app/views/SignUp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="5" selection-start="395" selection-end="461" vertical-scroll-proportion="0.0">
+        <state line="8" column="130" selection-start="578" selection-end="578" vertical-scroll-proportion="-5.230769">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/spec/services/Geolocation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="33" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
+        <state line="15" column="47" selection-start="353" selection-end="353" vertical-scroll-proportion="0.5875576">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="180" column="85" selection-start="6766" selection-end="6766" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="2" selection-start="527" selection-end="527" vertical-scroll-proportion="0.30357143">
+        <state line="15" column="78" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="31" selection-start="644" selection-end="644" vertical-scroll-proportion="0.43087557">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/services/cordovaReady.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="25" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/services/Geolocation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="73" selection-start="932" selection-end="932" vertical-scroll-proportion="0.71495324">
           <folding />
         </state>
       </provider>

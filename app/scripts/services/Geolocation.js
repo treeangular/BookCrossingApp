@@ -19,6 +19,7 @@ BookCrossingApp.factory('Geolocation', function ($rootScope, phonegapReady) {
                         if (onError) {
                             $rootScope.$apply(function () {
                                 onError.apply(that, args);
+                                alert("getCurrentPosition - onError - "+ args);
                             });
                         }
                     },
