@@ -34,7 +34,7 @@ describe('Controller: AddBookCtrl', function() {
 
     it('should call registerBook Parse Service method', function () {
 
-        var book = {title: "Hola que ase!"}
+        var book = {title:"Hola que ase!"};
 
         spyOn(ParseServiceMock, 'registerBook').andCallThrough();
         //spyOn(ParseServiceMock, 'getBookRegistrationId').andCallThrough();
