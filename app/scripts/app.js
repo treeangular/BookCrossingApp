@@ -27,6 +27,7 @@ var BookCrossingApp = angular.module('BookCrossingApp', ['DataServices']);
 
 BookCrossingApp.run(function ($rootScope, $location) {
 
+
     /* PG */
  /*   $rootScope.deviceready = false;
     document.addEventListener('deviceready', function () {
@@ -87,6 +88,3 @@ BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
         redirectTo: '/'
       });
   }]);
-
-
-

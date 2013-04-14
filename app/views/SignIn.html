@@ -12,7 +12,7 @@
 	        
 	        <a href="#/sign"><input type="button" value="Cancel" class="buttonright" /></a>
             <!-- type="submit" how do we hadle 2 submits? 2 forms? -->
-	        <input  type="submit" value="Connect with Facebook" class="buttonfacebook" />
+	        <input  type="submit" value="Connect with Facebook" ng-click="Facebook.login()" class="buttonfacebook" />
             {{registerResult}}
 	    </div>		
 	</form>
