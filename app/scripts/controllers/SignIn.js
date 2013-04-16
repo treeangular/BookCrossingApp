@@ -18,4 +18,9 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, DataService, $locatio
             });
         });
     };
+    $scope.login = function()
+    {
+        facebookService.login();
+    };
+
 });
