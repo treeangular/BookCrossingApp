@@ -1,8 +1,11 @@
 <div id="loginwrapper">
 	<form name="login-form" class="login-form" ng-submit="signInUser(user)" >
+		<div id="notification" bca-slide-show="isVisible" slide-show-duration="2000">
+		{{ErrorMessage}}<a id="close" ng-click="close()"></a>
+		</div>
 		<div class="loginheader">
 		<h1>Sign in</h1>
-		</div>
+		</div>		
 		<div class="content">
 			<input name="username" type="text" class="input username" placeholder="Email" ng-model="user.Email" required />
 			<input name="password" type="password" class="input password" placeholder="Password" ng-model="user.Password" required />
