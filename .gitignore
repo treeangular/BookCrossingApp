@@ -3,7 +3,10 @@ dist
 .tmp
 .sass-cache
 app/components
+<<<<<<< HEAD
 .idea
 .idea/workspace.xml
+=======
+>>>>>>> origin/Arcayne-Branch
 */.idea/workspace.xml
 */.idea/tasks.xml
