@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('SignInCtrl', function ($scope, DataService, $location) {
+BookCrossingApp.controller('SignInCtrl', function ($scope, DataService, $location, facebookService) {
     $scope.signInUser = function (user) {
         DataService.signIn(user.Email, user.Password, function (result) {
             //How do I change to another view now?!!? Locate ?? 
@@ -18,4 +18,9 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, DataService, $locatio
             });
         });
     };
+    $scope.login = function()
+    {
+        facebookService.login();
+    };
+
 });

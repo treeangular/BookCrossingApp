@@ -22,6 +22,9 @@ describe('Controller: SignInCtrl', function() {
             $scope: scope, DataService: ParseServiceMock
         });
     }));
+    it('should Facebook not be null', function(){
+
+    })
 
     it('should call signIn Parse Service method', function () {
 
