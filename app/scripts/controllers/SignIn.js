@@ -1,15 +1,13 @@
 'use strict';
 
-<<<<<<< HEAD
+
 BookCrossingApp.controller('SignInCtrl', function ($scope, DataService, $location, facebookService) {
-=======
-BookCrossingApp.controller('SignInCtrl', function ($scope, DataService, $location) {
+
     $scope.isVisible = false;
 	$scope.close = function() {
                      $scope.isVisible = false;
                 };
-				
->>>>>>> origin/Marc-Branch
+
     $scope.signInUser = function (user) {
         DataService.signIn(user.Email, user.Password, function (result) {
             //How do I change to another view now?!!? Locate ?? 

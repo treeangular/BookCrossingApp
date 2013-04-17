@@ -1,10 +1,7 @@
 'use strict';
 
-<<<<<<< HEAD
-var BookCrossingApp = angular.module('BookCrossingApp', ['DataServices']);//,'SignComponents']);
-=======
+
 var BookCrossingApp = angular.module('BookCrossingApp', ['DataServices', 'FacebookProvider']);
->>>>>>> origin/Javi-brach
 
 //BookCrossingApp.config(function ($locationProvider, $routeProvider) {
 
