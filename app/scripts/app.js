@@ -27,27 +27,6 @@ var BookCrossingApp = angular.module('BookCrossingApp', ['DataServices', 'Facebo
 
 BookCrossingApp.run(function ($rootScope, $location) {
 
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId:'160779410752321',
-            channelUrl :'http://localhost/#/channel.html',
-            status:true,
-            cookie:true,
-            xfbml:true
-        });
-    };
-
-    (function (d) {
-        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement('script');
-        js.id = id;
-        js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        ref.parentNode.insertBefore(js, ref);
-    }(document));
     /* PG */
  /*   $rootScope.deviceready = false;
     document.addEventListener('deviceready', function () {
