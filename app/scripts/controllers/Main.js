@@ -9,7 +9,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope, DataService, Geolocatio
             $scope.actionList = results;
             //Todo hev: try to understand 
             //$scope.actionList = results.models;
-
+            /*
             Geolocation.getCurrentPosition(function (position) {
                 alert('Latitude: '              + position.coords.latitude          + '\n' +
                     'Longitude: '             + position.coords.longitude         + '\n' +
@@ -19,7 +19,9 @@ BookCrossingApp.controller('MainCtrl', function ($scope, DataService, Geolocatio
                     'Heading: '               + position.coords.heading           + '\n' +
                     'Speed: '                 + position.coords.speed             + '\n' +
                     'Timestamp: '             + position.timestamp                + '\n');
-            });
+            }); */
+
+            console.log("Are we getting here more than once?!?");
         });
     });
 });

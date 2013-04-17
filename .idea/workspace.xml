@@ -6,25 +6,26 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/main.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365183109075" ignored="false" />
     <file path="/karma.conf.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365184056446" ignored="false" />
-    <file path="/a.dummy" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365458080829" ignored="false" />
+    <file path="/a.dummy" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1366127291691" ignored="false" />
     <file path="/Sign.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365366018049" ignored="false" />
     <file path="/Sign.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365276521987" ignored="false" />
-    <file path="/index.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365456750644" ignored="false" />
+    <file path="/index.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1366186475137" ignored="false" />
     <file path="/index.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365279192140" ignored="false" />
-    <file path="/app.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365369464882" ignored="false" />
+    <file path="/app.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1366136958389" ignored="false" />
     <file path="/Dummy.txt" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365367934438" ignored="false" />
     <file path="/AddBook.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365417960417" ignored="false" />
-    <file path="/Main.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365417968389" ignored="false" />
+    <file path="/Main.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1366030042936" ignored="false" />
     <file path="/Settings.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365426605878" ignored="false" />
     <file path="/Settings.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365424972889" ignored="false" />
     <file path="/Services.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365424709415" ignored="false" />
-    <file path="/SignUp.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365435003948" ignored="false" />
+    <file path="/SignUp.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1366205335298" ignored="false" />
     <file path="/SignUp.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365435812715" ignored="false" />
     <file path="/SignUpDetails.html" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365452559175" ignored="false" />
     <file path="/cordovaReady.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365539855542" ignored="false" />
-    <file path="/Main.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365761067095" ignored="false" />
+    <file path="/Main.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1366033204891" ignored="false" />
     <file path="/config.xml" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365762535801" ignored="false" />
     <file path="/Geolocation.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1365762733375" ignored="false" />
+    <file path="/signUpPassword.js" changelist="b9eb7519-9939-4d30-b139-420f3379413e" time="1366205276470" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,37 +47,28 @@
     <splitter split-orientation="vertical" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="Main.js" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Main.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="31" selection-start="644" selection-end="644" vertical-scroll-proportion="0.43087557">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Services.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="180" column="85" selection-start="6766" selection-end="6766" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SignUp.html" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="SignUp.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/views/SignUp.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="8" column="130" selection-start="578" selection-end="578" vertical-scroll-proportion="-5.230769">
+                <state line="18" column="53" selection-start="819" selection-end="819" vertical-scroll-proportion="0.625">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DataServices.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/spec/services/DataServices.js">
+          <file leaf-file-name="SignIn.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/SignIn.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="18" column="5" selection-start="395" selection-end="461" vertical-scroll-proportion="0.0">
+                <state line="5" column="28" selection-start="162" selection-end="177" vertical-scroll-proportion="-3.2692308">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Geolocation.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/scripts/services/Geolocation.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="2" column="15" selection-start="15" selection-end="30" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -85,7 +77,16 @@
           <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="13" column="49" selection-start="637" selection-end="637" vertical-scroll-proportion="0.0">
+                <state line="2" column="76" selection-start="91" selection-end="91" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Services.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="16" column="28" selection-start="595" selection-end="607" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -95,37 +96,19 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="SignIn.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views/SignIn.html">
+          <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="6" column="120" selection-start="282" selection-end="290" vertical-scroll-proportion="-3.9230769">
+                <state line="49" column="68" selection-start="2444" selection-end="2444" vertical-scroll-proportion="-9.807693">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Geolocation.js" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/scripts/services/Geolocation.js">
+          <file leaf-file-name="signUpPassword.js" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/scripts/directives/signUpPassword.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="21" column="73" selection-start="932" selection-end="932" vertical-scroll-proportion="0.71495324">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/config.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="78" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="cordovaReady.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/scripts/services/cordovaReady.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="3" column="25" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0">
+                <state line="15" column="56" selection-start="716" selection-end="716" vertical-scroll-proportion="0.35747662">
                   <folding />
                 </state>
               </provider>
@@ -143,22 +126,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/scripts/controllers/SignUp.js" />
-        <option value="$PROJECT_DIR$/app/views/SignUpDetails.html" />
-        <option value="$PROJECT_DIR$/app/scripts/directives/camera.js" />
-        <option value="$PROJECT_DIR$/app/scripts/app.js" />
         <option value="$PROJECT_DIR$/test/spec/directives/camera.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/Settings.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/Services.js" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/AddBook.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/AddBook.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/cordovaReady.js" />
-        <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/test/spec/services/Geolocation.js" />
-        <option value="$PROJECT_DIR$/app/views/SignUp.html" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/Main.js" />
         <option value="$PROJECT_DIR$/app/config.xml" />
         <option value="$PROJECT_DIR$/app/scripts/services/Geolocation.js" />
+        <option value="$PROJECT_DIR$/app/views/Main.html" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/Main.js" />
+        <option value="$PROJECT_DIR$/test/spec/directives/signUpPassword.js" />
+        <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/app/scripts/app.js" />
+        <option value="$PROJECT_DIR$/app/scripts/directives/signUpPassword.js" />
+        <option value="$PROJECT_DIR$/app/views/SignUp.html" />
       </list>
     </option>
   </component>
@@ -194,6 +177,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -222,7 +206,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -237,6 +221,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -255,34 +243,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bookCrossingAppYo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BookCrossingApp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -295,6 +260,17 @@
     <property name="FullScreen" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="PublishConfig">
+    <servers>
+      <server id="d1c52346-0400-426f-b268-47efcd0f067c">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </server>
+    </servers>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -311,6 +287,14 @@
     </key>
   </component>
   <component name="RunManager" selected="Node.js.Karma Server">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
@@ -349,13 +333,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12291667" sideWeight="0.670282" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13385417" sideWeight="0.67108166" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3991323" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329718" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -364,7 +348,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.329718" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -439,102 +423,102 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/Settings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="360" selection-end="360" vertical-scroll-proportion="0.46703297" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/directives/camera.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="36" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/AddBook.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="37" selection-start="751" selection-end="772" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/AddBook.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="7" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/services/cordovaReady.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="63" selection-start="2309" selection-end="2309" vertical-scroll-proportion="0.42692307" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/services/DataServices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="5" selection-start="395" selection-end="461" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="49" selection-start="637" selection-end="637" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/SignIn.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="120" selection-start="282" selection-end="290" vertical-scroll-proportion="-3.9230769">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/SignUp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="130" selection-start="578" selection-end="578" vertical-scroll-proportion="-5.230769">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/services/Geolocation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="47" selection-start="353" selection-end="353" vertical-scroll-proportion="0.5875576">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="180" column="85" selection-start="6766" selection-end="6766" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="78" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="31" selection-start="644" selection-end="644" vertical-scroll-proportion="0.43087557">
+        <state line="38" column="31" selection-start="991" selection-end="991" vertical-scroll-proportion="1.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/services/cordovaReady.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="25" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0">
+        <state line="16" column="70" selection-start="427" selection-end="485" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Sign.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="67" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="56" selection-start="409" selection-end="409" vertical-scroll-proportion="0.4392765" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="279" selection-end="279" vertical-scroll-proportion="0.039906103" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/Sign.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/services/DataServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="5" selection-start="395" selection-end="461" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/AddBook.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="14" selection-start="176" selection-end="176" vertical-scroll-proportion="0.35915494">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/directives/signUpPassword.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="59" selection-start="361" selection-end="361" vertical-scroll-proportion="0.5162455" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="68" selection-start="2444" selection-end="2444" vertical-scroll-proportion="-9.807693">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/services/Services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="28" selection-start="595" selection-end="607" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/services/Geolocation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="73" selection-start="932" selection-end="932" vertical-scroll-proportion="0.71495324">
+        <state line="2" column="15" selection-start="15" selection-end="30" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="76" selection-start="91" selection-end="91" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/SignIn.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="28" selection-start="162" selection-end="177" vertical-scroll-proportion="-3.2692308">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/directives/signUpPassword.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="56" selection-start="716" selection-end="716" vertical-scroll-proportion="0.35747662">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/SignUp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="53" selection-start="819" selection-end="819" vertical-scroll-proportion="0.625">
           <folding />
         </state>
       </provider>

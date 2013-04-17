@@ -1,14 +1,21 @@
 <div id="loginwrapper" ng-controller="SignUpCtrl">
+
+
 	<form name="login-form" class="login-form" ng-submit="registerNewUser(user)">
 		<div class="loginheader">
 		    <h1>Sign Up</h1>
 		</div>
-		<div class="content">
-		    <input name="username" type="email" class="input username" ng-model="user.Email"  placeholder="Email" required/>
-		    <input name="password" type="password" class="input password" ng-model="user.Password"  placeholder="Password" required/>
-		     <!-- <input name="passwordAgain" type="password" class="input password"  placeholder="Confirm Password" /> -->
-            
-		</div>
+		<!--<div class="content">-->
+		    <!--<input name="username" type="email" class="input username" ng-model="user.Email"  placeholder="Email" required/>-->
+            <!--<input name="password" type="password" class="input password" ng-model="user.Password"  placeholder="Password" required/>-->
+            <!--<input name="viewPassword"  type="checkbox">-->
+        <!--</div>-->
+
+        <!--</div>-->
+        <div class="content">
+            <input name="username" type="email" class="input username" ng-model="user.Email"  placeholder="Email" required/>
+            <sign_Up_Password></sign_Up_Password>
+        </div>
 
 		<div class="footer" >
 		    <input type="submit" value="Register" class="buttonleft" />
@@ -16,4 +23,5 @@
             {{registerResult}}
 		</div>		
 	</form>
+
 </div>

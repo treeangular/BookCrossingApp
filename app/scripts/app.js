@@ -1,6 +1,6 @@
 'use strict';
 
-var BookCrossingApp = angular.module('BookCrossingApp', ['DataServices']);
+var BookCrossingApp = angular.module('BookCrossingApp', ['DataServices']);//,'SignComponents']);
 
 //BookCrossingApp.config(function ($locationProvider, $routeProvider) {
 
