@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('BookCrossingApp')
-  .controller('SignUpDetailsCtrl', function ($scope) {
+  .controller('SignUpDetailsCtrl', function ($scope,DataService, $location) {
 
         $scope.updateUserProfile = function (user) {
 
@@ -10,13 +10,11 @@ angular.module('BookCrossingApp')
                 $scope.$apply(function () {
                     if (isResult)
                     {
-                        //$scope.registerResult = "Success";
                         $location.path('/Main');
                     }
                     else
                     {
-                        //Show notification window with error!
-                        console.log("Error: " + error.code + " " + error.message);
+                        $scope.ErrorMessage = result.message;
                     }
                 });
             });

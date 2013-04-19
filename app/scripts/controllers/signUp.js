@@ -8,13 +8,11 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, DataService, $locatio
             $scope.$apply(function () {
                 if (isResult)
                 {
-                    //$scope.registerResult = "Success";
                     $location.path('/SignUpDetails');
                 }
                 else
                 {
-                    //Show notification window with error!
-                    console.log("Error: " + error.code + " " + error.message);
+                    $scope.ErrorMessage = result.message;
                 }
             });
         });
