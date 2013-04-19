@@ -1,36 +1,52 @@
 'use strict';
 //angular.module('SignComponents',[])
 BookCrossingApp.directive('bcaSignUpPassword', function () {
-    var templateViewPassword = '<div>' +
-        '<input name="username" type="email" class="input username" ng-model="user.Email"  placeholder="Email" required/>' +
-        '<input  name="password" type="password" class="input password" ng-model="user.Password"  placeholder="Password" required/>' +
-        '<input name="viewPassword"  type="checkbox">' +
-        '</div>';
-
-    var templateNoViewPassword =   '<div>' +
-        '<input name="username" type="email" class="input username" ng-model="user.Email"  placeholder="Email" required/>'
-        '<input ng-hide="showPassword" name="password" type="text" class="input password" ng-model="user.Password"  placeholder="Password" required/>' +
-        '<input name="viewPassword"  type="checkbox" placeholder="Password" checked="checked">' +
-        '</div>';
 
     return {
 
-        transclude: true,
-        template: templateViewPassword,
+        //template: templateViewPassword,
         restrict: 'E',
-        replace: false,
 
-       complile: function(element, attrs, transclude) {
+        link: function(scope, element, attrs) {
 
-            var isChecked = element.checked;
+            scope.$watch('viewPasswordCheckbox',
 
-           element.html = templateViewPassword;
+                function (newValue) {
 
-            return function (scope, element, attrs)
-            {
-                //scope.signUpPassword = signUpPassword;
-                scope.showPassword = isChecked;
-            }
+                    var show = newValue ? 1 : 2,
+                        hide = newValue ? 2 : 1;
+
+                    element.find('input')[hide].style.display = 'none';
+                    element.find('input')[show].style.display = '';
+                })
+
         }
     };
-  });
+});
+
+//    return {
+//
+//        // template: templateViewPassword,
+//        replace:true,
+//        restrict: 'E',
+//
+//        link: function(scope, element, attrs) {
+//
+//            scope.$watch('viewPasswordCheckbox',
+//                function (newValue) {
+//                    if(newValue)
+//                    {
+//                        $(element).find('input:eq(1)').attr('type', 'text')
+//                    }
+//                    else
+//                    {
+//                        $(element).find('input:eq(1)').attr('type', 'password')
+//                    }
+//                })
+//
+//        }
+//    };
+//});
+
+
+
