@@ -1,8 +1,6 @@
 <div id="loginwrapper">
+	<bca-notification></bca-notification>
 	<form name="login-form" class="login-form" ng-submit="signInUser(user)" >
-		<div id="notification" bca-slide-show="isVisible" slide-show-duration="2000">
-		{{ErrorMessage}}<a id="close" ng-click="close()"></a>
-		</div>
 		<div class="loginheader">
 		<h1>Sign in</h1>
 		</div>		
