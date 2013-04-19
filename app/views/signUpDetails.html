@@ -8,9 +8,9 @@
             <img id="preview" src="../styles/img/CustomAvatarContest.png" height="100px" width="100px" />
             <input type="file" name="image" accept="image/*"/>
 
-            <input name="nick" type="text" class="input username" placeholder="Nick name" />
+            <input name="nick" type="text" class="input username" ng-model="user.Nick" placeholder="Nick name" />
 
-            <select class="select" type="text"  name="browser" >
+            <select class="select" type="text"  name="genere" ng-model="user.FavoriteGenre">
                 <option value="Preferred genre">Favorite genre</option>
                 <option value="safari">Action</option>
                 <option value="firefox">Biography</option>
@@ -35,14 +35,14 @@
                 <option value="safari">Young Adult</option>
             </select>
 
-            <select class="select" type="text"  name="browser" >
+            <select class="select" type="text"  name="gender"  ng-model="user.Gender">
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
             </select>
         </div>
 
         <div class="footer">
-            <a> <input type="submit" value="Save" class="buttonleft" /></a>
+            <input type="submit" value="Save" class="buttonleft" />
             <a ng-href="#/Main"><input  value="Skip" class="buttonright" /></a>
         </div>
     </form>

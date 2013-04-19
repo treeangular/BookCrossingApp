@@ -88,6 +88,32 @@ angular.module('DataServices', [])
                 });
             },
 
+            updateUserProfile: function updateUserProfile(user, callback)
+            {
+                //Get current user
+                var currentUser = Parse.User.current();
+
+                currentUser.set("nick", user.Nick);
+                currentUser.set("gender", user.Gender);
+                currentUser.set("favoriteGenre", user.FavoriteGenre);
+
+                console.log("this happened");
+
+                currentUser.save(null, {
+                    success: function (user) {
+                        // Hooray! Let them use the app now.
+                        callback(true, null);
+                    },
+                    error: function (user, error) {
+                        // Show the error message somewhere and let the user try again.
+                        alert("Error: " + error.code + " " + error.message);
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, error);
+                    }
+                });
+
+            },
+
             isCurrentUser: function isCurrentUser(callback) {
                 var currentUser = Parse.User.current();
                 if (currentUser) {
