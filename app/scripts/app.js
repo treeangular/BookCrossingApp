@@ -3,29 +3,6 @@
 
 var BookCrossingApp = angular.module('BookCrossingApp', ['DataServices', 'FacebookProvider']);
 
-//BookCrossingApp.config(function ($locationProvider, $routeProvider) {
-
-//    //$locationProvider.html5Mode(true);
-//    //$locationProvider.html5Mode(true).hashPrefix('!');
-
-//    //2 Ways of doing the same??
-//    //return $routeProvider.when('/sign', { templateUrl: 'partials/sign.html', controller: SignCtrl }).
-//    //when('/signIn', { templateUrl: 'partials/signIn.html', controller: SignInCtrl }).
-//    //when('/signUp', { templateUrl: 'partials/signUp.html', controller: SignUpCtrl }).
-//    //when('/main', { templateUrl: 'partials/main.html', controller: MainCtrl }).
-//    //otherwise({ redirectTo: '/sign' });
-
-//    $routeProvider.
-//    when('/', { templateUrl: 'views/sign.html', controller: SignCtrl }).
-//    when('/sign', { templateUrl: 'views/sign.html', controller: SignCtrl }).
-//    when('/signIn', { templateUrl: 'views/signIn.html', controller: SignInCtrl }).
-//    when('/signUp', { templateUrl: 'views/signUp.html', controller: SignUpCtrl }).
-//    when('/main', { templateUrl: 'views/main.html', controller: MainCtrl }).
-//    when('/addBook', { templateUrl: 'views/addBook.html', controller: AddBookCtrl }).
-//    otherwise({ redirectTo: '/sign' });
-
-//});
-
 BookCrossingApp.run(function ($rootScope, $location) {
 
     /* PG */
@@ -40,7 +17,6 @@ BookCrossingApp.run(function ($rootScope, $location) {
     /* /PG */
 
 });
-
 
 BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider

@@ -6,8 +6,9 @@
         </div>
         <div class="content">
 
-            <img id="preview" src="../styles/img/CustomAvatarContest.png" height="100px" width="100px" />
-            <input type="file" name="image" accept="image/*"/>
+            <input type="button" bca-camera ng-model='user.myPicture' value="Take Picture"/>
+
+            <img id="preview" src={{myPicture}} height="100px" width="100px" />
 
             <input name="nick" type="text" class="input username" ng-model="user.Nick" placeholder="Nick name" />
 

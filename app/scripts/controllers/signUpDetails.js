@@ -19,4 +19,14 @@ angular.module('BookCrossingApp')
                 });
             });
         }
+
+        //Initialize default value
+        $scope.myPicture = "../styles/img/CustomAvatarContest.png";
+
+        $scope.$watch('myPicture', function(value) {
+            if(value) {
+                $scope.myPicture = value;
+            }
+        }, true);
+
 });
