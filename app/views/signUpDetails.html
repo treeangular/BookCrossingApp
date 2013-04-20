@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="loginwrapper" ng-controller="SignUpDetailsCtrl">
     <bca-notification></bca-notification>
     <form name="SignUpDetails-form" class="login-form" ng-submit="updateUserProfile(user)">
@@ -9,9 +10,45 @@
             <input type="button" bca-camera ng-model='user.myPicture' value="Take Picture"/>
 
             <img id="preview" src={{myPicture}} height="100px" width="100px" />
+=======
+<div id="loginwrapper">
+<form name="SignUpDetails-form" class="login-form" ng-submit="updateUserProfile(user)" ng-controller="SignUpDetailsCtrl">
+	<div class="loginheader">
+		<h2>Complete your profile</h2>
+	</div>
+	<div class="content">
 
-            <input name="nick" type="text" class="input username" ng-model="user.Nick" placeholder="Nick name" />
+		<img id="preview" src="../styles/img/CustomAvatarContest.png" height="100px" width="100px" />
+		<input type="file" name="image" accept="image/*"/>
+>>>>>>> Marc-branch
 
+		<input name="nick" type="text" ng-model="user.Nick" placeholder="Nick name" />
+		<select class="select" type="text"  name="genere" ng-model="user.FavoriteGenre">
+			<option value="Preferred genre">Favorite genre</option>
+			<option value="safari">Action</option>
+			<option value="firefox">Biography</option>
+			<option value="ie">Essay</option>
+			<option value="chrome">Fable</option>
+			<option value="opera">Fantasy</option>
+			<option value="safari">General</option>
+			<option value="safari">Historical</option>
+			<option value="firefox">Horror</option>
+			<option value="ie">Humor</option>
+			<option value="chrome">Kids</option>
+			<option value="opera">Manga</option>
+			<option value="safari">Mystery</option>
+			<option value="safari">Mythology</option>
+			<option value="safari">Play</option>
+			<option value="firefox">Romance</option>
+			<option value="ie">Sci-Fi </option>
+			<option value="chrome">Spiritual</option>
+			<option value="opera">Supernatural</option>
+			<option value="safari">Thriller</option>
+			<option value="opera">Western</option>
+			<option value="safari">Young Adult</option>
+		</select>
+
+<<<<<<< HEAD
             <select class="select" type="text"  name="genere" ng-model="user.FavoriteGenre">
                 <option value="Preferred genre">Favorite genre</option>
                 <option value="Action">Action</option>
@@ -49,4 +86,17 @@
         </div>
     </form>
 </div>
+=======
+		<select class="select" type="text"  name="gender"  ng-model="user.Gender">
+			<option value="Female">Female</option>
+			<option value="Male">Male</option>
+		</select>
+	</div>
+>>>>>>> Marc-branch
 
+	<div class="footer">
+		<input type="submit" value="Save" class="buttonleft" />
+		<a ng-href="#/Main"><input  value="Skip" class="buttonright" /></a>
+	</div>
+</form>
+</div>

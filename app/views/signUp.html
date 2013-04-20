@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="loginwrapper" ng-controller="SignUpCtrl">
     <bca-notification></bca-notification>
 	<form name="login-form" class="login-form" ng-submit="registerNewUser(user)">
@@ -9,31 +10,41 @@
             <!--<input name="password" type="password" class="input password" ng-model="user.Password"  placeholder="Password" required/>-->
             <!--<input name="viewPassword"  type="checkbox">-->
         <!--</div>-->
+=======
+<div id="loginwrapper">
+<form name="login-form" class="login-form" ng-submit="registerNewUser(user)" ng-controller="SignUpCtrl">
+	<div class="loginheader">
+		<h1>Sign Up</h1>
+	</div>
+	<!--<div class="content">-->
+		<!--<input name="username" bca-sign-Up-Password= type="email" class="input username" ng-model="user.Email"  placeholder="Email" required/>-->
+		<!--<input name="password" type="password" class="input password" ng-model="user.Password"  placeholder="Password" required/>-->
+		<!--<input name="viewPassword"  type="checkbox">-->
+	<!--</div>-->
 
-        <!--</div>-->
-        <div class="content">
-            <bca-sign-up-password>
+	<!--</div>-->
+	<div class="content">
+		<bca-sign-up-password>
+			<input name="username" type="email" ng-model="user.Email"  placeholder="Email" required/>
+			<input  name="password" type="text" ng-model="user.Password"  placeholder="Password" required/>
+			<input  name="password" type="password" ng-model="user.Password"  placeholder="Password" required/>                
+			<label for="viewPasswordCheck">See the password:</label>
+			<input name="viewPasswordCheckbox" id="viewPasswordCheck"  type="checkbox" ng-model="viewPasswordCheckbox">
+		</bca-sign-up-password>
+	</div>
 
-                <input name="username" type="email" class="input username" ng-model="user.Email"  placeholder="Email" required/>
-                <input  name="password" type="text" class="input password" ng-model="user.Password"  placeholder="Password" required/>
-                <input  name="password" type="password" class="input password" ng-model="user.Password"  placeholder="Password" required/>                <label for="viewPasswordCheck">See the password:</label>
-                <input name="viewPasswordCheckbox" id="viewPasswordCheck"  type="checkbox" ng-model="viewPasswordCheckbox">
-
-
-            </bca-sign-up-password>
-        </div>
-
-        <!--<div bca-sign-up-password>-->
-            <!--<input name="username" type="email" ng-model="user.Email" placeholder="Email" required/>-->
-            <!--<input  name="password" type="text" class="input password" ng-model="user.Password"  placeholder="Password" required/>-->
-            <!--<input name="viewPassword"  type="checkbox" ng-model="viewPasswordCheckbox">-->
-        <!--</div>-->
+	<!--<div bca-sign-up-password>-->
+		<!--<input name="username" type="email" ng-model="user.Email" placeholder="Email" required/>-->
+		<!--<input  name="password" type="text" class="input password" ng-model="user.Password"  placeholder="Password" required/>-->
+		<!--<input name="viewPassword"  type="checkbox" ng-model="viewPasswordCheckbox">-->
+	<!--</div>-->
 
 
-		<div class="footer" >
-		    <input type="submit" value="Register" class="buttonleft" />
-		    <a href="#/sign"><input type="button" name="submit" value="Cancel" class="buttonright" /></a>
-		</div>		
-	</form>
-
+	<div class="footer" >
+		<input type="submit" value="Register" class="buttonleft" />
+		<a href="#/sign"><input type="button" name="submit" value="Cancel" class="buttonright" /></a>
+	</div>		
+</form>
 </div>
+>>>>>>> Marc-branch
+

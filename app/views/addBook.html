@@ -2,9 +2,9 @@
     <div id="header">BookCrossingApp</div>
     <form name="registerNewBook-form" class="login-form" ng-submit="registerNewBook(book)">
         <div class="content">
-            <input name="bookName" type="text" class="input username" ng-model="book.title"  placeholder="Book title" />
-            <input name="bookDescription" type="text" class="input username" ng-model="book.Description"  placeholder="Description" />
-            <input name="bookDescription" type="text" class="input username" ng-model="book.RegistrationId"  placeholder= {{registrationCode}} readonly />
+            <input name="bookName" type="text" ng-model="book.title"  placeholder="Book title" />
+            <input name="bookDescription" type="text" ng-model="book.Description"  placeholder="Description" />
+            <input name="bookDescription" type="text" ng-model="book.RegistrationId"  placeholder= {{registrationCode}} readonly />
             <div class="footer" >
                 <input type="submit" value="Register Book" class="buttonleft" />
             </div>

@@ -3,53 +3,6 @@ LOGIN FORM
 *******************/
 /***NEW**/
 
-#notification {
-    position: absolute;
-    z-index: 101;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgb(233, 90, 84);
-    text-align: center;
-    line-height: 2.0;
-    overflow: hidden; 
-    -webkit-box-shadow: 0 0 5px black;
-    -moz-box-shadow:    0 0 5px black;
-    box-shadow:         0 0 5px black;
-}
-
-    .cssanimations.csstransforms #notification {
-        -webkit-transform: translateY(-50px);
-        -webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
-        -moz-transform:    translateY(-50px);
-        -moz-animation:    slideDown 2.5s 1.0s 1 ease forwards;
-    }
-
-    #close {
-      position: absolute;
-      right: 10px;
-      top: 4px;
-      text-indent: -9999px;
-      background: url(img/close.png);
-      height: 16px;
-      width: 16px;
-      cursor: pointer;
-    }
-    .cssanimations.csstransforms #close {
-      display: none;
-    }
-    
-    @-webkit-keyframes slideDown {
-        0%, 100% { -webkit-transform: translateY(-50px); }
-        10%, 90% { -webkit-transform: translateY(0px); }
-    }
-    @-moz-keyframes slideDown {
-        0%, 100% { -moz-transform: translateY(-50px); }
-        10%, 90% { -moz-transform: translateY(0px); }
-    }
-}
-
-/***OLD**/
 * {
 	margin: 0;
 	padding: 0;
@@ -57,56 +10,23 @@ LOGIN FORM
 	outline: none;
 }
 
-#loginwrapper {
-	/* Center wrapper perfectly */
-	width: 300px;
-	height: 430px;
-	margin: 25px auto;
+/*BODY*/
+
+body {
+	background-image: url('./img/low_contrast_linen.png');
+	background-repeat:repeat;
+	font-size:12px;
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
-
-
-.login-form {
-	width: 300px;
-	margin: 0 auto;
-	position: relative;
-	
-	background: #f3f3f3;
-	border: 1px solid #fff;
-	border-radius: 5px;
-	
-	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+.blank{
+height: 40px;  
 }
 
-.login-form .loginheader {
-	padding: 30px 30px 0px 30px;
-}
-
-.login-form .loginheader h1 {
-	font-weight: 300;
-	font-size: 28px;
-	line-height:34px;
-	color: #414848;
-	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
-	margin-bottom: 10px;
-}
-
-.login-form .loginheader span {
-	font-size: 11px;
-	line-height: 16px;
-	color: #678889;
-	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
-}
-
-
-.login-form .content {
-	padding: 0 30px 25px 30px;
-}
-
-/* Input field */
-.login-form .content .input {
+/* Inputs text, email and password */
+input[type=text], input[type=email], input[type=password] {
 	width: 188px;
 	padding: 15px 25px;
 	font-weight: 400;
@@ -123,34 +43,12 @@ LOGIN FORM
 	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
 }
 
-.login-form .content .select {
-	width: 240px;
-	padding: 15px 25px;
-	font-weight: 400;
-	font-size: 14px;
-	color: #9d9e9e;
-	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
-	margin-top: 15px;
-	background: #fff;
-	border: 1px solid #fff;
-	border-radius: 5px;
-	
-	box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
-	-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
-	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
-}
-
-.login-form .content .input:hover {
+input[type=text]:hover, input[type=email]:hover, input[type=password]:hover {
 	background: #dfe9ec;
 	color: #414848;
 }
 
-.login-form .content .select:hover {
-	background: #dfe9ec;
-	color: #414848;
-}
-
-.login-form .content .input:focus {
+input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
 	background: #dfe9ec;
 	color: #414848;
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
@@ -158,28 +56,8 @@ LOGIN FORM
 	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
 }
 
-.login-form .content .select:focus {
-	background: #dfe9ec;
-	color: #414848;
-	box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
-	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
-	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
-}
-
-.login-form .footer {
-	padding: 25px 30px 40px 30px;
-	overflow: auto;
-	
-	background: #d4dedf;
-	border-top: 1px solid #fff;
-	
-	box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
-	-moz-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
-	-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
-}
-
-/* Login button */
-.login-form .footer .buttonleft {
+/* Login buttons:left, right, facebook */
+.buttonleft {
 	float:left;
 	padding: 11px 25px;
 	margin-bottom: 5px;
@@ -232,81 +110,6 @@ LOGIN FORM
 	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
 }
 
-.login-form .footer .button:focus {
-	position: relative;
-	bottom: -1px;
-	
-	background: #56c2e1;
-	
-	box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
-	-moz-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
-	-webkit-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
-}
-
-/* Register button */
-.login-form .footer .register {
-	display: block;
-	float: right;
-	padding: 10px;
-	margin-right: 20px;
-	
-	background: none;
-	border: none;
-	cursor: pointer;
-	font-weight: 300;
-	font-size: 18px;
-	color: #414848;
-	text-shadow: 0px 1px 0 rgba(256,256,256,0.5);
-}
-
-.login-form .footer .register:hover {
-	color: #3f9db8;
-}
-
-.login-form .footer .register:focus {
-	position: relative;
-	bottom: -1px;
-}
-
-/*BODY*/
-
-body,ul,li {
-	padding:0;
-	margin:0;
-	border:0;
-}
-
-body {
-	background-image: url('./img/low_contrast_linen.png');
-	background-repeat:repeat;
-	font-size:12px;
-	-webkit-user-select:none;
-    -webkit-text-size-adjust:none;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-/*	padding-bottom:44px;	/*	This prevents the scroller to lock if the user swipes down outside of the screen.
-							 	NOT needed if in home screen mode and on Android. */
-}
-
-.blank{
-height: 40px;  
-}
-
-/*INTRO PAGE*/
-
-.logo
-{
-	background-image: url('./img/logo.png');
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	display: block;
-    margin-left: auto;
-	height: 200px;
-	width: 200px;
-    margin-right: auto;
-	border:1px solid #FFFFFF;
-}
-
 .tourlink{
 	background-image: url('./img/television.png');
 	background-position: left top;
@@ -338,6 +141,175 @@ height: 40px;
 	width : 100px;
 	height : 100px;    
 }
+
+/*IMAGES*/
+.logo
+{
+	background-image: url('./img/logo.png');
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	display: block;
+    margin-left: auto;
+	height: 200px;
+	width: 200px;
+    margin-right: auto;
+	border:1px solid #FFFFFF;
+}
+
+
+/* Notification bar */
+#notification {
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgb(233, 90, 84);
+    text-align: center;
+    line-height: 2.0;
+    overflow: hidden; 
+    -webkit-box-shadow: 0 0 5px black;
+    -moz-box-shadow:    0 0 5px black;
+    box-shadow:         0 0 5px black;
+}
+
+    .cssanimations.csstransforms #notification {
+        -webkit-transform: translateY(-50px);
+        -webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
+        -moz-transform:    translateY(-50px);
+        -moz-animation:    slideDown 2.5s 1.0s 1 ease forwards;
+    }
+
+    #close {
+      position: absolute;
+      right: 10px;
+      top: 4px;
+      text-indent: -9999px;
+      background: url(img/close.png);
+      height: 16px;
+      width: 16px;
+      cursor: pointer;
+    }
+    .cssanimations.csstransforms #close {
+      display: none;
+    }
+    
+    @-webkit-keyframes slideDown {
+        0%, 100% { -webkit-transform: translateY(-50px); }
+        10%, 90% { -webkit-transform: translateY(0px); }
+    }
+    @-moz-keyframes slideDown {
+        0%, 100% { -moz-transform: translateY(-50px); }
+        10%, 90% { -moz-transform: translateY(0px); }
+    }
+}
+
+/***OLD**/
+
+/* SIGN POPUP */
+#loginwrapper {
+	/* Center wrapper perfectly */
+	width: 300px;
+	height: 430px;
+	margin: 25px auto;
+}
+
+.login-form {
+	width: 300px;
+	margin: 0 auto;
+	position: relative;
+	margin-top: 10px;
+	background: #f3f3f3;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.login-form .loginheader {
+	padding: 30px 30px 0px 30px;
+}
+
+.login-form .loginheader h1 {
+	font-weight: 300;
+	font-size: 28px;
+	line-height:34px;
+	color: #414848;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+	margin-bottom: 10px;
+}
+
+.login-form .loginheader span {
+	font-size: 11px;
+	line-height: 16px;
+	color: #678889;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+}
+
+
+.login-form .content {
+	padding: 0 30px 25px 30px;
+}
+
+/* select field */
+.login-form .content .select {
+	width: 240px;
+	padding: 15px 25px;
+	font-weight: 400;
+	font-size: 14px;
+	color: #9d9e9e;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+	margin-top: 15px;
+	background: #fff;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	
+	box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+	-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+}
+
+
+.login-form .content .select:hover {
+	background: #dfe9ec;
+	color: #414848;
+}
+
+.login-form .content .select:focus {
+	background: #dfe9ec;
+	color: #414848;
+	box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+}
+
+.login-form .footer {
+	padding: 25px 30px 40px 30px;
+	overflow: auto;
+	
+	background: #d4dedf;
+	border-top: 1px solid #fff;
+	
+	box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
+	-moz-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
+	-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
+}
+
+.login-form .footer .button:focus {
+	position: relative;
+	bottom: -1px;
+	
+	background: #56c2e1;
+	
+	box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+	-moz-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+	-webkit-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+}
+
+
 
 #formbox {
             margin:auto 0;
@@ -388,7 +360,7 @@ height: 40px;
 }
 
 
-/*SCROLL*/
+/*MAIN: SCROLL*/
 
 #wrapper {
 	height:200px;		/* Of course you need to specify the object height */
@@ -430,7 +402,7 @@ height: 40px;
 	display:block;
 }
 
-/*MENU*/
+/*BOTOM MENU*/
 
 #tabbar {
     position: absolute;
