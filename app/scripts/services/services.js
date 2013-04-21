@@ -53,7 +53,7 @@ angular.module('DataServices', [])
                     },
                     error: function (user, error) {
                         // The login failed. Check error to see why.
-                        alert("Error: " + error.code + " " + error.message);
+                       // alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false);
                     }
