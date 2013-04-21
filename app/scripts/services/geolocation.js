@@ -1,8 +1,8 @@
 'use strict';
 
-BookCrossingApp.factory('Geolocation', function ($rootScope, phonegapReady) {
+BookCrossingApp.factory('geolocationService', function ($rootScope, phonegapReadyService) {
         return {
-            getCurrentPosition: phonegapReady(function (onSuccess, onError, options) {
+            getCurrentPosition: phonegapReadyService(function (onSuccess, onError, options) {
                 navigator.geolocation.getCurrentPosition(function () {
                         var that = this,
                             args = arguments;

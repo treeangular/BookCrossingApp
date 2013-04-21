@@ -6,13 +6,13 @@ describe('Service: Geolocation', function () {
   beforeEach(module('BookCrossingApp'));
 
   // instantiate service
-  var Geolocation;
-  beforeEach(inject(function (_Geolocation_) {
-    Geolocation = _Geolocation_;
+  var geolocationService;
+  beforeEach(inject(function (_geolocationService_) {
+    geolocationService = _geolocationService_;
   }));
 
   it('should do something', function () {
-    expect(!!Geolocation).toBe(true);
+    expect(!!geolocationService).toBe(true);
   });
 
 });

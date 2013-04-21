@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.factory('phonegapReady', function () {
+BookCrossingApp.factory('phonegapReadyService', function () {
     return function (fn) {
 
         var queue = [];

@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('MainCtrl', function ($scope, dataService, Geolocation) {
+BookCrossingApp.controller('MainCtrl', function ($scope, dataService, geolocationService) {
     // Call the service and fetch the list of signatures that match the given petition ID
     dataService.getWholeActions(function (results) {
         $scope.$apply(function () {
@@ -10,7 +10,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope, dataService, Geolocatio
             //Todo hev: try to understand 
             //$scope.actionList = results.models;
             /*
-            Geolocation.getCurrentPosition(function (position) {
+            geolocationService.getCurrentPosition(function (position) {
                 alert('Latitude: '              + position.coords.latitude          + '\n' +
                     'Longitude: '             + position.coords.longitude         + '\n' +
                     'Altitude: '              + position.coords.altitude          + '\n' +
