@@ -5,14 +5,10 @@ angular.module('BookCrossingApp')
 
         $scope.updateUserProfile = function (user) {
 
-<<<<<<< HEAD
             dataService.updateUserProfile(user, function (isResult, result) {
-=======
+
             //Only way I found to fix this issue - SO question
             user.myPicture =  $scope.myPicture;
-
-            DataService.updateUserProfile(user, function (isResult, result) {
->>>>>>> origin/Arcayne--Branch
 
                 $scope.$apply(function () {
                     if (isResult)

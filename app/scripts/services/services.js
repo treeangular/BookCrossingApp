@@ -53,11 +53,7 @@ angular.module('dataServices', [])
                     },
                     error: function (user, error) {
                         // The login failed. Check error to see why.
-<<<<<<< HEAD
                        // alert("Error: " + error.code + " " + error.message);
-=======
-                        //alert("Error: " + error.code + " " + error.message);
->>>>>>> origin/Arcayne--Branch
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false);
                     }
