@@ -2,7 +2,7 @@
 describe('Controller: SignInCtrl', function() {
 
     var scope;
-    var ParseServiceMock;
+    var parseServiceMock;
     var SignInCtrl;
 
     // load the controller's module
@@ -10,7 +10,7 @@ describe('Controller: SignInCtrl', function() {
 
     // define the mock Parse service
     beforeEach(function() {
-        ParseServiceMock = {
+        parseServiceMock = {
             signIn:function (email, password, callback) {
             }
         };
@@ -19,7 +19,7 @@ describe('Controller: SignInCtrl', function() {
     beforeEach(inject(function($rootScope, $controller) {
         scope = $rootScope.$new();
         SignInCtrl = $controller('SignInCtrl', {
-            $scope: scope, DataService: ParseServiceMock
+            $scope: scope, dataService: parseServiceMock
         });
     }));
     it('should Facebook not be null', function(){
@@ -30,9 +30,9 @@ describe('Controller: SignInCtrl', function() {
 
         var user = {username:"JavitoFoo", email:"javierhertfelderFoo@gmail.com", password:"123"};
 
-        spyOn(ParseServiceMock, 'signIn').andCallThrough();
+        spyOn(parseServiceMock, 'signIn').andCallThrough();
         scope.signInUser(user);
-        expect(ParseServiceMock.signIn).toHaveBeenCalled();
+        expect(parseServiceMock.signIn).toHaveBeenCalled();
 
 
     });

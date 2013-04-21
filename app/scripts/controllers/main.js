@@ -1,8 +1,8 @@
 'use strict';
 
-BookCrossingApp.controller('MainCtrl', function ($scope, DataService, Geolocation) {
+BookCrossingApp.controller('MainCtrl', function ($scope, dataService, Geolocation) {
     // Call the service and fetch the list of signatures that match the given petition ID
-    DataService.getWholeActions(function (results) {
+    dataService.getWholeActions(function (results) {
         $scope.$apply(function () {
 
             //if the object is complex 

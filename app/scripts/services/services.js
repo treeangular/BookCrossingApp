@@ -14,12 +14,12 @@ var PARSE_JS_ID = "50VsxVt1NAKOhpuTK8JD37aklHvkT0V7QxBbVPxl"; //"8KZKpONdEWQZNBt
 //var PARSE_REST_API_KEY = "CYIfNsDlxO1pDea17LxzEjzDn9E9ZQLbzk5oaigg";
 
 
-angular.module('DataServices', [])
+angular.module('dataServices', [])
 
 /**
  * Parse Service com as a back-end for the application.
  */
-    .factory('ParseService', function () {
+    .factory('parseService', function () {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
         try {
@@ -40,7 +40,7 @@ angular.module('DataServices', [])
         * Moving all the Parse.com specific stuff into a service allows me to later swap it out 
         * with another back-end service provider without modifying my controller much, if at all.
         */
-        var ParseService = {
+        var parseService = {
             name: "Parse",
 
             //Sign In User
@@ -222,12 +222,12 @@ angular.module('DataServices', [])
             }
         };
 
-        return ParseService;
+        return parseService;
     })
 
-.factory('DataService', function (ParseService, $location) {
+.factory('dataService', function (parseService, $location) {
     // Use the BackboneService by default
-    var serviceToUse = ParseService;
+    var serviceToUse = parseService;
 
     return serviceToUse;
 });

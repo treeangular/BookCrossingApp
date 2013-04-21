@@ -3,7 +3,7 @@
 describe('Service: cordovaReady', function () {
 
 //  // load the service's module
-//  beforeEach(module('BookCrossingAppApp'));
+//  beforeEach(module('BookCrossingApp'));
 //
 //  // instantiate service
 //  var cordovaReady;

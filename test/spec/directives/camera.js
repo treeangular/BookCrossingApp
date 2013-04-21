@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Directive: camera', function () {
-  beforeEach(module('BookCrossingAppApp'));
+  beforeEach(module('BookCrossingApp'));
 
   var element;
 

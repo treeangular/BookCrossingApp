@@ -1,12 +1,12 @@
 'use strict';
 
-BookCrossingApp.controller('SettingsCtrl', function ($scope,DataService, $location) {
+BookCrossingApp.controller('SettingsCtrl', function ($scope, dataService, $location) {
     $scope.SignOut = function()
     {
         console.log("Going to log out from ctrl");
 
         //Call DataService signOut function
-        DataService.signOut();
+        dataService.signOut();
 
         //Back to beginning
         $location.path('/');

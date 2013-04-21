@@ -1,8 +1,8 @@
 'use strict';
 
-BookCrossingApp.controller('SignCtrl', function ($scope, DataService, $location) {
+BookCrossingApp.controller('SignCtrl', function ($scope, dataService, $location) {
 
-    DataService.isCurrentUser(function (result) {
+    dataService.isCurrentUser(function (result) {
         if (result) {
             $location.path('/Main');
         }

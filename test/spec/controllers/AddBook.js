@@ -3,7 +3,7 @@
 describe('Controller: AddBookCtrl', function() {
 
     var scope;
-    var ParseServiceMock;
+    var parseServiceMock;
     var AddBookCtrl;
 
   // load the controller's module
@@ -11,7 +11,7 @@ describe('Controller: AddBookCtrl', function() {
 
     // define the mock Parse service
     beforeEach(function() {
-        ParseServiceMock = {
+        parseServiceMock = {
 
             registerBook: function(book) {
 
@@ -28,7 +28,7 @@ describe('Controller: AddBookCtrl', function() {
     beforeEach(inject(function($rootScope, $controller) {
         scope = $rootScope.$new();
         AddBookCtrl = $controller('AddBookCtrl', {
-            $scope: scope, DataService: ParseServiceMock
+            $scope: scope, dataService: parseServiceMock
         });
         }));
 
@@ -36,11 +36,11 @@ describe('Controller: AddBookCtrl', function() {
 
         var book = {title:"Hola que ase!"};
 
-        spyOn(ParseServiceMock, 'registerBook').andCallThrough();
+        spyOn(parseServiceMock, 'registerBook').andCallThrough();
         //spyOn(ParseServiceMock, 'getBookRegistrationId').andCallThrough();
         scope.registerNewBook(book);
 
-        expect(ParseServiceMock.registerBook).toHaveBeenCalled();
+        expect(parseServiceMock.registerBook).toHaveBeenCalled();
         //expect(ParseServiceMock.getBookRegistrationId).toHaveBeenCalled();
 
     });

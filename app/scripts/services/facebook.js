@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('FacebookProvider', [])
+angular.module('facebookProvider', [])
   .factory('facebookService',function($rootScope){
 
       return{
@@ -64,7 +64,7 @@ angular.module('FacebookProvider', [])
 window.fbAsyncInit = function () {
     FB.init({
         appId:'160779410752321',
-        channelUrl :'http://localhost/#/channel.html',
+        channelUrl :'http://localhost.com:8080/BookCrossingApp/app/#/channel.html',
         status:true,
         cookie:true,
         xfbml:true

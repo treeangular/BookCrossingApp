@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('BookCrossingApp')
-  .controller('SignUpDetailsCtrl', function ($scope,DataService, $location) {
+  .controller('SignUpDetailsCtrl', function ($scope, dataService, $location) {
 
         $scope.updateUserProfile = function (user) {
 
-            DataService.updateUserProfile(user, function (isResult, result) {
+            dataService.updateUserProfile(user, function (isResult, result) {
 
                 $scope.$apply(function () {
                     if (isResult)

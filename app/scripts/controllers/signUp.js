@@ -1,9 +1,9 @@
 'use strict';
 
-BookCrossingApp.controller('SignUpCtrl', function ($scope, DataService, $location) {
+BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $location) {
     $scope.registerNewUser = function (user) {
 
-        DataService.registerNewUser(user, function (isResult, result) {
+        dataService.registerNewUser(user, function (isResult, result) {
 
             $scope.$apply(function () {
                 if (isResult)
