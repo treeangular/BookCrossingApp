@@ -53,7 +53,11 @@ angular.module('dataServices', [])
                     },
                     error: function (user, error) {
                         // The login failed. Check error to see why.
+<<<<<<< HEAD
                        // alert("Error: " + error.code + " " + error.message);
+=======
+                        //alert("Error: " + error.code + " " + error.message);
+>>>>>>> origin/Arcayne--Branch
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false);
                     }
@@ -81,7 +85,7 @@ angular.module('dataServices', [])
                     },
                     error: function (userr, error) {
                         // Show the error message somewhere and let the user try again.
-                        alert("Error: " + error.code + " " + error.message);
+                        //alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false, error);
                     }
@@ -96,7 +100,7 @@ angular.module('dataServices', [])
                 currentUser.set("nick", user.Nick);
                 currentUser.set("gender", user.Gender);
                 currentUser.set("favoriteGenre", user.FavoriteGenre);
-                currentUser.set("myPicture", user.myPicture);
+                currentUser.set("myPictureFile", user.myPicture);
 
                 currentUser.save(null, {
                     success: function (user) {
@@ -105,7 +109,7 @@ angular.module('dataServices', [])
                     },
                     error: function (user, error) {
                         // Show the error message somewhere and let the user try again.
-                        alert("Error: " + error.code + " " + error.message);
+                        //alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false, error);
                     }

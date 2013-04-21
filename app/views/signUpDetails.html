@@ -1,41 +1,40 @@
 
-<div id="loginwrapper" >
+<div id="loginwrapper" ng-controller="SignUpDetailsCtrl" >
     <bca-notification></bca-notification>
-    <form name="SignUpDetails-form" class="login-form" ng-submit="updateUserProfile(user)" ng-controller="SignUpDetailsCtrl">
+    <form name="SignUpDetails-form" class="login-form" ng-submit="updateUserProfile(user)" >
         <div class="loginheader">
             <h2>Complete your profile</h2>
         </div>
         <div class="content">
+            <img id="preview" src={{myPicture}} height="100px" width="100px" />
+            <input type="button" bca-camera ng-model='myPicture' value="Take Picture"/>
 
-        <img id="preview" src={{myPicture}} height="100px" width="100px" />
-        <input type="button" bca-camera ng-model='user.myPicture' value="Take Picture"/>
+            <input name="nick" type="text" ng-model="user.Nick" placeholder="Nick name" />
 
-		<input name="nick" type="text" ng-model="user.Nick" placeholder="Nick name" />
-
-        <select class="select" type="text"  name="genere" ng-model="user.FavoriteGenre">
-                <option value="Preferred genre">Favorite genre</option>
-                <option value="Action">Action</option>
-                <option value="Biography">Biography</option>
-                <option value="Essay">Essay</option>
-                <option value="Fable">Fable</option>
-                <option value="Fantasy">Fantasy</option>
-                <option value="General">General</option>
-                <option value="Historical">Historical</option>
-                <option value="Horror">Horror</option>
-                <option value="Humor">Humor</option>
-                <option value="Kids">Kids</option>
-                <option value="Manga">Manga</option>
-                <option value="Mystery">Mystery</option>
-                <option value="Mythology">Mythology</option>
-                <option value="Play">Play</option>
-                <option value="Romance">Romance</option>
-                <option value="Sci-Fi">Sci-Fi </option>
-                <option value="Spiritual">Spiritual</option>
-                <option value="Supernatural">Supernatural</option>
-                <option value="Thriller">Thriller</option>
-                <option value="Western">Western</option>
-                <option value="Young Adult">Young Adult</option>
-            </select>
+            <select class="select" type="text"  name="genere" ng-model="user.FavoriteGenre">
+                    <option value="Preferred genre">Favorite genre</option>
+                    <option value="Action">Action</option>
+                    <option value="Biography">Biography</option>
+                    <option value="Essay">Essay</option>
+                    <option value="Fable">Fable</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="General">General</option>
+                    <option value="Historical">Historical</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Humor">Humor</option>
+                    <option value="Kids">Kids</option>
+                    <option value="Manga">Manga</option>
+                    <option value="Mystery">Mystery</option>
+                    <option value="Mythology">Mythology</option>
+                    <option value="Play">Play</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Sci-Fi">Sci-Fi </option>
+                    <option value="Spiritual">Spiritual</option>
+                    <option value="Supernatural">Supernatural</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Western">Western</option>
+                    <option value="Young Adult">Young Adult</option>
+                </select>
 
             <select class="select" type="text"  name="gender"  ng-model="user.Gender">
                 <option value="Female">Female</option>
