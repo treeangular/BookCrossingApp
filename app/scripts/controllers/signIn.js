@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('SignInCtrl', function ($scope, DataService, $location, facebookService) {				
+BookCrossingApp.controller('SignInCtrl', function ($scope, DataService, $location, facebookService, $rootScope) {
     $scope.signInUser = function (user) {
         DataService.signIn(user.Email, user.Password, function (result) {
             //How do I change to another view now?!!? Locate ?? 
@@ -12,7 +12,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, DataService, $locatio
                     $location.path('/Main');
                 } else {
 
-					$scope.ErrorMessage = "User or password invalid!";
+					$rootScope.ErrorMessage = "User or password invalid!";
                 }
 
             });
