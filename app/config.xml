@@ -2,15 +2,18 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
         xmlns:gap	= "http://phonegap.com/ns/1.0"
         id		   = "com.crossers.bookcrossingapp"
-        version 	= "1.0.0">
+        version 	= "1.0.1">
 
   <name>bookCrossing</name>
 
-  <description>"bookCrossing.</description>
+  <description>bookCrossing</description>
 
-  <author email="arcayne@gmail.com">bookCrossing</author>
+  <author email="truegoldenwarriors@gmail.com">bookCrossing</author>
 
   <icon src="./styles/img/logo.png" gap:role="default" />
+  <icon src="./styles/img/logo.png" gap:platform="ios" width="57" height="57" />
+  <icon src="./styles/img/logo.png" gap:platform="ios" width="72" height="72" />
+  <icon src="./styles/img/logo.png" gap:platform="ios" width="114" height="114" />
 
   <feature name="http://api.phonegap.com/1.0/network"/>
   <feature name="http://api.phonegap.com/1.0/geolocation"/>
@@ -26,4 +29,14 @@
   <gap:splash src="./styles/img/logo.png" gap:platform="android" gap:density="ldpi" />
   <gap:splash src="./styles/img/logo.png" gap:platform="android" gap:density="mdpi" />
   <gap:splash src="./styles/img/logo.png" gap:platform="android" gap:density="hdpi" />
+
+  <gap:splash src="./styles/img/logo.png" width="320" height="480" />
+  <gap:splash src="./styles/img/logo.png" width="640" height="960" />
+  <gap:splash src="./styles/img/logo.png" width="640" height="1136" />
+  <gap:splash src="./styles/img/logo.png" width="1024" height="768" />
+  <gap:splash src="./styles/img/logo.png" width="768" height="1024" />
+
+
+
+
 </widget>
