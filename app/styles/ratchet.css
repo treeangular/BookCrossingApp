@@ -1,0 +1,190 @@
+/* Title bar
+-------------------------------------------------- */
+
+/* Bar docked to top of viewport for showing page title and actions */
+.bar-title {
+  top: 0;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  height: 44px;
+  padding: 5px;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: box;
+  background-color: #76DDD9;
+  background-image: -webkit-linear-gradient(top, #76DDD9 0, #169691 100%);
+  background-image: linear-gradient(to bottom, #76DDD9 0, #169691 100%);
+  border-bottom: 1px solid #0e5895;
+  box-shadow: inset 0 1px 1px -1px rgba(255, 255, 255, .8);
+  -webkit-box-orient: horizontal;
+          box-orient: horizontal;
+}
+
+/* Centered text in the .bar-title */
+.bar-title .title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 44px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 -1px rgba(0, 0, 0, .5);
+  white-space: nowrap;
+}
+
+.bar-title > a:not([class*="button"]) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Retain specified title color */
+.bar-title .title a {
+  color: inherit;
+}
+	
+/* Buttons in title bars
+-------------------------------------------------- */
+
+/* Generic style for all buttons in .bar-title */
+.bar-title [class*="button"] {
+  position: relative;
+  z-index: 10; /* Places buttons over full width title */
+  font-size: 12px;
+  line-height: 23px;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+  background-color: #76DDD9;
+  background-image: -webkit-linear-gradient(top, #76DDD9 0, #0984c6 100%);
+  background-image: linear-gradient(to bottom, #76DDD9 0, #0984c6 100%);
+  border: 1px solid #0e5895;
+  box-shadow: 0 1px rgba(255, 255, 255, .25);
+  -webkit-box-flex: 0;
+          box-flex: 0;
+}
+
+
+/* Hacky way to right align buttons outside of flex-box system
+   Note: is only absolutely positioned button, would be better if flex-box had an "align right" option */
+.bar-title .title + [class*="button"]:last-child,
+.bar-title .button + [class*="button"]:last-child,
+.bar-title [class*="button"].pull-right {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+/* Override standard button active states */
+.bar-title .button:active {
+  color: #fff;
+  background-color: #0876b1;
+}
+
+/* Directional buttons in title bars (thanks to @GregorAdams for solution - http://cssnerd.com/2011/11/30/the-best-pure-css3-ios-style-arrow-back-button/)
+-------------------------------------------------- */
+
+/* Add relative positioning so :before content is positioned properly */
+.bar-title .button-prev,
+.bar-title .button-next {
+  position: relative;
+}
+
+/* Prev/next button base styles */
+.bar-title .button-prev {
+  margin-left: 7px; /* Push over to make room for :before content */
+  border-left: 0;
+  border-bottom-left-radius: 10px 15px;
+  border-top-left-radius: 10px 15px;
+}
+.bar-title .button-next {
+  margin-right: 7px; /* Push over to make room for :before content */
+  border-right: 0;
+  border-top-right-radius: 10px 15px;
+  border-bottom-right-radius: 10px 15px;
+}
+
+/* Pointed part of directional button */
+.bar-title .button-prev:before,
+.bar-title .button-next:before {
+  position: absolute;
+  top: 2px;
+  width: 27px;
+  height: 27px;
+  border-radius: 30px 100px 2px 40px / 2px 40px 30px 100px;
+  content: '';
+  box-shadow: inset 1px 0 #0e5895, inset 0 1px #0e5895;
+  -webkit-mask-image: -webkit-gradient(linear, left top, right bottom, from(#000), color-stop(.33, #000), color-stop(.5, transparent), to(transparent));
+                  mask-image: gradient(linear, left top, right bottom, from(#000), color-stop(.33, #000), color-stop(.5, transparent), to(transparent));
+}
+.bar-title .button-prev:before {
+  left: -5px;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#0984c6), to(#76DDD9));
+  background-image: gradient(linear, left bottom, right top, from(#0984c6), to(#76DDD9));
+  border-left: 1.5px solid rgba(255, 255, 255, .25);
+  -webkit-transform: rotate(-45deg) skew(-10deg, -10deg);
+          transform: rotate(-45deg) skew(-10deg, -10deg);
+}
+.bar-title .button-next:before {
+  right: -5px;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(#76DDD9), to(#0984c6));
+  background-image: gradient(linear, left bottom, right top, from(#76DDD9), to(#0984c6));
+  border-top: 1.5px solid rgba(255, 255, 255, .25);
+  -webkit-transform: rotate(135deg) skew(-10deg, -10deg);
+          transform: rotate(135deg) skew(-10deg, -10deg);
+}
+
+/* Active states for the directional buttons */
+.bar-title .button-prev:active,
+.bar-title .button-next:active,
+.bar-title .button-prev:active:before,
+.bar-title .button-next:active:before {
+  color: #fff;
+  background-color: #0876b1;
+  background-image: none;
+}
+.bar-title .button-prev:active:before,
+.bar-title .button-next:active:before {
+  content: '';
+}
+.bar-title .button-prev:active:before {
+  box-shadow: inset 0 3px 3px rgba(0, 0, 0, .2);
+}
+.bar-title .button-next:active:before {
+  box-shadow: inset 0 -3px 3px rgba(0, 0, 0, .2);
+}
+
+[class*="button"] {
+  position: relative;
+  display: inline-block;
+  padding: 4px 12px;
+  margin: 0;
+  font-weight: bold;
+  line-height: 18px;
+  color: #333;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  vertical-align: top;
+  cursor: pointer;
+  background-color: #f8f8f8;
+  background-image: -webkit-linear-gradient(top, #f8f8f8 0, #d4d4d4 100%);
+  background-image: linear-gradient(to bottom, #f8f8f8 0, #d4d4d4 100%);
+  border: 1px solid rgba(0, 0, 0, .3);
+  border-radius: 3px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .4), 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+/* Active */
+[class*="button"]:active {
+  padding-top: 5px;
+  padding-bottom: 3px;
+  color: #333;
+  background-color: #ccc;
+  background-image: none;
+  box-shadow: inset 0 3px 3px rgba(0, 0, 0, .2);
+}

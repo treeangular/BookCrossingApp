@@ -5,6 +5,10 @@ BookCrossingApp.controller('MainCtrl', function ($scope, dataService, geolocatio
     dataService.getWholeActions(function (results) {
         $scope.$apply(function () {
 
+			$scope.title = 'BookCrossingApp';
+			$scope.leftButtonName = 'Back';
+			$scope.rightButtonName = 'Filter';
+						
             //if the object is complex 
             $scope.actionList = results;
             //Todo hev: try to understand 
