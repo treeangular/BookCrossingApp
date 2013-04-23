@@ -10,6 +10,24 @@ LOGIN FORM
 	outline: none;
 }
 
+.subview {
+  padding: 5px 5px 5px 5px;
+  position: absolute;
+  top: 47px;
+  right: 0px;
+  bottom: 50px;
+  left: 0px;
+  overflow: auto;
+  background: #fff;
+  -webkit-transition-property: top, bottom;
+          transition-property: top, bottom;
+  -webkit-transition-duration: .2s, .2s;  
+          transition-duration: .2s, .2s;  
+  -webkit-transition-timing-function: linear, linear;
+          transition-timing-function: linear, linear;
+  -webkit-overflow-scrolling: touch;
+}
+
 /*BODY*/
 
 body {
@@ -19,6 +37,12 @@ body {
 	-webkit-user-select:none;
     -webkit-text-size-adjust:none;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+a {
+  color: #0882f0;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Removes the dark touch outlines on links */
 }
 
 .blank{
@@ -88,6 +112,23 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
 	border-radius: 5px;
 	cursor: pointer;
 	
+	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+}
+
+.buttonlarge {
+	float:left;
+	padding: 11px 25px;
+	margin-bottom: 5px;
+	width:240px;	
+	font-weight: 300;
+	font-size: 18px;
+	color: #fff;
+	text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
+	border-radius: 10px;
+	cursor: pointer;
 	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
 	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
 	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
@@ -205,14 +246,16 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
     }
 }
 
-/***OLD**/
+
 
 /* SIGN POPUP */
+
+/***OLD**/
 #loginwrapper {
 	/* Center wrapper perfectly */
-	width: 300px;
-	height: 430px;
-	margin: 25px auto;
+	width: 400px;
+	height: 630px;
+	margin: 65px auto
 }
 
 .login-form {
@@ -317,23 +360,117 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
         }
 	
 /*HEADER & FOOTER*/
-	
-#header {
-	width:100%;
-	height:45px;
-	line-height:45px;
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
-	padding:0;
-	color:#eee;
-	font-size:20px;
-	text-align:center;
+
+/* Title bar
+-------------------------------------------------- */
+.bar-title {
+  top: 0;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  height: 48px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: box;
+  background-color: #76DDD9;
+  background-image: -webkit-linear-gradient(top, #76DDD9 0, #169691 100%);
+  background-image: linear-gradient(to bottom, #76DDD9 0, #169691 100%);
+  border-bottom: 1px solid #0e5895;
+  box-shadow: inset 0 1px 1px -1px rgba(255, 255, 255, .8);
+  -webkit-box-orient: horizontal;
+          box-orient: horizontal;
 }
 
-#header a {
-	color:#f3f3f3;
-	text--decoration:none;
-	font-weight:bold;
-	text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+/* Centered text in the .bar-title */
+.bar-title .title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 48px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 -1px rgba(0, 0, 0, .5);
+  white-space: nowrap;
+}
+
+.bar-title > a:not([class*="button"]) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Retain specified title color */
+.bar-title .title a {
+  color: inherit;
+}
+	
+/* Buttons in title bars
+-------------------------------------------------- */
+/* Generic style for all buttons in .bar-title */
+.bar-title [class*="button"] {
+  position: relative;
+  z-index: 10; /* Places buttons over full width title */
+  font-size: 12px;
+  line-height: 23px;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+  background-color: #76DDD9;
+  background-image: -webkit-linear-gradient(top, #76DDD9 0, #0984c6 100%);
+  background-image: linear-gradient(to bottom, #76DDD9 0, #0984c6 100%);
+  border: 1px solid #0e5895;
+  box-shadow: 0 1px rgba(255, 255, 255, .25);
+  -webkit-box-flex: 0;
+          box-flex: 0;
+}
+
+.bar-title .title + [class*="button"]:last-child,
+.bar-title .button + [class*="button"]:last-child,
+.bar-title [class*="button"].pull-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Override standard button active states */
+.bar-title .button:active {
+  color: #fff;
+  background-color: #0876b1;
+}
+
+.bar-title [class*="button"] {
+  position: relative;
+  display: inline-block;
+  padding: 4px 12px;
+  margin: 0;
+  font-weight: bold;
+  line-height: 18px;
+  color: #333;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  vertical-align: top;
+  cursor: pointer;
+  background-color: #76DDD9;
+  background-image: -webkit-linear-gradient(top, #76DDD9 0, #169691 100%);
+  background-image: linear-gradient(to bottom, #76DDD9 0, #169691 100%);
+  border: 1px solid rgba(0, 0, 0, .3);
+  border-radius: 3px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .4), 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+/* Active */
+.bar-title [class*="button"]:active {
+  padding-top: 5px;
+  padding-bottom: 3px;
+  color: #333;
+  background-color: #ccc;
+  background-image: none;
+  box-shadow: inset 0 3px 3px rgba(0, 0, 0, .2);
 }
 
 #footer {

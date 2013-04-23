@@ -1,21 +1,16 @@
-<div id="layout">
-<div id="header">BookCrossingApp</div>
-<div id="wrapper"><div id="scroller">
-<div ng-controller="MainCtrl">
-    <ul id="thelist">
-        <li ng-repeat="action in actionList">{{action.get('userPointer').get('username')}} {{action.get('actionTypePointer').get('Description')}} {{action.get('bookPointer').get('title')}} </li>
-    </ul>
-</div> 
-</div></div>
+<bca_header></bca_header>
+<div class="subview">
+<ng-include src="subPage"></ng-include>
+</div>
 <div id="footer">
 <nav id="tabbar">
     <ul >
      <!-- Action & navigation -->
-		<li><a ng-href="#/Main" class="current flip"><div class="home"></div></a></li>
-		<li><a ng-href="#/AddBook" class="flip"><div class="addBook"></div></a></li>
-		<li><a ng-href="#/AddZobc" class="flip"><div class="addZobc"></div></a></li>
-		<li><a ng-href="#/Library" class="flip"><div class="library"></div></a></li>
-		<li><a ng-href="#/Settings" id="li_tab" class="flip"><div class="more"></div></a></li>
+		<li><a ng-click="subPage='views/addBook.html'" class="current flip"><div class="home"></div></a></li>
+		<li><a ng-click="subPage='views/addBook.html'" class="flip"><div class="addBook"></div></a></li>
+		<li><a ng-click="subPage='views/addZobc.html'" class="flip"><div class="addZobc"></div></a></li>
+		<li><a ng-click="subPage='views/myLibrary.html'" class="flip"><div class="library"></div></a></li>
+		<li><a ng-click="subPage='views/settings.html'" id="li_tab" class="flip"><div class="more"></div></a></li>
     </ul>
 </nav>
 </div>
