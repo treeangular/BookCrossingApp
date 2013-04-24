@@ -15,7 +15,7 @@ BookCrossingApp.factory('phonegapReadyService', function () {
             });
             impl = fn;
             console.log("Service phonegapReady detected deviceready");
-            alert("Service phonegapReady detected deviceready");
+            alert("Service phonegapReady detected deviceready From phonegapService");
         }, false);
 
         return function () {

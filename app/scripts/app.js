@@ -10,14 +10,14 @@ BookCrossingApp.run(function ($rootScope, $location) {
     $rootScope.deviceready = false;
     document.addEventListener('deviceready', function () {
         console.log("Report: deviceready");
-        navigator.notification.alert("Corodova device ready triggered!");
+        navigator.notification.alert("Corodova device ready triggered! From run");
+        alert("ALERT ONLY - Corodova device ready triggered! From run");
         //TODO: DEJ What after it is ready, should we actually wait unitl it happens?!
         // use cordova ready service instead??
         BookCrossingApp.initialize();
         $rootScope.deviceready = true;
     }, false);
     /* /PG */
-    alert("run");
 });
 
 BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
