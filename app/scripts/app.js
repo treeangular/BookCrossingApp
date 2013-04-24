@@ -16,7 +16,7 @@ BookCrossingApp.run(function ($rootScope, $location) {
         $rootScope.deviceready = true;
     }, false);  */
     /* /PG */
-
+    alert("run");
 });
 
 BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
