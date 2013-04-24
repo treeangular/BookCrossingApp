@@ -1,7 +1,8 @@
 'use strict';
 
 
-var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider']);
+var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices']);
+//var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider']);
 
 BookCrossingApp.run(function ($rootScope, $location) {
 
