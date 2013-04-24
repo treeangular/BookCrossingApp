@@ -30,11 +30,11 @@
   <gap:splash src="./styles/img/logo.png" gap:platform="android" gap:density="mdpi" />
   <gap:splash src="./styles/img/logo.png" gap:platform="android" gap:density="hdpi" />
 
-  <gap:splash src="./styles/img/logo.png" width="320" height="480" />
-  <gap:splash src="./styles/img/logo.png" width="640" height="960" />
-  <gap:splash src="./styles/img/logo.png" width="640" height="1136" />
-  <gap:splash src="./styles/img/logo.png" width="1024" height="768" />
-  <gap:splash src="./styles/img/logo.png" width="768" height="1024" />
+  <!--<gap:splash src="./styles/img/logo.png" width="320" height="480" />-->
+  <!--<gap:splash src="./styles/img/logo.png" width="640" height="960" />-->
+  <!--<gap:splash src="./styles/img/logo.png" width="640" height="1136" />-->
+  <!--<gap:splash src="./styles/img/logo.png" width="1024" height="768" />-->
+  <!--<gap:splash src="./styles/img/logo.png" width="768" height="1024" />-->
 
 
 
