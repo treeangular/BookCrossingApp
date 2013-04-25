@@ -1,7 +1,6 @@
 'use strict';
 
-//BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $location, facebookService, $rootScope) {
-BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $location, $rootScope) {
+BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $location, facebookService, $rootScope) {
     $scope.signInUser = function (user) {
         dataService.signIn(user.Email, user.Password, function (result) {
             //How do I change to another view now?!!? Locate ?? 
