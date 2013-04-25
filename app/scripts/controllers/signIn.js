@@ -20,7 +20,33 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
     };
     $scope.login = function()
     {
+<<<<<<< HEAD
         //facebookService.login();
+=======
+        facebookService.login(function(result)
+        {
+            $scope.$apply(function () {
+
+                if(result === 'connected')
+                {
+                    $location.path('/Main');
+                }
+                else
+                {
+                    $rootScope.ErrorMessage = "User has not accepted the conditions";
+                }
+            });
+        });
+
+>>>>>>> origin/hev-branch
     };
+//    $rootScope.$on("fb_connected", function (event, args) {
+//
+//        FB.api('/me', function(response) {
+//
+//            alert(response.name + '\n' + response);  //response is the basic user object
+//        });
+//
+//    });
 
 });
