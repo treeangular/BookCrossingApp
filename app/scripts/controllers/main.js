@@ -6,8 +6,8 @@ BookCrossingApp.controller('MainCtrl', function ($scope, dataService, geolocatio
         $scope.$apply(function () {
 
 			$scope.title = 'BookCrossingApp';
-			$scope.leftButtonName = 'Back';
-			$scope.rightButtonName = 'Filter';
+			//$scope.leftButtonName = 'Back';
+			//$scope.rightButtonName = 'Filter';
 						
             //if the object is complex 
             $scope.actionList = results;
