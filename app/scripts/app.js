@@ -23,43 +23,43 @@ BookCrossingApp.run(function ($rootScope, $location) {
 BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/Sign.html',
+        templateUrl: 'views/sign.html',
         controller: 'SignCtrl'
       })
       .when('/SignIn', {
-        templateUrl: 'views/SignIn.html',
+        templateUrl: 'views/signIn.html',
         controller: 'SignInCtrl'
       })
       .when('/SignUp', {
-        templateUrl: 'views/SignUp.html',
+        templateUrl: 'views/signUp.html',
         controller: 'SignUpCtrl'
       })
       .when('/Sign', {
-        templateUrl: 'views/Sign.html',
+        templateUrl: 'views/sign.html',
         controller: 'SignCtrl'
       })
       .when('/Main', {
-        templateUrl: 'views/Main.html',
+        templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
       .when('/AddBook', {
-        templateUrl: 'views/AddBook.html',
+        templateUrl: 'views/addBook.html',
         controller: 'AddBookCtrl'
       })
       .when('/AddZobc', {
-        templateUrl: 'views/AddZobc.html',
+        templateUrl: 'views/addZobc.html',
         controller: 'AddZobcCtrl'
       })
       .when('/MyLibrary', {
-        templateUrl: 'views/MyLibrary.html',
+        templateUrl: 'views/myLibrary.html',
         controller: 'MyLibraryCtrl'
       })
       .when('/SignUpDetails', {
-        templateUrl: 'views/SignUpDetails.html',
+        templateUrl: 'views/signUpDetails.html',
         controller: 'SignUpDetailsCtrl'
       })
       .when('/Settings', {
-        templateUrl: 'views/Settings.html',
+        templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       })
       .otherwise({
