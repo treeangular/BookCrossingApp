@@ -1,0 +1,6 @@
+<div ng-controller="HomeCtrl">
+ <div infinite-scroll='nextPage()' infinite-scroll-distance='1'>
+    <img ng-repeat='image in images' ng-src='http://placehold.it/200x200&text={{image}}'>
+  </div>
+</div>
+
