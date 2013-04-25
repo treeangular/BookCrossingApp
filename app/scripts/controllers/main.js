@@ -6,14 +6,9 @@ BookCrossingApp.controller('MainCtrl', function ($scope, dataService, geolocatio
         $scope.$apply(function () {
 
 			$scope.title = 'BookCrossingApp';
-<<<<<<< HEAD
-			//$scope.leftButtonName = 'Back';
-			//$scope.rightButtonName = 'Filter';
-=======
 			$scope.leftButtonName = 'Back';
 			$scope.rightButtonName = 'Filter';
 			$scope.subPage='views/home.html';
->>>>>>> origin/cac-branch
 						
             //if the object is complex 
             $scope.actionList = results;

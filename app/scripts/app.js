@@ -1,8 +1,7 @@
 'use strict';
 
-var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider']);
+var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll']);
 
-<<<<<<< HEAD
 //BookCrossingApp.run(function ($rootScope, $location) {
 //    /* PG */
 //$rootScope.deviceready = false;
@@ -15,29 +14,7 @@ var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebo
 //    //BookCrossingApp.initialize();
 //    $rootScope.deviceready = true;
 //}, false);
-///* /PG */
-//});
-=======
-//var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices']);
-var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'infinite-scroll']);
-//var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider']);
 
-BookCrossingApp.run(function ($rootScope, $location) {
-
-    /* PG */
-    $rootScope.deviceready = false;
-    document.addEventListener('deviceready', function () {
-        console.log("Report: deviceready");
-        navigator.notification.alert("Corodova device ready triggered! From run");
-        alert("ALERT ONLY - Corodova device ready triggered! From run");
-        //TODO: DEJ What after it is ready, should we actually wait unitl it happens?!
-        // use cordova ready service instead??
-        //BookCrossingApp.initialize();
-        $rootScope.deviceready = true;
-    }, false);
-    /* /PG */
-});
->>>>>>> origin/cac-branch
 
 BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
