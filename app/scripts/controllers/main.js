@@ -8,6 +8,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope, dataService, geolocatio
 			$scope.title = 'BookCrossingApp';
 			$scope.leftButtonName = 'Back';
 			$scope.rightButtonName = 'Filter';
+			$scope.subPage='views/home.html';
 						
             //if the object is complex 
             $scope.actionList = results;
