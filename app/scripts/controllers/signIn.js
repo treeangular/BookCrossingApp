@@ -20,9 +20,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
     };
     $scope.login = function()
     {
-<<<<<<< HEAD
-        //facebookService.login();
-=======
+
         facebookService.login(function(result)
         {
             $scope.$apply(function () {
@@ -37,8 +35,6 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                 }
             });
         });
-
->>>>>>> origin/hev-branch
     };
 //    $rootScope.$on("fb_connected", function (event, args) {
 //
