@@ -13,7 +13,6 @@ var PARSE_APP_ID = "bqfSO3dVttG65a8CIkC1SdqC0CCqiqYsp1EfsjL8"; //"khg4ef8Mks6oP2
 var PARSE_JS_ID = "50VsxVt1NAKOhpuTK8JD37aklHvkT0V7QxBbVPxl"; //"8KZKpONdEWQZNBteRkJWCtBks3YxuO55THQhQ7qI";
 //var PARSE_REST_API_KEY = "CYIfNsDlxO1pDea17LxzEjzDn9E9ZQLbzk5oaigg";
 
-
 angular.module('dataServices', [])
 
 /**
@@ -42,6 +41,38 @@ angular.module('dataServices', [])
         */
         var parseService = {
             name: "Parse",
+
+           fbSignUp: function sigUpFbUser(callback){
+
+                var currentUser = Parse.User.current();
+                if (!Parse.FacebookUtils.isLinked(currentUser)) {
+                    Parse.FacebookUtils.link(currentUser, null, {
+                        success: function(currentUser) {
+                            alert("Woohoo, user logged in with Facebook!");
+                        },
+                        error: function(currentUser, error) {
+                            alert("User cancelled the Facebook login or did not fully authorize.");
+                        }
+                    });
+                }
+            },
+
+            fbSignIn: function signInWithFb(callback){
+
+                Parse.FacebookUtils.logIn(null, {
+                    success: function(user) {
+                        if (!user.existed()) {
+                            alert("User signed up and logged in through Facebook!");
+                        } else {
+                            alert("User logged in through Facebook!");
+                        }
+                    },
+                    error: function(user, error) {
+                        alert("User cancelled the Facebook login or did not fully authorize.");
+                    }
+                });
+
+            },
 
             //Sign In User
             signIn: function signIn(email, password, callback) {
@@ -231,6 +262,30 @@ angular.module('dataServices', [])
 
     return serviceToUse;
 });
+
+
+window.fbAsyncInit = function () {
+    Parse.FacebookUtils.init({
+        appId:'160779410752321',
+        channelUrl :'http://localhost.com:8080/BookCrossingApp/app/#/channel.html',
+        status:true,
+        cookie:true,
+        xfbml:true
+    });
+};
+
+(function (d) {
+    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement('script');
+    js.id = id;
+    js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    ref.parentNode.insertBefore(js, ref);
+}(document));
+
 
 
 

@@ -18,14 +18,13 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
             });
         });
     };
-    $scope.login = function()
+    $scope.fbSignIn = function()
     {
-
-        facebookService.login(function(result)
+        dataService.fbSignIn(function(result)
         {
             $scope.$apply(function () {
 
-                if(result === 'connected')
+                if(result)
                 {
                     $location.path('/Main');
                 }
@@ -36,13 +35,5 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
             });
         });
     };
-//    $rootScope.$on("fb_connected", function (event, args) {
-//
-//        FB.api('/me', function(response) {
-//
-//            alert(response.name + '\n' + response);  //response is the basic user object
-//        });
-//
-//    });
 
 });
