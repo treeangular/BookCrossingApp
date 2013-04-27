@@ -3,8 +3,9 @@
     <li ng-repeat='alert in alerts'ng-switch on="alert.type">
 	    <div class="bookAlert" ng-switch-when="book">
 			<img  ng-src='{{alert.image}}'>
-			<span><strong>{{alert.title}}</strong><span>
-			<span>{{alert.content}}<span>
+			<h3>{{alert.title}}</h3>
+			<p>{{alert.content}}<p>
+			<p class="time">{{alert.time}}<p>
 		</div>
 		<div class="adAlert" ng-switch-when="ad">
 			<img ng-src='{{alert.image}}'>
