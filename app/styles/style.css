@@ -28,6 +28,40 @@ LOGIN FORM
   -webkit-overflow-scrolling: touch;
 }
 
+ul {
+  list-style-type: none;
+  width: 280px;
+}
+ 
+h3 {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+ 
+li img {
+  float: left;
+  margin: 0 15px 0 0;
+  width: 50px;
+  height: 80px
+}
+ 
+li p {
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+ 
+li {
+  padding: 10px;
+  overflow: auto;
+}
+ 
+li:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+/* hack to hide loding message of Jquery */
+.ui-loading .ui-loader { display: block; }
+.ui-loader { display: none; position: absolute; }
+
 /*BODY*/
 
 body {

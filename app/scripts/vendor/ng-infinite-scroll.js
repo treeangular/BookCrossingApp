@@ -7,7 +7,6 @@ mod.directive('infiniteScroll', [
   '$rootScope', '$window', '$timeout', function($rootScope, $window, $timeout) {
     return {
       link: function(scope, elem, attrs) {
-	    console.log("scroll linking");
         var checkWhenEnabled, handler, scrollDistance, scrollEnabled;
         $window = angular.element($window);
         scrollDistance = 0;
