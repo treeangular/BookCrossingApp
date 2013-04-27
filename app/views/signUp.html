@@ -12,11 +12,13 @@
                 <label for="viewPasswordCheck">See the password:</label>
                 <input name="viewPasswordCheckbox" id="viewPasswordCheck"  type="checkbox" ng-model="viewPasswordCheckbox">
             </bca-sign-up-password>
+            <input  type="button" value="Sign Up with Facebook" ng-click="registerWithFacebook()" class="buttonfacebook" />
         </div>
 
         <div class="footer" >
             <input type="submit" value="Register" class="buttonleft" />
             <a href="#/sign"><input type="button" name="submit" value="Cancel" class="buttonright" /></a>
+            <input  type="button" value="Connect with Facebook" ng-click="signUpFb()" class="buttonfacebook" />
         </div>
     </form>
 </div>

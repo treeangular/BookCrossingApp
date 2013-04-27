@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $location) {
+BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $location, facebookService) {
     $scope.registerNewUser = function (user) {
 
         dataService.registerNewUser(user, function (isResult, result) {
@@ -15,6 +15,36 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                     $scope.ErrorMessage = result.message;
                 }
             });
+
         });
+
+    };
+    $scope.signUpFb = function()
+    {
+        dataService.signInFb(function(result)
+        {
+            $scope.$apply(function () {
+                if(result)
+                {
+                    $location.path('/Main');
+                }
+                else
+                {
+                    $rootScope.ErrorMessage = "User has not accepted the conditions";
+                }
+            });
+
+        });
+    };
+
+    $scope.registerWithFacebook = function(){
+
+        dataService.fbSignUp(function(result)
+        {
+            $scope.$apply(function () {
+
+            });
+        });
+
     };
 });
