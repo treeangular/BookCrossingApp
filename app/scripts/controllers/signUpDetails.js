@@ -5,10 +5,18 @@ angular.module('BookCrossingApp')
 
         $scope.updateUserProfile = function (user) {
 
+            user.myPicture =  $scope.myPicture;
+
+            dataService.uploadPicture(user, function(isResult, parseUrl)
+            {
+                   user.myPictureFile = parseUrl;
+
+            });
+
             dataService.updateUserProfile(user, function (isResult, result) {
 
             //Only way I found to fix this issue - SO question
-            user.myPicture =  $scope.myPicture;
+            //user.myPicture =  $scope.myPicture;
 
                 $scope.$apply(function () {
                     if (isResult)

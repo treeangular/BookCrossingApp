@@ -11,7 +11,7 @@
  */
 var PARSE_APP_ID = "bqfSO3dVttG65a8CIkC1SdqC0CCqiqYsp1EfsjL8"; //"khg4ef8Mks6oP2AjjVlvYHnoEIzLnsaW7Tb23jow";
 var PARSE_JS_ID = "50VsxVt1NAKOhpuTK8JD37aklHvkT0V7QxBbVPxl"; //"8KZKpONdEWQZNBteRkJWCtBks3YxuO55THQhQ7qI";
-//var PARSE_REST_API_KEY = "CYIfNsDlxO1pDea17LxzEjzDn9E9ZQLbzk5oaigg";
+var PARSE_REST_API_KEY = "hidmjl0Amo0SQHTJyftdqWC8LMPbtsb9sFJRReVe";
 
 
 angular.module('dataServices', [])
@@ -60,8 +60,7 @@ angular.module('dataServices', [])
                 });
             },
 
-            signOut: function signOut()
-            {
+            signOut: function signOut() {
                 Parse.User.logOut();
                 console.log("UserLogged out . . .");
             },
@@ -88,15 +87,14 @@ angular.module('dataServices', [])
                 });
             },
 
-            updateUserProfile: function updateUserProfile(user, callback)
-            {
+            updateUserProfile: function updateUserProfile(user, callback) {
                 //Get current user
                 var currentUser = Parse.User.current();
 
                 currentUser.set("nick", user.Nick);
                 currentUser.set("gender", user.Gender);
                 currentUser.set("favoriteGenre", user.FavoriteGenre);
-                currentUser.set("myPictureFile", user.myPicture);
+                currentUser.set("myPictureFile", user.myPictureFile);
 
                 currentUser.save(null, {
                     success: function (user) {
@@ -217,10 +215,79 @@ angular.module('dataServices', [])
                         callback(false, error);
                     }
                 });
+            },
 
 
+//            uploadPicture: function uploadFn(fileName,fileType,fileData,c){
+//            var parseUrl='https://api.parse.com/1/files/'+fileName;
+//            $.ajax({
+//                type:'post',
+//                beforeSend:function(req){
+//                    req.setRequestHeader('X-Parse-Application-Id',myParseAppId);
+//                    req.setRequestHeader('X-Parse-REST-API-Key',myParseRestApiId);
+//                    req.setRequestHeader('Content-Type',fileType); // fileType always == 'image/jpg;'
+//                },
+//                url:parseUrl,
+//                data:fileData,
+//                processData:false,
+//                contentType:false,
+//                success:function(rslt){
+//                    if(rslt){
+//                        alert('Upload success\n Filename:'+rslt.name+'\n Url:'+rslt.url);
+//                        imgObj.save({curUser:curUser,fileName:rslt.name,fileUrl:rslt.url,fileId:c},
+//                            {success:function(succ){
+//                                alert('File info saved!');
+//                            },error:function(err){
+//                                alert('Error:'+err.code);
+//                            }
+//                            }) // save
+//
+//
+//                    }
+//                },
+//                error:function(err){
+//                    //var errObj=jQuery.parseJSON(err);
+//                    alert('Error:'+err.responseText);
+//                }
+//            });
+//        }
+
+            uploadPicture: function uploadPicture(user,callback)
+            {
+                var serverUrl = 'https://api.parse.com/1/files/' + user.Nick;
+
+                $http({
+                    method: 'POST',
+                    url: url,
+                    data: user.myPicture,
+                    headers: {'Content-Type': false}//'application/x-www-form-urlencoded'}
+                })
+
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function(request) {
+                        request.setRequestHeader("X-Parse-Application-Id", PARSE_APP_ID);
+                        request.setRequestHeader("X-Parse-REST-API-Key", PARSE_REST_API_KEY);
+                        request.setRequestHeader("Content-Type", file.type);
+                    },
+                    url: serverUrl,
+                    data: user.myPicture,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        alert("File available at: " + data.url);
+                        callback(true,data);
+                    },
+                    error: function(data) {
+                        var obj = jQuery.parseJSON(data);
+                        alert(obj.error);
+                        callback(false,null);
+                    }
+                });
             }
-        };
+
+
+    };
 
         return parseService;
     })
