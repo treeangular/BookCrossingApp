@@ -3,6 +3,8 @@
 BookCrossingApp.controller('MainCtrl', function ($scope, dataService, geolocationService) {
     // Call the service and fetch the list of signatures that match the given petition ID
 	$scope.title = 'BookCrossingApp';
+	$scope.leftButtonName = null;
+	$scope.rightButtonName = 'Map';
 	$scope.subPage='views/home.html';
 	$scope.home='current flip';
 	$scope.myLibrary='flip';
