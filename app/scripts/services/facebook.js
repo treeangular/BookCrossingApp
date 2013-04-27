@@ -4,7 +4,30 @@
 angular.module('facebookProvider', [])
   .factory('facebookService',function($rootScope){
 
-      return{
+        return{
+
+          getUserInfo:function (callback) {
+
+              FB.api('/me', function(response) {
+
+                  user.Email = response.email;
+                  user.Username = response.userName;
+                  user.Gender = response.gender;
+                  user.myPictureFile = response.picture;
+
+                  //callback(user.Email);
+
+        });
+          },
+          logout:function () {
+              FB.logout(function (response) {
+                  if (response) {
+                      $rootScope.$broadcast('fb_logout_succeded');
+                  } else {
+                      $rootScope.$broadcast('fb_logout_failed');
+                  }
+              });
+          },
 
           login:function (callback) {
               FB.getLoginStatus(function (response) {
@@ -36,39 +59,8 @@ angular.module('facebookProvider', [])
                           break;
                   }
               }, true);
-          },
-          logout:function () {
-              FB.logout(function (response) {
-                  if (response) {
-                      $rootScope.$broadcast('fb_logout_succeded');
-                  } else {
-                      $rootScope.$broadcast('fb_logout_failed');
-                  }
-              });
           }
 
       };
 
 });
-
-window.fbAsyncInit = function () {
-    FB.init({
-        appId:'160779410752321',
-        channelUrl :'http://localhost.com:8080/BookCrossingApp/app/#/channel.html',
-        status:true,
-        cookie:true,
-        xfbml:true
-    });
-};
-
-(function (d) {
-    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-    if (d.getElementById(id)) {
-        return;
-    }
-    js = d.createElement('script');
-    js.id = id;
-    js.async = true;
-    js.src = "//connect.facebook.net/en_US/all.js";
-    ref.parentNode.insertBefore(js, ref);
-}(document));
