@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $location) {
+BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $location, facebookService) {
     $scope.registerNewUser = function (user) {
 
         dataService.registerNewUser(user, function (isResult, result) {
@@ -15,6 +15,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                     $scope.ErrorMessage = result.message;
                 }
             });
+
         });
 
     };
@@ -34,5 +35,16 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
             });
 
         });
+    };
+
+    $scope.registerWithFacebook = function(){
+
+        dataService.fbSignUp(function(result)
+        {
+            $scope.$apply(function () {
+
+            });
+        });
+
     };
 });

@@ -9,12 +9,9 @@
  *  and retrieving data. Parse.com is Backend-as-a-Service company.
  *  They provide easy to use databases for mobile and HTML5 applications.
  */
-var PARSE_APP_ID = "bqfSO3dVttG65a8CIkC1SdqC0CCqiqYsp1EfsjL8";
-var PARSE_JS_ID = "50VsxVt1NAKOhpuTK8JD37aklHvkT0V7QxBbVPxl";
-var FB_APP_ID = "160779410752321";
-var SERVER_URL = "http://localhost:8080/#/";
-//var PARSE_REST_API_KEY = "CYIfNsDlxO1pDea17LxzEjzDn9E9ZQLbzk5oaigg";
 
+
+//var PARSE_REST_API_KEY = "CYIfNsDlxO1pDea17LxzEjzDn9E9ZQLbzk5oaigg";
 
 angular.module('dataServices', [])
 
@@ -26,30 +23,8 @@ angular.module('dataServices', [])
 
         try {
 
-            Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
 
-            window.fbAsyncInit = function () {
 
-                Parse.FacebookUtils.init({
-                    appId: FB_APP_ID,
-                    channelUrl :SERVER_URL + 'channel.html',
-                    status:true,
-                    cookie:true,
-                    xfbml:true
-                });
-            };
-
-            (function (d) {
-                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-                if (d.getElementById(id)) {
-                    return;
-                }
-                js = d.createElement('script');
-                js.id = id;
-                js.async = true;
-                js.src = "//connect.facebook.net/en_US/all.js";
-                ref.parentNode.insertBefore(js, ref);
-            }(document));
 
         } catch (e) {
             console.log(e);
@@ -73,7 +48,7 @@ angular.module('dataServices', [])
             name: "Parse",
 
             //SignIn a Fb user
-            signInFb: function signInFb(callback){
+            fbSignIn: function fbSignIn(callback){
 
                Parse.FacebookUtils.logIn("email", {
                     success: function(user) {
@@ -92,8 +67,7 @@ angular.module('dataServices', [])
                     error: function(user, error) {
                         callback(false);
                     }
-                });
-
+               });
             },
 
             //Sign In User
@@ -203,23 +177,6 @@ angular.module('dataServices', [])
 
             },
 
-            getLocalizationFileByLanguage: function getLocalizationFileByLanguage(callback){
-
-                var query = new Parse.Query(LocalizeFile);
-                query.equalTo("Language", "es_ES");
-                query.find({
-                        success: function(results) {
-                            callback(results);
-                        },
-                        error: function(error) {
-
-
-                            alert("Error: " + error.code + " " + error.message);
-                        }
-                        });
-
-            },
-
             getActions: function getActions(callback) {
                 var actions = new ActionCollection();
 
@@ -326,6 +283,30 @@ angular.module('dataServices', [])
 
     return serviceToUse;
 });
+
+
+window.fbAsyncInit = function () {
+    Parse.FacebookUtils.init({
+        appId:'160779410752321',
+        channelUrl :'http://localhost.com:8080/BookCrossingApp/app/#/channel.html',
+        status:true,
+        cookie:true,
+        xfbml:true
+    });
+};
+
+(function (d) {
+    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement('script');
+    js.id = id;
+    js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    ref.parentNode.insertBefore(js, ref);
+}(document));
+
 
 
 

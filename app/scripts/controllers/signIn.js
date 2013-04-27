@@ -6,10 +6,8 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
         dataService.signIn(user.Email, user.Password, function (result) {
             //How do I change to another view now?!!? Locate ?? 
             $scope.$apply(function () {
-
-
                 if (result) {
-                    //facebookService.getUserInfo(callback);
+
                     $location.path('/Main');
                 } else {
 
@@ -19,11 +17,13 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
             });
         });
     };
-    $scope.signInFb = function()
+
+    $scope.fbSignIn = function()
     {
-        dataService.signInFb(function(result)
+        dataService.fbSignIn(function(result)
         {
             $scope.$apply(function () {
+
                 if(result)
                 {
                    $location.path('/Main');
