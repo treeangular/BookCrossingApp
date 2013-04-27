@@ -9,15 +9,10 @@
  *  and retrieving data. Parse.com is Backend-as-a-Service company.
  *  They provide easy to use databases for mobile and HTML5 applications.
  */
-<<<<<<< HEAD
+
 var PARSE_APP_ID = "bqfSO3dVttG65a8CIkC1SdqC0CCqiqYsp1EfsjL8"; //"khg4ef8Mks6oP2AjjVlvYHnoEIzLnsaW7Tb23jow";
 var PARSE_JS_ID = "50VsxVt1NAKOhpuTK8JD37aklHvkT0V7QxBbVPxl"; //"8KZKpONdEWQZNBteRkJWCtBks3YxuO55THQhQ7qI";
 var PARSE_REST_API_KEY = "hidmjl0Amo0SQHTJyftdqWC8LMPbtsb9sFJRReVe";
-=======
->>>>>>> origin/hev-branch
-
-
-//var PARSE_REST_API_KEY = "CYIfNsDlxO1pDea17LxzEjzDn9E9ZQLbzk5oaigg";
 
 angular.module('dataServices', [])
 
