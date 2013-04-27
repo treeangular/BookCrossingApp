@@ -1,12 +1,16 @@
 'use strict';
 BookCrossingApp.controller('HomeCtrl', function($scope) {
 	$scope.alerts = [
-        {content: 'BookName released arround you by PersonName'
-		, image:'http://3.bp.blogspot.com/-arafgNLf0uM/UGjecgi0-vI/AAAAAAAAAFQ/YLq4YY1B1cs/s1600/Lord+of+the+Rings.jpg'},
-		{content: 'BookName released arround you by PersonName', image:'http://3.bp.blogspot.com/-arafgNLf0uM/UGjecgi0-vI/AAAAAAAAAFQ/YLq4YY1B1cs/s1600/Lord+of+the+Rings.jpg'},
-        {content: 'BookName released arround you by PersonName', image:'http://3.bp.blogspot.com/-arafgNLf0uM/UGjecgi0-vI/AAAAAAAAAFQ/YLq4YY1B1cs/s1600/Lord+of+the+Rings.jpg'},
-		{content: 'BookName released arround you by PersonName', image:'http://3.bp.blogspot.com/-arafgNLf0uM/UGjecgi0-vI/AAAAAAAAAFQ/YLq4YY1B1cs/s1600/Lord+of+the+Rings.jpg'},
-        {content: 'BookName released arround you by PersonName', image:'http://3.bp.blogspot.com/-arafgNLf0uM/UGjecgi0-vI/AAAAAAAAAFQ/YLq4YY1B1cs/s1600/Lord+of+the+Rings.jpg'}
+        {type:'book', title:'A Clockwork orange', content: 'has been released arround you by PersonName'
+		, image:'/styles/img/books/a_clockwork_orange.jpg'},
+		{type:'book', title:'Lords of the Rings', content: 'has been released arround you by PersonName'
+		, image:'/styles/img/books/lord_of_the_rings.jpg'},
+		{type:'ad', image:'/styles/img/ads/amazon.jpg'},
+        {type:'book', title:'1Q84',  content: 'has been commented by PersonName'
+		, image:'/styles/img/books/1q84.jpg'},
+		{type:'book', title:'Lords of the Rings',  content: 'has been hunted by PersonName'
+		, image:'/styles/img/books/lord_of_the_rings.jpg'},
+		{type:'ad', image:'/styles/img/ads/mcdonalls.jpg'}
     ];
 
   $scope.busy = false;
@@ -16,8 +20,10 @@ BookCrossingApp.controller('HomeCtrl', function($scope) {
     $scope.busy = true;
     
 	$scope.newalert = {
-		content: 'BookName released arround you by PersonName', 
-		image:'http://3.bp.blogspot.com/-arafgNLf0uM/UGjecgi0-vI/AAAAAAAAAFQ/YLq4YY1B1cs/s1600/Lord+of+the+Rings.jpg'
+		type:'book', 
+		title:'Lords of the Rings', 
+		content: 'has been released arround you by PersonName', 
+		image:'/styles/img/books/lord_of_the_rings.jpg'
 	};
 		   
 	for(var i = 1; i <= 3; i++) {

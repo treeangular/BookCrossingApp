@@ -30,18 +30,25 @@ LOGIN FORM
 
 ul {
   list-style-type: none;
-  width: 280px;
+  width: 100%;
 }
  
 h3 {
   font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
 }
  
-li img {
+.bookAlert img {
   float: left;
   margin: 0 15px 0 0;
-  width: 50px;
-  height: 80px
+  width: 60px;
+  height: 90px
+}
+
+.adAlert img {
+  float: left;
+  margin: 0 15px 0 0;
+  width: 270px;
+  height: 90px
 }
  
 li p {
