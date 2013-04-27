@@ -16,5 +16,23 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                 }
             });
         });
+
+    };
+    $scope.signUpFb = function()
+    {
+        dataService.signInFb(function(result)
+        {
+            $scope.$apply(function () {
+                if(result)
+                {
+                    $location.path('/Main');
+                }
+                else
+                {
+                    $rootScope.ErrorMessage = "User has not accepted the conditions";
+                }
+            });
+
+        });
     };
 });

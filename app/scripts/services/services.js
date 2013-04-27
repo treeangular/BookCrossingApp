@@ -9,8 +9,10 @@
  *  and retrieving data. Parse.com is Backend-as-a-Service company.
  *  They provide easy to use databases for mobile and HTML5 applications.
  */
-var PARSE_APP_ID = "bqfSO3dVttG65a8CIkC1SdqC0CCqiqYsp1EfsjL8"; //"khg4ef8Mks6oP2AjjVlvYHnoEIzLnsaW7Tb23jow";
-var PARSE_JS_ID = "50VsxVt1NAKOhpuTK8JD37aklHvkT0V7QxBbVPxl"; //"8KZKpONdEWQZNBteRkJWCtBks3YxuO55THQhQ7qI";
+var PARSE_APP_ID = "bqfSO3dVttG65a8CIkC1SdqC0CCqiqYsp1EfsjL8";
+var PARSE_JS_ID = "50VsxVt1NAKOhpuTK8JD37aklHvkT0V7QxBbVPxl";
+var FB_APP_ID = "160779410752321";
+var SERVER_URL = "http://localhost:8080/#/";
 //var PARSE_REST_API_KEY = "CYIfNsDlxO1pDea17LxzEjzDn9E9ZQLbzk5oaigg";
 
 
@@ -23,7 +25,32 @@ angular.module('dataServices', [])
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
         try {
+
             Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
+
+            window.fbAsyncInit = function () {
+
+                Parse.FacebookUtils.init({
+                    appId: FB_APP_ID,
+                    channelUrl :SERVER_URL + 'channel.html',
+                    status:true,
+                    cookie:true,
+                    xfbml:true
+                });
+            };
+
+            (function (d) {
+                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement('script');
+                js.id = id;
+                js.async = true;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                ref.parentNode.insertBefore(js, ref);
+            }(document));
+
         } catch (e) {
             console.log(e);
         }
@@ -33,6 +60,8 @@ angular.module('dataServices', [])
         var BookCollection = Parse.Collection.extend({ model: Book });
         var Action = Parse.Object.extend("Action");
         var ActionCollection = Parse.Collection.extend({ model: Action });
+        var LocalizeFile = Parse.Object.extend("LocalizeFiles");
+
 
         /**
         * ParseService Object
@@ -42,6 +71,30 @@ angular.module('dataServices', [])
         */
         var parseService = {
             name: "Parse",
+
+            //SignIn a Fb user
+            signInFb: function signInFb(callback){
+
+               Parse.FacebookUtils.logIn("email", {
+                    success: function(user) {
+                        if (!user.existed()) {
+
+                            //if the user does not exists we have to created it
+                            callback(true, user);
+
+                        }
+                         else {
+
+                            //if the user exists redirect
+                           callback(true, null);
+                        }
+                    },
+                    error: function(user, error) {
+                        callback(false);
+                    }
+                });
+
+            },
 
             //Sign In User
             signIn: function signIn(email, password, callback) {
@@ -113,6 +166,31 @@ angular.module('dataServices', [])
 
             },
 
+            updateUserProfileFromFb: function updateUserProfileFromFb(user, callback)
+            {
+                //Get current user
+                var currentUser = Parse.User.current();
+
+                currentUser.set("nick", user.Nick);
+                currentUser.set("gender", user.Gender);
+                currentUser.set("email", user.Email);
+                currentUser.set("userName", user.UserName);
+                currentUser.set("myPicture", user.myPicture);
+
+                currentUser.save(null, {
+                    success: function (user) {
+                        // Hooray! Let them use the app now.
+                        callback(true, null);
+                    },
+                    error: function (user, error) {
+                        // Show the error message somewhere and let the user try again.
+                        //alert("Error: " + error.code + " " + error.message);
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, error);
+                    }
+                });
+            },
+
             isCurrentUser: function isCurrentUser(callback) {
                 var currentUser = Parse.User.current();
                 if (currentUser) {
@@ -122,6 +200,23 @@ angular.module('dataServices', [])
                     // show the signup or login page
                     callback(false);
                 }
+
+            },
+
+            getLocalizationFileByLanguage: function getLocalizationFileByLanguage(callback){
+
+                var query = new Parse.Query(LocalizeFile);
+                query.equalTo("Language", "es_ES");
+                query.find({
+                        success: function(results) {
+                            callback(results);
+                        },
+                        error: function(error) {
+
+
+                            alert("Error: " + error.code + " " + error.message);
+                        }
+                        });
 
             },
 
