@@ -67,7 +67,7 @@ angular.module('localization', []).
     };
     return localize;
 }]).
-    filter('localizeFilter', ['localize', function (localize) {
+    filter('localizeIt', ['localize', function (localize) {
     return function (input) {
         return localize.getLocalizedString(input);
     };

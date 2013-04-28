@@ -1,18 +1,18 @@
 <div id="loginwrapper">
 	<form name="login-form" class="login-form" ng-submit="signInUser(user)" >
 		<div class="loginheader">
-		<h1>Sign in</h1>
+		<h1>{{'_SignIn_' | localizeIt}}</h1>
 		</div>		
 		<div class="content">
-			<input name="username" type="text" placeholder="Email" ng-model="user.Email" required />
+			<input name="username" type="text"  placeholder="Email" ng-model="user.Email" required />
 			<input name="password" type="password" placeholder="Password" ng-model="user.Password" required />
 		</div>
 	    <div class="footer">
-	        <input type="submit" value="Connect" class="buttonleft" />
+	        <input type="submit" value="{{'_Connect_' | localizeIt}}" class="buttonleft" />
 	        
-	        <a href="#/sign"><input type="button" value="Cancel" class="buttonright" /></a>
+	        <a href="#/sign"><input type="button" value="{{'_Cancel_' | localizeIt}}" class="buttonright" /></a>
             <!-- type="submit" how do we hadle 2 submits? 2 forms? -->
-			<input  type="button" value="Connect with Facebook" ng-click="fbSignIn()" class="buttonfacebook" />
+			<input  type="button" value="{{'_ConnectFacebook_' | localizeIt}}" ng-click="fbSignIn()" class="buttonfacebook" />
 	    </div>		
 	</form>
 </div>
