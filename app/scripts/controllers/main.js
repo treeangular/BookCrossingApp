@@ -5,7 +5,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope, dataService, geolocatio
 	$scope.title = 'BookCrossingApp';
 	$scope.leftButtonName = null;
 	$scope.rightButtonName = 'Map';
-	/*$scope.subPage='views/home.html';*/
+	$scope.subPage='views/home.html';
 	$scope.home='current flip';
 	$scope.myLibrary='flip';
 	$scope.settings='flip';
