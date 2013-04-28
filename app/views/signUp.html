@@ -1,25 +1,21 @@
-<div id="loginwrapper">
-    <form name="login-form" class="login-form" ng-submit="registerNewUser(user)" ng-controller="SignUpCtrl">
-        <div class="loginheader">
-            <h1>{{'_SignUp_' | localizeIt}}</h1>
-        </div>
+<form name="login-form" class="login-form" ng-submit="registerNewUser(user)" ng-controller="SignUpCtrl">
+	<div class="loginheader">
+		<h1>{{'_SignUp_' | localizeIt}}</h1>
+	</div>
 
-        <div class="content">
-            <bca-sign-up-password>
-                <input name="username" type="email" ng-model="user.Email"  placeholder="Email" required/>
-                <input  name="password" type="text" ng-model="user.Password"  placeholder="Password" required/>
-                <input  name="password" type="password" ng-model="user.Password"  placeholder="Password" required/>
-                <label for="viewPasswordCheck">{{'_SeePassword_' | localizeIt}}</label>
-                <input name="viewPasswordCheckbox" id="viewPasswordCheck"  type="checkbox" ng-model="viewPasswordCheckbox">
-            </bca-sign-up-password>
-        </div>
+	<div class="content">
+		<bca-sign-up-password>
+			<input name="username" type="email" ng-model="user.Email"  placeholder="Email" required/>
+			<input  name="password" type="text" ng-model="user.Password"  placeholder="Password" required/>
+			<input  name="password" type="password" ng-model="user.Password"  placeholder="Password" required/>
+			<label for="viewPasswordCheck">{{'_SeePassword_' | localizeIt}}</label>
+			<input name="viewPasswordCheckbox" id="viewPasswordCheck"  type="checkbox" ng-model="viewPasswordCheckbox">
+		</bca-sign-up-password>
+	</div>
 
-        <div class="footer" >
-            <input type="submit" value="{{'_Register_' | localizeIt}}" class="buttonleft" />
-            <a href="#/sign"><input type="button" name="submit" value="{{'_Cancel_' | localizeIt}}" class="buttonright" /></a>
-            <input  type="button" value="{{'_ConnectFacebook_' | localizeIt}}" ng-click="signUpFb()" class="buttonfacebook" />
-        </div>
-    </form>
-</div>
-
-
+	<div class="footer" >
+		<input type="submit" value="{{'_Register_' | localizeIt}}" class="buttonleft" />
+		<a href="#/sign"><input type="button" name="submit" value="{{'_Cancel_' | localizeIt}}" class="buttonright" /></a>
+		<input  type="button" value="{{'_ConnectFacebook_' | localizeIt}}" ng-click="signUpFb()" class="buttonfacebook" />
+	</div>
+</form>

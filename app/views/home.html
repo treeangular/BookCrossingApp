@@ -1,5 +1,5 @@
 <div ng-controller="HomeCtrl">
- <ul infinite-scroll='nextPage()' infinite-scroll-distance='1'>
+ <ul>
     <li ng-repeat='alert in alerts'ng-switch on="alert.type">
 	    <div class="bookAlert" ng-switch-when="book">
 			<img  ng-src='{{alert.image}}'>

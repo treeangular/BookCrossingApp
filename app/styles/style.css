@@ -203,6 +203,38 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
 }
 
 
+/*HOME*/
+
+ul {
+  list-style-type: none;
+  width: 100%;
+}
+ 
+.bookAlert img {
+  float: left;
+  margin: 0 15px 0 0;
+  width: 50;
+  height: 75px
+}
+
+.bookAlert .time {
+  float: right;
+  font-size:10px;
+  margin-top: 5px;
+  color: #9d9e9e;
+}
+
+.adAlert img {
+  width: 270px;
+  height: 75
+}
+ 
+li {
+  padding: 10px;
+  overflow: auto;
+  border-bottom: 1px solid #9d9e9e;
+}
+
 /* Notification bar */
 #notification {
     position: absolute;
@@ -248,45 +280,6 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
         0%, 100% { -moz-transform: translateY(-50px); }
         10%, 90% { -moz-transform: translateY(0px); }
     }
-}
-
-/*HOME*/
-
-ul {
-  list-style-type: none;
-  width: 100%;
-}
- 
-.bookAlert img {
-  float: left;
-  margin: 0 15px 0 0;
-  width: 50;
-  height: 75px
-}
-
-.bookAlert .time {
-  float: right;
-  font-size:10px;
-  margin-top: 5px;
-  color: #9d9e9e;
-}
-
-.adAlert img {
-  width: 270px;
-  height: 75
-}
- 
-li {
-  padding: 10px;
-  overflow: auto;
-  border-bottom: 1px solid #9d9e9e;
-}
- 
-li:hover {
-  background: #eee;
-  cursor: pointer;
-}
-
 
 
 /* SIGN POPUP */
