@@ -19,7 +19,7 @@ angular.module('dataServices', [])
 /**
  * Parse Service com as a back-end for the application.
  */
-    .factory('parseService', function () {
+    .factory('parseService', function ($http) {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
         try {
@@ -270,76 +270,28 @@ angular.module('dataServices', [])
                 });
             },
 
-
-//            uploadPicture: function uploadFn(fileName,fileType,fileData,c){
-//            var parseUrl='https://api.parse.com/1/files/'+fileName;
-//            $.ajax({
-//                type:'post',
-//                beforeSend:function(req){
-//                    req.setRequestHeader('X-Parse-Application-Id',myParseAppId);
-//                    req.setRequestHeader('X-Parse-REST-API-Key',myParseRestApiId);
-//                    req.setRequestHeader('Content-Type',fileType); // fileType always == 'image/jpg;'
-//                },
-//                url:parseUrl,
-//                data:fileData,
-//                processData:false,
-//                contentType:false,
-//                success:function(rslt){
-//                    if(rslt){
-//                        alert('Upload success\n Filename:'+rslt.name+'\n Url:'+rslt.url);
-//                        imgObj.save({curUser:curUser,fileName:rslt.name,fileUrl:rslt.url,fileId:c},
-//                            {success:function(succ){
-//                                alert('File info saved!');
-//                            },error:function(err){
-//                                alert('Error:'+err.code);
-//                            }
-//                            }) // save
-//
-//
-//                    }
-//                },
-//                error:function(err){
-//                    //var errObj=jQuery.parseJSON(err);
-//                    alert('Error:'+err.responseText);
-//                }
-//            });
-//        }
-
             uploadPicture: function uploadPicture(user,callback)
             {
                 var serverUrl = 'https://api.parse.com/1/files/' + user.Nick;
 
                 $http({
                     method: 'POST',
-                    url: url,
-                    data: user.myPicture,
-                    headers: {'Content-Type': false}//'application/x-www-form-urlencoded'}
-                })
-
-                $.ajax({
-                    type: "POST",
-                    beforeSend: function(request) {
-                        request.setRequestHeader("X-Parse-Application-Id", PARSE_APP_ID);
-                        request.setRequestHeader("X-Parse-REST-API-Key", PARSE_REST_API_KEY);
-                        request.setRequestHeader("Content-Type", file.type);
-                    },
                     url: serverUrl,
                     data: user.myPicture,
-                    processData: false,
-                    contentType: false,
-                    success: function(data) {
-                        alert("File available at: " + data.url);
+                    headers: {'X-Parse-Application-Id': PARSE_APP_ID,
+                        'X-Parse-REST-API-Key': PARSE_REST_API_KEY,
+                        'Content-Type': 'text/plain'
+                    }
+                }).success(function(data, status, headers, config) {
+                        //alert("File available at: " + data.url);
+                        console.log("File available at: " + data.url);
                         callback(true,data);
-                    },
-                    error: function(data) {
+                    }).error(function(data, status, headers, config) {
                         var obj = jQuery.parseJSON(data);
                         alert(obj.error);
                         callback(false,null);
-                    }
-                });
+                    });
             }
-
-
     };
 
         return parseService;
