@@ -10,7 +10,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope) {
 		, image:'styles/img/books/1q84.jpg', time:'5 min'},
 		{type:'book', title:'Lords of the Rings',  content: 'has been hunted by PersonName'
 		, image:'styles/img/books/lord_of_the_rings.jpg' , time:'10 hours'},
-		{type:'ad', image:'/styles/img/ads/mcdonalls.jpg'}
+		{type:'ad', image:'styles/img/ads/mcdonalls.jpg'}
     ];
 
   $scope.busy = false;
