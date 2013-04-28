@@ -2,7 +2,7 @@
 BookCrossingApp.directive('bcaHeader', function () {
                 // Return the directive configuration.
                 return({
-				    templateUrl: "/views/header.html",
+				    templateUrl: "views/header.html",
                     restrict: "E"
                 });
  

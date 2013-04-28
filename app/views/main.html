@@ -1,20 +1,5 @@
-<header class="bar-title">
-<a ng-show="leftButtonName!=null" class="button" href="leftButtonRef">{{leftButtonName}}</a></span>
-<h1 class="title">{{title}}</h1>
-<a ng-show="rightButtonName!=null" class="button" href="rightButtonRef">{{rightButtonName}}</a>
-</header>
+<bca_header></bca_header>
 <div class="subview">
 <ng-include src="subPage"></ng-include>
 </div>
-<div id="footer">
-<nav id="tabbar">
-    <ul >
-     <!-- Action & navigation -->
-		<li><a ng-click="subviewchange('views/home.html')" ng-class="home"><div class="home"></div></a></li>
-		<li><a ng-click="subviewchange('views/addBook.html')" ng-class="addBook"><div class="addBook"></div></a></li>
-		<li><a ng-click="subviewchange('views/addZobc.html')" ng-class="addZobc"><div class="addZobc"></div></a></li>
-		<li><a ng-click="subviewchange('views/myLibrary.html')" ng-class="myLibrary"><div class="library"></div></a></li>
-		<li><a ng-click="subviewchange('views/settings.html')" ng-class="settings"><div class="more"></div></a></li>
-    </ul>
-</nav>
-</div>
+<bca_footer></bca_footer>
