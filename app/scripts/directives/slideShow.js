@@ -10,7 +10,7 @@ BookCrossingApp.directive('bcaSlideShow', function () {
                     var expression = attributes.bcaSlideShow;
  
                     // I am the optional slide duration.
-                    var duration = ("fast");
+                    var duration = ( attributes.slideShowDuration || "fast" );
  
  
                     // I check to see the default display of the
