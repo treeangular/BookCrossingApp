@@ -1,8 +1,6 @@
 /*******************
-LOGIN FORM
+BookCrossingApp Css
 *******************/
-/***NEW**/
-
 * {
 	margin: 0;
 	padding: 0;
@@ -29,8 +27,14 @@ LOGIN FORM
 }
 
 /* hack to hide loding message of Jquery */
-.ui-loading .ui-loader { display: block; }
-.ui-loader { display: none; position: absolute; }
+.ui-loading .ui-loader { 
+display: block; 
+}
+
+.ui-loader { 
+display: none; 
+position: absolute; 
+}
 
 /*BODY*/
 
@@ -225,8 +229,8 @@ ul {
 }
 
 .adAlert img {
-  width: 270px;
-  height: 75
+  width: 273px;
+  height: 75px;
 }
  
 li {
@@ -282,15 +286,12 @@ li {
     }
 
 
-/* SIGN POPUP */
+/* SIGN */
 
-/***OLD**/
-#loginwrapper {
-	/* Center wrapper perfectly */
-	width: 400px;
-	height: 630px;
-	margin: 65px auto
-}
+#signOptions {
+            margin:auto 0;
+            text-align: center;
+        }
 
 .login-form {
 	width: 300px;
@@ -386,13 +387,6 @@ li {
 	-webkit-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
 }
 
-
-
-#formbox {
-            margin:auto 0;
-            text-align: center;
-        }
-	
 /*HEADER & FOOTER*/
 
 /* Title bar
@@ -505,72 +499,6 @@ li {
   background-color: #ccc;
   background-image: none;
   box-shadow: inset 0 3px 3px rgba(0, 0, 0, .2);
-}
-
-#footer {
-	width:100%;
-	height:48px;
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));;
-	padding:0;
-	border-top:1px solid #444;
-}
-
-#footer a {
-	display:block;
-	text-decoration:none;
-	font-size:12px;
-	color:#eee;
-	line-height:24px;
-	text-shadow:0 -1px 0 #000;
-}
-
-#footer span {
-	display:block;
-	font-size:30px;
-	font-weight:bold;
-}
-
-
-/*MAIN: SCROLL*/
-
-#wrapper {
-	height:200px;		/* Of course you need to specify the object height */
-	position:relative;	/* On older OS versions "position" and "z-index" must be defined (absolute | relative), */
-	z-index:1;			/* it seems that recent webkit is less picky and works anyway. */
-	width:100%;
-	background:#aaa;
-	overflow:hidden;
-}
-
-#scroller {
-/*	-webkit-touch-callout:none;*/
-	-webkit-tap-highlight-color:rgba(0,0,0,0);
-	float:left;
-	width:100%;
-	padding:0;
-/*	-webkit-box-shadow:0 0 8px #555;	/* Don't use box shadows, they slow down drastically CSS animations */
-}
-
-#scroller ul {
-	list-style:none;
-	padding:0;
-	margin:0;
-	width:100%;
-	text-align:left;
-}
-
-#scroller li {
-	padding:0 10px;
-	height:40px;
-	line-height:40px;
-	border-bottom:1px solid #ccc;
-	border-top:1px solid #fff;
-	background-color:#fafafa;
-	font-size:14px;
-}
-
-#scroller li > a {
-	display:block;
 }
 
 /*BOTOM MENU*/
