@@ -6,7 +6,7 @@ BookCrossingApp.directive('bcaCamera', function () {
             restrict: 'A',
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {
-                elm.on('click', function() {
+                elm.bind('click', function() {
                     navigator.camera.getPicture(function (imageURI)
                     {
                         scope.$apply(function() {
@@ -17,10 +17,10 @@ BookCrossingApp.directive('bcaCamera', function () {
                     },
                     //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
                     { quality: 50,
-                      destinationType: Camera.DestinationType.FILE_URI,//Camera.DestinationType.DATA_URL,
-                      encodingType: Camera.EncodingType.JPEG,
-                      targetWidth: 100,
-                      targetHeight: 100
+                      destinationType:Camera.DestinationType.FILE_URI
+                      //encodingType: Camera.EncodingType.JPEG,
+                      //targetWidth: 100,
+                      //targetHeight: 100
                     })
                 });
             }
