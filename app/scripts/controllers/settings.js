@@ -11,4 +11,9 @@ BookCrossingApp.controller('SettingsCtrl', function ($scope, dataService, $locat
         //Back to beginning
         $location.path('/');
     };
+
+    $scope.GoToUpdateProfile = function()
+    {
+        $location.path('/SignUpDetails');
+    };
   });
