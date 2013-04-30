@@ -5,15 +5,24 @@ angular.module('BookCrossingApp')
 
         $scope.updateUserProfile = function (user) {
 
+            //Only way I found to fix this issue - SO question
+            //user.myPicture =  $scope.myPicture;
             user.myPicture =  $scope.myPicture;
 
-            var reader = new FileReader();
-            reader.onloadend = function(evt) {
-                console.log("Read as data URL");
-                //alert(evt.target.result);
-                user.myPicture =  evt;
+            console.log("File available at: " + user.myPicture);
+            alert( user.myPicture);
 
-                dataService.uploadPicture(evt, function(isResult, parseUrl)
+            var reader = new FileReader();
+
+            reader.onloadend = function(fileEntry) {
+
+                console.log(fileEntry.name);
+                console.log("Read as data URL");
+
+                //alert(evt.target.result);
+                user.myPicture =  fileEntry;
+
+                dataService.uploadPicture(fileEntry, function(isResult, parseUrl)
                 {
                     user.myPictureFile = parseUrl;
 
@@ -21,8 +30,6 @@ angular.module('BookCrossingApp')
 
                 dataService.updateUserProfile(user, function (isResult, result) {
 
-                    //Only way I found to fix this issue - SO question
-                    //user.myPicture =  $scope.myPicture;
 
                     $scope.$apply(function () {
                         if (isResult)
@@ -36,12 +43,19 @@ angular.module('BookCrossingApp')
                     });
                 });
 
-
-
             };
-            reader.readAsText(user.myPicture);
 
+//            function onResolveSuccess(fileEntry) {
+//
+//
+//            }
+//
+//            function fail(evt) {
+//                console.log(evt.target.error.code);
+//            }
 
+            //window.resolveLocalFileSystemURI(user.myPicture, onResolveSuccess, fail);
+            reader.readAsDataURL(user.myPicture);
         }
 
         //Initialize default value

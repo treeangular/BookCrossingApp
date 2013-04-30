@@ -285,6 +285,17 @@ angular.module('dataServices', [])
                 }).success(function(data, status, headers, config) {
                         //alert("File available at: " + data.url);
                         console.log("File available at: " + data.url);
+
+                        var currentUser = Parse.User.current();
+                        var url = data.url;
+                        currentUser.put("file", {
+                            name: url.substring(url.lastIndexOf('/') + 1),
+                            url: url,
+                            __type: "File"
+                        });
+                        currentUser.save();
+
+
                         callback(true,data);
                     }).error(function(data, status, headers, config) {
                         var obj = jQuery.parseJSON(data);
