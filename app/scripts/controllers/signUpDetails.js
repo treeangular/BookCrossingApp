@@ -17,7 +17,7 @@ angular.module('BookCrossingApp')
             reader.onloadend = function(fileEntry) {
 
                 console.log(fileEntry.name);
-                console.log("Read as data URL");
+                alert(fileEntry.name);
 
                 //alert(evt.target.result);
                 user.myPicture =  fileEntry;

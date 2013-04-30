@@ -283,7 +283,7 @@ angular.module('dataServices', [])
                         'Content-Type': 'text/plain'
                     }
                 }).success(function(data, status, headers, config) {
-                        //alert("File available at: " + data.url);
+                        alert("File available at: " + data.url);
                         console.log("File available at: " + data.url);
 
                         var currentUser = Parse.User.current();
