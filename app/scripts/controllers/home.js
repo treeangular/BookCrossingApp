@@ -1,19 +1,20 @@
 'use strict';
 BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 
+    $scope.alerts = [];
 	//Some test books. TODO: Remove them when we
-	$scope.alerts = [
-        {type:'book', title:'A Clockwork orange', content: 'has been released arround you by PersonName'
-		, image:'styles/img/books/a_clockwork_orange.jpg', time:'1 min'},
-		{type:'book', title:'Lords of the Rings', content: 'has been released arround you by PersonName'
-		, image:'styles/img/books/lord_of_the_rings.jpg', time:'15 min'},
-		{type:'ad', image:'styles/img/ads/amazon.jpg'},
-		{type:'book', title:'A Clockwork orange', content: 'has been released arround you by PersonName'
-		, image:'styles/img/books/a_clockwork_orange.jpg', time:'1 min'},
-        {type:'book', title:'1Q84',  content: 'has been commented by PersonName'
-		, image:'styles/img/books/1q84.jpg', time:'5 min'},
-		{type:'ad', image:'styles/img/ads/mcdonalls.jpg'}
-    ];
+	//$scope.alerts = [
+    //    {type:'book', title:'A Clockwork orange', content: 'has been released arround you by PersonName'
+	//	, image:'styles/img/books/a_clockwork_orange.jpg', time:'1 min'},
+	//	{type:'book', title:'Lords of the Rings', content: 'has been released arround you by PersonName'
+	//	, image:'styles/img/books/lord_of_the_rings.jpg', time:'15 min'},
+	//	{type:'ad', image:'styles/img/ads/amazon.jpg'},
+	//	{type:'book', title:'A Clockwork orange', content: 'has been released arround you by PersonName'
+	//	, image:'styles/img/books/a_clockwork_orange.jpg', time:'1 min'},
+     //   {type:'book', title:'1Q84',  content: 'has been commented by PersonName'
+	//	, image:'styles/img/books/1q84.jpg', time:'5 min'},
+	//	{type:'ad', image:'styles/img/ads/mcdonalls.jpg'}
+    //];
 	
 	dataService.getWholeActions(function (results) {
         $scope.$apply(function () {
@@ -29,11 +30,27 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 			var title = "not defined";
 			var description = "not defined";
 			var username = "not defined";
+			var time;
+			//TODO: Move in a directive?
+		
+			var seconds = Math.round((new Date()-action.createdAt)/1000);
+			var minutes = Math.round(seconds/60);
+			var hours = Math.round(minutes/60);
+			var days = Math.round(hours/24);
+			
+			if(seconds < 60)
+				time = seconds + ' sec';
+			else if(minutes < 60)
+				time = minutes + ' min';
+			else if(hours < 24)
+				time = hours + ' hours';
+			else
+				time = days + ' days';
 			
 			if (book != null)
 				title = book.get('title');
 			if (actionType != null)
-				description = actionType.get('Description');
+				description = actionType.get('description');
 			if (user != null)
 				username = user.get('username');
 			
@@ -41,10 +58,11 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 			$scope.newalert = {
 				type:'book', 
 				title: title, 
+				//TODO: Add localization
 				content: description,
-				image:'styles/img/books/lord_of_the_rings.jpg',
+				image:'styles/img/books/a_clockwork_orange.jpg',
 				user: username,
-				time:'2 days'
+				time:time
 			};
 			$scope.alerts.push($scope.newalert);
             console.log("Getting books from database!");
