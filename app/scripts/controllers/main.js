@@ -36,6 +36,16 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 				$scope.addBook='current flip';
 				$scope.addZobc='flip';
 				break;
+			case 'views/bookBarcode.html':
+				$scope.title = 'Register Book';
+				$scope.leftButtonName = null;
+				$scope.rightButtonName = null
+				$scope.home='flip';
+				$scope.myLibrary='flip';
+				$scope.settings='flip';
+				$scope.addBook='current flip';
+				$scope.addZobc='flip';
+				break;				
 			case 'views/addZobc.html':
 				$scope.title = 'Add OBCZ';
 				$scope.leftButtonName = null;

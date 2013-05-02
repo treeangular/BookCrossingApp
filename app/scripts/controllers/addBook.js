@@ -23,7 +23,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
                 if (isResult)
                 {
-                    $location.path('/main');
+                    //$location.path('/main');
+					$scope.subviewchange('views/bookBarcode.html')
                 }
                 else
                 {
