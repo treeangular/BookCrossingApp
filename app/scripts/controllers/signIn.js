@@ -22,7 +22,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
     {
         dataService.fbSignIn(function(result, user)
         {
-
+            $scope.$apply(function () {
                 if(result)
                 {
                     if(user != null)
@@ -55,6 +55,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
 
          });
+        });
     };
 
 });
