@@ -8,16 +8,21 @@ angular.module('facebookProvider', [])
 
           getUserInfo:function (callback) {
 
+              var user={};
+
+
               FB.api('/me', function(response) {
 
-                  user.Email = response.email;
-                  user.Username = response.userName;
-                  user.Gender = response.gender;
-                  user.myPictureFile = response.picture;
+                      user.username = response.username;
+                      user.email = response.email;
+                      user.gender = response.gender;
+                      user.myPictureFile = response.picture;
+                      user.fbId = response.id;
 
-                  //callback(user.Email);
+                      callback(user);
 
-        });
+
+              });
           },
           logout:function () {
               FB.logout(function (response) {
