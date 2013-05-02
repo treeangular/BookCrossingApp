@@ -58,29 +58,38 @@ height: 40px;
 }
 
 /* Inputs text, email and password */
-input[type=text], input[type=email], input[type=password] {
-	width: 188px;
-	padding: 15px 25px;
-	font-weight: 400;
+textarea {
+    resize: none;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+input[type=text], input[type=email], input[type=password], textarea {
+	width: 100%;
+	padding: 15px 15px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box; /* Opera/IE 8+ */
+	font-weight: 400px;
 	font-size: 14px;
 	color: #9d9e9e;
 	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
-	margin-top: 15px;
+	margin-top: 10px;
 	background: #fff;
 	border: 1px solid #fff;
 	border-radius: 5px;
-	
 	box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
 	-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
 	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
 }
 
-input[type=text]:hover, input[type=email]:hover, input[type=password]:hover {
+
+
+input[type=text]:hover, input[type=email]:hover, input[type=password]:hover , textarea:hover{
 	background: #dfe9ec;
 	color: #414848;
 }
 
-input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
+input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, textarea:focus {
 	background: #dfe9ec;
 	color: #414848;
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
@@ -88,11 +97,33 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
 	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
 }
 
+#smalltext{
+	-webkit-box-sizing: inherit; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: inherit;    /* Firefox, other Gecko */
+	box-sizing: inherit; /* Opera/IE 8+ */
+	width: 220px;
+}
+
+
 /* Login buttons:left, right, facebook */
+.buttonnormal {
+	vertical-align: bottom;
+	padding: 5px 10px;
+	font-size: 18px;
+	color: #fff;
+	text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+}
+
 .buttonleft {
 	float:left;
 	padding: 11px 25px;
-	margin-bottom: 5px;
+	margin-top: 10px;
 	width:115px;
 	font-weight: 300;
 	font-size: 18px;
@@ -109,7 +140,7 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
 .buttonright {
 	float:right;
 	padding: 11px 25px;
-	margin-bottom: 5px;
+	margin-top: 10px;
 	width:115px;
 	font-weight: 300;
 	font-size: 18px;
@@ -126,10 +157,12 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
 }
 
 .buttonlarge {
-	float:left;
-	padding: 11px 25px;
-	margin-bottom: 5px;
-	width:240px;	
+	width: 100%;
+	padding: 15px 15px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box; /* Opera/IE 8+ */
+	margin-top: 10px;
 	font-weight: 300;
 	font-size: 18px;
 	color: #fff;
@@ -145,7 +178,7 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus {
 .buttonfacebook {
 	float:left;
 	padding: 11px 25px;
-	margin-bottom: 5px;
+	margin-top: 10px;
 	width:240px;	
 	font-weight: 300;
 	font-size: 18px;
@@ -385,6 +418,13 @@ li {
 	box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
 	-moz-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
 	-webkit-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+}
+
+.login-form .content  input{
+	width: 210px;
+	-webkit-box-sizing: inherit; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: inherit;    /* Firefox, other Gecko */
+	box-sizing: inherit; /* Opera/IE 8+ */
 }
 
 /*HEADER & FOOTER*/
