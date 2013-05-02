@@ -1,1 +1,9 @@
-<p>This is the AddZobc view.</p>
+<form name="registerNewZobc-form" ng-submit="registerNewZobc(zobc)" ng-controller="AddZobcCtrl">
+		<img ng-src="{{zobc.image}}" height="120px" width="80px"/>
+		<input name="zobcName" type="text" ng-model="zobc.name"  placeholder="Name" />
+		<input id="smalltext" name="zobcLocation" type="text" ng-model="zobc.location"  placeholder="Location" /><img class="buttonnormal" ng-click="findLocation()" src="styles/img/map.png" />
+		<textarea name="zobcDescription" rows="6" ng-model="zobc.Description"  placeholder="Description" />
+		<input type="submit" value="Register" class="buttonlarge" />
+		<div>
+		</div>
+</form>
