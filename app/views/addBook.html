@@ -1,7 +1,7 @@
     <form name="registerNewBook-form" ng-submit="registerNewBook(book)" ng-controller="AddBookCtrl">
             <img ng-src="{{book.image}}" height="120px" width="80px"/>
 			<input id="smalltext" name="bookIsbn" type="text" ng-model="book.isbn"  placeholder="ISBN" />
-			<img class="buttonnormal" ng-click="findBook()" src="styles/img/lupa.png">
+			<img class="buttonnormal" ng-click="findBook()" src="styles/img/lupa.png" />
 			<input name="bookName" type="text" ng-model="book.title"  placeholder="Title" />
             <textarea name="bookDescription" rows="6" ng-model="book.Description"  placeholder="Description" />
             <input type="submit" value="Register" class="buttonlarge" />
