@@ -6,56 +6,37 @@ angular.module('BookCrossingApp')
         $scope.updateUserProfile = function (user) {
 
             //Only way I found to fix this issue - SO question
-            //user.myPicture =  $scope.myPicture;
-            user.myPicture =  $scope.myPicture;
+            user.myPicture = $scope.myPicture;
+            //console.log("File available at FILENAME: " + fileName);
 
-            console.log("File available at: " + user.myPicture);
-            alert( user.myPicture);
+            //alert( user.myPicture);
 
-            var reader = new FileReader();
+            //SO question WTF!   $.get(user.myPicture);
+            user.myPicture =  $.get(user.myPicture);
+            console.log("SO jquery response" + user.myPicture);
 
-            reader.onloadend = function(fileEntry) {
+           dataService.uploadPicture(user, function(isResult, parseUrl)
+           {
+                user.myPictureFile = parseUrl;
 
-                console.log(fileEntry.name);
-                alert(fileEntry.name);
-
-                //alert(evt.target.result);
-                user.myPicture =  fileEntry;
-
-                dataService.uploadPicture(fileEntry, function(isResult, parseUrl)
-                {
-                    user.myPictureFile = parseUrl;
-
-                });
-
-                dataService.updateUserProfile(user, function (isResult, result) {
-
-
-                    $scope.$apply(function () {
-                        if (isResult)
-                        {
-                            $location.path('/Main');
-                        }
-                        else
-                        {
-                            $scope.ErrorMessage = result.message;
-                        }
-                    });
-                });
-
-            };
-
-//            function onResolveSuccess(fileEntry) {
+                    //need to use q but thats for later after being able to upload the pic
+//               dataService.updateUserProfile(user, function (isResult, result) {
 //
-//
-//            }
-//
-//            function fail(evt) {
-//                console.log(evt.target.error.code);
-//            }
+//                   $scope.$apply(function () {
+//                       if (isResult)
+//                       {
+//                           $location.path('/Main');
+//                       }
+//                       else
+//                       {
+//                           $scope.ErrorMessage = result.message;
+//                       }
+//                   });
+//               });
+           });
 
-            //window.resolveLocalFileSystemURI(user.myPicture, onResolveSuccess, fail);
-            reader.readAsDataURL(user.myPicture);
+
+
         }
 
         //Initialize default value

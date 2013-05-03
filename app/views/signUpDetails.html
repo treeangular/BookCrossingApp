@@ -4,8 +4,12 @@
             <h2>Complete your profile</h2>
         </div>
         <div class="content">
-            <img id="preview" ng-src={{myPicture}} height="100px" width="100px" />
+            <img id="preview"   ng-src={{myPicture}} height="100px" width="100px" />
             <input type="button" bca-camera ng-model='myPicture' value="Upload Picture"/>
+
+
+            <!--<img id="preview2"   ng-src={{myFile}} height="100px" width="100px" />-->
+            <!--<input type="file" bca-camera id="files" name="file" ng-model='myFile'  />-->
 
             <input name="nick" type="text" ng-model="user.Nick" placeholder="Nick name" />
 

@@ -122,7 +122,7 @@ angular.module('dataServices', [])
                 currentUser.set("nick", user.Nick);
                 currentUser.set("gender", user.Gender);
                 currentUser.set("favoriteGenre", user.FavoriteGenre);
-                currentUser.set("myPictureFile", user.myPictureFile);
+                //currentUser.set("myPictureFile", user.myPictureFile);
 
                 currentUser.save(null, {
                     success: function (user) {
@@ -272,7 +272,7 @@ angular.module('dataServices', [])
 
             uploadPicture: function uploadPicture(user,callback)
             {
-                var serverUrl = 'https://api.parse.com/1/files/' + user.Nick;
+                var serverUrl = 'https://api.parse.com/1/files/' + user.Nick + "wtf";
 
                 $http({
                     method: 'POST',
@@ -287,19 +287,35 @@ angular.module('dataServices', [])
                         console.log("File available at: " + data.url);
 
                         var currentUser = Parse.User.current();
-                        var url = data.url;
-                        currentUser.put("file", {
-                            name: url.substring(url.lastIndexOf('/') + 1),
-                            url: url,
-                            __type: "File"
+
+                        currentUser.set("myPicture", data.url);
+
+                        currentUser.save(null, {
+                            success: function (user) {
+                                // Hooray! Let them use the app now.
+                                callback(true, null);
+                            },
+                            error: function (user, error) {
+                                // Show the error message somewhere and let the user try again.
+                                //alert("Error: " + error.code + " " + error.message);
+                                console.log("Error: " + error.code + " " + error.message);
+                                callback(false, error);
+                            }
                         });
-                        currentUser.save();
-
-
+//                        var url = data.url;
+//                        currentUser.put("myPicture", {
+//                            name: url.substring(url.lastIndexOf('/') + 1),
+//                            url: url,
+//                            __type: "File"
+//                        });
+//                        currentUser.save();
                         callback(true,data);
+
                     }).error(function(data, status, headers, config) {
-                        var obj = jQuery.parseJSON(data);
-                        alert(obj.error);
+//                        var obj = jQuery.parseJSON(data);
+//                        alert(obj.error);
+                        //alert("Fucking error ");
+                        console.log("fuckign error");// + data);
                         callback(false,null);
                     });
             }
