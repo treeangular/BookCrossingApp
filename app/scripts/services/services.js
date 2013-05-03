@@ -56,13 +56,13 @@ angular.module('dataServices', [])
                         if (!user.existed()) {
 
                             //if the user does not exists we have to created it
-                            callback(true, user);
+                            callback(true, null);
 
                         }
                          else {
 
                             //if the user exists redirect
-                           callback(true, null);
+                           callback(true, user);
                         }
                     },
                     error: function(user, error) {
@@ -144,11 +144,12 @@ angular.module('dataServices', [])
                 //Get current user
                 var currentUser = Parse.User.current();
 
-                currentUser.set("nick", user.Nick);
-                currentUser.set("gender", user.Gender);
-                currentUser.set("email", user.Email);
-                currentUser.set("userName", user.UserName);
-                currentUser.set("myPicture", user.myPicture);
+                currentUser.set("nick", user.username);
+                currentUser.set("gender", user.gender);
+                currentUser.set("email", user.email);
+                currentUser.set("username", user.username);
+                currentUser.set("myPicture", 'http://graph.facebook.com/' + user.fbId + '/picture');
+                currentUser.set("facebookId", user.fbId);
 
                 currentUser.save(null, {
                     success: function (user) {

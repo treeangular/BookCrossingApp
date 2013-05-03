@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('MainCtrl', function ($scope, dataService, geolocationService) {
+BookCrossingApp.controller('MainCtrl', function ($scope) {
     // Call the service and fetch the list of signatures that match the given petition ID
 	$scope.title = 'BookCrossingApp';
 	$scope.leftButtonName = null;
@@ -36,8 +36,18 @@ BookCrossingApp.controller('MainCtrl', function ($scope, dataService, geolocatio
 				$scope.addBook='current flip';
 				$scope.addZobc='flip';
 				break;
+			case 'views/bookBarcode.html':
+				$scope.title = 'Register Book';
+				$scope.leftButtonName = null;
+				$scope.rightButtonName = null
+				$scope.home='flip';
+				$scope.myLibrary='flip';
+				$scope.settings='flip';
+				$scope.addBook='current flip';
+				$scope.addZobc='flip';
+				break;				
 			case 'views/addZobc.html':
-				$scope.title = 'Add OBCZ';
+				$scope.title = 'Register OBCZ';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = null
 				$scope.home='flip';
@@ -69,26 +79,5 @@ BookCrossingApp.controller('MainCtrl', function ($scope, dataService, geolocatio
 		}
 		$scope.subPage = page;
     };
-	
-    dataService.getWholeActions(function (results) {
-        $scope.$apply(function () {
-            //if the object is complex 
-            $scope.actionList = results;
-            //Todo hev: try to understand 
-            //$scope.actionList = results.models;
-            /*
-            geolocationService.getCurrentPosition(function (position) {
-                alert('Latitude: '              + position.coords.latitude          + '\n' +
-                    'Longitude: '             + position.coords.longitude         + '\n' +
-                    'Altitude: '              + position.coords.altitude          + '\n' +
-                    'Accuracy: '              + position.coords.accuracy          + '\n' +
-                    'Altitude Accuracy: '     + position.coords.altitudeAccuracy  + '\n' +
-                    'Heading: '               + position.coords.heading           + '\n' +
-                    'Speed: '                 + position.coords.speed             + '\n' +
-                    'Timestamp: '             + position.timestamp                + '\n');
-            }); */
-
-            console.log("Are we getting here more than once?!?");
-        });
-    });
+    
 });
