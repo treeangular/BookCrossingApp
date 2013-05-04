@@ -10,30 +10,30 @@ angular.module('isbnProvider', [])
     // Public API here
     return {
 
-        getIsbnDbInfo: function getIsbnDbInfo(title, isbn) {
-            var book ={};
-
-          $http({
-              method: 'GET',
-              url: 'http://isbndb.com/api/books.xml?access_key=WCUOZ296&index1=isbn&value1=0596002068',
-              data: book,
-              params: {title: title, isbn: isbn},
-              headers: {
-                  'Accept': 'application/xml'
-              },
-              transformResponse: function(data) {
-                  var json = x2js.xml_str2json( data );
-                  return json;
-              },
-              cache: false
-          }).
-              success(function(data, status) {
-                alert("book.Title")
-              }).
-              error(function(data, status) {
-                  alert("Error");
-              });
-        },
+//        getIsbnDbInfo: function getIsbnDbInfo(title, isbn) {
+//            var book ={};
+//
+//          $http({
+//              method: 'GET',
+//              url: 'http://isbndb.com/api/books.xml?access_key=WCUOZ296&index1=isbn&value1=0596002068',
+//              data: book,
+//              params: {title: title, isbn: isbn},
+//              headers: {
+//                  'Accept': 'application/xml'
+//              },
+//              transformResponse: function(data) {
+//                  var json = x2js.xml_str2json( data );
+//                  return json;
+//              },
+//              cache: false
+//          }).
+//              success(function(data, status) {
+//                alert("book.Title")
+//              }).
+//              error(function(data, status) {
+//                  alert("Error");
+//              });
+//        },
 
         getGoogleBookInfo: function getGoogleBookInfo(title, isbn, callback) {
             var book ={};

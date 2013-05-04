@@ -46,7 +46,7 @@
     },
     {
         "key":"_Register_",
-        "value":"See the Password",
+        "value":"Register",
         "description":"Register button"
 
     }
