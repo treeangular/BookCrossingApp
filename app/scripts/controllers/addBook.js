@@ -1,14 +1,27 @@
 'use strict';
 
-BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location) {
+BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService) {
 	
 
 	$scope.findBook = function () {
 		if ($scope.book.isbn != null){
-			//Mock data 1Q84 - Real ISBN = 0307957020 OR 9780307957023			
-			$scope.book.title = "1Q84";
-			$scope.book.Description = "Director:Haruki Murakami, Synopsis:The year is 1984. Aomame sits in a taxi on the expressway in Tokyo. Her work is not the kind which can be discussed in public but she is in a hurry to carry out an assignment and, with the traffic at a stand-still, the driver proposes a solution. She agrees, but as a result of her actions starts to feel increasingly detached from the real world.";
-			$scope.book.image="styles/img/books/1q84.jpg";
+
+            isbnService.getGoogleBookInfo($scope.book.title, $scope.book.isbn, function(result){
+
+                if(result!=null)
+                {
+                    $scope.book.Description = result.description;
+                    $scope.book.image = result.image;
+                    $scope.book.title= result.title;
+
+                }
+                else
+                {
+                    $rootScope.ErrorMessage = "something went wrong";
+                }
+
+
+            });
 		}
 			
 	};
