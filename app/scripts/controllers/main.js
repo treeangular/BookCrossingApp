@@ -12,7 +12,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 	$scope.addBook='flip';
 	$scope.addZobc='flip';
 	
-	$scope.subviewchange = function(page)
+	$scope.goTo = function(page)
     {
 		switch(page)
 		{
@@ -20,81 +20,85 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 				$scope.title = 'Settings';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = null;
-				$scope.home='flip';
-				$scope.myLibrary='flip';
-				$scope.settings='current flip';
-				$scope.addBook='flip';
-				$scope.addZobc='flip';
+                $scope.selectOption('settings');
 				break;
 			case 'views/addBook.html':
 				$scope.title = 'Register Book';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = null
-				$scope.home='flip';
-				$scope.myLibrary='flip';
-				$scope.settings='flip';
-				$scope.addBook='current flip';
-				$scope.addZobc='flip';
+                $scope.selectOption('addBook');
 				break;
 			case 'views/bookBarcode.html':
 				$scope.title = 'Register Book';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = null
-				$scope.home='flip';
-				$scope.myLibrary='flip';
-				$scope.settings='flip';
-				$scope.addBook='current flip';
-				$scope.addZobc='flip';
+                $scope.selectOption('addBook');
 				break;
             case 'views/book.html':
                 $scope.title = 'BookCrossingApp';
                 $scope.leftButtonName = "Back";
                 $scope.leftButtonRef = "views/home.html";
                 $scope.rightButtonName = null
-                $scope.home='flip';
-                $scope.myLibrary='flip';
-                $scope.settings='flip';
-                $scope.addBook='current flip';
-                $scope.addZobc='flip';
+                $scope.selectOption('addBook');
+                break;
+            case 'views/releaseBook.html':
+                $scope.leftButtonRef = "views/book.html";
+                $scope.rightButtonName = null
+                $scope.selectOption('addBook');
                 break;
 			case 'views/addZobc.html':
 				$scope.title = 'Register OBCZ';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = null
-				$scope.home='flip';
-				$scope.myLibrary='flip';
-				$scope.settings='flip';
-				$scope.addBook='flip';
-				$scope.addZobc='current flip';
+                $scope.selectOption('addZobc');
 				break;
 			case 'views/myLibrary.html':
 				$scope.title = 'My Library';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = null
-				$scope.home='flip';
-				$scope.myLibrary='current flip';
-				$scope.settings='flip';
-				$scope.addBook='flip';
-				$scope.addZobc='flip';
+                $scope.selectOption('myLibrary');
 				break;
             case 'views/home.html':
 				$scope.title = 'BookCrossingApp';			
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = 'Map';
-				$scope.home='current flip';
-				$scope.myLibrary='flip';
-				$scope.settings='flip';
-				$scope.addBook='flip';
-				$scope.addZobc='flip';
+                $scope.selectOption('home');
                 $scope.selectedBook = '';
             default:
 		}
 		$scope.subPage = page;
     };
 
+    $scope.selectOption = function(option) {
+        $scope.home='flip';
+        $scope.myLibrary='flip';
+        $scope.settings='flip';
+        $scope.addBook='flip';
+        $scope.addZobc='flip';
+            switch(option)
+            {
+                case 'home':
+                    $scope.home='current flip';
+                    break;
+                case 'myLibrary':
+                    $scope.myLibrary='current flip';
+                    break;
+                case 'settings':
+                    $scope.settings='current flip';
+                    break;
+                case 'addBook':
+                    $scope.addBook='current flip';
+                    break;
+                case 'addZobc':
+                    $scope.addZobc='current flip';
+                    break;
+                default:
+            }
+    }
+
     $scope.selectBook  = function(book){
         $scope.selectedBook = book;
-        $scope.subviewchange('views/book.html')
+        $scope.goTo('views/book.html')
     };
     
 });
