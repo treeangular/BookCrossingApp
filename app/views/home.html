@@ -2,8 +2,8 @@
  <ul>
     <li ng-repeat='alert in alerts'ng-switch on="alert.type">
 	    <div class="bookAlert" ng-switch-when="book">
-			<img  ng-src='{{alert.image}}'>
-			<h3>{{alert.title}}</h3>
+			<img ng-click="selectBook(alert.id)"  ng-src='{{alert.image}}'>
+			<h3 ng-click="selectBook(alert.id)">{{alert.title}}</h3>
 			<p>{{alert.content}}<p>
 			<p>{{alert.user}}<p>
 			<p class="time">{{alert.time}}<p>

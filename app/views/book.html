@@ -1,0 +1,10 @@
+<div ng-controller="BookCtrl">
+<div>
+    <img id="bookimg" ng-src="{{book.get('image')}}" height="120px" width="80px"/>
+    <h3>{{book.get('title')}}</h3>
+    <p>{{book.get('description')}}</p>
+</div>
+<div>
+    <input ng-click="Release()" value="Release" class="buttonlarge" />
+</div>
+</div>

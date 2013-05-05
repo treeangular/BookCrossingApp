@@ -255,6 +255,24 @@ angular.module('dataServices', [])
 
             },
 
+            getBookById: function getBookById(id, callback)
+            {
+                var query = new Parse.Query(Book);
+
+                // Include the post data with each comment
+                query.equalTo("objectId", id);
+
+                query.find({
+                    success: function (book) {
+                        // Comments now contains the last ten comments, and the "post" field
+                        // has been populated. For example:
+                        callback(book);
+
+                    }
+                });
+
+            },
+
             registerBook: function registerBook(bookk, callback) {
 
                 var book = new Book();

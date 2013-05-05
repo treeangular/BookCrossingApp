@@ -15,7 +15,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 	//	, image:'styles/img/books/1q84.jpg', time:'5 min'},
 	//	{type:'ad', image:'styles/img/ads/mcdonalls.jpg'}
     //];
-	
+
 	dataService.getWholeActions(function (results) {
         $scope.$apply(function () {
             //TODO: Load only first page and then use paging in the NextPage function!
@@ -58,7 +58,8 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 			
 			
 			$scope.newalert = {
-				type:'book', 
+				type:'book',
+                id: book.id,
 				title: title, 
 				//TODO: Add localization
 				content: description,
@@ -82,4 +83,5 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
     
 	$scope.busy = false;
   };
+
 });

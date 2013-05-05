@@ -45,7 +45,18 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 				$scope.settings='flip';
 				$scope.addBook='current flip';
 				$scope.addZobc='flip';
-				break;				
+				break;
+            case 'views/book.html':
+                $scope.title = 'BookCrossingApp';
+                $scope.leftButtonName = "Back";
+                $scope.leftButtonRef = "views/home.html";
+                $scope.rightButtonName = null
+                $scope.home='flip';
+                $scope.myLibrary='flip';
+                $scope.settings='flip';
+                $scope.addBook='current flip';
+                $scope.addZobc='flip';
+                break;
 			case 'views/addZobc.html':
 				$scope.title = 'Register OBCZ';
 				$scope.leftButtonName = null;
@@ -65,19 +76,25 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 				$scope.settings='flip';
 				$scope.addBook='flip';
 				$scope.addZobc='flip';
-				break;				
-			default:				
+				break;
+            case 'views/home.html':
 				$scope.title = 'BookCrossingApp';			
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = 'Map';
-				$scope.subPage='views/home.html';
 				$scope.home='current flip';
 				$scope.myLibrary='flip';
 				$scope.settings='flip';
 				$scope.addBook='flip';
 				$scope.addZobc='flip';
+                $scope.selectedBook = '';
+            default:
 		}
 		$scope.subPage = page;
+    };
+
+    $scope.selectBook  = function(book){
+        $scope.selectedBook = book;
+        $scope.subviewchange('views/book.html')
     };
     
 });

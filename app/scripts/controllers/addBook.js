@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService) {
+BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope) {
 	
 
 	$scope.findBook = function () {
