@@ -63,7 +63,7 @@ textarea {
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
-input[type=text], input[type=email], input[type=password], textarea {
+input[type=text], input[type=email], input[type=password], textarea, select {
 	width: 100%;
 	padding: 15px 15px;
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */

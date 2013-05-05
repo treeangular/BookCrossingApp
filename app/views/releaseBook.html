@@ -1,6 +1,13 @@
 <div ng-controller="ReleaseBookCtrl">
-    <input id="smalltext" name="zobcLocation" type="text" placeholder="Location" />
-    <img class="buttonnormal" ng-click="findLocation()" src="styles/img/map.png" />
-    <p>Add map here</p>
-    <input ng-click="release()" value="Release" class="buttonlarge" />
+    <h4>You are here:</h3>
+    <!-- Replace with google maps view -->
+    <img height="150px" width="300px"/>
+    <select class="select" type="text"  name="SelectZobc">
+        <!-- Load zobcs from db  -->
+        <option value="Default">OBCZ around you</option>
+        <option value="BarCosmo">Bar Cosmo</option>
+        <option value="LibreriaCentral">Libreria Central</option>
+    </select>
+    <textarea name="bookDescription" rows="6"  placeholder="Give me some clues!" />
+    <input ng-click="release()" value="Confirm location" class="buttonlarge" />
 </div>

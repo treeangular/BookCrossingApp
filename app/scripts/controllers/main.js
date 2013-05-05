@@ -35,13 +35,14 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
                 $scope.selectOption('addBook');
 				break;
             case 'views/book.html':
-                $scope.title = 'BookCrossingApp';
+                $scope.title = 'Book View';
                 $scope.leftButtonName = "Back";
                 $scope.leftButtonRef = "views/home.html";
                 $scope.rightButtonName = null
                 $scope.selectOption('addBook');
                 break;
             case 'views/releaseBook.html':
+                $scope.title = 'Release Book';
                 $scope.leftButtonRef = "views/book.html";
                 $scope.rightButtonName = null
                 $scope.selectOption('addBook');
