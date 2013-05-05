@@ -71,4 +71,81 @@ angular.module('localization', []).
     return function (input) {
         return localize.getLocalizedString(input);
     };
+}])
+    // translation directive that can handle dynamic strings
+    // updates the text value of the attached element
+    // usage <span data-localize-it="TOKEN" ></span>
+    // or
+    // <span data-localize-it="TOKEN|VALUE1|VALUE2" ></span>
+    .directive('localizeIt', ['localize', function(localize){
+    var localizeItDirective = {
+        restrict:"EAC",
+        updateText:function(elm, token){
+            var values = token.split('|');
+            if (values.length >= 1) {
+                // construct the tag to insert into the element
+                var tag = localize.getLocalizedString(values[0]);
+                // update the element only if data was returned
+                if ((tag !== null) && (tag !== undefined) && (tag !== '')) {
+                    if (values.length > 1) {
+                        for (var index = 1; index < values.length; index++) {
+                            var target = '{' + (index - 1) + '}';
+                            tag = tag.replace(target, values[index]);
+                        }
+                    }
+                    // insert the text into the element
+                    elm.text(tag);
+                };
+            }
+        },
+
+        link:function (scope, elm, attrs) {
+            scope.$on('localizeResourcesUpdates', function() {
+                localizeItDirective.updateText(elm, attrs.localizeIt);
+            });
+
+            attrs.$observe('localizeIt', function (value) {
+                localizeItDirective.updateText(elm, attrs.localizeIt);
+            });
+        }
+    };
+
+    return localizeItDirective;
+}]).
+    // translation directive that can handle dynamic strings
+    // updates the attribute value of the attached element
+    // usage <span data-localize-it-attr="TOKEN|ATTRIBUTE" ></span>
+    // or
+    // <span data-localize-it-attr="TOKEN|ATTRIBUTE|VALUE1|VALUE2" ></span>
+    directive('localizeItAttr', ['localize', function (localize) {
+    var localizeItAttrDirective = {
+        restrict: "EAC",
+        updateText:function(elm, token){
+            var values = token.split('|');
+            // construct the tag to insert into the element
+            var tag = localize.getLocalizedString(values[0]);
+            // update the element only if data was returned
+            if ((tag !== null) && (tag !== undefined) && (tag !== '')) {
+                if (values.length > 2) {
+                    for (var index = 2; index < values.length; index++) {
+                        var target = '{' + (index - 2) + '}';
+                        tag = tag.replace(target, values[index]);
+                    }
+                }
+                // insert the text into the element
+                elm.attr(values[1], tag);
+            }
+        },
+        link: function (scope, elm, attrs) {
+            scope.$on('localizeResourcesUpdated', function() {
+                localizeItAttrDirective.updateText(elm, attrs.localizeItAttr);
+            });
+
+            attrs.$observe('localizeItAttr', function (value) {
+                localizeItAttrDirective.updateText(elm, value);
+            });
+        }
+    };
+
+    return localizeItAttrDirective;
 }]);

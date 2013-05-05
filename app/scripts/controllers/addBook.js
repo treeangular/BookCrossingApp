@@ -11,7 +11,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
                 if(result!=null)
                 {
-                    $scope.book.Description = result.description;
+                    $scope.book.description = result.description;
                     $scope.book.image = result.image;
                     $scope.book.title= result.title;
                     $scope.book.authors = result.authors;

@@ -235,6 +235,26 @@ angular.module('dataServices', [])
                 });
             },
 
+            getBookByIsbnAndOwnerId: function getBookByIsbnAndOwnerId(isbn, ownerId, callback)
+            {
+                var query = new Parse.Query(Book);
+
+                // Include the post data with each comment
+                query.include("ownerRelation.objectId");
+                query.equalTo("isbn", isbn);
+                query.equalTo("ownerId", ownerId);
+
+                query.find({
+                    success: function (actions) {
+                        // Comments now contains the last ten comments, and the "post" field
+                        // has been populated. For example:
+                        callback(actions);
+
+                    }
+                });
+
+            },
+
             registerBook: function registerBook(bookk, callback) {
 
                 var book = new Book();

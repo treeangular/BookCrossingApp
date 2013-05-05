@@ -19,32 +19,43 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
         });
 
     };
-    $scope.signUpFb = function()
+    $scope.fbSignUp = function()
     {
-        dataService.signInFb(function(result)
+        dataService.fbSignIn(function(result, user)
         {
             $scope.$apply(function () {
                 if(result)
                 {
-                    $location.path('/Main');
+                    if(user != null)
+                    {
+                        $location.path('/Main');
+                    }
+                    else
+                    {
+                        facebookService.getUserInfo(function(result){
+
+                            if(result != null)
+                            {
+                                dataService.updateUserProfileFromFb(result, function(response){
+                                    //TODO hev: manage errors;
+
+                                    $location.path('/Main');
+                                });
+                            }
+                            else
+                            {
+                                $rootScope.ErrorMessage = "User not connected";
+                            }
+                        });
+                    }
                 }
                 else
                 {
                     $rootScope.ErrorMessage = "User has not accepted the conditions";
                 }
-            });
 
-        });
-    };
-
-    $scope.registerWithFacebook = function(){
-
-        dataService.fbSignUp(function(result)
-        {
-            $scope.$apply(function () {
 
             });
         });
-
     };
 });

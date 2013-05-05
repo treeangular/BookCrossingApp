@@ -5,17 +5,17 @@
 
 	<div class="content">
 		<bca-sign-up-password>
-			<input name="username" type="email" ng-model="user.Email"  placeholder="Email" required/>
-			<input  name="password" type="text" ng-model="user.Password"  placeholder="Password" required/>
-			<input  name="password" type="password" ng-model="user.Password"  placeholder="Password" required/>
-			<label for="viewPasswordCheck">{{'_SeePassword_' | localizeIt}}</label>
+			<input name="username" type="email" ng-model="user.Email"  data-localize-it-attr="_Email_|placeholder" required/>
+			<input  name="password" type="text" ng-model="user.Password"  data-localize-it-attr="_Password_|placeholder" required/>
+			<input  name="password" type="password" ng-model="user.Password"  data-localize-it-attr="_Password_|placeholder" required/>
+			<label for="viewPasswordCheck" data-localize-it="_SeePassword_"/>
 			<input name="viewPasswordCheckbox" id="viewPasswordCheck"  type="checkbox" ng-model="viewPasswordCheckbox">
 		</bca-sign-up-password>
 	</div>
 
 	<div class="footer" >
-		<input type="submit" value="{{'_Register_' | localizeIt}}" class="buttonleft" />
-		<a href="#/sign"><input type="button" name="submit" value="{{'_Cancel_' | localizeIt}}" class="buttonright" /></a>
-		<input  type="button" value="{{'_ConnectFacebook_' | localizeIt}}" ng-click="signUpFb()" class="buttonfacebook" />
+		<input type="submit" data-localize-it-attr="_Register_|value" class="buttonleft" />
+		<a href="#/sign"><input type="button" name="submit" data-localize-it-attr="_Cancel_|value" class="buttonright" /></a>
+		<input  type="button" data-localize-it-attr="_ConnectFacebook_|value" ng-click="fbSignUp()" class="buttonfacebook" />
 	</div>
 </form>
