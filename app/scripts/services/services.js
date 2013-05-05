@@ -240,11 +240,15 @@ angular.module('dataServices', [])
                 var book = new Book();
 
                 book.set("title", bookk.title);
-                book.set("description", bookk.Description);
-                book.set("registrationId", bookk.RegistrationId);
+                book.set("description", bookk.description);
+                book.set("registrationId", bookk.registrationId);
+                book.set("image", bookk.image);
+                book.set("authors", bookk.authors);
+                book.set("isbn", bookk.isbn);
                 var newAcl = new Parse.ACL(Parse.User.current());
                 newAcl.setPublicReadAccess(true);
                 book.setACL(newAcl);
+                //TODO hev: make sure a user does not upload two books with the same title
 
                 book.save(null, {
                     success: function (book) {

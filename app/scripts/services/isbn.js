@@ -35,14 +35,10 @@ angular.module('isbnProvider', [])
 //              });
 //        },
 
-        getGoogleBookInfo: function getGoogleBookInfo(title, isbn, callback) {
+        getGoogleBookInfo: function getGoogleBookInfo(isbn, callback) {
             var book ={};
             var queryFormat;
-            if(title != null)
-            {
-                queryFormat = "intitle:" + title;
 
-            }
             if(isbn != null)
             {
                 queryFormat = "isbn:" + isbn;
@@ -62,6 +58,7 @@ angular.module('isbnProvider', [])
                     book.subtitle = data.items[0].volumeInfo.subtitle;
                     book.authors = data.items[0].volumeInfo.authors;
                     book.image = data.items[0].volumeInfo.imageLinks.thumbnail;
+                    book.isbn = isbn;
 
                     callback(book);
                 }).

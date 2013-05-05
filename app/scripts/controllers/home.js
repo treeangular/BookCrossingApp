@@ -30,6 +30,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 			var title = "not defined";
 			var description = "not defined";
 			var username = "not defined";
+            var image = "not defined";
 			var time;
 			//TODO: Move in a directive?
 		
@@ -49,6 +50,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 			
 			if (book != null)
 				title = book.get('title');
+                image = book.get('image');
 			if (actionType != null)
 				description = actionType.get('description');
 			if (user != null)
@@ -60,7 +62,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 				title: title, 
 				//TODO: Add localization
 				content: description,
-				image:'styles/img/books/a_clockwork_orange.jpg',
+				image: image,
 				user: username,
 				time:time
 			};

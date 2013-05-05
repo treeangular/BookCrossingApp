@@ -4,15 +4,18 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 	
 
 	$scope.findBook = function () {
-		if ($scope.book.isbn != null){
+		if ($scope.book.isbn != null)
+        {
 
-            isbnService.getGoogleBookInfo($scope.book.title, $scope.book.isbn, function(result){
+            isbnService.getGoogleBookInfo($scope.book.isbn, function(result){
 
                 if(result!=null)
                 {
                     $scope.book.Description = result.description;
                     $scope.book.image = result.image;
                     $scope.book.title= result.title;
+                    $scope.book.authors = result.authors;
+                    $scope.book.isbn = result.isbn;
 
                 }
                 else
