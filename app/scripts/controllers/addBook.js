@@ -16,47 +16,63 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                     $scope.book.title= result.title;
                     $scope.book.authors = result.authors;
                     $scope.book.isbn = result.isbn;
-
                 }
                 else
                 {
                     $rootScope.ErrorMessage = "something went wrong";
                 }
-
-
             });
 		}
-			
 	};
 	
 
     $scope.registerNewBook = function (book) {
 
-      dataService.registerBook(book, function (isResult, result) {
-            //How do I change to another view now?!!? Locate ??
-            $scope.$apply(function () {
-                //isSuccess = isResult ? true : false;
+      dataService.getBookRegistrationId(function (isResult, result) {
+          $scope.$apply(function () {
+              $scope.registrationCode = isResult;
+               //Without the registration Id we cannot let the book to be registered!
+              if(isResult)
+              {
+                  //Set book registraionID
+                  book.registrationId = result;
 
-                if (isResult)
-                {
-                    //$location.path('/main');
-					$scope.goTo('views/bookBarcode.html')
-                }
-                else
-                {
-                   // $scope.registerResult = "Fail!";
-                    //$location.path('/');
-                }
+                  //Save registartionId in parent scope (main) so I can get it in bookBarCode
+                  $scope.setRegisterId(result);
+
+                  //Save book data with registration Id
+                  dataService.registerBook(book, function (isResult, result) {
+                      //How do I change to another view now?!!? Locate ??
+                      $scope.$apply(function () {
+                          //isSuccess = isResult ? true : false;
+
+                          if (isResult)
+                          {
+                              //$location.path('/main');
+
+                              $scope.goTo('views/bookBarcode.html')
+                          }
+                          else
+                          {
+                              // $scope.registerResult = "Fail!";
+                              //$location.path('/');
+                              $rootScope.ErrorMessage = "Oops . . . Please try again ina  few seconds we couldn't register the book.";
+                          }
+                      });
+                  });
+
+              }
+              else
+              {
+                //Set notification error => Pls try again an issue with the cool registration number has happened!
+                  $rootScope.ErrorMessage = "Oops . . .Please try again in a few seconds, the cool registration number generator has not been that cool! ";
+              }
             });
-        });
-        //console.log(isSuccess);
+      });
+
+
+
     };
 
-    dataService.getBookRegistrationId(function (isResult, result) {
-        $scope.$apply(function () {
-            $scope.registrationCode = isResult ? $scope.book = { RegistrationId: result } : "Error: Retriving New Book Code";
 
-
-        });
-    });
 });
