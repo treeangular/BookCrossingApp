@@ -49,8 +49,10 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 				time = days + ' days';
 			
 			if (book != null)
-				title = book.get('title');
+            {
+                title = book.get('title');
                 image = book.get('image');
+            }
 			if (actionType != null)
 				description = actionType.get('description');
 			if (user != null)
