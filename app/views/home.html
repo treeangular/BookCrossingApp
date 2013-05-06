@@ -1,6 +1,6 @@
 <div ng-controller="HomeCtrl">
  <ul>
-    <li ng-repeat='alert in alerts'ng-switch on="alert.type">
+    <li ng-repeat='alert in alerts' ng-switch on="alert.type">
 	    <div class="bookAlert" ng-switch-when="book">
 			<img ng-click="selectBook(alert.id)"  ng-src='{{alert.image}}'>
 			<a ng-click="selectBook(alert.id)"><h3>{{alert.title}}</h3></a>
