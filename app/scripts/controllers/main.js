@@ -65,6 +65,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
                 $scope.leftButtonName = null;
                 $scope.rightButtonName = null;
                 $scope.selectOption('myLibrary');
+                $scope.selectedUser = null;
                 break;
             case 'views/home.html':
 				$scope.title = 'BookCrossingApp';
