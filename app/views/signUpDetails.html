@@ -6,10 +6,10 @@
         <div class="content">
             <img id="preview"   ng-src={{myPicture}} height="100px" width="100px" />
             <input type="button" bca-camera ng-model='myPicture' value="Upload Picture"/>
+            <input ng-hide type="file" ng-src={{myPicture}} ng-model='myPictureFile' value="Upload Picture" />
 
-
-            <!--<img id="preview2"   ng-src={{myFile}} height="100px" width="100px" />-->
-            <!--<input type="file" bca-camera id="files" name="file" ng-model='myFile'  />-->
+            <!--<img id="preview2"   ng-src={{myPicture}} height="100px" width="100px" />-->
+            <!--<input type="file" bca-camera ng-model='myPicture' value="Upload Picture" />-->
 
             <input name="nick" type="text" ng-model="user.Nick" placeholder="Nick name" />
 

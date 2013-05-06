@@ -18,7 +18,8 @@ BookCrossingApp.directive('bcaCamera', function () {
                     //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
                     { quality: 50,
                       destinationType:Camera.DestinationType.FILE_URI,
-                      //encodingType: Camera.EncodingType.JPEG,
+                      encodingType: Camera.EncodingType.JPEG,
+                      sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
                       targetWidth: 100,
                       targetHeight: 100
                     })

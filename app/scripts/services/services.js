@@ -315,7 +315,7 @@ angular.module('dataServices', [])
 
             uploadPicture: function uploadPicture(user,callback)
             {
-                var serverUrl = 'https://api.parse.com/1/files/' + user.Nick + "wtf";
+                var serverUrl = 'https://api.parse.com/1/files/' + user.Nick ;
 
                 $http({
                     method: 'POST',
