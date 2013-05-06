@@ -65,16 +65,16 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
                 //TODO: User localization here!!!!
                 switch(typeId){
                     case 'registered':
-                        description= "has been registered by " + username;
+                        description= "has been registered by ";
                         break;
                     case 'joined':
-                        description= "has been joined by " + username;
+                        description= "has been joined by ";
                         break;
                     case 'locked':
-                        description= "has been locked by " + username;
+                        description= "has been locked by ";
                         break;
                     case 'released':
-                        description= "has been released by " + username + "around you";
+                        description= "has been released around you by ";
                     default:
                         description= typeId + " " + username;
                         break;

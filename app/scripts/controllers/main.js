@@ -53,12 +53,19 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 				$scope.rightButtonName = null;
                 $scope.selectOption('addZobc');
 				break;
-			case 'views/myLibrary.html':
-				$scope.title = 'My Library';
+			case 'views/Library.html':
+				$scope.title = $scope.selectedUser + ' Library';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = null;
                 $scope.selectOption('myLibrary');
+                page = 'views/myLibrary.html';
 				break;
+            case 'views/myLibrary.html':
+                $scope.title = 'My Library';
+                $scope.leftButtonName = null;
+                $scope.rightButtonName = null;
+                $scope.selectOption('myLibrary');
+                break;
             case 'views/home.html':
 				$scope.title = 'BookCrossingApp';
 				$scope.leftButtonName = null;
@@ -99,6 +106,11 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
     $scope.selectBook  = function(bookId){
         $scope.selectedBook = bookId;
         $scope.goTo('views/book.html')
+    };
+
+    $scope.selectUser  = function(userId){
+        $scope.selectedUser = userId;
+        $scope.goTo('views/Library.html')
     };
 
     $scope.setRegisterId  = function(registrationId){
