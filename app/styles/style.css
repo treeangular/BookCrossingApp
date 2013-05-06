@@ -48,9 +48,21 @@ body {
 }
 
 a {
-  color: #0882f0;
+  color: #169691;
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Removes the dark touch outlines on links */
+}
+
+h1 {
+    font-size:18px;
+}
+
+h2 {
+    font-size:15px;
+}
+
+h3 {
+    font-size:13px;
 }
 
 .blank{
