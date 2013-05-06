@@ -1,12 +1,9 @@
 <div ng-controller="ReleaseBookCtrl">
     <h3>You are here:</h3>
     <!-- Replace with google maps view -->
-    <img height="150px" width="300px"/>
+    <img height="150px" width="310px" src="styles/img/mockmap.png"/>
     <select class="select" type="text"  name="SelectZobc">
-        <!-- Load zobcs from db  -->
-        <option value="Default">OBCZ around you</option>
-        <option value="BarCosmo">Bar Cosmo</option>
-        <option value="LibreriaCentral">Libreria Central</option>
+        <option ng-repeat="zobc in zobcList" value="zobc.id">{{zobc.name}}</option>
     </select>
     <textarea name="bookDescription" rows="6"  placeholder="Give me some clues!" />
     <input ng-click="release()" value="Confirm location" class="buttonlarge" />
