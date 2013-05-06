@@ -55,8 +55,31 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
             }
 			if (actionType != null)
 				description = actionType.get('description');
+
 			if (user != null)
-				username = user.get('username');
+				username = user.get('nick');
+
+            if (actionType != null){
+                var typeId = actionType.get('description');
+
+                //TODO: User localization here!!!!
+                switch(typeId){
+                    case 'registered':
+                        description= "has been registered by " + username;
+                        break;
+                    case 'joined':
+                        description= "has been joined by " + username;
+                        break;
+                    case 'locked':
+                        description= "has been locked by " + username;
+                        break;
+                    case 'released':
+                        description= "has been released by " + username + "around you";
+                    default:
+                        description= typeId + " " + username;
+                        break;
+                }
+            }
 			
 			
 			$scope.newalert = {
