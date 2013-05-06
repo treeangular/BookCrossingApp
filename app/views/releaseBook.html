@@ -1,10 +1,10 @@
 <div ng-controller="ReleaseBookCtrl">
-    <h3>You are here:</h3>
     <!-- Replace with google maps view -->
     <img height="150px" width="310px" src="styles/img/mockmap.png"/>
+    <!-- End -->
     <select class="select" type="text"  name="SelectZobc">
         <option ng-repeat="zobc in zobcList" value="zobc.id">{{zobc.name}}</option>
     </select>
     <textarea name="bookDescription" rows="6"  placeholder="Give me some clues!" />
-    <input ng-click="release()" value="Confirm location" class="buttonlarge" />
+    <input ng-click="release()" type="submit" value="Confirm release" class="buttonlarge" />
 </div>

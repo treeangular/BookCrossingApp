@@ -69,7 +69,6 @@ input[type=text], input[type=email], input[type=password], textarea, select {
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box; /* Opera/IE 8+ */
-	font-weight: 400px;
 	font-size: 14px;
 	color: #9d9e9e;
 	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
@@ -84,12 +83,12 @@ input[type=text], input[type=email], input[type=password], textarea, select {
 
 
 
-input[type=text]:hover, input[type=email]:hover, input[type=password]:hover , textarea:hover{
+input[type=text]:hover, input[type=email]:hover, input[type=password]:hover , textarea:hover, select:hover{
 	background: #dfe9ec;
 	color: #414848;
 }
 
-input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, textarea:focus {
+input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, textarea:focus, select:focus {
 	background: #dfe9ec;
 	color: #414848;
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
@@ -202,7 +201,6 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 	text-shadow: 0 1px 1px #5A5B5A;
 	color: white;
 	text-decoration:none;
-	text-align: bottom;
 }
 
 .bigbutton {
@@ -370,37 +368,6 @@ li {
 
 .login-form .content {
 	padding: 0 30px 25px 30px;
-}
-
-/* select field */
-.login-form .content .select {
-	width: 240px;
-	padding: 15px 25px;
-	font-weight: 400px;
-	font-size: 14px;
-	color: #9d9e9e;
-	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
-	margin-top: 15px;
-	background: #fff;
-	border: 1px solid #fff;
-	border-radius: 5px;
-	box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
-	-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
-	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
-}
-
-
-.login-form .content .select:hover {
-	background: #dfe9ec;
-	color: #414848;
-}
-
-.login-form .content .select:focus {
-	background: #dfe9ec;
-	color: #414848;
-	box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
-	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
-	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
 }
 
 .login-form .footer {
@@ -580,38 +547,6 @@ li {
   min-width: 3.33333em;
 }
 
-#tabbar .badge {
-  background-image: -webkit-gradient(radial, 50% -130%, 25, 50% 0, 54, color-stop(2%, rgba(255,255,255,0.3)), color-stop(4%, rgba(31,31,31,0.1)), color-stop(38%, rgba(239,239,239,0.1)));
-  background-color: #ff0000;
-  border: .25em solid #fff;
-  color: #fff;
-  display: block;
-  font: bold .90em "Helvetica Neue", Helvetica;
-  height: 1.2em;
-  line-height: 1.2em;
-  min-width: .5em;
-  overflow: hidden;
-  padding: .125em .375em;
-  position: absolute;
-  text-shadow: 0px -1em 1em rgba(0, 0, 0, 0.3);
-  top: 3px;
-  width: auto;
-  vertical-align: middle;
-  z-index: 1;
-  -webkit-box-shadow: 0px .1875em .3125em rgba(0, 0, 0, 1.0);
-  -webkit-border-radius: .9125em;
-}
-
-#tabbar .badge.left {
-  left: auto;
-  right: 54%;
-}
-
-#tabbar .badge.right {
-  left: 54%;
-  right: auto;
-}
-
 #tabbar a {
   -webkit-box-flex: 1;
   display: inline-block;
@@ -651,10 +586,10 @@ background-color: #FFFFFF;
 #tabbar div{
 background-color: #787878;
 width: 100%;
-height: 100%;  
+height: 100%;
 -webkit-mask-size: 50px;
 -webkit-mask-position: center top;
--webkit-mask-repeat: no-repeat; 
+-webkit-mask-repeat: no-repeat;
 }
 
 #tabbar .home{

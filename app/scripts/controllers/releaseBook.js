@@ -3,7 +3,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService) {
 
     //TODO: Get Zobc around the current location
     $scope.zobcList = [
-        {id:'0', name:'OBZC around you'},
+        {id:'0', name:'Are you here?'},
         {id:'112121', name:'Bar Cosmo'},
         {id:'222121', name:'Cafeteria Lola'},
         {id:'112221', name:'Libreria Central'},
@@ -11,7 +11,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService) {
     ];
 
     $scope.release = function () {
-        //TODO: Use google maps to find the location
+        //TODO: Save position
     };
 
     $scope.findLocation = function () {
