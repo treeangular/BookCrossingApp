@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('BookCrossingApp')
-  .controller('SignUpDetailsCtrl', function ($scope, dataService, $location) {
+  .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http) {
 
         $scope.updateUserProfile = function (user) {
 
@@ -12,7 +12,9 @@ angular.module('BookCrossingApp')
             //alert( user.myPicture);
 
             //SO question WTF!   $.get(user.myPicture);
-            user.myPicture =  $.get(user.myPicture);
+            //user.myPicture =  $.get(user.myPicture);
+            //user.myPicture = $http.get(user.myPicture);
+            //var iGot =  $http.get(user.myPicture);
             console.log("SO jquery response" + user.myPicture);
 
            dataService.uploadPicture(user, function(isResult, parseUrl)
@@ -20,24 +22,21 @@ angular.module('BookCrossingApp')
                 user.myPictureFile = parseUrl;
 
                     //need to use q but thats for later after being able to upload the pic
-//               dataService.updateUserProfile(user, function (isResult, result) {
-//
-//                   $scope.$apply(function () {
-//                       if (isResult)
-//                       {
-//                           $location.path('/Main');
-//                       }
-//                       else
-//                       {
-//                           $scope.ErrorMessage = result.message;
-//                       }
-//                   });
-//               });
+               dataService.updateUserProfile(user, function (isResult, result) {
+
+                   $scope.$apply(function () {
+                       if (isResult)
+                       {
+                           $location.path('/Main');
+                       }
+                       else
+                       {
+                           $scope.ErrorMessage = result.message;
+                       }
+                   });
+               });
            });
-
-
-
-        }
+         }
 
         //Initialize default value
         $scope.myPicture = "../styles/img/CustomAvatarContest.png";
