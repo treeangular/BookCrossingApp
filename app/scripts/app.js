@@ -2,6 +2,17 @@
 
 var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider']);
 
+
+//Disabling iphone scrolling
+document.addEventListener(
+    'touchmove',
+    function(e) {
+        e.preventDefault();
+    },
+    false
+);
+
+
 //BookCrossingApp.run(function ($rootScope, $location) {
 //    /* PG */
 //    BookCrossingApp.initialize();

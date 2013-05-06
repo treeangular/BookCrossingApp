@@ -39,6 +39,7 @@ position: absolute;
 /*BODY*/
 
 body {
+    overflow: hidden;
 	background-image: url('./img/low_contrast_linen.png');
 	background-repeat:repeat;
 	font-size:12px;
