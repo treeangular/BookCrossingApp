@@ -119,9 +119,9 @@ angular.module('dataServices', [])
                 //Get current user
                 var currentUser = Parse.User.current();
 
-                currentUser.set("nick", user.Nick);
-                currentUser.set("gender", user.Gender);
-                currentUser.set("favoriteGenre", user.FavoriteGenre);
+                currentUser.set("nick", user.nick);
+                currentUser.set("gender", user.gender);
+                currentUser.set("favoriteGenre", user.favoriteGenre);
                 //currentUser.set("myPictureFile", user.myPictureFile);
 
                 currentUser.save(null, {
@@ -175,6 +175,20 @@ angular.module('dataServices', [])
                     callback(false);
                 }
 
+            },
+
+            //Need the data of the current user getting form LocalStorage first if possible.
+            getCurrentUser: function getCurrentUser(callback)
+            {
+                var currentUser = Parse.User.current();
+                //Not quite sure why I need to do that but I figure out I cannot not really get the user object without
+                var userObject = new Object();
+
+                userObject.nick =  Parse.User.current().get("nick");
+                userObject.gender =  currentUser.attributes.gender;
+                userObject.favoriteGenre = currentUser.attributes.favoriteGenre;
+
+                callback(userObject);
             },
 
             getActions: function getActions(callback) {
