@@ -1,5 +1,5 @@
 <div ng-controller="SignUpDetailsCtrl" >
-    <form name="SignUpDetails-form" class="login-form" ng-submit="updateUserProfile(user)" >
+    <form name="SignUpDetails-form" class="login-form" ng-submit="updateUserProfile(user)">
         <div class="loginheader">
             <h2>Complete your profile</h2>
         </div>
@@ -8,12 +8,9 @@
             <input type="button" bca-camera ng-model='myPicture' value="Upload Picture"/>
             <input ng-hide type="file" ng-src={{myPicture}} ng-model='myPictureFile' value="Upload Picture" />
 
-            <!--<img id="preview2"   ng-src={{myPicture}} height="100px" width="100px" />-->
-            <!--<input type="file" bca-camera ng-model='myPicture' value="Upload Picture" />-->
+            <input name="nick" type="text" ng-model="user.nick"  />
 
-            <input name="nick" type="text" ng-model="user.Nick" placeholder="Nick name" />
-
-            <select class="select" type="text"  name="genere" ng-model="user.FavoriteGenre">
+            <select class="select" type="text"  name="genere" ng-model="user.favoriteGenre">
                     <option value="Preferred genre">Favorite genre</option>
                     <option value="Action">Action</option>
                     <option value="Biography">Biography</option>
@@ -38,7 +35,7 @@
                     <option value="Young Adult">Young Adult</option>
                 </select>
 
-            <select class="select" type="text"  name="gender"  ng-model="user.Gender">
+            <select class="select" type="text"  name="gender" ng-model="user.gender">
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
             </select>
