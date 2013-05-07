@@ -128,9 +128,14 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 	-webkit-box-sizing: inherit; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: inherit;    /* Firefox, other Gecko */
 	box-sizing: inherit; /* Opera/IE 8+ */
-	width: 220px;
+	width: 245px;
 }
 
+#clock{
+    float: right;
+    width: 10px;
+    height: 10px;
+}
 
 /* Login buttons:left, right, facebook */
 .buttonnormal {
@@ -297,9 +302,13 @@ ul {
 }
 
 .bookAlert .time {
+  background-image: url('./img/timer.png');
+  background-position: left center;
+  background-repeat: no-repeat;
   float: right;
+  padding-left: 15px;
   font-size:10px;
-  margin-top: 5px;
+  margin-top: 8px;
   color: #9d9e9e;
 }
 
