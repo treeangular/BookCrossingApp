@@ -56,7 +56,7 @@ position: absolute;
 body {
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
 	background-image: url('./img/low_contrast_linen.png');
 	background-repeat:repeat;
 	font-size:12px;
