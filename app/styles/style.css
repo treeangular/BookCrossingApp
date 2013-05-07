@@ -14,11 +14,12 @@ BookCrossingApp Css
     right: 0;
     left: 0;
     bottom: 0;
+    overflow: hidden;
 }
 
 .subview {
   padding: 5px 5px 5px 5px;
-  position: absolute;
+  position: fixed;
   top: 47px;
   right: 0px;
   bottom: 50px;
@@ -544,7 +545,7 @@ li {
 /*BOTOM MENU*/
 
 #tabbar {
-    position: absolute;
+    position: fixed;
     -webkit-box-sizing:border-box;
     box-sizing:border-box;
     font-size:12px;
