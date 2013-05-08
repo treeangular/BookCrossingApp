@@ -1,6 +1,6 @@
 <div ng-controller="BookCtrl">
 <div>
-    <img id="bookimg" ng-src="{{book.get('image')}}" height="120px" width="80px"/>
+    <img id="bookimg" ng-src="{{book.get('image')}}"/>
     <h1>{{book.get('title')}}</h1>
     <h3 ng-repeat="autor in book.get('authors')">{{autor}}</h3>
     <p>{{book.get('description')}}</p>

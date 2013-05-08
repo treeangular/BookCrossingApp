@@ -294,14 +294,14 @@ ul {
   width: 100%;
 }
  
-.bookAlert img {
+.bookItemList img {
   float: left;
   margin: 0 15px 0 0;
   width: 50;
   height: 75px
 }
 
-.bookAlert .time {
+.bookItemList .time {
   background-image: url('./img/timer.png');
   background-position: left center;
   background-repeat: no-repeat;
@@ -329,6 +329,59 @@ li {
     width: 80px;
     height: 120px
 }
+
+#libraryimg {
+    float: left;
+    margin: 5px 5px 5px 5px;
+    width: 80px;
+    height: 120px;
+    border: 1px solid #9d9e9e;
+}
+
+#librarylist {
+    border-top: 3px solid #169691;
+    position: relative;
+    clear: both;
+}
+
+#libraryheader {
+    position: relative;
+    clear: both;
+}
+
+.mainbox li{
+    border-bottom: 0px;
+}
+
+.boxheader {
+    float: left;
+    border: 1px solid #9d9e9e;
+    width: 55px;
+    height: 40px;
+    text-align: center ;
+}
+
+.boxtext {
+    font-weight: bold;
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 2px 2px 2px;
+}
+
+.boxnum {
+    background: #fff;
+    vertical-align: bottom;
+    padding: 5px;
+    font-size: 10px;
+}
+
+#boxdescription{
+
+}
+
+
+
 
 /* Notification bar */
 #notification {

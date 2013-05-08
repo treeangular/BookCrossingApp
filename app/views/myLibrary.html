@@ -1,1 +1,39 @@
-<p>This is the Library view. {{selectedUser}}</p>
+<div ng-controller="MyLibraryCtrl">
+    <div id="libraryheader">
+        <img id="libraryimg" ng-src="{{library.image}}"/>
+        <ul class="mainbox">
+            <li>
+                <div class="boxheader">
+                    <p class="boxtext">Registers</p>
+                    <p class="boxnum">{{library.registrations}}</p>
+                </div>
+                <div class="boxheader">
+                    <p class="boxtext">Hunts</p>
+                    <p class="boxnum">{{library.hunts}}</p>
+                </div>
+                <div class="boxheader">
+                    <p class="boxtext">Comments</p>
+                    <p class="boxnum">{{library.comments}}</p>
+                </div>
+            </li>
+            <li>
+                <div id="boxdescription">
+                    <h3>Description</h3>
+                    <p>Favorite genre: {{library.favoriteGenre}}</p>
+                    <p>{{library.description}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="librarylist">
+        <ul>
+            <li ng-repeat='book in books'>
+                <div class="bookItemList">
+                    <img ng-click="selectBook(book.id)"  ng-src='{{book.image}}'>
+                    <a ng-click="selectBook(book.id)"><h3>{{book.title}}</h3></a>
+                    <p><strong>Status:</strong> {{book.status}} by {{book.owner}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
