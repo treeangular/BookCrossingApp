@@ -128,7 +128,7 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 	-webkit-box-sizing: inherit; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: inherit;    /* Firefox, other Gecko */
 	box-sizing: inherit; /* Opera/IE 8+ */
-	width: 245px;
+	width: 242px;
 }
 
 #clock{
