@@ -83,7 +83,6 @@ height: 40px;
 /* Inputs text, email and password */
 textarea {
     resize: none;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 input[type=text], input[type=email], input[type=password], textarea, select {
@@ -138,137 +137,87 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 }
 
 /* Login buttons:left, right, facebook */
-.buttonnormal {
-	vertical-align: bottom;
-	padding: 5px 5px;
-	font-size: 18px;
-	color: #fff;
-	text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
-	border-radius: 5px;
-	cursor: pointer;
-	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+.buttonnormal, .buttonimage, .buttonleft, .buttonright, .buttonlarge, .buttonfacebook, .bigbutton {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    -moz-box-shadow: 0px 0px 3px #FFFFFF;
+    -webkit-box-shadow: 0px 0px 3px #FFFFFF;
+    box-shadow: 0px 0px 3px #FFFFFF;
+}
+
+
+.buttonnormal, .buttonimage, .buttonleft, .buttonright, .buttonlarge {
+    vertical-align: bottom;
+    padding: 5px 5px;
+    color: #fff;
+    cursor: pointer;
+    text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
 }
 
 .buttonimage {
-    vertical-align: bottom;
-    padding: 5px 5px;
     height: 30px;
     width: 30px;
-    font-size: 18px;
-    color: #fff;
-    text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
-    background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-    -moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-    -webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
 }
 
 .buttonleft {
 	float:left;
 	padding: 11px 25px;
 	margin-top: 10px;
-	width:115px;
-	font-weight: 300;
-	font-size: 18px;
-	color: #fff;
-	text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
-	border-radius: 5px;
-	cursor: pointer;
-	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+    margin-right: 10px;
+	width:110px;
 }
 
 .buttonright {
 	float:right;
 	padding: 11px 25px;
 	margin-top: 10px;
-	width:115px;
-	font-weight: 300;
-	font-size: 18px;
-	color: #fff;
-	text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
-	
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
-	border-radius: 5px;
-	cursor: pointer;
-	
-	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+    margin-left: 10px;
+	width:110px;
 }
 
 .buttonlarge {
 	width: 100%;
 	padding: 10px 15px;
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	box-sizing: border-box; /* Opera/IE 8+ */
-	margin-top: 10px;
-	font-weight: 300;
-	font-size: 18px;
-	color: #fff;
-	text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
-	border-radius: 5px;
-	cursor: pointer;
-	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	margin-top: 10px;;
 }
 
 .buttonfacebook {
 	float:left;
 	padding: 11px 25px;
 	margin-top: 10px;
-	width:240px;	
-	font-weight: 300;
-	font-size: 18px;
+	width:240px;
 	color: #fff;
 	text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #8b9dc3), color-stop(0.05, #3b5998), color-stop(1, #3b5998));
-	border-radius: 5px;
 	cursor: pointer;
-	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
-}
-
-.tourlink{
-	background-image: url('./img/television.png');
-	background-position: left top;
-	background-repeat: no-repeat;
-	margin: 0px;
-	padding-left: 30px;
-	font-size: 20px;
-	text-shadow: 0 1px 1px #5A5B5A;
-	color: white;
-	text-decoration:none;
 }
 
 .bigbutton {
 	border: none;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 	color: white;
 	cursor: pointer;
+    font-size: 16px;
 	text-shadow: 0 1px 1px #5A5B5A;
 	margin-left: 10px;
 	margin-right: 10px;
-	font-size: 18px;
-	-moz-box-shadow: 0px 0px 3px #FFFFFF;
-	-webkit-box-shadow: 0px 0px 3px #FFFFFF;
-	box-shadow: 0px 0px 3px #FFFFFF;
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #76DDD9), color-stop(0.05, #2DB9B4), color-stop(1, #169691));
 	width : 100px;
 	height : 100px;    
+}
+
+.tourlink{
+    background-image: url('./img/television.png');
+    background-position: left top;
+    background-repeat: no-repeat;
+    margin: 0px;
+    padding-left: 30px;
+    font-size: 16px;
+    text-shadow: 0 1px 1px #5A5B5A;
+    color: white;
+    text-decoration:none;
 }
 
 /*IMAGES*/
@@ -377,9 +326,9 @@ li {
     font-size: 10px;
 }
 
-#boxdescription{
+#optionsbook { clear: left; float: left; position: relative; left: 50%; }
 
-}
+#inoptionsbook { display: block; float: left; position: relative; right: 50%; }
 
 
 

@@ -5,7 +5,10 @@
     <h3 ng-repeat="autor in book.get('authors')">{{autor}}</h3>
     <p>{{book.get('description')}}</p>
 </div>
-<div>
-    <input ng-click="releaseBook()"  type="submit" value="Release" class="buttonlarge" />
+<div id="optionsbook">
+    <div id="inoptionsbook">
+         <input ng-click="releaseBook()"  type="submit" value="Release" class="buttonleft" />
+        <input ng-click="commentBook()"  type="submit" value="Comment" class="buttonleft" />
+    </div>
 </div>
 </div>
