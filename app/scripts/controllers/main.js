@@ -10,7 +10,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 	$scope.myLibrary='flip';
 	$scope.settings='flip';
 	$scope.addBook='flip';
-	$scope.addZobc='flip';
+	$scope.huntBook='flip';
 	
 	$scope.goTo = function(page)
     {
@@ -20,6 +20,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
                 $scope.title = 'Hunt Book';
                 $scope.leftButtonName = null;
                 $scope.rightButtonName = null;
+                $scope.selectOption('huntBook');
                 break;
 			case 'views/settings.html':
 				$scope.title = 'Settings';
@@ -88,7 +89,8 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
         $scope.myLibrary = 'flip';
         $scope.settings = 'flip';
         $scope.addBook = 'flip';
-        $scope.addZobc = 'flip';
+        $scope.huntBook = 'flip';
+
         switch (option) {
             case 'home':
                 $scope.home = 'current flip';
@@ -102,8 +104,8 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
             case 'addBook':
                 $scope.addBook = 'current flip';
                 break;
-            case 'addZobc':
-                $scope.addZobc = 'current flip';
+            case 'huntBook':
+                $scope.huntBook = 'current flip';
                 break;
             default:
         }

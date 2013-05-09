@@ -668,3 +668,7 @@ height: 100%;
 -webkit-mask-image: url('./img/library.png');
 }
 
+#tabbar .huntBook{
+    -webkit-mask-image: url('./img/hunt.png');
+}
+
