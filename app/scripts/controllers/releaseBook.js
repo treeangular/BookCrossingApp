@@ -20,12 +20,13 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
             releaseInfo.bookId = $scope.selectedBook;
             releaseInfo.geoPoint= geoPoint;
+            releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
             dataService.releaseBook(releaseInfo,function(isSuccess)
             {
                 if(isSuccess)
                 {
-                    $scope.goTo('views/main.html')
+                    $scope.goTo('views/book.html');
                 }
                 else
                 {
