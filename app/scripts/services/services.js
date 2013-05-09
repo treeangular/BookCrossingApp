@@ -320,13 +320,18 @@ angular.module('dataServices', [])
                 var action = new Action();
                 var currentUser = Parse.User.current();
 
-                action.set("bookPointer",releaseInfo.bookId);
+                action.set("place", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
+                action.set("bookLocationDescription", releaseInfo.bookLocationDescription);
+
+                action.set("bookPointer", { __type: "Pointer", className: "Book", objectId: releaseInfo.bookId });
+
                 //TODO: How do we get this ActionTypes? Hardcoded, getting ti every time. It has a static nature, why to call again??
                 //download it once at the begining? LS?
-                action.set("actionTypePointer", "kJC954w9iO");
-                action.set("place", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
+                action.set("actionTypePointer", { __type: "Pointer", className: "ActionType", objectId: "kJC954w9iO" });
+
                 //TODO: Do we need the userPointer since we have the ACL?
-                action.set("userPointer", currentUser.id) ;
+                action.set("userPointer", { __type: "Pointer", className: "User", objectId: currentUser.id });
+
                 var newAcl = new Parse.ACL(currentUser);
                 newAcl.setPublicReadAccess(true);
                 action.setACL(newAcl);

@@ -5,6 +5,6 @@
     <select class="select" type="text"  name="SelectZobc">
         <option ng-repeat="zobc in zobcList" value="zobc.id">{{zobc.name}}</option>
     </select>
-    <textarea name="bookDescription" rows="6"  placeholder="Give me some clues!" />
+    <textarea ng-model="bookLocationDescription" name="bookDescription" rows="6"  placeholder="Give some clues to find the book!" />
     <input ng-click="release()" type="submit" value="Confirm release" class="buttonlarge" />
 </div>
