@@ -315,6 +315,37 @@ angular.module('dataServices', [])
                 });
             },
 
+            releaseBook: function releaseBook(releaseInfo, callback)
+            {
+                var action = new Action();
+                var currentUser = Parse.User.current();
+
+                action.set("bookPointer",releaseInfo.bookId);
+                //TODO: How do we get this ActionTypes? Hardcoded, getting ti every time. It has a static nature, why to call again??
+                //download it once at the begining? LS?
+                action.set("actionTypePointer", "kJC954w9iO");
+                action.set("place", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
+                //TODO: Do we need the userPointer since we have the ACL?
+                action.set("userPointer", currentUser.id) ;
+                var newAcl = new Parse.ACL(currentUser);
+                newAcl.setPublicReadAccess(true);
+                action.setACL(newAcl);
+
+                action.save(null, {
+                    success: function (data) {
+                        // The object was saved successfully.
+                        callback(true);
+                    },
+                    error: function (data,error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false);
+                    }
+                });
+
+            },
+
             getBookRegistrationId: function GetBookRegistrationId(callback) {
 
                 Parse.Cloud.run('GetBookId', {}, {

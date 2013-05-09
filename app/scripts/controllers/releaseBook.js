@@ -1,5 +1,5 @@
 'use strict';
-BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService) {
+BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService,$rootScope) {
 
     //TODO: Get Zobc around the current location
     $scope.zobcList = [
@@ -11,10 +11,27 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService) {
     ];
 
     $scope.release = function () {
-        //TODO: Save position
-    };
+        var releaseInfo = new Object();
 
-    $scope.findLocation = function () {
-        //TODO: Use google maps to find the location
+        var geoPoint;
+
+        geolocationService.getCurrentPosition(function (position) {
+            geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+
+            releaseInfo.bookId = $scope.selectedBook;
+            releaseInfo.geoPoint= geoPoint;
+
+            dataService.releaseBook(releaseInfo,function(isSuccess)
+            {
+                if(isSuccess)
+                {
+                    $scope.goTo('views/main.html')
+                }
+                else
+                {
+                    $rootScope.ErrorMessage = "Oops . . . Please try again ina  few seconds we couldn't release the book.";
+                }
+            });
+        });
     };
 });
