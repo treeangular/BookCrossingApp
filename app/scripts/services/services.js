@@ -221,6 +221,35 @@ angular.module('dataServices', [])
                 query.include("userPointer");
                 query.include("actionTypePointer");
 
+
+                query.find({
+                    success: function (actions) {
+                        // Comments now contains the last ten comments, and the "post" field
+                        // has been populated. For example:
+                        callback(actions);
+
+                    }
+                });
+
+            },
+
+            getActionsPage: function getActionsPage(pageNumber, callback) {
+                var recordsPerPage = 10;
+                var query = new Parse.Query(Action);
+
+                // Retrieve the most recent ones
+                query.descending("createdAt");
+
+                // Only retrieve the last ten
+                query.limit(recordsPerPage);
+                query.skip(pageNumber*recordsPerPage);
+
+                // Include the post data with each comment
+                query.include("bookPointer");
+                query.include("userPointer");
+                query.include("actionTypePointer");
+
+
                 query.find({
                     success: function (actions) {
                         // Comments now contains the last ten comments, and the "post" field

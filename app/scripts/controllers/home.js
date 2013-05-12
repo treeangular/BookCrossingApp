@@ -2,8 +2,10 @@
 BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 
     $scope.alerts = [];
+    $scope.currentPage = 0;
 
-	dataService.getWholeActions(function (results) {
+    $scope.getActPage = function (pageNumber) {
+	dataService.getActionsPage(pageNumber, function (results) {
         $scope.$apply(function () {
             //TODO: Load only first page and then use paging in the NextPage function!
             $scope.actionList = results;
@@ -80,19 +82,21 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 				time:time
 			};
 			$scope.alerts.push($scope.newalert);
-            console.log("Getting books from database!");
+            console.log("Getting books from database! Page number: " + pageNumber + " BookId: " + book.id);
 			}
         });
     });
+    };
 
   $scope.busy = false;
 
   $scope.nextPage  = function() {
     if ($scope.busy) return;
     $scope.busy = true;
-    
-	//TODO: Add here paging!
-    
+
+      $scope.getActPage($scope.currentPage);
+      $scope.currentPage = $scope.currentPage + 1
+
 	$scope.busy = false;
   };
 

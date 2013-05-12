@@ -1,4 +1,4 @@
-<div ng-controller="HomeCtrl">
+<div ng-controller="HomeCtrl" infinite-scroll="nextPage()" infinite-scroll-distance="3">
  <ul>
     <li ng-repeat='alert in alerts' ng-switch on="alert.type">
 	    <div class="bookItemList" ng-switch-when="book">
