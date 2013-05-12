@@ -17,7 +17,7 @@ angular.module('BookCrossingApp')
             //var iGot =  $http.get(user.myPicture);
             console.log("SO jquery response" + user.myPicture);
 
-               dataService.uploadPicture(user, function(isResult, parseUrl)
+            dataService.uploadPicture(user, function(isResult, parseUrl)
                {
                     user.myPictureFile = parseUrl;
 
@@ -36,7 +36,7 @@ angular.module('BookCrossingApp')
                        });
                    });
                });
-         }
+            }
 
         //Initialize default value
         $scope.myPicture = "../styles/img/CustomAvatarContest.png";
@@ -71,5 +71,32 @@ angular.module('BookCrossingApp')
                $scope.user = currentUser;
             }
          });
+
+        $scope.getPicture = function(){
+
+            navigator.camera.getPicture(onSuccess, onFail,
+                //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
+                { quality: 50,
+                    destinationType:Camera.DestinationType.FILE_URI,
+                    encodingType: Camera.EncodingType.JPEG,
+                    sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
+                    targetWidth: 100,
+                    targetHeight: 100
+                });
+            function onSuccess(imageData) {
+                var image = document.getElementById('myPicture');
+                image.src = "data:image/jpeg;base64," + imageData;
+                alert("Hola!!");
+                $scope.$apply(function() {
+                    ctrl.$setViewValue(image.src);
+                });
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+                ctrl.$setValidity('Failed because: ' + message, false);
+            }
+
+        };
 
 });
