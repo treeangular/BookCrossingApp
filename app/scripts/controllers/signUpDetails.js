@@ -11,7 +11,7 @@ angular.module('BookCrossingApp')
 
             dataService.uploadPicture(user, function(isResult, parseUrl)
                {
-                    user.myPictureFile = parseUrl;
+                   user.myPictureFile = parseUrl;
 
                         //need to use q but thats for later after being able to upload the pic
                    dataService.updateUserProfile(user, function (isResult, result) {
@@ -68,7 +68,7 @@ angular.module('BookCrossingApp')
 
             navigator.camera.getPicture(onSuccess, onFail,
                 //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
-                {   quality: 50,
+                { quality: 50,
                     destinationType:Camera.DestinationType.FILE_URI,
                     encodingType: Camera.EncodingType.JPEG,
                     sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
@@ -78,7 +78,7 @@ angular.module('BookCrossingApp')
             function onSuccess(imageURI) {
                 var image = document.getElementById('preview');
                 image.src = imageURI;
-                $scope.myPicture = image;
+                $scope.myPicture = image.src;
 
 //                $scope.$apply(function() {
 //                    ctrl.$setViewValue(image.src);

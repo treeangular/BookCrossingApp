@@ -396,10 +396,37 @@ angular.module('dataServices', [])
             {
                 var serverUrl = 'https://api.parse.com/1/files/' + user.Nick ;
 
+                var finalFile;
+
+                var gotFileEntry = function(fileEntry) {
+                    console.log("got image file entry: " +  fileEntry.fullPath);
+                    fileEntry.file( function(file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function(evt) {
+                            console.log("Read complete!");
+                            image64.value = Base64.encode(evt.target.result);
+                            finalFile = image64.value;
+                        };
+                        reader.readAsText(file);
+                    }, failFile);
+                };
+
+                var failSystem = function(){
+
+                };
+
+                var failFile = function(){
+
+                };
+
+                window.resolveLocalFileSystemURI(user.myPicture, gotFileEntry, failSystem);
+
+
+
                 $http({
                     method: 'POST',
                     url: serverUrl,
-                    data: user.myPicture,
+                    data: finalFile,
                     headers: {'X-Parse-Application-Id': PARSE_APP_ID,
                         'X-Parse-REST-API-Key': PARSE_REST_API_KEY,
                         'Content-Type': 'text/plain'
