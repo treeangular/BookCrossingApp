@@ -9,6 +9,31 @@ angular.module('BookCrossingApp')
             user.myPicture = $scope.myPicture;
             console.log("SO jquery response" + user.myPicture);
 
+            $scope.myPicture = "../styles/img/CustomAvatarContest.png";
+
+            window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fs){
+                fs.root.getFile("temp", {create: true, exclusive: false},
+                    function(entry){
+                        fileTransfer.download(
+                            $scope.myPicture, // the filesystem uri you mentioned
+                            entry.fullPath,
+                            function(entry) {
+                                // do what you want with the entry here
+                                console.log("download complete: " + entry.fullPath);
+                            },
+                            function(error) {
+                                console.log("error source " + error.source);
+                                console.log("error target " + error.target);
+                                console.log("error code " + error.code);
+                            },
+                            false,
+                            null
+                        );
+                    }, function(){
+                        alert("file create error");
+                    });
+            }, null);
+
             dataService.uploadPicture(user, function(isResult, parseUrl)
                {
                    user.myPictureFile = parseUrl;

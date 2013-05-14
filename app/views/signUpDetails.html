@@ -5,7 +5,7 @@
         </div>
         <div class="content">
             <img id="preview"   ng-src={{myPicture}} height="100px" width="100px" />
-            <input type="button" ng-click="getPicture()"  value="Upload Picture"/>
+            <input type="file" ng-click="getPicture()"  value="Upload Picture"/>
             <!--<input ng-hide type="file" ng-src={{myPicture}} ng-click="getPicture()" ng-model='myPictureFile' value="Upload Picture" />-->
 
             <input name="nick" type="text" ng-model="user.nick"  />
