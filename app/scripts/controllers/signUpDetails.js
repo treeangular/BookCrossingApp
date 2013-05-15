@@ -14,12 +14,32 @@ angular.module('BookCrossingApp')
             window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fs){
                 fs.root.getFile("temp", {create: true, exclusive: false},
                     function(entry){
+                        var fileTransfer = new FileTransfer();
                         fileTransfer.download(
                             $scope.myPicture, // the filesystem uri you mentioned
                             entry.fullPath,
                             function(entry) {
                                 // do what you want with the entry here
                                 console.log("download complete: " + entry.fullPath);
+                                dataService.uploadPicture(user, function(isResult, parseUrl)
+                                {
+                                    user.myPictureFile = parseUrl;
+
+                                    //need to use q but thats for later after being able to upload the pic
+                                    dataService.updateUserProfile(user, function (isResult, result) {
+
+                                        $scope.$apply(function () {
+                                            if (isResult)
+                                            {
+                                                $location.path('/Main');
+                                            }
+                                            else
+                                            {
+                                                $scope.ErrorMessage = result.message;
+                                            }
+                                        });
+                                    });
+                                });
                             },
                             function(error) {
                                 console.log("error source " + error.source);
@@ -34,25 +54,7 @@ angular.module('BookCrossingApp')
                     });
             }, null);
 
-            dataService.uploadPicture(user, function(isResult, parseUrl)
-               {
-                   user.myPictureFile = parseUrl;
 
-                        //need to use q but thats for later after being able to upload the pic
-                   dataService.updateUserProfile(user, function (isResult, result) {
-
-                       $scope.$apply(function () {
-                           if (isResult)
-                           {
-                               $location.path('/Main');
-                           }
-                           else
-                           {
-                               $scope.ErrorMessage = result.message;
-                           }
-                       });
-                   });
-               });
             }
 
         //Initialize default value
