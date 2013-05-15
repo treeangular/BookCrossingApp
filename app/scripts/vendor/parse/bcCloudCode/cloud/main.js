@@ -1,6 +1,6 @@
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // Gets the unique cool BC identificator. The real glue of BC!
-Parse.Cloud.define("gottenBookId", function(request, response) {
+Parse.Cloud.define("GetBookId", function(request, response) {
     var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
     var string_length = 8;
     var randomstring = '';
@@ -56,7 +56,6 @@ Parse.Cloud.afterSave("Book", function (request) {
 
 Parse.Cloud.afterSave("Action", function (request) {
 
-    //Logic based on the ActionType we are performing on the Book
     var BookStatus = Parse.Object.extend("BookStatus");
     var Book = Parse.Object.extend("Book");
     var book = new Book();
@@ -64,17 +63,12 @@ Parse.Cloud.afterSave("Action", function (request) {
     var actionType = request.object.get("actionTypePointer").id;
     var bookId = request.object.get("bookPointer").id;
 
-    var queryBook = new Parse.Query("Book");
+    book.id = bookId;
+    console.log("before fetch book.id" + book.id);
     var newBookStatus;
 
-    //console.log("actionType: " + actionType);
-    //console.log("bookId: " + bookId);
-
-    //First is to get the book we need to update the BookStatus
-    queryBook.get(bookId,{
-        success: function (gottenBook) {
-
-
+    book.fetch({
+        success: function (book) {
             //ReleaseBook
             if(actionType == "kJC954w9iO")
             {
@@ -94,56 +88,86 @@ Parse.Cloud.afterSave("Action", function (request) {
                 newBookStatus = "XMFkXS9NVv";
             }
 
-            console.log("newBookStatus: " + newBookStatus);
-            book.id = bookId;
             book.set("bookStatus", new BookStatus({id: newBookStatus}));
-            gottenBook.set("bookStatus", new BookStatus({id: newBookStatus}));
 
-            console.log("book.id: " + book.id);
-            console.log("book.get(bookStatus) " + book.get("bookStatus").id);
+            console.log("book" + book);
+            console.log("book.id" + book.id);
+            console.log("book.isValid()" + book.isValid());
 
-//            gottenBook.save();
 //            book.save();
-            gottenBook.save(null,{
-                success: function(data) {
-                    console.log("Bookstatus updated");
-                },
-                error: function (data,error) {
-                    // error is a Parse.Error with an error code and description.
-                    console.log("Error: " + error.code + " " + error.message);
-                }
-            });
 
             book.save(null,{
                 success: function(data) {
-                    console.log("Bookstatus updated");
+                    console.log("Book Status updated to:" +newBookStatus);
                 },
                 error: function (data,error) {
                     // error is a Parse.Error with an error code and description.
                     console.log("Error: " + error.code + " " + error.message);
                 }
             });
-
-            //console.log("bookStatus: " + gottenBook.get("bookStatus"));
-
-
-
         },
         error: function (object, error) {
             // The object was not retrieved successfully.
             // error is a Parse.Error with an error code and description.
-            //console.error("Error trying to get the Book from BookPointer: " + bookPointer);
-            console.log("Error queryBook.get(bookId:" + bookId + " "+ error.code + " " + error.message);
+            console.log("Error: " + error.code + " " + error.message);
         }
 
     });
-
-
-
-
-
-
-
-
-
 });
+
+//Parse.Cloud.afterSave("Action", function (request) {
+//
+//    //Logic based on the ActionType we are performing on the Book
+//    var newBookStatus;
+//    var BookStatus = Parse.Object.extend("BookStatus");
+//    var Book = Parse.Object.extend("Book");
+//    var book = new Book();
+//
+//    book.id = request.object.get("bookPointer").id;
+//
+//    var actionType = request.object.get("actionTypePointer").id;
+//
+//
+//    //book.id = bookId;
+//
+//    book.fetch({
+//        success: function (book) {
+//            //ReleaseBook
+//            if(actionType == "kJC954w9iO")
+//            {
+//                //E4ERgRpVCw => BookStatus Released
+//                newBookStatus = "E4ERgRpVCw";
+//            }
+//            //HuntBook
+//            else if(actionType == "UIfKw8yTZQ")
+//            {
+//                //LeIWbPd5vA => BookStatus Hunted
+//                newBookStatus = "LeIWbPd5vA";
+//            }
+//            //Lost
+//            else if(actionType == "SXuWKfcmw5")
+//            {
+//                //XMFkXS9NVv => BookStatus Lost
+//                newBookStatus = "XMFkXS9NVv";
+//            }
+//
+//            book.set("bookStatus", new BookStatus({id: newBookStatus}));
+//
+//            book.save(null,{
+//                success: function(data) {
+//                    console.log("Bookstatus updated1");
+//                },
+//                error: function (data,error) {
+//                    // error is a Parse.Error with an error code and description.
+//                    console.log("Error: " + error.code + " " + error.message);
+//                }
+//            });
+//        },
+//        error: function (object, error) {
+//            // The object was not retrieved successfully.
+//            // error is a Parse.Error with an error code and description.
+//            console.log("Error: " + error.code + " " + error.message);
+//        }
+//
+//    });
+//});

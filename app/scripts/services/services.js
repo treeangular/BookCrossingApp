@@ -339,6 +339,7 @@ angular.module('dataServices', [])
                     error: function (book, error) {
                         // The save failed.
                         // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
                         callback(false, error);
                     }
                 });
@@ -356,7 +357,7 @@ angular.module('dataServices', [])
                 action.set("place", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
                 action.set("bookLocationDescription", releaseInfo.bookLocationDescription);
 
-                action.set("bookPointer", new Book({id: "SPecEgZUhL"}));// { __type: "Pointer", className: "Book", objectId: releaseInfo.bookId });
+                action.set("bookPointer", new Book({id: releaseInfo.bookId}));// { __type: "Pointer", className: "Book", objectId: releaseInfo.bookId });
 
                 //TODO: How do we get this ActionTypes? Hardcoded, getting ti every time. It has a static nature, why to call again??
                 //download it once at the begining? LS?
