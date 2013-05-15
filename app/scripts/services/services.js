@@ -346,20 +346,25 @@ angular.module('dataServices', [])
 
             releaseBook: function releaseBook(releaseInfo, callback)
             {
+                var Book = Parse.Object.extend("Book");
+                var ActionType = Parse.Object.extend("ActionType");
+                var User = Parse.Object.extend("User");
+
                 var action = new Action();
                 var currentUser = Parse.User.current();
 
                 action.set("place", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
                 action.set("bookLocationDescription", releaseInfo.bookLocationDescription);
 
-                action.set("bookPointer", { __type: "Pointer", className: "Book", objectId: releaseInfo.bookId });
+                action.set("bookPointer", new Book({id: "SPecEgZUhL"}));// { __type: "Pointer", className: "Book", objectId: releaseInfo.bookId });
 
                 //TODO: How do we get this ActionTypes? Hardcoded, getting ti every time. It has a static nature, why to call again??
                 //download it once at the begining? LS?
-                action.set("actionTypePointer", { __type: "Pointer", className: "ActionType", objectId: "kJC954w9iO" });
+
+                action.set("actionTypePointer",new ActionType({id: "kJC954w9iO"})); //{ __type: "Pointer", className: "ActionType", objectId: "kJC954w9iO" });
 
                 //TODO: Do we need the userPointer since we have the ACL?
-                action.set("userPointer", { __type: "Pointer", className: "User", objectId: currentUser.id });
+                action.set("userPointer", new User({id: Parse.User.current().id})); //{ __type: "Pointer", className: "User", objectId: Parse.User.current().id });
 
                 var newAcl = new Parse.ACL(currentUser);
                 newAcl.setPublicReadAccess(true);
@@ -367,7 +372,9 @@ angular.module('dataServices', [])
 
                 action.save(null, {
                     success: function (data) {
-                        // The object was saved successfully.
+                        // The object was saved successfully, lets update the status
+                        //TODO: Should we do that in cloude code? After Action saved?! Most likely for the released hunted loop
+
                         callback(true);
                     },
                     error: function (data,error) {

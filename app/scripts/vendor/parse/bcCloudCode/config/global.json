@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "BookCrossing": {
+            "applicationId": "bqfSO3dVttG65a8CIkC1SdqC0CCqiqYsp1EfsjL8", 
+            "masterKey": "YphudlnVErODjpoKGCuKbls7N356o3UAypwTLBCH"
+        }, 
+        "_default": {
+            "link": "BookCrossing"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.2"
+    }
+}
