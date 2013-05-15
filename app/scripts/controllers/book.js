@@ -9,7 +9,7 @@ BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
     );
 
     $scope.releaseBook = function () {
-        //Go to RegisterBook view
+        //Go to releaseBook view
         $scope.goTo('views/releaseBook.html');
     };
 

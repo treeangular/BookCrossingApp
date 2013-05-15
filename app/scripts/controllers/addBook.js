@@ -29,8 +29,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
     $scope.registerNewBook = function (book) {
 
       dataService.getBookRegistrationId(function (isResult, result) {
-          $scope.$apply(function () {
-              $scope.registrationCode = isResult;
+         // $scope.$apply(function () {
+             // $scope.registrationCode = isResult;   //???
                //Without the registration Id we cannot let the book to be registered!
               if(isResult)
               {
@@ -67,7 +67,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                 //Set notification error => Pls try again an issue with the cool registration number has happened!
                   $rootScope.ErrorMessage = "Oops . . .Please try again in a few seconds, the cool registration number generator has not been that cool! ";
               }
-            });
+            //});
       });
 
 

@@ -12,10 +12,10 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     $scope.release = function () {
         var releaseInfo = new Object();
-
         var geoPoint;
 
         geolocationService.getCurrentPosition(function (position) {
+
             geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
 
             releaseInfo.bookId = $scope.selectedBook;
@@ -30,7 +30,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
                 }
                 else
                 {
-                    $rootScope.ErrorMessage = "Oops . . . Please try again ina  few seconds we couldn't release the book.";
+                    $rootScope.ErrorMessage = "Oops . . . Please try again in a few seconds we couldn't release the book.";
                 }
             });
         });
