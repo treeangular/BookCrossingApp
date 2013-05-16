@@ -89,11 +89,11 @@ Parse.Cloud.afterSave("Action", function (request) {
             }
 
             book.set("bookStatus", new BookStatus({id: newBookStatus}));
-//
-//            console.log("book" + book);
-//            console.log("book.id " + book.id);
-//            console.log("book.isValid() " + book.isValid());
-//            console.log("book.bookStatus " + book.get("bookStatus").id);
+
+            console.log("book" + book);
+            console.log("book.id " + book.id);
+            console.log("book.isValid() " + book.isValid());
+            console.log("book.bookStatus " + book.get("bookStatus").id);
 
             book.save(null,{
                 success: function(data) {
