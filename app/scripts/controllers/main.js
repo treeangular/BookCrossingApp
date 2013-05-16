@@ -5,6 +5,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 	$scope.title = 'BookCrossingApp';
 	$scope.leftButtonName = null;
 	$scope.rightButtonName = 'Map';
+    $scope.rightButtonRef = "views/map.html";
 	$scope.subPage='views/home.html';
 	$scope.home='current flip';
 	$scope.myLibrary='flip';
@@ -77,8 +78,18 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 				$scope.title = 'BookCrossingApp';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = 'Map';
+                $scope.rightButtonRef = "views/map.html";
                 $scope.selectOption('home');
                 $scope.selectedBook = '';
+                break;
+            case 'views/map.html':
+                $scope.title = 'BookCrossingApp';
+                $scope.leftButtonName = null;
+                $scope.rightButtonName = 'List';
+                $scope.rightButtonRef = "views/home.html";
+                $scope.selectOption('home');
+                $scope.selectedBook = '';
+                break;
             default:
 		}
 		$scope.subPage = page;

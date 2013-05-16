@@ -137,7 +137,7 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 }
 
 /* Login buttons:left, right, facebook */
-.buttonnormal, .buttonimage, .buttonleft, .buttonright, .buttonlarge, .buttonfacebook, .bigbutton {
+.buttonnormal, .buttonmiddle, .buttonimage, .buttonleft, .buttonright, .buttonlarge, .buttonfacebook, .bigbutton {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -148,7 +148,7 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 }
 
 
-.buttonnormal, .buttonimage, .buttonleft, .buttonright, .buttonlarge {
+.buttonnormal, .buttonmiddle, .buttonimage, .buttonleft, .buttonright, .buttonlarge {
     vertical-align: bottom;
     padding: 5px 5px;
     color: #fff;
@@ -176,6 +176,13 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 	margin-top: 10px;
     margin-left: 10px;
 	width:110px;
+}
+
+.buttonmiddle {
+    padding: 11px 25px;
+    margin-top: 10px;
+    margin-left: 10px;
+    width:110px;
 }
 
 .buttonlarge {
@@ -235,6 +242,10 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 	border:1px solid #FFFFFF;
 }
 
+#mapView {
+    width:310px;
+    height: 400px;
+}
 
 /*HOME*/
 
@@ -326,9 +337,10 @@ li {
     font-size: 10px;
 }
 
-#optionsbook { clear: left; float: left; position: relative; left: 50%; }
 
-#inoptionsbook { display: block; float: left; position: relative; right: 50%; }
+#clearfix {
+    text-align: center;
+}
 
 
 

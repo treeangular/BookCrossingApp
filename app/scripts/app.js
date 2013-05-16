@@ -1,6 +1,6 @@
 'use strict';
 
-var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider']);
+var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', "google-maps"]);
 
 
 //BookCrossingApp.run(function ($rootScope, $location) {
