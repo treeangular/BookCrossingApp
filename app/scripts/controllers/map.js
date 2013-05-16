@@ -39,7 +39,7 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService,$rootS
             },
 
             /** the initial zoom level of the map */
-            zoomProperty: 6,
+            zoomProperty: 12,
 
             /** list of markers to put in the map */
             markersProperty: [ {
