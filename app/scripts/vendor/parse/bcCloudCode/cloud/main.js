@@ -94,8 +94,6 @@ Parse.Cloud.afterSave("Action", function (request) {
             console.log("book.id" + book.id);
             console.log("book.isValid()" + book.isValid());
 
-//            book.save();
-
             book.save(null,{
                 success: function(data) {
                     console.log("Book Status updated to:" +newBookStatus);
@@ -114,60 +112,3 @@ Parse.Cloud.afterSave("Action", function (request) {
 
     });
 });
-
-//Parse.Cloud.afterSave("Action", function (request) {
-//
-//    //Logic based on the ActionType we are performing on the Book
-//    var newBookStatus;
-//    var BookStatus = Parse.Object.extend("BookStatus");
-//    var Book = Parse.Object.extend("Book");
-//    var book = new Book();
-//
-//    book.id = request.object.get("bookPointer").id;
-//
-//    var actionType = request.object.get("actionTypePointer").id;
-//
-//
-//    //book.id = bookId;
-//
-//    book.fetch({
-//        success: function (book) {
-//            //ReleaseBook
-//            if(actionType == "kJC954w9iO")
-//            {
-//                //E4ERgRpVCw => BookStatus Released
-//                newBookStatus = "E4ERgRpVCw";
-//            }
-//            //HuntBook
-//            else if(actionType == "UIfKw8yTZQ")
-//            {
-//                //LeIWbPd5vA => BookStatus Hunted
-//                newBookStatus = "LeIWbPd5vA";
-//            }
-//            //Lost
-//            else if(actionType == "SXuWKfcmw5")
-//            {
-//                //XMFkXS9NVv => BookStatus Lost
-//                newBookStatus = "XMFkXS9NVv";
-//            }
-//
-//            book.set("bookStatus", new BookStatus({id: newBookStatus}));
-//
-//            book.save(null,{
-//                success: function(data) {
-//                    console.log("Bookstatus updated1");
-//                },
-//                error: function (data,error) {
-//                    // error is a Parse.Error with an error code and description.
-//                    console.log("Error: " + error.code + " " + error.message);
-//                }
-//            });
-//        },
-//        error: function (object, error) {
-//            // The object was not retrieved successfully.
-//            // error is a Parse.Error with an error code and description.
-//            console.log("Error: " + error.code + " " + error.message);
-//        }
-//
-//    });
-//});
