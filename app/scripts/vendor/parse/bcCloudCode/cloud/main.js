@@ -58,16 +58,16 @@ Parse.Cloud.afterSave("Action", function (request) {
 
     var BookStatus = Parse.Object.extend("BookStatus");
     var Book = Parse.Object.extend("Book");
-    var book = new Book();
+    var bookRequested = new Book();
 
     var actionType = request.object.get("actionTypePointer").id;
     var bookId = request.object.get("bookPointer").id;
 
-    book.id = bookId;
-    console.log("before fetch book.id" + book.id);
+    bookRequested.id = bookId;
+    console.log("before fetch book.id " + bookRequested.id);
     var newBookStatus;
 
-    book.fetch({
+    bookRequested.fetch({
         success: function (book) {
             //ReleaseBook
             if(actionType == "kJC954w9iO")
@@ -89,10 +89,11 @@ Parse.Cloud.afterSave("Action", function (request) {
             }
 
             book.set("bookStatus", new BookStatus({id: newBookStatus}));
-
-            console.log("book" + book);
-            console.log("book.id" + book.id);
-            console.log("book.isValid()" + book.isValid());
+//
+//            console.log("book" + book);
+//            console.log("book.id " + book.id);
+//            console.log("book.isValid() " + book.isValid());
+//            console.log("book.bookStatus " + book.get("bookStatus").id);
 
             book.save(null,{
                 success: function(data) {

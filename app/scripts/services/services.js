@@ -367,9 +367,9 @@ angular.module('dataServices', [])
                 //TODO: Do we need the userPointer since we have the ACL?
                 action.set("userPointer", new User({id: Parse.User.current().id})); //{ __type: "Pointer", className: "User", objectId: Parse.User.current().id });
 
-                var newAcl = new Parse.ACL(currentUser);
-                newAcl.setPublicReadAccess(true);
-                action.setACL(newAcl);
+//                var newAcl = new Parse.ACL(currentUser);
+//                newAcl.setPublicReadAccess(true);
+//                action.setACL(newAcl);
 
                 action.save(null, {
                     success: function (data) {
