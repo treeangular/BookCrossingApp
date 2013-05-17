@@ -35,7 +35,8 @@ angular.module('BookCrossingApp')
                                             }
                                             else
                                             {
-                                                $scope.ErrorMessage = result.message;
+                                                $rootScope.TypeNotification = "errormessage";
+                                                $rootScope.MessageNotification = result.message;
                                             }
                                         });
                                     });

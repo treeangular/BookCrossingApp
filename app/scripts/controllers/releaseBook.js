@@ -30,7 +30,9 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
                 }
                 else
                 {
-                    $rootScope.ErrorMessage = "Oops . . . Please try again in a few seconds we couldn't release the book.";
+                    $rootScope.TypeNotification = "errormessage";
+                    $rootScope.MessageNotification = "Oops . . . Please try again in a few seconds we couldn't release the book.";
+
                 }
             });
         });

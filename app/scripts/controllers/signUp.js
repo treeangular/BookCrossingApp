@@ -12,7 +12,8 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                 }
                 else
                 {
-                    $scope.ErrorMessage = result.message;
+                    $rootScope.TypeNotification = "errormessage";
+                    $rootScope.MessageNotification = result.message;
                 }
             });
 
@@ -44,14 +45,16 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                             }
                             else
                             {
-                                $rootScope.ErrorMessage = "User not connected";
+                                $rootScope.TypeNotification = "errormessage";
+                                $rootScope.MessageNotification = "User not connected";
                             }
                         });
                     }
                 }
                 else
                 {
-                    $rootScope.ErrorMessage = "User has not accepted the conditions";
+                    $rootScope.TypeNotification = "errormessage";
+                    $rootScope.MessageNotification = "User has not accepted the conditions";
                 }
 
 

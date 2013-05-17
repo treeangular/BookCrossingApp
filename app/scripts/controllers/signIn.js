@@ -10,8 +10,8 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
                     $location.path('/Main');
                 } else {
-
-					$rootScope.ErrorMessage = "User or password invalid!";
+                    $rootScope.TypeNotification = "errormessage";
+                    $rootScope.MessageNotification = "User or password invalid!";
                 }
 
             });
@@ -43,14 +43,16 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                             }
                             else
                             {
-                                $rootScope.ErrorMessage = "User not connected";
+                                $rootScope.TypeNotification = "errormessage";
+                                $rootScope.MessageNotification = "User not connected";
                             }
                         });
                     }
                 }
                 else
                 {
-                    $rootScope.ErrorMessage = "User has not accepted the conditions";
+                    $rootScope.TypeNotification = "errormessage";
+                    $rootScope.MessageNotification = "User has not accepted the conditions";
                 }
 
 

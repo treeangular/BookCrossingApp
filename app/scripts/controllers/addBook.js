@@ -19,7 +19,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                 }
                 else
                 {
-                    $rootScope.ErrorMessage = "something went wrong";
+                    $rootScope.TypeNotification = "errormessage";
+                    $rootScope.MessageNotification = "something went wrong";
                 }
             });
 		}
@@ -56,7 +57,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                           {
                               // $scope.registerResult = "Fail!";
                               //$location.path('/');
-                              $rootScope.ErrorMessage = "Oops . . . Please try again ina  few seconds we couldn't register the book.";
+                              $rootScope.TypeNotification = "errormessage";
+                              $rootScope.MessageNotification = "Oops . . . Please try again ina  few seconds we couldn't register the book.";
                           }
                       });
                   });
@@ -65,7 +67,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
               else
               {
                 //Set notification error => Pls try again an issue with the cool registration number has happened!
-                  $rootScope.ErrorMessage = "Oops . . .Please try again in a few seconds, the cool registration number generator has not been that cool! ";
+                  $rootScope.TypeNotification = "errormessage";
+                  $rootScope.MessageNotification = "Oops . . .Please try again in a few seconds, the cool registration number generator has not been that cool! ";
               }
             //});
       });
