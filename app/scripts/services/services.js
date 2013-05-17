@@ -316,6 +316,12 @@ angular.module('dataServices', [])
 
             },
 
+            getBookByRegistrationId: function getBookByRegistrationId(registrationId, callback)
+            {
+
+
+            },
+
             registerBook: function registerBook(bookk, callback) {
 
                 var book = new Book();
@@ -327,6 +333,8 @@ angular.module('dataServices', [])
                 book.set("image", bookk.image);
                 book.set("authors", bookk.authors);
                 book.set("isbn", bookk.isbn);
+                book.set("hunted", 0);
+                book.set("released", 0);
                 // bookStatus registered
                 book.set("bookStatus", new BookStatus({id: "wXbJK5Sljm"}));
 
@@ -351,7 +359,7 @@ angular.module('dataServices', [])
 
             releaseBook: function releaseBook(releaseInfo, callback)
             {
-                var Book = Parse.Object.extend("Book");
+                //var Book = Parse.Object.extend("Book");
                 var ActionType = Parse.Object.extend("ActionType");
                 var User = Parse.Object.extend("User");
 
@@ -361,15 +369,15 @@ angular.module('dataServices', [])
                 action.set("place", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
                 action.set("bookLocationDescription", releaseInfo.bookLocationDescription);
 
-                action.set("bookPointer", new Book({id: releaseInfo.bookId}));// { __type: "Pointer", className: "Book", objectId: releaseInfo.bookId });
+                action.set("bookPointer", new Book({id: releaseInfo.bookId}));
 
                 //TODO: How do we get this ActionTypes? Hardcoded, getting ti every time. It has a static nature, why to call again??
                 //download it once at the begining? LS?
 
-                action.set("actionTypePointer",new ActionType({id: "kJC954w9iO"})); //{ __type: "Pointer", className: "ActionType", objectId: "kJC954w9iO" });
+                action.set("actionTypePointer",new ActionType({id: "kJC954w9iO"}));
 
                 //TODO: Do we need the userPointer since we have the ACL?
-                action.set("userPointer", new User({id: Parse.User.current().id})); //{ __type: "Pointer", className: "User", objectId: Parse.User.current().id });
+                action.set("userPointer", new User({id: Parse.User.current().id}));
 
                 var newAcl = new Parse.ACL(currentUser);
                 newAcl.setPublicReadAccess(true);
@@ -389,6 +397,55 @@ angular.module('dataServices', [])
                         callback(false);
                     }
                 });
+            },
+
+            huntBook: function huntBook(registrationId, callback)
+            {
+                //Check if the barcode exists || GetBookByBarCode
+                var ActionType = Parse.Object.extend("ActionType");
+                //var User = Parse.Object.extend("User");
+                var currentUser = Parse.User.current();
+
+                var query = new Parse.Query(Book);
+                console.log("registrationId -" + registrationId);
+                // Include the post data with each comment
+
+                query.equalTo("registrationId", registrationId);
+
+                query.first({
+                    success: function (book) {
+                        //Create new Action Hunted.
+                        var action = new Action();
+                        action.set("bookPointer", book);
+                        action.set("actionTypePointer",new ActionType({id: "UIfKw8yTZQ"}));
+                        action.set("userPointer", currentUser);
+
+                        var newAcl = new Parse.ACL(currentUser);
+                        newAcl.setPublicReadAccess(true);
+                        action.setACL(newAcl);
+
+                        action.save(null, {
+                            success: function (data) {
+                                console.log("Succes hunting book: ");
+                                callback(true);
+                            },
+                            error: function (data,error) {
+                                // The save failed.
+                                // error is a Parse.Error with an error code and description.
+                                console.log("Error: " + error.code + " " + error.message);
+                                callback(false);
+                            }
+                        });
+                    },
+                    error: function (book, error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, error);
+                    }
+                });
+
+
 
             },
 

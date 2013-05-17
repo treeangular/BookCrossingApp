@@ -69,17 +69,22 @@ Parse.Cloud.afterSave("Action", function (request) {
 
     bookRequested.fetch({
         success: function (book) {
+
+            console.log("actionType " + actionType);
+
             //ReleaseBook
             if(actionType == "kJC954w9iO")
             {
                 //E4ERgRpVCw => BookStatus Released
                 newBookStatus = "E4ERgRpVCw";
+                book.increment("released");
             }
             //HuntBook
             else if(actionType == "UIfKw8yTZQ")
             {
                 //LeIWbPd5vA => BookStatus Hunted
                 newBookStatus = "LeIWbPd5vA";
+                book.increment("hunted");
             }
             //Lost
             else if(actionType == "SXuWKfcmw5")
@@ -87,17 +92,24 @@ Parse.Cloud.afterSave("Action", function (request) {
                 //XMFkXS9NVv => BookStatus Lost
                 newBookStatus = "XMFkXS9NVv";
             }
+            else
+            {
+                console.log("Error: No ActionType under ReleaseBook | HuntBook | Lost something has went wrong!");
+            }
+
+            console.log("newBookStatus" + newBookStatus);
 
             book.set("bookStatus", new BookStatus({id: newBookStatus}));
 
-            console.log("book" + book);
+
             console.log("book.id " + book.id);
-            console.log("book.isValid() " + book.isValid());
-            console.log("book.bookStatus " + book.get("bookStatus").id);
+            //console.log("book.isValid() " + book.isValid());
+            //console.log("book.bookStatus " + book.get("bookStatus").id);
+            //console.log("book.description " + book.get("description"));
 
             book.save(null,{
                 success: function(data) {
-                    console.log("Book Status updated to:" +newBookStatus);
+                    console.log("Book Status updated to: " +newBookStatus);
                 },
                 error: function (data,error) {
                     // error is a Parse.Error with an error code and description.
