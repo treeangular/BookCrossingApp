@@ -310,17 +310,19 @@ angular.module('dataServices', [])
                         // Comments now contains the last ten comments, and the "post" field
                         // has been populated. For example:
                         callback(book);
-
+                    },
+                    error: function (data,error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false);
                     }
                 });
 
             },
 
-            getBookByRegistrationId: function getBookByRegistrationId(registrationId, callback)
-            {
-
-
-            },
+//            getBookByRegistrationId: function getBookByRegistrationId(registrationId, callback)
+//            { },
 
             registerBook: function registerBook(bookk, callback) {
 

@@ -26,6 +26,9 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
             {
                 if(isSuccess)
                 {
+                    $rootScope.TypeNotification = "infomessage";
+                    $rootScope.MessageNotification = releaseInfo.bookId + " released successfully!";
+
                     $scope.goTo('views/book.html');
                 }
                 else

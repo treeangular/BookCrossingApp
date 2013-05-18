@@ -6,7 +6,7 @@
     <p>{{book.get('description')}}</p>
 </div>
     <div id="clearfix">
-         <input ng-click="releaseBook()"  type="submit" value="Release" class="buttonmiddle" />
+         <input ng-show="book.isReleasable" ng-click="releaseBook()"  type="submit" value="Release" class="buttonmiddle" />
         <input ng-click="commentBook()"  type="submit" value="Comment" class="buttonmiddle" />
     </div>
 </div>
