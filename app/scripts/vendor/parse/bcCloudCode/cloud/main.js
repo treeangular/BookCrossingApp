@@ -13,45 +13,58 @@ Parse.Cloud.define("GetBookId", function(request, response) {
 });
 
 Parse.Cloud.afterSave("Book", function (request) {
-    //hev: In order to insert a object in a Action class
-    //I need to retrieve the ActionType
-    var action = new Parse.Object("Action");
-    var query = new Parse.Query("ActionType");
+    //Only add the action for a new registered book. For Release & hunt we save an action that triggers this after save also.
+    if(request.object.get("bookStatus").id == "wXbJK5Sljm")
+    {
 
-    console.log("Retreiving objects...");
-    //hev: We know that the objectId for "Ha subido" is cacZr6Q9YL so give me the activity type with
-    // ObjectId cacZr6Q9YL
-    query.get("cacZr6Q9YL", {
-        success: function (result) {
+        //hev: In order to insert a object in a Action class
+        //I need to retrieve the ActionType
+        var action = new Parse.Object("Action");
+        var query = new Parse.Query("ActionType");
 
-            //Set the action with the result
-            action.set("actionTypePointer", result);
+        //Check if we just save released or hunted the book
 
-            //var description = actionType.get("Description")
-            //console.log("After getting the objects:" + description);
 
-            action.set("bookPointer", request.object);
-            action.set("userPointer", request.user);
+        console.log("Retreiving objects...");
+        //hev: We know that the objectId for "Ha subido" is cacZr6Q9YL so give me the activity type with
+        // ObjectId cacZr6Q9YL
+        query.get("cacZr6Q9YL", {
+            success: function (result) {
 
-            action.save(null, {
-                success: function (book) {
-                    // The object was saved successfully.
-                },
-                error: function (error) {
-                    // The save failed.
-                    // error is a Parse.Error with an error code and description.
-                    console.error("Insertion Error: " + error.message);
-                    throw "Got an error " + error.code + " : " + error.message;
-                }
-            });
+                //Set the action with the result
+                action.set("actionTypePointer", result);
 
-        },
-        error: function (object, error) {
-            // The object was not retrieved successfully.
-            // error is a Parse.Error with an error code and description.
-            console.error("Error trying to get the ActivityType");
-        }
-    });
+                //var description = actionType.get("Description")
+                //console.log("After getting the objects:" + description);
+
+                action.set("bookPointer", request.object);
+                action.set("userPointer", request.user);
+
+                action.save(null, {
+                    success: function (book) {
+                        // The object was saved successfully.
+                    },
+                    error: function (error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.error("Insertion Error: " + error.message);
+                        throw "Got an error " + error.code + " : " + error.message;
+                    }
+                });
+
+            },
+            error: function (object, error) {
+                // The object was not retrieved successfully.
+                // error is a Parse.Error with an error code and description.
+                console.error("Error trying to get the ActivityType");
+            }
+        });
+    }
+    //If the book status is released or hunted do nothing on the book.
+    else
+    {
+        console.log("Nothing to do for book with bookStatus" + request.object.get("bookStatus").id);
+    }
 });
 
 Parse.Cloud.afterSave("Action", function (request) {
@@ -96,7 +109,7 @@ Parse.Cloud.afterSave("Action", function (request) {
             else
             {
                 isBookToBeSaved = false;
-                console.log("Error: No ActionType under ReleaseBook | HuntBook | Lost something has went wrong!");
+                console.log("Error: No ActionType under ReleaseBook | HuntBook - we were just registering them");
             }
 
             if(isBookToBeSaved) {
