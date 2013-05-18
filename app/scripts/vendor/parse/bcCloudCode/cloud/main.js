@@ -69,7 +69,8 @@ Parse.Cloud.afterSave("Action", function (request) {
 
     bookRequested.fetch({
         success: function (book) {
-
+            //Update the book only in case we come from a release or hunt.
+            var isBookToBeSaved = true;
             console.log("actionType " + actionType);
 
             //ReleaseBook
@@ -94,28 +95,28 @@ Parse.Cloud.afterSave("Action", function (request) {
             }
             else
             {
+                isBookToBeSaved = false;
                 console.log("Error: No ActionType under ReleaseBook | HuntBook | Lost something has went wrong!");
             }
 
-            console.log("newBookStatus" + newBookStatus);
+            if(isBookToBeSaved) {
+                console.log("newBookStatus" + newBookStatus);
+                console.log("book.id " + book.id);
+                //console.log("book.isValid() " + book.isValid());
+                //console.log("book.bookStatus " + book.get("bookStatus").id);
+                //console.log("book.description " + book.get("description"));
+                book.set("bookStatus", new BookStatus({id: newBookStatus}));
 
-            book.set("bookStatus", new BookStatus({id: newBookStatus}));
-
-
-            console.log("book.id " + book.id);
-            //console.log("book.isValid() " + book.isValid());
-            //console.log("book.bookStatus " + book.get("bookStatus").id);
-            //console.log("book.description " + book.get("description"));
-
-            book.save(null,{
-                success: function(data) {
-                    console.log("Book Status updated to: " +newBookStatus);
-                },
-                error: function (data,error) {
-                    // error is a Parse.Error with an error code and description.
-                    console.log("Error: " + error.code + " " + error.message);
-                }
-            });
+                book.save(null,{
+                    success: function(data) {
+                        console.log("Book Status updated to: " +newBookStatus);
+                    },
+                    error: function (data,error) {
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                    }
+                });
+            }
         },
         error: function (object, error) {
             // The object was not retrieved successfully.
