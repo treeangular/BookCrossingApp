@@ -190,7 +190,8 @@
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(lat, lng),
           map: _instance,
-          icon: icon
+          icon: icon,
+          url: url
         });
         
         if (label) {
@@ -198,7 +199,7 @@
         }
         
         if (url) {
-          
+
         }
 
         if (infoWindowContent != null) {
@@ -466,7 +467,7 @@
             
             angular.forEach(newValue, function (v, i) {
               if (!_m.hasMarker(v.latitude, v.longitude)) {
-                _m.addMarker(v.latitude, v.longitude, v.icon, v.infoWindow);
+                    _m.addMarker(v.latitude, v.longitude, v.icon, v.infoWindow, 'hola', v.url);
               }
             });
             
