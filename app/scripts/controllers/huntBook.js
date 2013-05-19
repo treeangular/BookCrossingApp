@@ -2,12 +2,13 @@
 
 BookCrossingApp.controller('HuntBookCtrl', function ($scope,dataService,$rootScope) {
     $scope.huntBook = function (book) {
-
-                dataService.huntBook(book.registrationId,function(isSuccess)
+        //$scope.$apply(function () {
+                dataService.huntBook(book.registrationId,function(isSuccess,bookId)
                 {
                     if(isSuccess)
                     {
                         //$rootScope.
+                        $scope.selectedBook = bookId;
                         $scope.goTo('views/book.html');
                     }
                     else
@@ -15,5 +16,6 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope,dataService,$rootSco
                         $rootScope.ErrorMessage = "Oops . . . Please try to hunt it again in a few seconds.";
                     }
                 });
+        //});
     };
 });

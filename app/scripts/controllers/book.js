@@ -6,7 +6,7 @@ BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
             var book = results[0];
             console.log("book.bookStatus " + book.get("bookStatus").id);
             var bookStatus = book.get("bookStatus").id;
-            //If it has been registred or hunted then can be released
+            //If it has been registered or hunted then can be released
             if(bookStatus == "wXbJK5Sljm" || bookStatus == "LeIWbPd5vA")
             {
                 console.log("book.bookStatus " + book.bookStatus);

@@ -411,6 +411,7 @@ angular.module('dataServices', [])
                 var query = new Parse.Query(Book);
                 console.log("registrationId -" + registrationId);
                 // Include the post data with each comment
+                var bookId;
 
                 query.equalTo("registrationId", registrationId);
 
@@ -421,6 +422,8 @@ angular.module('dataServices', [])
                         action.set("bookPointer", book);
                         action.set("actionTypePointer",new ActionType({id: "UIfKw8yTZQ"}));
                         action.set("userPointer", currentUser);
+
+                        bookId = book.id;
 
                         var newAcl = new Parse.ACL(currentUser);
                         newAcl.setPublicReadAccess(true);
@@ -435,9 +438,11 @@ angular.module('dataServices', [])
                                 // The save failed.
                                 // error is a Parse.Error with an error code and description.
                                 console.log("Error: " + error.code + " " + error.message);
-                                callback(false);
+                                callback(false, error);
                             }
                         });
+
+                        callback(true,bookId);
                     },
                     error: function (book, error) {
                         // The save failed.
