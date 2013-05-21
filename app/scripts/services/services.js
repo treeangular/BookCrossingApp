@@ -516,6 +516,28 @@ angular.module('dataServices', [])
                 });
             },
 
+            getBooksByUserId: function GetBookByUserId(userId, callback){
+
+                var query = new Parse.Query(Action);
+
+                // Include the post data with each comment
+                query.equalTo("userPointer", userId);
+
+                query.find({
+                    success: function (books) {
+                        // Comments now contains the last ten comments, and the "post" field
+                        // has been populated. For example:
+                        callback(books);
+                    },
+                    error: function (data,error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false);
+                    }
+                });
+            },
+
             uploadPicture: function uploadPicture(user,callback)
             {
                 var serverUrl = 'https://api.parse.com/1/files/' + user.Nick ;

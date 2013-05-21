@@ -15,7 +15,6 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 			var book = action.get('bookPointer');
 			var actionType = action.get('actionTypePointer');
 			var user = action.get('userPointer');
-			
 			var title = "not defined";
 			var description = "not defined";
 			var username = "not defined";
@@ -78,8 +77,10 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 				//TODO: Add localization
 				content: description,
 				image: image,
-				user: username,
-				time:time
+				username: username,
+				time:time,
+                user: user
+
 			};
 			$scope.alerts.push($scope.newalert);
             console.log("Getting books from database! Page number: " + pageNumber + " BookId: " + book.id);

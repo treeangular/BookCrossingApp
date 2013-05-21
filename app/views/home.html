@@ -4,7 +4,7 @@
 	    <div class="bookItemList" ng-switch-when="book">
 			<img ng-click="selectBook(alert.id)"  ng-src='{{alert.image}}'>
 			<a ng-click="selectBook(alert.id)"><h3>{{alert.title}}</h3></a>
-			<p>{{alert.content}} <a ng-click="selectUser(alert.user)">{{alert.user}}</a></p>
+			<p>{{alert.content}} <a ng-click="selectUser(alert.user)">{{alert.username}}</a></p>
 			<p class="time">{{alert.time}}</p>
 		</div>
 		<div class="adAlert" ng-switch-when="ad">

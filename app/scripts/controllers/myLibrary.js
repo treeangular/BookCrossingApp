@@ -2,14 +2,15 @@
 
 BookCrossingApp.controller('MyLibraryCtrl', function ($scope) {
 
+    alert($scope.selectedUser.get('favoriteGenre'));
     $scope.library = {
-        image:"styles/img/user.jpg",
-        name:$scope.selectedUser,
-        favoriteGenre:"Action",
-        registrations: 10,
-        hunts: 5,
-        comments: 25,
-        description: "I love sharing books with you!"
+        image: $scope.selectedUser.get('myPicture'),
+        name:$scope.selectedUser.get('nick')== undefined ? "-" : $scope.selectedUser.get('username'),
+        favoriteGenre:$scope.selectedUser.get('favoriteGenre') == undefined ? "-" : $scope.selectedUser.get('favoriteGenre'),
+        registrations: $scope.selectedUser.get('registers') == undefined ? "-" : $scope.selectedUser.get('registers'),
+        hunts:  $scope.selectedUser.get('hunts') == undefined ? "-" : $scope.selectedUser.get('hunts') ,
+        comments:  $scope.selectedUser.get('comments') == undefined ? "-" : $scope.selectedUser.get('comments'),
+        description:  $scope.selectedUser.get('status') == undefined ? "-" : $scope.selectedUser.get('status')
     };
 
     //Some test books. TODO: Remove them when we

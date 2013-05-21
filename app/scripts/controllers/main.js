@@ -127,8 +127,8 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
         $scope.goTo('views/book.html')
     };
 
-    $scope.selectUser  = function(userId){
-        $scope.selectedUser = userId;
+    $scope.selectUser  = function(user){
+        $scope.selectedUser = user;
         $scope.goTo('views/Library.html')
     };
 
