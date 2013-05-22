@@ -18,7 +18,7 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
 
     $scope.mapOptions = {
         center: new google.maps.LatLng(0, 0),
-        zoom: 10,
+        zoom: 1,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 

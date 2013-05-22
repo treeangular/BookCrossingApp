@@ -243,8 +243,13 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 }
 
 #mapView {
-    width:320px;
-    height: 383px;
+    width:310px;
+    height: 380px;
+}
+
+#mapView {
+    width:310px;
+    height: 130px;
 }
 
 /*HOME*/
