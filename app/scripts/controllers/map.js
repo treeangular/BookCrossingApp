@@ -1,97 +1,80 @@
 BookCrossingApp.controller('MapCtrl', function($scope, geolocationService,$rootScope) {
     var geoPoint;
-    var myPositionIcon = "styles/img/myPosition.png";
+    var myPositionIcon = "styles/img/myPosition.gif";
     var bookIcon = "styles/img/book.png";
+    var zobcIcon = "styles/img/zobc.png";
 
-    //Mock map
-    angular.extend($scope, {
+    $scope.myMarkers = [];
 
-        /** the initial center of the map */
-        centerProperty: {
-            latitude: 0,
-            longitude: 0
-        },
+    $scope.mapOptions = {
+        center: new google.maps.LatLng(0, 0),
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
-        /** the initial zoom level of the map */
-        zoomProperty: 6,
+    $scope.addMarker = function($event) {
+        $scope.myMarkers.push(new google.maps.Marker({
+            map: $scope.myMap,
+            position: $event.latLng
+        }));
+    };
+
+    $scope.setZoomMessage = function(zoom) {
+        $scope.zoomMessage = 'You just zoomed to '+zoom+'!';
+        console.log(zoom,'zoomed');
+    };
+
+    $scope.markerClicked = function(marker) {
+        $scope.currentMarker = marker;
+        $scope.currentMarkerLat = marker.getPosition().lat();
+        $scope.currentMarkerLng = marker.getPosition().lng();
+        $scope.myInfoWindow.open($scope.myMap, marker);
+    };
+
+    $scope.openMarkerInfo = function(marker) {
+        $scope.currentMarker = marker;
+        $scope.currentMarkerLat = marker.getPosition().lat();
+        $scope.currentMarkerLng = marker.getPosition().lng();
+        $scope.myInfoWindow.open($scope.myMap, marker);
+    };
+
+    $scope.setMarkerPosition = function(marker, lat, lng) {
+        marker.setPosition(new google.maps.LatLng(lat, lng));
+    };
+
+            geolocationService.getCurrentPosition(function (position) {
+                        geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+
+                            if (geoPoint!=null){
+
+                                $scope.onMapIdle = function() {
+
+                                    var marker = new google.maps.Marker({
+                                        map: $scope.myMap,
+                                        position: new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude),
+                                        icon:myPositionIcon
+                                    });
+
+                                    $scope.myMarkers.push(marker);
+
+                                    marker = new google.maps.Marker({
+                                        map: $scope.myMap,
+                                        position: new google.maps.LatLng(geoPoint.latitude+0.1, geoPoint.longitude),
+                                        icon:bookIcon
+                                    });
+
+                                    $scope.myMarkers.push(marker);
+
+                                    $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
+
+                                };
 
 
-        // These 2 properties will be set when clicking on the map
-        clickedLatitudeProperty: null,
-        clickedLongitudeProperty: null
-    });
 
-    geolocationService.getCurrentPosition(function (position) {
-        geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
 
-        if (geoPoint!=null){
-
-        angular.extend($scope, {
-
-            /** the initial center of the map */
-            centerProperty: {
-                latitude: geoPoint.latitude,
-                longitude: geoPoint.longitude
-            },
-
-            /** the initial zoom level of the map */
-            zoomProperty: 12,
-
-            /** list of markers to put in the map */
-            markersProperty: [
-                {
-                latitude: geoPoint.latitude,
-                longitude: geoPoint.longitude,
-                icon:myPositionIcon,
-                url: 'www.google.com'
-                },
-                {
-                    latitude: geoPoint.latitude+0.15,
-                    longitude: geoPoint.longitude+0.15,
-                    icon:bookIcon,
-                    url: 'www.google.com'
-
-                },
-                {
-                    latitude: geoPoint.latitude+0.02,
-                    longitude: geoPoint.longitude+0.02,
-                    icon:bookIcon
-                },
-                {
-                    latitude: geoPoint.latitude+0.04,
-                    longitude: geoPoint.longitude+0.04,
-                    icon:bookIcon
-                },
-                {
-                    latitude: geoPoint.latitude-0.01,
-                    longitude: geoPoint.longitude-0.01,
-                    icon:bookIcon
-                },
-                {
-                    latitude: geoPoint.latitude+0.02,
-                    longitude: geoPoint.longitude+0.02,
-                    icon:bookIcon
-                },
-                {
-                    latitude: geoPoint.latitude+0.02,
-                    longitude: geoPoint.longitude-0.02,
-                    icon:bookIcon
-                },
-                {
-                    latitude: geoPoint.latitude-0.02,
-                    longitude: geoPoint.longitude+0.02,
-                    icon:bookIcon
-                }
-            ],
-
-            // These 2 properties will be set when clicking on the map
-            clickedLatitudeProperty: null,
-            clickedLongitudeProperty: null
-        });
         }
 
-    });
-
+        });
 
 
 });

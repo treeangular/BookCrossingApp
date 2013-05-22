@@ -1,12 +1,15 @@
 <div ng-controller="MapCtrl">
-    <div class="google-map"
-         center="centerProperty"
-         zoom="zoomProperty"
-         markers="markersProperty"
-         latitude="clickedLatitudeProperty"
-         longitude="clickedLongitudeProperty"
-         mark-click="true"
-         draggable="true"
-         id="mapView">
+    <div id="mapView" ui-map="myMap"
+         ui-options="mapOptions"
+         ui-event="{'map-idle' : 'onMapIdle()'}">
+</div>
+    <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+         ui-event="{'map-click': 'markerClicked(marker)'}">
+    </div>
+    <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+         ui-event="{'click': 'openMarkerInfo(marker)'}">
+    </div>
+    <div style="width: 60px;height: 80px;" ui-map-info-window="myInfoWindow">
+        <img style="width: 50px;height: 80px;" src="styles/img/books/a_clockwork_orange.jpg"/>
     </div>
 </div>
