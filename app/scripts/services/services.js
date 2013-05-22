@@ -244,21 +244,64 @@ angular.module('dataServices', [])
                 query.limit(recordsPerPage);
                 query.skip(pageNumber*recordsPerPage);
 
+                //Only the ones made by you
+                query.equalTo("userPointer", Parse.User.current());
+
+                //query.withinKilometers("place", point, 20)
+
                 // Include the post data with each comment
                 query.include("bookPointer");
                 query.include("userPointer");
                 query.include("actionTypePointer");
-
 
                 query.find({
                     success: function (actions) {
                         // Comments now contains the last ten comments, and the "post" field
                         // has been populated. For example:
                         callback(actions);
-
                     }
                 });
+            },
 
+            getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
+            {
+
+                var qActionOnDistance = new Parse.Query(Action);
+                var qBook = new Parse.Query(Book);
+
+                var recordsPerPage = 10;
+
+                // Only retrieve the last ten
+                qBook.limit(recordsPerPage);
+                qBook.skip(pageNumber*recordsPerPage);
+                // Retrieve the most recent ones
+                qBook.equalTo("registeredBy", Parse.User.current());
+                qBook.descending("createdAt");
+
+                qBook.find({
+                    success: function (books) {
+                        //Get the Actions related to this books ordered chronologically
+                        var qActionOnBook = new Parse.Query(Action);
+
+                        qActionOnBook.limit(recordsPerPage);
+                        qActionOnBook.skip(pageNumber*recordsPerPage);
+                        // Retrieve the most recent ones
+                        qActionOnBook.descending("createdAt");
+                        qActionOnBook.containedIn("bookPointer",books);
+
+                        qActionOnBook.find({
+                                success: function (actions) {
+                                    callback(actions);
+                                },
+                                error: function (actions, error) {
+                                    console.log("Error: " + error.code + " " + error.message);
+                                }
+                        });
+                    },
+                    error: function (results, error) {
+                        console.log("Error: " + error.code + " " + error.message);
+                    }
+                });
             },
 
             getBooks: function getBooks(callback) {
@@ -269,11 +312,12 @@ angular.module('dataServices', [])
                 // Use Parse's fetch method (a modified version of backbone.js fetch) to get all the petitions.
                 books.fetch({
                     success: function (results) {
-                        // Send the petition collection back to the caller if it is succesfully populated. 
+                        // Send the petition collection back to the caller if it is succesfully populated.
                         callback(results);
                     },
                     error: function (results, error) {
-                        alert("Collection Error: " + error.message);
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, error);
                     }
                 });
             },
@@ -292,7 +336,10 @@ angular.module('dataServices', [])
                         // Comments now contains the last ten comments, and the "post" field
                         // has been populated. For example:
                         callback(actions);
-
+                    },
+                    error: function (results, error) {
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, error);
                     }
                 });
 
@@ -337,6 +384,7 @@ angular.module('dataServices', [])
                 book.set("isbn", bookk.isbn);
                 book.set("hunted", 0);
                 book.set("released", 0);
+                book.set("registeredBy", Parse.User.current());
                 // bookStatus registered
                 book.set("bookStatus", new BookStatus({id: "wXbJK5Sljm"}));
 
