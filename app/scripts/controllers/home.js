@@ -5,7 +5,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
     $scope.currentPage = 0;
 
     $scope.getActPage = function (pageNumber) {
-	dataService.getActionsPage(pageNumber, function (results) {
+	dataService.getActionsForHomePage(pageNumber, function (results) {
         $scope.$apply(function () {
             //TODO: Load only first page and then use paging in the NextPage function!
             $scope.actionList = results;
