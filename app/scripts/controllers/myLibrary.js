@@ -1,10 +1,14 @@
 'use strict';
 
-BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope) {
+BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataService) {
 
     alert($scope.selectedUser.get('username'))
+    var userId;
+    $scope.books = [];
+
     if($scope.selectedUser.get('username') == undefined)
     {
+        userId = $rootScope.currentUser.get('objectId')
         $scope.library =
         {
             image: $rootScope.currentUser.get('myPicture'),
@@ -18,6 +22,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope) {
     }
     else
     {
+        userId = $scope.selectedUser.get('objectId')
         $scope.library = {
             image: $scope.selectedUser.get('myPicture'),
             name:$scope.selectedUser.get('nick')== undefined ? "-" : $scope.selectedUser.get('username'),
@@ -29,13 +34,60 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope) {
         };
     }
 
-    //Some test books. TODO: Remove them when we
-    $scope.books = [
-        {id:'EbLxfEAtDf', title:'A Clockwork orange', image:'styles/img/books/a_clockwork_orange.jpg', owner: "Me", status: "Registered"},
-        {id:'EbLxfEAtDf', title:'Lords of the Rings', image:'styles/img/books/lord_of_the_rings.jpg', owner: "Joan", status: "Hunted"},
-        {id:'EbLxfEAtDf', title:'1Q84', image:'styles/img/books/1q84.jpg', owner: "Me", status: "Released"},
-        {id:'EbLxfEAtDf', title:'A Clockwork orange', image:'styles/img/books/a_clockwork_orange.jpg', owner: "Marc", status: "Released"},
-        {id:'EbLxfEAtDf', title:'Lords of the Rings', image:'styles/img/books/lord_of_the_rings.jpg', owner: "Javi", status: "Hunted"},
-        {id:'EbLxfEAtDf', title:'1Q84', image:'styles/img/books/1q84.jpg', owner: "Me", status: "Hunted"}
-    ];
+    $scope.getLibraryByUser= function (userId) {
+        dataService.getLibraryByUserId(userId, function (isSuccess, results) {
+            if(isSuccess)
+            {
+                    //TODO: Load only first page and then use paging in the NextPage function!
+                $scope.$apply(function () {
+
+                    for (var i=0;i<results.length;i++)
+                    {
+                        var action = results[i];
+                        var book = action.get('bookPointer');
+                        var actionType = action.get('actionTypePointer');
+                        var title = "not defined";
+                        var description = "not defined";
+                        var image = "not defined";
+
+                        if (book != null)
+                        {
+                            title = book.get('title');
+                            description = book.get('description');
+                            image = book.get('image');
+                        }
+
+                    }
+
+                    $scope.newBook = {
+                       title: title,
+                       image: image
+
+                    };
+                    $scope.books.push($scope.newBook);
+//                    [
+//                        {id:'EbLxfEAtDf', title:'A Clockwork orange', image:'styles/img/books/a_clockwork_orange.jpg', owner: "Me", status: "Registered"},
+//                        {id:'EbLxfEAtDf', title:'Lords of the Rings', image:'styles/img/books/lord_of_the_rings.jpg', owner: "Joan", status: "Hunted"},
+//                        {id:'EbLxfEAtDf', title:'1Q84', image:'styles/img/books/1q84.jpg', owner: "Me", status: "Released"},
+//                        {id:'EbLxfEAtDf', title:'A Clockwork orange', image:'styles/img/books/a_clockwork_orange.jpg', owner: "Marc", status: "Released"},
+//                        {id:'EbLxfEAtDf', title:'Lords of the Rings', image:'styles/img/books/lord_of_the_rings.jpg', owner: "Javi", status: "Hunted"},
+//                        {id:'EbLxfEAtDf', title:'1Q84', image:'styles/img/books/1q84.jpg', owner: "Me", status: "Hunted"}
+//                    ];
+                });
+            }
+        });
+    }
+
+    $scope.busy = false;
+
+    $scope.nextPage  = function() {
+        if ($scope.busy) return;
+        $scope.busy = true;
+
+        $scope.getLibraryByUser(userId);
+        $scope.currentPage = $scope.currentPage + 1
+
+        $scope.busy = false;
+    };
+
   });

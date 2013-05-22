@@ -516,24 +516,31 @@ angular.module('dataServices', [])
                 });
             },
 
-            getBooksByUserId: function GetBookByUserId(userId, callback){
+            getLibraryByUserId: function getLibraryByUserId(userId, callback){
+
 
                 var query = new Parse.Query(Action);
 
+                // Retrieve the most recent ones
+                query.descending("createdAt");
+
                 // Include the post data with each comment
-                query.equalTo("userPointer", userId);
+                query.include("bookPointer");
+                query.include("userPointer");
+                query.include("actionTypePointer");
+
+                query.equalTo('userPointer', userId);
+
 
                 query.find({
-                    success: function (books) {
+                    success: function (actions) {
                         // Comments now contains the last ten comments, and the "post" field
                         // has been populated. For example:
-                        callback(books);
+                        callback(true, actions);
+
                     },
-                    error: function (data,error) {
-                        // The save failed.
-                        // error is a Parse.Error with an error code and description.
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false);
+                    error: function (error) {
+                        callback(false, null);
                     }
                 });
             },
