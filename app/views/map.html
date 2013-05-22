@@ -4,12 +4,21 @@
          ui-event="{'map-idle' : 'onMapIdle()'}">
 </div>
     <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
-         ui-event="{'map-click': 'markerClicked(marker)'}">
+         ui-event="{'map-click': 'openMarkerInfo(marker)'}">
     </div>
     <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
          ui-event="{'click': 'openMarkerInfo(marker)'}">
     </div>
-    <div style="width: 60px;height: 80px;" ui-map-info-window="myInfoWindow">
-        <img style="width: 50px;height: 80px;" src="styles/img/books/a_clockwork_orange.jpg"/>
+    <div style="min-width: 80px;" ui-map-info-window="myInfoWindow">
+        <ul>
+            <li>
+                <div class="bookPopUp">
+                    <img ng-click="selectBook(book.id)"  ng-src='{{book.image}}'>
+                    <a ng-click="selectBook(book.id)"><h3>{{book.title}}</h3></a>
+                    <p>{{book.content}} <a ng-click="selectUser(book.user)">{{book.user}}</a></p>
+                    <p class="time">{{book.time}}</p>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>

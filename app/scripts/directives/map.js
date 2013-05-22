@@ -53,7 +53,6 @@
                 link: function (scope, elm, attrs) {
                     var opts = angular.extend({}, options, scope.$eval(attrs.uiOptions));
                     opts.content = elm[0];
-                    opts.maxWidth = 200;
                     var model = $parse(attrs.uiMapInfoWindow);
                     var infoWindow = model(scope);
 

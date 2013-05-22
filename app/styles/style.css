@@ -243,8 +243,8 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 }
 
 #mapView {
-    width:310px;
-    height: 310px;
+    width:320px;
+    height: 383px;
 }
 
 /*HOME*/
@@ -253,7 +253,7 @@ ul {
   list-style-type: none;
   width: 100%;
 }
- 
+
 .bookItemList img {
   float: left;
   margin: 0 15px 0 0;
@@ -281,6 +281,18 @@ li {
   padding: 10px;
   overflow: auto;
   border-bottom: 1px solid #9d9e9e;
+}
+
+.bookPopUp img {
+    float: left;
+    margin: 0 15px 0 0;
+    width: 50;
+    height: 75px
+}
+
+.bookPopUp li {
+    overflow: auto;
+    border-bottom: 1px solid #9d9e9e;
 }
 
 #bookimg {
