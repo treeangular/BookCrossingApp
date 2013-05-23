@@ -2,7 +2,7 @@
 
 BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataService) {
 
-    alert($scope.selectedUser.get('username'))
+
     var userId;
     $scope.books = [];
 
@@ -22,7 +22,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
     }
     else
     {
-        userId = $scope.selectedUser.get('objectId')
+        userId = $scope.selectedUser.id
         $scope.library = {
             image: $scope.selectedUser.get('myPicture'),
             name:$scope.selectedUser.get('nick')== undefined ? "-" : $scope.selectedUser.get('username'),
@@ -57,14 +57,16 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
                             image = book.get('image');
                         }
 
+
+
+                        $scope.newBook = {
+                            title: title,
+                            image: image
+
+                        };
+
+                        $scope.books.push($scope.newBook);
                     }
-
-                    $scope.newBook = {
-                       title: title,
-                       image: image
-
-                    };
-                    $scope.books.push($scope.newBook);
 //                    [
 //                        {id:'EbLxfEAtDf', title:'A Clockwork orange', image:'styles/img/books/a_clockwork_orange.jpg', owner: "Me", status: "Registered"},
 //                        {id:'EbLxfEAtDf', title:'Lords of the Rings', image:'styles/img/books/lord_of_the_rings.jpg', owner: "Joan", status: "Hunted"},

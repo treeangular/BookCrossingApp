@@ -33,6 +33,7 @@ angular.module('dataServices', [])
 
         //Create Object/Table names with capital first letter, following Parse guidelines.
         var Book = Parse.Object.extend("Book");
+        var User = Parse.Object.extend("User")
         var BookCollection = Parse.Collection.extend({ model: Book });
         var Action = Parse.Object.extend("Action");
         var ActionCollection = Parse.Collection.extend({ model: Action });
@@ -521,6 +522,9 @@ angular.module('dataServices', [])
 
                 var query = new Parse.Query(Action);
 
+                var user = new User();
+                user.id = userId;
+
                 // Retrieve the most recent ones
                 query.descending("createdAt");
 
@@ -529,7 +533,10 @@ angular.module('dataServices', [])
                 query.include("userPointer");
                 query.include("actionTypePointer");
 
-                query.equalTo('userPointer', userId);
+
+
+                query.equalTo('userPointer', user);
+                //query.containedIn('actionTypePinter',["UIfKw8yTZQ", "cacZr6Q9YL"]);
 
 
                 query.find({
