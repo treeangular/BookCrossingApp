@@ -311,8 +311,43 @@ angular.module('dataServices', [])
                     }
                 });
             },
-            getLibraryByUserId: function getLibraryByUserId(userId, callback){
 
+            getActionsForMap: function  getActionsForMap(geoPoint, callback)
+            {
+                //Get the Actions related to this books ordered chronologically
+                var qAction = new Parse.Query(Action);
+
+                qAction.withinKilometers("place", geoPoint, 20)
+
+                //Only Released actions of others books. (Also Lost ones?)
+                qAction.equalsTo("actionTypePointer","kJC954w9iO");
+
+                //Book not belongs to me - do we need that one?
+                qAction.notEqualTo("userPointer", Parse.User.current());
+
+                //Do we need to order them?
+                qAction.descending("createdAt");
+
+                // Include the post data with each comment
+                qAction.include("bookPointer");
+                qAction.include("userPointer");
+                qAction.include("actionTypePointer");
+
+                qAction.find({
+                    success: function (actions) {
+
+                        //Make the entries unique by bookId
+
+                        callback(actions);
+                        //actionsFromUserBooks = actions;
+                    },
+                    error: function (actions, error) {
+                        console.log("Error: " + error.code + " " + error.message);
+                    }
+                });
+            },
+
+            getLibraryByUserId: function getLibraryByUserId(userId, callback){
 
                 var query = new Parse.Query(Action);
 

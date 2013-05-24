@@ -69,14 +69,14 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
 
             }
             $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
-            $scope.getActPage(0);
+            $scope.getActPage();
 
         }
 
     });
 
-    $scope.getActPage = function (pageNumber) {
-        dataService.getActionsPage(pageNumber, function (results) {
+    $scope.getActPage = function () {
+        dataService.getActionsForMap(geoPoint, function (results) {
             $scope.$apply(function () {
                 //TODO: Load only the released books arround x km
                 $scope.actionList = results;
@@ -141,7 +141,6 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
                         }
                     }
 
-
                     $scope.newbook = {
                         id: book.id,
                         title: title,
@@ -152,7 +151,6 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
                         time:time
                     };
                     $scope.books.push($scope.newbook);
-
 
                     var bookMarker = new google.maps.Marker({
                         map: $scope.myMap,
