@@ -61,7 +61,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
                 $scope.selectOption('addZobc');
 				break;
 			case 'views/Library.html':
-				$scope.title = $scope.selectedUser + ' Library';
+				$scope.title = $scope.selectedUser.get('nick') + ' Library';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = null;
                 $scope.selectOption('myLibrary');

@@ -12,7 +12,8 @@ var ActionTypesConst =
     Released: "kJC954w9iO",
     Registered: "cacZr6Q9YL",
     Locked: "c8g1mW5GeK",
-    Lost: "SXuWKfcmw5"
+    Lost: "SXuWKfcmw5",
+    Joined: "Rqv9aPsb8z"
 };
 
 var BookStatusConst =

@@ -1,8 +1,18 @@
 'use strict';
-BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
+BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope) {
 
     $scope.alerts = [];
     $scope.currentPage = 0;
+
+    if($rootScope.currentUser == undefined)
+    {
+        dataService.isCurrentUser(function (result, currentUser) {
+            if (result) {
+                $rootScope.currentUser = currentUser;
+            }
+        });
+    }
+
 
     $scope.getActPage = function (pageNumber) {
 	dataService.getActionsForHomePage(pageNumber, function (results) {
@@ -21,21 +31,9 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
             var image = "not defined";
 			var time;
 			//TODO: Move in a directive?
-		
-			var seconds = Math.round((new Date()-action.createdAt)/1000);
-			var minutes = Math.round(seconds/60);
-			var hours = Math.round(minutes/60);
-			var days = Math.round(hours/24);
-			
-			if(seconds < 60)
-				time = seconds + ' sec';
-			else if(minutes < 60)
-				time = minutes + ' min';
-			else if(hours < 24)
-				time = hours + ' hours';
-			else
-				time = days + ' days';
-			
+
+            time = getRoundedTime(action.createdAt);
+
 			if (book != null)
             {
                 title = book.get('title');
@@ -48,23 +46,21 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService) {
 				username = user.get('nick');
 
             if (actionType != null){
-                var typeId = actionType.get('description');
+                var typeId = actionType.get('objectId');
 
                 //TODO: User localization here!!!!
                 switch(typeId){
-                    case 'registered':
+                    case ActionTypesConst.Registered:
                         description= "has been registered by ";
                         break;
-                    case 'joined':
+                    case ActionTypesConst.Joined:
                         description= "has been joined by ";
                         break;
-                    case 'locked':
+                    case ActionTypesConst.Locked:
                         description= "has been locked by ";
                         break;
-                    case 'released':
+                    case ActionTypesConst.Released:
                         description= "has been released around you by ";
-                    default:
-                        description= typeId + " " + username;
                         break;
                 }
             }
