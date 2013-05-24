@@ -51,6 +51,7 @@ angular.module('dataServices', [])
         var parseService = {
             name: "Parse",
 
+        //<editor-fold description="Facebook">
             //SignIn a Fb user
             fbSignIn: function fbSignIn(callback){
 
@@ -73,7 +74,34 @@ angular.module('dataServices', [])
                     }
                });
             },
+            updateUserProfileFromFb: function updateUserProfileFromFb(user, callback)
+            {
+                //Get current user
+                var currentUser = Parse.User.current();
 
+                currentUser.set("nick", user.username);
+                currentUser.set("gender", user.gender);
+                currentUser.set("email", user.email);
+                currentUser.set("username", user.username);
+                currentUser.set("myPicture", 'http://graph.facebook.com/' + user.fbId + '/picture');
+                currentUser.set("facebookId", user.fbId);
+
+                currentUser.save(null, {
+                    success: function (user) {
+                        // Hooray! Let them use the app now.
+                        callback(true, null);
+                    },
+                    error: function (user, error) {
+                        // Show the error message somewhere and let the user try again.
+                        //alert("Error: " + error.code + " " + error.message);
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, error);
+                    }
+                });
+            },
+        //</editor-fold>
+
+        //<editor-fold description="Sign">
             //Sign In User
             signIn: function signIn(email, password, callback) {
 
@@ -84,7 +112,7 @@ angular.module('dataServices', [])
                     },
                     error: function (user, error) {
                         // The login failed. Check error to see why.
-                       // alert("Error: " + error.code + " " + error.message);
+                        // alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false);
                     }
@@ -117,7 +145,6 @@ angular.module('dataServices', [])
                     }
                 });
             },
-
             updateUserProfile: function updateUserProfile(user, callback) {
                 //Get current user
                 var currentUser = Parse.User.current();
@@ -141,33 +168,9 @@ angular.module('dataServices', [])
                 });
 
             },
+        //</editor-fold>
 
-            updateUserProfileFromFb: function updateUserProfileFromFb(user, callback)
-            {
-                //Get current user
-                var currentUser = Parse.User.current();
-
-                currentUser.set("nick", user.username);
-                currentUser.set("gender", user.gender);
-                currentUser.set("email", user.email);
-                currentUser.set("username", user.username);
-                currentUser.set("myPicture", 'http://graph.facebook.com/' + user.fbId + '/picture');
-                currentUser.set("facebookId", user.fbId);
-
-                currentUser.save(null, {
-                    success: function (user) {
-                        // Hooray! Let them use the app now.
-                        callback(true, null);
-                    },
-                    error: function (user, error) {
-                        // Show the error message somewhere and let the user try again.
-                        //alert("Error: " + error.code + " " + error.message);
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, error);
-                    }
-                });
-            },
-
+        //<editor-fold description="User">
             isCurrentUser: function isCurrentUser(callback) {
                 var currentUser = Parse.User.current();
                 if (currentUser) {
@@ -193,7 +196,9 @@ angular.module('dataServices', [])
 
                 callback(userObject);
             },
+        //</editor-fold>
 
+        //<editor-fold description="Actions">
             getActions: function getActions(callback) {
                 var actions = new ActionCollection();
 
@@ -293,12 +298,12 @@ angular.module('dataServices', [])
                         qActionOnBook.containedIn("bookPointer",books);
 
                         qActionOnBook.find({
-                                success: function (actions) {
-                                    callback(actions);
-                                },
-                                error: function (actions, error) {
-                                    console.log("Error: " + error.code + " " + error.message);
-                                }
+                            success: function (actions) {
+                                callback(actions);
+                            },
+                            error: function (actions, error) {
+                                console.log("Error: " + error.code + " " + error.message);
+                            }
                         });
                     },
                     error: function (results, error) {
@@ -306,7 +311,47 @@ angular.module('dataServices', [])
                     }
                 });
             },
+            getLibraryByUserId: function getLibraryByUserId(userId, callback){
 
+
+                var query = new Parse.Query(Action);
+
+                var user = new User();
+                user.id = userId;
+
+                var actionType = new ActionType();
+                actionType.id = ActionTypesConst.Hunted
+
+                var actionType2 = new ActionType();
+                actionType2.id = ActionTypesConst.Registered
+
+                // Retrieve the most recent ones
+                query.descending("createdAt");
+
+                // Include the post data with each comment
+                query.include("bookPointer");
+                query.include("userPointer");
+                query.include("actionTypePointer");
+
+
+                query.equalTo('userPointer', user);
+                query.containedIn('actionTypePointer',[actionType, actionType2]);
+
+                query.find({
+                    success: function (actions) {
+                        // Comments now contains the last ten comments, and the "post" field
+                        // has been populated. For example:
+                        callback(true, actions);
+
+                    },
+                    error: function (error) {
+                        callback(false, null);
+                    }
+                });
+            },
+            //</editor-fold>
+
+        //<editor-fold description="Book">
             getBooks: function getBooks(callback) {
 
                 // Instantiate a petition collection
@@ -370,10 +415,6 @@ angular.module('dataServices', [])
                 });
 
             },
-
-//            getBookByRegistrationId: function getBookByRegistrationId(registrationId, callback)
-//            { },
-
             registerBook: function registerBook(bookk, callback) {
 
                 var book = new Book();
@@ -506,7 +547,6 @@ angular.module('dataServices', [])
 
 
             },
-
             getBookRegistrationId: function GetBookRegistrationId(callback) {
 
                 Parse.Cloud.run('GetBookId', {}, {
@@ -518,47 +558,9 @@ angular.module('dataServices', [])
                     }
                 });
             },
+            //</editor-fold>
 
-            getLibraryByUserId: function getLibraryByUserId(userId, callback){
-
-
-                var query = new Parse.Query(Action);
-
-                var user = new User();
-                user.id = userId;
-
-                var actionType = new ActionType();
-                actionType.id = ActionTypesConst.Hunted
-
-                var actionType2 = new ActionType();
-                actionType2.id = ActionTypesConst.Registered
-
-                // Retrieve the most recent ones
-                query.descending("createdAt");
-
-                // Include the post data with each comment
-                query.include("bookPointer");
-                query.include("userPointer");
-                query.include("actionTypePointer");
-
-
-                query.equalTo('userPointer', user);
-                query.containedIn('actionTypePointer',[actionType, actionType2]);
-
-                query.find({
-                    success: function (actions) {
-                        // Comments now contains the last ten comments, and the "post" field
-                        // has been populated. For example:
-                        callback(true, actions);
-
-                    },
-                    error: function (error) {
-                        callback(false, null);
-                    }
-                });
-            },
-
-            uploadPicture: function uploadPicture(user,callback)
+        uploadPicture: function uploadPicture(user,callback)
             {
                 var serverUrl = 'https://api.parse.com/1/files/' + user.Nick ;
 
