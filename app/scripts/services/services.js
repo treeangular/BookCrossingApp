@@ -36,6 +36,8 @@ angular.module('dataServices', [])
         var User = Parse.Object.extend("User")
         var BookCollection = Parse.Collection.extend({ model: Book });
         var Action = Parse.Object.extend("Action");
+        var ActionType = Parse.Object.extend("ActionType");
+
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
 
@@ -525,6 +527,12 @@ angular.module('dataServices', [])
                 var user = new User();
                 user.id = userId;
 
+                var actionType = new ActionType();
+                actionType.id = ActionTypesConst.Hunted
+
+                var actionType2 = new ActionType();
+                actionType2.id = ActionTypesConst.Registered
+
                 // Retrieve the most recent ones
                 query.descending("createdAt");
 
@@ -534,10 +542,8 @@ angular.module('dataServices', [])
                 query.include("actionTypePointer");
 
 
-
                 query.equalTo('userPointer', user);
-                //query.containedIn('actionTypePinter',["UIfKw8yTZQ", "cacZr6Q9YL"]);
-
+                query.containedIn('actionTypePointer',[actionType, actionType2]);
 
                 query.find({
                     success: function (actions) {
