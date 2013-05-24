@@ -29,9 +29,9 @@
         <ul>
             <li ng-repeat='book in books'>
                 <div class="bookItemList">
-                    <img ng-click="selectBook(book.id)"  ng-src='{{book.image}}'>
-                    <a ng-click="selectBook(book.id)"><h3>{{book.title}}</h3></a>
-                    <p><strong>Status:</strong> {{book.status}} by {{book.owner}}</p>
+                    <img ng-click="selectBook(book.id)"  ng-src='{{book.get("bookPointer").get("image")}}'>
+                    <a ng-click="selectBook(book.id)"><h3>{{book.get('bookPointer').get('title')}}</h3></a>
+                    <p><strong>Status:</strong> {{book.get('actionTypePointer').get('description')}} by {{book.get('userPointer').get('username')}}</p>
                 </div>
             </li>
         </ul>

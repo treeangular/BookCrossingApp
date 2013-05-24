@@ -24,31 +24,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
             {
                     //TODO: Load only first page and then use paging in the NextPage function!
                 $scope.$apply(function () {
-
-                    for (var i=0;i<results.length;i++)
-                    {
-                        var action = results[i];
-                        var book = action.get('bookPointer');
-                        var actionType = action.get('actionTypePointer');
-                        var title = "not defined";
-                        var description = "not defined";
-                        var image = "not defined";
-
-                        if (book != null)
-                        {
-                            title = book.get('title');
-                            description = book.get('description');
-                            image = book.get('image');
-                        }
-
-                        $scope.newBook = {
-                            title: title,
-                            image: image
-
-                        };
-
-                        $scope.books.push($scope.newBook);
-                    }
+                    $scope.books = results
                 });
             }
         });
