@@ -265,6 +265,8 @@ angular.module('dataServices', [])
 
             getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
             {
+                var actionsFromUserBooks;
+                var ActionsReleasedNearBy;
 
                 var qActionOnDistance = new Parse.Query(Action);
                 var qBook = new Parse.Query(Book);
@@ -273,7 +275,9 @@ angular.module('dataServices', [])
 
                 // Only retrieve the last ten
                 qBook.limit(recordsPerPage);
+                qActionOnDistance.limit(recordsPerPage);
                 qBook.skip(pageNumber*recordsPerPage);
+                qActionOnDistance.skip(pageNumber*recordsPerPage);
                 // Retrieve the most recent ones
                 qBook.equalTo("registeredBy", Parse.User.current());
                 qBook.descending("createdAt");
@@ -283,22 +287,78 @@ angular.module('dataServices', [])
                         //Get the Actions related to this books ordered chronologically
                         var qActionOnBook = new Parse.Query(Action);
 
+                        //Paging
                         qActionOnBook.limit(recordsPerPage);
                         qActionOnBook.skip(pageNumber*recordsPerPage);
+
                         // Retrieve the most recent ones
                         qActionOnBook.descending("createdAt");
                         qActionOnBook.containedIn("bookPointer",books);
 
+                        //Only Released or hunted actions on your books. (Also Lost ones?)
+                        //qActionOnBook.containedIn("actionTypePointer",["kJC954w9iO","UIfKw8yTZQ"]);
+
+                        // Include the post data with each comment
+                        qActionOnBook.include("bookPointer");
+                        qActionOnBook.include("userPointer");
+                        qActionOnBook.include("actionTypePointer");
+
                         qActionOnBook.find({
-                                success: function (actions) {
-                                    callback(actions);
-                                },
-                                error: function (actions, error) {
-                                    console.log("Error: " + error.code + " " + error.message);
-                                }
+                            success: function (actions) {
+                                callback(actions);
+                                //actionsFromUserBooks = actions;
+                            },
+                            error: function (actions, error) {
+                                console.log("Error: " + error.code + " " + error.message);
+                            }
                         });
                     },
                     error: function (results, error) {
+                        console.log("Error: " + error.code + " " + error.message);
+                    }
+                });
+
+//                qActionOnDistance.withinKilometers("place", point, 20)
+//                qActionOnDistance.find({
+//                    success: function (actions) {
+//
+//                    },
+//                    error: function (results, error) {
+//                        console.log("Error: " + error.code + " " + error.message);
+//                    }
+//                });
+            },
+
+            getActionsForMap: function  getActionsForMap(geoPoint, callback)
+            {
+                //Get the Actions related to this books ordered chronologically
+                var qAction = new Parse.Query(Action);
+
+                qAction.withinKilometers("place", geoPoint, 20)
+
+                //Only Released actions of others books. (Also Lost ones?)
+                qAction.equalsTo("actionTypePointer","kJC954w9iO");
+
+                //Book not belongs to me - do we need that one?
+                qAction.notEqualTo("userPointer", Parse.User.current());
+
+                //Do we need to order them?
+                qAction.descending("createdAt");
+
+                // Include the post data with each comment
+                qAction.include("bookPointer");
+                qAction.include("userPointer");
+                qAction.include("actionTypePointer");
+
+                qAction.find({
+                    success: function (actions) {
+
+                        //Make the entries unique by bookId
+
+                        callback(actions);
+                        //actionsFromUserBooks = actions;
+                    },
+                    error: function (actions, error) {
                         console.log("Error: " + error.code + " " + error.message);
                     }
                 });
