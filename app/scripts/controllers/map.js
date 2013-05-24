@@ -43,7 +43,7 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
     }
 
     $scope.openMarkerInfo = function(marker) {
-
+        if (marker.title == "Me") return;
         $scope.book = getId($scope.books, marker.title);
         $scope.currentMarker = marker;
         $scope.myInfoWindow.open($scope.myMap, marker);
@@ -67,9 +67,11 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
 
                 $scope.myMarkers.push(marker);
 
-                $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
-            }
 
+            }
+            $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
+
+            $scope.getActPage(0);
         }
 
     });
@@ -165,9 +167,6 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
             });
         });
     };
-
-
-    $scope.getActPage(0);
 
 
 
