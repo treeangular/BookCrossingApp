@@ -66,9 +66,10 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
                 });
 
                 $scope.myMarkers.push(marker);
-                $scope.getActPage(0);
+
             }
             $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
+            $scope.getActPage(0);
 
         }
 
