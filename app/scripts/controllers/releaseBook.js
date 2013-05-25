@@ -19,7 +19,8 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
     $scope.mapOptions = {
         center: new google.maps.LatLng(0, 0),
         zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true
     };
 
     geolocationService.getCurrentPosition(function (position) {

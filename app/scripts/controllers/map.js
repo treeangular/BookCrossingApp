@@ -19,7 +19,8 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
     $scope.mapOptions = {
         center: new google.maps.LatLng(0, 0),
         zoom: 12,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true
     };
 
     $scope.addMarker = function($event) {
