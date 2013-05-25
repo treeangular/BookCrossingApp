@@ -57,17 +57,16 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
         geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
 
         if (geoPoint!=null){
-            $scope.onMapIdle = function() {
-                var marker = new google.maps.Marker({
-                    map: $scope.myMap,
-                    position: new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude),
-                    title: "Me",
-                    icon:myPositionIcon
-                });
 
-                $scope.myMarkers.push(marker);
+            var marker = new google.maps.Marker({
+                map: $scope.myMap,
+                position: new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude),
+                title: "Me",
+                icon:myPositionIcon
+            });
 
-            }
+            $scope.myMarkers.push(marker);
+
             $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
             $scope.getActPage();
 
