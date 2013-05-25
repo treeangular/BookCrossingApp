@@ -199,6 +199,8 @@ angular.module('dataServices', [])
         //</editor-fold>
 
         //<editor-fold description="Actions">
+
+
             getActions: function getActions(callback) {
                 var actions = new ActionCollection();
 
@@ -460,9 +462,10 @@ angular.module('dataServices', [])
                 registerBook: function registerBook(bookk, callback) {
 
                     var book = new Book();
+
                     var BookStatus = Parse.Object.extend("BookStatus");
 
-                    book.set("title", bookk.title);
+                                       book.set("title", bookk.title);
                     book.set("description", bookk.description);
                     book.set("registrationId", bookk.registrationId);
                     book.set("image", bookk.image);
@@ -471,13 +474,13 @@ angular.module('dataServices', [])
                     book.set("hunted", 0);
                     book.set("released", 0);
                     book.set("registeredBy", Parse.User.current());
+
                     // bookStatus registered
                     book.set("bookStatus", new BookStatus({id: "wXbJK5Sljm"}));
 
                     var newAcl = new Parse.ACL(Parse.User.current());
                     newAcl.setPublicReadAccess(true);
                     book.setACL(newAcl);
-                    //TODO hev: make sure a user does not upload two books with the same title
 
                     book.save(null, {
                         success: function (book) {

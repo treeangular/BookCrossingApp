@@ -1,3 +1,30 @@
+/**
+ * Created with JetBrains WebStorm.
+ * User: hev
+ * Date: 24/05/13
+ * Time: 14:12
+ * To change this template use File | Settings | File Templates.
+ */
+
+var ActionTypesConst =
+{
+    Hunted: "UIfKw8yTZQ",
+    Released: "kJC954w9iO",
+    Registered: "cacZr6Q9YL",
+    Locked: "c8g1mW5GeK",
+    Lost: "SXuWKfcmw5",
+    Joined: "Rqv9aPsb8z"
+};
+
+var BookStatusConst =
+{
+    Hunted: "LeIWbPd5vA",
+    Released: "E4ERgRpVCw",
+    Registered: "wXbJK5Sljm",
+    Lost: "XMFkXS9NVv"
+}
+
+
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // Gets the unique cool BC identificator. The real glue of BC!
 Parse.Cloud.define("GetBookId", function(request, response) {
@@ -14,21 +41,22 @@ Parse.Cloud.define("GetBookId", function(request, response) {
 
 Parse.Cloud.afterSave("Book", function (request) {
     //Only add the action for a new registered book. For Release & hunt we save an action that triggers this after save also.
-    if(request.object.get("bookStatus").id == "wXbJK5Sljm")
+    if(request.object.get("bookStatus").id == BookStatusConst.Registered)
     {
 
         //hev: In order to insert a object in a Action class
         //I need to retrieve the ActionType
         var action = new Parse.Object("Action");
         var query = new Parse.Query("ActionType");
+        var user = new Parse.Object("User");
+
+
 
         //Check if we just save released or hunted the book
 
-
         console.log("Retreiving objects...");
-        //hev: We know that the objectId for "Ha subido" is cacZr6Q9YL so give me the activity type with
-        // ObjectId cacZr6Q9YL
-        query.get("cacZr6Q9YL", {
+
+        query.get(ActionTypesConst.Registered, {
             success: function (result) {
 
                 //Set the action with the result
@@ -52,6 +80,25 @@ Parse.Cloud.afterSave("Book", function (request) {
                     }
                 });
 
+                user = request.user;
+                user.increment("registers");
+
+                user.save(null, {
+
+                    success: function (user) {
+
+                        console.debug("registers of the user incremented");
+
+                    },
+                    error: function (error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.error("Insertion Error: " + error.message);
+                        throw "Got an error " + error.code + " : " + error.message;
+                    }
+
+                });
+
             },
             error: function (object, error) {
                 // The object was not retrieved successfully.
@@ -73,8 +120,10 @@ Parse.Cloud.afterSave("Action", function (request) {
     var Book = Parse.Object.extend("Book");
     var bookRequested = new Book();
 
+
     var actionType = request.object.get("actionTypePointer").id;
     var bookId = request.object.get("bookPointer").id;
+    var user = request.object.get("userPointer");
 
     bookRequested.id = bookId;
     console.log("before fetch book.id " + bookRequested.id);
@@ -87,24 +136,24 @@ Parse.Cloud.afterSave("Action", function (request) {
             console.log("actionType " + actionType);
 
             //ReleaseBook
-            if(actionType == "kJC954w9iO")
+            if(actionType == ActionTypesConst.Released)
             {
-                //E4ERgRpVCw => BookStatus Released
-                newBookStatus = "E4ERgRpVCw";
+                newBookStatus = BookStatusConst.Released;
                 book.increment("released");
+
             }
             //HuntBook
-            else if(actionType == "UIfKw8yTZQ")
+            else if(actionType == ActionTypesConst.Hunted)
             {
-                //LeIWbPd5vA => BookStatus Hunted
-                newBookStatus = "LeIWbPd5vA";
+
+                newBookStatus = BookStatusConst.Hunted;
                 book.increment("hunted");
+                user.increment("hunts");
             }
             //Lost
-            else if(actionType == "SXuWKfcmw5")
+            else if(actionType == ActionTypesConst.Lost)
             {
-                //XMFkXS9NVv => BookStatus Lost
-                newBookStatus = "XMFkXS9NVv";
+                newBookStatus = BookStatusConst.Lost;
             }
             else
             {
@@ -123,6 +172,15 @@ Parse.Cloud.afterSave("Action", function (request) {
                 book.save(null,{
                     success: function(data) {
                         console.log("Book Status updated to: " +newBookStatus);
+                    },
+                    error: function (data,error) {
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                    }
+                });
+                user.save(null,{
+                    success: function(data) {
+                        console.log("User hunted books updated");
                     },
                     error: function (data,error) {
                         // error is a Parse.Error with an error code and description.
