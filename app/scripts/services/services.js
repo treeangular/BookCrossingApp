@@ -283,8 +283,9 @@ angular.module('dataServices', [])
                 qBook.limit(recordsPerPage);
                 qBook.skip(pageNumber*recordsPerPage);
                 // Retrieve the most recent ones
-                qBook.equalTo("registeredBy", Parse.User.current());
                 qBook.descending("createdAt");
+                //That have been registred by the current user
+                //qBook.equalTo("registeredBy", Parse.User.current().id);
 
                 qBook.find({
                     success: function (books) {
@@ -296,6 +297,11 @@ angular.module('dataServices', [])
                         // Retrieve the most recent ones
                         qActionOnBook.descending("createdAt");
                         qActionOnBook.containedIn("bookPointer",books);
+
+                        // Include the post data with each comment
+                        qActionOnBook.include("bookPointer");
+                        qActionOnBook.include("userPointer");
+                        qActionOnBook.include("actionTypePointer");
 
                         qActionOnBook.find({
                             success: function (actions) {
@@ -320,7 +326,10 @@ angular.module('dataServices', [])
                 qAction.withinKilometers("place", geoPoint, 20)
 
                 //Only Released actions of others books. (Also Lost ones?)
-                qAction.equalsTo("actionTypePointer","kJC954w9iO");
+                var actionType = new ActionType();
+                actionType.id = ActionTypesConst.Released;
+
+                qAction.equalTo("actionTypePointer",actionType);
 
                 //Book not belongs to me - do we need that one?
                 qAction.notEqualTo("userPointer", Parse.User.current());
@@ -335,9 +344,7 @@ angular.module('dataServices', [])
 
                 qAction.find({
                     success: function (actions) {
-
-                        //Make the entries unique by bookId
-
+                        //TODO: DEJ Make the entries unique by bookId, since they are ordered just get the first appearance.
                         callback(actions);
                         //actionsFromUserBooks = actions;
                     },
@@ -387,266 +394,266 @@ angular.module('dataServices', [])
             //</editor-fold>
 
         //<editor-fold description="Book">
-            getBooks: function getBooks(callback) {
+                getBooks: function getBooks(callback) {
 
-                // Instantiate a petition collection
-                var books = new BookCollection();
+                    // Instantiate a petition collection
+                    var books = new BookCollection();
 
-                // Use Parse's fetch method (a modified version of backbone.js fetch) to get all the petitions.
-                books.fetch({
-                    success: function (results) {
-                        // Send the petition collection back to the caller if it is succesfully populated.
-                        callback(results);
-                    },
-                    error: function (results, error) {
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, error);
-                    }
-                });
-            },
+                    // Use Parse's fetch method (a modified version of backbone.js fetch) to get all the petitions.
+                    books.fetch({
+                        success: function (results) {
+                            // Send the petition collection back to the caller if it is succesfully populated.
+                            callback(results);
+                        },
+                        error: function (results, error) {
+                            console.log("Error: " + error.code + " " + error.message);
+                            callback(false, error);
+                        }
+                    });
+                },
 
-            getBookByIsbnAndOwnerId: function getBookByIsbnAndOwnerId(isbn, ownerId, callback)
-            {
-                var query = new Parse.Query(Book);
+                getBookByIsbnAndOwnerId: function getBookByIsbnAndOwnerId(isbn, ownerId, callback)
+                {
+                    var query = new Parse.Query(Book);
 
-                // Include the post data with each comment
-                query.include("ownerRelation.objectId");
-                query.equalTo("isbn", isbn);
-                query.equalTo("ownerId", ownerId);
+                    // Include the post data with each comment
+                    query.include("ownerRelation.objectId");
+                    query.equalTo("isbn", isbn);
+                    query.equalTo("ownerId", ownerId);
 
-                query.find({
-                    success: function (actions) {
-                        // Comments now contains the last ten comments, and the "post" field
-                        // has been populated. For example:
-                        callback(actions);
-                    },
-                    error: function (results, error) {
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, error);
-                    }
-                });
-
-            },
-
-            getBookById: function getBookById(id, callback)
-            {
-                var query = new Parse.Query(Book);
-
-                // Include the post data with each comment
-                query.equalTo("objectId", id);
-
-                query.find({
-                    success: function (book) {
-                        // Comments now contains the last ten comments, and the "post" field
-                        // has been populated. For example:
-                        callback(book);
-                    },
-                    error: function (data,error) {
-                        // The save failed.
-                        // error is a Parse.Error with an error code and description.
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false);
-                    }
-                });
-
-            },
-            registerBook: function registerBook(bookk, callback) {
-
-                var book = new Book();
-                var BookStatus = Parse.Object.extend("BookStatus");
-
-                book.set("title", bookk.title);
-                book.set("description", bookk.description);
-                book.set("registrationId", bookk.registrationId);
-                book.set("image", bookk.image);
-                book.set("authors", bookk.authors);
-                book.set("isbn", bookk.isbn);
-                book.set("hunted", 0);
-                book.set("released", 0);
-                book.set("registeredBy", Parse.User.current());
-                // bookStatus registered
-                book.set("bookStatus", new BookStatus({id: "wXbJK5Sljm"}));
-
-                var newAcl = new Parse.ACL(Parse.User.current());
-                newAcl.setPublicReadAccess(true);
-                book.setACL(newAcl);
-                //TODO hev: make sure a user does not upload two books with the same title
-
-                book.save(null, {
-                    success: function (book) {
-                        // The object was saved successfully.
-                        callback(true, null);
-                    },
-                    error: function (book, error) {
-                        // The save failed.
-                        // error is a Parse.Error with an error code and description.
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, error);
-                    }
-                });
-            },
-
-            releaseBook: function releaseBook(releaseInfo, callback)
-            {
-                //var Book = Parse.Object.extend("Book");
-                var ActionType = Parse.Object.extend("ActionType");
-                var User = Parse.Object.extend("User");
-
-                var action = new Action();
-                var currentUser = Parse.User.current();
-
-                action.set("place", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
-                action.set("bookLocationDescription", releaseInfo.bookLocationDescription);
-
-                action.set("bookPointer", new Book({id: releaseInfo.bookId}));
-
-                //TODO: How do we get this ActionTypes? Hardcoded, getting ti every time. It has a static nature, why to call again??
-                //download it once at the begining? LS?
-
-                action.set("actionTypePointer",new ActionType({id: "kJC954w9iO"}));
-
-                //TODO: Do we need the userPointer since we have the ACL?
-                action.set("userPointer", new User({id: Parse.User.current().id}));
-
-                var newAcl = new Parse.ACL(currentUser);
-                newAcl.setPublicReadAccess(true);
-                action.setACL(newAcl);
-
-                action.save(null, {
-                    success: function (data) {
-                        // The object was saved successfully, lets update the status
-                        //TODO: Should we do that in cloude code? After Action saved?! Most likely for the released hunted loop
-
-                        callback(true);
-                    },
-                    error: function (data,error) {
-                        // The save failed.
-                        // error is a Parse.Error with an error code and description.
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false);
-                    }
-                });
-            },
-
-            huntBook: function huntBook(registrationId, callback)
-            {
-                //Check if the barcode exists || GetBookByBarCode
-                var ActionType = Parse.Object.extend("ActionType");
-                //var User = Parse.Object.extend("User");
-                var currentUser = Parse.User.current();
-
-                var query = new Parse.Query(Book);
-                console.log("registrationId -" + registrationId);
-                // Include the post data with each comment
-                var bookId;
-
-                query.equalTo("registrationId", registrationId);
-
-                query.first({
-                    success: function (book) {
-                        //Create new Action Hunted.
-                        var action = new Action();
-                        action.set("bookPointer", book);
-                        action.set("actionTypePointer",new ActionType({id: "UIfKw8yTZQ"}));
-                        action.set("userPointer", currentUser);
-
-                        bookId = book.id;
-
-                        var newAcl = new Parse.ACL(currentUser);
-                        newAcl.setPublicReadAccess(true);
-                        action.setACL(newAcl);
-
-                        action.save(null, {
-                            success: function (data) {
-                                console.log("Succes hunting book: ");
-                                callback(true);
-                            },
-                            error: function (data,error) {
-                                // The save failed.
-                                // error is a Parse.Error with an error code and description.
-                                console.log("Error: " + error.code + " " + error.message);
-                                callback(false, error);
-                            }
-                        });
-
-                        callback(true,bookId);
-                    },
-                    error: function (book, error) {
-                        // The save failed.
-                        // error is a Parse.Error with an error code and description.
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, error);
-                    }
-                });
-
-
-
-            },
-            getBookRegistrationId: function GetBookRegistrationId(callback) {
-
-                Parse.Cloud.run('GetBookId', {}, {
-                    success: function (result) {
-                        callback(true, result);
-                    },
-                    error: function (error) {
-                        callback(false, error);
-                    }
-                });
-            },
-            //</editor-fold>
-
-        uploadPicture: function uploadPicture(user,callback)
-            {
-                var serverUrl = 'https://api.parse.com/1/files/' + user.Nick ;
-
-
-
-                $http({
-                    method: 'POST',
-                    url: serverUrl,
-                    data: user.myPicture,
-                    headers: {'X-Parse-Application-Id': PARSE_APP_ID,
-                        'X-Parse-REST-API-Key': PARSE_REST_API_KEY,
-                        'Content-Type': 'text/plain'
-                    }
-                }).success(function(data, status, headers, config) {
-                        alert("File available at: " + data.url);
-                        console.log("File available at: " + data.url);
-
-                        var currentUser = Parse.User.current();
-
-                        currentUser.set("myPicture", data.url);
-
-                        currentUser.save(null, {
-                            success: function (user) {
-                                // Hooray! Let them use the app now.
-                                callback(true, null);
-                            },
-                            error: function (user, error) {
-                                // Show the error message somewhere and let the user try again.
-                                //alert("Error: " + error.code + " " + error.message);
-                                console.log("Error: " + error.code + " " + error.message);
-                                callback(false, error);
-                            }
-                        });
-//                        var url = data.url;
-//                        currentUser.put("myPicture", {
-//                            name: url.substring(url.lastIndexOf('/') + 1),
-//                            url: url,
-//                            __type: "File"
-//                        });
-//                        currentUser.save();
-                        callback(true,data);
-
-                    }).error(function(data, status, headers, config) {
-//                        var obj = jQuery.parseJSON(data);
-//                        alert(obj.error);
-                        //alert("Fucking error ");
-                        console.log("fuckign error");// + data);
-                        callback(false,null);
+                    query.find({
+                        success: function (actions) {
+                            // Comments now contains the last ten comments, and the "post" field
+                            // has been populated. For example:
+                            callback(actions);
+                        },
+                        error: function (results, error) {
+                            console.log("Error: " + error.code + " " + error.message);
+                            callback(false, error);
+                        }
                     });
 
-            }
+                },
+
+                getBookById: function getBookById(id, callback)
+                {
+                    var query = new Parse.Query(Book);
+
+                    // Include the post data with each comment
+                    query.equalTo("objectId", id);
+
+                    query.find({
+                        success: function (book) {
+                            // Comments now contains the last ten comments, and the "post" field
+                            // has been populated. For example:
+                            callback(book);
+                        },
+                        error: function (data,error) {
+                            // The save failed.
+                            // error is a Parse.Error with an error code and description.
+                            console.log("Error: " + error.code + " " + error.message);
+                            callback(false);
+                        }
+                    });
+
+                },
+                registerBook: function registerBook(bookk, callback) {
+
+                    var book = new Book();
+                    var BookStatus = Parse.Object.extend("BookStatus");
+
+                    book.set("title", bookk.title);
+                    book.set("description", bookk.description);
+                    book.set("registrationId", bookk.registrationId);
+                    book.set("image", bookk.image);
+                    book.set("authors", bookk.authors);
+                    book.set("isbn", bookk.isbn);
+                    book.set("hunted", 0);
+                    book.set("released", 0);
+                    book.set("registeredBy", Parse.User.current());
+                    // bookStatus registered
+                    book.set("bookStatus", new BookStatus({id: "wXbJK5Sljm"}));
+
+                    var newAcl = new Parse.ACL(Parse.User.current());
+                    newAcl.setPublicReadAccess(true);
+                    book.setACL(newAcl);
+                    //TODO hev: make sure a user does not upload two books with the same title
+
+                    book.save(null, {
+                        success: function (book) {
+                            // The object was saved successfully.
+                            callback(true, null);
+                        },
+                        error: function (book, error) {
+                            // The save failed.
+                            // error is a Parse.Error with an error code and description.
+                            console.log("Error: " + error.code + " " + error.message);
+                            callback(false, error);
+                        }
+                    });
+                },
+
+                releaseBook: function releaseBook(releaseInfo, callback)
+                {
+                    //var Book = Parse.Object.extend("Book");
+                    var ActionType = Parse.Object.extend("ActionType");
+                    var User = Parse.Object.extend("User");
+
+                    var action = new Action();
+                    var currentUser = Parse.User.current();
+
+                    action.set("place", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
+                    action.set("bookLocationDescription", releaseInfo.bookLocationDescription);
+
+                    action.set("bookPointer", new Book({id: releaseInfo.bookId}));
+
+                    //TODO: How do we get this ActionTypes? Hardcoded, getting ti every time. It has a static nature, why to call again??
+                    //download it once at the begining? LS?
+
+                    action.set("actionTypePointer",new ActionType({id: "kJC954w9iO"}));
+
+                    //TODO: Do we need the userPointer since we have the ACL?
+                    action.set("userPointer", new User({id: Parse.User.current().id}));
+
+                    var newAcl = new Parse.ACL(currentUser);
+                    newAcl.setPublicReadAccess(true);
+                    action.setACL(newAcl);
+
+                    action.save(null, {
+                        success: function (data) {
+                            // The object was saved successfully, lets update the status
+                            //TODO: Should we do that in cloude code? After Action saved?! Most likely for the released hunted loop
+
+                            callback(true);
+                        },
+                        error: function (data,error) {
+                            // The save failed.
+                            // error is a Parse.Error with an error code and description.
+                            console.log("Error: " + error.code + " " + error.message);
+                            callback(false);
+                        }
+                    });
+                },
+
+                huntBook: function huntBook(registrationId, callback)
+                {
+                    //Check if the barcode exists || GetBookByBarCode
+                    var ActionType = Parse.Object.extend("ActionType");
+                    //var User = Parse.Object.extend("User");
+                    var currentUser = Parse.User.current();
+
+                    var query = new Parse.Query(Book);
+                    console.log("registrationId -" + registrationId);
+                    // Include the post data with each comment
+                    var bookId;
+
+                    query.equalTo("registrationId", registrationId);
+
+                    query.first({
+                        success: function (book) {
+                            //Create new Action Hunted.
+                            var action = new Action();
+                            action.set("bookPointer", book);
+                            action.set("actionTypePointer",new ActionType({id: "UIfKw8yTZQ"}));
+                            action.set("userPointer", currentUser);
+
+                            bookId = book.id;
+
+                            var newAcl = new Parse.ACL(currentUser);
+                            newAcl.setPublicReadAccess(true);
+                            action.setACL(newAcl);
+
+                            action.save(null, {
+                                success: function (data) {
+                                    console.log("Succes hunting book: ");
+                                    callback(true);
+                                },
+                                error: function (data,error) {
+                                    // The save failed.
+                                    // error is a Parse.Error with an error code and description.
+                                    console.log("Error: " + error.code + " " + error.message);
+                                    callback(false, error);
+                                }
+                            });
+
+                            callback(true,bookId);
+                        },
+                        error: function (book, error) {
+                            // The save failed.
+                            // error is a Parse.Error with an error code and description.
+                            console.log("Error: " + error.code + " " + error.message);
+                            callback(false, error);
+                        }
+                    });
+
+
+
+                },
+                getBookRegistrationId: function GetBookRegistrationId(callback) {
+
+                    Parse.Cloud.run('GetBookId', {}, {
+                        success: function (result) {
+                            callback(true, result);
+                        },
+                        error: function (error) {
+                            callback(false, error);
+                        }
+                    });
+                },
+                //</editor-fold>
+
+        uploadPicture: function uploadPicture(user,callback)
+        {
+                    var serverUrl = 'https://api.parse.com/1/files/' + user.Nick ;
+
+
+
+                    $http({
+                        method: 'POST',
+                        url: serverUrl,
+                        data: user.myPicture,
+                        headers: {'X-Parse-Application-Id': PARSE_APP_ID,
+                            'X-Parse-REST-API-Key': PARSE_REST_API_KEY,
+                            'Content-Type': 'text/plain'
+                        }
+                    }).success(function(data, status, headers, config) {
+                            alert("File available at: " + data.url);
+                            console.log("File available at: " + data.url);
+
+                            var currentUser = Parse.User.current();
+
+                            currentUser.set("myPicture", data.url);
+
+                            currentUser.save(null, {
+                                success: function (user) {
+                                    // Hooray! Let them use the app now.
+                                    callback(true, null);
+                                },
+                                error: function (user, error) {
+                                    // Show the error message somewhere and let the user try again.
+                                    //alert("Error: " + error.code + " " + error.message);
+                                    console.log("Error: " + error.code + " " + error.message);
+                                    callback(false, error);
+                                }
+                            });
+    //                        var url = data.url;
+    //                        currentUser.put("myPicture", {
+    //                            name: url.substring(url.lastIndexOf('/') + 1),
+    //                            url: url,
+    //                            __type: "File"
+    //                        });
+    //                        currentUser.save();
+                            callback(true,data);
+
+                        }).error(function(data, status, headers, config) {
+    //                        var obj = jQuery.parseJSON(data);
+    //                        alert(obj.error);
+                            //alert("Fucking error ");
+                            console.log("fuckign error");// + data);
+                            callback(false,null);
+                        });
+
+                }
     };
 
         return parseService;

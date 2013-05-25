@@ -18,7 +18,7 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
 
     $scope.mapOptions = {
         center: new google.maps.LatLng(0, 0),
-        zoom: 1,
+        zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
@@ -83,6 +83,7 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
                 for (var i=0;i<results.length;i++)
                 {
                     var action = results[i];
+                    var actionGeoPoint = action.get('place');
                     var book = action.get('bookPointer');
                     var actionType = action.get('actionTypePointer');
                     var user = action.get('userPointer');
@@ -154,7 +155,7 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
 
                     var bookMarker = new google.maps.Marker({
                         map: $scope.myMap,
-                        position: new google.maps.LatLng(41,37, 2.12),
+                        position: new google.maps.LatLng(actionGeoPoint.latitude, actionGeoPoint.longitude),
                         title: book.id,
                         icon:bookIcon
                     });
