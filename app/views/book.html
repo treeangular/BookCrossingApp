@@ -3,10 +3,16 @@
     <img id="bookimg" ng-src="{{book.get('image')}}"/>
     <h1>{{book.get('title')}}</h1>
     <h3 ng-repeat="autor in book.get('authors')">{{autor}}</h3>
-    <p>{{book.get('description')}}</p>
+    <p>{{description}}</p>
+    <p><a ng-click="expand()">{{seeMoreOrLess}}</a></p>
 </div>
-    <div id="clearfix">
-         <input ng-show="book.isReleasable" ng-click="releaseBook()"  type="submit" value="Release" class="buttonmiddle" />
-        <input ng-click="commentBook()"  type="submit" value="Comment" class="buttonmiddle" />
-    </div>
+<div id="clearfix">
+    <input ng-show="book.isReleasable" ng-click="releaseBook()"  type="submit" value="Release" class="buttonlarge" />
+    <!--<input ng-click="commentBook()"  type="submit" value="Comment" class="buttonmiddle" /> -->
+</div>
+<ul>
+    <li><h2>Tracking</h2></li>
+    <li><h2>Comments</h2></li>
+</ul>
+
 </div>

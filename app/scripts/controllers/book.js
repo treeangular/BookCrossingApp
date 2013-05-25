@@ -1,6 +1,8 @@
 'use strict';
 BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
 
+    $scope.seeMoreOrLess = "See more";
+
     dataService.getBookById($scope.selectedBook, function (results) {
         $scope.$apply(function () {
             var book = results[0];
@@ -18,6 +20,18 @@ BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
             }
 
             $scope.book = book;
+            $scope.description = book.get('description').substring(0, 120) + "...";
+
+            $scope.expand = function () {
+                if ($scope.seeMoreOrLess == "See more"){
+                    $scope.seeMoreOrLess = "See less";
+                    $scope.description = book.get('description');
+                }
+                else {
+                    $scope.description = book.get('description').substring(0, 120) + "...";
+                    $scope.seeMoreOrLess = "See more";
+                }
+            };
         });
         }
     );
@@ -26,4 +40,6 @@ BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
         //Go to releaseBook view
         $scope.goTo('views/releaseBook.html');
     };
+
+
 });
