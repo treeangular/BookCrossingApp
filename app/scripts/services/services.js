@@ -105,7 +105,7 @@ angular.module('dataServices', [])
             //Sign In User
             signIn: function signIn(email, password, callback) {
 
-                Parse.User.logIn(email, password, {
+                Parse.User.logIn(email.toLowerCase(), password, {
                     success: function (user) {
                         // Do stuff after successful login.
                         callback(true);
@@ -128,9 +128,9 @@ angular.module('dataServices', [])
             registerNewUser: function registerNewUser(user, callback) {
                 var newUser = new Parse.User();
 
-                newUser.set("username", user.Email);
+                newUser.set("username", user.Email.toLowerCase());
                 newUser.set("password", user.Password);
-                newUser.set("email", user.Email);
+                newUser.set("email", user.Email.toLowerCase());
 
                 newUser.signUp(null, {
                     success: function (userr) {
