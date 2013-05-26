@@ -175,6 +175,7 @@ angular.module('dataServices', [])
                 var currentUser = Parse.User.current();
                 if (currentUser) {
                     // do stuff with the user
+                    console.log("currentUser" + currentUser.id);
                     callback(true, currentUser);
                 } else {
                     // show the signup or login page
@@ -243,39 +244,8 @@ angular.module('dataServices', [])
 
             },
 
-            getActionsPage: function getActionsPage(pageNumber, callback) {
-                var recordsPerPage = 10;
-                var query = new Parse.Query(Action);
-
-                // Retrieve the most recent ones
-                query.descending("createdAt");
-
-                // Only retrieve the last ten
-                query.limit(recordsPerPage);
-                query.skip(pageNumber*recordsPerPage);
-
-                //Only the ones made by you
-                query.equalTo("userPointer", Parse.User.current());
-
-                //query.withinKilometers("place", point, 20)
-
-                // Include the post data with each comment
-                query.include("bookPointer");
-                query.include("userPointer");
-                query.include("actionTypePointer");
-
-                query.find({
-                    success: function (actions) {
-                        // Comments now contains the last ten comments, and the "post" field
-                        // has been populated. For example:
-                        callback(actions);
-                    }
-                });
-            },
-
             getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
             {
-
                 var qActionOnDistance = new Parse.Query(Action);
                 var qBook = new Parse.Query(Book);
 
@@ -287,7 +257,7 @@ angular.module('dataServices', [])
                 // Retrieve the most recent ones
                 qBook.descending("createdAt");
                 //That have been registred by the current user
-                //qBook.equalTo("registeredBy", Parse.User.current().id);
+                qBook.equalTo("registeredBy", Parse.User.current());
 
                 qBook.find({
                     success: function (books) {
@@ -299,6 +269,13 @@ angular.module('dataServices', [])
                         // Retrieve the most recent ones
                         qActionOnBook.descending("createdAt");
                         qActionOnBook.containedIn("bookPointer",books);
+
+                        //Only Released actions of others books. (Also Lost ones?)
+                        var actionType = new ActionType();
+                        actionType.id = ActionTypesConst.Released;
+                        var actionType2 = new ActionType();
+                        actionType2.id = ActionTypesConst.Hunted;
+                        qActionOnBook.containedIn("actionTypePointer",[actionType, actionType2]);
 
                         // Include the post data with each comment
                         qActionOnBook.include("bookPointer");
@@ -330,7 +307,6 @@ angular.module('dataServices', [])
                 //Only Released actions of others books. (Also Lost ones?)
                 var actionType = new ActionType();
                 actionType.id = ActionTypesConst.Released;
-
                 qAction.equalTo("actionTypePointer",actionType);
 
                 //Book not belongs to me - do we need that one?
