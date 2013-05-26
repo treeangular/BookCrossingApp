@@ -20,7 +20,10 @@ BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
             }
 
             $scope.book = book;
-            $scope.description = book.get('description').substring(0, 120) + "...";
+            if (book.get('description')==null || book.get('description').length < 125)
+                $scope.description = book.get('description');
+            else
+                $scope.description = book.get('description').substring(0, 120) + "...";
 
             $scope.expand = function () {
                 if ($scope.seeMoreOrLess == "See more"){
@@ -28,7 +31,10 @@ BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
                     $scope.description = book.get('description');
                 }
                 else {
-                    $scope.description = book.get('description').substring(0, 120) + "...";
+                    if (book.get('description')==null || book.get('description').length < 125)
+                        $scope.description = book.get('description');
+                    else
+                        $scope.description = book.get('description').substring(0, 120) + "...";
                     $scope.seeMoreOrLess = "See more";
                 }
             };
