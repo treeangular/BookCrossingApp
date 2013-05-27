@@ -1,0 +1,16 @@
+<div ng-controller="CommentsCtrl">
+    <ul>
+        <li ng-repeat='comment in comments'>
+            <div class="commentItemList">
+                <img ng-click="selectUser(comment.user.id)"  ng-src='{{comment.user.image}}'>
+                <a ng-click="selectUser(comment.user.id)"><h3>{{comment.user.nick}}</h3></a>
+                <p>{{comment.content}}</p>
+                <p class="time">{{comment.time}}</p>
+            </div>
+        </li>
+    </ul>
+    <div>
+        <textarea name="newComment" rows="4"  placeholder="Add a comment" />
+        <input ng-click="addNewComment()"  type="submit" value="Add" class="buttonlarge" />
+    </div>
+</div>
