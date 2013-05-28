@@ -25,7 +25,8 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
                 break;
             case 'views/mapTracking.html':
                 $scope.title = 'Tracking';
-                $scope.leftButtonName = null;
+                $scope.leftButtonName = "back";
+                $scope.leftButtonRef = "views/book.html";
                 $scope.rightButtonName = null;
                 break;
             case 'views/huntBook.html':

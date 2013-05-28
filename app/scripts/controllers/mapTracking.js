@@ -1,6 +1,15 @@
 BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, dataService) {
     $scope.myMarkers = [];
-    var markerIcon = "styles/img/book.png";
+    var markerCount = 0;
+
+    //Start Mock data
+    //TODO: Join structures in just one
+    var releaseCoordinates = [
+        new google.maps.LatLng(37.772323, -122.214897),
+        new google.maps.LatLng(21.291982, -157.821856),
+        new google.maps.LatLng(-18.142599, 178.431),
+        new google.maps.LatLng(-27.46758, 153.027892)
+    ];
 
     var user = {
         id:"uctPK4BZ3r",
@@ -12,10 +21,11 @@ BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, data
         description: "The book is under the bench in Central square! Enjoy it!",
         user: user,
         time: "12 days"};
+    //Finish mock data
 
     $scope.mapOptions = {
-        center: new google.maps.LatLng(37.772323, -122.214897),
-        zoom: 1,
+        center: new google.maps.LatLng(0, 0),
+        zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: true
     };
@@ -32,50 +42,40 @@ BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, data
         }));
     };
 
-    //Mock Data
+    function getMarkerIcon() {
+        markerCount++;
+        return "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + markerCount + "|169691|000000";
+    }
+
      $scope.onMapIdle = function() {
 
-         $scope.myMarkers = [
-             new google.maps.Marker({
-                 map: $scope.myMap,
-                 position: new google.maps.LatLng(37.772323, -122.214897),
-                 title: "1",
-                 icon:markerIcon
-             }),
-             new google.maps.Marker({
-                 map: $scope.myMap,
-                 position: new google.maps.LatLng(21.291982, -157.821856),
-                 title: "2",
-                 icon:markerIcon
-             }),
-             new google.maps.Marker({
-                 map: $scope.myMap,
-                 position: new google.maps.LatLng(21.291982, -157.821856),
-                 title: "2",
-                 icon:markerIcon
-             }),
-             new google.maps.Marker({
-                 map: $scope.myMap,
-                 position: new google.maps.LatLng(-27.46758, 153.027892),
-                 title: "4",
-                 icon:markerIcon
-             })
-         ];
+         //Load release coordinates in the map
+        if($scope.myMarkers.length == 0){
+            var bounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < releaseCoordinates.length; i++) {
+                bounds.extend(releaseCoordinates[i]);
 
-    var flightPlanCoordinates = [
-        new google.maps.LatLng(37.772323, -122.214897),
-        new google.maps.LatLng(21.291982, -157.821856),
-        new google.maps.LatLng(-18.142599, 178.431),
-        new google.maps.LatLng(-27.46758, 153.027892)
-    ];
+                var marker = new google.maps.Marker({
+                    map: $scope.myMap,
+                    position: releaseCoordinates[i],
+                    title: "Point" + i,
+                    icon:getMarkerIcon()
+                });
 
-    var flightPath = new google.maps.Polyline({
-        path: flightPlanCoordinates,
-        strokeColor: '#000000',
-        strokeOpacity: 1.0,
-        strokeWeight: 4
-    });
+                $scope.myMarkers.push(marker);
+            }
 
-    flightPath.setMap($scope.myMap);
+            //Create the path in the map
+            var flightPath = new google.maps.Polyline({
+                path: releaseCoordinates,
+                strokeColor: '#000000',
+                strokeOpacity: 1.0,
+                strokeWeight: 4
+            });
+            flightPath.setMap($scope.myMap);
+
+            //Fit book path in the map
+            $scope.myMap.fitBounds(bounds);
+        }
     };
 });
