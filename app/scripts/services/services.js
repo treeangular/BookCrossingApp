@@ -323,6 +323,8 @@ angular.module('dataServices', [])
                 qAction.find({
                     success: function (actions) {
                         //TODO: DEJ Make the entries unique by bookId, since they are ordered just get the first appearance.
+//                        var unique = _.uniq(actions, true,"bookPointer.id" );
+//                        var groupBy = _.groupBy(actions,"bookPointer.id");
                         callback(actions);
                         //actionsFromUserBooks = actions;
                     },
@@ -452,7 +454,7 @@ angular.module('dataServices', [])
                     book.set("registeredBy", Parse.User.current());
 
                     // bookStatus registered
-                    book.set("bookStatus", new BookStatus({id: "wXbJK5Sljm"}));
+                    book.set("bookStatus", new BookStatus({id: BookStatusConst.Registered}));
 
                     var newAcl = new Parse.ACL(Parse.User.current());
                     newAcl.setPublicReadAccess(true);
@@ -486,10 +488,7 @@ angular.module('dataServices', [])
 
                     action.set("bookPointer", new Book({id: releaseInfo.bookId}));
 
-                    //TODO: How do we get this ActionTypes? Hardcoded, getting ti every time. It has a static nature, why to call again??
-                    //download it once at the begining? LS?
-
-                    action.set("actionTypePointer",new ActionType({id: "kJC954w9iO"}));
+                    action.set("actionTypePointer",new ActionType({id: ActionTypesConst.Released}));
 
                     //TODO: Do we need the userPointer since we have the ACL?
                     action.set("userPointer", new User({id: Parse.User.current().id}));
@@ -533,7 +532,7 @@ angular.module('dataServices', [])
                             //Create new Action Hunted.
                             var action = new Action();
                             action.set("bookPointer", book);
-                            action.set("actionTypePointer",new ActionType({id: "UIfKw8yTZQ"}));
+                            action.set("actionTypePointer",new ActionType({id: ActionTypesConst.Hunted}));
                             action.set("userPointer", currentUser);
 
                             bookId = book.id;
