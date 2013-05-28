@@ -1,17 +1,16 @@
 <div ng-controller="MapCtrl">
     <div id="mapViewWrapper">
-    <div id="mapView" ui-map="myMap"
-         ui-options="mapOptions"
-         ui-event="{'map-idle' : 'onMapIdle()'}">
+        <div id="mapView" ui-map="myMap"
+             ui-options="mapOptions"
+             ui-event="{'map-idle' : 'onMapIdle()'}" />
     </div>
-</div>
     <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
          ui-event="{'map-click': 'openMarkerInfo(marker)'}">
     </div>
     <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
          ui-event="{'click': 'openMarkerInfo(marker)'}">
     </div>
-    <div style="min-width: 80px;" ui-map-info-window="myInfoWindow">
+    <div ui-map-info-window="myInfoWindow">
         <ul>
             <li>
                 <div class="bookPopUp">

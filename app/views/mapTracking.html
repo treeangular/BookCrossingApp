@@ -1,3 +1,25 @@
 <div ng-controller="MapTrackingCtrl">
-Map tracking!
+    <div id="mapViewWrapper">
+        <div id="mapView" ui-map="myMap"
+             ui-options="mapOptions"
+             ui-event="{'map-idle' : 'onMapIdle()'}" />
+    </div>
+    <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+         ui-event="{'map-click': 'openMarkerInfo(marker)'}">
+    </div>
+    <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+         ui-event="{'click': 'openMarkerInfo(marker)'}">
+    </div>
+    <div ui-map-info-window="myInfoWindow">
+        <ul>
+            <li>
+                <div class="bookPopUp">
+                    <img ng-click="selectUser(currentTrack.user)"  ng-src='{{currentTrack.user.image}}'>
+                    <a ng-click="selectUser(currentTrack.user)"><h3>{{currentTrack.user.nick}}</h3></a>
+                    <p>{{currentTrack.description}}</p>
+                    <p class="time">{{currentTrack.time}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

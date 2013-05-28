@@ -272,17 +272,6 @@ ul {
   height: 75px
 }
 
-.bookItemList .time {
-  background-image: url('./img/timer.png');
-  background-position: left center;
-  background-repeat: no-repeat;
-  float: right;
-  padding-left: 15px;
-  font-size:10px;
-  margin-top: 8px;
-  color: #9d9e9e;
-}
-
 .adAlert img {
   width: 273px;
   height: 75px;
@@ -346,7 +335,7 @@ li {
     height: 40px
 }
 
-.commentItemList .time {
+.time {
     background-image: url('./img/timer.png');
     background-position: left center;
     background-repeat: no-repeat;
