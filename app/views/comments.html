@@ -1,5 +1,5 @@
-<div ng-controller="CommentsCtrl">
-    <ul>
+<div ng-controller="CommentsCtrl" style="overflow:hidden; height: 100%">
+    <ul id="commentList">
         <li ng-repeat='comment in comments'>
             <div class="commentItemList">
                 <img ng-click="selectUser(comment.user.id)"  ng-src='{{comment.user.image}}'>
@@ -9,8 +9,8 @@
             </div>
         </li>
     </ul>
-    <div>
-        <textarea name="newComment" rows="4"  placeholder="Add a comment" />
+    <div id="addComment">
+        <textarea ng-model="addComment" name="newComment" rows="3"  placeholder="Add your comment" />
         <input ng-click="addNewComment()"  type="submit" value="Add" class="buttonlarge" />
     </div>
 </div>

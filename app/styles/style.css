@@ -300,6 +300,13 @@ li {
     border-bottom: 1px solid #9d9e9e;
 }
 
+#commentList{
+    overflow: auto;
+    position: fixed;
+    top: 50px;
+    bottom: 200px
+}
+
 .commentItemList img {
     float: left;
     margin: 0 15px 0 0;
@@ -316,6 +323,14 @@ li {
     font-size:10px;
     margin-top: 8px;
     color: #9d9e9e;
+}
+
+#addComment{
+    bottom: 64px;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    padding: 5px 5px 5px 5px;
 }
 
 #bookimg {
@@ -377,7 +392,6 @@ li {
     text-align: center;
     clear: both;
 }
-
 
 
 
