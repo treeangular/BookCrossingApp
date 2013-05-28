@@ -1,7 +1,9 @@
 <div ng-controller="MapCtrl">
+    <div id="mapViewWrapper">
     <div id="mapView" ui-map="myMap"
          ui-options="mapOptions"
          ui-event="{'map-idle' : 'onMapIdle()'}">
+    </div>
 </div>
     <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
          ui-event="{'map-click': 'openMarkerInfo(marker)'}">
