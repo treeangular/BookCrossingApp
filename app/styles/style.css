@@ -254,8 +254,7 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
     right: 0px;
 }
 
-#mapViewSmall {
-    width:310px;
+#mapViewSmallWrapper {
     height: 130px;
 }
 
@@ -306,6 +305,32 @@ li {
     overflow: auto;
     border-bottom: 1px solid #9d9e9e;
 }
+
+.bookOption {
+    background-image: url('./img/arrow.png');
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+#BookOptionList{
+    margin-top: 15px;
+    border-top: 1px solid #9d9e9e;
+}
+
+#trackingOption {
+    background-image: url('./img/tracking.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 5px 40px;
+
+}
+
+#commentOption {
+    background-image: url('./img/comments.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 5px 40px;
+    }
 
 #commentList{
     overflow: auto;
