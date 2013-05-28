@@ -187,14 +187,28 @@ angular.module('dataServices', [])
             getCurrentUser: function getCurrentUser(callback)
             {
                 var currentUser = Parse.User.current();
-                //Not quite sure why I need to do that but I figure out I cannot not really get the user object without
-                var userObject = new Object();
 
-                userObject.nick =  Parse.User.current().get("nick");
-                userObject.gender =  currentUser.attributes.gender;
-                userObject.favoriteGenre = currentUser.attributes.favoriteGenre;
+                callback(currentUser);
+            },
 
-                callback(userObject);
+            getUserById: function getUserById(userId, callback)
+            {
+                var query = new Parse.Query(User);
+                query.equalTo("objectId", userId);
+
+                query.find({
+                    success: function (result) {
+
+                        callback(true, result[0]);
+                    },
+                    error: function (user,error) {
+
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, null);
+                    }
+                });
+
+
             },
         //</editor-fold>
 
