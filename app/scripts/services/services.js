@@ -31,6 +31,7 @@ angular.module('dataServices', [])
             console.log(e);
         }
 
+        var pendingRequests = 12;
         //Create Object/Table names with capital first letter, following Parse guidelines.
         var Book = Parse.Object.extend("Book");
         var User = Parse.Object.extend("User")
@@ -247,6 +248,7 @@ angular.module('dataServices', [])
                 var recordsPerPage = 10;
                 var query = new Parse.Query(Action);
 
+
                 // Retrieve the most recent ones
                 query.descending("createdAt");
 
@@ -278,7 +280,6 @@ angular.module('dataServices', [])
 
                 var qActionOnDistance = new Parse.Query(Action);
                 var qBook = new Parse.Query(Book);
-
                 var recordsPerPage = 10;
 
                 // Only retrieve the last ten
@@ -540,6 +541,7 @@ angular.module('dataServices', [])
 
                 huntBook: function huntBook(registrationId, callback)
                 {
+                    $http.pendingRequests++;
                     //Check if the barcode exists || GetBookByBarCode
                     var ActionType = Parse.Object.extend("ActionType");
                     //var User = Parse.Object.extend("User");
@@ -568,6 +570,7 @@ angular.module('dataServices', [])
 
                             action.save(null, {
                                 success: function (data) {
+
                                     console.log("Succes hunting book: ");
                                     callback(true);
                                 },
