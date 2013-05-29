@@ -8,7 +8,7 @@ var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebo
 //    BookCrossingApp.initialize();
 //},
 
-BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
+BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/sign.html',
@@ -53,4 +53,37 @@ BookCrossingApp.config(['$routeProvider', function ($routeProvider) {
       .otherwise({
         redirectTo: '/'
       });
+
+    var $http,
+        interceptor = ['$q', '$injector', function ($q, $injector) {
+            var error;
+
+            function success(response) {
+                // get $http via $injector because of circular dependency problem
+
+                $http = $http || $injector.get('$http');
+
+                if($http.pendingRequests.length < 1) {
+                    $('#loadingWidget').hide();
+                }
+                return response;
+            }
+
+            function error(response) {
+                // get $http via $injector because of circular dependency problem
+                $http = $http || $injector.get('$http');
+
+                if($http.pendingRequests.length < 1) {
+                    $('#loadingWidget').hide();
+                }
+                return $q.reject(response);
+            }
+
+            return function (promise) {
+                $('#loadingWidget').show();
+                return promise.then(success, error);
+            }
+        }];
+
+    $httpProvider.responseInterceptors.push(interceptor);
   }]);

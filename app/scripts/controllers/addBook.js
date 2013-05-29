@@ -11,11 +11,21 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
                 if(result!=null)
                 {
-                    $scope.book.description = result.description;
-                    $scope.book.image = result.image;
-                    $scope.book.title= result.title;
-                    $scope.book.authors = result.authors;
-                    $scope.book.isbn = result.isbn;
+                    if(result.title === undefined)
+                    {
+                        $rootScope.TypeNotification = "errormessage";
+                        $rootScope.MessageNotification = "Ooops sorry, book not found..";
+                    }
+                    else
+                    {
+                        $scope.book.description = result.description;
+                        $scope.book.image = result.image;
+                        $scope.book.title= result.title;
+                        $scope.book.authors = result.authors;
+                        $scope.book.isbn = result.isbn;
+
+                    }
+
                 }
                 else
                 {

@@ -31,6 +31,7 @@ angular.module('dataServices', [])
             console.log(e);
         }
 
+        var pendingRequests = 12;
         //Create Object/Table names with capital first letter, following Parse guidelines.
         var Book = Parse.Object.extend("Book");
         var User = Parse.Object.extend("User")
@@ -105,7 +106,7 @@ angular.module('dataServices', [])
             //Sign In User
             signIn: function signIn(email, password, callback) {
 
-                Parse.User.logIn(email, password, {
+                Parse.User.logIn(email.toLowerCase(), password, {
                     success: function (user) {
                         // Do stuff after successful login.
                         callback(true);
@@ -128,9 +129,9 @@ angular.module('dataServices', [])
             registerNewUser: function registerNewUser(user, callback) {
                 var newUser = new Parse.User();
 
-                newUser.set("username", user.Email);
+                newUser.set("username", user.Email.toLowerCase());
                 newUser.set("password", user.Password);
-                newUser.set("email", user.Email);
+                newUser.set("email", user.Email.toLowerCase());
 
                 newUser.signUp(null, {
                     success: function (userr) {
@@ -244,11 +245,44 @@ angular.module('dataServices', [])
 
             },
 
+<<<<<<< HEAD
+=======
+            getActionsPage: function getActionsPage(pageNumber, callback) {
+                var recordsPerPage = 10;
+                var query = new Parse.Query(Action);
+
+
+                // Retrieve the most recent ones
+                query.descending("createdAt");
+
+                // Only retrieve the last ten
+                query.limit(recordsPerPage);
+                query.skip(pageNumber*recordsPerPage);
+
+                //Only the ones made by you
+                query.equalTo("userPointer", Parse.User.current());
+
+                //query.withinKilometers("place", point, 20)
+
+                // Include the post data with each comment
+                query.include("bookPointer");
+                query.include("userPointer");
+                query.include("actionTypePointer");
+
+                query.find({
+                    success: function (actions) {
+                        // Comments now contains the last ten comments, and the "post" field
+                        // has been populated. For example:
+                        callback(actions);
+                    }
+                });
+            },
+
+>>>>>>> origin/hev2-branch
             getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
             {
                 var qActionOnDistance = new Parse.Query(Action);
                 var qBook = new Parse.Query(Book);
-
                 var recordsPerPage = 10;
 
                 // Only retrieve the last ten
@@ -515,6 +549,7 @@ angular.module('dataServices', [])
 
                 huntBook: function huntBook(registrationId, callback)
                 {
+                    $http.pendingRequests++;
                     //Check if the barcode exists || GetBookByBarCode
                     var ActionType = Parse.Object.extend("ActionType");
                     //var User = Parse.Object.extend("User");
@@ -543,6 +578,7 @@ angular.module('dataServices', [])
 
                             action.save(null, {
                                 success: function (data) {
+
                                     console.log("Succes hunting book: ");
                                     callback(true);
                                 },
