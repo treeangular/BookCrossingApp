@@ -5,7 +5,22 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
     $scope.books = [];
     var user;
 
-    user = $scope.selectedUser == null ? $rootScope.currentUser : $scope.selectedUser;
+    var id = $rootScope.currentUserId;
+
+    if($scope.selectedUser == null)
+    {
+        dataService.getUserById(id, function (isSuccess, result) {
+            if(isSuccess)
+            {
+                user = result;
+            }
+        });
+        alert(user.get("nick"))
+    }
+    else
+    {
+        user = $scope.selectedUser;
+    }
 
     $scope.library =
     {
