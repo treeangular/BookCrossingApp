@@ -11,14 +11,14 @@ angular.module('BookCrossingApp')
 
             $scope.myPicture = "../styles/img/CustomAvatarContest.png";
 
-            window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fs){
-                fs.root.getFile("temp", {create: true, exclusive: false},
-                    function(entry){
-                        var fileTransfer = new FileTransfer();
-                        fileTransfer.download(
-                            $scope.myPicture, // the filesystem uri you mentioned
-                            entry.fullPath,
-                            function(entry) {
+//            window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fs){
+//                fs.root.getFile("temp", {create: true, exclusive: false},
+//                    function(entry){
+//                        var fileTransfer = new FileTransfer();
+//                        fileTransfer.download(
+//                            $scope.myPicture, // the filesystem uri you mentioned
+//                            entry.fullPath,
+//                            function(entry) {
                                 // do what you want with the entry here
                                 console.log("download complete: " + entry.fullPath);
                                 dataService.uploadPicture(user, function(isResult, parseUrl)
@@ -41,19 +41,19 @@ angular.module('BookCrossingApp')
                                         });
                                     });
                                 });
-                            },
-                            function(error) {
-                                console.log("error source " + error.source);
-                                console.log("error target " + error.target);
-                                console.log("error code " + error.code);
-                            },
-                            false,
-                            null
-                        );
-                    }, function(){
-                        alert("file create error");
-                    });
-            }, null);
+//                            },
+//                            function(error) {
+//                                console.log("error source " + error.source);
+//                                console.log("error target " + error.target);
+//                                console.log("error code " + error.code);
+//                            },
+//                            false,
+//                            null
+//                        );
+//                    }, function(){
+//                        alert("file create error");
+//                    });
+//            }, null);
 
 
             }
@@ -99,14 +99,16 @@ angular.module('BookCrossingApp')
                 { quality: 50,
                     destinationType:Camera.DestinationType.FILE_URI,
                     encodingType: Camera.EncodingType.JPEG,
-                    sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
+                    //sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
                     targetWidth: 100,
                     targetHeight: 100
                 });
             function onSuccess(imageURI) {
                 var image = document.getElementById('preview');
-                image.src = imageURI;
-                $scope.myPicture = image.src;
+                movePic(imageURI);
+
+//                image.src = imageURI;
+//                $scope.myPicture = image.src;
 
 //                $scope.$apply(function() {
 //                    ctrl.$setViewValue(image.src);
@@ -119,5 +121,40 @@ angular.module('BookCrossingApp')
             }
 
         };
+
+        function movePic(file){
+            window.resolveLocalFileSystemURI(file, resolveOnSuccess, resOnError);
+        }
+
+//Callback function when the file system uri has been resolved
+        function resolveOnSuccess(entry){
+            var d = new Date();
+            var n = d.getTime();
+            //new file name
+            var newFileName = n + ".jpg";
+            var myFolderApp = "MyAppFolder";
+
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {
+                    //The folder is created if doesn't exist
+                    fileSys.root.getDirectory( myFolderApp,
+                        {create:true, exclusive: false},
+                        function(directory) {
+                            entry.moveTo(directory, newFileName,  successMove, resOnError);
+                        },
+                        resOnError);
+                },
+                resOnError);
+        }
+
+//Callback function when the file has been moved successfully - inserting the complete path
+        function successMove(entry) {
+            //Store imagepath in session for future use
+            // like to store it in database
+            sessionStorage.setItem('imagepath', entry.fullPath);
+        }
+
+        function resOnError(error) {
+            alert(error.code);
+        }
 
 });
