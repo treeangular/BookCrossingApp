@@ -13,25 +13,38 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
             if(isSuccess)
             {
                 user = result;
+                $scope.$apply(function () {
+                $scope.library =
+                {
+                    image: user.get('myPicture'),
+                    name: user.get('nick')== undefined ? "-" : user.get('username'),
+                    favoriteGenre: user.get('favoriteGenre') == undefined ? "-" : user.get('favoriteGenre'),
+                    registrations: user.get('registers') == undefined ? "-" : user.get('registers'),
+                    hunts:  user.get('hunts') == undefined ? "-" : user.get('hunts') ,
+                    comments:  user.get('comments') == undefined ? "-" : user.get('comments'),
+                    description:  user.get('status') == undefined ? "-" : user.get('status')
+                };
+                });
             }
         });
-        alert(user.get("nick"))
+
     }
     else
     {
         user = $scope.selectedUser;
+        $scope.library =
+        {
+            image: user.get('myPicture'),
+            name: user.get('nick')== undefined ? "-" : user.get('username'),
+            favoriteGenre: user.get('favoriteGenre') == undefined ? "-" : user.get('favoriteGenre'),
+            registrations: user.get('registers') == undefined ? "-" : user.get('registers'),
+            hunts:  user.get('hunts') == undefined ? "-" : user.get('hunts') ,
+            comments:  user.get('comments') == undefined ? "-" : user.get('comments'),
+            description:  user.get('status') == undefined ? "-" : user.get('status')
+        };
     }
 
-    $scope.library =
-    {
-        image: user.get('myPicture'),
-        name: user.get('nick')== undefined ? "-" : user.get('username'),
-        favoriteGenre: user.get('favoriteGenre') == undefined ? "-" : user.get('favoriteGenre'),
-        registrations: user.get('registers') == undefined ? "-" : user.get('registers'),
-        hunts:  user.get('hunts') == undefined ? "-" : user.get('hunts') ,
-        comments:  user.get('comments') == undefined ? "-" : user.get('comments'),
-        description:  user.get('status') == undefined ? "-" : user.get('status')
-    };
+
 
     $scope.getLibraryByUser= function (userId) {
         dataService.getLibraryByUserId(userId, function (isSuccess, results) {
