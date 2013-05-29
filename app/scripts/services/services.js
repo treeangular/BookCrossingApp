@@ -245,8 +245,6 @@ angular.module('dataServices', [])
 
             },
 
-<<<<<<< HEAD
-=======
             getActionsPage: function getActionsPage(pageNumber, callback) {
                 var recordsPerPage = 10;
                 var query = new Parse.Query(Action);
@@ -278,7 +276,6 @@ angular.module('dataServices', [])
                 });
             },
 
->>>>>>> origin/hev2-branch
             getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
             {
                 var qActionOnDistance = new Parse.Query(Action);
