@@ -283,8 +283,17 @@ li {
   border-bottom: 1px solid #9d9e9e;
 }
 
-.loading {
-    -webkit-mask-image: url('./img/ajax-loader.gif');
+.loading{
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    content:url('./img/page-loader.gif');
+    background-color: #000000;
+    color: #ffffff;
+
 }
 
 .bookPopUp img {
