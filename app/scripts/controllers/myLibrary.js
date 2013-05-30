@@ -3,6 +3,7 @@
 BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataService) {
 
     $scope.books = [];
+    $scope.currentPage = 0;
     var user;
 
     var id = $rootScope.currentUserId;
@@ -25,6 +26,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
                     description:  user.get('status') == undefined ? "-" : user.get('status')
                 };
                 });
+                $scope.nextPage();
             }
         });
 
@@ -64,9 +66,10 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
         if ($scope.busy) return;
         $scope.busy = true;
 
-        $scope.getLibraryByUser(user.id);
-        $scope.currentPage = $scope.currentPage + 1
-
+        if (user!=null)   {
+            $scope.getLibraryByUser(user.id);
+            $scope.currentPage = $scope.currentPage + 1
+        }
         $scope.busy = false;
     };
 
