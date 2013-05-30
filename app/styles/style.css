@@ -231,6 +231,8 @@ input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, text
 .logo
 {
 	background-image: url('./img/logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
@@ -305,6 +307,31 @@ li {
 .bookPopUp li {
     overflow: auto;
     border-bottom: 1px solid #9d9e9e;
+}
+
+.huntOption, .releaseOption{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 1px solid #9d9e9e;
+    border-bottom: 1px solid #9d9e9e;
+}
+
+.huntOption {
+    margin-top: 5px;
+    background-image: url('./img/hunt_small.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 15px 40px;
+
+}
+
+.releaseOption {
+    margin-top: 10px;
+    background-image: url('./img/release.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 15px 40px;
+
 }
 
 .bookOption {
@@ -777,6 +804,6 @@ height: 100%;
 }
 
 #tabbar .huntBook{
-    -webkit-mask-image: url('./img/hunt.png');
+    -webkit-mask-image: url('./img/bc.png');
 }
 

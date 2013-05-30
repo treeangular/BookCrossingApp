@@ -30,7 +30,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
                 $scope.rightButtonName = null;
                 break;
             case 'views/huntBook.html':
-                $scope.title = 'Hunt Book';
+                $scope.title = 'BookCrossing Action';
                 $scope.leftButtonName = null;
                 $scope.rightButtonName = null;
                 $scope.selectOption('huntBook');
@@ -51,7 +51,6 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 				$scope.title = 'Register Book';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = null;
-                $scope.selectOption('addBook');
 				break;
             case 'views/book.html':
                 $scope.title = 'Detail';
@@ -63,13 +62,11 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
                 $scope.title = 'Release Book';
                 $scope.leftButtonRef = "views/book.html";
                 $scope.rightButtonName = null;
-                $scope.selectOption('addBook');
                 break;
 			case 'views/addZobc.html':
 				$scope.title = 'Register OBCZ';
 				$scope.leftButtonName = null;
 				$scope.rightButtonName = null;
-                $scope.selectOption('addZobc');
 				break;
 			case 'views/Library.html':
 				$scope.title = $scope.selectedUser.get('nick') + ' Library';
@@ -97,7 +94,6 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
                 $scope.leftButtonName = null;
                 $scope.rightButtonName = 'List';
                 $scope.rightButtonRef = "views/home.html";
-                $scope.selectOption('home');
                 $scope.selectedBook = '';
                 break;
             default:

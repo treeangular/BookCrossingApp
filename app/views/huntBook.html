@@ -1,6 +1,17 @@
-<form name="registerNewBook-form" ng-submit="huntBook(book)" ng-controller="HuntBookCtrl">
+<div ng-controller="HuntBookCtrl">
+<form name="registerNewBook-form" ng-submit="huntBook(book)">
+    <h2 class="huntOption">Hunt a book</h2>
     <input name="bookBarcode" type="text" ng-model="book.registrationId"  placeholder="Registration Id" required />
     <input type="submit"  value="Hunt" class="buttonlarge" />
-    <div>
-    </div>
 </form>
+<h2 class="releaseOption">Release a book</h2>
+<ul>
+    <li >
+        <div class="bookItemList">
+            <img ng-repeat='book in books' ng-click="release(book.id)"  ng-src='{{book.image}}'>
+        </div>
+        <p ng-hide="books!=null">No books to release</p>
+    </li>
+
+</ul>
+</div>

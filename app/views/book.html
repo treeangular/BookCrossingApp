@@ -6,10 +6,6 @@
     <p>{{description}}</p>
     <p><a ng-click="expand()">{{seeMoreOrLess}}</a></p>
 </div>
-<div id="clearfix">
-    <input ng-show="book.isReleasable" ng-click="releaseBook()"  type="submit" value="Release" class="buttonlarge" />
-    <!--<input ng-click="commentBook()"  type="submit" value="Comment" class="buttonmiddle" /> -->
-</div>
 <ul id="BookOptionList">
     <li class="bookOption" ng-click="goTo('views/mapTracking.html')"><h2 id="trackingOption">Tracking</h2></li>
     <li class="bookOption"  ng-click="goTo('views/comments.html')"><h2 id="commentOption">Comments</h2></li>
