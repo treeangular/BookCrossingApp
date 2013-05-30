@@ -18,6 +18,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope)
 	dataService.getActionsForHomePage(pageNumber, function (results) {
         $scope.$apply(function () {
             //TODO: Load only first page and then use paging in the NextPage function!
+            $('#loadingWidget').show();
             $scope.actionList = results;
 			for (var i=0;i<results.length;i++)
 			{
@@ -81,6 +82,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope)
 			$scope.alerts.push($scope.newalert);
             console.log("Getting books from database! Page number: " + pageNumber + " BookId: " + book.id);
 			}
+            $('#loadingWidget').hide();
         });
     });
     };
