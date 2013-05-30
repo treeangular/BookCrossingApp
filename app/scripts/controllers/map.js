@@ -56,7 +56,6 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
 
     geolocationService.getCurrentPosition(function (position) {
         geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-        $('#loadingWidget').show();
         if (geoPoint!=null){
 
             var marker = new google.maps.Marker({
@@ -72,8 +71,6 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
             $scope.getActPage();
 
         }
-        $('#loadingWidget').hide();
-
     });
 
     $scope.getActPage = function () {
