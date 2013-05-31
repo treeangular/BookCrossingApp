@@ -1,39 +1,14 @@
 'use strict';
 
-BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataService) {
+BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataService, $q) {
 
     $scope.books = [];
     $scope.currentPage = 0;
     var user;
+    var id = $rootScope.currentUser.id;
 
-    var id = $rootScope.currentUserId;
-
-    if($scope.selectedUser == null)
+    function bindToLibrary(user)
     {
-        dataService.getUserById(id, function (isSuccess, result) {
-            if(isSuccess)
-            {
-                user = result;
-                $scope.$apply(function () {
-                $scope.library =
-                {
-                    image: user.get('myPicture'),
-                    name: user.get('nick')== undefined ? "-" : user.get('username'),
-                    favoriteGenre: user.get('favoriteGenre') == undefined ? "-" : user.get('favoriteGenre'),
-                    registrations: user.get('registers') == undefined ? "-" : user.get('registers'),
-                    hunts:  user.get('hunts') == undefined ? "-" : user.get('hunts') ,
-                    comments:  user.get('comments') == undefined ? "-" : user.get('comments'),
-                    description:  user.get('status') == undefined ? "-" : user.get('status')
-                };
-                });
-                $scope.nextPage();
-            }
-        });
-
-    }
-    else
-    {
-        user = $scope.selectedUser;
         $scope.library =
         {
             image: user.get('myPicture'),
@@ -44,9 +19,44 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
             comments:  user.get('comments') == undefined ? "-" : user.get('comments'),
             description:  user.get('status') == undefined ? "-" : user.get('status')
         };
+
+    }
+    function getUserById(id){
+        var deferred = $q.defer();
+        dataService.getUserById(id, function (isSuccess, result) {
+
+            $scope.$apply(function(){
+                if(isSuccess)
+                {
+                    deferred.resolve(result);
+                }
+                else
+                {
+                    deferred.reject();
+                }
+            });
+
+        });
+
+        return deferred.promise;
     }
 
 
+    if($scope.selectedUser == null)
+    {
+
+        bindToLibrary($rootScope.currentUser);
+
+        var promise = getUserById(id);
+        promise.then(function(userLogged) {
+            bindToLibrary(userLogged);
+        });
+
+    }
+    else
+    {
+       bindToLibrary($scope.selectedUser);
+    }
 
     $scope.getLibraryByUser= function (userId) {
         dataService.getLibraryByUserId(userId, function (isSuccess, results) {

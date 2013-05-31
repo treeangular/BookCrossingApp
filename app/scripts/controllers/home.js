@@ -8,7 +8,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope)
     {
         dataService.isCurrentUser(function (result, currentUser) {
             if (result) {
-                $rootScope.currentUserId = currentUser.id;
+                $rootScope.currentUser = currentUser;
             }
         });
     }
