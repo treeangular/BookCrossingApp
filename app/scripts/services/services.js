@@ -703,7 +703,7 @@ angular.module('dataServices', [])
                     bookStatus.id = BookStatusConst.Registered;
                     var bookStatus2 = new BookStatus();
                     bookStatus2.id = BookStatusConst.Hunted;
-                    qBook.contains("bookStatus",[bookStatus,bookStatus2]);
+                    qBook.containedIn("bookStatus",[bookStatus,bookStatus2]);
 
                     //Book that I am the one that made the last action on it.
                     qBook.equalTo("ownedBy", Parse.User.current());
