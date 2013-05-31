@@ -321,9 +321,7 @@ angular.module('dataServices', [])
                     }
                 });
 
-            },
-
-//            getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
+            },//            getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
 //            {
 //                var qActionOnDistance = new Parse.Query(Action);
 //                var qBook = new Parse.Query(Book);
@@ -376,44 +374,6 @@ angular.module('dataServices', [])
 //            },
             //TODO
             //TODO
-
-            //TODO: Change the name to getBooksForMap
-            getActionsForMap: function  getActionsForMap(geoPoint, callback)
-            {
-                //Get the Actions related to this books ordered chronologically
-                var qBook = new Parse.Query(Book);
-
-                qBook.withinKilometers("releasedAt", geoPoint, 20)
-
-                //Only Released actions of others books. (Also Lost ones?)
-                var bookStatus = new BookStatus();
-                bookStatus.id = BookStatusConst.Released;
-                qBook.equalTo("bookStatus",bookStatus);
-
-                //Book not belongs to me - do we need that one?
-                //qAction.notEqualTo("user", Parse.User.current());
-
-                //Do we need to order them?
-                qBook.descending("createdAt");
-
-                // Include the post data with each comment
-                //qAction.include("book");
-                //qAction.include("user");
-                //qAction.include("actionType");
-
-                qBook.find({
-                    success: function (books) {
-                        //TODO: DEJ Make the entries unique by bookId, since they are ordered just get the first appearance.
-//                        var unique = _.uniq(actions, true,"bookPointer.id" );
-//                        var groupBy = _.groupBy(actions,"bookPointer.id");
-                        callback(books);
-                        //actionsFromUserBooks = actions;
-                    },
-                    error: function (actions, error) {
-                        console.log("Error: " + error.code + " " + error.message);
-                    }
-                });
-            },
 
             getLibraryByUserId: function getLibraryByUserId(userId, callback){
 
@@ -511,8 +471,6 @@ angular.module('dataServices', [])
 
                 },
 
-
-
                 registerBook: function registerBook(bookk, callback) {
 
                     var book = new Book();
@@ -546,45 +504,6 @@ angular.module('dataServices', [])
                         }
                     });
                 },
-
-//                releaseBook: function releaseBook(releaseInfo, callback)
-//                {   //  TODO : DEJ Update book with the new BookStatus!
-//                    //var Book = Parse.Object.extend("Book");
-//                    var ActionType = Parse.Object.extend("ActionType");
-//                    var User = Parse.Object.extend("User");
-//
-//                    var action = new Action();
-//                    var currentUser = Parse.User.current();
-//
-//                    action.set("releasedAt", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
-//                    action.set("releasedAtDescription", releaseInfo.bookLocationDescription);
-//
-//                    action.set("book", new Book({id: releaseInfo.bookId}));
-//
-//                    action.set("actionType",new ActionType({id: ActionTypesConst.Released}));
-//
-//                    //TODO: Do we need the user since we have the ACL? => Yes, ACL does not subsitute the user it is just for role managment
-//                    action.set("user", new User({id: Parse.User.current().id}));
-//
-//                    var newAcl = new Parse.ACL(currentUser);
-//                    newAcl.setPublicReadAccess(true);
-//                    action.setACL(newAcl);
-//
-//                    action.save(null, {
-//                        success: function (data) {
-//                            // The object was saved successfully, lets update the status
-//                            //TODO: Should we do that in cloude code? After Action saved?! Most likely for the released hunted loop
-//
-//                            callback(true);
-//                        },
-//                        error: function (data,error) {
-//                            // The save failed.
-//                            // error is a Parse.Error with an error code and description.
-//                            console.log("Error: " + error.code + " " + error.message);
-//                            callback(false);
-//                        }
-//                    });
-//                },
 
                 releaseBook: function releaseBook(releaseInfo, callback)
                 {
@@ -622,77 +541,38 @@ angular.module('dataServices', [])
 
                 huntBook: function huntBook(registrationId, callback)
                 {
-                    var book = new Book({id: registrationId});
-                    book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
-                    book.set("ownedBy", Parse.User.current());
+                    var qBook = new Parse.Query(Book);
+                    qBook.equalTo("registrationId", registrationId);
 
-                    book.save(null, {
-                        success: function (book) {
-                            // The object was saved successfully, lets update the status
-                            callback(true);
+                    qBook.first({
+                        success: function (book)
+                        {
+                            book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
+                            book.set("ownedBy", Parse.User.current());
+
+                            book.save(null, {
+                                success: function (book) {
+                                    // The object was saved successfully, lets update the status
+                                    callback(true);
+                                },
+                                error: function (data,error) {
+                                    // The save failed.
+                                    // error is a Parse.Error with an error code and description.
+                                    console.log("Error: " + error.code + " " + error.message);
+                                    callback(false);
+                                }
+                            });
                         },
-                        error: function (data,error) {
-                            // The save failed.
+                        error: function (object, error) {
+                            // The object was not retrieved successfully.
                             // error is a Parse.Error with an error code and description.
                             console.log("Error: " + error.code + " " + error.message);
-                            callback(false);
                         }
                     });
                 },
-//                huntBook: function huntBook(registrationId, callback)
-//                {
-//                    $http.pendingRequests++;
-//                    //Check if the barcode exists || GetBookByBarCode
-//                    var ActionType = Parse.Object.extend("ActionType");
-//                    //var User = Parse.Object.extend("User");
-//                    var currentUser = Parse.User.current();
-//
-//                    var query = new Parse.Query(Book);
-//                    console.log("registrationId -" + registrationId);
-//                    // Include the post data with each comment
-//                    var bookId;
-//
-//                    query.equalTo("registrationId", registrationId);
-//
-//                    query.first({
-//                        success: function (book) {
-//                            //Create new Action Hunted.
-//                            var action = new Action();
-//                            action.set("book", book);
-//                            action.set("actionType",new ActionType({id: ActionTypesConst.Hunted}));
-//                            action.set("user", currentUser);
-//
-//                            bookId = book.id;
-//
-//                            var newAcl = new Parse.ACL(currentUser);
-//                            newAcl.setPublicReadAccess(true);
-//                            action.setACL(newAcl);
-//
-//                            action.save(null, {
-//                                success: function (data) {
-//
-//                                    console.log("Succes hunting book: ");
-//                                    callback(true);
-//                                },
-//                                error: function (data,error) {
-//                                    // The save failed.
-//                                    // error is a Parse.Error with an error code and description.
-//                                    console.log("Error: " + error.code + " " + error.message);
-//                                    callback(false, error);
-//                                }
-//                            });
-//
-//                            callback(true,bookId);
-//                        },
-//                        error: function (book, error) {
-//                            // The save failed.
-//                            // error is a Parse.Error with an error code and description.
-//                            console.log("Error: " + error.code + " " + error.message);
-//                            callback(false, error);
-//                        }
-//                    });
-//                },
-                getBookRegistrationId: function GetBookRegistrationId(callback) {
+
+                getBookRegistrationId: function GetBookRegistrationId(callback)
+                {
 
                     Parse.Cloud.run('GetBookId', {}, {
                         success: function (result) {
@@ -735,6 +615,37 @@ angular.module('dataServices', [])
                         }
                     });
 
+                },
+
+                getBooksForMap: function  getBooksForMap(geoPoint, callback)
+                {
+                     //Get the Actions related to this books ordered chronologically
+                     var qBook = new Parse.Query(Book);
+
+                     qBook.withinKilometers("releasedAt", geoPoint, 20)
+
+                     //Only Released actions of others books. (Also Lost ones?)
+                     var bookStatus = new BookStatus();
+                     bookStatus.id = BookStatusConst.Released;
+                     qBook.equalTo("bookStatus",bookStatus);
+
+                     //Book not belongs to me - do we need that one?
+                     qBook.notEqualTo("ownedBy", Parse.User.current());
+
+                     //Do we need to order them?
+                     qBook.descending("createdAt");
+
+                     // Include the post data with each comment
+                     qBook.include("user");
+
+                     qBook.find({
+                         success: function (books) {
+                             callback(books);
+                         },
+                         error: function (actions, error) {
+                             console.log("Error: " + error.code + " " + error.message);
+                         }
+                     });
                 },
 
                 //</editor-fold>

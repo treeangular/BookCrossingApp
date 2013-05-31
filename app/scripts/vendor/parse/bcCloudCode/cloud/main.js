@@ -72,6 +72,7 @@ Parse.Cloud.afterSave("Book", function (request) {
     var action = new Parse.Object("Action");
     var query = new Parse.Query("ActionType");
     var user = new Parse.Object("User");
+    var tracking = Parse.Object("Tracking");
 
     var actionTypeId;
     var userCounterToIncerement;
@@ -80,7 +81,7 @@ Parse.Cloud.afterSave("Book", function (request) {
         case BookStatusConst.Registered:
             actionTypeId = ActionTypesConst.Registered;
             //TODO DEJ: We don't need to keep track of this counter - registred should be one always . . .
-            userCounterToIncerement = "registered";
+            userCounterToIncerement = "";
             break;
         case BookStatusConst.Released:
             actionTypeId = ActionTypesConst.Released;
@@ -110,7 +111,7 @@ Parse.Cloud.afterSave("Book", function (request) {
 
                 action.save(null, {
                     success: function (action) {
-                        // The object was saved successfully.
+                        // The action was saved successfully.
                     },
                     error: function (error) {
                         // The save failed.
@@ -122,7 +123,8 @@ Parse.Cloud.afterSave("Book", function (request) {
 
                 //Update User counters
                 user = request.user;
-                user.increment(userCounterToIncerement);
+                if(userCounterToIncerement != "")
+                {user.increment(userCounterToIncerement);}
 
                 user.save(null, {
 
@@ -145,9 +147,9 @@ Parse.Cloud.afterSave("Book", function (request) {
         });
 
         //Save tracking if the book have been released
-        if(actionTypeId == BookStatusConst.Released)
+        if(actionTypeId == ActionTypesConst.Released)
         {
-            var tracking = new Parse.Object("Tracking");
+            console.log("It is a release going to create the Tracking record ");
 
             //Set the new tracking record
             tracking.set("releasedAt", request.object.get("releasedAt"));
