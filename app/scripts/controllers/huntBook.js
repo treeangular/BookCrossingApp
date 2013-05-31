@@ -20,7 +20,6 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope,dataService,$rootSco
         //});
     };
 
-
     dataService.getBooksThatCanBeReleased(function (isSuccess, results) {
         if(isSuccess)
         {

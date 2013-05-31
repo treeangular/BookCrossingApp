@@ -717,7 +717,7 @@ angular.module('dataServices', [])
 
                     qBook.find({
                         success: function (books) {
-                            callback(books);
+                            callback(true,books);
                         },
                         error: function (actions, error) {
                             console.log("Error: " + error.code + " " + error.message);
