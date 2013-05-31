@@ -79,6 +79,7 @@ Parse.Cloud.afterSave("Book", function (request) {
     switch (request.object.get("bookStatus").id) {
         case BookStatusConst.Registered:
             actionTypeId = ActionTypesConst.Registered;
+            //TODO DEJ: We don't need to keep track of this counter - registred should be one always . . .
             userCounterToIncerement = "registered";
             break;
         case BookStatusConst.Released:

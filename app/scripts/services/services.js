@@ -289,7 +289,6 @@ angular.module('dataServices', [])
 //                    }
 //                });
 //            },
-
             getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
             {
                 var qAction = new Parse.Query(Action);
@@ -300,12 +299,11 @@ angular.module('dataServices', [])
                 // Retrieve the most recent ones
                 qAction.descending("createdAt");
 
-
-//                var actionType = new ActionType();
-//                actionType.id = ActionTypesConst.Released;
-//                var actionType2 = new ActionType();
-//                actionType2.id = ActionTypesConst.Hunted;
-//                qAction.containedIn("actionType",[actionType, actionType2]);
+                var actionType = new ActionType();
+                actionType.id = ActionTypesConst.Released;
+                var actionType2 = new ActionType();
+                actionType2.id = ActionTypesConst.Hunted;
+                qAction.containedIn("actionType",[actionType, actionType2]);
 
                 //qAction.notContainedIn("user",[Parse.User.current()]);
 
@@ -419,34 +417,25 @@ angular.module('dataServices', [])
 
             getLibraryByUserId: function getLibraryByUserId(userId, callback){
 
-                var query = new Parse.Query(Action);
+                var qBook = new Parse.Query(Book);
 
                 var user = new User();
                 user.id = userId;
 
-                var actionType = new ActionType();
-                actionType.id = ActionTypesConst.Hunted
-
-                var actionType2 = new ActionType();
-                actionType2.id = ActionTypesConst.Registered
-
                 // Retrieve the most recent ones
-                query.descending("createdAt");
+                qBook.descending("createdAt");
+                qBook.equalTo('registeredBy', user);
 
                 // Include the post data with each comment
-                query.include("book");
-                query.include("user");
-                query.include("actionType");
+                //query.include("book");
+                qBook.include("user");
+                //query.include("actionType");
 
-
-                query.equalTo('user', user);
-                query.containedIn('actionType',[actionType, actionType2]);
-
-                query.find({
-                    success: function (actions) {
+                qBook.find({
+                    success: function (books) {
                         // Comments now contains the last ten comments, and the "post" field
                         // has been populated. For example:
-                        callback(true, actions);
+                        callback(true, books);
 
                     },
                     error: function (error) {
@@ -454,6 +443,7 @@ angular.module('dataServices', [])
                     }
                 });
             },
+
             //</editor-fold>
 
         //<editor-fold description="Book">
@@ -520,6 +510,9 @@ angular.module('dataServices', [])
                     });
 
                 },
+
+
+
                 registerBook: function registerBook(bookk, callback) {
 
                     var book = new Book();
@@ -534,6 +527,7 @@ angular.module('dataServices', [])
                     book.set("released", 0);
                     book.set("registeredBy", Parse.User.current());
                     book.set("bookStatus", new BookStatus({id: BookStatusConst.Registered}));
+                    book.set("ownedBy", Parse.User.current());
 
                     var newAcl = new Parse.ACL(Parse.User.current());
                     newAcl.setPublicReadAccess(true);
@@ -599,6 +593,7 @@ angular.module('dataServices', [])
                     book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
                     book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
                     book.set("bookStatus", new BookStatus({id: BookStatusConst.Released}));
+                    book.set("ownedBy", Parse.User.current());
 
                     book.save(null, {
                         success: function (book) {
@@ -618,6 +613,7 @@ angular.module('dataServices', [])
                 {
                     var book = new Book({id: registrationId});
                     book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
+                    book.set("ownedBy", Parse.User.current());
 
                     book.save(null, {
                         success: function (book) {
@@ -709,23 +705,19 @@ angular.module('dataServices', [])
                     bookStatus2.id = BookStatusConst.Hunted;
                     qBook.contains("bookStatus",[bookStatus,bookStatus2]);
 
-                    //Book not belongs to me - do we need that one?
-                    qAction.equalTo("registeredBy", Parse.User.current());
+                    //Book that I am the one that made the last action on it.
+                    qBook.equalTo("ownedBy", Parse.User.current());
 
                     //Do we need to order them?
                     qBook.descending("createdAt");
 
                     // Include the post data with each comment
-                    //qAction.include("book");
-                    //qAction.include("user");
+                    qBook.include("user");
                     //qAction.include("actionType");
 
                     qBook.find({
                         success: function (books) {
-                            //TODO: DEJ Make the entries unique by bookId, since they are ordered just get the first appearance.
-//
                             callback(books);
-                            //actionsFromUserBooks = actions;
                         },
                         error: function (actions, error) {
                             console.log("Error: " + error.code + " " + error.message);
