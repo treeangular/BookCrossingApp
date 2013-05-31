@@ -403,12 +403,12 @@ angular.module('dataServices', [])
                 //qAction.include("user");
                 //qAction.include("actionType");
 
-                qAction.find({
-                    success: function (actions) {
+                qBook.find({
+                    success: function (books) {
                         //TODO: DEJ Make the entries unique by bookId, since they are ordered just get the first appearance.
 //                        var unique = _.uniq(actions, true,"bookPointer.id" );
 //                        var groupBy = _.groupBy(actions,"bookPointer.id");
-                        callback(actions);
+                        callback(books);
                         //actionsFromUserBooks = actions;
                     },
                     error: function (actions, error) {
@@ -696,6 +696,44 @@ angular.module('dataServices', [])
                         }
                     });
                 },
+
+                getBookThatCanBeReleased: function GetBookThatCanBeReleased(callback)
+                {
+                    //Get the Actions related to this books ordered chronologically
+                    var qBook = new Parse.Query(Book);
+
+                    //Only Released actions of others books. (Also Lost ones?)
+                    var bookStatus = new BookStatus();
+                    bookStatus.id = BookStatusConst.Registered;
+                    var bookStatus2 = new BookStatus();
+                    bookStatus2.id = BookStatusConst.Hunted;
+                    qBook.contains("bookStatus",[bookStatus,bookStatus2]);
+
+                    //Book not belongs to me - do we need that one?
+                    qAction.equalTo("registeredBy", Parse.User.current());
+
+                    //Do we need to order them?
+                    qBook.descending("createdAt");
+
+                    // Include the post data with each comment
+                    //qAction.include("book");
+                    //qAction.include("user");
+                    //qAction.include("actionType");
+
+                    qBook.find({
+                        success: function (books) {
+                            //TODO: DEJ Make the entries unique by bookId, since they are ordered just get the first appearance.
+//
+                            callback(books);
+                            //actionsFromUserBooks = actions;
+                        },
+                        error: function (actions, error) {
+                            console.log("Error: " + error.code + " " + error.message);
+                        }
+                    });
+
+                },
+
                 //</editor-fold>
 
         uploadPicture: function uploadPicture(user,callback)
