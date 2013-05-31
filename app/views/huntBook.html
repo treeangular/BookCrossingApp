@@ -8,7 +8,10 @@
 <ul>
     <li >
         <div class="bookItemList">
-            <img ng-repeat='book in books' ng-click="release(book.id)"  ng-src='{{book.get("image")}}'>
+            <div ng-repeat='book in books' ng-switch on="book.get('image')">
+                <span class="bookNoImage" ng-switch-when="undefined">{{book.get('title')}}</span>
+                <img  ng-click="release(book.id)"  ng-src='{{book.get("image")}}' ng-switch-default>
+            </div>
         </div>
         <p ng-hide="books!=null">No books to release</p>
     </li>

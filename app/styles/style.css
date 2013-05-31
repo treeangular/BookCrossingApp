@@ -270,8 +270,18 @@ ul {
 .bookItemList img {
   float: left;
   margin: 0 15px 0 0;
-  width: 50;
-  height: 75px
+  width: 50px;
+  height: 75px;
+}
+
+.bookNoImage {
+    float: left;
+    margin: 0 15px 0 0;
+    width: 50px;
+    height: 75px;
+    border: solid 3px;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .adAlert img {
