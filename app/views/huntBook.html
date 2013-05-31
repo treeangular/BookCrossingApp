@@ -7,13 +7,13 @@
 <h2 class="releaseOption">Release a book</h2>
 <ul>
     <li >
-        <div class="bookItemList">
+        <div class="bookReleaseItemList">
             <div ng-repeat='book in books' ng-switch on="book.get('image')">
-                <span class="bookNoImage" ng-switch-when="undefined">{{book.get('title')}}</span>
+                <span ng-click="release(book.id)"  class="bookNoImage" ng-switch-when="undefined">{{book.get('title')}}</span>
                 <img  ng-click="release(book.id)"  ng-src='{{book.get("image")}}' ng-switch-default>
             </div>
         </div>
-        <p ng-hide="books!=null">No books to release</p>
+        <p ng-show="books.length==0">No books to release</p>
     </li>
 </ul>
 </div>
