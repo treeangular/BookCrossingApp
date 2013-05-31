@@ -14,7 +14,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
             image: user.get('myPicture'),
             name: user.get('nick')== undefined ? "-" : user.get('username'),
             favoriteGenre: user.get('favoriteGenre') == undefined ? "-" : user.get('favoriteGenre'),
-            registrations: user.get('registers') == undefined ? "-" : user.get('registers'),
+            registrations: user.get('registered') == undefined ? "-" : user.get('registered'),
             hunts:  user.get('hunts') == undefined ? "-" : user.get('hunts') ,
             comments:  user.get('comments') == undefined ? "-" : user.get('comments'),
             description:  user.get('status') == undefined ? "-" : user.get('status')
@@ -49,6 +49,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
         var promise = getUserById(id);
         promise.then(function(userLogged) {
+            $rootScope.currentUser = userLogged;
             bindToLibrary(userLogged);
         });
 
