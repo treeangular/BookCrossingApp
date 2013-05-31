@@ -7,11 +7,11 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 		if ($scope.book.isbn != null)
         {
 
-            isbnService.getGoogleBookInfo($scope.book.isbn, function(result){
+            isbnService.getGoogleBookInfo($scope.book.isbn, function(isSuccess, result){
 
-                if(result!=null)
+                if(isSuccess)
                 {
-                    if(result.title === undefined)
+                    if(result === null)
                     {
                         $rootScope.TypeNotification = "errormessage";
                         $rootScope.MessageNotification = "Ooops sorry, book not found..";
@@ -23,7 +23,6 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                         $scope.book.title= result.title;
                         $scope.book.authors = result.authors;
                         $scope.book.isbn = result.isbn;
-
                     }
 
                 }
