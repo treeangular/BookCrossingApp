@@ -1,6 +1,7 @@
 'use strict';
 
 BookCrossingApp.controller('HuntBookCtrl', function ($scope,dataService,$rootScope) {
+    $scope.books = null;
     $scope.huntBook = function (book) {
         //$scope.$apply(function () {
                 dataService.huntBook(book.registrationId,function(isSuccess,bookId)
@@ -20,11 +21,15 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope,dataService,$rootSco
     };
 
 
-    //Release a book
-    $scope.books = [
-        {id:"3213213", title:"A Clockwork Orange", image:"styles/img/books/a_clockwork_orange.jpg"},
-        {id:"3213212", title:"Lord of the rings", image:"styles/img/books/lord_of_the_rings.jpg "}
-    ];
+    dataService.getBooksThatCanBeReleased(function (isSuccess, results) {
+        if(isSuccess)
+        {
+            $scope.$apply(function () {
+                $scope.books = results
+            });
+        }
+    });
+
 
     $scope.release = function (bookId) {
         //Go to releaseBook view
