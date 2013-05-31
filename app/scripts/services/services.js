@@ -374,8 +374,7 @@ angular.module('dataServices', [])
 //                    }
 //                });
 //            },
-            //TODO
-            //TODO
+
 
             //TODO: Change the name to getBooksForMap
             getActionsForMap: function  getActionsForMap(geoPoint, callback)
@@ -425,11 +424,10 @@ angular.module('dataServices', [])
                 // Retrieve the most recent ones
                 qBook.descending("createdAt");
                 qBook.equalTo('registeredBy', user);
-
                 // Include the post data with each comment
-                //query.include("book");
                 qBook.include("user");
-                //query.include("actionType");
+                qBook.include("bookStatus");
+
 
                 qBook.find({
                     success: function (books) {
