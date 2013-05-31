@@ -372,8 +372,7 @@ angular.module('dataServices', [])
 //                    }
 //                });
 //            },
-            //TODO
-            //TODO
+
 
             getLibraryByUserId: function getLibraryByUserId(userId, callback){
 
@@ -385,11 +384,10 @@ angular.module('dataServices', [])
                 // Retrieve the most recent ones
                 qBook.descending("createdAt");
                 qBook.equalTo('registeredBy', user);
-
                 // Include the post data with each comment
-                //query.include("book");
                 qBook.include("user");
-                //query.include("actionType");
+                qBook.include("bookStatus");
+
 
                 qBook.find({
                     success: function (books) {
