@@ -10,10 +10,10 @@
 
   <author email="truegoldenwarriors@gmail.com">bookCrossing</author>
 
-  <icon src="./styles/img/logo.png" gap:role="default" />
-  <icon src="./styles/img/logo.png" gap:platform="ios" width="57" height="57" />
-  <icon src="./styles/img/logo.png" gap:platform="ios" width="72" height="72" />
-  <icon src="./styles/img/logo.png" gap:platform="ios" width="114" height="114" />
+  <icon src="styles/img/bc.png" gap:role="default" />
+  <icon src="styles/img/bc.png" gap:platform="ios" width="57" height="57" />
+  <icon src="styles/img/bc.png" gap:platform="ios" width="72" height="72" />
+  <icon src="styles/img/bc.png" gap:platform="ios" width="114" height="114" />
 
   <feature name="http://api.phonegap.com/1.0/network"/>
   <feature name="http://api.phonegap.com/1.0/geolocation"/>

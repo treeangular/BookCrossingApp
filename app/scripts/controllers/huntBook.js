@@ -27,6 +27,10 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope,dataService,$rootSco
                 $scope.books = results
             });
         }
+        else
+        {
+            $rootScope.ErrorMessage = "Oops . . . Error getting your books to release.";
+        }
     });
 
 
