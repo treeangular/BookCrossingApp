@@ -589,22 +589,33 @@ angular.module('dataServices', [])
                 releaseBook: function releaseBook(releaseInfo, callback)
                 {
                     var book = new Book({id: releaseInfo.bookId});
-                    book.set("releasedAt", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
-                    book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
-                    book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
-                    book.set("bookStatus", new BookStatus({id: BookStatusConst.Released}));
-                    book.set("ownedBy", Parse.User.current());
 
-                    book.save(null, {
-                        success: function (book) {
-                            // The object was saved successfully, lets update the status
-                            callback(true);
-                        },
-                        error: function (data,error) {
-                            // The save failed.
+                    book.fetch({
+                        success: function (book)
+                        {
+                            book.set("releasedAt", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
+                            book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
+                            book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
+                            book.set("bookStatus", new BookStatus({id: BookStatusConst.Released}));
+                            book.set("ownedBy", Parse.User.current());
+
+                            book.save(null, {
+                                success: function (book) {
+                                    // The object was saved successfully, lets update the status
+                                    callback(true);
+                                },
+                                error: function (data,error) {
+                                    // The save failed.
+                                    // error is a Parse.Error with an error code and description.
+                                    console.log("Error: " + error.code + " " + error.message);
+                                    callback(false);
+                                }
+                            });
+                        } ,
+                        error: function (object, error) {
+                            // The object was not retrieved successfully.
                             // error is a Parse.Error with an error code and description.
                             console.log("Error: " + error.code + " " + error.message);
-                            callback(false);
                         }
                     });
                 },
