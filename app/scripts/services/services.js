@@ -697,7 +697,7 @@ angular.module('dataServices', [])
                     });
                 },
 
-                getBookThatCanBeReleased: function GetBookThatCanBeReleased(callback)
+                getBooksThatCanBeReleased: function GetBookThatCanBeReleased(callback)
                 {
                     //Get the Actions related to this books ordered chronologically
                     var qBook = new Parse.Query(Book);
