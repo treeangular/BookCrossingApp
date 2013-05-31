@@ -9,7 +9,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope,dataService,$rootSco
                     if(isSuccess)
                     {
                         //$rootScope.
-                        $scope.selectedBook = bookId;
+                        $scope.setSelectedBook(bookId);
                         $scope.goTo('views/book.html');
                     }
                     else
@@ -32,7 +32,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope,dataService,$rootSco
 
     $scope.release = function (bookId) {
         //Go to releaseBook view
-        $scope.selectedBook = bookId;
+        $scope.setSelectedBook(bookId);
         $scope.goTo('views/releaseBook.html');
     };
 });

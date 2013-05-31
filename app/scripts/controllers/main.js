@@ -142,4 +142,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
         $scope.registrationCode  = registrationId;
     }
 
+    $scope.setSelectedBook  = function(bookId){
+        $scope.selectedBook = bookId;
+    };
 });
