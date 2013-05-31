@@ -7,8 +7,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
     var user;
     var id = $rootScope.currentUser.id;
 
-    function bindToLibrary(user)
-    {
+    function bindToLibrary(user){
         $scope.library =
         {
             image: user.get('myPicture'),
@@ -40,11 +39,30 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
         return deferred.promise;
     }
+    function getLibraryByUserId(id){
+        var deferred = $q.defer();
+        dataService.getLibraryByUserId(id, function (isSuccess, results) {
+            $scope.$apply(function(){
+                if(isSuccess)
+                {
+                    //TODO: Load only first page and then use paging in the NextPage function!
+                    deferred.resolve(results);
 
+                }
+                else
+                {
+                    deferred.reject();
+                }
+            });
+        });
+
+        return deferred.promise;
+    }
 
     if($scope.selectedUser == null)
     {
-
+        id = $rootScope.currentUser.id;
+        //Get the user from rootScope
         bindToLibrary($rootScope.currentUser);
 
         var promise = getUserById(id);
@@ -56,32 +74,24 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
     }
     else
     {
+       id = $scope.selectedUser.id;
        bindToLibrary($scope.selectedUser);
     }
 
-    $scope.getLibraryByUser= function (userId) {
-        dataService.getLibraryByUserId(userId, function (isSuccess, results) {
-            if(isSuccess)
-            {
-                    //TODO: Load only first page and then use paging in the NextPage function!
-                $scope.$apply(function () {
-                    $scope.books = results
-                });
-            }
-        });
-    }
+
 
     $scope.busy = false;
 
     $scope.nextPage  = function() {
         if ($scope.busy) return;
-        $scope.busy = true;
 
-        if (user!=null)   {
-            $scope.getLibraryByUser(user.id);
+            $scope.busy = true;
+            var promise = getLibraryByUserId(id)
+            promise.then(function(books) {
+                $scope.books = books;
+            });
             $scope.currentPage = $scope.currentPage + 1
-        }
-        $scope.busy = false;
+            $scope.busy = false;
     };
 
   });
