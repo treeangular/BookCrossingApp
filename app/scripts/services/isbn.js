@@ -51,7 +51,7 @@ angular.module('isbnProvider', [])
                 cache: false
             }).
                 success(function(data, status) {
-                       if(data.length > 0)
+                       if(data.totalItems > 0)
                        {
                             book.title = data.items[0].volumeInfo.title;
                             book.description = data.items[0].volumeInfo.description;
