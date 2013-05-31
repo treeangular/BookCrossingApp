@@ -22,9 +22,9 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope)
 			for (var i=0;i<results.length;i++)
 			{
 			var action = results[i];
-			var book = action.get('bookPointer');
-			var actionType = action.get('actionTypePointer');
-			var user = action.get('userPointer');
+			var book = action.get('book');
+			var actionType = action.get('actionType');
+			var user = action.get('user');
 			var title = "not defined";
 			var description = "not defined";
 			var username = "not defined";
