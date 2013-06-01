@@ -2,10 +2,10 @@
     <ul id="commentList">
         <li ng-repeat='comment in comments'>
             <div class="commentItemList">
-                <img ng-click="selectUser(comment.user.id)"  ng-src='{{comment.user.image}}'>
-                <a ng-click="selectUser(comment.user.id)"><h3>{{comment.user.nick}}</h3></a>
-                <p>{{comment.content}}</p>
-                <p class="time">{{comment.time}}</p>
+                <img ng-click="selectUser(comment.get('user'))"  ng-src='{{comment.get("user").get("image")}}'>
+                <a ng-click="selectUser(comment.user)"><h3>{{comment.user.nick}}</h3></a>
+                <p>{{comment.get("comment")}}</p>
+                <p class="time">{{comment.createdAt | roundedTime}}</p>
             </div>
         </li>
     </ul>
