@@ -55,12 +55,15 @@ angular.module('dataServices', [])
 
         //<editor-fold description="Comments">
 
-        getCommentsByBookId: function getCommentsByBookId(id, callback){
+        getCommentsByBookId: function getCommentsByBookId(bookId, callback){
 
             var query = new Parse.Query(Comment);
 
+            var book = new Book();
+            book.id = bookId;
+
             // Include the post data with each comment
-            query.equalTo("objectId", id);
+            query.equalTo("book", book);
             query.include("user");
 
             query.find({
@@ -80,28 +83,48 @@ angular.module('dataServices', [])
 
         addCommentToBook: function addCommentToBook(commentToRegister, callback)
         {
-            var comment = new Comment();
 
-            comment.set("comment", commentToRegister.comment);
-            comment.set("book", commentToRegister.book);
-            comment.set("user", Parse.User.current());
+            var query = new Parse.Query(Book);
 
-            var newAcl = new Parse.ACL(Parse.User.current());
-            newAcl.setPublicReadAccess(true);
-            book.setACL(newAcl);
+            // Include the post data with each comment
+            query.equalTo("objectId", commentToRegister.book.id);
 
-            comment.save(null, {
-                success: function (comment) {
-                    // The object was saved successfully.
-                    callback(true, null);
+            query.find({
+                success: function (books) {
+
+                    var comment = new Comment();
+
+                    comment.set("content", commentToRegister.content);
+                    comment.set("book", books[0]);
+                    comment.set("user", Parse.User.current());
+
+                    var newAcl = new Parse.ACL(Parse.User.current());
+                    newAcl.setPublicReadAccess(true);
+                    comment.setACL(newAcl);
+
+                    comment.save(null, {
+                        success: function (comment) {
+                            // The object was saved successfully.
+                            callback(true, comment);
+                        },
+                        error: function (comment, error) {
+                            // The save failed.
+                            // error is a Parse.Error with an error code and description.
+                            console.log("Error: " + error.code + " " + error.message);
+                            callback(false, error);
+                        }
+                    });
+
+
                 },
-                error: function (comment, error) {
+                error: function (data,error) {
                     // The save failed.
                     // error is a Parse.Error with an error code and description.
                     console.log("Error: " + error.code + " " + error.message);
-                    callback(false, error);
+                    callback(false);
                 }
             });
+
 
         },
 

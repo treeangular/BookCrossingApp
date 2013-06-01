@@ -3,14 +3,14 @@
         <li ng-repeat='comment in comments'>
             <div class="commentItemList">
                 <img ng-click="selectUser(comment.get('user'))"  ng-src='{{comment.get("user").get("image")}}'>
-                <a ng-click="selectUser(comment.user)"><h3>{{comment.user.nick}}</h3></a>
-                <p>{{comment.get("comment")}}</p>
+                <a ng-click="selectUser(comment.get('user'))"><h3>{{comment.get("user").get("username")}}</h3></a>
+                <p>{{comment.get("content")}}</p>
                 <p class="time">{{comment.createdAt | roundedTime}}</p>
             </div>
         </li>
     </ul>
     <div id="addComment">
-        <textarea ng-model="addComment" name="newComment" rows="3"  placeholder="Add your comment" />
-        <input ng-click="addNewComment()"  type="submit" value="Add" class="buttonlarge" />
+        <textarea ng-model="comment.content" name="content" rows="3"  placeholder="Add your comment" />
+        <input ng-click="addNewComment(comment)"  type="submit" value="Add" class="buttonlarge" />
     </div>
 </div>

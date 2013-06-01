@@ -3,6 +3,7 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
     $scope.comments = [];
     $scope.addComment = "";
 
+
     function getComments(bookId)
     {
 
@@ -29,6 +30,7 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
     function saveComment(comment)
     {
         var deferred = $q.defer();
+        comment.book = $scope.selectedBook;
         dataService.addCommentToBook(comment, function (isSuccess, result) {
 
             $scope.$apply(function(){
@@ -53,17 +55,13 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
         $scope.comments = comments;
     });
 
-    $scope.addNewComment = function()
+    $scope.addNewComment = function(comment)
     {
-        var comment = [];
-
-        comment.comment = $scope.content
-        comment.book = $scope.selectedBook;
-
         var promise = saveComment(comment)
         promise.then(function(comment) {
+
             $scope.comments.push(comment)
-            $scope.addComment = "";
+            $scope.content = "";
         });
 
 
