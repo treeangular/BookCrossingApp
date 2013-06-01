@@ -128,9 +128,9 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
         }
     };
 
-    $scope.selectBook  = function(bookId){
-        $scope.selectedBook = bookId;
-        $scope.goTo('views/book.html')
+    $scope.selectBook  = function(book){
+        $scope.selectedBook = book;
+        $scope.goTo('views/bookDetails.html')
     };
 
     $scope.selectUser  = function(user){
@@ -142,7 +142,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
         $scope.registrationCode  = registrationId;
     }
 
-    $scope.setSelectedBook  = function(bookId){
-        $scope.selectedBook = bookId;
+    $scope.setSelectedBook  = function(book){
+        $scope.selectedBook = book;
     };
 });

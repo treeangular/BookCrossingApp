@@ -22,3 +22,11 @@ function getRoundedTime(dateToRound)
     else
         return days + ' days';
 }
+
+function truncateString(stringToTruncate)
+{
+    if (stringToTruncate==null || stringToTruncate.length < 125)
+        return stringToTruncate;
+    else
+        return stringToTruncate.substring(0, 120) + "...";
+}

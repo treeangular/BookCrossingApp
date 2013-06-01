@@ -45,7 +45,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
             $scope.$apply(function(){
                 if(isSuccess)
                 {
-                    //TODO: Load only first page and then use paging in the NextPage function!
+                                    //TODO: Load only first page and then use paging in the NextPage function!
                     deferred.resolve(results);
 
                 }

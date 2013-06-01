@@ -551,13 +551,13 @@ angular.module('dataServices', [])
                             book.save(null, {
                                 success: function (book) {
                                     // The object was saved successfully, lets update the status
-                                    callback(true);
+                                    callback(true, book);
                                 },
                                 error: function (data,error) {
                                     // The save failed.
                                     // error is a Parse.Error with an error code and description.
                                     console.log("Error: " + error.code + " " + error.message);
-                                    callback(false);
+                                    callback(false, null);
                                 }
                             });
                         },
