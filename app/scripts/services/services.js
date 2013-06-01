@@ -541,30 +541,40 @@ angular.module('dataServices', [])
                 {
                     var qBook = new Parse.Query(Book);
                     qBook.equalTo("registrationId", registrationId);
+                    qBook.include("bookStatus");
 
                     qBook.first({
                         success: function (book)
                         {
-                            book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
-                            book.set("ownedBy", Parse.User.current());
+                            if(book.get("bookStatus").id != BookStatusConst.Hunted)
+                            {
+                                book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
+                                book.set("ownedBy", Parse.User.current());
 
-                            book.save(null, {
-                                success: function (book) {
-                                    // The object was saved successfully, lets update the status
-                                    callback(true, book);
-                                },
-                                error: function (data,error) {
-                                    // The save failed.
-                                    // error is a Parse.Error with an error code and description.
-                                    console.log("Error: " + error.code + " " + error.message);
-                                    callback(false, null);
-                                }
-                            });
+                                book.save(null, {
+                                    success: function (book) {
+                                        // The object was saved successfully, lets update the status
+                                        callback(true, book);
+                                    },
+                                    error: function (data,error) {
+                                        // The save failed.
+                                        // error is a Parse.Error with an error code and description.
+                                        console.log("Error: " + error.code + " " + error.message);
+                                        callback(false, null);
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                callback(false,null);
+                            }
+
                         },
                         error: function (object, error) {
                             // The object was not retrieved successfully.
                             // error is a Parse.Error with an error code and description.
                             console.log("Error: " + error.code + " " + error.message);
+                            callback(false, error);
                         }
                     });
                 },

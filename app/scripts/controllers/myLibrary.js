@@ -14,7 +14,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
             name: user.get('nick')== undefined ? "-" : user.get('username'),
             favoriteGenre: user.get('favoriteGenre') == undefined ? "-" : user.get('favoriteGenre'),
             registrations: user.get('registered') == undefined ? "-" : user.get('registered'),
-            hunts:  user.get('hunts') == undefined ? "-" : user.get('hunts') ,
+            hunts:  user.get('hunts') == undefined ? "-" : user.get('hunted') ,
             comments:  user.get('comments') == undefined ? "-" : user.get('comments'),
             description:  user.get('status') == undefined ? "-" : user.get('status')
         };

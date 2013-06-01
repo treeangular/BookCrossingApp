@@ -45,7 +45,6 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     $scope.release = function () {
 
-
         var releaseInfo = new Object();
 
         releaseInfo.bookId = $scope.selectedBook;
