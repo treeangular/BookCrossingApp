@@ -1,6 +1,7 @@
 'use strict';
 BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService,$rootScope) {
 
+
     //TODO: Get Zobc around the current location
     $scope.zobcList = [
         {id:'0', name:'Are you here?'},
@@ -53,19 +54,22 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
         dataService.releaseBook(releaseInfo,function(isSuccess)
         {
-            if(isSuccess)
-            {
-                $rootScope.TypeNotification = "infomessage";
-                $rootScope.MessageNotification = releaseInfo.bookId + " released successfully!";
+            //How do I change to another view now?!!? Locate ??
+            $scope.$apply(function () {
+                if(isSuccess)
+                {
+                    $rootScope.TypeNotification = "infomessage";
+                    $rootScope.MessageNotification = releaseInfo.bookId + " released successfully!";
 
-                $scope.goTo('views/book.html');
-            }
-            else
-            {
-                $rootScope.TypeNotification = "errormessage";
-                $rootScope.MessageNotification = "Oops . . . Please try again in a few seconds we couldn't release the book.";
+                    $scope.goTo('views/bookDetails.html');
+                }
+                else
+                {
+                    $rootScope.TypeNotification = "errormessage";
+                    $rootScope.MessageNotification = "Oops . . . Please try again in a few seconds we couldn't release the book.";
 
-            }
+                }
+            });
         });
 
     };
