@@ -5,6 +5,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     function huntBook(book)
     {
+        $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 
         dataService.huntBook(book.registrationId,function(isSuccess,book)
@@ -20,6 +21,8 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                     $rootScope.TypeNotification = "errormessage";
                     $rootScope.MessageNotification = "something went wrong";
                 }
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+
             });
         });
 
@@ -44,6 +47,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                     $rootScope.TypeNotification = "errormessage";
                     $rootScope.MessageNotification = "Oops . . . Error getting your books to release.";
                 }
+                $rootScope.$broadcast(loadingRequestConst.Stop);
             });
         });
 
@@ -60,6 +64,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         });
     }
 
+    $rootScope.$broadcast(loadingRequestConst.Start);
     var promise = getBooksThatCanBeReleased();
     promise.then(function(books) {
 

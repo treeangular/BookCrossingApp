@@ -1,5 +1,7 @@
 'use strict';
-BookCrossingApp.directive('loadingWidget', [function () {
+
+angular.module('BookCrossingApp')
+  .directive('bcaLoading', function () {
     return {
         restrict: "A",
         link: function ($scope, element) {
@@ -17,4 +19,4 @@ BookCrossingApp.directive('loadingWidget', [function () {
             });
         }
     };
-}]);
+  });

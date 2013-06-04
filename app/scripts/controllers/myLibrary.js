@@ -40,19 +40,22 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
         return deferred.promise;
     }
     function getLibraryByUserId(id){
+        $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
         dataService.getLibraryByUserId(id, function (isSuccess, results) {
             $scope.$apply(function(){
                 if(isSuccess)
                 {
-                                    //TODO: Load only first page and then use paging in the NextPage function!
+                   //TODO: Load only first page and then use paging in the NextPage function!
                     deferred.resolve(results);
+
 
                 }
                 else
                 {
                     deferred.reject();
                 }
+                $rootScope.$broadcast(loadingRequestConst.Stop);
             });
         });
 
@@ -84,6 +87,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
     $scope.nextPage  = function() {
         if ($scope.busy) return;
+
 
             $scope.busy = true;
             var promise = getLibraryByUserId(id)

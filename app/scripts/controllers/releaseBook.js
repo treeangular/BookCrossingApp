@@ -46,6 +46,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     $scope.release = function () {
 
+        $rootScope.$broadcast(loadingRequestConst.Start);
         var releaseInfo = new Object();
 
         releaseInfo.bookId = $scope.selectedBook;
@@ -69,6 +70,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
                     $rootScope.MessageNotification = "Oops . . . Please try again in a few seconds we couldn't release the book.";
 
                 }
+                $rootScope.$broadcast(loadingRequestConst.Stop);
             });
         });
 

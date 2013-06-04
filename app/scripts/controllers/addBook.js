@@ -38,6 +38,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.registerNewBook = function (book) {
 
+     $rootScope.$broadcast(loadingRequestConst.Start);
+
       dataService.getBookRegistrationId(function (isResult, result) {
          // $scope.$apply(function () {
              // $scope.registrationCode = isResult;   //???

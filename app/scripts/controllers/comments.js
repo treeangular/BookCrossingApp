@@ -7,6 +7,7 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
     function getComments(bookId)
     {
 
+        $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
         dataService.getCommentsByBookId(bookId, function (isSuccess, results) {
 
@@ -29,6 +30,7 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
 
     function saveComment(comment)
     {
+        $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
         comment.book = $scope.selectedBook;
         dataService.addCommentToBook(comment, function (isSuccess, result) {
@@ -53,6 +55,7 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
     var promise = getComments($scope.selectedBook.id)
     promise.then(function(comments) {
         $scope.comments = comments;
+        $rootScope.$broadcast(loadingRequestConst.Stop);
     });
 
     $scope.addNewComment = function(comment)
@@ -62,6 +65,7 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
 
             $scope.comments.push(comment)
             $scope.content = "";
+            $rootScope.$broadcast(loadingRequestConst.Stop);
         });
 
 
