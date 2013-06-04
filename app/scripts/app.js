@@ -1,7 +1,6 @@
 'use strict';
 
-var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'sharedServices', 'filters']);
-
+var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters']);
 
 //BookCrossingApp.run(function ($rootScope, $location) {
 //    /* PG */
@@ -53,6 +52,26 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
       .otherwise({
         redirectTo: '/'
       });
+
+    BookCrossingApp.directive('bcaLoading', [function () {
+        return {
+            restrict: "A",
+            link: function ($scope, element) {
+                // hide the element initially
+                element.hide();
+
+                $scope.$on(loadingRequestConst.Start, function () {
+                    // got the request start notification, show the element
+                    element.show();
+                });
+
+                $scope.$on(loadingRequestConst.Stop, function () {
+                    // got the request end notification, hide the element
+                    element.hide();
+                });
+            }
+        };
+    }]);
 
     var $http,
         interceptor = ['$q', '$injector', function ($q, $injector) {

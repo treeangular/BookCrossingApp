@@ -14,11 +14,15 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     }
     function getActPage(pageNumber)
     {
+        $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
         dataService.getActionsForHomePage(pageNumber, function (results) {
             $scope.$apply(function () {
 
                 deferred.resolve(results);
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+                // send notification a request has started
+
 
             });
         });
@@ -31,6 +35,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     if ($scope.busy) return;
     $scope.busy = true;
 
+      $rootScope.$broadcast(loadingRequestConst.Stop);
       var promise = getActPage($scope.currentPage);
       promise.then(function(alerts) {
           $scope.alerts = alerts;

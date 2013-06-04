@@ -22,4 +22,12 @@ var BookStatusConst =
     Released: "E4ERgRpVCw",
     Registered: "wXbJK5Sljm",
     Lost: "XMFkXS9NVv"
-}
+};
+
+
+var loadingRequestConst =
+{
+    Start: "_START_REQUEST_",
+    Stop: "_END_REQUEST_"
+
+};
