@@ -1,21 +1,45 @@
 'use strict';
 
-BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $location, facebookService, $rootScope) {
-    $scope.signInUser = function (user) {
+BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $location, facebookService, $rootScope, $q) {
 
-        dataService.signIn(user.Email, user.Password, function (result) {
-            //How do I change to another view now?!!? Locate ?? 
+
+    function signInUser(email, password)
+    {
+        $rootScope.$broadcast(loadingRequestConst.Start);
+        var deferred = $q.defer();
+
+        dataService.signIn(email, password, function (result) {
+            //How do I change to another view now?!!? Locate ??
             $scope.$apply(function () {
                 if (result) {
 
-                    $location.path('/Main');
+                    deferred.resolve();
+
                 } else {
+
+                    deferred.reject(result);
                     $rootScope.TypeNotification = "errormessage";
                     $rootScope.MessageNotification = "User or password invalid!";
                 }
 
             });
         });
+
+
+        return deferred.promise;
+
+    }
+
+    $scope.signInUser = function (user) {
+
+        var promise = signInUser(user.Email, user.Password)
+        promise.then(function() {
+
+            $location.path('/Main');
+
+        });
+
+
     };
 
     $scope.fbSignIn = function()

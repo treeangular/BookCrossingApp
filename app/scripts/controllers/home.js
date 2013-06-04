@@ -35,7 +35,6 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     if ($scope.busy) return;
     $scope.busy = true;
 
-
       var promise = getActPage($scope.currentPage);
       promise.then(function(alerts) {
           $scope.alerts = alerts;

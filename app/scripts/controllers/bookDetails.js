@@ -1,6 +1,7 @@
 'use strict';
 BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
 
+
     $scope.seeMoreOrLess = "See more";
     var book = $scope.selectedBook;
     console.log("book.bookStatus " + book.get("bookStatus").id);

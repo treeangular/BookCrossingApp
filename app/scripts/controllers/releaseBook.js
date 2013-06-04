@@ -1,7 +1,35 @@
 'use strict';
-BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService,$rootScope) {
+BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService, $rootScope, $q) {
 
 
+    function releaseBook(releaseInfo)
+    {
+        $rootScope.$broadcast(loadingRequestConst.Start);
+        var deferred = $q.defer();
+
+        dataService.releaseBook(releaseInfo,function(isSuccess)
+        {
+            //How do I change to another view now?!!? Locate ??
+            $scope.$apply(function () {
+                if(isSuccess)
+                {
+                    deferred.resolve();
+                    $rootScope.TypeNotification = "infomessage";
+                    $rootScope.MessageNotification = releaseInfo.bookId + " released successfully!";
+                }
+                else
+                {
+                    deferred.reject();
+                    $rootScope.TypeNotification = "errormessage";
+                    $rootScope.MessageNotification = "Oops . . . Please try again in a few seconds we couldn't release the book.";
+                }
+
+            });
+        });
+
+        return deferred.promise;
+
+    }
     //TODO: Get Zobc around the current location
     $scope.zobcList = [
         {id:'0', name:'Are you here?'},
@@ -53,26 +81,13 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         releaseInfo.geoPoint= geoPoint;
         releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
-        dataService.releaseBook(releaseInfo,function(isSuccess)
-        {
-            //How do I change to another view now?!!? Locate ??
-            $scope.$apply(function () {
-                if(isSuccess)
-                {
-                    $rootScope.TypeNotification = "infomessage";
-                    $rootScope.MessageNotification = releaseInfo.bookId + " released successfully!";
+        var promise = releaseBook(releaseInfo);
+        promise.then(function(result) {
+            $scope.goTo('views/bookDetails.html');
 
-                    $scope.goTo('views/bookDetails.html');
-                }
-                else
-                {
-                    $rootScope.TypeNotification = "errormessage";
-                    $rootScope.MessageNotification = "Oops . . . Please try again in a few seconds we couldn't release the book.";
-
-                }
-                $rootScope.$broadcast(loadingRequestConst.Stop);
-            });
         });
+
+
 
     };
 });
