@@ -43,6 +43,7 @@
 
 		<script src="scripts/vendor/angular.js"></script>
 		<script src="scripts/vendor/ng-infinite-scroll.js"></script>
+        <script src="scripts/vendor/fastclick.js"></script>
 
         <script src="scripts/vendor/google-maps.js"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
@@ -93,7 +94,11 @@
          <script src="scripts/services/shared.js"></script>
          <script src="scripts/directives/loading.js"></script>
          <!-- endbuild -->
-
+        <script>
+            window.addEventListener('load', function() {
+                FastClick.attach(document.body);
+            }, false);
+        </script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             var _gaq=[['_setAccount','UA-39828851-1'],['_trackPageview']];
