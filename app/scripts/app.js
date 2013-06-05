@@ -53,26 +53,32 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
         redirectTo: '/'
       });
 
-    BookCrossingApp.directive('bcaLoading', [function () {
-        return {
-            restrict: "A",
-            link: function ($scope, element) {
-                // hide the element initially
-                element.hide();
+    loadHttpInterceptor($httpProvider);
+    loadGoogleAnalytics();
+    loadFastClick();
+    loadParse();
 
-                $scope.$on(loadingRequestConst.Start, function () {
-                    // got the request start notification, show the element
-                    element.show();
-                });
+}]);
 
-                $scope.$on(loadingRequestConst.Stop, function () {
-                    // got the request end notification, hide the element
-                    element.hide();
-                });
-            }
-        };
-    }]);
+function loadGoogleAnalytics()
+{
+    var _gaq=[['_setAccount','UA-39828851-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
 
+}
+
+function loadFastClick()
+{
+    window.addEventListener('load', function() {
+        FastClick.attach(document.body);
+    }, false);
+
+}
+
+function loadHttpInterceptor($httpProvider)
+{
     var $http,
         interceptor = ['$q', '$injector', function ($q, $injector) {
             var error;
@@ -106,4 +112,38 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
 
     $httpProvider.responseInterceptors.push(interceptor);
 
-  }]);
+}
+
+function loadParse()
+{
+    var FB_APP_ID = "160779410752321";
+    var SERVER_URL = "http://localhost:8080/#/";
+    var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS";
+    var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr";
+
+    Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
+
+    window.fbAsyncInit = function () {
+
+        Parse.FacebookUtils.init({
+            appId: FB_APP_ID,
+            channelUrl :SERVER_URL + 'channel.html',
+            status:true,
+            cookie:true,
+            xfbml:true
+        });
+    };
+
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+
+}

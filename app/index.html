@@ -40,19 +40,19 @@
         <!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />-->
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <!--<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>-->
-
 		<script src="scripts/vendor/angular.js"></script>
 		<script src="scripts/vendor/ng-infinite-scroll.js"></script>
         <script src="scripts/vendor/fastclick.js"></script>
+        <script src="scripts/vendor/parse/parse-1.2.2.js"></script>
 
         <script src="scripts/vendor/google-maps.js"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
 
-    <!--<script src="scripts/vendor/phonegap/cordova-2.5.0.js"></script>-->
-    <script src="phonegap.js"></script>
+        <!--<script src="scripts/vendor/phonegap/cordova-2.5.0.js"></script>-->
+        <script src="phonegap.js"></script>
 
-        <script src="scripts/vendor/parse/parse-1.2.2.js"></script>
+
 						
         <!-- build:js scripts/scripts.js -->
         <script src="scripts/app.js"></script>
@@ -75,10 +75,12 @@
         <script src="scripts/controllers/mapTracking.js"></script>
         <script src="scripts/controllers/comments.js"></script>
         <script src="scripts/services/services.js"></script>
-        <script src="scripts/utils/filters.js"></script>
         <script src="scripts/services/cordovaReady.js"></script>
         <script src="scripts/services/geolocation.js"></script>
         <script src="scripts/services/facebook.js"></script>
+        <script src="scripts/services/localization.js"></script>
+        <script src="scripts/services/isbn.js"></script>
+        <script src="scripts/directives/loading.js"></script>
         <script src="scripts/directives/signUpPassword.js"></script>
 		<script src="scripts/directives/slideShow.js"></script>
 		<script src="scripts/directives/notification.js"></script>
@@ -86,57 +88,9 @@
 		<script src="scripts/directives/header.js"></script>
 		<script src="scripts/directives/scrollDown.js"></script>
 		<script src="scripts/directives/footer.js"></script>
-        <script src="scripts/services/localization.js"></script>
-        <script src="scripts/services/isbn.js"></script>
         <script src="scripts/utils/constants.js"></script>
         <script src="scripts/utils/tools.js"></script>
+        <script src="scripts/utils/filters.js"></script>
 
-         <script src="scripts/services/shared.js"></script>
-         <script src="scripts/directives/loading.js"></script>
-         <!-- endbuild -->
-        <script>
-            window.addEventListener('load', function() {
-                FastClick.attach(document.body);
-            }, false);
-        </script>
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-39828851-1'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-        <script>
-            var FB_APP_ID = "160779410752321";
-            var SERVER_URL = "http://localhost:8080/#/";
-            var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS";
-            var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr";
-
-            Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
-
-            window.fbAsyncInit = function () {
-
-                Parse.FacebookUtils.init({
-                    appId: FB_APP_ID,
-                    channelUrl :SERVER_URL + 'channel.html',
-                    status:true,
-                    cookie:true,
-                    xfbml:true
-                });
-            };
-
-            (function (d) {
-                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-                if (d.getElementById(id)) {
-                    return;
-                }
-                js = d.createElement('script');
-                js.id = id;
-                js.async = true;
-                js.src = "//connect.facebook.net/en_US/all.js";
-                ref.parentNode.insertBefore(js, ref);
-            }(document));
-
-        </script>
 </body>
 </html>
