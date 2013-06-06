@@ -1,5 +1,5 @@
 'use strict';
-BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q) {
+BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, localStorageService) {
 
     $scope.alerts = [];
     $scope.currentPage = 0;
@@ -10,6 +10,12 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
             if (result) {
                 $rootScope.currentUser = currentUser;
             }
+        });
+        localStorageService.createActionTable(function(result){
+
+                alert(result);
+
+
         });
     }
     function getActPage(pageNumber)
