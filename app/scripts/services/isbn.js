@@ -64,13 +64,13 @@ angular.module('isbnProvider', [])
                        }
                     else
                        {
-                           callback(true, null)
+                           callback(false, ErrorConst.IsbnNotFound)
                        }
 
                 }).
                 error(function(data, status) {
 
-                    callback(false, null);
+                    callback(false, ErrorConst.GenericError);
                 });
         }
     };

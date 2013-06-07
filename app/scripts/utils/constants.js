@@ -31,3 +31,16 @@ var loadingRequestConst =
     Stop: "_END_REQUEST_"
 
 };
+
+var ErrorConst=
+{
+    IsbnNotFound: "Sorry, the isbn was not found",
+    GenericError: "Sorry, an error occurred, try it later",
+    BookNotFound: "Sorry, book not found",
+    UserNotRegisteredCorrectly: "Sorry, user not registered",
+    UserNotUpdatedCorrectly: "Sorry, user was not updated",
+    UserNotFound: "Sorry, User not found",
+    BookAlreadyHunted: "Sorry, the book is already hunted"
+
+
+};

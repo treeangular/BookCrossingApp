@@ -22,16 +22,8 @@ angular.module('dataServices', [])
     .factory('parseService', function ($http) {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
-        try {
 
 
-
-
-        } catch (e) {
-            console.log(e);
-        }
-
-        var pendingRequests = 12;
         //Create Object/Table names with capital first letter, following Parse guidelines.
         var Book = Parse.Object.extend("Book");
         var BookStatus = Parse.Object.extend("BookStatus");
@@ -76,7 +68,7 @@ angular.module('dataServices', [])
                     // The save failed.
                     // error is a Parse.Error with an error code and description.
                     console.log("Error: " + error.code + " " + error.message);
-                    callback(false, null);
+                    callback(false, ErrorConst.GenericError);
                 }
             });
         },
@@ -111,7 +103,7 @@ angular.module('dataServices', [])
                             // The save failed.
                             // error is a Parse.Error with an error code and description.
                             console.log("Error: " + error.code + " " + error.message);
-                            callback(false, error);
+                            callback(false, ErrorConst.GenericError);
                         }
                     });
 
@@ -121,7 +113,7 @@ angular.module('dataServices', [])
                     // The save failed.
                     // error is a Parse.Error with an error code and description.
                     console.log("Error: " + error.code + " " + error.message);
-                    callback(false);
+                    callback(false, ErrorConst.BookNotFound);
                 }
             });
 
@@ -174,7 +166,7 @@ angular.module('dataServices', [])
                         // Show the error message somewhere and let the user try again.
                         //alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
-                        callback(false, error);
+                        callback(false, ErrorConst.GenericError);
                     }
                 });
             },
@@ -193,7 +185,7 @@ angular.module('dataServices', [])
                         // The login failed. Check error to see why.
                         // alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
-                        callback(false);
+                        callback(false, ErrorConst.GenericError);
                     }
                 });
             },
@@ -220,7 +212,7 @@ angular.module('dataServices', [])
                         // Show the error message somewhere and let the user try again.
                         //alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
-                        callback(false, error);
+                        callback(false, ErrorConst.UserNotRegisteredCorrectly);
                     }
                 });
             },
@@ -242,7 +234,7 @@ angular.module('dataServices', [])
                         // Show the error message somewhere and let the user try again.
                         //alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
-                        callback(false, error);
+                        callback(false, ErrorConst.UserNotUpdatedCorrectly);
                     }
                 });
 
@@ -258,7 +250,7 @@ angular.module('dataServices', [])
                     callback(true, currentUser);
                 } else {
                     // show the signup or login page
-                    callback(false);
+                    callback(false, ErrorConst.GenericError);
                 }
 
             },
@@ -278,13 +270,15 @@ angular.module('dataServices', [])
 
                 query.find({
                     success: function (result) {
-
-                        callback(true, result[0]);
+                        if(result.length > 0)
+                         callback(true, result[0]);
+                        else
+                            callback(true, ErrorConst.UserNotFound);
                     },
                     error: function (user,error) {
 
                         console.log("Error: " + error.code + " " + error.message);
-                        callback(false, null);
+                        callback(false, ErrorConst.GenericError);
                     }
                 });
 
@@ -294,79 +288,6 @@ angular.module('dataServices', [])
 
         //<editor-fold description="Actions">
 
-
-            getActions: function getActions(callback) {
-                var actions = new ActionCollection();
-
-                actions.fetch({
-
-                    success: function (results) {
-
-                        callback(results);
-                    },
-
-                    error: function (results, error) {
-                        alert("Collection Error: " + error.message);
-                    }
-                });
-            },
-
-            getWholeActions: function getWholeActions(callback) {
-                var query = new Parse.Query(Action);
-
-                // Retrieve the most recent ones
-                query.descending("createdAt");
-
-                // Only retrieve the last ten
-                query.limit(10);
-
-                // Include the post data with each comment
-                query.include("book");
-                query.include("user");
-                query.include("actionType");
-
-
-                query.find({
-                    success: function (actions) {
-                        // Comments now contains the last ten comments, and the "post" field
-                        // has been populated. For example:
-                        callback(actions);
-
-                    }
-                });
-
-            },
-
-//            getActionsPage: function getActionsPage(pageNumber, callback) {
-//                var recordsPerPage = 10;
-//                var query = new Parse.Query(Action);
-//
-//
-//                // Retrieve the most recent ones
-//                query.descending("createdAt");
-//
-//                // Only retrieve the last ten
-//                query.limit(recordsPerPage);
-//                query.skip(pageNumber*recordsPerPage);
-//
-//                //Only the ones made by you
-//                query.equalTo("user", Parse.User.current());
-//
-//                //query.withinKilometers("place", point, 20)
-//
-//                // Include the post data with each comment
-//                query.include("book");
-//                query.include("user");
-//                query.include("actionType");
-//
-//                query.find({
-//                    success: function (actions) {
-//                        // Comments now contains the last ten comments, and the "post" field
-//                        // has been populated. For example:
-//                        callback(actions);
-//                    }
-//                });
-//            },
             getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
             {
                 var qAction = new Parse.Query(Action);
@@ -392,64 +313,15 @@ angular.module('dataServices', [])
 
                 qAction.find({
                     success: function (actions) {
-                        callback(actions);
+                        callback(true, actions);
                     },
                     error: function (actions, error) {
                         console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
                     }
                 });
 
-            },//            getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
-//            {
-//                var qActionOnDistance = new Parse.Query(Action);
-//                var qBook = new Parse.Query(Book);
-//                var recordsPerPage = 10;
-//
-//                // Only retrieve the last ten
-//                qBook.limit(recordsPerPage);
-//                qBook.skip(pageNumber*recordsPerPage);
-//                // Retrieve the most recent ones
-//                qBook.descending("createdAt");
-//                //That have been registred by the current user
-//                qBook.equalTo("registeredBy", Parse.User.current());
-//
-//                qBook.find({
-//                    success: function (books) {
-//                        //Get the Actions related to this books ordered chronologically
-//                        var qActionOnBook = new Parse.Query(Action);
-//
-//                        qActionOnBook.limit(recordsPerPage);
-//                        qActionOnBook.skip(pageNumber*recordsPerPage);
-//                        // Retrieve the most recent ones
-//                        qActionOnBook.descending("createdAt");
-//                        qActionOnBook.containedIn("book",books);
-//
-//                        //Only Released actions of others books. (Also Lost ones?)
-//                        var actionType = new ActionType();
-//                        actionType.id = ActionTypesConst.Released;
-//                        var actionType2 = new ActionType();
-//                        actionType2.id = ActionTypesConst.Hunted;
-//                        qActionOnBook.containedIn("actionType",[actionType, actionType2]);
-//
-//                        // Include the post data with each comment
-//                        qActionOnBook.include("book");
-//                        qActionOnBook.include("user");
-//                        qActionOnBook.include("actionType");
-//
-//                        qActionOnBook.find({
-//                            success: function (actions) {
-//                                callback(actions);
-//                            },
-//                            error: function (actions, error) {
-//                                console.log("Error: " + error.code + " " + error.message);
-//                            }
-//                        });
-//                    },
-//                    error: function (results, error) {
-//                        console.log("Error: " + error.code + " " + error.message);
-//                    }
-//                });
-//            },
+            },
 
 
             getLibraryByUserId: function getLibraryByUserId(userId, callback){
@@ -475,7 +347,7 @@ angular.module('dataServices', [])
 
                     },
                     error: function (error) {
-                        callback(false, null);
+                        callback(false, ErrorConst.GenericError);
                     }
                 });
             },
@@ -492,37 +364,15 @@ angular.module('dataServices', [])
                     books.fetch({
                         success: function (results) {
                             // Send the petition collection back to the caller if it is succesfully populated.
-                            callback(results);
+                            callback(true, results);
                         },
                         error: function (results, error) {
                             console.log("Error: " + error.code + " " + error.message);
-                            callback(false, error);
+                            callback(false, ErrorConst.GenericError);
                         }
                     });
                 },
 
-                getBookByIsbnAndOwnerId: function getBookByIsbnAndOwnerId(isbn, ownerId, callback)
-                {
-                    var query = new Parse.Query(Book);
-
-                    // Include the post data with each comment
-                    query.include("ownerRelation.objectId");
-                    query.equalTo("isbn", isbn);
-                    query.equalTo("ownerId", ownerId);
-
-                    query.find({
-                        success: function (actions) {
-                            // Comments now contains the last ten comments, and the "post" field
-                            // has been populated. For example:
-                            callback(actions);
-                        },
-                        error: function (results, error) {
-                            console.log("Error: " + error.code + " " + error.message);
-                            callback(false, error);
-                        }
-                    });
-
-                },
 
                 getBookById: function getBookById(id, callback)
                 {
@@ -532,16 +382,19 @@ angular.module('dataServices', [])
                     query.equalTo("objectId", id);
 
                     query.find({
-                        success: function (book) {
+                        success: function (books) {
                             // Comments now contains the last ten comments, and the "post" field
                             // has been populated. For example:
-                            callback(book);
+                            if(books.length > 0)
+                                callback(true, books[0]);
+                            else
+                                callback(false, ErrorConst.BookNotFound);
                         },
                         error: function (data,error) {
                             // The save failed.
                             // error is a Parse.Error with an error code and description.
                             console.log("Error: " + error.code + " " + error.message);
-                            callback(false);
+                            callback(false, ErrorConst.GenericError);
                         }
                     });
 
@@ -576,7 +429,7 @@ angular.module('dataServices', [])
                             // The save failed.
                             // error is a Parse.Error with an error code and description.
                             console.log("Error: " + error.code + " " + error.message);
-                            callback(false, error);
+                            callback(false, ErrorConst.GenericError);
                         }
                     });
                 },
@@ -597,13 +450,13 @@ angular.module('dataServices', [])
                             book.save(null, {
                                 success: function (book) {
                                     // The object was saved successfully, lets update the status
-                                    callback(true);
+                                    callback(true, null);
                                 },
                                 error: function (data,error) {
                                     // The save failed.
                                     // error is a Parse.Error with an error code and description.
                                     console.log("Error: " + error.code + " " + error.message);
-                                    callback(false);
+                                    callback(false, ErrorConst.GenericError);
                                 }
                             });
                         } ,
@@ -611,6 +464,7 @@ angular.module('dataServices', [])
                             // The object was not retrieved successfully.
                             // error is a Parse.Error with an error code and description.
                             console.log("Error: " + error.code + " " + error.message);
+                            callback(false, ErrorConst.GenericError);
                         }
                     });
                 },
@@ -624,7 +478,7 @@ angular.module('dataServices', [])
                     qBook.first({
                         success: function (book)
                         {
-                            if(book.get("bookStatus").id != BookStatusConst.Hunted)
+                            if(book.get("bookStatus") != BookStatusConst.Hunted)
                             {
                                 book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
                                 book.set("ownedBy", Parse.User.current());
@@ -638,13 +492,13 @@ angular.module('dataServices', [])
                                         // The save failed.
                                         // error is a Parse.Error with an error code and description.
                                         console.log("Error: " + error.code + " " + error.message);
-                                        callback(false, null);
+                                        callback(false, ErrorConst.GenericError);
                                     }
                                 });
                             }
                             else
                             {
-                                callback(false,null);
+                                callback(false, ErrorConst.BookAlreadyHunted);
                             }
 
                         },
@@ -652,7 +506,7 @@ angular.module('dataServices', [])
                             // The object was not retrieved successfully.
                             // error is a Parse.Error with an error code and description.
                             console.log("Error: " + error.code + " " + error.message);
-                            callback(false, error);
+                            callback(false, ErrorConst.GenericError);
                         }
                     });
                 },
@@ -665,7 +519,7 @@ angular.module('dataServices', [])
                             callback(true, result);
                         },
                         error: function (error) {
-                            callback(false, error);
+                            callback(false, ErrorConst.GenericError);
                         }
                     });
                 },
@@ -698,6 +552,7 @@ angular.module('dataServices', [])
                         },
                         error: function (actions, error) {
                             console.log("Error: " + error.code + " " + error.message);
+                            callback(false, ErrorConst.GenericError);
                         }
                     });
 
@@ -726,10 +581,11 @@ angular.module('dataServices', [])
 
                      qBook.find({
                          success: function (books) {
-                             callback(books);
+                             callback(true, books);
                          },
                          error: function (actions, error) {
-                             console.log("Error: " + error.code + " " + error.message);
+                             console.log("Error: " + error.code + " " + error.message)
+                             callback(false, ErrorConst.GenericError);
                          }
                      });
                 },

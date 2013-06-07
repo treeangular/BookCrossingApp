@@ -50,20 +50,7 @@ angular.module('MockDataServices', [])
                     callback(true);
             },
 
-            getActions: function getActions(callback) {
 
-                var results = ({ActionTypePointer:"ActionType1"});
-
-                callback(results);
-
-            },
-
-            getWholeActions: function getWholeActions(callback) {
-                var results = ({ActionTypePointer:"ActionType1"});
-
-                callback(results);
-
-            },
 
             getBooks: function getBooks(callback) {
 
