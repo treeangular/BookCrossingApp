@@ -5,9 +5,9 @@ angular.module('localStorageServices', [])
 
         var localStorage = {
 
-            createActionTable: function populateDB(callback) {
+            createActionTable: function populateDB(alertsToStore, callback) {
 
-                var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
+                var db = window.openDatabase("BcaLocalStorage", "1.0", "Local Storage for BookCrossingApp", 200000);
 
                 function execute(tx){
                     tx.executeSql('DROP TABLE IF EXISTS ALERT');
