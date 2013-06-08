@@ -35,9 +35,9 @@ var loadingRequestConst =
 var ErrorConst=
 {
     TypeNotificationError: "errormessage",
-    IsbnNotFound: "Sorry, the isbn was not found",
+    IsbnNotFound: "_IsbnNotFound_",
     GenericError: "Sorry, an error occurred, try it later",
-    BookNotFound: "Sorry, book not found",
+    BookNotFound: "_BookNotFound_",
     UserNotRegisteredCorrectly: "Sorry, user not registered",
     UserNotUpdatedCorrectly: "Sorry, user was not updated",
     UserNotFound: "Sorry, User not found",

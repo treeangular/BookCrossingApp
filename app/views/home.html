@@ -4,7 +4,7 @@
 	    <div class="bookItemList">
 			<img ng-click="selectBook(alert.get('book'))"  ng-src='{{alert.get("book").get("image")}}'>
 			<a ng-click="selectBook(alert.get('book'))"><h3>{{alert.get("book").get("title")}}</h3></a>
-			<p>{{alert.get("actionType").get('description')}} by <a ng-click="selectUser(alert.get('user'))">{{alert.get("user").get('username')}}</a></p>
+			<p>{{alert.get("actionType").get('description') | localizeIt}} by <a ng-click="selectUser(alert.get('user'))">{{alert.get("user").get('username')}}</a></p>
 			<p class="time">{{alert.createdAt | roundedTime}}</p>
 		</div>
 	</li>

@@ -49,6 +49,30 @@
         "value":"Register",
         "description":"Register button"
 
+    },
+    {
+        "key":"_IsbnNotFound_",
+        "value":"Sorry, the isbn was not found",
+        "description":"Isbn not found"
+
+    },
+    {
+        "key":" _BookNotFound_",
+        "value":"Sorry, book not found",
+        "description":"book not found"
+
+    },
+    {
+        "key":" _hunted_",
+        "value":"hunted",
+        "description":"hunted"
+
+    },
+    {
+        "key":" _released_",
+        "value":"released",
+        "description":"released book"
+
     }
 
 ]
