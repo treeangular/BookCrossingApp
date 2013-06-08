@@ -51,6 +51,36 @@
 
     },
     {
+        "key":"_GenericError_",
+        "value":"Sorry, an error occurred, try it later",
+        "description":"Generic Error"
+
+    },
+    {
+        "key":"_UserNotRegisteredCorrectly_",
+        "value":"Sorry, user not registered",
+        "description":"User not registered"
+
+    },
+    {
+        "key":"_UserNotUpdatedCorrectly_",
+        "value":"Sorry, user was not updated",
+        "description":"User not registered"
+
+    },
+    {
+        "key":"_UserNotFound_",
+        "value":"Sorry, User not found",
+        "description":"User not found"
+
+    },
+    {
+        "key":"_BookAlreadyHunted_",
+        "value":"Sorry, the book is already hunted",
+        "description":"book is already hunted"
+
+    },
+    {
         "key":"_IsbnNotFound_",
         "value":"Sorry, the isbn was not found",
         "description":"Isbn not found"
@@ -72,6 +102,30 @@
         "key":" _released_",
         "value":"released",
         "description":"released book"
+
+    },
+    {
+        "key":" _registered_",
+        "value":"registered",
+        "description":"registered book"
+
+    },
+    {
+        "key":" _lost_",
+        "value":"lost",
+        "description":"lost book"
+
+    },
+    {
+        "key":" _locked_",
+        "value":"locked",
+        "description":"locked book"
+
+    },
+    {
+        "key":" _joined_",
+        "value":"joined",
+        "description":"joined user"
 
     }
 

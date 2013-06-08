@@ -31,7 +31,7 @@
                 <div class="bookItemList">
                     <img ng-click="selectBook(book)"  ng-src='{{book.get("image")}}'>
                     <a ng-click="selectBook(book)"><h3>{{book.get("title")}}</h3></a>
-                    <p><strong>Status:</strong> {{book.get('bookStatus').get('status')}}</p>
+                    <p><strong>Status:</strong> {{book.get('bookStatus').get('status') | localizeIt}}</p>
                 </div>
             </li>
         </ul>
