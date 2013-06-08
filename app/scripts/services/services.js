@@ -478,27 +478,35 @@ angular.module('dataServices', [])
                     qBook.first({
                         success: function (book)
                         {
-                            if(book.get("bookStatus") != BookStatusConst.Hunted)
+                            if(book != undefined)
                             {
-                                book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
-                                book.set("ownedBy", Parse.User.current());
 
-                                book.save(null, {
-                                    success: function (book) {
-                                        // The object was saved successfully, lets update the status
-                                        callback(true, book);
-                                    },
-                                    error: function (data,error) {
-                                        // The save failed.
-                                        // error is a Parse.Error with an error code and description.
-                                        console.log("Error: " + error.code + " " + error.message);
-                                        callback(false, ErrorConst.GenericError);
-                                    }
-                                });
+                                if(book.get("bookStatus") != BookStatusConst.Hunted)
+                                {
+                                    book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
+                                    book.set("ownedBy", Parse.User.current());
+
+                                    book.save(null, {
+                                        success: function (book) {
+                                            // The object was saved successfully, lets update the status
+                                            callback(true, book);
+                                        },
+                                        error: function (data,error) {
+                                            // The save failed.
+                                            // error is a Parse.Error with an error code and description.
+                                            console.log("Error: " + error.code + " " + error.message);
+                                            callback(false, ErrorConst.GenericError);
+                                        }
+                                    });
+                                }
+                                else
+                                {
+                                    callback(false, ErrorConst.BookAlreadyHunted);
+                                }
                             }
                             else
                             {
-                                callback(false, ErrorConst.BookAlreadyHunted);
+                                callback(false, ErrorConst.BookNotFound);
                             }
 
                         },

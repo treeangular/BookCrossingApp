@@ -80,8 +80,7 @@ Parse.Cloud.afterSave("Book", function (request) {
     switch (request.object.get("bookStatus").id) {
         case BookStatusConst.Registered:
             actionTypeId = ActionTypesConst.Registered;
-            //TODO DEJ: We don't need to keep track of this counter - registred should be one always . . .
-            userCounterToIncerement = "";
+            userCounterToIncerement = "registered";
             break;
         case BookStatusConst.Released:
             actionTypeId = ActionTypesConst.Released;
@@ -169,86 +168,3 @@ Parse.Cloud.afterSave("Book", function (request) {
         }
     }
 });
-
-//Parse.Cloud.afterSave("Action", function (request) {
-//
-//    var BookStatus = Parse.Object.extend("BookStatus");
-//    var Book = Parse.Object.extend("Book");
-//    var bookRequested = new Book();
-//
-//    var actionType = request.object.get("actionTypePointer").id;
-//    var bookId = request.object.get("bookPointer").id;
-//    var user = request.object.get("userPointer");
-//
-//    bookRequested.id = bookId;
-//    console.log("before fetch book.id " + bookRequested.id);
-//    var newBookStatus;
-//
-//    bookRequested.fetch({
-//        success: function (book) {
-//            //Update the book only in case we come from a release or hunt.
-//            var isBookToBeSaved = true;
-//            console.log("actionType " + actionType);
-//
-//            //ReleaseBook
-//            if(actionType == ActionTypesConst.Released)
-//            {
-//                newBookStatus = BookStatusConst.Released;
-//                book.increment("released");
-//
-//            }
-//            //HuntBook
-//            else if(actionType == ActionTypesConst.Hunted)
-//            {
-//
-//                newBookStatus = BookStatusConst.Hunted;
-//                book.increment("hunted");
-//                user.increment("hunts");
-//            }
-//            //Lost
-//            else if(actionType == ActionTypesConst.Lost)
-//            {
-//                newBookStatus = BookStatusConst.Lost;
-//            }
-//            else
-//            {
-//                isBookToBeSaved = false;
-//                console.log("Error: No ActionType under ReleaseBook | HuntBook - we were just registering them");
-//            }
-//
-//            if(isBookToBeSaved) {
-//                console.log("newBookStatus" + newBookStatus);
-//                console.log("book.id " + book.id);
-//                //console.log("book.isValid() " + book.isValid());
-//                //console.log("book.bookStatus " + book.get("bookStatus").id);
-//                //console.log("book.description " + book.get("description"));
-//                book.set("bookStatus", new BookStatus({id: newBookStatus}));
-//
-//                book.save(null,{
-//                    success: function(data) {
-//                        console.log("Book Status updated to: " +newBookStatus);
-//                    },
-//                    error: function (data,error) {
-//                        // error is a Parse.Error with an error code and description.
-//                        console.log("Error: " + error.code + " " + error.message);
-//                    }
-//                });
-//                user.save(null,{
-//                    success: function(data) {
-//                        console.log("User hunted books updated");
-//                    },
-//                    error: function (data,error) {
-//                        // error is a Parse.Error with an error code and description.
-//                        console.log("Error: " + error.code + " " + error.message);
-//                    }
-//                });
-//            }
-//        },
-//        error: function (object, error) {
-//            // The object was not retrieved successfully.
-//            // error is a Parse.Error with an error code and description.
-//            console.log("Error: " + error.code + " " + error.message);
-//        }
-//
-//    });
-//});
