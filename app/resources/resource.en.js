@@ -15,11 +15,77 @@
         "description":"Take a tour link to a youtube video"
     },
     {
-    "key":"_IsbnNotFound_",
-    "value":"Sorry, the isbn was not found",
-    "description":"Isbn not found"
+        "key":"_Connect_",
+        "value":"Connect",
+        "description":"Connect button on the application"
+    },
+    {
+        "key":"_Cancel_",
+        "value":"Cancel",
+        "description":"Cancel string for all the app"
+    },
+    {
+        "key":"_ConnectFacebook_",
+        "value":"Connect with Facebook",
+        "description":"Connect to FB button"
+    },
+    {
+        "key":"_Email_",
+        "value":"Email",
+        "description":"Email placeholder"
+    },
+    {
+        "key":"_Password_",
+        "value":"Password",
+        "description":"Password placeholder"
+    },
+    {
+        "key":"_SeePassword_",
+        "value":"See the Password",
+        "description":"Checkbox for see the password"
+    },
+    {
+        "key":"_Register_",
+        "value":"Register",
+        "description":"Register button"
 
-},
+    },
+    {
+        "key":"_GenericError_",
+        "value":"Sorry, an error occurred, try it later",
+        "description":"Generic Error"
+
+    },
+    {
+        "key":"_UserNotRegisteredCorrectly_",
+        "value":"Sorry, user not registered",
+        "description":"User not registered"
+
+    },
+    {
+        "key":"_UserNotUpdatedCorrectly_",
+        "value":"Sorry, user was not updated",
+        "description":"User not registered"
+
+    },
+    {
+        "key":"_UserNotFound_",
+        "value":"Sorry, User not found",
+        "description":"User not found"
+
+    },
+    {
+        "key":"_BookAlreadyHunted_",
+        "value":"Sorry, the book is already hunted",
+        "description":"book is already hunted"
+
+    },
+    {
+        "key":"_IsbnNotFound_",
+        "value":"Sorry, the isbn was not found",
+        "description":"Isbn not found"
+
+    },
     {
         "key":" _BookNotFound_",
         "value":"Sorry, book not found",
@@ -27,9 +93,9 @@
 
     },
     {
-    "key":" _hunted_",
-    "value":"hunted",
-    "description":"hunted"
+        "key":" _hunted_",
+        "value":"hunted",
+        "description":"hunted book"
 
     },
     {
@@ -37,5 +103,31 @@
         "value":"released",
         "description":"released book"
 
+    },
+    {
+        "key":" _registered_",
+        "value":"registered",
+        "description":"registered book"
+
+    },
+    {
+        "key":" _lost_",
+        "value":"lost",
+        "description":"lost book"
+
+    },
+    {
+        "key":" _locked_",
+        "value":"locked",
+        "description":"locked book"
+
+    },
+    {
+        "key":" _joined_",
+        "value":"joined",
+        "description":"joined user"
+
     }
+
+
 ]
