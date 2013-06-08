@@ -22,14 +22,22 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
-        dataService.getActionsForHomePage(pageNumber, function (results) {
+        dataService.getActionsForHomePage(pageNumber, function (isSuccess,results) {
             $scope.$apply(function () {
 
-                deferred.resolve(results);
+                if(isSuccess)
+                {
+                    deferred.resolve(results);
+
+                    // send notification a request has started
+                }
+                else
+                {
+                    deferred.reject(results);
+                }
+
+
                 $rootScope.$broadcast(loadingRequestConst.Stop);
-                // send notification a request has started
-
-
             });
         });
         return deferred.promise;
@@ -46,6 +54,10 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
           $scope.alerts = alerts;
           //alert($scope.alerts[0].get("book").get('title'));
 
+      }, function(reason) {
+
+          $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+          $rootScope.MessageNotification = reason;
       });
       $scope.currentPage = $scope.currentPage + 1
 

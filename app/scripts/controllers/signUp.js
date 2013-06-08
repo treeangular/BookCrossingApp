@@ -12,14 +12,13 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
             $scope.$apply(function () {
                 if (isResult)
                 {
-                    deferred.resolve();
+                    deferred.resolve(result);
 
                 }
                 else
                 {
-                    deferred.reject();
-                    $rootScope.TypeNotification = "errormessage";
-                    $rootScope.MessageNotification = result.message;
+                    deferred.reject(result);
+
                 }
             });
 
@@ -40,10 +39,14 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
     $scope.registerNewUser = function (user) {
 
         var promise = registerNewUser(user);
-        promise.then(function() {
+        promise.then(function(result) {
 
             $location.path('/SignUpDetails');
 
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
         });
 
     };

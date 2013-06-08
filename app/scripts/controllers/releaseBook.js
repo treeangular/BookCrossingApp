@@ -7,21 +7,19 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 
-        dataService.releaseBook(releaseInfo,function(isSuccess)
+        dataService.releaseBook(releaseInfo,function(isSuccess, result)
         {
             //How do I change to another view now?!!? Locate ??
             $scope.$apply(function () {
                 if(isSuccess)
                 {
-                    deferred.resolve();
-                    $rootScope.TypeNotification = "infomessage";
-                    $rootScope.MessageNotification = releaseInfo.bookId + " released successfully!";
+                    deferred.resolve(result);
+
                 }
                 else
                 {
-                    deferred.reject();
-                    $rootScope.TypeNotification = "errormessage";
-                    $rootScope.MessageNotification = "Oops . . . Please try again in a few seconds we couldn't release the book.";
+                    deferred.reject(result);
+
                 }
 
             });
@@ -85,6 +83,10 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         promise.then(function(result) {
             $scope.goTo('views/bookDetails.html');
 
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
         });
 
 

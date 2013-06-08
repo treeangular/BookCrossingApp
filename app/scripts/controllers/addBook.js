@@ -12,23 +12,14 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
             if(isSuccess)
             {
-                if(result === null)
-                {
-                    deferred.reject();
-                    $rootScope.TypeNotification = "errormessage";
-                    $rootScope.MessageNotification = "Ooops sorry, book not found..";
-                }
-                else
-                {
-                    deferred.resolve(result);
 
-                }
+                deferred.resolve(result);
+
             }
             else
             {
-                deferred.reject();
-                $rootScope.TypeNotification = "errormessage";
-                $rootScope.MessageNotification = "something went wrong";
+                deferred.reject(result);
+
             }
         });
 
@@ -48,6 +39,10 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                 $scope.book.isbn = result.isbn;
 
 
+            }, function(reason) {
+
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = reason;
             });
 		}
 	};
@@ -83,8 +78,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                         {
                             // $scope.registerResult = "Fail!";
                             //$location.path('/');
-                            $rootScope.TypeNotification = "errormessage";
-                            $rootScope.MessageNotification = "Oops . . . Please try again ina  few seconds we couldn't register the book.";
+                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                            $rootScope.MessageNotification = result;
                         }
                     });
                 });
@@ -93,8 +88,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
             else
             {
                 //Set notification error => Pls try again an issue with the cool registration number has happened!
-                $rootScope.TypeNotification = "errormessage";
-                $rootScope.MessageNotification = "Oops . . .Please try again in a few seconds, the cool registration number generator has not been that cool! ";
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = result;
             }
 
         });

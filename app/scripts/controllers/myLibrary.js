@@ -31,7 +31,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
                 }
                 else
                 {
-                    deferred.reject();
+                    deferred.reject(result);
                 }
             });
 
@@ -53,7 +53,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
                 }
                 else
                 {
-                    deferred.reject();
+                    deferred.reject(results);
                 }
                 $rootScope.$broadcast(loadingRequestConst.Stop);
             });
@@ -72,6 +72,10 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
         promise.then(function(userLogged) {
             $rootScope.currentUser = userLogged;
             bindToLibrary(userLogged);
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
         });
 
     }
@@ -93,6 +97,10 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
             var promise = getLibraryByUserId(id)
             promise.then(function(books) {
                 $scope.books = books;
+            }, function(reason) {
+
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = reason;
             });
             $scope.currentPage = $scope.currentPage + 1
             $scope.busy = false;

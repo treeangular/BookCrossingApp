@@ -42,7 +42,7 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
                 }
                 else
                 {
-                    deferred.reject();
+                    deferred.reject(result);
                 }
             });
 
@@ -56,6 +56,10 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
     promise.then(function(comments) {
         $scope.comments = comments;
         $rootScope.$broadcast(loadingRequestConst.Stop);
+    }, function(reason) {
+
+        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+        $rootScope.MessageNotification = reason;
     });
 
     $scope.addNewComment = function(comment)
@@ -66,6 +70,10 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
             $scope.comments.push(comment)
             $scope.content = "";
             $rootScope.$broadcast(loadingRequestConst.Stop);
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
         });
 
 

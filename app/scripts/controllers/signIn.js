@@ -13,13 +13,12 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
             $scope.$apply(function () {
                 if (result) {
 
-                    deferred.resolve();
+                    deferred.resolve(result);
 
                 } else {
 
                     deferred.reject(result);
-                    $rootScope.TypeNotification = "errormessage";
-                    $rootScope.MessageNotification = "User or password invalid!";
+
                 }
 
             });
@@ -37,6 +36,10 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
             $location.path('/Main');
 
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
         });
 
 

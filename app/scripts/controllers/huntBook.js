@@ -8,18 +8,17 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 
-        dataService.huntBook(book.registrationId,function(isSuccess,book)
+        dataService.huntBook(book.registrationId,function(isSuccess,result)
         {
             $scope.$apply(function () {
                 if(isSuccess)
                 {
-                    deferred.resolve(book);
+                    deferred.resolve(result);
                 }
                 else
                 {
-                    deferred.reject();
-                    $rootScope.TypeNotification = "errormessage";
-                    $rootScope.MessageNotification = "something went wrong";
+                    deferred.reject(result);
+
                 }
                 $rootScope.$broadcast(loadingRequestConst.Stop);
 
@@ -43,9 +42,8 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                 }
                 else
                 {
-                    deferred.reject();
-                    $rootScope.TypeNotification = "errormessage";
-                    $rootScope.MessageNotification = "Oops . . . Error getting your books to release.";
+                    deferred.reject(results);
+
                 }
                 $rootScope.$broadcast(loadingRequestConst.Stop);
             });
@@ -61,6 +59,10 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         promise.then(function(returnedBook) {
             $scope.setSelectedBook(returnedBook);
             $scope.goTo('views/bookDetails.html');
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
         });
     }
 
@@ -70,6 +72,10 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
         $scope.books = books
 
+    }, function(reason) {
+
+        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+        $rootScope.MessageNotification = reason;
     });
 
     $scope.release = function (bookId) {
