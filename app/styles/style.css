@@ -326,7 +326,7 @@ li {
     border-bottom: 1px solid #9d9e9e;
 }
 
-.huntOption, .releaseOption{
+.huntOption, .releaseOption, .bookResultOption{
     padding-top: 5px;
     padding-bottom: 5px;
     border-top: 1px solid #9d9e9e;
@@ -338,7 +338,7 @@ li {
     background-image: url('./img/hunt_small.png');
     background-position: left center;
     background-repeat: no-repeat;
-    padding: 15px 40px;
+    padding: 10px 40px;
 
 }
 
@@ -347,7 +347,16 @@ li {
     background-image: url('./img/release.png');
     background-position: left center;
     background-repeat: no-repeat;
-    padding: 15px 40px;
+    padding: 10px 40px;
+
+}
+
+.bookResultOption {
+    margin-top: 10px;
+    background-image: url('./img/find.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 10px 40px;
 
 }
 
@@ -412,11 +421,11 @@ li {
     padding: 5px 5px 5px 5px;
 }
 
-#bookimg {
+.bookimg {
     float: left;
     margin: 5px 15px 5px 5px;
     width: 80px;
-    height: 120px
+    height: 110px;
 }
 
 #libraryimg {

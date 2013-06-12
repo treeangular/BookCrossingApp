@@ -1,7 +1,20 @@
 'use strict';
 
 BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q) {
-	
+
+    $scope.addBook = false;
+
+    $scope.addNewBook = function () {
+        $scope.addBook = true;
+    };
+
+    $scope.book = {
+        isbn:"",
+        description: "",
+        image: null,
+        title:"",
+        authors: null
+    };
 
     function findBook(isbn)
     {
@@ -27,9 +40,9 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     }
 	$scope.findBook = function () {
-		if ($scope.book.isbn != null)
+		if ($scope.isbn != null)
         {
-            var promise = findBook($scope.book.isbn)
+            var promise = findBook($scope.isbn)
             promise.then(function(result) {
 
                 $scope.book.description = result.description;
