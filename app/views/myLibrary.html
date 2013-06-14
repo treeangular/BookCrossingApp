@@ -1,6 +1,6 @@
 <div ng-controller="MyLibraryCtrl">
     <div id="libraryheader">
-        <img id="libraryimg" ng-src="{{library.image}}"/>
+        <img id="libraryimg" ng-src="styles/img/user.jpg"/>
         <ul class="mainbox">
             <li>
                 <div class="boxheader">
@@ -19,13 +19,19 @@
             <li>
                 <div>
                     <h3>Description</h3>
-                    <p>Favorite genre: {{library.favoriteGenre}}</p>
-                    <p>{{library.description}}</p>
+                    <p>Favorite genre: Action</p>
+                    <p>We love books from Barcelona!</p>
                 </div>
             </li>
         </ul>
     </div>
-    <div id="librarylist" infinite-scroll="nextPage()" infinite-scroll-distance="5">
+    <ul id="BookOptionList">
+        <li><h2 style="position: relative;" id="trackingOption">List of books
+            <img ng-hide="listView" ng-click="changeView()" style="position: absolute; top:0; right: 0" ng-src="styles/img/mosaic.png"/>
+            <img ng-show="listView" ng-click="changeView()" style="position: absolute; top:0; right: 0" ng-src="styles/img/list.png"/></h2>
+        </li>
+    </ul>
+    <div ng-hide="listView" infinite-scroll="nextPage()" infinite-scroll-distance="5">
         <ul>
             <li ng-repeat='book in books'>
                 <div class="bookItemList">
@@ -35,5 +41,10 @@
                 </div>
             </li>
         </ul>
+    </div>
+    <div style="margin: 0 auto; text-align: center;" ng-show="listView" infinite-scroll="nextPage()" infinite-scroll-distance="5">
+        <div style="display:inline-block; padding-right: 6px; padding-left: 6px; padding-top: 15px" ng-repeat='book in books'>
+            <img style="width: 85px; height: 128px" ng-click="selectBook(book)" ng-src='{{book.get("image")}}'>
+        </div>
     </div>
 </div>

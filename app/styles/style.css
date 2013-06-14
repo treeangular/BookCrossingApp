@@ -355,7 +355,7 @@ li {
     background-image: url('./img/find.png');
     background-position: left center;
     background-repeat: no-repeat;
-    padding: 10px 40px;
+    padding: 10px 10px 10px 40px;
 
 }
 
@@ -366,7 +366,6 @@ li {
 }
 
 #BookOptionList{
-    text-align: center;
     clear: both;
     margin-top: 15px;
     border-top: 1px solid #9d9e9e;
@@ -376,7 +375,7 @@ li {
     background-image: url('./img/tracking.png');
     background-position: left center;
     background-repeat: no-repeat;
-    padding: 5px 40px;
+    padding: 5px 5px 5px 40px;
 
 }
 
@@ -444,7 +443,6 @@ li {
 #libraryheader {
     position: relative;
     clear: both;
-    background: #BAC5C5;
 }
 
 .mainbox li{
