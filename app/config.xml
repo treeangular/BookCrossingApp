@@ -10,10 +10,10 @@
 
   <author email="truegoldenwarriors@gmail.com">bookCrossing</author>
 
-  <icon src="styles/img/icon.png" gap:role="default" />
-  <icon src="styles/img/icon.png" gap:platform="ios" width="57" height="57" />
-  <icon src="styles/img/icon.png" gap:platform="ios" width="72" height="72" />
-  <icon src="styles/img/icon.png" gap:platform="ios" width="114" height="114" />
+  <icon src="styles/img/icon/icon.png" gap:role="default" />
+  <icon src="styles/img/icon/icon57x57.png" gap:platform="ios" width="57" height="57" />
+  <icon src="styles/img/icon/icon72x72.png" gap:platform="ios" width="72" height="72" />
+  <icon src="styles/img/icon/icon114x114.png" gap:platform="ios" width="114" height="114" />
 
   <feature name="http://api.phonegap.com/1.0/network"/>
   <feature name="http://api.phonegap.com/1.0/geolocation"/>
@@ -30,8 +30,8 @@
   <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="mdpi" />
   <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="hdpi" />
 
-  <gap:splash src="styles/img/splash.png" width="320" height="480" />
-  <gap:splash src="styles/img/splash.png" width="640" height="960" />
+  <gap:splash src="styles/img/splash/splash320x480.png" width="320" height="480" />
+  <gap:splash src="styles/img/splash/splash640x960.png" width="640" height="960" />
   <gap:splash src="styles/img/splash.png" width="640" height="1136" />
   <gap:splash src="styles/img/splash.png" width="1024" height="768" />
   <gap:splash src="styles/img/splash.png" width="768" height="1024" />
