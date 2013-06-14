@@ -8,7 +8,7 @@
 
   <description>bookCrossing</description>
 
-  <author email="truegoldenwarriors@gmail.com">bookCrossing</author>
+  <author email="truegoldenwarriors@gmail.com">BookCrossingApp</author>
 
   <icon src="styles/img/icon/icon.png" gap:role="default" />
   <icon src="styles/img/icon/icon57x57.png" gap:platform="ios" width="57" height="57" />
