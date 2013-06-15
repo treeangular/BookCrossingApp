@@ -79,8 +79,10 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
 
                     var title = book.get('title');
                     var description = book.get('description');
+                    var releasedAtDescription = book.get('releasedAtDescription');
                     var username = user.get('username');
                     var image = book.get('image');
+                    var bookStatus = book.get('bookStatus');
                     var time;
                     //TODO: Move in a directive?
 
@@ -97,6 +99,9 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
                         time = hours + ' hours';
                     else
                         time = days + ' days';
+
+                    book.time = time;
+                    book.image = image;
 
 //                    if (actionType != null)
 //                        description = actionType.get('description');
@@ -126,17 +131,19 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
 //                        }
 //                    }
 
-                    $scope.newbook = {
-                        id: book.id,
-                        title: title,
-                        //TODO: Add localization
-                        content: description,
-                        image: image,
-                        user: username,
-                        time:time
-                    };
-                    $scope.books.push($scope.newbook);
-
+//                    $scope.newbook = {
+//                        id: book.id,
+//                        title: title,
+//                        //TODO: Add localization
+//                        releasedAtDescription: releasedAtDescription,
+//                        description: description,
+//                        image: image,
+//                        user: username,
+//                        time:time,
+//                        bookStatus: bookStatus
+//                    };
+//                    $scope.books.push($scope.newbook);
+                    $scope.books.push(book);
                     var bookMarker = new google.maps.Marker({
                         map: $scope.myMap,
                         position: new google.maps.LatLng(releasedAt.latitude, releasedAt.longitude),

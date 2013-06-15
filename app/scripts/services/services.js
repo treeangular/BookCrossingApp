@@ -443,7 +443,6 @@ angular.module('dataServices', [])
                         {
                             book.set("releasedAt", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
                             book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
-                            book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
                             book.set("bookStatus", new BookStatus({id: BookStatusConst.Released}));
                             book.set("ownedBy", Parse.User.current());
 
