@@ -4,15 +4,9 @@
         id		   = "com.crossers.bookcrossingapp"
         version 	= "1.0.3">
 
-<<<<<<< HEAD
   <name>BookCrossingApp</name>
 
-  <description>BookCrossingApp</description>
-=======
-  <name>bookCrossingApp</name>
-
   <description>The best mobile implementation for book crossing!</description>
->>>>>>> origin/arcayne
 
   <author email="truegoldenwarriors@gmail.com">BookCrossingApp</author>
 
