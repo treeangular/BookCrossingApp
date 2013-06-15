@@ -42,9 +42,9 @@
             </li>
         </ul>
     </div>
-    <div style="margin: 0 auto; text-align: center;" ng-show="listView" infinite-scroll="nextPage()" infinite-scroll-distance="5">
-        <div style="display:inline-block; padding-right: 6px; padding-left: 6px; padding-top: 15px" ng-repeat='book in books'>
-            <img style="width: 85px; height: 128px" ng-click="selectBook(book)" ng-src='{{book.get("image")}}'>
+    <div id="lybrarymosaic" style="margin: 0 auto; text-align: center;" ng-show="listView" infinite-scroll="nextPage()" infinite-scroll-distance="5">
+        <div style="display:inline-block; border-bottom: burlywood 10px solid; padding-right: 6px; padding-left: 6px; padding-top: 15px; padding-bottom: 0px" ng-repeat='book in books'>
+            <img style="display: block; width: 85px; height: 128px" ng-click="selectBook(book)" ng-src='{{book.get("image")}}'>
         </div>
     </div>
 </div>

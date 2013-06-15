@@ -426,6 +426,12 @@ li {
     height: 110px;
 }
 
+#lybrarymosaic {
+    overflow: hidden;
+    background-image: url('./img/tileable_wood_texture.png');
+    background-repeat:repeat;
+}
+
 #libraryimg {
     float: left;
     margin: 5px 0px 5px 5px;

@@ -4,9 +4,9 @@
         id		   = "com.crossers.bookcrossingapp"
         version 	= "1.0.2">
 
-  <name>bookCrossing</name>
+  <name>BookCrossingApp</name>
 
-  <description>bookCrossing</description>
+  <description>BookCrossingApp</description>
 
   <author email="truegoldenwarriors@gmail.com">BookCrossingApp</author>
 
