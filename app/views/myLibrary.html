@@ -1,34 +1,30 @@
 <div ng-controller="MyLibraryCtrl">
     <div id="libraryheader">
-        <img id="libraryimg" ng-src="styles/img/user.jpg"/>
-        <ul class="mainbox">
-            <li>
-                <div class="boxheader">
-                    <p class="boxtext">Registers</p>
-                    <p class="boxnum">{{library.registrations}}</p>
-                </div>
-                <div class="boxheader">
-                    <p class="boxtext">Hunts</p>
-                    <p class="boxnum">{{library.hunts}}</p>
-                </div>
-                <div class="boxheader">
-                    <p class="boxtext">Comments</p>
-                    <p class="boxnum">{{library.comments}}</p>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <h3>Description</h3>
-                    <p>Favorite genre: Action</p>
-                    <p>We love books from Barcelona!</p>
-                </div>
-            </li>
-        </ul>
+        <img id="libraryimg" ng-src="styles/img/books/a_clockwork_orange.jpg"/>
+        <div class="mainbox">
+            <h2>Marc</h2>
+            <div class="boxheader">
+                <p class="boxtext">Registers</p>
+                <p class="boxnum">{{library.registrations}}</p>
+            </div>
+            <div class="boxheader">
+                <p class="boxtext">Hunts</p>
+                <p class="boxnum">{{library.hunts}}</p>
+            </div>
+            <div class="boxheader">
+                <p class="boxtext">Comments</p>
+                <p class="boxnum">{{library.comments}}</p>
+            </div>
+            <div>
+                <p>Favorite genre: Action</p>
+                <p>We love books from Barcelona!</p>
+            </div>
+        </div>
     </div>
     <ul id="BookOptionList">
-        <li><h2 style="position: relative;" id="trackingOption">List of books
-            <img ng-hide="listView" ng-click="changeView()" style="position: absolute; top:0; right: 0" ng-src="styles/img/mosaic.png"/>
-            <img ng-show="listView" ng-click="changeView()" style="position: absolute; top:0; right: 0" ng-src="styles/img/list.png"/></h2>
+        <li><h2 id="bookList">List of books
+            <img class="h2button" ng-hide="listView" ng-click="changeView()" ng-src="styles/img/mosaic.png"/>
+            <img class="h2button" ng-show="listView" ng-click="changeView()" ng-src="styles/img/list.png"/></h2>
         </li>
     </ul>
     <div ng-hide="listView" infinite-scroll="nextPage()" infinite-scroll-distance="5">
@@ -42,9 +38,9 @@
             </li>
         </ul>
     </div>
-    <div id="lybrarymosaic" style="margin: 0 auto; text-align: center;" ng-show="listView" infinite-scroll="nextPage()" infinite-scroll-distance="5">
-        <div style="display:inline-block; border-bottom: burlywood 10px solid; padding-right: 6px; padding-left: 6px; padding-top: 15px; padding-bottom: 0px" ng-repeat='book in books'>
-            <img style="display: block; width: 85px; height: 128px" ng-click="selectBook(book)" ng-src='{{book.get("image")}}'>
+    <div id="librarymosaic" ng-show="listView" infinite-scroll="nextPage()" infinite-scroll-distance="5">
+        <div class="librarymosaicitem" ng-repeat='book in books'>
+            <img ng-click="selectBook(book)" ng-src='{{book.get("image")}}'>
         </div>
     </div>
 </div>

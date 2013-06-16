@@ -296,7 +296,7 @@ ul {
 }
  
 li {
-  padding: 10px;
+  padding: 10px 0px 10px 0px;
   overflow: auto;
   border-bottom: 1px solid #9d9e9e;
 }
@@ -351,7 +351,7 @@ li {
 }
 
 .bookResultOption {
-    margin-top: 10px;
+    margin-top: 5px;
     background-image: url('./img/find.png');
     background-position: left center;
     background-repeat: no-repeat;
@@ -367,7 +367,6 @@ li {
 
 #BookOptionList{
     clear: both;
-    margin-top: 15px;
     border-top: 1px solid #9d9e9e;
 }
 
@@ -426,18 +425,50 @@ li {
     height: 110px;
 }
 
-#lybrarymosaic {
+.h2button {
+    position: absolute;
+    top:0;
+    right: 0
+}
+
+#librarymosaic {
+    margin: 0 auto;
+    text-align: center;
     overflow: hidden;
     background-image: url('./img/tileable_wood_texture.png');
     background-repeat:repeat;
 }
 
+.librarymosaicitem {
+    display:inline-block;
+    border-bottom: #D7BA9C 10px solid;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px
+}
+
+.librarymosaicitem img{
+    display: block;
+    width: 70px;
+    height: 100px
+}
+
+#bookList{
+    position: relative;
+    background-image: url('./img/booklist.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 5px 5px 5px 40px;
+
+}
+
 #libraryimg {
     float: left;
-    margin: 5px 0px 5px 5px;
-    width: 90px;
-    height: 120px;
-    border: 1px solid #9d9e9e;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 95px;
+    height: 95px;
 }
 
 #librarylist {
@@ -451,16 +482,14 @@ li {
     clear: both;
 }
 
-.mainbox li{
-    border-bottom: 0px;
-}
 
 .boxheader {
     float: left;
     border: 1px solid #9d9e9e;
-    width: 55px;
-    height: 40px;
+    width: 59px;
     text-align: center ;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .boxtext {
@@ -474,7 +503,7 @@ li {
 .boxnum {
     background: #fff;
     vertical-align: bottom;
-    padding: 5px;
+    padding: 2px;
     font-size: 10px;
 }
 
