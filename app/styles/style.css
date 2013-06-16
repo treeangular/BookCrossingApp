@@ -325,11 +325,20 @@ li {
     border-bottom: 1px solid #9d9e9e;
 }
 
-.huntOption, .releaseOption, .bookResultOption{
+.huntOption, .releaseOption, .bookResultOption, .bookListOption{
     padding-top: 5px;
     padding-bottom: 5px;
     border-top: 1px solid #9d9e9e;
     border-bottom: 1px solid #9d9e9e;
+}
+
+.bookListOption{
+    position: relative;
+    background-image: url('./img/booklist.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 10px 40px;
+
 }
 
 .huntOption {
@@ -427,7 +436,7 @@ li {
 
 .h2button {
     position: absolute;
-    top:0;
+    top:3px;
     right: 0
 }
 
@@ -454,15 +463,6 @@ li {
     height: 100px
 }
 
-#bookList{
-    position: relative;
-    background-image: url('./img/booklist.png');
-    background-position: left center;
-    background-repeat: no-repeat;
-    padding: 5px 5px 5px 40px;
-
-}
-
 #libraryimg {
     float: left;
     margin-right: 10px;
@@ -480,6 +480,7 @@ li {
 #libraryheader {
     position: relative;
     clear: both;
+    margin-bottom: 5px;
 }
 
 

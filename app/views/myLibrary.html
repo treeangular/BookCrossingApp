@@ -21,12 +21,11 @@
             </div>
         </div>
     </div>
-    <ul id="BookOptionList">
-        <li><h2 id="bookList">List of books
-            <img class="h2button" ng-hide="listView" ng-click="changeView()" ng-src="styles/img/mosaic.png"/>
-            <img class="h2button" ng-show="listView" ng-click="changeView()" ng-src="styles/img/list.png"/></h2>
-        </li>
-    </ul>
+    <h2 class="bookListOption">
+        Books
+        <img class="h2button" ng-hide="listView" ng-click="changeView()" ng-src="styles/img/mosaic.png"/>
+        <img class="h2button" ng-show="listView" ng-click="changeView()" ng-src="styles/img/list.png"/>
+    </h2>
     <div ng-hide="listView" infinite-scroll="nextPage()" infinite-scroll-distance="5">
         <ul>
             <li ng-repeat='book in books'>
