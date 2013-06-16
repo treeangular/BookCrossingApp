@@ -2,11 +2,11 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
         xmlns:gap	= "http://phonegap.com/ns/1.0"
         id		   = "com.crossers.bookcrossingapp"
-        version 	= "1.0.2">
+        version 	= "1.0.3">
 
   <name>BookCrossingApp</name>
 
-  <description>BookCrossingApp</description>
+  <description>The best mobile implementation for book crossing!</description>
 
   <author email="truegoldenwarriors@gmail.com">BookCrossingApp</author>
 
@@ -21,7 +21,7 @@
 
   <preference name="orientation" value="portrait" />
 
-  <preference name="phonegap-version" value="2.5.0" />
+  <preference name="phonegap-version" value="2.7.0" />
   <preference name="target-device" value="universal" />
 
   <!-- Splash Screens -->
