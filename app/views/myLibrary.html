@@ -1,8 +1,9 @@
 <div ng-controller="MyLibraryCtrl">
+    <input ng-show="selectedUser==null" id="mylibrarystatus" ng-model="library.status" name="status" type="text" placeholder="What's happening today?" />
     <div id="libraryheader">
-        <img id="libraryimg" ng-src="styles/img/books/a_clockwork_orange.jpg"/>
+        <img id="libraryimg" ng-src='{{library.image}}'/>
         <div class="mainbox">
-            <h2>Marc</h2>
+            <h2>{{library.nick}}</h2>
             <div class="boxheader">
                 <p class="boxtext">Registers</p>
                 <p class="boxnum">{{library.registrations}}</p>
@@ -16,8 +17,8 @@
                 <p class="boxnum">{{library.comments}}</p>
             </div>
             <div>
-                <p>Favorite genre: Action</p>
-                <p>We love books from Barcelona!</p>
+                <p>Favorite genre: {{library.favoriteGenre}}</p>
+                <p>{{library.status}}</p>
             </div>
         </div>
     </div>

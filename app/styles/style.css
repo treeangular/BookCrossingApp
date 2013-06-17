@@ -481,6 +481,14 @@ li {
     position: relative;
     clear: both;
     margin-bottom: 5px;
+    min-height: 95px;
+}
+
+#mylibrarystatus{
+    padding-bottom:3px;
+    padding-top:3px;
+    margin-top: 0px;
+    margin-bottom: 5px
 }
 
 

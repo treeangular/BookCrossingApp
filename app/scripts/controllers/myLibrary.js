@@ -11,13 +11,13 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
     function bindToLibrary(user){
         $scope.library =
         {
-            image: user.get('myPicture'),
-            name: user.get('nick')== undefined ? "-" : user.get('nick'),
-            favoriteGenre: user.get('favoriteGenre') == undefined ? "-" : user.get('favoriteGenre'),
-            registrations: user.get('registered') == undefined ? "-" : user.get('registered'),
-            hunts:  user.get('hunted') == undefined ? "-" : user.get('hunted') ,
-            comments:  user.get('comments') == undefined ? "-" : user.get('comments'),
-            description:  user.get('status') == undefined ? "-" : user.get('status')
+            image: user.get('myPicture')== undefined ? "styles/img/user.png" : user.get('myPicture'),
+            nick: user.get('username')== undefined ? "Undefined" : user.get('username'),
+            favoriteGenre: user.get('favoriteGenre') == undefined ? "Undefined" : user.get('favoriteGenre'),
+            registrations: user.get('registered') == undefined ? "0" : user.get('registered'),
+            hunts:  user.get('hunted') == undefined ? "0" : user.get('hunted') ,
+            comments:  user.get('comments') == undefined ? "0" : user.get('comments'),
+            status:  user.get('status') == undefined ? "" : user.get('status')
         };
 
     }
