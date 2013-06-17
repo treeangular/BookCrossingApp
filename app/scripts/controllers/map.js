@@ -80,7 +80,7 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
                     var title = book.get('title');
                     var description = book.get('description');
                     var releasedAtDescription = book.get('releasedAtDescription');
-                    var username = user.get('username');
+                    var username = user.get('nick');
                     var image = book.get('image');
                     var bookStatus = book.get('bookStatus');
                     var time;

@@ -12,7 +12,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
         $scope.library =
         {
             image: user.get('myPicture')== undefined ? "styles/img/user.png" : user.get('myPicture'),
-            nick: user.get('username')== undefined ? "Undefined" : user.get('username'),
+            nick: user.get('nick')== undefined ? "Undefined" : user.get('nick'),
             favoriteGenre: user.get('favoriteGenre') == undefined ? "Undefined" : user.get('favoriteGenre'),
             registrations: user.get('registered') == undefined ? "0" : user.get('registered'),
             hunts:  user.get('hunted') == undefined ? "0" : user.get('hunted') ,

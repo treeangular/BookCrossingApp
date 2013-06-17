@@ -3,7 +3,7 @@
         <li ng-repeat='comment in comments'>
             <div class="commentItemList">
                 <img ng-click="selectUser(comment.get('user'))"  ng-src='{{comment.get("user").get("image")}}'>
-                <a ng-click="selectUser(comment.get('user'))"><h3>{{comment.get("user").get("username")}}</h3></a>
+                <a ng-click="selectUser(comment.get('user'))"><h3>{{comment.get("user").get("nick")}}</h3></a>
                 <p>{{comment.get("content")}}</p>
                 <p class="time">{{comment.createdAt | roundedTime}}</p>
             </div>
