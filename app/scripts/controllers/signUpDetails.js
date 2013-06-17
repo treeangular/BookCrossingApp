@@ -21,9 +21,9 @@ angular.module('BookCrossingApp')
 //                            function(entry) {
                                 // do what you want with the entry here
                                 console.log("download complete: " + entry.fullPath);
-                                dataService.uploadPicture(user, function(isResult, parseUrl)
-                                {
-                                    user.myPictureFile = parseUrl;
+//                                dataService.uploadPicture(user, function(isResult, parseUrl)
+//                                {
+//                                    user.myPictureFile = parseUrl;
 
                                     //need to use q but thats for later after being able to upload the pic
                                     dataService.updateUserProfile(user, function (isResult, result) {
@@ -40,7 +40,7 @@ angular.module('BookCrossingApp')
                                             }
                                         });
                                     });
-                                });
+//                                });
 //                            },
 //                            function(error) {
 //                                console.log("error source " + error.source);

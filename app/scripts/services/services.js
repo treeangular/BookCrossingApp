@@ -32,6 +32,7 @@ angular.module('dataServices', [])
         var Action = Parse.Object.extend("Action");
         var ActionType = Parse.Object.extend("ActionType");
         var Comment = Parse.Object.extend("Comment");
+        var Tracking = Parse.Object.extend("Tracking");
 
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
@@ -198,10 +199,20 @@ angular.module('dataServices', [])
             //Register new user
             registerNewUser: function registerNewUser(user, callback) {
                 var newUser = new Parse.User();
-
-                newUser.set("username", user.Email.toLowerCase());
+                //Basic info
+                newUser.set("username", createRandomNick());
                 newUser.set("password", user.Password);
                 newUser.set("email", user.Email.toLowerCase());
+                //user counters
+                newUser.set("registered", 0);
+                newUser.set("released", 0);
+                newUser.set("hunted", 0);
+                newUser.set("comments", 0);
+                //Social and interesting info
+                newUser.set("status", "Getting familiar with BC!");
+                newUser.set("gender", "");
+                newUser.set("genere", "");
+                newUser.set("birth", "");
 
                 newUser.signUp(null, {
                     success: function (userr) {
@@ -216,6 +227,7 @@ angular.module('dataServices', [])
                     }
                 });
             },
+
             updateUserProfile: function updateUserProfile(user, callback) {
                 //Get current user
                 var currentUser = Parse.User.current();
@@ -237,7 +249,6 @@ angular.module('dataServices', [])
                         callback(false, ErrorConst.UserNotUpdatedCorrectly);
                     }
                 });
-
             },
         //</editor-fold>
 
@@ -595,6 +606,29 @@ angular.module('dataServices', [])
                              callback(false, ErrorConst.GenericError);
                          }
                      });
+                },
+
+                getTrackingForBook: function  getTrackingForBook(book, callback)
+                {
+                    //Get the tracking of the releases of the book
+                    var qTracking = new Parse.Query(Tracking);
+
+                    qTracking.equalTo("book", book);
+
+                    qTracking.descending("createdAt");
+
+                    // Include
+                    //qTracking.include("user");
+
+                    qTracking.find({
+                        success: function (tracking) {
+                            callback(true, tracking);
+                        },
+                        error: function (tracking, error) {
+                            console.log("Error: " + error.code + " " + error.message)
+                            callback(false, ErrorConst.GenericError);
+                        }
+                    });
                 },
 
                 //</editor-fold>

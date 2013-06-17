@@ -152,7 +152,7 @@ Parse.Cloud.afterSave("Book", function (request) {
 
             //Set the new tracking record
             tracking.set("releasedAt", request.object.get("releasedAt"));
-            tracking.set("releasedAt", request.object.get("releasedAtDescription"));
+            tracking.set("releasedAtDescription", request.object.get("releasedAtDescription"));
             tracking.set("book", request.object);
 
             tracking.save(null, {
