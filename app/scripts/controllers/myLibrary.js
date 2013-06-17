@@ -24,8 +24,6 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
     $scope.changeView  = function() {
         $scope.listView = !$scope.listView;
-        if (listView)
-            $scope.listView = styles/img/mosaic.png
     }
 
     function getUserById(id){
