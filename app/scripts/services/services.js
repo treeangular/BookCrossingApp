@@ -200,9 +200,10 @@ angular.module('dataServices', [])
             registerNewUser: function registerNewUser(user, callback) {
                 var newUser = new Parse.User();
                 //Basic info
-                newUser.set("username", createRandomNick());
+                newUser.set("nick", createRandomNick());
                 newUser.set("password", user.Password);
                 newUser.set("email", user.Email.toLowerCase());
+                newUser.set("username", user.Email.toLowerCase());
                 //user counters
                 newUser.set("registered", 0);
                 newUser.set("released", 0);
