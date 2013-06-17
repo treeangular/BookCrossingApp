@@ -6,10 +6,10 @@ angular.module('BookCrossingApp')
         $scope.updateUserProfile = function (user) {
 
             //Only way I found to fix this issue - SO question => that should be already in user.myPicture!!
-            user.myPicture = $scope.myPicture;
-            console.log("SO jquery response" + user.myPicture);
-
-            $scope.myPicture = "../styles/img/CustomAvatarContest.png";
+//            user.myPicture = $scope.myPicture;
+//            console.log("SO jquery response" + user.myPicture);
+//
+//            $scope.myPicture = "../styles/img/CustomAvatarContest.png";
 
 //            window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fs){
 //                fs.root.getFile("temp", {create: true, exclusive: false},
@@ -20,7 +20,7 @@ angular.module('BookCrossingApp')
 //                            entry.fullPath,
 //                            function(entry) {
                                 // do what you want with the entry here
-                                console.log("download complete: " + entry.fullPath);
+                                //console.log("download complete: " + entry.fullPath);
 //                                dataService.uploadPicture(user, function(isResult, parseUrl)
 //                                {
 //                                    user.myPictureFile = parseUrl;
@@ -67,23 +67,23 @@ angular.module('BookCrossingApp')
             }
         }, true);
 
-        $scope.randomNick = function createRandomNick()
-        {
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
-            var string_length = 8;
-            var randomstring = '';
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            return  "USER" + randomstring;
-        };
+//        $scope.randomNick = function createRandomNick()
+//        {
+//            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
+//            var string_length = 8;
+//            var randomstring = '';
+//            for (var i=0; i<string_length; i++) {
+//                var rnum = Math.floor(Math.random() * chars.length);
+//                randomstring += chars.substring(rnum,rnum+1);
+//            }
+//
+//            return  "USER" + randomstring;
+//        };
 
         dataService.getCurrentUser(function(currentUser){
             if(currentUser.nick == undefined )
             {
-               currentUser.nick = $scope.randomNick;
+               //currentUser.nick = $scope.randomNick;
                $scope.user = currentUser;
             }
             else
