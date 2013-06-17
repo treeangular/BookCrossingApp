@@ -209,7 +209,7 @@ angular.module('dataServices', [])
                 newUser.set("hunted", 0);
                 newUser.set("comments", 0);
                 //Social and interesting info
-                newUser.set("status", "Getting familiar with BC!");
+                newUser.set("status", "");
                 newUser.set("gender", "");
                 newUser.set("genere", "");
                 newUser.set("birth", "");
