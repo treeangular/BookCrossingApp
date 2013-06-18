@@ -1,17 +1,24 @@
 <div ng-controller="SignUpDetailsCtrl" >
     <form name="SignUpDetails-form" class="login-form" ng-submit="updateUserProfile(user)">
         <div class="loginheader">
-            <h2>Complete your profile</h2>
+            <h2>Customize your profile</h2>
         </div>
-        <div class="content" style="text-align: center">
+        <div class="content">
             <input name="nick" type="text" ng-model="user.nick" placeholder="Nickname"  />
-            <input type="date" style="margin-top: 10px" ng-model="user.birthdate" placeholder="Birth date" />
-            <img id="preview" ng-click="getPicture()"   ng-src={{myPicture}} style="height:90px; width:90px; margin-top: 10px" />
-            <!--<input ng-hide type="file" ng-src={{myPicture}} ng-click="getPicture()" ng-model='myPictureFile' value="Upload Picture" />-->
-            <div style="margin-top: 10px;">
-            <img ng-class="maleClass" ng-click="selectSex('male')" src="styles/img/male.png">
-            <img ng-class="femaleClass" ng-click="selectSex('female')" src="styles/img/female.png">
+<!--            <input type="date" style="margin-top: 10px" ng-model="user.birthdate" placeholder="Birth date" />-->
+            <img id="libraryimg" style="margin-top: 10px"  ng-src="{{myPicture}}" />
+            <span style="margin-top: 30px; display: block; overflow: hidden;">
+                    <p style="padding-bottom: 20px" ><a ng-click="getPicture()">Select a picture</a></p>
+                    <p><a ng-click="getPicture()">Take a picture</a></p>
+            </span>
+            <div style="width: 100%; float:left">
+                <div style="margin-top: 10px; margin-bottom: 10px; text-align: center">
+                    <img ng-class="maleClass" ng-click="selectSex('male')" src="styles/img/male.png">
+                    <img ng-class="femaleClass" ng-click="selectSex('female')" src="styles/img/female.png">
+                </div>
             </div>
+            <!--<input ng-hide type="file" ng-src={{myPicture}} ng-click="getPicture()" ng-model='myPictureFile' value="Upload Picture" />-->
+
 
             <!--<select class="select" type="text"  name="genere" ng-model="user.favoriteGenre">
                     <option value="Preferred genre">Favorite genre</option>
