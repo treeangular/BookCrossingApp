@@ -91,10 +91,6 @@ angular.module('dataServices', [])
                     comment.set("book", books[0]);
                     comment.set("user", Parse.User.current());
 
-                    var newAcl = new Parse.ACL(Parse.User.current());
-                    newAcl.setPublicReadAccess(true);
-                    comment.setACL(newAcl);
-
                     comment.save(null, {
                         success: function (comment) {
                             // The object was saved successfully.
@@ -427,10 +423,6 @@ angular.module('dataServices', [])
                     book.set("registeredBy", Parse.User.current());
                     book.set("bookStatus", new BookStatus({id: BookStatusConst.Registered}));
                     book.set("ownedBy", Parse.User.current());
-
-                    var newAcl = new Parse.ACL(Parse.User.current());
-                    newAcl.setPublicReadAccess(true);
-                    book.setACL(newAcl);
 
                     book.save(null, {
                         success: function (book) {
