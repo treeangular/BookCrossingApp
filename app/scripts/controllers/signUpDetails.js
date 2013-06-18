@@ -76,7 +76,7 @@ angular.module('BookCrossingApp')
             }
 
         //Initialize default value
-        $scope.myPicture = "../styles/img/user.png";
+        $scope.myPicture = "styles/img/user.png";
 
         $scope.$watch('myPicture', function(value) {
             if(value) {
