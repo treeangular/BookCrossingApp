@@ -28,7 +28,7 @@ var BookStatusConst =
 // Gets the unique cool BC identificator. The real glue of BC!
 Parse.Cloud.define("GetBookId", function(request, response) {
     var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
-    var string_length = 8;
+    var string_length = 6;
     var randomstring = '';
     for (var i=0; i<string_length; i++) {
         var rnum = Math.floor(Math.random() * chars.length);
