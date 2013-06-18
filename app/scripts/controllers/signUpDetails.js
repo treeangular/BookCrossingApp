@@ -3,6 +3,14 @@
 angular.module('BookCrossingApp')
   .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http) {
 
+        $(function() {
+            $( "#datepicker" ).datepicker({
+                showOn: "button",
+                buttonImage: "images/calendar.gif",
+                buttonImageOnly: true
+            });
+        });
+
         var disabledClass = 'disabling';
         $scope.maleClass = disabledClass;
         $scope.femaleClass = disabledClass;

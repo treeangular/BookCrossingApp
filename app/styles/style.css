@@ -80,6 +80,10 @@ h3 {
 height: 40px;  
 }
 
+.blanksmall{
+    height: 20px;
+}
+
 /* Inputs text, email and password */
 textarea {
     resize: none;
@@ -636,7 +640,7 @@ li {
 }
 
 .login-form .footer {
-	padding: 25px 30px 40px 30px;
+	padding: 20px 30px 20px 30px;
 	overflow: auto;
 	
 	background: #d4dedf;
