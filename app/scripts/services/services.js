@@ -461,7 +461,7 @@ angular.module('dataServices', [])
                             book.save(null, {
                                 success: function (book) {
                                     // The object was saved successfully, lets update the status
-                                    callback(true, null);
+                                    callback(true, book);
                                 },
                                 error: function (data,error) {
                                     // The save failed.
