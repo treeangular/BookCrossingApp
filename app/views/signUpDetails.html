@@ -3,14 +3,17 @@
         <div class="loginheader">
             <h2>Complete your profile</h2>
         </div>
-        <div class="content">
-            <img id="preview"   ng-src={{myPicture}} height="100px" width="100px" />
-            <input type="button" ng-click="getPicture()"  value="Upload Picture"/>
+        <div class="content" style="text-align: center">
+            <input name="nick" type="text" ng-model="user.nick" placeholder="Nickname"  />
+            <input type="date" style="margin-top: 10px" ng-model="user.birthdate" placeholder="Birth date" />
+            <img id="preview" ng-click="getPicture()"   ng-src={{myPicture}} style="height:90px; width:90px; margin-top: 10px" />
             <!--<input ng-hide type="file" ng-src={{myPicture}} ng-click="getPicture()" ng-model='myPictureFile' value="Upload Picture" />-->
+            <div style="margin-top: 10px;">
+            <img ng-class="maleClass" ng-click="selectSex('male')" src="styles/img/male.png">
+            <img ng-class="femaleClass" ng-click="selectSex('female')" src="styles/img/female.png">
+            </div>
 
-            <input name="nick" type="text" ng-model="user.nick"  />
-
-            <select class="select" type="text"  name="genere" ng-model="user.favoriteGenre">
+            <!--<select class="select" type="text"  name="genere" ng-model="user.favoriteGenre">
                     <option value="Preferred genre">Favorite genre</option>
                     <option value="Action">Action</option>
                     <option value="Biography">Biography</option>
@@ -38,12 +41,12 @@
             <select class="select" type="text"  name="gender" ng-model="user.gender">
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
-            </select>
+            </select>              -->
         </div>
 
-        <div class="footer">
-            <input type="submit" value="Save" class="buttonleft" />
-            <a ng-href="#/Main"><input  value="Skip" class="buttonright" /></a>
+        <div class="footer" >
+            <input type="submit" value="Next" class="buttonleft" />
+            <a href="#/Main"><input type="button" name="submit" value="Skip" class="buttonright" /></a>
         </div>
     </form>
 </div>

@@ -85,7 +85,7 @@ textarea {
     resize: none;
 }
 
-input[type=text], input[type=email], input[type=password], textarea, select {
+input[type=text],input[type=date], input[type=email], input[type=password], textarea, select {
 	width: 100%;
 	padding: 10px 10px;
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -110,12 +110,12 @@ select{
 
 
 
-input[type=text]:hover, input[type=email]:hover, input[type=password]:hover , textarea:hover, select:hover{
+input[type=text]:hover,input[type=date]:hover, input[type=email]:hover, input[type=password]:hover , textarea:hover, select:hover{
 	background: #dfe9ec;
 	color: #414848;
 }
 
-input[type=text]:focus,input[type=email]:focus, input[type=password]:focus, textarea:focus, select:focus {
+input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[type=password]:focus, textarea:focus, select:focus {
 	background: #dfe9ec;
 	color: #414848;
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
@@ -436,7 +436,7 @@ li {
 
 .h2button {
     position: absolute;
-    top:3px;
+    top:5px;
     right: 0
 }
 
@@ -520,6 +520,11 @@ li {
 #clearfix {
     text-align: center;
     clear: both;
+}
+
+.disabling {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
 }
 
 
@@ -653,7 +658,7 @@ li {
 	-webkit-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
 }
 
-.login-form .content  input[type=text], input[type=email], input[type=password], textarea, select {
+.login-form .content  input[type=text], .login-form .content input[type=date], .login-form .content input[type=email], .login-form .content input[type=password], .login-form .content textarea, .login-form .content select {
 	width: 210px;
 	-webkit-box-sizing: inherit; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: inherit;    /* Firefox, other Gecko */

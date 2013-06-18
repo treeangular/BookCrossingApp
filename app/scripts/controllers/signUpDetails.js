@@ -3,6 +3,23 @@
 angular.module('BookCrossingApp')
   .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http) {
 
+        var disabledClass = 'disabling';
+        $scope.maleClass = disabledClass;
+        $scope.femaleClass = disabledClass;
+
+        $scope.selectSex = function (sex) {
+            if (sex=="male"){
+                $scope.user.gender = "Male";
+                $scope.maleClass = "NoDisable";
+                $scope.femaleClass = disabledClass;
+            }
+            else{
+                $scope.user.gender = "Female";
+                $scope.femaleClass = "NoDisable";
+                $scope.maleClass = disabledClass;
+            }
+        };
+
         $scope.updateUserProfile = function (user) {
 
             //Only way I found to fix this issue - SO question => that should be already in user.myPicture!!
@@ -59,7 +76,7 @@ angular.module('BookCrossingApp')
             }
 
         //Initialize default value
-        $scope.myPicture = "../styles/img/CustomAvatarContest.png";
+        $scope.myPicture = "../styles/img/user.png";
 
         $scope.$watch('myPicture', function(value) {
             if(value) {
