@@ -123,16 +123,13 @@ function loadParse()
 
     Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
 
-    window.fbAsyncInit = function () {
-
-        Parse.FacebookUtils.init({
-            appId: FB_APP_ID,
-            channelUrl :SERVER_URL + 'channel.html',
-            status:true,
-            cookie:true,
-            xfbml:true
-        });
-    };
+    $(document).on('mobileinit', function() {
+        FB.init({
+            appId : auth.fbId,
+            nativeInterface : CDV.FB,
+            useCachedDialogs : false
+        })
+    });
 
     (function (d) {
         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];

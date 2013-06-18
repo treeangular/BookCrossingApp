@@ -36,4 +36,10 @@
   <gap:splash src="styles/img/splash.png" width="1024" height="768" />
   <gap:splash src="styles/img/splash.png" width="768" height="1024" />
 
+    <gap:plugin name="FacebookConnect">
+        <param
+                name="APP_ID"
+                value="160779410752321" />
+    </gap:plugin>
+
 </widget>
