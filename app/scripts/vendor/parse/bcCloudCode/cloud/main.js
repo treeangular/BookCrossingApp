@@ -126,7 +126,6 @@ Parse.Cloud.afterSave("Book", function (request) {
                 {user.increment(userCounterToIncerement);}
 
                 user.save(null, {
-
                     success: function (user) {
                         console.log("registers of the user incremented")
                     },
@@ -151,6 +150,7 @@ Parse.Cloud.afterSave("Book", function (request) {
             console.log("It is a release going to create the Tracking record ");
 
             //Set the new tracking record
+            tracking.set("releasedBy", request.object.get("ownedBy"));
             tracking.set("releasedAt", request.object.get("releasedAt"));
             tracking.set("releasedAtDescription", request.object.get("releasedAtDescription"));
             tracking.set("book", request.object);
@@ -158,6 +158,7 @@ Parse.Cloud.afterSave("Book", function (request) {
             tracking.save(null, {
                 success: function (tracking) {
                     // The object was saved successfully.
+                    console.log("Tracking record was saved successfully." );
                 },
                 error: function (error) {
                     // The save failed.
