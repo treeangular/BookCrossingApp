@@ -11,8 +11,9 @@
                     <p><a ng-click="getPicture()">Take a picture</a></p>
             </span>
             <input name="nick" type="text" ng-model="user.nick" placeholder="Nickname"  />
-            <input type="text" ng-model="date" bca_datepicker placeholder="Date of birth" />
-<!--<input type="date" style="margin-top: 10px" ng-model="user.birthdate" placeholder="Birth date" />-->
+            <input ng-click="setDate=true" onselect="setDate=true" ng-hide="setDate" ng-model="user.birthdate" type="text" placeholder="Birth date"/>
+            <input ng-show="setDate" ng-model="user.birthdate" type="date" id="myDate" placeholder="Birth date"/>
+            <!--<input type="date" style="margin-top: 10px" ng-model="user.birthdate" placeholder="Birth date" />-->
             <div style="width: 100%; float:left">
                 <div style="margin-top: 10px; margin-bottom: 10px; text-align: center">
                     <img ng-class="maleClass" ng-click="selectSex('male')" src="styles/img/male.png">
