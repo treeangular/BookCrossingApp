@@ -6,7 +6,7 @@ angular.module('BookCrossingApp')
         var disabledClass = 'disabling';
         $scope.maleClass = disabledClass;
         $scope.femaleClass = disabledClass;
-        $scope.setDate = false;
+
 
         $scope.selectSex = function (sex) {
             if (sex=="male"){
