@@ -90,6 +90,7 @@ angular.module('BookCrossingApp')
             {
                //currentUser.nick = $scope.randomNick;
                $scope.user = currentUser;
+
             }
             else
             {

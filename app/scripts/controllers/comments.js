@@ -72,6 +72,7 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
                 $scope.comments.push(comment)
                 $scope.content = "";
                 $rootScope.$broadcast(loadingRequestConst.Stop);
+                $scope.clicked = false;
             }, function(reason) {
 
                 $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
