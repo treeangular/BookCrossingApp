@@ -3,6 +3,7 @@
 BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q) {
 
     $scope.addBook = false;
+    var counterClick=0;
 
     $scope.addNewBook = function () {
         $scope.addBook = true;
@@ -62,8 +63,11 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.registerNewBook = function (book) {
 
-        $rootScope.$broadcast(loadingRequestConst.Start);
-        dataService.getBookRegistrationId(function (isResult, result) {
+        counterClick++;
+        if(counterClick===1)
+        {
+            $rootScope.$broadcast(loadingRequestConst.Start);
+            dataService.getBookRegistrationId(function (isResult, result) {
             // $scope.$apply(function () {
             // $scope.registrationCode = isResult;   //???
             //Without the registration Id we cannot let the book to be registered!
@@ -105,7 +109,9 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                 $rootScope.MessageNotification = result;
             }
 
+
         });
+        }
     };
 });
 
