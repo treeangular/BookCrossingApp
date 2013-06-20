@@ -8,5 +8,5 @@
         <option ng-repeat="zobc in zobcList" value="zobc.id">{{zobc.name}}</option>
     </select>
     <textarea ng-model="bookLocationDescription" name="bookDescription" rows="5"  placeholder="Give some clues to find the book!" />
-    <input ng-click="release()" type="submit" value="Confirm release" class="buttonlarge" />
+    <input ng-click="release()" type="submit" value="Confirm release" ng-disabled="clicked" class="buttonlarge" />
 </div>

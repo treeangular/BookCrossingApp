@@ -2,6 +2,7 @@
 
 BookCrossingApp.controller('AddZobcCtrl', function ($scope) {
 
+
     function findLocation()
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
@@ -13,6 +14,8 @@ BookCrossingApp.controller('AddZobcCtrl', function ($scope) {
 
     function registerNewZobc()
     {
+
+        $scope.clicked=true;
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 

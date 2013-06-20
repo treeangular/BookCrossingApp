@@ -24,7 +24,7 @@
         <textarea style="height: 180px" name="bookDescription" ng-model="book.description"  placeholder="Description" />
         </span>
     </div>
-    <input type="button" ng-click="registerNewBook(book)" value="Register" class="buttonlarge" />
+    <input type="button" ng-click="registerNewBook(book)" ng-disabled="clicked" value="Register" class="buttonlarge" />
     </div>
 </div>
 

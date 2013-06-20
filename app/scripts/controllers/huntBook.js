@@ -55,6 +55,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     $scope.huntBook = function(book)
     {
+        $scope.clicked=true;
         var promise = huntBook(book);
         promise.then(function(returnedBook) {
             $scope.setSelectedBook(returnedBook);

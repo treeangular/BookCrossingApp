@@ -72,6 +72,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     $scope.release = function () {
 
+        $scope.clicked=true;
         $rootScope.$broadcast(loadingRequestConst.Start);
         var releaseInfo = new Object();
 

@@ -38,6 +38,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
 
     $scope.registerNewUser = function (user) {
 
+
         var promise = registerNewUser(user);
         promise.then(function(result) {
 

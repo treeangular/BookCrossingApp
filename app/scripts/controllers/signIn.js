@@ -31,6 +31,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
     $scope.signInUser = function (user) {
 
+
         var promise = signInUser(user.Email, user.Password)
         promise.then(function() {
 

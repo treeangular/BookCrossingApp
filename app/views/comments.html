@@ -11,6 +11,6 @@
     </ul>
     <div id="addComment">
         <textarea ng-model="comment.content" name="content" rows="3"  placeholder="Add your comment" />
-        <input ng-click="addNewComment(comment)"  type="submit" value="Add" class="buttonlarge" />
+        <input ng-click="addNewComment(comment)" ng-disabled="clicked"  type="submit" value="Add" class="buttonlarge" />
     </div>
 </div>

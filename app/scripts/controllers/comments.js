@@ -30,6 +30,7 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
 
     function saveComment(comment)
     {
+
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
         comment.book = $scope.selectedBook;
@@ -64,18 +65,18 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
 
     $scope.addNewComment = function(comment)
     {
-        var promise = saveComment(comment)
-        promise.then(function(comment) {
+            $scope.clicked = true;
+            var promise = saveComment(comment)
+            promise.then(function(comment) {
 
-            $scope.comments.push(comment)
-            $scope.content = "";
-            $rootScope.$broadcast(loadingRequestConst.Stop);
-        }, function(reason) {
+                $scope.comments.push(comment)
+                $scope.content = "";
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+            }, function(reason) {
 
-            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-            $rootScope.MessageNotification = reason;
-        });
-
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = reason;
+            });
 
     };
 
