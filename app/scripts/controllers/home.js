@@ -51,7 +51,11 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
       var promise = getActPage($scope.currentPage);
       promise.then(function(alerts) {
-          $scope.alerts = alerts;
+
+          for(var i = 0; i <= alerts.length-1; i++) {
+            $scope.alerts.push(alerts[i]);
+          }
+
           //alert($scope.alerts[0].get("book").get('title'));
 
       }, function(reason) {
