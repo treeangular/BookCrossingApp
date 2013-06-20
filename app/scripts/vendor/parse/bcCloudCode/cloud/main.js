@@ -61,7 +61,26 @@ Parse.Cloud.beforeSave("Book", function(request, response) {
     response.success();
 
 });
+Parse.Cloud.afterSave("Comment", function(request){
 
+    var user = new Parse.Object("User");
+    var tracking = Parse.Object("Tracking");
+
+    //Update User counters
+    user = request.user;
+    user.increment("comments");
+    user.save(null, {
+        success: function (user) {
+            console.log("comments of the user incremented")
+        },
+        error: function (error) {
+            // The save failed.
+            // error is a Parse.Error with an error code and description.
+            console.error("Insertion Error: " + error.message);
+            throw "Got an error " + error.code + " : " + error.message;
+        }
+    });
+});
 //Adds an action based on the new book status
 //Updates user counters
 Parse.Cloud.afterSave("Book", function (request) {
@@ -123,7 +142,8 @@ Parse.Cloud.afterSave("Book", function (request) {
                 //Update User counters
                 user = request.user;
                 if(userCounterToIncerement != "")
-                {user.increment(userCounterToIncerement);}
+                {
+                    user.increment(userCounterToIncerement);}
 
                 user.save(null, {
                     success: function (user) {
