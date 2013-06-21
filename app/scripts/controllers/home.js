@@ -3,6 +3,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     $scope.alerts = [];
     $scope.currentPage = 0;
+    $scope.isLastPage = true;
 
     if($rootScope.currentUser == undefined)
     {
@@ -47,19 +48,24 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
   $scope.nextPage  = function() {
     if ($scope.busy) return;
+    $rootScope.$broadcast(loadingRequestConst.Start);
     $scope.busy = true;
 
       var promise = getActPage($scope.currentPage);
       promise.then(function(alerts) {
 
+          if (alerts.length == 10) $scope.isLastPage = false;
+          else $scope.isLastPage = true;
+
           for(var i = 0; i <= alerts.length-1; i++) {
             $scope.alerts.push(alerts[i]);
           }
 
-          //alert($scope.alerts[0].get("book").get('title'));
+          $rootScope.$broadcast(loadingRequestConst.Stop);
 
       }, function(reason) {
 
+          $rootScope.$broadcast(loadingRequestConst.Stop);
           $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
           $rootScope.MessageNotification = reason;
       });
