@@ -6,17 +6,23 @@ angular.module('BookCrossingApp')
         var disabledClass = 'disabling';
         $scope.maleClass = disabledClass;
         $scope.femaleClass = disabledClass;
+        $scope.setDate = false;
 
 
         $scope.selectSex = function (sex) {
-            if (sex=="male"){
+            if (sex=="Male"){
                 $scope.user.gender = "Male";
                 $scope.maleClass = "NoDisable";
                 $scope.femaleClass = disabledClass;
             }
-            else{
+            else if (sex=="Female"){
                 $scope.user.gender = "Female";
                 $scope.femaleClass = "NoDisable";
+                $scope.maleClass = disabledClass;
+            }
+            else{
+                $scope.user.gender = "";
+                $scope.femaleClass = disabledClass;
                 $scope.maleClass = disabledClass;
             }
         };
@@ -41,7 +47,7 @@ angular.module('BookCrossingApp')
                                 //console.log("download complete: " + entry.fullPath);
 //                                dataService.uploadPicture(user, function(isResult, parseUrl)
 //                                {
-//                                    user.myPictureFile = parseUrl;
+//                                    user.myPicture = parseUrl;
 
                                     //need to use q but thats for later after being able to upload the pic
                                     dataService.updateUserProfile(user, function (isResult, result) {
@@ -86,16 +92,19 @@ angular.module('BookCrossingApp')
         }, true);
 
         dataService.getCurrentUser(function(currentUser){
-            if(currentUser.nick == undefined )
-            {
-               //currentUser.nick = $scope.randomNick;
-               $scope.user = currentUser;
 
-            }
-            else
-            {
-               $scope.user = currentUser;
-            }
+            $scope.user = {
+                nick: currentUser.get('nick'),
+                gender: currentUser.get('gender'),
+                birthday: currentUser.get('birthday'),
+                favoriteGenre:currentUser.get('favoriteGenre'),
+                myPicture: currentUser.get('myPicture')
+            };
+
+            $scope.selectSex($scope.user.gender);
+
+
+
          });
 
         $scope.getPicture = function(){

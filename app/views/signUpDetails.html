@@ -11,50 +11,15 @@
                     <p><a ng-click="getPicture()">Take a picture</a></p>
             </span>
             <input name="nick" type="text" ng-model="user.nick" placeholder="Nickname"  />
-            <input type="date" ng-model="user.birthday" >
-            <!--<input ng-click="setDate=true" onselect="setDate=true" ng-hide="setDate" ng-model="user.birthdate" type="text" placeholder="Birth date"/>
-            <input ng-show="setDate" ng-model="user.birthdate" type="date" id="myDate" placeholder="Birth date"/>
-            <input type="date" style="margin-top: 10px" ng-model="user.birthdate" placeholder="Birth date" />-->
+            <input ng-click="setDate=true" onselect="setDate=true" ng-hide="setDate" ng-model="user.birthday" type="text" placeholder="Birth date"/>
+            <input ng-show="setDate" ng-model="user.birthday" type="date" id="myDate" placeholder="Birth date"/>
             <div style="width: 100%; float:left">
                 <div style="margin-top: 10px; margin-bottom: 10px; text-align: center">
-                    <img ng-class="maleClass" ng-click="selectSex('male')" src="styles/img/male.png">
-                    <img ng-class="femaleClass" ng-click="selectSex('female')" src="styles/img/female.png">
+                    <img ng-class="maleClass" ng-click="selectSex('Male')" src="styles/img/male.png">
+                    <img ng-class="femaleClass" ng-click="selectSex('Female')" src="styles/img/female.png">
                 </div>
             </div>
-            <!--<input ng-hide type="file" ng-src={{myPicture}} ng-click="getPicture()" ng-model='myPictureFile' value="Upload Picture" />-->
-
-
-            <!--<select class="select" type="text"  name="genere" ng-model="user.favoriteGenre">
-                    <option value="Preferred genre">Favorite genre</option>
-                    <option value="Action">Action</option>
-                    <option value="Biography">Biography</option>
-                    <option value="Essay">Essay</option>
-                    <option value="Fable">Fable</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="General">General</option>
-                    <option value="Historical">Historical</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Humor">Humor</option>
-                    <option value="Kids">Kids</option>
-                    <option value="Manga">Manga</option>
-                    <option value="Mystery">Mystery</option>
-                    <option value="Mythology">Mythology</option>
-                    <option value="Play">Play</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Sci-Fi">Sci-Fi </option>
-                    <option value="Spiritual">Spiritual</option>
-                    <option value="Supernatural">Supernatural</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Western">Western</option>
-                    <option value="Young Adult">Young Adult</option>
-                </select>
-
-            <select class="select" type="text"  name="gender" ng-model="user.gender">
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
-            </select>              -->
         </div>
-
         <div class="footer" >
             <input type="submit" value="Next" class="buttonleft" />
             <a href="#/Main"><input type="button" name="submit" value="Skip" class="buttonright" /></a>

@@ -16,7 +16,7 @@ angular.module('facebookProvider', [])
                       user.username = response.username;
                       user.email = response.email;
                       user.gender = response.gender;
-                      user.myPictureFile = response.picture;
+                      user.myPicture = response.picture;
                       user.fbId = response.id;
 
                       callback(user);

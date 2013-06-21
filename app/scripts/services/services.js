@@ -233,7 +233,7 @@ angular.module('dataServices', [])
                 currentUser.set("gender", user.gender);
                 currentUser.set("favoriteGenre", user.favoriteGenre);
                 currentUser.set("birthday", user.birthday);
-                //currentUser.set("myPictureFile", user.myPictureFile);
+                currentUser.set("myPicture", user.myPicture);
 
                 currentUser.save(null, {
                     success: function (user) {
