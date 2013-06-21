@@ -409,6 +409,28 @@ li {
     height: 15px;
 }
 
+.likeOption {
+    display:inline-block;
+    background-image: url('./img/like.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left:20px;
+    padding-right:5px;
+    padding-top: 5px;
+    vertical-align: top;
+}
+
+.unlikeOption {
+    display:inline-block;
+    background-image: url('./img/unlike.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left:20px;
+    padding-right:5px;
+    padding-top: 5px;
+    vertical-align: middle;
+}
+
 #reviewOption {
     background-image: url('./img/review.png');
     background-position: left center;
