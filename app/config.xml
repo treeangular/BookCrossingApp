@@ -23,7 +23,7 @@
 
   <preference name="phonegap-version" value="2.7.0" />
   <preference name="target-device" value="universal" />
-  <preference name="UIWebViewBounce" value="false" />
+  <preference name="webviewbounce" value="false" />
 
   <!-- Splash Screens -->
   <gap:splash src="styles/img/splash.png" />
