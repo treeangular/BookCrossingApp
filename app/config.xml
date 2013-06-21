@@ -23,6 +23,7 @@
 
   <preference name="phonegap-version" value="2.7.0" />
   <preference name="target-device" value="universal" />
+  <preference name="DisallowOverscroll" value="true" />
 
   <!-- Splash Screens -->
   <gap:splash src="styles/img/splash.png" />
@@ -35,6 +36,8 @@
   <gap:splash src="styles/img/splash.png" width="640" height="1136" />
   <gap:splash src="styles/img/splash.png" width="1024" height="768" />
   <gap:splash src="styles/img/splash.png" width="768" height="1024" />
+
+
 
     <!-- <gap:plugin name="FacebookConnect">
          <param
