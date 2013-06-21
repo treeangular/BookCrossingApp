@@ -391,6 +391,31 @@ li {
 
 }
 
+.star {
+    display:inline-block;
+    background-image: url('./img/blankstar_small.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+}
+
+.selectedStar {
+    display:inline-block;
+    background-image: url('./img/selectedstar_small.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+}
+
+#reviewOption {
+    background-image: url('./img/review.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 5px 40px;
+}
+
 #commentOption {
     background-image: url('./img/comments.png');
     background-position: left center;

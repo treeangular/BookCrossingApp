@@ -17,6 +17,12 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
     {
 		switch(page)
 		{
+            case 'views/reviews.html':
+                $scope.title = 'Reviews';
+                $scope.leftButtonName = "back";
+                $scope.leftButtonRef = "views/bookDetails.html";
+                $scope.rightButtonName = null;
+                break;
             case 'views/comments.html':
                 $scope.title = 'Comments';
                 $scope.leftButtonName = "back";

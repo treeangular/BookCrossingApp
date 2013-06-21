@@ -1,0 +1,26 @@
+<div ng-controller="ReviewsCtrl">
+    <ul>
+        <li ng-repeat='review in reviews'>
+            <div class="commentItemList">
+                <img ng-click="selectUser(review.user)"  ng-src='{{review.user.image}}'>
+                <a ng-click="selectUser(review.user)"><h3>{{review.user.nick}}</h3></a>
+                <div>
+                    <div ng-show="review.rate<1" class="star"></div>
+                    <div ng-hide="review.rate<1" class="selectedStar"></div>
+                    <div ng-show="review.rate<2" class="star"></div>
+                    <div ng-hide="review.rate<2" class="selectedStar"></div>
+                    <div ng-show="review.rate<3" class="star"></div>
+                    <div ng-hide="review.rate<3" class="selectedStar"></div>
+                    <div ng-show="review.rate<4" class="star"></div>
+                    <div ng-hide="review.rate<4" class="selectedStar"></div>
+                    <div ng-show="review.rate<5" class="star"></div>
+                    <div ng-hide="review.rate<5" class="selectedStar"></div>
+                </div>
+                <p>{{review.content}}</p>
+                <p class="time">{{review.createdAt | roundedTime}}</p>
+            </div>
+        </li>
+        <li ng-hide="isLastPage" ng-click="nextPage()" style="text-align: center; "><a ng-click="nextPage()">See more alerts</a></li>
+    </ul>
+
+</div>
