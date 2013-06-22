@@ -117,13 +117,14 @@ function loadHttpInterceptor($httpProvider)
 function loadFB()
 {
     var FB_APP_ID = "160779410752321";
-    if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
+    $(document).on('mobileinit', function() {
+        if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
         FB.init({
             appId : FB_APP_ID,
             nativeInterface : CDV.FB,
             useCachedDialogs : false
         });
-
+    });
 
 }
 
