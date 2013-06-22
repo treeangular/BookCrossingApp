@@ -31,6 +31,7 @@ angular.module('facebookProvider', [])
                           alert("default");
                           FB.login(function (response) {
 
+                              alert(response);
                               if (response.authResponse) {
 
                                   alert("login!");

@@ -119,7 +119,7 @@ function loadFB()
     var FB_APP_ID = "160779410752321";
 
     window.addEventListener('load', function() {
-        alert("hola!");
+
         if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
         FB.init({
             appId: FB_APP_ID,
