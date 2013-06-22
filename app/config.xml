@@ -41,7 +41,7 @@
 
     <gap:plugin name="FacebookConnect">
         <param name="APP_ID" value="160779410752321" />
-        <param name="APP_NAME" value="BookCrossingApp" />
+        <param name="APP_NAME" value="BookCrossing Mobile Application" />
     </gap:plugin>
 
  </widget>
