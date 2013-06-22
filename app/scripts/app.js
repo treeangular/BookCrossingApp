@@ -57,6 +57,7 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
     loadGoogleAnalytics();
     loadFastClick();
     loadParse();
+    loadFB();
 
 }]);
 
@@ -113,34 +114,22 @@ function loadHttpInterceptor($httpProvider)
     $httpProvider.responseInterceptors.push(interceptor);
 
 }
-
-function loadParse()
+function loadFB()
 {
     var FB_APP_ID = "160779410752321";
-    var SERVER_URL = "http://localhost:8080/#/";
-    var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS";
-    var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr";
-
-    Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
-
     $(document).on('mobileinit', function() {
         FB.init({
-            appId : "160779410752321",
+            appId : "FB_APP_ID",
             nativeInterface : CDV.FB,
             useCachedDialogs : false
         })
     });
+}
 
-    (function (d) {
-        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement('script');
-        js.id = id;
-        js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        ref.parentNode.insertBefore(js, ref);
-    }(document));
+function loadParse()
+{
+    var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS";
+    var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr";
 
+    Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
 }

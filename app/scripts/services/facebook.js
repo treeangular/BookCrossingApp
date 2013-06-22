@@ -11,28 +11,33 @@ angular.module('facebookProvider', [])
                   switch (response.status) {
                       case 'connected':
                           //$rootScope.$broadcast('fb_connected', {facebook_id:response.authResponse.userID});
+                          alert("connected");
                           callback(response.status);
-                          alert(response.status);
+
                           break;
                       case 'not_authorized' || 'unknown':
                           if (response.authResponse) {
 
+                              alert("not autho");
                               callback(response.status, response.authResponse);
-                              alert(response.status);
+
 
                           } else {
                               console.log('Facebook login failed', response);
                           }
                           break;
                       default:
+                          alert("default");
                           FB.login(function (response) {
 
                               if (response.authResponse) {
 
+                                  alert("login!");
                                   callback(response.status, response.authResponse.userID);
-                                  alert(response.status);
+
 
                               } else {
+                                  alert("login failed!");
                                   $rootScope.$broadcast('fb login failed');
                               }
                           });

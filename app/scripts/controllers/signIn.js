@@ -48,6 +48,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
     $scope.fbSignIn = function()
     {
+        alert("Entrando");
         facebookService.login(function(result, user)
         {
             $scope.$apply(function () {
@@ -59,22 +60,23 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                     }
                     else
                     {
-                        facebookService.getUserInfo(function(result){
-
-                            if(result != null)
-                            {
-                                dataService.updateUserProfileFromFb(result, function(response){
-                                    //TODO hev: manage errors;
-
-                                    $location.path('/Main');
-                                });
-                            }
-                            else
-                            {
-                                $rootScope.TypeNotification = "errormessage";
-                                $rootScope.MessageNotification = "User not connected";
-                            }
-                        });
+                        alert("mal!");
+//                        facebookService.getUserInfo(function(result){
+//
+//                            if(result != null)
+//                            {
+//                                dataService.updateUserProfileFromFb(result, function(response){
+//                                    //TODO hev: manage errors;
+//
+//                                    $location.path('/Main');
+//                                });
+//                            }
+//                            else
+//                            {
+//                                $rootScope.TypeNotification = "errormessage";
+//                                $rootScope.MessageNotification = "User not connected";
+//                            }
+//                        });
                     }
                 }
                 else

@@ -121,52 +121,52 @@ angular.module('dataServices', [])
 
         //<editor-fold description="Facebook">
             //SignIn a Fb user
-            fbSignIn: function fbSignIn(callback){
-
-               Parse.FacebookUtils.logIn("email", {
-                    success: function(user) {
-                        if (!user.existed()) {
-
-                            //if the user does not exists we have to created it
-                            callback(true, null);
-
-                        }
-                         else {
-
-                            //if the user exists redirect
-                           callback(true, user);
-                        }
-                    },
-                    error: function(user, error) {
-                        callback(false);
-                    }
-               });
-            },
-            updateUserProfileFromFb: function updateUserProfileFromFb(user, callback)
-            {
-                //Get current user
-                var currentUser = Parse.User.current();
-
-                currentUser.set("nick", user.username);
-                currentUser.set("gender", user.gender);
-                currentUser.set("email", user.email);
-                currentUser.set("username", user.username);
-                currentUser.set("myPicture", 'http://graph.facebook.com/' + user.fbId + '/picture');
-                currentUser.set("facebookId", user.fbId);
-
-                currentUser.save(null, {
-                    success: function (user) {
-                        // Hooray! Let them use the app now.
-                        callback(true, null);
-                    },
-                    error: function (user, error) {
-                        // Show the error message somewhere and let the user try again.
-                        //alert("Error: " + error.code + " " + error.message);
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, ErrorConst.GenericError);
-                    }
-                });
-            },
+//            fbSignIn: function fbSignIn(callback){
+//
+//               Parse.FacebookUtils.logIn("email", {
+//                    success: function(user) {
+//                        if (!user.existed()) {
+//
+//                            //if the user does not exists we have to created it
+//                            callback(true, null);
+//
+//                        }
+//                         else {
+//
+//                            //if the user exists redirect
+//                           callback(true, user);
+//                        }
+//                    },
+//                    error: function(user, error) {
+//                        callback(false);
+//                    }
+//               });
+//            },
+//            updateUserProfileFromFb: function updateUserProfileFromFb(user, callback)
+//            {
+//                //Get current user
+//                var currentUser = Parse.User.current();
+//
+//                currentUser.set("nick", user.username);
+//                currentUser.set("gender", user.gender);
+//                currentUser.set("email", user.email);
+//                currentUser.set("username", user.username);
+//                currentUser.set("myPicture", 'http://graph.facebook.com/' + user.fbId + '/picture');
+//                currentUser.set("facebookId", user.fbId);
+//
+//                currentUser.save(null, {
+//                    success: function (user) {
+//                        // Hooray! Let them use the app now.
+//                        callback(true, null);
+//                    },
+//                    error: function (user, error) {
+//                        // Show the error message somewhere and let the user try again.
+//                        //alert("Error: " + error.code + " " + error.message);
+//                        console.log("Error: " + error.code + " " + error.message);
+//                        callback(false, ErrorConst.GenericError);
+//                    }
+//                });
+//            },
         //</editor-fold>
 
         //<editor-fold description="Sign">
@@ -690,30 +690,3 @@ angular.module('dataServices', [])
 
     return serviceToUse;
 });
-
-
-window.fbAsyncInit = function () {
-    Parse.FacebookUtils.init({
-        appId:'160779410752321',
-        channelUrl :'http://localhost.com:8080/BookCrossingApp/app/#/channel.html',
-        status:true,
-        cookie:true,
-        xfbml:true
-    });
-};
-
-(function (d) {
-    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-    if (d.getElementById(id)) {
-        return;
-    }
-    js = d.createElement('script');
-    js.id = id;
-    js.async = true;
-    js.src = "//connect.facebook.net/en_US/all.js";
-    ref.parentNode.insertBefore(js, ref);
-}(document));
-
-
-
-
