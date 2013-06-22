@@ -117,12 +117,16 @@ function loadHttpInterceptor($httpProvider)
 function loadFB()
 {
     var FB_APP_ID = "160779410752321";
-    $(document).on('mobileinit', function() {
+    document.addEventListener('deviceready', function() {
+        if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
         FB.init({
-            appId : "FB_APP_ID",
-            nativeInterface : CDV.FB,
-            useCachedDialogs : false
-        })
+            appId: FB_APP_ID,
+            nativeInterface: CDV.FB,
+            status     : true, // check login status
+
+            useCachedDialogs: false
+        });
+
     });
 }
 
