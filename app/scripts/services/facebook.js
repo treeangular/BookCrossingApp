@@ -7,6 +7,7 @@ angular.module('facebookProvider', [])
       return{
 
           login:function (callback) {
+              if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
               FB.getLoginStatus(function (response) {
                   switch (response.status) {
                       case 'connected':
