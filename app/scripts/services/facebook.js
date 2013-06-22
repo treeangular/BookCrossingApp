@@ -28,20 +28,26 @@ angular.module('facebookProvider', [])
                           }
                           break;
                       default:
-                          alert("default");
+
                           FB.login(function (response) {
 
-                              alert(response);
-                              if (response.authResponse) {
-
-                                  alert("login!");
-                                  callback(response.status, response.authResponse.userID);
-
-
-                              } else {
-                                  alert("login failed!");
-                                  $rootScope.$broadcast('fb login failed');
+                              try {
+                                  uid = response.authResponse.userId;
+                              } catch (e) {
+                                  alert(e);
                               }
+
+//                              alert(response);
+//                              if (response.authResponse) {
+//
+//                                  alert("login!");
+//                                  callback(response.status, response.authResponse.userID);
+//
+//
+//                              } else {
+//                                  alert("login failed!");
+//                                  $rootScope.$broadcast('fb login failed');
+//                              }
                           });
                           break;
                   }
