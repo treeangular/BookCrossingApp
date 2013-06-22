@@ -9,6 +9,7 @@ angular.module('facebookProvider', [])
           login:function (callback) {
 
               FB.getLoginStatus(function (response) {
+                  alert(response.status);
                   switch (response.status) {
                       case 'connected':
                           //$rootScope.$broadcast('fb_connected', {facebook_id:response.authResponse.userID});
@@ -31,23 +32,17 @@ angular.module('facebookProvider', [])
 
                           FB.login(function (response) {
 
-                              try {
-                                  uid = response.authResponse.userId;
-                              } catch (e) {
-                                  alert(e);
-                              }
+                                alert(response);
+                              if (response.authResponse) {
 
-//                              alert(response);
-//                              if (response.authResponse) {
-//
-//                                  alert("login!");
-//                                  callback(response.status, response.authResponse.userID);
-//
-//
-//                              } else {
-//                                  alert("login failed!");
-//                                  $rootScope.$broadcast('fb login failed');
-//                              }
+                                  alert("login!");
+                                  callback(response.status, response.authResponse.userID);
+
+
+                              } else {
+                                  alert("login failed!");
+                                  $rootScope.$broadcast('fb login failed');
+                              }
                           });
                           break;
                   }
