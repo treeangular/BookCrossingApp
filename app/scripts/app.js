@@ -125,7 +125,7 @@ function loadParse()
 
     $(document).on('mobileinit', function() {
         FB.init({
-            appId : auth.fbId,
+            appId : "160779410752321",
             nativeInterface : CDV.FB,
             useCachedDialogs : false
         })

@@ -39,10 +39,9 @@
 
 
 
-    <!-- <gap:plugin name="FacebookConnect">
-         <param
-                 name="APP_ID"
-                 value="160779410752321" />
-     </gap:plugin>     -->
+    <gap:plugin name="FacebookConnect">
+        <param name="APP_ID" value="160779410752321" />
+        <param name="APP_NAME" value="BookCrossingApp" />
+    </gap:plugin>
 
  </widget>
