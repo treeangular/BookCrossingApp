@@ -1,5 +1,10 @@
 <div ng-controller="MapTrackingCtrl">
-    <div id="mapViewWrapper">
+    <div class="selectedBookBar">
+        <img ng-src="{{selectedBook.get('image')}}">
+        <h3>{{selectedBook.get("title")}}</h3>
+        <p ng-repeat="author in selectedBook.get('authors')">{{author}}</p>
+    </div>
+    <div id="mapTrackingViewWrapper">
         <div id="mapView" ui-map="myMap"
              ui-options="mapOptions"
              ui-event="{'map-idle' : 'onMapIdle()'}" />

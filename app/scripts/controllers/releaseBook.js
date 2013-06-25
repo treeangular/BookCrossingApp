@@ -83,7 +83,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         var promise = releaseBook(releaseInfo);
         promise.then(function(result) {
             $scope.setSelectedBook(result);
-            $scope.goTo('views/bookDetails.html');
+            $scope.goTo('views/reviewBook.html');
 
         }, function(reason) {
 

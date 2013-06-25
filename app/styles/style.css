@@ -251,9 +251,17 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
     width:100%; height:100%
 }
 
+#mapTrackingViewWrapper {
+    position: fixed;
+    top: 100px;
+    bottom: 50px;
+    left: 0px;
+    right: 0px;
+}
+
 #mapViewWrapper {
     position: fixed;
-    top: 45px;
+    top: 50px;
     bottom: 50px;
     left: 0px;
     right: 0px;
@@ -275,6 +283,24 @@ ul {
   margin: 0 15px 0px 0;
   width: 50px;
   height: 75px;
+}
+
+.selectedBookBar{
+    color: #fff;
+    height: 50px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#000), color-stop(.01, #000),
+    color-stop(.02, #555), color-stop(.03, #2d2d2d), color-stop(.5, #151515), color-stop(.51, #000));
+}
+
+.selectedBookBar h3{
+    padding-top: 10px;
+}
+
+.selectedBookBar img{
+    float: left;
+    width: 35px;
+    height: 50px;
+    margin-right: 15px
 }
 
 .bookReleaseItemList img {
@@ -391,7 +417,7 @@ li {
 
 }
 
-.star {
+.starSmall {
     display:inline-block;
     background-image: url('./img/blankstar_small.png');
     background-position: left center;
@@ -400,13 +426,31 @@ li {
     height: 15px;
 }
 
-.selectedStar {
+.selectedStarSmall {
     display:inline-block;
     background-image: url('./img/selectedstar_small.png');
     background-position: left center;
     background-repeat: no-repeat;
     width: 15px;
     height: 15px;
+}
+
+.star {
+    display:inline-block;
+    background-image: url('./img/blankstar.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+}
+
+.selectedStar {
+    display:inline-block;
+    background-image: url('./img/selectedstar.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
 }
 
 .likeOption {
@@ -448,7 +492,7 @@ li {
 #commentList{
     overflow: auto;
     position: fixed;
-    top: 50px;
+    top: 100px;
     bottom: 200px
 }
 

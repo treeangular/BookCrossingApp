@@ -1,20 +1,25 @@
 <div ng-controller="ReviewsCtrl">
+    <div class="selectedBookBar">
+        <img ng-src="{{selectedBook.get('image')}}">
+        <h3>{{selectedBook.get("title")}}</h3>
+        <p ng-repeat="author in selectedBook.get('authors')">{{author}}</p>
+    </div>
     <ul>
         <li ng-repeat='review in reviews'>
             <div class="commentItemList">
                 <img ng-click="selectUser(review.user)"  ng-src='{{review.user.image}}'>
                 <a ng-click="selectUser(review.user)"><h3>{{review.user.nick}}</h3></a>
                 <div>
-                    <div ng-show="review.rate<1" class="star"></div>
-                    <div ng-hide="review.rate<1" class="selectedStar"></div>
-                    <div ng-show="review.rate<2" class="star"></div>
-                    <div ng-hide="review.rate<2" class="selectedStar"></div>
-                    <div ng-show="review.rate<3" class="star"></div>
-                    <div ng-hide="review.rate<3" class="selectedStar"></div>
-                    <div ng-show="review.rate<4" class="star"></div>
-                    <div ng-hide="review.rate<4" class="selectedStar"></div>
-                    <div ng-show="review.rate<5" class="star"></div>
-                    <div ng-hide="review.rate<5" class="selectedStar"></div>
+                    <div ng-show="review.rate<1" class="starSmall"></div>
+                    <div ng-hide="review.rate<1" class="selectedStarSmall"></div>
+                    <div ng-show="review.rate<2" class="starSmall"></div>
+                    <div ng-hide="review.rate<2" class="selectedStarSmall"></div>
+                    <div ng-show="review.rate<3" class="starSmall"></div>
+                    <div ng-hide="review.rate<3" class="selectedStarSmall"></div>
+                    <div ng-show="review.rate<4" class="starSmall"></div>
+                    <div ng-hide="review.rate<4" class="selectedStarSmall"></div>
+                    <div ng-show="review.rate<5" class="starSmall"></div>
+                    <div ng-hide="review.rate<5" class="selectedStarSmall"></div>
                 </div>
                 <p style="margin-bottom: 5px">{{review.content}}</p>
                 <div class="likeOption" ng-click="like(review.id)">({{review.like}})</div>
