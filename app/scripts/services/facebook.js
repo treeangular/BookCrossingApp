@@ -10,14 +10,13 @@ angular.module('facebookProvider', [])
           {
                   FB.login(
                       function(response) {
-
                           if (response.session) {
                               alert('logged in');
                           } else {
                               alert('not logged in');
-
                           }
-                      }
+                      },
+                      { scope: "email" }
                   );
 
           },
