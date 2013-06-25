@@ -15,7 +15,7 @@ angular.module('facebookProvider', [])
                               alert('logged in');
                           } else {
                               alert('not logged in');
-                              alert(response.session.toString());
+
                           }
                       }
                   );
