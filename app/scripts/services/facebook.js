@@ -6,6 +6,20 @@ angular.module('facebookProvider', [])
 
       return{
 
+          login1: function(callback)
+          {
+                  FB.login(
+                      function(response) {
+                          if (response.session) {
+                              alert('logged in');
+                          } else {
+                              alert('not logged in');
+                          }
+                      },
+                      { scope: "email" }
+                  );
+
+          },
           login:function (callback) {
 
               FB.getLoginStatus(function (response) {
