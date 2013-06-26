@@ -6,8 +6,9 @@
     </div>
     <ul id="commentList">
         <li ng-repeat='comment in comments'>
-            <div class="commentItemList">
-                <img ng-click="selectUser(comment.get('user'))"  ng-src='{{comment.get("user").get("image")}}'>
+            <div class="commentItemList" ng-switch="comment.get('user').get('image')">
+                <img ng-hide="comment.get('user').get('image')==Undefined" ng-click="selectUser(comment.get('user'))"  ng-src='{{comment.get("user").get("image")}}' />
+                <img ng-show="comment.get('user').get('image')==Undefined" ng-click="selectUser(comment.get('user'))"  src='styles/img/user.png' />
                 <a ng-click="selectUser(comment.get('user'))"><h3>{{comment.get("user").get("nick")}}</h3></a>
                 <p>{{comment.get("content")}}</p>
                 <p class="time">{{comment.createdAt | roundedTime}}</p>
@@ -15,7 +16,7 @@
         </li>
     </ul>
     <div id="addComment">
-        <textarea ng-model="comment.content" name="content" rows="3"  placeholder="Add your comment" />
+        <textarea ng-model="comment.content" name="content" rows="2"  placeholder="Add your comment" />
         <input ng-click="addNewComment(comment)" ng-disabled="clicked"  type="submit" value="Add" class="buttonlarge" />
     </div>
 </div>

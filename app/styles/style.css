@@ -253,10 +253,10 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
 
 #mapTrackingViewWrapper {
     position: fixed;
-    top: 100px;
+    top: 105px;
     bottom: 50px;
-    left: 0px;
-    right: 0px;
+    left: 5px;
+    right: 5px;
 }
 
 #mapViewWrapper {
@@ -493,7 +493,7 @@ li {
     overflow: auto;
     position: fixed;
     top: 100px;
-    bottom: 200px
+    bottom: 170px
 }
 
 .commentItemList img {
@@ -515,7 +515,7 @@ li {
 }
 
 #addComment{
-    bottom: 64px;
+    bottom: 55px;
     position: fixed;
     left: 0px;
     right: 0px;
@@ -910,6 +910,7 @@ li {
   display:block;
   float:left; 
   min-width: 3.33333em;
+  border-bottom: 0px;
 }
 
 #tabbar a {
