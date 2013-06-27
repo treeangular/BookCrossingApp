@@ -1,9 +1,10 @@
 <div ng-controller="BookCtrl">
-<div>
+<div  ng-switch on="seeMoreOrLess">
     <img class="bookimg" ng-src="{{book.get('image')}}"/>
     <h1>{{book.get('title')}}</h1>
     <h3 ng-repeat="author in book.get('authors')">{{author}}</h3>
-    <p>{{book.get('description') | truncateString}}</p>
+    <p ng-hide="seeMoreOrLess=='See less'">{{book.get('description') | truncateString}}</p>
+    <p ng-hide="seeMoreOrLess=='See more'">{{book.get('description')}}</p>
     <p><a ng-click="expand()">{{seeMoreOrLess}}</a></p>
 </div>
 <ul id="BookOptionList">

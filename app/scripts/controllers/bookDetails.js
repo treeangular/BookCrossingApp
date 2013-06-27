@@ -14,13 +14,8 @@ BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
     $scope.expand = function () {
         if ($scope.seeMoreOrLess == "See more"){
             $scope.seeMoreOrLess = "See less";
-            $scope.description = book.get('description');
         }
         else {
-            if (book.get('description')==null || book.get('description').length < 125)
-                $scope.description = book.get('description');
-            else
-                $scope.description = book.get('description').substring(0, 120) + "...";
             $scope.seeMoreOrLess = "See more";
         }
     };
