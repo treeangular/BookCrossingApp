@@ -54,7 +54,7 @@ BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, data
                  //Load release coordinates in the map
                  if($scope.myMarkers.length == 0){
                      var bounds = new google.maps.LatLngBounds();
-                     for (var i = 0; i < results.length; i++) {
+                     for (var i = results.length-1; i >= 0 ; i--) {
 
                          var releasedAt = results[i].get('releasedAt');
 

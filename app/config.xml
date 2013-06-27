@@ -24,6 +24,7 @@
   <preference name="phonegap-version" value="2.7.0" />
   <preference name="target-device" value="universal" />
   <preference name="webviewbounce" value="false" />
+  <preference name="prerendered-icon" value="true" />
 
   <!-- Splash Screens -->
   <gap:splash src="styles/img/splash.png" />
