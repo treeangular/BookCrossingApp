@@ -1,12 +1,11 @@
 <div ng-controller="ReleaseBookCtrl">
-    <!-- Replace with google maps view -->
+    <input name="bookBarcode" type="text" ng-model="registrationId"  placeholder="Registration Id" required />
     <div id="mapViewSmallWrapper">
         <div id="mapView" ui-map="myMap" ui-options="mapOptions" />
     </div>
-    <!-- End -->
     <select class="select" type="text"  name="SelectZobc">
         <option ng-repeat="zobc in zobcList" value="zobc.id">{{zobc.name}}</option>
     </select>
-    <textarea ng-model="bookLocationDescription" name="bookDescription" rows="5"  placeholder="Give some clues to find the book!" />
+    <textarea ng-model="bookLocationDescription" name="bookDescription" rows="4"  placeholder="Give some clues to find the book!" />
     <input ng-click="release()" type="submit" value="Confirm release" ng-disabled="clicked" class="buttonlarge" />
 </div>

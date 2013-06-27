@@ -269,6 +269,7 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
 
 #mapViewSmallWrapper {
     height: 130px;
+    margin-top: 5px;
 }
 
 /*HOME*/
@@ -590,7 +591,7 @@ li {
 .boxheader {
     float: left;
     border: 1px solid #9d9e9e;
-    width: 67.7px;
+    width: 67.79px;
     text-align: center ;
     margin-bottom: 5px;
     margin-top: 5px;

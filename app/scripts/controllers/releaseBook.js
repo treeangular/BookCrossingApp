@@ -71,7 +71,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
 
     $scope.release = function () {
-
+        //TODO: Validate registrationId is correct, if wrong show error with notification bar
         $scope.clicked=true;
         $rootScope.$broadcast(loadingRequestConst.Start);
         var releaseInfo = new Object();
