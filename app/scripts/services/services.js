@@ -170,6 +170,41 @@ angular.module('dataServices', [])
         //</editor-fold>
 
         //<editor-fold description="Sign">
+
+            //Register new user
+            registerNewUserFromFB: function registerNewUserFromFB(user, callback) {
+                var newUser = new Parse.User();
+                //Basic info
+                newUser.set("nick", user.name);
+                newUser.set("email", user.email);
+                newUser.set("username", user.email);
+                newUser.set("fbId", user.id);
+                newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
+
+                //user counters
+                newUser.set("registered", 0);
+                newUser.set("released", 0);
+                newUser.set("hunted", 0);
+                newUser.set("comments", 0);
+                //Social and interesting info
+                newUser.set("status", "");
+                newUser.set("gender", user.gender);
+                newUser.set("genere", "");
+                newUser.set("birth", "");
+
+                newUser.signUp(null, {
+                    success: function (userr) {
+                        // Hooray! Let them use the app now.
+                        callback(true, null);
+                    },
+                    error: function (userr, error) {
+                        // Show the error message somewhere and let the user try again.
+                        //alert("Error: " + error.code + " " + error.message);
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.UserNotRegisteredCorrectly);
+                    }
+                });
+            },
             //Sign In User
             signIn: function signIn(email, password, callback) {
 

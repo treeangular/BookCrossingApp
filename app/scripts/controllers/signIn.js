@@ -65,6 +65,19 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                                 }
                                 else
                                 {
+                                    dataService.registerNewUserFromFB(result, function(isSuccess, result)
+                                    {
+                                       if(isSuccess)
+                                       {
+                                           $location.path('/Main');
+                                       }
+                                        else
+                                       {
+                                           $rootScope.TypeNotification = "errormessage";
+                                           $rootScope.MessageNotification = result;
+                                       }
+
+                                    });
 
                                 }
                             }
