@@ -197,13 +197,13 @@ angular.module('dataServices', [])
                 newUser.signUp(null, {
                     success: function (userr) {
                         // Hooray! Let them use the app now.
+                        alert("user created");
                         callback(true, null);
                     },
                     error: function (userr, error) {
                         // Show the error message somewhere and let the user try again.
-                        //alert("Error: " + error.code + " " + error.message);
+
                         console.log("Error: " + error.code + " " + error.message);
-                        alert(error.message);
                         callback(false, ErrorConst.UserNotRegisteredCorrectly);
                     }
                 });

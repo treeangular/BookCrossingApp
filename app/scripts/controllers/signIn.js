@@ -70,6 +70,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                                     {
                                        if(isSuccess)
                                        {
+                                           alert("/Main")
                                            $location.path('/Main');
                                        }
                                         else
