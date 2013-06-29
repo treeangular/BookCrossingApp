@@ -293,6 +293,25 @@ angular.module('dataServices', [])
 
 
             },
+            getUserByFbId: function getUserByFbId(userFbId, callback)
+            {
+                var query = new Parse.Query(User);
+                query.equalTo("fbId", userFbId);
+
+                query.find({
+                    success: function (result) {
+                        if(result.length > 0)
+                            callback(true, result[0]);
+                        else
+                            callback(true, null);
+                    },
+                    error: function (user,error) {
+
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+            },
         //</editor-fold>
 
         //<editor-fold description="Actions">

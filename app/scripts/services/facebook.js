@@ -35,7 +35,7 @@ angular.module('facebookProvider', [])
                                       alert(response.authResponse);
 
                                       FB.api('/me', function(response) {
-                                          
+
                                           callback(true, response);
 
                                       });
