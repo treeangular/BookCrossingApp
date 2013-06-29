@@ -57,6 +57,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                     if(user != null)
                     {
                         dataService.getUserByFbId(user.id, function(isSuccess, result){
+                            $scope.$apply(function () {
                             if(isSuccess)
                             {
                                 if(result != null)
@@ -91,6 +92,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                                 $rootScope.TypeNotification = "errormessage";
                                 $rootScope.MessageNotification = result;
                             }
+                            });
 
                         })
 
