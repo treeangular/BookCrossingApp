@@ -177,22 +177,22 @@ angular.module('dataServices', [])
                 alert(user.email);
                 var newUser = new Parse.User();
                 //Basic info
-                //newUser.set("nick", user.name);
+                newUser.set("nick", user.name);
                 newUser.set("email", user.email);
                 newUser.set("username", user.email);
                // newUser.set("fbId", user.id);
-               // newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
+                newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
 
-                //user counters
-                newUser.set("registered", 0);
-                newUser.set("released", 0);
-                newUser.set("hunted", 0);
-                newUser.set("comments", 0);
-                //Social and interesting info
-                newUser.set("status", "");
-               // newUser.set("gender", user.gender);
-                newUser.set("genere", "");
-                newUser.set("birth", "");
+//                //user counters
+//                newUser.set("registered", 0);
+//                newUser.set("released", 0);
+//                newUser.set("hunted", 0);
+//                newUser.set("comments", 0);
+//                //Social and interesting info
+//                newUser.set("status", "");
+//               // newUser.set("gender", user.gender);
+//                newUser.set("genere", "");
+//                newUser.set("birth", "");
 
                 newUser.signUp(null, {
                     success: function (userr) {
