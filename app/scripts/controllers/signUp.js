@@ -45,4 +45,70 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
 
     };
 
+    $scope.fbSignIn = function()
+    {
+
+        facebookService.login(function(result, user)
+        {
+            $scope.$apply(function () {
+                if(result)
+                {
+                    if(user != null)
+                    {
+                        dataService.getUserByFbId(user.id, function(isSuccess, result){
+                            if(isSuccess)
+                            {
+                                if(result != null)
+                                {
+                                    $location.path('/Main');
+                                }
+                                else
+                                {
+
+                                    dataService.registerNewUserFromFB(user, function(isSuccess, result2)
+                                    {
+                                        $scope.$apply(function () {
+                                            if(isSuccess)
+                                            {
+
+                                                $location.path('/Main');
+                                            }
+                                            else
+                                            {
+
+                                                $rootScope.TypeNotification = "errormessage";
+                                                $rootScope.MessageNotification = result2;
+                                            }
+                                        });
+
+                                    });
+
+                                }
+                            }
+                            else
+                            {
+                                $rootScope.TypeNotification = "errormessage";
+                                $rootScope.MessageNotification = result;
+                            }
+
+                        })
+
+                    }
+                    else
+                    {
+                        $rootScope.TypeNotification = "errormessage";
+                        $rootScope.MessageNotification = result;
+                    }
+                }
+                else
+                {
+                    $rootScope.TypeNotification = "errormessage";
+                    $rootScope.MessageNotification = "User has not accepted the conditions";
+                }
+
+
+            });
+        });
+    };
+
 });

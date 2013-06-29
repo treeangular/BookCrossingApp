@@ -6,16 +6,16 @@ angular.module('facebookProvider', [])
 
       return{
 
-          share: function shareInTimeLine(action, callback){
+          share: function shareInTimeLine(actionTypeName, bookTitle, callback){
 
               // calling the API ...
               var obj = {
                   method: 'feed',
-                  link: 'https://developers.facebook.com/docs/reference/dialogs/',
+                  link: 'https://www.bookcrossingapp.com/',
                   picture: 'http://fbrell.com/f8.jpg',
-                  name: 'Facebook Dialogs',
+                  name: actionTypeName +' '+ bookTitle,
                   caption: 'Reference Documentation',
-                  description: 'Book registered in BookCrossing app'
+                  description: 'Book ' + actionTypeName + ' in BookCrossing app'
               };
 
 
@@ -24,6 +24,10 @@ angular.module('facebookProvider', [])
                   if(response != undefined)
                   {
                       callback(true, null);
+                  }
+                  else
+                  {
+                      callback(false, ErrorConst.GenericError)
                   }
 
               });
@@ -34,9 +38,10 @@ angular.module('facebookProvider', [])
 
               FB.getLoginStatus(function (response) {
 
+                  alert(response.status);
                   switch (response.status) {
-                      case 'connected':
 
+                      case 'connected':
                           callback(true, null);
 
                           break;
@@ -51,6 +56,7 @@ angular.module('facebookProvider', [])
                           }
                           break;
                       default:
+
 
                           FB.login(
                               function(response) {

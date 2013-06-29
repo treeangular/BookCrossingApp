@@ -1,6 +1,24 @@
 'use strict';
-BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService, $rootScope, $q) {
+BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService, $rootScope, $q, facebookService) {
 
+    function shareFB(book, actionType)
+    {
+        var deferred = $q.defer();
+        facebookService.share(actionType,book.title, function(isSuccess, result){
+            if(!isSuccess)
+            {
+                deferred.reject(result);
+
+            }
+            else
+            {
+                deferred.resolve(result);
+            }
+
+        });
+        return deferred.promise;
+
+    }
 
     function releaseBook(releaseInfo)
     {

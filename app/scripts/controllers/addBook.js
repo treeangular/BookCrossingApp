@@ -4,6 +4,25 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.addBook = false;
 
+    function shareFB(book, actionType)
+    {
+        var deferred = $q.defer();
+        facebookService.share(actionType, book.title, function(isSuccess, result){
+            if(!isSuccess)
+            {
+                deferred.reject(result);
+
+            }
+            else
+            {
+                deferred.resolve(result);
+            }
+
+        });
+        return deferred.promise;
+
+    }
+
 
     $scope.addNewBook = function () {
         $scope.addBook = true;
@@ -85,26 +104,23 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
                         if (isResult)
                         {
-                            facebookService.share(null, function(isSuccess, result){
-                                if(isSuccess)
+                            if($rootScope.currentUser.fbId != undefined)
+                            {
+                                facebookService.share('Registered',book.title, function(isSuccess, result){
+                                if(!isSuccess)
                                 {
-                                    alert("HUrray!!!");
-
-                                }
-                                else
-                                {
-                                    alert(":Sss");
+                                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                                    $rootScope.MessageNotification = result;
                                 }
 
-                            })
-                            //$location.path('/main');
+                                });
+                            }
+
                             $scope.goTo('views/bookBarcode.html')
 
                         }
                         else
                         {
-                            // $scope.registerResult = "Fail!";
-                            //$location.path('/');
                             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                             $rootScope.MessageNotification = result;
                         }

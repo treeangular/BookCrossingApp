@@ -1,7 +1,26 @@
 'use strict';
 
-BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootScope, $q) {
+BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootScope, $q, facebookService) {
     $scope.books = null;
+
+    function shareFB(book, actionType)
+    {
+        var deferred = $q.defer();
+        facebookService.share(actionType,book.title, function(isSuccess, result){
+            if(!isSuccess)
+            {
+                deferred.reject(result);
+
+            }
+            else
+            {
+                deferred.resolve(result);
+            }
+
+        });
+        return deferred.promise;
+
+    }
 
     function huntBook(book)
     {
