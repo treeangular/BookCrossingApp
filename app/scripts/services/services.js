@@ -171,28 +171,28 @@ angular.module('dataServices', [])
 
         //<editor-fold description="Sign">
 
+
             //Register new user
             registerNewUserFromFB: function registerNewUserFromFB(user, callback) {
-
-                alert(user.email);
                 var newUser = new Parse.User();
                 //Basic info
                 newUser.set("nick", user.name);
                 newUser.set("email", user.email);
                 newUser.set("username", user.email);
-               // newUser.set("fbId", user.id);
+                newUser.set("password", CreateRandomPass());
+                newUser.set("fbId", user.id);
                 newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
 
-//                //user counters
-//                newUser.set("registered", 0);
-//                newUser.set("released", 0);
-//                newUser.set("hunted", 0);
-//                newUser.set("comments", 0);
-//                //Social and interesting info
-//                newUser.set("status", "");
-//               // newUser.set("gender", user.gender);
-//                newUser.set("genere", "");
-//                newUser.set("birth", "");
+                //user counters
+                newUser.set("registered", 0);
+                newUser.set("released", 0);
+                newUser.set("hunted", 0);
+                newUser.set("comments", 0);
+                //Social and interesting info
+                newUser.set("status", "");
+                newUser.set("gender", user.gender);
+                newUser.set("genere", "");
+                newUser.set("birth", "");
 
                 newUser.signUp(null, {
                     success: function (userr) {
@@ -203,7 +203,8 @@ angular.module('dataServices', [])
                         // Show the error message somewhere and let the user try again.
                         //alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
-                        callback(false, error.message);
+                        alert(error.message);
+                        callback(false, ErrorConst.UserNotRegisteredCorrectly);
                     }
                 });
             },

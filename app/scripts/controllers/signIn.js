@@ -74,7 +74,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                                        }
                                         else
                                        {
-                                           alert(result2)
+
                                            $rootScope.TypeNotification = "errormessage";
                                            $rootScope.MessageNotification = result2;
                                        }
