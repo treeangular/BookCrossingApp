@@ -120,7 +120,6 @@ function loadFB()
 
     window.addEventListener('load', function() {
 
-        if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
         FB.init({
             appId: FB_APP_ID,
             nativeInterface: CDV.FB,

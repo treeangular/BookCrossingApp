@@ -27,12 +27,10 @@ angular.module('facebookProvider', [])
                           }
                           break;
                       default:
-                          alert(response.status);
+
                           FB.login(
                               function(response) {
                                   if (response.authResponse) {
-
-                                      alert(response.authResponse);
 
                                       FB.api('/me', function(response) {
 

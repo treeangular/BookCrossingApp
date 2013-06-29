@@ -65,6 +65,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                                 }
                                 else
                                 {
+                                    alert(result.name);
                                     dataService.registerNewUserFromFB(result, function(isSuccess, result)
                                     {
                                        if(isSuccess)
