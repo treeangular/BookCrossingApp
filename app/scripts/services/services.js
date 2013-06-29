@@ -197,7 +197,7 @@ angular.module('dataServices', [])
                 newUser.signUp(null, {
                     success: function (userr) {
                         // Hooray! Let them use the app now.
-                        alert("user created");
+
                         callback(true, null);
                     },
                     error: function (userr, error) {
@@ -335,7 +335,7 @@ angular.module('dataServices', [])
             {
                 var query = new Parse.Query(User);
                 query.equalTo("fbId", userFbId);
-                alert(userFbId);
+
 
                 query.find({
                     success: function (result) {

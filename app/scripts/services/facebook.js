@@ -6,6 +6,31 @@ angular.module('facebookProvider', [])
 
       return{
 
+          share: function shareInTimeLine(action, callback){
+
+              // calling the API ...
+              var obj = {
+                  method: 'feed',
+                  redirect_uri: 'YOUR URL HERE',
+                  link: 'https://developers.facebook.com/docs/reference/dialogs/',
+                  picture: 'http://fbrell.com/f8.jpg',
+                  name: 'Facebook Dialogs',
+                  caption: 'Reference Documentation',
+                  description: 'Using Dialogs to interact with people.'
+              };
+
+
+              FB.ui(obj, function(response){
+
+                  if(response != undefined)
+                  {
+                      callback(true, null);
+                  }
+
+              });
+
+
+          },
           login:function (callback) {
 
               FB.getLoginStatus(function (response) {

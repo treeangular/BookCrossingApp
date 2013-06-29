@@ -68,17 +68,19 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
                                     dataService.registerNewUserFromFB(user, function(isSuccess, result2)
                                     {
-                                       if(isSuccess)
-                                       {
-                                           alert("/Main")
-                                           $location.path('/Main');
-                                       }
-                                        else
-                                       {
+                                        $scope.$apply(function () {
+                                           if(isSuccess)
+                                           {
 
-                                           $rootScope.TypeNotification = "errormessage";
-                                           $rootScope.MessageNotification = result2;
-                                       }
+                                               $location.path('/Main');
+                                           }
+                                            else
+                                           {
+
+                                               $rootScope.TypeNotification = "errormessage";
+                                               $rootScope.MessageNotification = result2;
+                                           }
+                                        });
 
                                     });
 
@@ -95,23 +97,8 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                     }
                     else
                     {
-                        alert("mal!");
-//                        facebookService.getUserInfo(function(result){
-//
-//                            if(result != null)
-//                            {
-//                                dataService.updateUserProfileFromFb(result, function(response){
-//                                    //TODO hev: manage errors;
-//
-//                                    $location.path('/Main');
-//                                });
-//                            }
-//                            else
-//                            {
-//                                $rootScope.TypeNotification = "errormessage";
-//                                $rootScope.MessageNotification = "User not connected";
-//                            }
-//                        });
+                        $rootScope.TypeNotification = "errormessage";
+                        $rootScope.MessageNotification = result;
                     }
                 }
                 else

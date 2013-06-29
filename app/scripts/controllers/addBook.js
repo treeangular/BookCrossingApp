@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q) {
+BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q, facebookService) {
 
     $scope.addBook = false;
 
@@ -85,8 +85,21 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
                         if (isResult)
                         {
+                            facebookService.share(null, function(isSuccess, result){
+                                if(isSuccess)
+                                {
+                                    alert("HUrray!!!");
+
+                                }
+                                else
+                                {
+                                    alert(":Sss");
+                                }
+
+                            })
                             //$location.path('/main');
                             $scope.goTo('views/bookBarcode.html')
+
                         }
                         else
                         {
