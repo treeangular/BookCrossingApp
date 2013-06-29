@@ -56,6 +56,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                 {
                     if(user != null)
                     {
+                        alert(user.name);
                         $location.path('/Main');
                     }
                     else
