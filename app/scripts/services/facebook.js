@@ -6,37 +6,20 @@ angular.module('facebookProvider', [])
 
       return{
 
-          login1: function(callback)
-          {
-                  FB.login(
-                      function(response) {
-                          if (response.authResponse) {
-                              alert('logged in');
-                          } else {
-                              alert('not logged in');
-                              alert(response.authResponse);
-                          }
-                      },
-                      { scope: "email" }
-                  );
-
-          },
           login:function (callback) {
 
               FB.getLoginStatus(function (response) {
-                  alert(response.status);
+
                   switch (response.status) {
                       case 'connected':
-                          //$rootScope.$broadcast('fb_connected', {facebook_id:response.authResponse.userID});
-                          alert("connected");
-                          callback(response.status);
+
+                          callback(true, null);
 
                           break;
                       case 'not_authorized' || 'unknown':
                           if (response.authResponse) {
 
-                              alert("not autho");
-                              callback(response.status, response.authResponse);
+                              callback(false, ErrorConst.UserNotAuthorized);
 
 
                           } else {
@@ -44,21 +27,27 @@ angular.module('facebookProvider', [])
                           }
                           break;
                       default:
+                          alert(response.status);
+                          FB.login(
+                              function(response) {
+                                  if (response.authResponse) {
 
-                          FB.login(function (response) {
+                                      alert(response.authResponse);
 
-                                alert(response);
-                              if (response.authResponse) {
+                                      FB.api('/me', function(response) {
+                                          alert(response.response);
+                                          callback(true, response);
 
-                                  alert("login!");
-                                  callback(response.status, response.authResponse.userID);
+                                      });
 
+                                  } else {
 
-                              } else {
-                                  alert("login failed!");
-                                  $rootScope.$broadcast('fb login failed');
-                              }
-                          });
+                                      callback(false, ErrorConst.UserLoginError)
+
+                                  }
+                              },
+                              { scope: "email, publish_actions" }
+                          );
                           break;
                   }
               }, true);

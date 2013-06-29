@@ -49,7 +49,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
     $scope.fbSignIn = function()
     {
 
-        facebookService.login1(function(result, user)
+        facebookService.login(function(result, user)
         {
             $scope.$apply(function () {
                 if(result)
