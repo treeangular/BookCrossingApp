@@ -174,6 +174,7 @@ angular.module('dataServices', [])
             //Register new user
             registerNewUserFromFB: function registerNewUserFromFB(user, callback) {
 
+                alert(user.email);
                 var newUser = new Parse.User();
                 //Basic info
                 //newUser.set("nick", user.name);
