@@ -11,12 +11,11 @@ angular.module('facebookProvider', [])
               // calling the API ...
               var obj = {
                   method: 'feed',
-                  redirect_uri: 'YOUR URL HERE',
                   link: 'https://developers.facebook.com/docs/reference/dialogs/',
                   picture: 'http://fbrell.com/f8.jpg',
                   name: 'Facebook Dialogs',
                   caption: 'Reference Documentation',
-                  description: 'Using Dialogs to interact with people.'
+                  description: 'Book registered in BookCrossing app'
               };
 
 
