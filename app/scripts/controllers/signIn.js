@@ -65,8 +65,8 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                                 }
                                 else
                                 {
-                                    alert(user.name);
-                                    dataService.registerNewUserFromFB(user, function(isSuccess, result)
+
+                                    dataService.registerNewUserFromFB(user, function(isSuccess, result2)
                                     {
                                        if(isSuccess)
                                        {
@@ -74,8 +74,9 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                                        }
                                         else
                                        {
+                                           alert("something wrong!!")
                                            $rootScope.TypeNotification = "errormessage";
-                                           $rootScope.MessageNotification = result;
+                                           $rootScope.MessageNotification = result2;
                                        }
 
                                     });
