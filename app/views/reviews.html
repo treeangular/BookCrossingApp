@@ -7,23 +7,23 @@
     <ul>
         <li ng-repeat='review in reviews'>
             <div class="commentItemList">
-                <img ng-click="selectUser(review.user)"  ng-src='{{review.user.image}}'>
-                <a ng-click="selectUser(review.user)"><h3>{{review.user.nick}}</h3></a>
+                <img ng-click="selectUser(review.get('user'))"  ng-src='{{review.get("user").get("myPicture")}}'>
+                <a ng-click="selectUser(review.get('user'))"><h3>{{review.get('user').get("nick")}}</h3></a>
                 <div>
-                    <div ng-show="review.rate<1" class="starSmall"></div>
-                    <div ng-hide="review.rate<1" class="selectedStarSmall"></div>
-                    <div ng-show="review.rate<2" class="starSmall"></div>
-                    <div ng-hide="review.rate<2" class="selectedStarSmall"></div>
-                    <div ng-show="review.rate<3" class="starSmall"></div>
-                    <div ng-hide="review.rate<3" class="selectedStarSmall"></div>
-                    <div ng-show="review.rate<4" class="starSmall"></div>
-                    <div ng-hide="review.rate<4" class="selectedStarSmall"></div>
-                    <div ng-show="review.rate<5" class="starSmall"></div>
-                    <div ng-hide="review.rate<5" class="selectedStarSmall"></div>
+                    <div ng-show="review.get('rating')<1" class="starSmall"></div>
+                    <div ng-hide="review.get('rating')<1" class="selectedStarSmall"></div>
+                    <div ng-show="review.get('rating')<2" class="starSmall"></div>
+                    <div ng-hide="review.get('rating')<2" class="selectedStarSmall"></div>
+                    <div ng-show="review.get('rating')<3" class="starSmall"></div>
+                    <div ng-hide="review.get('rating')<3" class="selectedStarSmall"></div>
+                    <div ng-show="review.get('rating')<4" class="starSmall"></div>
+                    <div ng-hide="review.get('rating')<4" class="selectedStarSmall"></div>
+                    <div ng-show="review.get('rating')<5" class="starSmall"></div>
+                    <div ng-hide="review.get('rating')<5" class="selectedStarSmall"></div>
                 </div>
-                <p style="margin-bottom: 5px">{{review.content}}</p>
-                <div class="likeOption" ng-click="like(review.id)">({{review.like}})</div>
-                <div class="unlikeOption" ng-click="like(review.id)">({{review.unlike}})</div>
+                <p style="margin-bottom: 5px">{{review.get('reviewText')}}</p>
+                <div class="likeOption" ng-click="like(review.id)">({{review.get('like')}})</div>
+                <div class="unlikeOption" ng-click="like(review.id)">({{review.get('unlike')}})</div>
                 <p class="time">{{review.createdAt | roundedTime}}</p>
             </div>
         </li>
