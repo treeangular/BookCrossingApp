@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+var mandrillApiKey = "B_wdVDqt9GPoofuFqKYf_w";
 var ActionTypesConst =
 {
     Hunted: "UIfKw8yTZQ",
@@ -187,5 +188,39 @@ Parse.Cloud.afterSave("Book", function (request) {
                 }
             });
         }
+
+        //Send email after registration
+        if(actionTypeId == ActionTypesConst.Registered)
+        {
+        var Mandrill = require('mandrill');
+        Mandrill.initialize(mandrillApiKey);
+
+            Mandrill.sendEmail({
+                message: {
+                    text: "Hi user, you are getting this email because you just registered a book, this code should be written on the first blank page of the book, it will be used by other user to let them now you shared this book with them.",
+                    subject: "Registration code for book ------",
+                    from_email: "registration@bookcrossingapp.com",
+                    from_name: "New book registration BookCrossingApp",
+                    to: [
+                        {
+                            email: "arcayne@gmail.com",
+                            name: "Your Name"
+                        }
+                    ]
+                },
+                async: true
+            },{
+                success: function(httpResponse) {
+                    console.log(httpResponse);
+                    response.success("Email sent!");
+                },
+                error: function(httpResponse) {
+                    console.error(httpResponse);
+                    response.error("Uh oh, something went wrong");
+                }
+            })
+
+        }
+
     }
 });
