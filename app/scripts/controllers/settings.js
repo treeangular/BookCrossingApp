@@ -7,8 +7,8 @@ BookCrossingApp.controller('SettingsCtrl', function ($scope, dataService, $locat
 
         //Call DataService signOut function
         dataService.signOut();
-        alert($rootScope.currentUser.get("fbId"))
-        alert("2"+$rootScope.currentUser.fbId)
+        alert($scope.selectedUser.get("fbId"))
+        alert("2"+$scope.selectedUser.fbId)
         if($rootScope.currentUser.get("fbId") != undefined)
         facebookService.logout();
 

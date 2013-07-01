@@ -10,6 +10,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
         dataService.isCurrentUser(function (result, currentUser) {
             if (result) {
                 $rootScope.currentUser = currentUser;
+                alert(currentUser.get("fbId"))
             }
         });
 //        localStorageService.createActionTable(function(result){
