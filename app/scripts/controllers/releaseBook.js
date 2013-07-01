@@ -20,13 +20,13 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     }
 
-    function releaseBook(releaseInfo)
+    function releaseBook(releaseInfo, registrationId)
     {
 
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 
-        dataService.releaseBook(releaseInfo,function(isSuccess, result)
+        dataService.releaseBook(releaseInfo,registrationId,function(isSuccess, result)
         {
             //How do I change to another view now?!!? Locate ??
             $scope.$apply(function () {
@@ -99,7 +99,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         releaseInfo.geoPoint= geoPoint;
         releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
-        var promise = releaseBook(releaseInfo);
+        var promise = releaseBook(releaseInfo, $scope.registrationId);
         promise.then(function(result) {
             $scope.setSelectedBook(result);
             $scope.goTo('views/reviewBook.html');

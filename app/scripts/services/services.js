@@ -523,38 +523,66 @@ angular.module('dataServices', [])
                     });
                 },
 
-                releaseBook: function releaseBook(releaseInfo, callback)
+                releaseBook: function releaseBook(releaseInfo, registrationId, callback)
                 {
-                    var book = new Book({id: releaseInfo.bookId});
+                    var query = new Parse.Query(Book);
 
-                    book.fetch({
-                        success: function (book)
-                        {
-                            book.set("releasedAt", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
-                            book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
-                            book.set("bookStatus", new BookStatus({id: BookStatusConst.Released}));
-                            book.set("ownedBy", Parse.User.current());
+                    // Include the post data with each comment
+                    query.equalTo("objectId", releaseInfo.bookId);
 
-                            book.save(null, {
-                                success: function (book) {
-                                    // The object was saved successfully, lets update the status
-                                    callback(true, book);
-                                },
-                                error: function (data,error) {
-                                    // The save failed.
-                                    // error is a Parse.Error with an error code and description.
-                                    console.log("Error: " + error.code + " " + error.message);
-                                    callback(false, ErrorConst.GenericError);
-                                }
-                            });
-                        } ,
-                        error: function (object, error) {
-                            // The object was not retrieved successfully.
+                    query.first({
+                        success: function (booka) {
+
+                            if(booka.get('registrationId') === registrationId)
+                            {
+                                var book = new Book({id: releaseInfo.bookId});
+
+                                book.fetch({
+                                    success: function (book)
+                                    {
+                                        book.set("releasedAt", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
+                                        book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
+                                        book.set("bookStatus", new BookStatus({id: BookStatusConst.Released}));
+                                        book.set("ownedBy", Parse.User.current());
+
+                                        book.save(null, {
+                                            success: function (book) {
+                                                // The object was saved successfully, lets update the status
+                                                callback(true, book);
+                                            },
+                                            error: function (data,error) {
+                                                // The save failed.
+                                                // error is a Parse.Error with an error code and description.
+                                                console.log("Error: " + error.code + " " + error.message);
+                                                callback(false, ErrorConst.GenericError);
+                                            }
+                                        });
+                                    } ,
+                                    error: function (object, error) {
+                                        // The object was not retrieved successfully.
+                                        // error is a Parse.Error with an error code and description.
+                                        console.log("Error: " + error.code + " " + error.message);
+                                        callback(false, ErrorConst.GenericError);
+                                    }
+                                });
+
+                            }
+                            else
+                            {
+
+                                callback(false, ErrorConst.RegistrationIdError);
+                            }
+
+                        },
+                        error: function (data,error) {
+                            // The save failed.
                             // error is a Parse.Error with an error code and description.
                             console.log("Error: " + error.code + " " + error.message);
                             callback(false, ErrorConst.GenericError);
                         }
                     });
+
+
                 },
 
                 huntBook: function huntBook(registrationId, callback)

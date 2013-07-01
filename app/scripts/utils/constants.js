@@ -43,7 +43,8 @@ var ErrorConst=
     UserNotFound: "Sorry, User not found",
     BookAlreadyHunted: "Sorry, the book is already hunted",
     UserLoginError: "There was an error during FB Login",
-    UserNotAuthorized: "User not authorized"
+    UserNotAuthorized: "User not authorized",
+    RegistrationIdError: "Registration Id is wrong or missing"
 
 
 };
