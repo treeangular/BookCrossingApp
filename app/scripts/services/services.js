@@ -59,6 +59,7 @@ angular.module('dataServices', [])
             // Include the post data with each comment
             query.equalTo("book", book);
             query.include("user");
+            query.descending("createdAt");
 
             query.find({
                 success: function (comments) {
@@ -132,6 +133,7 @@ angular.module('dataServices', [])
                 // Include the post data with each comment
                 query.equalTo("book", book);
                 query.include("user");
+                query.descending("createdAt");
 
 
                 query.find({
