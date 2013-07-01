@@ -37,6 +37,7 @@ BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, data
 
           $rootScope.$broadcast(loadingRequestConst.Stop);
           $scope.clicked = false;
+          $scope.setSelectedBook($scope.selectedBook);
           $scope.goTo('views/bookDetails.html');
       }, function(reason) {
 

@@ -153,16 +153,17 @@ angular.module('dataServices', [])
             {
                 var query = new Parse.Query(Book);
 
+
                 // Include the post data with each comment
                 query.equalTo("objectId", reviewToRegister.book.id);
 
-                query.find({
-                    success: function (books) {
+                query.first({
+                    success: function (booka) {
 
                         var review = new Review();
 
                         review.set("reviewText", reviewToRegister.reviewText);
-                        review.set("book", books[0]);
+                        review.set("book", booka);
                         review.set("user", Parse.User.current());
                         review.set("rating", reviewToRegister.rating);
 
