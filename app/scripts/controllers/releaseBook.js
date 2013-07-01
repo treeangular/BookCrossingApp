@@ -22,6 +22,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     function releaseBook(releaseInfo)
     {
+
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 

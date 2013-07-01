@@ -33,6 +33,7 @@ angular.module('dataServices', [])
         var ActionType = Parse.Object.extend("ActionType");
         var Comment = Parse.Object.extend("Comment");
         var Tracking = Parse.Object.extend("Tracking");
+        var Review = Parse.Object.extend("Review");
 
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
@@ -119,55 +120,78 @@ angular.module('dataServices', [])
 
         //</editor-fold>
 
-        //<editor-fold description="Facebook">
-            //SignIn a Fb user
-//            fbSignIn: function fbSignIn(callback){
-//
-//               Parse.FacebookUtils.logIn("email", {
-//                    success: function(user) {
-//                        if (!user.existed()) {
-//
-//                            //if the user does not exists we have to created it
-//                            callback(true, null);
-//
-//                        }
-//                         else {
-//
-//                            //if the user exists redirect
-//                           callback(true, user);
-//                        }
-//                    },
-//                    error: function(user, error) {
-//                        callback(false);
-//                    }
-//               });
-//            },
-//            updateUserProfileFromFb: function updateUserProfileFromFb(user, callback)
-//            {
-//                //Get current user
-//                var currentUser = Parse.User.current();
-//
-//                currentUser.set("nick", user.username);
-//                currentUser.set("gender", user.gender);
-//                currentUser.set("email", user.email);
-//                currentUser.set("username", user.username);
-//                currentUser.set("myPicture", 'http://graph.facebook.com/' + user.fbId + '/picture');
-//                currentUser.set("facebookId", user.fbId);
-//
-//                currentUser.save(null, {
-//                    success: function (user) {
-//                        // Hooray! Let them use the app now.
-//                        callback(true, null);
-//                    },
-//                    error: function (user, error) {
-//                        // Show the error message somewhere and let the user try again.
-//                        //alert("Error: " + error.code + " " + error.message);
-//                        console.log("Error: " + error.code + " " + error.message);
-//                        callback(false, ErrorConst.GenericError);
-//                    }
-//                });
-//            },
-        //</editor-fold>
+       //<editor-fold description="Review">
+
+            getReviewsFromBookId: function getReviewsFromBookId(bookId, callback)
+            {
+                var query = new Parse.Query(Review);
+
+                var book = new Book();
+                book.id = bookId;
+
+                // Include the post data with each comment
+                query.equalTo("book", book);
+                query.include("user");
+
+
+                query.find({
+                    success: function (reviews) {
+                        // Comments now contains the last ten comments, and the "post" field
+                        // has been populated. For example:
+                        callback(true, reviews);
+                    },
+                    error: function (data,error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+            },
+
+            addReviewToBook: function addReviewToBook(reviewToRegister, callback)
+            {
+                var query = new Parse.Query(Book);
+
+
+                // Include the post data with each comment
+                query.equalTo("objectId", reviewToRegister.book.id);
+
+                query.first({
+                    success: function (booka) {
+
+                        var review = new Review();
+
+                        review.set("reviewText", reviewToRegister.reviewText);
+                        review.set("book", booka);
+                        review.set("user", Parse.User.current());
+                        review.set("rating", reviewToRegister.rating);
+
+                        review.save(null, {
+                            success: function (review) {
+                                // The object was saved successfully.
+                                callback(true, review);
+                            },
+                            error: function (review, error) {
+                                // The save failed.
+                                // error is a Parse.Error with an error code and description.
+                                console.log("Error: " + error.code + " " + error.message);
+                                callback(false, ErrorConst.GenericError);
+                            }
+                        });
+
+
+                    },
+                    error: function (data,error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.BookNotFound);
+                    }
+                });
+            },
+
+       //</editor-fold>
 
         //<editor-fold description="Sign">
 
