@@ -34,6 +34,7 @@ angular.module('dataServices', [])
         var Comment = Parse.Object.extend("Comment");
         var Tracking = Parse.Object.extend("Tracking");
         var Review = Parse.Object.extend("Review");
+        var ReviewLike = Parse.Object.extend("ReviewLike");
 
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
@@ -49,14 +50,49 @@ angular.module('dataServices', [])
 
             //<editor-fold description="ReviewLike">
 
-            addLikeToReview: function addLikeToReview(reviewId, callback)
+            addLikeUnLikeToReview: function addLikeUnLikeToReview(reviewId, isLike, callback)
             {
 
-            },
-            addUnLikeToReview: function addLikeToReview(reviewId, callback)
-            {
+                var query = new Parse.Query(Review);
+
+                // Include the post data with each comment
+                query.equalTo("objectId", reviewId);
+
+                query.first({
+                    success: function (review) {
+
+                        var reviewLike = new ReviewLike();
+
+
+                        reviewLike.set("review", review);
+                        reviewLike.set("isLike", isLike)
+                        reviewLike.set("user", Parse.User.current());
+
+                        reviewLike.save(null, {
+                            success: function (reviewLike2) {
+                                // The object was saved successfully.
+                                callback(true, reviewLike2);
+                            },
+                            error: function (reviewLike2, error) {
+                                // The save failed.
+                                // error is a Parse.Error with an error code and description.
+                                console.log("Error: " + error.code + " " + error.message);
+                                callback(false, ErrorConst.GenericError);
+                            }
+                        });
+
+
+                    },
+                    error: function (data,error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.BookNotFound);
+                    }
+                });
 
             },
+
             //</editor-fold>
 
         //<editor-fold description="Comments">
