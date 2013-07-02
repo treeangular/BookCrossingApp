@@ -47,6 +47,18 @@ angular.module('dataServices', [])
         var parseService = {
             name: "Parse",
 
+            //<editor-fold description="ReviewLike">
+
+            addLikeToReview: function addLikeToReview(reviewId, callback)
+            {
+
+            },
+            addUnLikeToReview: function addLikeToReview(reviewId, callback)
+            {
+
+            },
+            //</editor-fold>
+
         //<editor-fold description="Comments">
 
         getCommentsByBookId: function getCommentsByBookId(bookId, callback){

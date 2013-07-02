@@ -3,6 +3,49 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
     var star = "styles/img/blankstar.png";
     var selectedStar = "styles/img/selectedstar.png";
 
+    function like(reviewId)
+    {
+        $rootScope.$broadcast(loadingRequestConst.Start);
+        var deferred = $q.defer();
+        dataService.addLikeToReview(reviewId, function (isSuccess, results) {
+
+            $scope.$apply(function(){
+                if(isSuccess)
+                {
+                    deferred.resolve(results);
+                }
+                else
+                {
+                    deferred.reject();
+                }
+            });
+
+        });
+
+        return deferred.promise;
+    }
+    function unLike(reviewId)
+    {
+        $rootScope.$broadcast(loadingRequestConst.Start);
+        var deferred = $q.defer();
+        dataService.addUnLikeToReview(reviewId, function (isSuccess, results) {
+
+            $scope.$apply(function(){
+                if(isSuccess)
+                {
+                    deferred.resolve(results);
+                }
+                else
+                {
+                    deferred.reject();
+                }
+            });
+
+        });
+
+        return deferred.promise;
+    }
+
     function getReviews(bookId)
     {
 
