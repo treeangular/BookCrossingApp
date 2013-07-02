@@ -4,7 +4,7 @@
         id		   = "com.crossers.bookcrossingapp"
         version 	= "1.0.3">
 
-  <name>BookCrossingApp</name>
+  <name>BookCrossing</name>
 
   <description>The best mobile implementation for book crossing!</description>
 
