@@ -194,17 +194,23 @@ Parse.Cloud.afterSave("Book", function (request) {
         {
         var Mandrill = require('mandrill');
         Mandrill.initialize(mandrillApiKey);
+            var nick = user.get("nick");
+            var email = user.get("username");
+            console.log("email of registerig user: " + email);
+            var bookTitle = request.object.get("title");
+            var registrationId = request.object.get("registrationId");;
+
 
             Mandrill.sendEmail({
                 message: {
-                    text: "Hi user, you are getting this email because you just registered a book, this code should be written on the first blank page of the book, it will be used by other user to let them now you shared this book with them.",
-                    subject: "Registration code for book ------",
+                    text: "Hi user, you are getting this email because you just registered a book, this code should be written on the first blank page of the book, it will be used by other user to let them now you shared this book with them." + registrationId,
+                    subject: "Registration code for book " + bookTitle,
                     from_email: "registration@bookcrossingapp.com",
                     from_name: "New book registration BookCrossingApp",
                     to: [
                         {
-                            email: "arcayne@gmail.com",
-                            name: "Your Name"
+                            email: email,
+                            name: nick
                         }
                     ]
                 },
