@@ -8,7 +8,7 @@
 
   <description>The best mobile implementation for book crossing!</description>
 
-  <author email="truegoldenwarriors@gmail.com">BookCrossingApp</author>
+  <author email="treeangular@gmail.com">BookCrossingApp</author>
 
   <icon src="styles/img/icon/icon.png" gap:role="default" />
   <icon src="styles/img/icon/icon57x57.png" gap:platform="ios" width="57" height="57" />
@@ -21,7 +21,7 @@
 
   <preference name="orientation" value="portrait" />
 
-  <preference name="phonegap-version" value="2.7.0" />
+  <preference name="phonegap-version" value="2.9.0" />
   <preference name="target-device" value="universal" />
   <preference name="webviewbounce" value="false" />
   <preference name="prerendered-icon" value="true" />
