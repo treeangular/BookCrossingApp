@@ -93,6 +93,24 @@
 
     },
     {
+        "key":" _UserLoginError_",
+        "value":"Sorry, User login error",
+        "description":"book not found"
+
+    },
+    {
+        "key":" _UserNotAuthorized_",
+        "value":"Sorry, user not authorized",
+        "description":"book not found"
+
+    },
+    {
+        "key":" _RegistrationIdError_",
+        "value":"Sorry, registration error",
+        "description":"book not found"
+
+    },
+    {
         "key":" _hunted_",
         "value":"hunted",
         "description":"hunted book"

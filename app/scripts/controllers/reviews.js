@@ -65,15 +65,11 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
         var promise = like(review.id, isLike)
         if(isLike)
         {
-            var number = review.get('likeCount');
-            number++;
-            $scope.likes = number;
+            review.increment("likeCount");
         }
         else
         {
-            var number = review.get('unLikeCount');
-            number++;
-            $scope.unLikes = number;
+            review.increment("unLikeCount");
         }
         promise.then(function(reviewLike) {
 

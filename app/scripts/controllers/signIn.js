@@ -8,10 +8,10 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 
-        dataService.signIn(email, password, function (result) {
+        dataService.signIn(email, password, function (isSuccess, result) {
             //How do I change to another view now?!!? Locate ??
             $scope.$apply(function () {
-                if (result) {
+                if (isSuccess) {
 
                     deferred.resolve(result);
 

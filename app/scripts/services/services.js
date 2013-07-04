@@ -288,7 +288,7 @@ angular.module('dataServices', [])
                 Parse.User.logIn(email.toLowerCase(), password, {
                     success: function (user) {
                         // Do stuff after successful login.
-                        callback(true);
+                        callback(true, user);
                     },
                     error: function (user, error) {
                         // The login failed. Check error to see why.
