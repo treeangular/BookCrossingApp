@@ -18,6 +18,31 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
         disableDefaultUI: true
     };
 
+
+    var style = [{
+        url: 'styles/img/books.png',
+        height: 38,
+        width: 40,
+        opt_anchor: [16, 0],
+        opt_textColor: '#ffffff',
+        opt_textSize: 10
+    }, {
+        url: 'styles/img/books.png',
+        height: 38,
+        width: 40,
+        opt_anchor: [24, 0],
+        opt_textColor: '#ffffff',
+        opt_textSize: 11
+    }, {
+        url: 'styles/img/books.png',
+        height: 38,
+        width: 40,
+        opt_textColor: '#ffffff',
+        opt_anchor: [32, 0],
+        opt_textSize: 12
+    }
+    ];
+
     $scope.addMarker = function($event) {
         $scope.myMarkers.push(new google.maps.Marker({
             map: $scope.myMap,
@@ -178,7 +203,7 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
 
                 }
 
-                var mcOptions = {gridSize: 50, maxZoom: 19};
+                var mcOptions = {gridSize: 50, maxZoom: 19, styles: style};
                 var markerCluster = new MarkerClusterer($scope.myMap, $scope.myMarkers, mcOptions);
 
                 markerCluster.onClick = function(clickedClusterIcon) {
