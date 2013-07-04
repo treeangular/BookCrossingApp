@@ -253,7 +253,7 @@ angular.module('dataServices', [])
                 newUser.set("nick", user.name);
                 newUser.set("email", user.email);
                 newUser.set("username", user.email);
-                newUser.set("password", CreateRandomPass());
+                newUser.set("password", "123456");
                 newUser.set("fbId", user.id);
                 newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
 
