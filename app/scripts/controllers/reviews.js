@@ -3,32 +3,11 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
     var star = "styles/img/blankstar.png";
     var selectedStar = "styles/img/selectedstar.png";
 
-    function like(reviewId)
+    function like(reviewId, isLike)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
-        dataService.addLikeToReview(reviewId, function (isSuccess, results) {
-
-            $scope.$apply(function(){
-                if(isSuccess)
-                {
-                    deferred.resolve(results);
-                }
-                else
-                {
-                    deferred.reject();
-                }
-            });
-
-        });
-
-        return deferred.promise;
-    }
-    function unLike(reviewId)
-    {
-        $rootScope.$broadcast(loadingRequestConst.Start);
-        var deferred = $q.defer();
-        dataService.addUnLikeToReview(reviewId, function (isSuccess, results) {
+        dataService.addLikeUnLikeToReview(reviewId, isLike, function (isSuccess, results) {
 
             $scope.$apply(function(){
                 if(isSuccess)
@@ -81,14 +60,27 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
     });
 
 
-    $scope.like  = function(reviewId) {
-        //TODO: Update like in the database
+    $scope.like  = function(review, isLike) {
 
+        var promise = like(review.id, isLike)
+        if(isLike)
+        {
+            review.increment("likeCount");
+        }
+        else
+        {
+            review.increment("unLikeCount");
+        }
+        promise.then(function(reviewLike) {
 
-    }
+            $rootScope.$broadcast(loadingRequestConst.Stop);
+            $scope.clicked = false;
 
-    $scope.unlike  = function(reviewId) {
-        //TODO: Update Unlike in the database
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
+        });
 
 
     }

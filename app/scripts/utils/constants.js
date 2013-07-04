@@ -36,15 +36,15 @@ var ErrorConst=
 {
     TypeNotificationError: "errormessage",
     IsbnNotFound: "_IsbnNotFound_",
-    GenericError: "Sorry, an error occurred, try it later",
+    GenericError: "_GenericError_",
     BookNotFound: "_BookNotFound_",
-    UserNotRegisteredCorrectly: "Sorry, user not registered",
-    UserNotUpdatedCorrectly: "Sorry, user was not updated",
-    UserNotFound: "Sorry, User not found",
-    BookAlreadyHunted: "Sorry, the book is already hunted",
-    UserLoginError: "There was an error during FB Login",
-    UserNotAuthorized: "User not authorized",
-    RegistrationIdError: "Registration Id is wrong or missing"
+    UserNotRegisteredCorrectly: "_UserNotRegisteredCorrectly_",
+    UserNotUpdatedCorrectly: "_UserNotUpdatedCorrectly_",
+    UserNotFound: "_UserNotFound_",
+    BookAlreadyHunted: "_BookAlreadyHunted_",
+    UserLoginError: "_UserLoginError_",
+    UserNotAuthorized: "_UserNotAuthorized_",
+    RegistrationIdError: "_RegistrationIdError_"
 
 
 };

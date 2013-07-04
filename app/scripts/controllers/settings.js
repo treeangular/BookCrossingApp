@@ -9,8 +9,8 @@ BookCrossingApp.controller('SettingsCtrl', function ($scope, dataService, $locat
         dataService.signOut();
 
 
-        if($rootScope.currentUser.get("fbId") != undefined)
-        facebookService.logout();
+//        if($rootScope.currentUser.get("fbId") != undefined)
+//        facebookService.logout();
 
         //Back to beginning
         $location.path('/');
