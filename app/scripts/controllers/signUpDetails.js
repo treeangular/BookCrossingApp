@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('BookCrossingApp')
-  .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http) {
+  .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http,$rootScope) {
 
         var disabledClass = 'disabling';
         $scope.maleClass = disabledClass;
         $scope.femaleClass = disabledClass;
         $scope.setDate = false;
-
 
         $scope.selectSex = function (sex) {
             if (sex=="Male"){
@@ -82,9 +81,6 @@ angular.module('BookCrossingApp')
 
             }
 
-        //Initialize default value
-        $scope.myPicture = "styles/img/user.png";
-
         $scope.$watch('myPicture', function(value) {
             if(value) {
                 $scope.myPicture = value;
@@ -92,13 +88,24 @@ angular.module('BookCrossingApp')
         }, true);
 
         dataService.getCurrentUser(function(currentUser){
+            var profilePhoto = "styles/img/user.png";
+
+            if(currentUser != null )
+            {
+                profilePhoto = currentUser.get("myFile");
+
+                if(profilePhoto != "undefined")
+                {
+                    $scope.myPicture = profilePhoto.url();
+                }
+            }
 
             $scope.user = {
                 nick: currentUser.get('nick'),
                 gender: currentUser.get('gender'),
                 birthday: currentUser.get('birthday'),
                 favoriteGenre:currentUser.get('favoriteGenre'),
-                myPicture: currentUser.get('myPicture')
+                myPicture: profilePhoto
             };
 
             $scope.selectSex($scope.user.gender);
@@ -109,8 +116,8 @@ angular.module('BookCrossingApp')
             navigator.camera.getPicture(onSuccess, onFail,
                 //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
                 { quality: 50,
-                    //destinationType:Camera.DestinationType.FILE_URI,
-                    destinationType:Camera.DestinationType.DATA_URL,
+                    destinationType:Camera.DestinationType.FILE_URI,
+                    //destinationType:Camera.DestinationType.DATA_URL,
                     encodingType: Camera.EncodingType.JPEG,
                     //sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
                     targetWidth: 100,
@@ -119,19 +126,12 @@ angular.module('BookCrossingApp')
             function onSuccess(imageURI) {
                 var image = document.getElementById('preview');
                 var file = new Parse.File("userPicture.JPEG", { base64: imageURI });
-                //movePic(imageURI);
-
-//                image.src = imageURI;
-//                $scope.myPicture = image.src;
-
-//                $scope.$apply(function() {
-//                    ctrl.$setViewValue(image.src);
-//                });
+                $scope.myPicture = imageURI;
 
                 dataService.uploadPicture(file, function (result) {
 
                     $scope.$apply(function () {
-                        if (isResult)
+                        if (result)
                         {
 
                         }
@@ -142,49 +142,28 @@ angular.module('BookCrossingApp')
                         }
                     });
                 });
-
             }
 
             function onFail(message) {
                 alert('Failed because: ' + message);
                 ctrl.$setValidity('Failed because: ' + message, false);
             }
-
         };
 
-        function movePic(file){
-            window.resolveLocalFileSystemURI(file, resolveOnSuccess, resOnError);
+        $scope.updateUserProfile = function (user) {
+            dataService.updateUserProfile(user, function (isResult, result) {
+
+                $scope.$apply(function () {
+                    if (isResult)
+                    {
+                        $location.path('/Main');
+                    }
+                    else
+                    {
+                        $rootScope.TypeNotification = "errormessage";
+                        $rootScope.MessageNotification = result.message;
+                    }
+                });
+            });
         }
-
-//Callback function when the file system uri has been resolved
-        function resolveOnSuccess(entry){
-            var d = new Date();
-            var n = d.getTime();
-            //new file name
-            var newFileName = n + ".jpg";
-            var myFolderApp = "MyAppFolder";
-
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {
-                    //The folder is created if doesn't exist
-                    fileSys.root.getDirectory( myFolderApp,
-                        {create:true, exclusive: false},
-                        function(directory) {
-                            entry.moveTo(directory, newFileName,  successMove, resOnError);
-                        },
-                        resOnError);
-                },
-                resOnError);
-        }
-
-//Callback function when the file has been moved successfully - inserting the complete path
-        function successMove(entry) {
-            //Store imagepath in session for future use
-            // like to store it in database
-            sessionStorage.setItem('imagepath', entry.fullPath);
-        }
-
-        function resOnError(error) {
-            alert(error.code);
-        }
-
 });
