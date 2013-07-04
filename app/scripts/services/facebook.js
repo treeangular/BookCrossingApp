@@ -38,7 +38,7 @@ angular.module('facebookProvider', [])
 
               FB.getLoginStatus(function (response) {
 
-                  alert(response.status);
+
                   switch (response.status) {
 
                       case 'connected':
