@@ -42,7 +42,11 @@ angular.module('facebookProvider', [])
                   switch (response.status) {
 
                       case 'connected':
-                          callback(true, null);
+                          FB.api('/me', function(response) {
+
+                              callback(true, response);
+
+                          });
 
                           break;
                       case 'not_authorized' || 'unknown':
