@@ -2,26 +2,8 @@ BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, data
     $scope.myMarkers = [];
     var markerCount = 0;
     var book = $scope.selectedBook;
-    //Start Mock data
-    //TODO: Join structures in just one
+
    var releaseCoordinates = [];
-//        new google.maps.LatLng(37.772323, -122.214897),
-//        new google.maps.LatLng(21.291982, -157.821856),
-//        new google.maps.LatLng(-18.142599, 178.431),
-//        new google.maps.LatLng(-27.46758, 153.027892)
-//    ];
-
-//    var user = {
-//        id:"uctPK4BZ3r",
-//        image: "styles/img/user.png",
-//        nick: "Marc"
-//    };
-
-//    $scope.currentTrack = {
-//        description: "The book is under the bench in Central square! Enjoy it!",
-//        user: user,
-//        time: "12 days"};
-    //Finish mock data
 
     $scope.mapOptions = {
         center: new google.maps.LatLng(0, 0),
@@ -31,7 +13,7 @@ BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, data
     };
 
     $scope.openMarkerInfo = function(marker) {
-        $scope.currentMarker = marker;
+        $scope.currentTrack = marker;
         $scope.myInfoWindow.open($scope.myMap, marker);
     };
 
@@ -85,7 +67,7 @@ BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, data
                              title: "Point" + i,
                              icon:getMarkerIcon(),
                              user: results[i].get('releasedBy'),
-                             description: book.get('description'),
+                             description: results[i].get('releasedAtDescription'),
                              time: time
                          });
 
@@ -107,5 +89,4 @@ BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, data
                  }
              });
          });
-
 });
