@@ -416,13 +416,13 @@ angular.module('dataServices', [])
                     success: function (result) {
                         if(result.length > 0)
                         {
-                            alert(result[0])
+
                             callback(true, result[0]);
 
                         }
                         else
                         {
-                            alert("not Founded")
+
                             callback(true, null);
                         }
                     },
