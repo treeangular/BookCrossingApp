@@ -409,14 +409,22 @@ angular.module('dataServices', [])
             {
                 var query = new Parse.Query(User);
                 query.equalTo("fbId", userFbId);
+                alert(userFbId);
 
 
                 query.find({
                     success: function (result) {
                         if(result.length > 0)
+                        {
+                            alert(result[0])
                             callback(true, result[0]);
+
+                        }
                         else
+                        {
+                            alert("not Founded")
                             callback(true, null);
+                        }
                     },
                     error: function (user,error) {
 
