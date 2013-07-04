@@ -5,11 +5,15 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
     var zobcIcon = "styles/img/zobc.png";
 
     $scope.myMarkers = [];
+    $scope.cluster = {
+        bookGroup:[]
+    }
     $scope.books = [];
 
     $scope.mapOptions = {
         center: new google.maps.LatLng(0, 0),
         zoom: 12,
+        maxZoom: 19,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: true
     };
@@ -56,13 +60,71 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
                 icon:myPositionIcon
             });
 
-            $scope.myMarkers.push(marker);
+            //$scope.myMarkers.push(marker);
 
             $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
             $scope.getActPage();
 
         }
     });
+
+    var selectedmarkers = [];
+    var currentGroupPage = 0;
+
+    $scope.nextBooks = function () {
+        currentGroupPage++;
+        var marker = selectedmarkers[currentGroupPage];
+        $scope.bookgr1 = getId($scope.books, marker.title);
+        currentGroupPage++;
+        marker = selectedmarkers[currentGroupPage];
+        $scope.bookgr2 = getId($scope.books, marker.title);
+        if (selectedmarkers.length > currentGroupPage+1){
+            currentGroupPage++;
+            marker = selectedmarkers[currentGroupPage];
+            $scope.bookgr3 = getId($scope.books, marker.title);
+        }
+        else{
+            $scope.bookgr3 = null;
+        }
+        if (selectedmarkers.length > currentGroupPage+1){
+            $scope.IsNextGroupPage = true;
+        }
+        else{
+            $scope.IsNextGroupPage = false;
+        }
+
+    }
+
+    function multiChoice(clickedCluster) {
+        if (clickedCluster.getMarkers().length > 1)
+        {
+            currentGroupPage = 1;
+            selectedmarkers = clickedCluster.getMarkers();
+            var marker = selectedmarkers[0];
+            $scope.bookgr1 = getId($scope.books, marker.title);
+            marker = selectedmarkers[1];
+            $scope.bookgr2 = getId($scope.books, marker.title);
+
+            if (selectedmarkers.length > currentGroupPage+1){
+                currentGroupPage = 2;
+                marker = selectedmarkers[2];
+                $scope.bookgr3 = getId($scope.books, marker.title);
+            }
+            else{
+                $scope.bookgr3 = null;
+            }
+            if (selectedmarkers.length > currentGroupPage+1){
+                $scope.IsNextGroupPage = true;
+            }
+            else{
+                $scope.IsNextGroupPage = false;
+            }
+
+            $scope.myInfoWindowList.open($scope.myMap, marker);
+            return false;
+        }
+        return true;
+    };
 
     $scope.getActPage = function () {
         dataService.getBooksForMap(geoPoint, function (isSuccess, results) {
@@ -103,46 +165,6 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
                     book.time = time;
                     book.image = image;
 
-//                    if (actionType != null)
-//                        description = actionType.get('description');
-//
-//                    if (user != null)
-//                        username = user.get('nick');
-
-//                    if (actionType != null){
-//                        var typeId = actionType.get('description');
-//
-//                        //TODO: User localization here!!!!
-//                        switch(typeId){
-//                            case 'registered':
-//                                description= "has been registered by ";
-//                                break;
-//                            case 'joined':
-//                                description= "has been joined by ";
-//                                break;
-//                            case 'locked':
-//                                description= "has been locked by ";
-//                                break;
-//                            case 'released':
-//                                description= "has been released around you by ";
-//                            default:
-//                                description= typeId + " " + username;
-//                                break;
-//                        }
-//                    }
-
-//                    $scope.newbook = {
-//                        id: book.id,
-//                        title: title,
-//                        //TODO: Add localization
-//                        releasedAtDescription: releasedAtDescription,
-//                        description: description,
-//                        image: image,
-//                        user: username,
-//                        time:time,
-//                        bookStatus: bookStatus
-//                    };
-//                    $scope.books.push($scope.newbook);
                     $scope.books.push(book);
                     var bookMarker = new google.maps.Marker({
                         map: $scope.myMap,
@@ -151,7 +173,16 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
                         icon:bookIcon
                     });
 
+
                     $scope.myMarkers.push(bookMarker);
+
+                }
+
+                var mcOptions = {gridSize: 50, maxZoom: 19};
+                var markerCluster = new MarkerClusterer($scope.myMap, $scope.myMarkers, mcOptions);
+
+                markerCluster.onClick = function(clickedClusterIcon) {
+                    return multiChoice(clickedClusterIcon.cluster_);
                 }
             });
         });

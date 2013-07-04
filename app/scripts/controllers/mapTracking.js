@@ -13,7 +13,7 @@ BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, data
 
     var user = {
         id:"uctPK4BZ3r",
-        image: "styles/img/user.jpg",
+        image: "styles/img/user.png",
         nick: "Marc"
     };
 
