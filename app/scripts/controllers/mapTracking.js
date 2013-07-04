@@ -11,16 +11,16 @@ BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, data
 //        new google.maps.LatLng(-27.46758, 153.027892)
 //    ];
 
-    var user = {
-        id:"uctPK4BZ3r",
-        image: "styles/img/user.png",
-        nick: "Marc"
-    };
+//    var user = {
+//        id:"uctPK4BZ3r",
+//        image: "styles/img/user.png",
+//        nick: "Marc"
+//    };
 
-    $scope.currentTrack = {
-        description: "The book is under the bench in Central square! Enjoy it!",
-        user: user,
-        time: "12 days"};
+//    $scope.currentTrack = {
+//        description: "The book is under the bench in Central square! Enjoy it!",
+//        user: user,
+//        time: "12 days"};
     //Finish mock data
 
     $scope.mapOptions = {
@@ -62,11 +62,31 @@ BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, data
 
                          bounds.extend(releasedAtTransformed);
 
+                         var time;
+                         //TODO: Move in a directive?
+
+                         var seconds = Math.round((new Date()-book.createdAt)/1000);
+                         var minutes = Math.round(seconds/60);
+                         var hours = Math.round(minutes/60);
+                         var days = Math.round(hours/24);
+
+                         if(seconds < 60)
+                             time = seconds + ' sec';
+                         else if(minutes < 60)
+                             time = minutes + ' min';
+                         else if(hours < 24)
+                             time = hours + ' hours';
+                         else
+                             time = days + ' days';
+
                          var marker = new google.maps.Marker({
                              map: $scope.myMap,
                              position: releasedAtTransformed,
                              title: "Point" + i,
-                             icon:getMarkerIcon()
+                             icon:getMarkerIcon(),
+                             user: results[i].get('releasedBy'),
+                             description: book.get('description'),
+                             time: time
                          });
 
                          $scope.myMarkers.push(marker);

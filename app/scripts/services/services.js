@@ -732,11 +732,7 @@ angular.module('dataServices', [])
                     var qTracking = new Parse.Query(Tracking);
 
                     qTracking.equalTo("book", book);
-
                     qTracking.descending("createdAt");
-
-                    // Include
-                    //qTracking.include("user");
 
                     qTracking.find({
                         success: function (tracking) {
