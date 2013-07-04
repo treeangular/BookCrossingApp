@@ -62,8 +62,8 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                             {
                                 if(result != null)
                                 {
-                                    alert(user.Email);
-                                    var promise = signInUser(user.Email, "123456")
+                                    alert(user.get("Email"));
+                                    var promise = signInUser(user.get("Email"), "123456")
                                     promise.then(function() {
 
                                         $location.path('/Main');
