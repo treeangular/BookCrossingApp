@@ -345,7 +345,7 @@ angular.module('dataServices', [])
                 currentUser.set("gender", user.gender);
                 currentUser.set("favoriteGenre", user.favoriteGenre);
                 currentUser.set("birthday", user.birthday);
-                currentUser.set("myPicture", user.myPicture);
+                //currentUser.set("myPicture", user.myPicture);
 
                 currentUser.save(null, {
                     success: function (user) {
@@ -851,14 +851,20 @@ angular.module('dataServices', [])
                 //Lets associate the file with the user
                 var currentUser = Parse.User.current();
 
-                currentUser.set("myPicture",parseFile);
-                currentUser.save();
+                currentUser.set("myPicture",parseFile._url);
+                currentUser.set("myFile",parseFile);
 
-                callback(true);
+                currentUser.save().then(function(){
+                        callback(true);
+                    }
+                    , function(error) {
+                        // The file either could not be read, or could not be saved to Parse.
+                        callback(false,error);
+                    });
 
             }, function(error) {
                 // The file either could not be read, or could not be saved to Parse.
-                callback(false);
+                callback(false,error);
             });
         }
     };
