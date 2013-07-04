@@ -102,9 +102,6 @@ angular.module('BookCrossingApp')
             };
 
             $scope.selectSex($scope.user.gender);
-
-
-
          });
 
         $scope.getPicture = function(){
@@ -112,7 +109,8 @@ angular.module('BookCrossingApp')
             navigator.camera.getPicture(onSuccess, onFail,
                 //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
                 { quality: 50,
-                    destinationType:Camera.DestinationType.FILE_URI,
+                    //destinationType:Camera.DestinationType.FILE_URI,
+                    destinationType:Camera.DestinationType.DATA_URL,
                     encodingType: Camera.EncodingType.JPEG,
                     //sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
                     targetWidth: 100,
@@ -120,7 +118,8 @@ angular.module('BookCrossingApp')
                 });
             function onSuccess(imageURI) {
                 var image = document.getElementById('preview');
-                movePic(imageURI);
+                var file = new Parse.File("userPicture.JPEG", { base64: imageURI });
+                //movePic(imageURI);
 
 //                image.src = imageURI;
 //                $scope.myPicture = image.src;
@@ -128,6 +127,22 @@ angular.module('BookCrossingApp')
 //                $scope.$apply(function() {
 //                    ctrl.$setViewValue(image.src);
 //                });
+
+                dataService.uploadPicture(file, function (result) {
+
+                    $scope.$apply(function () {
+                        if (isResult)
+                        {
+
+                        }
+                        else
+                        {
+                            $rootScope.TypeNotification = "errormessage";
+                            $rootScope.MessageNotification = result.message;
+                        }
+                    });
+                });
+
             }
 
             function onFail(message) {
