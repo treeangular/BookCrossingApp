@@ -26,61 +26,6 @@ angular.module('BookCrossingApp')
             }
         };
 
-        $scope.updateUserProfile = function (user) {
-
-            //Only way I found to fix this issue - SO question => that should be already in user.myPicture!!
-//            user.myPicture = $scope.myPicture;
-//            console.log("SO jquery response" + user.myPicture);
-//
-//            $scope.myPicture = "../styles/img/CustomAvatarContest.png";
-
-//            window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fs){
-//                fs.root.getFile("temp", {create: true, exclusive: false},
-//                    function(entry){
-//                        var fileTransfer = new FileTransfer();
-//                        fileTransfer.download(
-//                            $scope.myPicture, // the filesystem uri you mentioned
-//                            entry.fullPath,
-//                            function(entry) {
-                                // do what you want with the entry here
-                                //console.log("download complete: " + entry.fullPath);
-//                                dataService.uploadPicture(user, function(isResult, parseUrl)
-//                                {
-//                                    user.myPicture = parseUrl;
-
-                                    //need to use q but thats for later after being able to upload the pic
-                                    dataService.updateUserProfile(user, function (isResult, result) {
-
-                                        $scope.$apply(function () {
-                                            if (isResult)
-                                            {
-                                                $location.path('/Main');
-                                            }
-                                            else
-                                            {
-                                                $rootScope.TypeNotification = "errormessage";
-                                                $rootScope.MessageNotification = result.message;
-                                            }
-                                        });
-                                    });
-//                                });
-//                            },
-//                            function(error) {
-//                                console.log("error source " + error.source);
-//                                console.log("error target " + error.target);
-//                                console.log("error code " + error.code);
-//                            },
-//                            false,
-//                            null
-//                        );
-//                    }, function(){
-//                        alert("file create error");
-//                    });
-//            }, null);
-
-
-            }
-
         $scope.$watch('myPicture', function(value) {
             if(value) {
                 $scope.myPicture = value;
@@ -94,7 +39,7 @@ angular.module('BookCrossingApp')
             {
                 profilePhoto = currentUser.get("myFile");
 
-                if(profilePhoto != "undefined")
+                if(profilePhoto != undefined)
                 {
                     $scope.myPicture = profilePhoto.url();
                 }
@@ -110,6 +55,12 @@ angular.module('BookCrossingApp')
 
             $scope.selectSex($scope.user.gender);
          });
+
+        $scope.UpdateUserProfileImage = function(){
+
+            $scope.myPicture = document.getElementById('profilePhotoFileUpload');
+
+        }
 
         $scope.getPicture = function(){
 
@@ -151,6 +102,34 @@ angular.module('BookCrossingApp')
         };
 
         $scope.updateUserProfile = function (user) {
+
+            var image = document.getElementById('profilePhotoFileUpload');
+            //var fileUploadControl = $("#profilePhotoFileUpload")[0];
+            var fileUploadControl = $("#profilePhotoFileUpload")[0];
+            if (fileUploadControl.files.length > 0) {
+                var file = fileUploadControl.files[0];
+                var name = "photo.jpg";
+
+                var parseFile = new Parse.File(name, file);
+
+            //var file = new Parse.File("userPicture.JPEG", { base64: image });
+            $scope.myPicture = image;
+
+            dataService.uploadPicture(parseFile, function (result) {
+
+                $scope.$apply(function () {
+                    if (result)
+                    {
+
+                    }
+                    else
+                    {
+                        $rootScope.TypeNotification = "errormessage";
+                        $rootScope.MessageNotification = result.message;
+                    }
+                });
+            });
+
             dataService.updateUserProfile(user, function (isResult, result) {
 
                 $scope.$apply(function () {
@@ -165,5 +144,7 @@ angular.module('BookCrossingApp')
                     }
                 });
             });
+
+            }
         }
 });
