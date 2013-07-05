@@ -32,6 +32,12 @@ angular.module('BookCrossingApp')
             }
         }, true);
 
+        $scope.$watch('profilePhotoFileUpload', function(value) {
+            if(value) {
+                $scope.myPicture = value;
+            }
+        }, true);
+
         dataService.getCurrentUser(function(currentUser){
             var profilePhoto = "styles/img/user.png";
 
@@ -112,39 +118,37 @@ angular.module('BookCrossingApp')
 
                 var parseFile = new Parse.File(name, file);
 
-            //var file = new Parse.File("userPicture.JPEG", { base64: image });
-            $scope.myPicture = image;
+                //var file = new Parse.File("userPicture.JPEG", { base64: image });
 
-            dataService.uploadPicture(parseFile, function (result) {
+                dataService.uploadPicture(parseFile, function (result) {
 
-                $scope.$apply(function () {
-                    if (result)
-                    {
+                    $scope.$apply(function () {
+                        if (result)
+                        {
 
-                    }
-                    else
-                    {
-                        $rootScope.TypeNotification = "errormessage";
-                        $rootScope.MessageNotification = result.message;
-                    }
+                        }
+                        else
+                        {
+                            $rootScope.TypeNotification = "errormessage";
+                            $rootScope.MessageNotification = result.message;
+                        }
+                    });
                 });
-            });
 
-            dataService.updateUserProfile(user, function (isResult, result) {
+                dataService.updateUserProfile(user, function (isResult, result) {
 
-                $scope.$apply(function () {
-                    if (isResult)
-                    {
-                        $location.path('/Main');
-                    }
-                    else
-                    {
-                        $rootScope.TypeNotification = "errormessage";
-                        $rootScope.MessageNotification = result.message;
-                    }
+                    $scope.$apply(function () {
+                        if (isResult)
+                        {
+                            $location.path('/Main');
+                        }
+                        else
+                        {
+                            $rootScope.TypeNotification = "errormessage";
+                            $rootScope.MessageNotification = result.message;
+                        }
+                    });
                 });
-            });
-
             }
         }
 });
