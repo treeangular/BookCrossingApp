@@ -998,3 +998,27 @@ height: 100%;
     -webkit-mask-image: url('./img/bc.png');
 }
 
+/*Animatrion*/
+
+wave-enter-setup,.wave-leave-setup{
+    -webkit-transition:all cubic-bezier(0.25,.46,.45,.94) .5s;
+    -moz-transition:all cubic-bezier(0.25,.46,.45,.94) .5s;
+    -o-transition:all cubic-bezier(0.25,.46,.45,.94) .5s;
+    transition:all cubic-bezier(0.25,.46,.45,.94) .5s}
+
+.wave-enter-setup{
+    position:absolute;
+    opacity:0;
+    left:-600px
+}
+
+.wave-enter-start{
+    opacity:1;
+    left:0}
+
+.wave-leave-setup{position:absolute;opacity:1;left:0}
+.wave-leave-start{opacity:0;left:600px}
+.fade-hide-setup,.fade-show-setup{-webkit-transition:all cubic-bezier(0.25,.46,.45,.94) .5s;-moz-transition:all cubic-bezier(0.25,.46,.45,.94) .5s;-o-transition:all cubic-bezier(0.25,.46,.45,.94) .5s;transition:all cubic-bezier(0.25,.46,.45,.94) .5s}.fade-hide-setup{opacity:1}
+.fade-hide-setup.fade-hide-start{opacity:0}
+.fade-show-setup{opacity:0}
+.fade-show-setup.fade-show-start{opacity:1}
