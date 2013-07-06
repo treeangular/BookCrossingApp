@@ -23,17 +23,17 @@
         </ul>
     </div>
     <div ui-map-info-window="myInfoWindowList">
-        <div class="bookReleaseItemList">
+        <div class="mapGroupBooks">
             <div ng-switch on="bookgr1.get('image')">
-                <img style=" width: 40px; height: 60px;"  ng-click="selectBook(bookgr1)"  ng-src='{{bookgr1.get("image")}}'>
+                <img ng-click="selectBook(bookgr1)"  ng-src='{{bookgr1.get("image")}}'>
             </div>
             <div ng-show="bookgr2!=null" ng-switch on="bookgr2.get('image')">
-                <img style=" width: 40px; height: 60px;"  ng-click="selectBook(bookgr2)"  ng-src='{{bookgr2.get("image")}}'>
+                <img ng-click="selectBook(bookgr2)"  ng-src='{{bookgr2.get("image")}}'>
             </div>
             <div ng-show="bookgr3!=null" ng-switch on="bookgr3.get('image')">
-                <img style=" width: 40px; height: 60px;"  ng-click="selectBook(bookgr3)"  ng-src='{{bookgr3.get("image")}}'>
+                <img  ng-click="selectBook(bookgr3)"  ng-src='{{bookgr3.get("image")}}'>
             </div>
-            <div ng-show="IsNextGroupPage"><a ng-click="nextBooks()">More Books</a></div>
+            <div ng-show="IsNextGroupPage"><a class="mapGroupBooksMore" ng-click="nextBooks()">More</a></div>
         </div>
     </div>
 

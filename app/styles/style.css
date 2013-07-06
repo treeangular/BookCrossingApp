@@ -311,6 +311,21 @@ ul {
     height: 75px;
 }
 
+.mapGroupBooks img {
+    float: left;
+    margin-right:5px;
+    width: 40px;
+    height: 60px;
+}
+
+
+.mapGroupBooksMore{
+    position:absolute;
+    bottom: 0;
+}
+
+
+
 .bookNoImage {
     float: left;
     margin-right:5px;
