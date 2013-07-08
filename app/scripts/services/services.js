@@ -791,7 +791,7 @@ angular.module('dataServices', [])
 
                 //</editor-fold>
 
-        uploadPictureREST: function uploadPicture(user,callback)
+        uploadPictureREST: function uploadPictureREST(user,callback)
         {
                     var serverUrl = 'https://api.parse.com/1/files/' + user.Nick ;
 
@@ -844,9 +844,32 @@ angular.module('dataServices', [])
 
                 } ,
 
-        uploadPicture : function uploadPicture(parseFile,callback)
+        uploadPicture : function uploadPicture(parseFilef,callback)
         {
-            parseFile.save().then(function() {
+            /*parseFile.save({
+                success: function (parseFile) {
+                    //The file has been saved to Parse.
+                    //Lets associate the file with the user
+                    var currentUser = Parse.User.current();
+
+                    currentUser.set("myPicture",parseFile._url);
+                    currentUser.set("myFile",parseFile);
+
+                    currentUser.save().then(function(){
+                            callback(true);
+                        }
+                        , function(error) {
+                            // The file either could not be read, or could not be saved to Parse.
+                            callback(false,error);
+                        });
+                },
+                error: function (parseFile, error) {
+                    console.log("Error: " + error.code + " " + error.message)
+                    callback(false, ErrorConst.GenericError);
+                }
+            }); */
+
+            parseFilef.save().then(function() {
                 //The file has been saved to Parse.
                 //Lets associate the file with the user
                 var currentUser = Parse.User.current();
