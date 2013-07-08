@@ -552,6 +552,7 @@ li {
 }
 
 #librarymosaic {
+    height: 100%;
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
@@ -606,7 +607,7 @@ li {
 .boxheader {
     float: left;
     border: 1px solid #9d9e9e;
-    width: 67.79px;
+    width: 60px;
     text-align: center ;
     margin-bottom: 5px;
     margin-top: 5px;
