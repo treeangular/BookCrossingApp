@@ -62,12 +62,6 @@ angular.module('BookCrossingApp')
             $scope.selectSex($scope.user.gender);
          });
 
-        $scope.UpdateUserProfileImage = function(){
-
-            $scope.myPicture = document.getElementById('profilePhotoFileUpload');
-
-        }
-
         $scope.getPicture = function(){
 
             navigator.camera.getPicture(onSuccess, onFail,
@@ -80,12 +74,18 @@ angular.module('BookCrossingApp')
                     targetWidth: 100,
                     targetHeight: 100
                 });
+
             function onSuccess(imageURI) {
-                var image = document.getElementById('preview');
+                //var image = document.getElementById('preview');
                 var file = new Parse.File("userPicture.JPEG", { base64: imageURI });
                 $scope.myPicture = imageURI;
+                var name = "photopg.JPEG";
 
-                dataService.uploadPicture(file, function (result) {
+                var parseFile = new Parse.File(name, file);
+
+                //var file = new Parse.File("userPicture.JPEG", { base64: image });
+
+                dataService.uploadPicture(parseFile, function (result) {
 
                     $scope.$apply(function () {
                         if (result)
@@ -109,8 +109,7 @@ angular.module('BookCrossingApp')
 
         $scope.updateUserProfile = function (user) {
 
-            var image = document.getElementById('profilePhotoFileUpload');
-            //var fileUploadControl = $("#profilePhotoFileUpload")[0];
+            //var image = document.getElementById('profilePhotoFileUpload');
             var fileUploadControl = $("#profilePhotoFileUpload")[0];
             if (fileUploadControl.files.length > 0) {
                 var file = fileUploadControl.files[0];
