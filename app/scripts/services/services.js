@@ -844,7 +844,7 @@ angular.module('dataServices', [])
 
                 } ,
 
-        uploadPicture : function uploadPicture(parseFilef,callback)
+        uploadPicture : function uploadPicture(parseFile,callback)
         {
             /*parseFile.save({
                 success: function (parseFile) {
@@ -869,7 +869,7 @@ angular.module('dataServices', [])
                 }
             }); */
 
-            parseFilef.save().then(function() {
+            parseFile.save().then(function() {
                 //The file has been saved to Parse.
                 //Lets associate the file with the user
                 var currentUser = Parse.User.current();

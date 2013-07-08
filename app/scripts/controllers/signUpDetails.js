@@ -67,8 +67,8 @@ angular.module('BookCrossingApp')
             navigator.camera.getPicture(onSuccess, onFail,
                 //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
                 { quality: 50,
-                    destinationType:Camera.DestinationType.FILE_URI,
-                    //destinationType:Camera.DestinationType.DATA_URL,
+                    //destinationType:Camera.DestinationType.FILE_URI,
+                    destinationType:Camera.DestinationType.DATA_URL,
                     encodingType: Camera.EncodingType.JPEG,
                     //sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
                     targetWidth: 100,
@@ -76,29 +76,44 @@ angular.module('BookCrossingApp')
                 });
 
             function onSuccess(imageURI) {
-                //var image = document.getElementById('preview');
-                var file = new Parse.File("userPicture.JPEG", { base64: imageURI });
-                $scope.myPicture = imageURI;
-                var name = "photopg.JPEG";
 
-                var parseFile = new Parse.File(name, file);
 
-                //var file = new Parse.File("userPicture.JPEG", { base64: image });
 
-                dataService.uploadPicture(parseFile, function (result) {
+                window.resolveLocalFileSystemURI(imageURI, function(fileEntry) {
+                    fileEntry.file(function(fileObj) {
 
-                    $scope.$apply(function () {
-                        if (result)
-                        {
+                       // var fileName = fileObj.fullPath;
+                        //var image = document.getElementById('preview');
+                        //var parseFile = new Parse.File("userPicture.JPEG", { base64: imageURI });
+                        $scope.myPicture = imageURI;
+                        var name = "photopg.JPEG";
 
-                        }
-                        else
-                        {
-                            $rootScope.TypeNotification = "errormessage";
-                            $rootScope.MessageNotification = result.message;
-                        }
+                        var parseFile = new Parse.File(name, fileObj);
+
+                        //var file = new Parse.File("userPicture.JPEG", { base64: image });
+
+                        dataService.uploadPicture(parseFile, function (result) {
+
+                            $scope.$apply(function () {
+                                if (result)
+                                {
+
+                                }
+                                else
+                                {
+                                    $rootScope.TypeNotification = "errormessage";
+                                    $rootScope.MessageNotification = result.message;
+                                }
+                            });
+                        });
+                        //now use the fileName in your method
+                        //ft.upload(fileName ,serverURL + '/ajax.php?fname=appuploadspotimage'...);
+
                     });
                 });
+
+
+
             }
 
             function onFail(message) {
