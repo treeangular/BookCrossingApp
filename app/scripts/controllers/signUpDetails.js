@@ -62,65 +62,7 @@ angular.module('BookCrossingApp')
             $scope.selectSex($scope.user.gender);
          });
 
-        $scope.getPicture = function(){
 
-            navigator.camera.getPicture(onSuccess, onFail,
-                //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
-                { quality: 50,
-                    //destinationType:Camera.DestinationType.FILE_URI,
-                    destinationType:Camera.DestinationType.DATA_URL,
-                    encodingType: Camera.EncodingType.JPEG,
-                    //sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
-                    targetWidth: 100,
-                    targetHeight: 100
-                });
-
-            function onSuccess(imageURI) {
-
-
-
-                window.resolveLocalFileSystemURI(imageURI, function(fileEntry) {
-                    fileEntry.file(function(fileObj) {
-
-                       // var fileName = fileObj.fullPath;
-                        //var image = document.getElementById('preview');
-                        //var parseFile = new Parse.File("userPicture.JPEG", { base64: imageURI });
-                        $scope.myPicture = imageURI;
-                        var name = "photopg.JPEG";
-
-                        var parseFile = new Parse.File(name, fileObj);
-
-                        //var file = new Parse.File("userPicture.JPEG", { base64: image });
-
-                        dataService.uploadPicture(parseFile, function (result) {
-
-                            $scope.$apply(function () {
-                                if (result)
-                                {
-
-                                }
-                                else
-                                {
-                                    $rootScope.TypeNotification = "errormessage";
-                                    $rootScope.MessageNotification = result.message;
-                                }
-                            });
-                        });
-                        //now use the fileName in your method
-                        //ft.upload(fileName ,serverURL + '/ajax.php?fname=appuploadspotimage'...);
-
-                    });
-                });
-
-
-
-            }
-
-            function onFail(message) {
-                alert('Failed because: ' + message);
-                ctrl.$setValidity('Failed because: ' + message, false);
-            }
-        };
 
         $scope.updateUserProfile = function (user) {
 
@@ -164,5 +106,98 @@ angular.module('BookCrossingApp')
                     });
                 });
             }
+        }
+
+        var imageUriToLoad;
+
+        $scope.getPicture = function(){
+
+            navigator.camera.getPicture(onSuccess, onFail,
+                //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
+                { quality: 50,
+                    //destinationType:Camera.DestinationType.FILE_URI,
+                    destinationType:Camera.DestinationType.DATA_URL,
+                    encodingType: Camera.EncodingType.JPEG,
+                    //sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
+                    targetWidth: 100,
+                    targetHeight: 100
+                });
+
+            function onSuccess(imageURI) {
+
+                $scope.myPicture = imageURI;
+
+                imageUriToLoad = imageURI;
+
+                var reader = new FileReader();
+
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+                };
+//                window.resolveLocalFileSystemURI(imageURI, function(fileEntry) {
+//                    fileEntry.file(function(fileObj) {
+//
+//                       // var fileName = fileObj.fullPath;
+//                        //var image = document.getElementById('preview');
+//                        //var parseFile = new Parse.File("userPicture.JPEG", { base64: imageURI });
+//
+//
+//                        //now use the fileName in your method
+//                        //ft.upload(fileName ,serverURL + '/ajax.php?fname=appuploadspotimage'...);
+//
+//                    });
+//                });
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+                ctrl.$setValidity('Failed because: ' + message, false);
+            }
+        };
+
+
+        function gotFS(fileSystem) {
+            fileSystem.root.getFile(imageUriToLoad, null, gotFileEntry, fail);
+        }
+
+        function gotFileEntry(fileEntry) {
+            fileEntry.file(gotFile, fail);
+        }
+
+        function gotFile(file){
+            readDataUrl(file);
+            //readAsText(file);
+        }
+
+        function readDataUrl(file) {
+            var reader = new FileReader();
+            reader.onloadend = function(evt) {
+                console.log("Read as data URL");
+                console.log(evt.target.result);
+
+                var name = "photopg.JPEG";
+
+                var parseFile = new Parse.File(name, evt.target.result);
+
+                //var file = new Parse.File("userPicture.JPEG", { base64: image });
+
+                dataService.uploadPicture(parseFile, function (result) {
+
+                    $scope.$apply(function () {
+                        if (result)
+                        {
+
+                        }
+                        else
+                        {
+                            $rootScope.TypeNotification = "errormessage";
+                            $rootScope.MessageNotification = result.message;
+                        }
+                    });
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function fail(evt) {
+            console.log(evt.target.error.code);
         }
 });
