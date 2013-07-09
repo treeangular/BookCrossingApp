@@ -256,6 +256,7 @@ angular.module('dataServices', [])
                 newUser.set("password", "123456");
                 newUser.set("fbId", user.id);
                 newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
+                newUser.set("language", getLanguage());
 
                 //user counters
                 newUser.set("registered", 0);
@@ -312,6 +313,7 @@ angular.module('dataServices', [])
                 newUser.set("password", user.Password);
                 newUser.set("email", user.Email.toLowerCase());
                 newUser.set("username", user.Email.toLowerCase());
+                newUser.set("language", getLanguage());
                 //user counters
                 newUser.set("registered", 0);
                 newUser.set("released", 0);

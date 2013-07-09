@@ -1,32 +1,32 @@
 [
     {
         "key":"_SignIn_",
-        "value":"Sign In",
+        "value":"Entrar",
         "description":"Sign In button"
     },
     {
         "key":"_SignUp_",
-        "value":"Sign Up",
+        "value":"Registrarse",
         "description":"Sign In button"
     },
     {
         "key":"_TakeTour_",
-        "value":"Take a tour",
+        "value":"Da una vuelta",
         "description":"Take a tour link to a youtube video"
     },
     {
         "key":"_Connect_",
-        "value":"Connect",
+        "value":"Conectate",
         "description":"Connect button on the application"
     },
     {
         "key":"_Cancel_",
-        "value":"Cancel",
+        "value":"Cancelar",
         "description":"Cancel string for all the app"
     },
     {
         "key":"_ConnectFacebook_",
-        "value":"Connect with Facebook",
+        "value":"Conectate con Facebook",
         "description":"Connect to FB button"
     },
     {
@@ -36,113 +36,113 @@
     },
     {
         "key":"_Password_",
-        "value":"Password",
+        "value":"Contraseña",
         "description":"Password placeholder"
     },
     {
         "key":"_SeePassword_",
-        "value":"See the Password",
+        "value":"Ver la contraseña",
         "description":"Checkbox for see the password"
     },
     {
         "key":"_Register_",
-        "value":"Register",
+        "value":"Registrarse",
         "description":"Register button"
 
     },
     {
         "key":"_GenericError_",
-        "value":"Sorry, an error occurred, try it later",
+        "value":"Lo sentimos, ha ocurrido un error, intentelo mas tarde",
         "description":"Generic Error"
 
     },
     {
         "key":"_UserNotRegisteredCorrectly_",
-        "value":"Sorry, user not registered",
+        "value":"Lo sentimos, usuario no registrado",
         "description":"User not registered"
 
     },
     {
         "key":"_UserNotUpdatedCorrectly_",
-        "value":"Sorry, user was not updated",
+        "value":"Lo sentimos, elusuario no se actualizó",
         "description":"User not registered"
 
     },
     {
         "key":"_UserNotFound_",
-        "value":"Sorry, User not found",
+        "value":"Lo sentimos, usuario no encontrado",
         "description":"User not found"
 
     },
     {
         "key":"_BookAlreadyHunted_",
-        "value":"Sorry, the book is already hunted",
+        "value":"Lo sentimos, el libro ya fue cazado",
         "description":"book is already hunted"
 
     },
     {
         "key":"_IsbnNotFound_",
-        "value":"Sorry, the isbn was not found",
+        "value":"Lo sentimos, el isbn no ha sido encontrado",
         "description":"Isbn not found"
 
     },
     {
         "key":" _BookNotFound_",
-        "value":"Sorry, book not found",
+        "value":"Lo sentimos, libro no encontrado",
         "description":"book not found"
 
     },
     {
         "key":" _UserLoginError_",
-        "value":"Sorry, User login error",
+        "value":"Lo sentimos, ha habido un error en el login",
         "description":"book not found"
 
     },
     {
         "key":" _UserNotAuthorized_",
-        "value":"Sorry, user not authorized",
+        "value":"Lo sentimos, usuario no autorizado",
         "description":"book not found"
 
     },
     {
         "key":" _RegistrationIdError_",
-        "value":"Sorry, registration error",
+        "value":"Lo sentimos, error en el registro",
         "description":"book not found"
 
     },
     {
         "key":" _hunted_",
-        "value":"hunted",
+        "value":"cazado",
         "description":"hunted book"
 
     },
     {
         "key":" _released_",
-        "value":"released",
+        "value":"liberado",
         "description":"released book"
 
     },
     {
         "key":" _registered_",
-        "value":"registered",
+        "value":"registrado",
         "description":"registered book"
 
     },
     {
         "key":" _lost_",
-        "value":"lost",
+        "value":"perdido",
         "description":"lost book"
 
     },
     {
         "key":" _locked_",
-        "value":"locked",
+        "value":"bloqueado",
         "description":"locked book"
 
     },
     {
         "key":" _joined_",
-        "value":"joined",
+        "value":"unido",
         "description":"joined user"
 
     }

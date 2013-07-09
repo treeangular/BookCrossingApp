@@ -6,7 +6,7 @@ angular.module('localization', []).
     var localize = {
 
         // use the $window service to get the language of the user's browser
-        language:$window.navigator.userLanguage || $window.navigator.language,
+        language: $window.navigator.userLanguage || $window.navigator.language,
         // array to hold the localized resource string entries
         dictionary:[],
         // flag to indicate if the service hs loaded the resource file
@@ -26,6 +26,7 @@ angular.module('localization', []).
             // build the url to retrieve the localized resource file
             //var url = '/resources/resources.' + localize.language + '.js';
             var url = 'resources/resource.' + localize.language + '.js';
+
             // request the resource file
             $http({ method:"GET", url:url, cache:false }).success(localize.successCallback).error(function () {
                 // the request failed set the url to the default resource file
