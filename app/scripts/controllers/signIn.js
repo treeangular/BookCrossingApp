@@ -3,11 +3,18 @@
 BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $location, facebookService, $rootScope, $q) {
 
 
+    function getLanguage()
+    {
+        navigator.globalization.getPreferredLanguage(
+            function (language) {alert('language: ' + language.value + '\n');},
+            function () {alert('Error getting language\n');}
+        );
+    }
     function signInUser(email, password)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
-
+        getLanguage();
         dataService.signIn(email, password, function (isSuccess, result) {
             //How do I change to another view now?!!? Locate ??
             $scope.$apply(function () {
