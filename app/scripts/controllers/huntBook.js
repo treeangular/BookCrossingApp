@@ -81,6 +81,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
             $scope.goTo('views/bookDetails.html');
         }, function(reason) {
 
+            $scope.clicked=false;
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
             $rootScope.MessageNotification = reason;
         });
