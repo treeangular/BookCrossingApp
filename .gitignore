@@ -14,3 +14,7 @@ app/scripts/vendor/.DS_Store
 app/scripts/vendor/phonegap/.DS_Store
 
 app/styles/.DS_Store
+
+app/scripts/vendor/phonegap/cordova-2.5.0.js
+
+.DS_Store
