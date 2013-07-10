@@ -865,7 +865,7 @@ angular.module('dataServices', [])
                             callback(false,error);
                         });
                 },
-                error: function (parseFile, error) {
+                error: function (error) {
                     console.log("Error: " + error.code + " " + error.message)
                     callback(false, ErrorConst.GenericError);
                 }
@@ -884,11 +884,13 @@ angular.module('dataServices', [])
                     }
                     , function(error) {
                         // The file either could not be read, or could not be saved to Parse.
+                        console.log("Error: " + error.code + " " + error.message)
                         callback(false,error);
                     });
 
             }, function(error) {
                 // The file either could not be read, or could not be saved to Parse.
+                console.log("Error: " + error.code + " " + error.message)
                 callback(false,error);
             });
         }

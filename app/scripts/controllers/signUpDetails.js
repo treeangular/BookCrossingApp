@@ -62,7 +62,11 @@ angular.module('BookCrossingApp')
             $scope.selectSex($scope.user.gender);
          });
 
+        $scope.uploadProfilePicView = function (value)
+        {
 
+            $scope.myPicture = value.value;
+        }
 
         $scope.updateUserProfile = function (user) {
 
@@ -74,9 +78,32 @@ angular.module('BookCrossingApp')
 
                 var parseFile = new Parse.File(name, file);
 
+                parseFile.save();
+
+                var currentUser = Parse.User.current();
+
+                //currentUser.set("myPicture",parseFile._url);
+                currentUser.set("myFile",parseFile);
+                //currentUser.save();
+
+                /*parseFile.save().then(function() {
+                    // The file has been saved to Parse.
+                    console.log("Time to associate file with and parse object");
+                    var currentUser = Parse.User.current();
+
+                    currentUser.set("myPicture",parseFile._url);
+                    currentUser.set("myFile",parseFile);
+
+                    currentUser.save();
+
+                }, function(error) {
+                    // The file either could not be read, or could not be saved to Parse.
+                    console.log("Error: " + error.code + " " + error.message)
+                });*/
+
                 //var file = new Parse.File("userPicture.JPEG", { base64: image });
 
-                dataService.uploadPicture(parseFile, function (result) {
+                /*dataService.uploadPicture(parseFile, function (result) {
 
                     $scope.$apply(function () {
                         if (result)
@@ -104,11 +131,11 @@ angular.module('BookCrossingApp')
                             $rootScope.MessageNotification = result.message;
                         }
                     });
-                });
+                });*/
             }
         }
 
-        var imageUriToLoad;
+        /*var imageUriToLoad;
 
         $scope.getPicture = function(){
 
@@ -199,5 +226,5 @@ angular.module('BookCrossingApp')
 
         function fail(evt) {
             console.log(evt.target.error.code);
-        }
+        }*/
 });
