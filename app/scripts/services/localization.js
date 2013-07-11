@@ -3,12 +3,11 @@
 angular.module('localization', []).
     factory('localize', ['$http','$rootScope', '$window', '$filter', function ($http, $rootScope, $window, $filter) {
 
+
+
     var localize = {
 
-        // use the $window service to get the language of the user's browser
-        language: $window.navigator.userLanguage || $window.navigator.language,
-        // array to hold the localized resource string entries
-        dictionary:[],
+
         // flag to indicate if the service hs loaded the resource file
         resourceFileLoaded:false,
 
@@ -23,17 +22,26 @@ angular.module('localization', []).
 
         initLocalizedResources:function() {
 
-            // build the url to retrieve the localized resource file
-            //var url = '/resources/resources.' + localize.language + '.js';
-            var url = 'resources/resource.' + localize.language + '.js';
 
-            // request the resource file
-            $http({ method:"GET", url:url, cache:false }).success(localize.successCallback).error(function () {
-                // the request failed set the url to the default resource file
-                var url = 'resources/resource.default.js';http://codingsmackdown.tv/?p=104&preview=true
-                    // request the default resource file
-                    $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
-            });
+
+            navigator.globalization.getPreferredLanguage(
+                function (language) {
+
+                    alert(language.value);
+                    var url = 'resources/resource.' + language.value + '.js';
+
+                    // request the resource file
+                    $http({ method:"GET", url:url, cache:false }).success(localize.successCallback).error(function () {
+                        // the request failed set the url to the default resource file
+                        var url = 'resources/resource.default.js';
+                        // request the default resource file
+                        $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
+                    });
+                },
+                function () {alert('Error getting language\n');}
+            );
+
+
 
         },
 

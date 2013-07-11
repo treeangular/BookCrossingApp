@@ -58,7 +58,8 @@ function CreateRandomPass()
 function getLanguage()
 {
     navigator.globalization.getPreferredLanguage(
-        function (language) {alert(language.value);},
+        function (language) {return language.value},
         function () {alert('Error getting language\n');}
     );
 }
+
