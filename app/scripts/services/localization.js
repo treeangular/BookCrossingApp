@@ -23,6 +23,26 @@ angular.module('localization', []).
 
         initLocalizedResources:function() {
 
+<<<<<<< HEAD
+            navigator.globalization.getPreferredLanguage(
+                function (language) {
+
+
+                    var url = 'resources/resource.' + language.value + '.js';
+
+                    // request the resource file
+                    $http({ method:"GET", url:url, cache:false }).success(localize.successCallback).error(function () {
+                        // the request failed set the url to the default resource file
+                        var url = 'resources/resource.default.js';
+                        // request the default resource file
+                        $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
+                    });
+                },
+                function () {alert('Error getting language\n');}
+            );
+
+
+=======
             // build the url to retrieve the localized resource file
             //var url = '/resources/resources.' + localize.language + '.js';
             var url = 'resources/resource.' + localize.language + '.js';
@@ -34,6 +54,7 @@ angular.module('localization', []).
                     // request the default resource file
                     $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
             });
+>>>>>>> parent of 1fe091d... Added getLanguage
 
         },
 

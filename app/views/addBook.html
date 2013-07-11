@@ -1,30 +1,30 @@
 <div ng-controller="AddBookCtrl">
     <div ng-show="addBook==false">
         <div ng-hide="book.isbn!=null && book.isbn!=''">
-            <a ng-click="addNewBook()" style="margin-top:5px; float: right; clear: left">ISBN not found?</a>
-    <input name="bookIsbn" type="text" ng-model="isbn" placeholder="ISBN" />
-    <input type="button" ng-click="findBook()"  value="Find book" class="buttonlarge" />
+            <a ng-click="addNewBook()" style="margin-top:5px; float: right; clear: left" value="{{'_IsbnNotFound_' | localizeIt}}"></a>
+    <input name="bookIsbn" type="text" ng-model="isbn" data-localize-it-attr="_Isbn_|placeholder" />
+    <input type="button" ng-click="findBook()"  data-localize-it-attr="_FindBook_|value" class="buttonlarge" />
             </div>
     <div ng-show="book.isbn!=null && book.isbn!=''">
-        <h2 class="bookResultOption" class="bookFound">Check book information</h2>
-        <input name="bookName" type="text" ng-model="book.title"  placeholder="Title" />
+        <h2 class="bookResultOption" class="bookFound" value="{{'_CheckBookInformation_' | localizeIt}}"></h2>
+        <input name="bookName" type="text" ng-model="book.title"  data-localize-it-attr="_Title_|placeholder" />
         <img class="bookimg" style="margin-right: 5px; margin-top: 10px" ng-src="{{book.image}}"/>
         <span style="display: block; overflow: hidden;">
-            <textarea style="height: 180px" name="bookDescription" ng-model="book.description"  placeholder="Description" />
+            <textarea style="height: 180px" name="bookDescription" ng-model="book.description"  data-localize-it-attr="_Description_|placeholder" />
         </span>
-        <input type="button" ng-click="registerNewBook(book)" ng-disabled="clicked"  value="Register" class="buttonlarge" />
+        <input type="button" ng-click="registerNewBook(book)" ng-disabled="clicked" data-localize-it-attr="_Register_|value" class="buttonlarge" />
     </div>
     </div>
     <div ng-show="addBook==true">
-    <h2 class="bookResultOption" class="bookFound">Add book information</h2>
-    <input name="bookName" type="text" ng-model="book.title"  placeholder="Title" />
+    <h2 class="bookResultOption" class="bookFound" value="{{'_AddBookInformation_' | localizeIt}}"></h2>
+    <input name="bookName" type="text" ng-model="book.title"  data-localize-it-attr="_Title_|placeholder" />
     <div style="width: 100%">
         <img class="bookimg" style="margin-right: 5px; margin-top: 10px" ng-src="{{book.image}}"/>
         <span style="display: block; overflow: hidden;">
-        <textarea style="height: 230px" name="bookDescription" ng-model="book.description"  placeholder="Description" />
+        <textarea style="height: 230px" name="bookDescription" ng-model="book.description"  data-localize-it-attr="_Description_|placeholder" />
         </span>
     </div>
-    <input type="button" ng-click="registerNewBook(book)" ng-disabled="clicked" value="Register" class="buttonlarge" />
+    <input type="button" ng-click="registerNewBook(book)" ng-disabled="clicked" data-localize-it-attr="_Register_|value" class="buttonlarge" />
     </div>
 </div>
 
