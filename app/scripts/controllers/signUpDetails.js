@@ -85,9 +85,7 @@ angular.module('BookCrossingApp')
             navigator.camera.getPicture(gotPic, failHandler,
                 {quality:50,
                  destinationType:Camera.DestinationType.FILE_URI,
-                 sourceType:navigator.camera.PictureSourceType.PHOTOLIBRARY,
-                 targetWidth: 100,
-                 targetHeight: 100
+                 sourceType:navigator.camera.PictureSourceType.PHOTOLIBRARY
                 });
 
             function gotPic(data) {
@@ -118,6 +116,7 @@ angular.module('BookCrossingApp')
                             //navigator.notification.alert("Got it!", null);
                             //navigator.notification.alert(JSON.stringify(ob), null);
                             //console.log(JSON.stringify(ob));
+<<<<<<< HEAD
 
                             var currentUser = Parse.User.current();
 
@@ -207,9 +206,12 @@ angular.module('BookCrossingApp')
                             //navigator.notification.alert(JSON.stringify(ob), null);
                             //console.log(JSON.stringify(ob));
 
+=======
+                            navigator.notification.alert("Got it 2!", null);
+>>>>>>> parent of f5d4723... Photo new version
                             var currentUser = Parse.User.current();
 
-                            currentUser.set("myPicture",ob._url);
+                            //currentUser.set("myPicture",ob._url);
                             currentUser.set("myFile",ob);
 
                             currentUser.save().then(function(){
