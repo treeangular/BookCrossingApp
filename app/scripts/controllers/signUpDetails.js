@@ -118,16 +118,18 @@ angular.module('BookCrossingApp')
 
                             var currentUser = Parse.User.current();
 
-                            currentUser.set("myPicture",parseFile._url);
-                            currentUser.set("myFile",parseFile);
+                            currentUser.set("myPicture",ob._url);
+                            currentUser.set("myFile",ob);
 
                             currentUser.save().then(function(){
-                                    callback(true);
+                                    navigator.notification.alert("success updating user!", null);
+                                    //callback(true);
                                 }
                                 , function(error) {
                                     // The file either could not be read, or could not be saved to Parse.
+                                    navigator.notification.alert("error updating user!", null);
                                     console.log("Error: " + error.code + " " + error.message)
-                                    callback(false,error);
+                                    //callback(false,error);
                                 });
 
                         }, function(error) {
