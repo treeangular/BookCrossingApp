@@ -59,7 +59,6 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
     loadParse();
     loadFB();
 
-
 }]);
 
 function loadGoogleAnalytics()
@@ -75,9 +74,9 @@ function loadFastClick()
 {
     window.addEventListener('load', function() {
         FastClick.attach(document.body);
-    }, false);}
+    }, false);
 
-
+}
 
 function loadHttpInterceptor($httpProvider)
 {
@@ -138,4 +137,3 @@ function loadParse()
 
     Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
 }
-
