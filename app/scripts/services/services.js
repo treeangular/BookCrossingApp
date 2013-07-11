@@ -793,84 +793,8 @@ angular.module('dataServices', [])
 
                 //</editor-fold>
 
-        uploadPictureREST: function uploadPictureREST(user,callback)
-        {
-                    var serverUrl = 'https://api.parse.com/1/files/' + user.Nick ;
-
-
-
-                    $http({
-                        method: 'POST',
-                        url: serverUrl,
-                        data: user.myPicture,
-                        headers: {'X-Parse-Application-Id': PARSE_APP_ID,
-                            'X-Parse-REST-API-Key': PARSE_REST_API_KEY,
-                            'Content-Type': 'text/plain'
-                        }
-                    }).success(function(data, status, headers, config) {
-                            alert("File available at: " + data.url);
-                            console.log("File available at: " + data.url);
-
-                            var currentUser = Parse.User.current();
-
-                            currentUser.set("myPicture", data.url);
-
-                            currentUser.save(null, {
-                                success: function (user) {
-                                    // Hooray! Let them use the app now.
-                                    callback(true, null);
-                                },
-                                error: function (user, error) {
-                                    // Show the error message somewhere and let the user try again.
-                                    //alert("Error: " + error.code + " " + error.message);
-                                    console.log("Error: " + error.code + " " + error.message);
-                                    callback(false, error);
-                                }
-                            });
-    //                        var url = data.url;
-    //                        currentUser.put("myPicture", {
-    //                            name: url.substring(url.lastIndexOf('/') + 1),
-    //                            url: url,
-    //                            __type: "File"
-    //                        });
-    //                        currentUser.save();
-                            callback(true,data);
-
-                        }).error(function(data, status, headers, config) {
-    //                        var obj = jQuery.parseJSON(data);
-    //                        alert(obj.error);
-                            //alert("Fucking error ");
-                            console.log("fuckign error");// + data);
-                            callback(false,null);
-                        });
-
-                } ,
-
         uploadPicture : function uploadPicture(parseFile,callback)
         {
-            /*parseFile.save({
-                success: function (parseFile) {
-                    //The file has been saved to Parse.
-                    //Lets associate the file with the user
-                    var currentUser = Parse.User.current();
-
-                    currentUser.set("myPicture",parseFile._url);
-                    currentUser.set("myFile",parseFile);
-
-                    currentUser.save().then(function(){
-                            callback(true);
-                        }
-                        , function(error) {
-                            // The file either could not be read, or could not be saved to Parse.
-                            callback(false,error);
-                        });
-                },
-                error: function (error) {
-                    console.log("Error: " + error.code + " " + error.message)
-                    callback(false, ErrorConst.GenericError);
-                }
-            }); */
-
             parseFile.save().then(function() {
                 //The file has been saved to Parse.
                 //Lets associate the file with the user

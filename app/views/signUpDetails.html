@@ -7,13 +7,10 @@
             <p class="blanksmall"></p>
             <img id="libraryimg" ng-src="{{myPicture}}" />
             <span style="margin-top: 25px; display: block; overflow: hidden;">
-                    <!--<p style="padding-bottom: 20px" ><a ng-click="getPicture()">Select a picture</a></p>-->
-                    <p><a ng-click="getPicture()">Take a picture</a></p>
-                <p><a ng-click="selectPicture()">Select a picture</a></p>
-                    <p></p>
-
+                    <p style="padding-bottom: 20px"><a ng-click="getPicture()">Take a picture</a></p>
+                    <br><br>
+                    <p><a ng-click="selectPicture()">Select a picture</a></p>
             </span>
-            <!--<input type="file" capture="camera" accept="image/*" id="profilePhotoFileUpload" onchange="angular.element(this).scope().uploadProfilePicView(this)">-->
             <input name="nick" type="text" ng-model="user.nick" placeholder="Nickname"  />
             <input ng-click="setDate=true" onselect="setDate=true" ng-hide="setDate" ng-model="user.birthday" type="text" placeholder="Birth date"/>
             <input ng-show="setDate" ng-model="user.birthday" type="date" id="myDate" placeholder="Birth date"/>

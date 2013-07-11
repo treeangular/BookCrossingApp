@@ -115,7 +115,7 @@ angular.module('BookCrossingApp')
                         console.log(parseFile.toString());
                         console.log('trying to save');
                         parseFile.save().then(function(ob) {
-                            navigator.notification.alert("Got it!", null);
+                            //navigator.notification.alert("Got it!", null);
                             //navigator.notification.alert(JSON.stringify(ob), null);
                             //console.log(JSON.stringify(ob));
 
@@ -125,12 +125,12 @@ angular.module('BookCrossingApp')
                             currentUser.set("myFile",ob);
 
                             currentUser.save().then(function(){
-                                    navigator.notification.alert("success updating user!", null);
+                                    //navigator.notification.alert("success updating user!", null);
                                     //callback(true);
                                 }
                                 , function(error) {
                                     // The file either could not be read, or could not be saved to Parse.
-                                    navigator.notification.alert("error updating user!", null);
+                                    //navigator.notification.alert("error updating user!", null);
                                     console.log("Error: " + error.code + " " + error.message)
                                     //callback(false,error);
                                 });
@@ -169,18 +169,6 @@ angular.module('BookCrossingApp')
         };
 
         $scope.selectPicture = function(){
-
-//            navigator.camera.getPicture(onSuccess, onFail,
-//                //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
-//                { quality: 50,
-//                    //destinationType:Camera.DestinationType.FILE_URI,
-//                    destinationType:Camera.DestinationType.DATA_URL,
-//                    encodingType: Camera.EncodingType.JPEG,
-//                    sourceType:navigator.camera.PictureSourceType.PHOTOLIBRARY,
-//                    //sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
-//                    targetWidth: 100,
-//                    targetHeight: 100
-//                });
 
             navigator.camera.getPicture(gotPic, failHandler,
                 {quality:50,
