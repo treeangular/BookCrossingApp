@@ -156,7 +156,7 @@ angular.module('BookCrossingApp')
 
             }
 
-            function onFail(e) {
+            function failHandler(e) {
                 alert("ErrorFromC");
                 alert(e);
                 console.log(e.toString());
