@@ -135,7 +135,7 @@ angular.module('BookCrossingApp')
             }
         }
 
-        /*var imageUriToLoad;
+        var imageUriToLoad;
 
         $scope.getPicture = function(){
 
@@ -145,86 +145,66 @@ angular.module('BookCrossingApp')
                     //destinationType:Camera.DestinationType.FILE_URI,
                     destinationType:Camera.DestinationType.DATA_URL,
                     encodingType: Camera.EncodingType.JPEG,
+                    sourceType:navigator.camera.PictureSourceType.PHOTOLIBRARY,
                     //sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
                     targetWidth: 100,
                     targetHeight: 100
                 });
 
-            function onSuccess(imageURI) {
+            function onSuccess(data) {
+                window.resolveLocalFileSystemURI(data, function(entry) {
 
-                $scope.myPicture = imageURI;
+                    var reader = new FileReader();
 
-                imageUriToLoad = imageURI;
+                    reader.onloadend = function(evt) {
+                        console.log('read onloderend');
+                        console.log(JSON.stringify(evt.target));
+                        console.log(evt.target.result);
+                        var byteArray = new Uint8Array(evt.target.result);
+                        var output = new Array( byteArray.length );
+                        var i = 0;
+                        var n = output.length;
+                        while( i < n ) {
+                            output[i] = byteArray[i];
+                            i++;
+                        }
+                        var parseFile = new Parse.File("mypic.jpg", output);
+                        console.log(byteArray.length);
+                        console.log(parseFile.toString());
+                        console.log('trying to save');
+                        parseFile.save().then(function(ob) {
+                            navigator.notification.alert("Got it!", null);
+                            console.log(JSON.stringify(ob));
+                        }, function(error) {
+                            console.log("Error");
+                            console.log(error);
+                        });
 
-                var reader = new FileReader();
+                    }
 
-                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-                };
-//                window.resolveLocalFileSystemURI(imageURI, function(fileEntry) {
-//                    fileEntry.file(function(fileObj) {
-//
-//                       // var fileName = fileObj.fullPath;
-//                        //var image = document.getElementById('preview');
-//                        //var parseFile = new Parse.File("userPicture.JPEG", { base64: imageURI });
-//
-//
-//                        //now use the fileName in your method
-//                        //ft.upload(fileName ,serverURL + '/ajax.php?fname=appuploadspotimage'...);
-//
-//                    });
-//                });
+                    reader.onerror = function(evt) {
+                        console.log('read error');
+                        console.log(JSON.stringify(evt));
+                    }
 
-            function onFail(message) {
-                alert('Failed because: ' + message);
-                ctrl.$setValidity('Failed because: ' + message, false);
+                    console.log('pre read');
+
+                    entry.file(function(s) {
+                        reader.readAsArrayBuffer(s);
+                    }, function(e) {
+                        console.log('ee');
+                    });
+
+                    //reader.readAsArrayBuffer(entry.file(function(s) { console.log('ss');}, function(e) { console.log('e');});
+                    console.log('fired off the read...');
+                });
+
+            }
+
+            function onFail(e) {
+                alert("ErrorFromC");
+                alert(e);
+                console.log(e.toString());
             }
         };
-
-
-        function gotFS(fileSystem) {
-            fileSystem.root.getFile(imageUriToLoad, null, gotFileEntry, fail);
-        }
-
-        function gotFileEntry(fileEntry) {
-            fileEntry.file(gotFile, fail);
-        }
-
-        function gotFile(file){
-            readDataUrl(file);
-            //readAsText(file);
-        }
-
-        function readDataUrl(file) {
-            var reader = new FileReader();
-            reader.onloadend = function(evt) {
-                console.log("Read as data URL");
-                console.log(evt.target.result);
-
-                var name = "photopg.JPEG";
-
-                var parseFile = new Parse.File(name, evt.target.result);
-
-                //var file = new Parse.File("userPicture.JPEG", { base64: image });
-
-                dataService.uploadPicture(parseFile, function (result) {
-
-                    $scope.$apply(function () {
-                        if (result)
-                        {
-
-                        }
-                        else
-                        {
-                            $rootScope.TypeNotification = "errormessage";
-                            $rootScope.MessageNotification = result.message;
-                        }
-                    });
-                });
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function fail(evt) {
-            console.log(evt.target.error.code);
-        }*/
 });
