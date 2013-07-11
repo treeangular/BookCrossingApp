@@ -99,37 +99,37 @@
 
     },
     {
-        "key":" _UserNotAuthorized_",
+        "key":"_UserNotAuthorized_",
         "value":"Lo sentimos, usuario no autorizado",
         "description":"book not found"
 
     },
     {
-        "key":" _RegistrationIdError_",
+        "key":"_RegistrationIdError_",
         "value":"Lo sentimos, error en el registro",
         "description":"book not found"
 
     },
     {
-        "key":" _hunted_",
+        "key":"_hunted_",
         "value":"cazado",
         "description":"hunted book"
 
     },
     {
-        "key":" _released_",
+        "key":"_released_",
         "value":"liberado",
         "description":"released book"
 
     },
     {
-        "key":" _registered_",
+        "key":"_registered_",
         "value":"registrado",
         "description":"registered book"
 
     },
     {
-        "key":" _lost_",
+        "key":"_lost_",
         "value":"perdido",
         "description":"lost book"
 
@@ -145,7 +145,51 @@
         "value":"unido",
         "description":"joined user"
 
-    }
+    },
 
+    //ADD BOOK
+    {
+        "key":"_IsbnNotFound_",
+        "value":"ISBN no encontrado",
+        "description":"ISBN not found"
+
+    },
+
+    {
+        "key":"_Isbn_",
+        "value":"ISBN",
+        "description":"ISBN"
+
+    },
+    {
+        "key":"_FindBook_",
+        "value":"Buscar libro",
+        "description":"Find book"
+
+    },
+    {
+        "key":"_CheckBookInformation_",
+        "value":"Información del libro",
+        "description":"Check book Information"
+
+    },
+    {
+        "key":"_Title_",
+        "value":"Titulo",
+        "description":"Title"
+
+    },
+    {
+        "key":"_Description_",
+        "value":"Descripción",
+        "description":"Description"
+
+    },
+    {
+        "key":"_AddBookInformation_",
+        "value":"Añade información del libro",
+        "description":"Add book information"
+
+    }
 
 ]

@@ -87,63 +87,107 @@
 
     },
     {
-        "key":" _BookNotFound_",
+        "key":"_BookNotFound_",
         "value":"Sorry, book not found",
         "description":"book not found"
 
     },
     {
-        "key":" _UserLoginError_",
+        "key":"_UserLoginError_",
         "value":"Sorry, User login error",
         "description":"book not found"
 
     },
     {
-        "key":" _UserNotAuthorized_",
+        "key":"_UserNotAuthorized_",
         "value":"Sorry, user not authorized",
         "description":"book not found"
 
     },
     {
-        "key":" _RegistrationIdError_",
+        "key":"_RegistrationIdError_",
         "value":"Sorry, registration error",
         "description":"book not found"
 
     },
     {
-        "key":" _hunted_",
+        "key":"_hunted_",
         "value":"hunted",
         "description":"hunted book"
 
     },
     {
-        "key":" _released_",
+        "key":"_released_",
         "value":"released",
         "description":"released book"
 
     },
     {
-        "key":" _registered_",
+        "key":"_registered_",
         "value":"registered",
         "description":"registered book"
 
     },
     {
-        "key":" _lost_",
+        "key":"_lost_",
         "value":"lost",
         "description":"lost book"
 
     },
     {
-        "key":" _locked_",
+        "key":"_locked_",
         "value":"locked",
         "description":"locked book"
 
     },
     {
-        "key":" _joined_",
+        "key":"_joined_",
         "value":"joined",
         "description":"joined user"
+
+    },
+    //ADD BOOK
+    {
+        "key":"_IsbnNotFound_",
+        "value":"ISBN not found",
+        "description":"ISBN not found"
+
+    },
+
+    {
+        "key":"_Isbn_",
+        "value":"ISBN",
+        "description":"ISBN"
+
+    },
+    {
+        "key":"_FindBook_",
+        "value":"Find Book",
+        "description":"Find book"
+
+    },
+    {
+        "key":"_CheckBookInformation_",
+        "value":"Check book Information",
+        "description":"Check book Information"
+
+    },
+    {
+        "key":"_Title_",
+        "value":"Title",
+        "description":"Title"
+
+    },
+    {
+        "key":"_Description_",
+        "value":"Description",
+        "description":"Description"
+
+    },
+    {
+        "key":"_AddBookInformation_",
+        "value":"Add book information",
+        "description":"Add book information"
 
     }
 

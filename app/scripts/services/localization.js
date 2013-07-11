@@ -22,12 +22,10 @@ angular.module('localization', []).
 
         initLocalizedResources:function() {
 
-
-
             navigator.globalization.getPreferredLanguage(
                 function (language) {
 
-                    alert(language.value);
+
                     var url = 'resources/resource.' + language.value + '.js';
 
                     // request the resource file
