@@ -85,12 +85,12 @@ angular.module('BookCrossingApp')
             navigator.camera.getPicture(gotPic, failHandler,
                 {quality:50,
                  destinationType:Camera.DestinationType.FILE_URI,
-                 sourceType:navigator.camera.PictureSourceType.PHOTOLIBRARY
+                 sourceType:navigator.camera.PictureSourceType.CAMERA
                 });
 
-            function gotPic(data) {
-
                 $scope.myPicture = data;
+
+            function gotPic(data){
 
                 window.resolveLocalFileSystemURI(data, function(entry) {
 
@@ -116,7 +116,6 @@ angular.module('BookCrossingApp')
                             //navigator.notification.alert("Got it!", null);
                             //navigator.notification.alert(JSON.stringify(ob), null);
                             //console.log(JSON.stringify(ob));
-<<<<<<< HEAD
 
                             var currentUser = Parse.User.current();
 
@@ -172,7 +171,7 @@ angular.module('BookCrossingApp')
             navigator.camera.getPicture(gotPic, failHandler,
                 {quality:50,
                     destinationType:Camera.DestinationType.FILE_URI,
-                    sourceType:navigator.camera.PictureSourceType.CAMERA,
+                    sourceType:navigator.camera.PictureSourceType.PHOTOLIBRARY,
                     targetWidth: 100,
                     targetHeight: 100
                 });
@@ -202,25 +201,23 @@ angular.module('BookCrossingApp')
                         console.log(parseFile.toString());
                         console.log('trying to save');
                         parseFile.save().then(function(ob) {
-                            navigator.notification.alert("Got it!", null);
+                            //navigator.notification.alert("Got it!", null);
                             //navigator.notification.alert(JSON.stringify(ob), null);
                             //console.log(JSON.stringify(ob));
+                            //navigator.notification.alert("Got it 2!", null);
 
-=======
-                            navigator.notification.alert("Got it 2!", null);
->>>>>>> parent of f5d4723... Photo new version
                             var currentUser = Parse.User.current();
 
-                            //currentUser.set("myPicture",ob._url);
+                            currentUser.set("myPicture",ob._url);
                             currentUser.set("myFile",ob);
 
                             currentUser.save().then(function(){
-                                    navigator.notification.alert("success updating user!", null);
+                                    //navigator.notification.alert("success updating user!", null);
                                     //callback(true);
                                 }
                                 , function(error) {
                                     // The file either could not be read, or could not be saved to Parse.
-                                    navigator.notification.alert("error updating user!", null);
+                                    //navigator.notification.alert("error updating user!", null);
                                     console.log("Error: " + error.code + " " + error.message)
                                     //callback(false,error);
                                 });
