@@ -79,6 +79,8 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                                 else
                                 {
 
+
+                                    user.language = $rootScope.language;
                                     dataService.registerNewUserFromFB(user, function(isSuccess, result2)
                                     {
                                         $scope.$apply(function () {

@@ -23,18 +23,21 @@ angular.module('localization', []).
 
         initLocalizedResources:function() {
 
+            navigator.globalization.getPreferredLanguage(
+                function (language) {
+                    var url = 'resources/resource.' + language.value + '.js';
+                    $rootScope.language = language.value;
 
-            // build the url to retrieve the localized resource file
-            //var url = '/resources/resources.' + localize.language + '.js';
-            var url = 'resources/resource.' + localize.language + '.js';
-
-            // request the resource file
-            $http({ method:"GET", url:url, cache:false }).success(localize.successCallback).error(function () {
-                // the request failed set the url to the default resource file
-                var url = 'resources/resource.default.js';//http://codingsmackdown.tv/?p=104&preview=true
-                    // request the default resource file
-                    $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
-            });
+                    // request the resource file
+                    $http({ method:"GET", url:url, cache:false }).success(localize.successCallback).error(function () {
+                        // the request failed set the url to the default resource file
+                        var url = 'resources/resource.default.js';
+                        // request the default resource file
+                        $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
+                    });
+                },
+                function () {alert('Error getting language\n');}
+            );
 
 
         },

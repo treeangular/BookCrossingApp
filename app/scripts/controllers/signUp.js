@@ -6,7 +6,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
-
+        alert(user.language);
         dataService.registerNewUser(user, function (isResult, result) {
 
             $scope.$apply(function () {
@@ -31,7 +31,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
 
     $scope.registerNewUser = function (user) {
 
-
+        user.language = $rootScope.language;
         var promise = registerNewUser(user);
         promise.then(function(result) {
 
@@ -64,6 +64,9 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                                 }
                                 else
                                 {
+
+
+                                    user.language = $rootScope.language;
 
                                     dataService.registerNewUserFromFB(user, function(isSuccess, result2)
                                     {
