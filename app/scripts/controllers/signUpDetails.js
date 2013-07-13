@@ -2,6 +2,7 @@
 
 angular.module('BookCrossingApp')
   .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http,$rootScope) {
+        var fileToUpdate;
 
         var disabledClass = 'disabling';
         $scope.maleClass = disabledClass;

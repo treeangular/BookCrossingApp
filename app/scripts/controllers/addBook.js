@@ -36,6 +36,34 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         authors: null
     };
 
+    $scope.scanBook = function () {
+    {
+        console.log('scanning');
+        try {
+            window.plugins.barcodeScanner.scan(function(args) {
+                console.log("Scanner result: \n" +
+                    "text: " + args.text + "\n" +
+                    "format: " + args.format + "\n" +
+                    "cancelled: " + args.cancelled + "\n");
+
+                navigator.notification.alert("Scanner result: \n" +
+                    "text: " + args.text + "\n" +
+                    "format: " + args.format + "\n" +
+                    "cancelled: " + args.cancelled + "\n");
+                /*
+                 if (args.format == "QR_CODE") {
+                 window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
+                 }
+                 */
+                //document.getElementById("info").innerHTML = args.text;
+                console.log(args);
+            });
+        } catch (ex) {
+            console.log(ex.message);
+        }
+    }
+    };
+
     function findBook(isbn)
     {
 

@@ -339,7 +339,7 @@ angular.module('dataServices', [])
                 });
             },
 
-            updateUserProfile: function updateUserProfile(user, callback) {
+            updateUserProfile: function updateUserProfile(user,parseFile, callback) {
                 //Get current user
                 var currentUser = Parse.User.current();
 
@@ -348,6 +348,13 @@ angular.module('dataServices', [])
                 currentUser.set("favoriteGenre", user.favoriteGenre);
                 currentUser.set("birthday", user.birthday);
                 //currentUser.set("myPicture", user.myPicture);
+
+                uploadPicture(parseFile, function(parseFile,isResult)
+                {
+
+
+                });
+
 
                 currentUser.save(null, {
                     success: function (user) {
@@ -362,6 +369,33 @@ angular.module('dataServices', [])
                     }
                 });
             },
+
+            uploadPicture : function uploadPicture(parseFile,callback)
+            {
+                parseFile.save().then(function() {
+                    //The file has been saved to Parse.
+                    //Lets associate the file with the user
+                    var currentUser = Parse.User.current();
+
+                    currentUser.set("myPicture",parseFile._url);
+                    currentUser.set("myFile",parseFile);
+
+                    currentUser.save().then(function(){
+                            callback(true);
+                        }
+                        , function(error) {
+                            // The file either could not be read, or could not be saved to Parse.
+                            console.log("Error: " + error.code + " " + error.message)
+                            callback(false,error);
+                        });
+
+                }, function(error) {
+                    // The file either could not be read, or could not be saved to Parse.
+                    console.log("Error: " + error.code + " " + error.message)
+                    callback(false,error);
+                });
+            },
+
         //</editor-fold>
 
         //<editor-fold description="User">
@@ -806,35 +840,9 @@ angular.module('dataServices', [])
                             callback(false, ErrorConst.GenericError);
                         }
                     });
-                },
+                }
 
                 //</editor-fold>
-
-        uploadPicture : function uploadPicture(parseFile,callback)
-        {
-            parseFile.save().then(function() {
-                //The file has been saved to Parse.
-                //Lets associate the file with the user
-                var currentUser = Parse.User.current();
-
-                currentUser.set("myPicture",parseFile._url);
-                currentUser.set("myFile",parseFile);
-
-                currentUser.save().then(function(){
-                        callback(true);
-                    }
-                    , function(error) {
-                        // The file either could not be read, or could not be saved to Parse.
-                        console.log("Error: " + error.code + " " + error.message)
-                        callback(false,error);
-                    });
-
-            }, function(error) {
-                // The file either could not be read, or could not be saved to Parse.
-                console.log("Error: " + error.code + " " + error.message)
-                callback(false,error);
-            });
-        }
     };
 
         return parseService;
