@@ -14,7 +14,9 @@ var ActionTypesConst =
     Registered: "cacZr6Q9YL",
     Locked: "c8g1mW5GeK",
     Lost: "SXuWKfcmw5",
-    Joined: "Rqv9aPsb8z"
+    Joined: "Rqv9aPsb8z",
+    Commented: "s1sFLCZNWN",
+    Reviewed: "EIDZ8WwmZK"
 };
 
 var BookStatusConst =
@@ -91,10 +93,88 @@ Parse.Cloud.afterSave("ReviewLike", function(request){
         }
     });
 });
+
+Parse.Cloud.afterSave("Review", function(request){
+
+    var user = new Parse.Object("User");
+    var action = new Parse.Object("Action");
+    //Need to retrieve the ActionType
+    var book = new Parse.Object("Book");
+    var query = new Parse.Query("ActionType");
+
+    //Check if we just save released or hunted the book
+    console.log("Retreiving objects...");
+
+    query.get(ActionTypesConst.Reviewed, {
+        success: function (result){
+            //Add new Action
+
+            //Set the action with the result
+            action.set("actionType", result);
+            action.set("book", request.object.get("book"));
+            action.set("user", request.user);
+
+            action.save(null, {
+                success: function (action) {
+
+                },
+                error: function (error) {
+                    // The save failed.
+                    // error is a Parse.Error with an error code and description.
+                    console.error("Insertion Error: " + error.message);
+                    //throw "Got an error " + error.code + " : " + error.message;
+                }
+            });
+        },
+        error: function (error) {
+            // The save failed.
+            // error is a Parse.Error with an error code and description.
+            console.error("Insertion Error: " + error.message);
+            throw "Got an error " + error.code + " : " + error.message;
+        }
+    });
+});
 Parse.Cloud.afterSave("Comment", function(request){
 
     var user = new Parse.Object("User");
-    var tracking = Parse.Object("Tracking");
+    var action = new Parse.Object("Action");
+    //Need to retrieve the ActionType
+    var book = new Parse.Object("Book");
+    var query = new Parse.Query("ActionType");
+
+    //Check if we just save released or hunted the book
+    console.log("Retreiving objects...");
+
+    query.get(ActionTypesConst.Commented, {
+        success: function (result){
+            //Add new Action
+
+            //Set the action with the result
+            action.set("actionType", result);
+            action.set("book", request.object.get("book"));
+            action.set("user", request.user);
+
+            action.save(null, {
+                success: function (action) {
+
+                },
+                error: function (error) {
+                    // The save failed.
+                    // error is a Parse.Error with an error code and description.
+                    console.error("Insertion Error: " + error.message);
+                    //throw "Got an error " + error.code + " : " + error.message;
+                }
+            });
+        },
+        error: function (error) {
+            // The save failed.
+            // error is a Parse.Error with an error code and description.
+            console.error("Insertion Error: " + error.message);
+            throw "Got an error " + error.code + " : " + error.message;
+        }
+    });
+
+
 
     //Update User counters
     user = request.user;
