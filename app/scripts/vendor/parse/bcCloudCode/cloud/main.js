@@ -288,9 +288,7 @@ Parse.Cloud.afterSave("Book", function (request) {
                     if(trackingq.length > 0)
                     {
 
-                    console.log("inside get tracking")
-
-                    updateBookKilometers(request, trackingq[0].object.get("releasedAt"), request.object.get("releasedAt"));
+                    updateBookKilometers(request, trackingq[0].get("releasedAt"), request.object.get("releasedAt"));
 
                     console.log("It is a release going to create the Tracking record ");
                     }
@@ -377,16 +375,15 @@ Parse.Cloud.afterSave("Book", function (request) {
 function updateBookKilometers(book,point1, point2)
 {
 
-    console.log("Hola!");
-
-    if(book.get("kilometers")== undefined)
+    if(book.object.get("kilometers")== undefined)
     {
-        book.set("kilometers", point1.kilometersTo(point2));
+        alert("undefined inside updateBookKilometers")
+        book.object.set("kilometers", point1.kilometersTo(point2));
     }
     else
     {
-        numberOfKilometersSoFar = book.get("kilometers") + point1.kilometersTo(point2);
-        book.set("kilometers", numberOfKilometersSoFar);
+        numberOfKilometersSoFar = book.object.get("kilometers") + point1.kilometersTo(point2);
+        book.object.set("kilometers", numberOfKilometersSoFar);
     }
 
     book.save({
