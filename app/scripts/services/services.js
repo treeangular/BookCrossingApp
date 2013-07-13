@@ -169,7 +169,7 @@ angular.module('dataServices', [])
 
         //</editor-fold>
 
-       //<editor-fold description="Review">
+        //<editor-fold description="Review">
 
             getReviewsFromBookId: function getReviewsFromBookId(bookId, callback)
             {
@@ -365,6 +365,25 @@ angular.module('dataServices', [])
         //</editor-fold>
 
         //<editor-fold description="User">
+            updateStatus: function updateStatus(newStatus, callback){
+
+                //The file has been saved to Parse.
+                //Lets associate the file with the user
+                var currentUser = Parse.User.current();
+
+                currentUser.set("status",newStatus);
+
+                currentUser.save().then(function(){
+
+                        callback(true, currentUser);
+                    }
+                    , function(error) {
+
+                        callback(false, ErrorConst.GenericError);
+                    });
+
+            },
+
             isCurrentUser: function isCurrentUser(callback) {
                 var currentUser = Parse.User.current();
                 if (currentUser) {
@@ -584,10 +603,8 @@ angular.module('dataServices', [])
                 releaseBook: function releaseBook(releaseInfo, registrationId, callback)
                 {
                     var query = new Parse.Query(Book);
-
                     // Include the post data with each comment
                     query.equalTo("objectId", releaseInfo.bookId);
-
                     query.first({
                         success: function (booka) {
 

@@ -282,6 +282,9 @@ Parse.Cloud.afterSave("Book", function (request) {
             //Set the new tracking record
             tracking.set("releasedBy", request.object.get("ownedBy"));
             tracking.set("releasedAt", request.object.get("releasedAt"));
+
+            //updateBookKilometers(request.object.get("book"),request.object.get("releasedAt"), request.object.get("releasedAt"));
+
             tracking.set("releasedAtDescription", request.object.get("releasedAtDescription"));
             tracking.set("book", request.object);
 
@@ -346,3 +349,9 @@ Parse.Cloud.afterSave("Book", function (request) {
 
     }
 });
+
+function updateBookKilometers(book,point1, point2)
+{
+    point1.kilometersTo(point2);
+
+}

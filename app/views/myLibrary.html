@@ -1,5 +1,6 @@
 <div ng-controller="MyLibraryCtrl" >
     <input ng-show="selectedUser==null" id="mylibrarystatus" ng-model="library.status" name="status" type="text" placeholder="What's happening today?" />
+    <a ng-show="selectedUser==null" class="button" ng-click="updateUserStatus()">update</a></span>
     <div id="libraryheader">
         <img id="libraryimg" ng-src='{{library.image}}'/>
         <div class="mainbox">

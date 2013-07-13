@@ -8,6 +8,27 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
     var user;
     var id = $rootScope.currentUser.id;
 
+    function updateStatus(status)
+    {
+        var deferred = $q.defer();
+        dataService.updateStatus(status, function (isSuccess, result) {
+
+            $scope.$apply(function(){
+                if(isSuccess)
+                {
+                    deferred.resolve(result);
+                }
+                else
+                {
+                    deferred.reject(result);
+                }
+            });
+
+        });
+
+        return deferred.promise;
+    }
+
     function bindToLibrary(user){
         $scope.library =
         {
@@ -91,6 +112,22 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
        bindToLibrary($scope.selectedUser);
     }
 
+    $scope.updateUserStatus = function () {
+        $rootScope.$broadcast(loadingRequestConst.Start);
+        if ($scope.status != null)
+        {
+            var promise = updateStatus($scope.status)
+            promise.then(function(result) {
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+
+            }, function(reason) {
+
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = reason;
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+            });
+        }
+    };
 
 
     $scope.busy = false;
