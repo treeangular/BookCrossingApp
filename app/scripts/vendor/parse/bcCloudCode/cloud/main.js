@@ -174,8 +174,6 @@ Parse.Cloud.afterSave("Comment", function(request){
         }
     });
 
-
-
     //Update User counters
     user = request.user;
     user.increment("comments");
@@ -277,28 +275,54 @@ Parse.Cloud.afterSave("Book", function (request) {
         //Save tracking if the book have been released
         if(actionTypeId == ActionTypesConst.Released)
         {
-            console.log("It is a release going to create the Tracking record ");
 
-            //Set the new tracking record
-            tracking.set("releasedBy", request.object.get("ownedBy"));
-            tracking.set("releasedAt", request.object.get("releasedAt"));
+            console.log("before getting tracking object")
+            var query = new Parse.Query("Tracking");
+            query.equalTo("book", request.object);
+            query.descending("createdAt");
 
-            //updateBookKilometers(request.object.get("book"),request.object.get("releasedAt"), request.object.get("releasedAt"));
 
-            tracking.set("releasedAtDescription", request.object.get("releasedAtDescription"));
-            tracking.set("book", request.object);
+            query.find({
+                success: function (trackingq) {
 
-            tracking.save(null, {
-                success: function (tracking) {
-                    // The object was saved successfully.
-                    console.log("Tracking record was saved successfully." );
+                    if(trackingq.length > 0)
+                    {
+
+                    console.log("inside get tracking")
+
+                    updateBookKilometers(request, trackingq[0].object.get("releasedAt"), request.object.get("releasedAt"));
+
+                    console.log("It is a release going to create the Tracking record ");
+                    }
+
+                    console.log("no tracking yet")
+                    //Set the new tracking record
+                    tracking.set("releasedBy", request.object.get("ownedBy"));
+                    tracking.set("releasedAt", request.object.get("releasedAt"));
+                    tracking.set("releasedAtDescription", request.object.get("releasedAtDescription"));
+                    tracking.set("book", request.object);
+
+                    tracking.save(null, {
+                        success: function (tracking) {
+                            // The object was saved successfully.
+                            console.log("Tracking record was saved successfully." );
+                        },
+                        error: function (error) {
+                            // The save failed.
+                            // error is a Parse.Error with an error code and description.
+                            console.log("Error tracking.save: " + error.code + " " + error.message);
+                        }
+                    });
+
                 },
                 error: function (error) {
                     // The save failed.
                     // error is a Parse.Error with an error code and description.
                     console.log("Error tracking.save: " + error.code + " " + error.message);
                 }
+
             });
+
         }
 
         //Send email after registration
@@ -352,6 +376,31 @@ Parse.Cloud.afterSave("Book", function (request) {
 
 function updateBookKilometers(book,point1, point2)
 {
-    point1.kilometersTo(point2);
+
+    console.log("Hola!");
+
+    if(book.get("kilometers")== undefined)
+    {
+        book.set("kilometers", point1.kilometersTo(point2));
+    }
+    else
+    {
+        numberOfKilometersSoFar = book.get("kilometers") + point1.kilometersTo(point2);
+        book.set("kilometers", numberOfKilometersSoFar);
+    }
+
+    book.save({
+        success: function(httpResponse) {
+           console.log("book kilometers saved sent!");
+        },
+        error: function(httpResponse) {
+
+            console.error(httpResponse);
+
+        }
+
+    })
+
+
 
 }
