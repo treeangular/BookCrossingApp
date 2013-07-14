@@ -69,8 +69,8 @@ angular.module('BookCrossingApp')
         $scope.updateUserProfile = function (user) {
                 navigator.notification.alert("enter updateUserProfile", null);
 
-                if(isFileToUpdate)
-                {
+//                if(isFileToUpdate)
+//                {
                     navigator.notification.alert("file to update", null);
                     var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
                     console.log(byteArray.length);
@@ -102,7 +102,7 @@ angular.module('BookCrossingApp')
                         navigator.notification.alert("Error:" + error, null);
                         console.log(error);
                     });
-                }
+                //}
 
                 dataService.updateUserProfile(user, function (isResult, result) {
 
