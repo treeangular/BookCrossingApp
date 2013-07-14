@@ -71,12 +71,13 @@ angular.module('BookCrossingApp')
 
                 if(isFileToUpdate)
                 {
+                    navigator.notification.alert("file to update", null);
                     var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
                     console.log(byteArray.length);
                     console.log(parseFile.toString());
                     console.log('trying to save');
                     parseFile.save().then(function(ob) {
-                        //navigator.notification.alert("Got it!", null);
+                        navigator.notification.alert("Got it!", null);
                         //navigator.notification.alert(JSON.stringify(ob), null);
                         //console.log(JSON.stringify(ob));
                         //navigator.notification.alert("Got it 2!", null);
@@ -87,7 +88,7 @@ angular.module('BookCrossingApp')
                         currentUser.set("myFile",ob);
 
                         currentUser.save().then(function(){
-                                //navigator.notification.alert("success updating user!", null);
+                                navigator.notification.alert("success updating user!", null);
                                 //callback(true);
                             }
                             , function(error) {
@@ -98,7 +99,7 @@ angular.module('BookCrossingApp')
                             });
 
                     }, function(error) {
-                        console.log("Error");
+                        navigator.notification.alert("Error:" + error, null);
                         console.log(error);
                     });
                 }
