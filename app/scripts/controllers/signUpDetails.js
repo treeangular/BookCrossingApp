@@ -67,6 +67,7 @@ angular.module('BookCrossingApp')
         }, true);
 
         $scope.updateUserProfile = function (user) {
+                navigator.notification.alert("enter updateUserProfile", null);
 
                 if(isFileToUpdate)
                 {
