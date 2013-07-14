@@ -71,37 +71,47 @@ angular.module('BookCrossingApp')
 
 //                if(isFileToUpdate)
 //                {
-                    navigator.notification.alert("file to update", null);
-                    var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
-                    console.log(byteArray.length);
-                    console.log(parseFile.toString());
-                    console.log('trying to save');
-                    parseFile.save().then(function(ob) {
-                        navigator.notification.alert("Got it!", null);
-                        //navigator.notification.alert(JSON.stringify(ob), null);
-                        //console.log(JSON.stringify(ob));
-                        //navigator.notification.alert("Got it 2!", null);
 
-                        var currentUser = Parse.User.current();
+            try
+            {
+                navigator.notification.alert("file to update", null);
+                var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
+//                console.log(byteArray.length);
+//                console.log(parseFile.toString());
+//                console.log('trying to save');
+                parseFile.save().then(function(ob) {
+                    navigator.notification.alert("Got it!", null);
+                    //navigator.notification.alert(JSON.stringify(ob), null);
+                    //console.log(JSON.stringify(ob));
+                    //navigator.notification.alert("Got it 2!", null);
 
-                        currentUser.set("myPicture",ob._url);
-                        currentUser.set("myFile",ob);
+                    var currentUser = Parse.User.current();
 
-                        currentUser.save().then(function(){
-                                navigator.notification.alert("success updating user!", null);
-                                //callback(true);
-                            }
-                            , function(error) {
-                                // The file either could not be read, or could not be saved to Parse.
-                                //navigator.notification.alert("error updating user!", null);
-                                console.log("Error: " + error.code + " " + error.message)
-                                //callback(false,error);
-                            });
+                    currentUser.set("myPicture",ob._url);
+                    currentUser.set("myFile",ob);
 
-                    }, function(error) {
-                        navigator.notification.alert("Error:" + error, null);
-                        console.log(error);
-                    });
+                    currentUser.save().then(function(){
+                            navigator.notification.alert("success updating user!", null);
+                            //callback(true);
+                        }
+                        , function(error) {
+                            // The file either could not be read, or could not be saved to Parse.
+                            //navigator.notification.alert("error updating user!", null);
+                            console.log("Error: " + error.code + " " + error.message)
+                            //callback(false,error);
+                        });
+
+                }, function(error) {
+                    navigator.notification.alert("Error:" + error, null);
+                    console.log(error);
+                });
+            }
+            catch(err)
+            {
+                navigator.notification.alert("Error:" + err, null);
+            }
+
+
                 //}
 
                 dataService.updateUserProfile(user, function (isResult, result) {
