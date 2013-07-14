@@ -349,11 +349,6 @@ angular.module('dataServices', [])
                 currentUser.set("birthday", user.birthday);
                 //currentUser.set("myPicture", user.myPicture);
 
-                uploadPicture(parseFile, function(parseFile,isResult)
-                {
-
-
-                });
 
 
                 currentUser.save(null, {

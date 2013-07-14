@@ -2,7 +2,9 @@
 
 angular.module('BookCrossingApp')
   .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http,$rootScope) {
+
         var fileToUpdate;
+        var isFileToUpdate;
 
         var disabledClass = 'disabling';
         $scope.maleClass = disabledClass;
@@ -27,8 +29,12 @@ angular.module('BookCrossingApp')
             }
         };
 
+        //Initializes binded user
         dataService.getCurrentUser(function(currentUser){
             var profilePhoto = "styles/img/user.png";
+
+            //Will be set to true in case we need to upload a new profile picture.
+            isFileToUpdate = false;
 
             if(currentUser != null )
             {
@@ -51,7 +57,50 @@ angular.module('BookCrossingApp')
             $scope.selectSex($scope.user.gender);
          });
 
+        $scope.$watch('myPicture', function(value) {
+            if(value) {
+                $scope.myPicture = value;
+                isFileToUpdate = true;
+                fileToUpdate = value;
+                navigator.notification.alert("File set to be updated!", null);
+            }
+        }, true);
+
         $scope.updateUserProfile = function (user) {
+
+                if(isFileToUpdate)
+                {
+                    var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
+                    console.log(byteArray.length);
+                    console.log(parseFile.toString());
+                    console.log('trying to save');
+                    parseFile.save().then(function(ob) {
+                        //navigator.notification.alert("Got it!", null);
+                        //navigator.notification.alert(JSON.stringify(ob), null);
+                        //console.log(JSON.stringify(ob));
+                        //navigator.notification.alert("Got it 2!", null);
+
+                        var currentUser = Parse.User.current();
+
+                        currentUser.set("myPicture",ob._url);
+                        currentUser.set("myFile",ob);
+
+                        currentUser.save().then(function(){
+                                //navigator.notification.alert("success updating user!", null);
+                                //callback(true);
+                            }
+                            , function(error) {
+                                // The file either could not be read, or could not be saved to Parse.
+                                //navigator.notification.alert("error updating user!", null);
+                                console.log("Error: " + error.code + " " + error.message)
+                                //callback(false,error);
+                            });
+
+                    }, function(error) {
+                        console.log("Error");
+                        console.log(error);
+                    });
+                }
 
                 dataService.updateUserProfile(user, function (isResult, result) {
 
