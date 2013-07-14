@@ -22,22 +22,38 @@ angular.module('localization', []).
         },
 
         initLocalizedResources:function() {
+            if (typeof navigator.globalization != 'undefined')
+            {
+                navigator.globalization.getPreferredLanguage(
+                    function (language) {
+                        var url = 'resources/resource.' + language.value + '.js';
+                        $rootScope.language = language.value;
 
-            navigator.globalization.getPreferredLanguage(
-                function (language) {
-                    var url = 'resources/resource.' + language.value + '.js';
-                    $rootScope.language = language.value;
+                        // request the resource file
+                        $http({ method:"GET", url:url, cache:false }).success(localize.successCallback).error(function () {
+                            // the request failed set the url to the default resource file
+                            var url = 'resources/resource.default.js';
+                            // request the default resource file
+                            $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
+                        });
+                    },
+                    function () {alert('Error getting language\n');}
+                );
+            }
+            else
+            {
+                var url = 'resources/resource.' + 'en' + '.js';
+                $rootScope.language = 'en';
 
-                    // request the resource file
-                    $http({ method:"GET", url:url, cache:false }).success(localize.successCallback).error(function () {
-                        // the request failed set the url to the default resource file
-                        var url = 'resources/resource.default.js';
-                        // request the default resource file
-                        $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
-                    });
-                },
-                function () {alert('Error getting language\n');}
-            );
+                // request the resource file
+                $http({ method:"GET", url:url, cache:false }).success(localize.successCallback).error(function () {
+                    // the request failed set the url to the default resource file
+                    var url = 'resources/resource.default.js';
+                    // request the default resource file
+                    $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
+                });
+
+            }
 
 
         },
