@@ -87,7 +87,7 @@ angular.module('BookCrossingApp')
 
                     var currentUser = Parse.User.current();
 
-                    currentUser.set("myPicture",ob._url);
+                    //currentUser.set("myPicture",ob._url);
                     currentUser.set("myFile",ob);
 
                     currentUser.save().then(function(){
