@@ -38,11 +38,12 @@
   <gap:splash src="styles/img/splash.png" width="1024" height="768" />
   <gap:splash src="styles/img/splash.png" width="768" height="1024" />
 
-
-
-    <gap:plugin name="FacebookConnect">
+    <gap:plugin name="com.phonegap.plugins.facebook">
         <param name="APP_ID" value="160779410752321" />
         <param name="APP_NAME" value="BookCrossing Mobile Application" />
     </gap:plugin>
+
+    <gap:plugin name="com.phonegap.plugins.barcodecodescanner" />
+
 
  </widget>
