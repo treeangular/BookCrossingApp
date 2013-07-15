@@ -1,15 +1,16 @@
 <div ng-controller="SignUpDetailsCtrl" >
     <form name="SignUpDetails-form" class="login-form" ng-submit="updateUserProfile(user)">
         <div class="loginheader">
-            <h2>Customize your profile</h2>
+            <h2>{{'_SignUpDetailsHeader_' | localizeIt}}</h2>
         </div>
         <div class="content">
             <p class="blanksmall"></p>
             <img id="libraryimg" ng-src="{{myPicture}}" />
             <span style="margin-top: 25px; display: block; overflow: hidden;">
-                    <p><a ng-click="getPicture()">Take a picture</a></p>
-                    <p><a bca-camera ng-model="myPicture">Select a picture</a><p>
+                    <p><a bca-camera-take-picture ng-model="myPicture">{{'_TakePicture_' | localizeIt}}</a></p>
+                    <p><a bca-camera ng-model="myPicture">{{'_SelectPicture_' | localizeIt}}</a><p>
             </span>
+
             <input name="nick" type="text" ng-model="user.nick" placeholder="Nickname"  />
             <input ng-click="setDate=true" onselect="setDate=true" ng-hide="setDate" ng-model="user.birthday" type="text" placeholder="Birth date"/>
             <input ng-show="setDate" ng-model="user.birthday" type="date" id="myDate" placeholder="Birth date"/>
@@ -21,8 +22,8 @@
             </div>
         </div>
         <div class="footer" >
-            <input type="submit" value="Save" class="buttonleft" />
-            <a href="#/Main"><input type="button" name="submit" value="Skip" class="buttonright" /></a>
+            <input type="submit" class="buttonleft" data-localize-it-attr="_SaveUpdatedUserProfile_|value"/>
+            <a href="#/Main"><input type="button" name="submit" data-localize-it-attr="_SkipSignUpDetails_|value" class="buttonright" /></a>
         </div>
     </form>
 </div>

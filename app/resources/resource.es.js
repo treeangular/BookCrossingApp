@@ -190,6 +190,37 @@
         "value":"Añade información del libro",
         "description":"Add book information"
 
+    },
+    {
+        "key":"_TakePicture_",
+        "value":"Toma una foto",
+        "description":"Take a picture"
+
+    },
+    {
+        "key":"_SelectPicture_",
+        "value":"Selecciona una foto",
+        "description":"Select a picture"
+
+    },
+    {
+        "key":"_SignUpDetailsHeader_",
+        "value":"Customiza tu perfil",
+        "description":"sign up details header"
+
+    },
+    {
+        "key":"_SaveUpdatedUserProfile_",
+        "value":"Salva",
+        "description":"Save value for button in sign up details"
+
+    },
+    {
+        "key":"_SkipSignUpDetails_",
+        "value":"Ahora no",
+        "description":"skip saving sign up details"
+
     }
+
 
 ]
