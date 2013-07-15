@@ -219,6 +219,18 @@
         "value":"Not now",
         "description":"skip saving sign up details"
 
+    },
+    {
+        "key":"_ReleaseBookRegistrationId_",
+        "value":"Registration Id",
+        "description":"Placeholder for release book registration id input"
+
+    },
+    {
+        "key":"_ReleaseBookRegistrationHowToFindBook_",
+        "value":"Explain how other user will be able to find the book!",
+        "description":"Placeholder for how to find the book input"
+
     }
 
 

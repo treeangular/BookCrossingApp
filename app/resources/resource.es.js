@@ -220,6 +220,18 @@
         "value":"Ahora no",
         "description":"skip saving sign up details"
 
+    },
+    {
+        "key":"_ReleaseBookRegistrationId_",
+        "value":"Codigo de registro",
+        "description":"Placeholder for release book registration id input"
+
+    },
+    {
+        "key":"_ReleaseBookRegistrationHowToFindBook_",
+        "value":"Explica a los otros usuarios los detalles de como encontrar el libro",
+        "description":"Placeholder for how to find the book input"
+
     }
 
 
