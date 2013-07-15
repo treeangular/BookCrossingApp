@@ -118,14 +118,15 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
             $rootScope.$broadcast(loadingRequestConst.Start);
             var promise = updateStatus($scope.status)
             promise.then(function(result) {
-                $rootScope.$broadcast(loadingRequestConst.Stop);
+
 
             }, function(reason) {
 
                 $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                 $rootScope.MessageNotification = reason;
-                $rootScope.$broadcast(loadingRequestConst.Stop);
+
             });
+        $rootScope.$broadcast(loadingRequestConst.Stop);
 
     };
 

@@ -108,6 +108,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
             $rootScope.MessageNotification = reason;
+            $scope.clicked=false;
         });
         $rootScope.$broadcast(loadingRequestConst.Stop);
 
