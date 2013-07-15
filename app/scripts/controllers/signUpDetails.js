@@ -61,19 +61,13 @@ angular.module('BookCrossingApp')
             if(value) {
                 $scope.myPicture = value;
                 isFileToUpdate = true;
-                fileToUpdate = value;
+                fileToUpdate = resolveLocalFileSystemURI(value);
                 navigator.notification.alert("File set to be updated!", null);
             }
         }, true);
 
         $scope.updateUserProfile = function (user) {
-                //navigator.notification.alert("enter updateUserProfile", null);
 
-//                if(isFileToUpdate)
-//                {
-
-            try
-            {
                 navigator.notification.alert("file to update", null);
                 var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
 //                console.log(byteArray.length);
@@ -105,14 +99,6 @@ angular.module('BookCrossingApp')
                     navigator.notification.alert("Error:" + error, null);
                     console.log(error);
                 });
-            }
-            catch(err)
-            {
-                navigator.notification.alert("Error:" + err, null);
-            }
-
-
-                //}
 
                 dataService.updateUserProfile(user, function (isResult, result) {
 
@@ -178,95 +164,6 @@ angular.module('BookCrossingApp')
                             //navigator.notification.alert("Got it!", null);
                             //navigator.notification.alert(JSON.stringify(ob), null);
                             //console.log(JSON.stringify(ob));
-
-                            var currentUser = Parse.User.current();
-
-                            currentUser.set("myPicture",ob._url);
-                            currentUser.set("myFile",ob);
-
-                            currentUser.save().then(function(){
-                                    //navigator.notification.alert("success updating user!", null);
-                                    //callback(true);
-                                }
-                                , function(error) {
-                                    // The file either could not be read, or could not be saved to Parse.
-                                    //navigator.notification.alert("error updating user!", null);
-                                    console.log("Error: " + error.code + " " + error.message)
-                                    //callback(false,error);
-                                });
-
-                        }, function(error) {
-                            console.log("Error");
-                            console.log(error);
-                        });
-
-                    }
-
-                    reader.onerror = function(evt) {
-                        console.log('read error');
-                        console.log(JSON.stringify(evt));
-                    }
-
-                    console.log('pre read');
-
-                    entry.file(function(s) {
-                        reader.readAsArrayBuffer(s);
-                    }, function(e) {
-                        console.log('ee');
-                    });
-
-                    //reader.readAsArrayBuffer(entry.file(function(s) { console.log('ss');}, function(e) { console.log('e');});
-                    console.log('fired off the read...');
-                });
-
-            }
-
-            function failHandler(e) {
-                alert("ErrorFromC");
-                alert(e);
-                console.log(e.toString());
-            }
-        };
-
-        $scope.selectPicture = function(){
-
-            navigator.camera.getPicture(gotPic, failHandler,
-                {quality:50,
-                    destinationType:Camera.DestinationType.FILE_URI,
-                    sourceType:navigator.camera.PictureSourceType.PHOTOLIBRARY,
-                    targetWidth: 100,
-                    targetHeight: 100
-                });
-
-            function gotPic(data) {
-
-                $scope.myPicture = data;
-
-                window.resolveLocalFileSystemURI(data, function(entry) {
-
-                    var reader = new FileReader();
-
-                    reader.onloadend = function(evt) {
-                        console.log('read onloderend');
-                        console.log(JSON.stringify(evt.target));
-                        console.log(evt.target.result);
-                        var byteArray = new Uint8Array(evt.target.result);
-                        var output = new Array( byteArray.length );
-                        var i = 0;
-                        var n = output.length;
-                        while( i < n ) {
-                            output[i] = byteArray[i];
-                            i++;
-                        }
-                        var parseFile = new Parse.File("mypic.jpg", output);
-                        console.log(byteArray.length);
-                        console.log(parseFile.toString());
-                        console.log('trying to save');
-                        parseFile.save().then(function(ob) {
-                            //navigator.notification.alert("Got it!", null);
-                            //navigator.notification.alert(JSON.stringify(ob), null);
-                            //console.log(JSON.stringify(ob));
-                            //navigator.notification.alert("Got it 2!", null);
 
                             var currentUser = Parse.User.current();
 
