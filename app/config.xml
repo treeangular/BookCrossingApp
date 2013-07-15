@@ -15,6 +15,8 @@
   <icon src="styles/img/icon/icon72x72.png" gap:platform="ios" width="72" height="72" />
   <icon src="styles/img/icon/icon114x114.png" gap:platform="ios" width="114" height="114" />
 
+  <!--<gap:plugin name="BarcodeScanner"/>-->
+
   <feature name="http://api.phonegap.com/1.0/network"/>
   <feature name="http://api.phonegap.com/1.0/geolocation"/>
   <feature name="http://api.phonegap.com/1.0/camera"/>
@@ -38,12 +40,11 @@
   <gap:splash src="styles/img/splash.png" width="1024" height="768" />
   <gap:splash src="styles/img/splash.png" width="768" height="1024" />
 
-    <gap:plugin name="com.phonegap.plugins.facebook">
+
+
+   <!-- <gap:plugin name="FacebookConnect">
         <param name="APP_ID" value="160779410752321" />
         <param name="APP_NAME" value="BookCrossing Mobile Application" />
-    </gap:plugin>
-
-    <gap:plugin name="com.phonegap.plugins.barcodecodescanner" />
-
+    </gap:plugin>-->
 
  </widget>
