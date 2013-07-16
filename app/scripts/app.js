@@ -1,6 +1,6 @@
 'use strict';
 
-var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters']);
+var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider']);
 
 //BookCrossingApp.run(function ($rootScope, $location) {
 //    /* PG */
@@ -63,10 +63,9 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
 
 function loadGoogleAnalytics()
 {
-    var _gaq=[['_setAccount','UA-39828851-1'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g,s)}(document,'script'));
+
+
+
 
 }
 

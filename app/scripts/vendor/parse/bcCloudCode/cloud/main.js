@@ -377,21 +377,16 @@ function updateBookKilometers(book,point1, point2)
 
     if(book.object.get("kilometers")== undefined)
     {
-        console.log(point1);
-        console.log(point2);
-        console.log("undefined inside updateBookKilometers")
-        book.object.set("kilometers", point1.kilometersTo(point2));
+
+        book.object.increment("kilometers", point1.kilometersTo(point2));
     }
     else
     {
-        console.log(point1);
-        console.log(point2);
-        console.log("defined inside updateBookKilometers")
         numberOfKilometersSoFar = book.object.get("kilometers") + point1.kilometersTo(point2);
-        book.object.set("kilometers", numberOfKilometersSoFar);
+        book.object.increment("kilometers", numberOfKilometersSoFar);
     }
 
-    book.save({
+    book.object.save({
         success: function(httpResponse) {
            console.log("book kilometers saved sent!");
         },
