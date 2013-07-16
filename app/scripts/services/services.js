@@ -93,6 +93,33 @@ angular.module('dataServices', [])
 
             },
 
+            getReviewLike: function getReviewLike(userId, bookId, callback)
+            {
+                var query = new Parse.Query(ReviewLike);
+
+                var book = new Book();
+                book.id = bookId;
+                var user = new User();
+                user.id = userId;
+                // Include the post data with each comment
+                query.equalTo("book", book);
+                query.equalTo("user", user);
+
+                query.find({
+                    success: function (reviewLikes) {
+
+                        callback(true, reviewLikes.length)
+                    },
+                    error: function (data,error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+
+            },
+
             //</editor-fold>
 
         //<editor-fold description="Comments">

@@ -386,17 +386,29 @@ function updateBookKilometers(book,point1, point2)
         book.object.increment("kilometers", numberOfKilometersSoFar);
     }
 
-    book.object.save({
-        success: function(httpResponse) {
-           console.log("book kilometers saved sent!");
+    book.object.fetch({
+        success: function(myObject) {
+
+            myObject.object.save({
+                success: function(httpResponse) {
+
+                    console.log("book kilometers saved sent!");
+                },
+                error: function(httpResponse) {
+
+                    console.error(httpResponse);
+
+                }
+
+            })
         },
-        error: function(httpResponse) {
+        error: function(myObject, error) {
 
-            console.error(httpResponse);
-
+            console.error(error);
         }
+    });
 
-    })
+
 
 
 

@@ -22,8 +22,8 @@
                     <div ng-hide="review.get('rating')<5" class="selectedStarSmall"></div>
                 </div>
                 <p style="margin-bottom: 5px">{{review.get('reviewText')}}</p>
-                <div class="likeOption" ng-click="like(review, true)" ng-disabled="clicked">({{review.get("likeCount")}})</div>
-                <div class="unlikeOption" ng-click="like(review, false)" ng-disabled="clicked">({{review.get("unLikeCount")}})</div>
+                <div class="likeOption" ng-click="like(review, true)" ng-disabled="LikeClicked">({{review.get("likeCount")}})</div>
+                <div class="unlikeOption" ng-click="like(review, false)" ng-disabled="UnlikeClicked">({{review.get("unLikeCount")}})</div>
                 <p class="time">{{review.createdAt | roundedTime}}</p>
             </div>
         </li>

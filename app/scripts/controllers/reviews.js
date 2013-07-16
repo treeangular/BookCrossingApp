@@ -24,6 +24,27 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
 
         return deferred.promise;
     }
+    function getReviewLikeByUser(userId, bookId)
+    {
+
+        var deferred = $q.defer();
+        dataService.getReviewLike(userId, bookId, function (isSuccess, results) {
+
+            $scope.$apply(function(){
+                if(isSuccess)
+                {
+                    deferred.resolve(results);
+                }
+                else
+                {
+                    deferred.reject();
+                }
+            });
+
+        });
+
+        return deferred.promise;
+    }
 
     function getReviews(bookId)
     {
@@ -66,10 +87,14 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
         if(isLike)
         {
             review.increment("likeCount");
+            $scope.LikeClicked=true;
+            $scope.UnLikeClicked=false;
         }
         else
         {
             review.increment("unLikeCount");
+            $scope.LikeClicked=false;
+            $scope.UnLikeClicked=true;
         }
         promise.then(function(reviewLike) {
 
