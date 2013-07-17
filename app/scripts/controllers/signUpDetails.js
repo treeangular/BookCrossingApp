@@ -58,18 +58,27 @@ angular.module('BookCrossingApp')
             $scope.selectSex($scope.user.gender);
          });
 
+//        $scope.$watch('myPicture', function(value) {
+//            if(value) {
+//                $scope.myPicture = value;
+//                //isFileToUpdate = true;
+//                //fileToUpdate = resolveLocalFileSystemURI(value);
+//                var promise = asynResolveLocalFileSystemURI(value);
+//                promise.then(function(filetoUpload) {
+//                    fileToUpdate =  filetoUpload;
+//                    navigator.notification.alert("filetoUploadUploaded", null);
+//                }, function(reason) {
+//                    alert('Failed: ' + reason);
+//                });
+//            }
+//        }, true);
+
         $scope.$watch('myPicture', function(value) {
             if(value) {
                 $scope.myPicture = value;
-                //isFileToUpdate = true;
-                //fileToUpdate = resolveLocalFileSystemURI(value);
-                var promise = asynResolveLocalFileSystemURI(value);
-                promise.then(function(filetoUpload) {
-                    fileToUpdate =  filetoUpload;
-                    navigator.notification.alert("filetoUploadUploaded", null);
-                }, function(reason) {
-                    alert('Failed: ' + reason);
-                });
+                isFileToUpdate = true;
+                fileToUpdate = resolveLocalFileSystemURI(value);
+                navigator.notification.alert("File set to be updated!", null);
             }
         }, true);
 
@@ -86,51 +95,54 @@ angular.module('BookCrossingApp')
         }
 
         $scope.updateUserProfile = function (user) {
-                var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
+
+            navigator.notification.alert("file to update", null);
+            var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
 //                console.log(byteArray.length);
 //                console.log(parseFile.toString());
+//                console.log('trying to save');
+            parseFile.save().then(function(ob) {
+                navigator.notification.alert("Got it!", null);
+                //navigator.notification.alert(JSON.stringify(ob), null);
+                //console.log(JSON.stringify(ob));
+                //navigator.notification.alert("Got it 2!", null);
 
-                parseFile.save().then(function(ob) {
-                    //navigator.notification.alert(ob, null);
-                    //console.log(JSON.stringify(ob));
+                var currentUser = Parse.User.current();
 
-                    var currentUser = Parse.User.current();
+                //currentUser.set("myPicture",ob._url);
+                currentUser.set("myFile",ob);
 
-                    //currentUser.set("myPicture",ob.url());
-                    currentUser.set("myFile",ob);
-                    navigator.notification.alert("going to associate file and user", null);
-                    currentUser.save().then(function(){
-                            navigator.notification.alert("success updating user!", null);
-                            //callback(true);
-                        }
-                        , function(error) {
-                            // The file either could not be read, or could not be saved to Parse.
-                            //navigator.notification.alert("error updating user!", null);
-                            console.log("Error: " + error.code + " " + error.message);
-                            $rootScope.TypeNotification = "errormessage";
-                            $rootScope.MessageNotification = result.message;
-                            //callback(false,error);
-                        });
-
-                }, function(error) {
-                    //navigator.notification.alert("Error:" + error, null);
-                    console.log(error);
-                });
-
-                dataService.updateUserProfile(user, function (isResult, result) {
-
-                    $scope.$apply(function () {
-                        if (isResult)
-                        {
-                            $location.path('/Main');
-                        }
-                        else
-                        {
-                            $rootScope.TypeNotification = "errormessage";
-                            $rootScope.MessageNotification = result.message;
-                        }
+                currentUser.save().then(function(){
+                        navigator.notification.alert("success updating user!", null);
+                        //callback(true);
+                    }
+                    , function(error) {
+                        // The file either could not be read, or could not be saved to Parse.
+                        //navigator.notification.alert("error updating user!", null);
+                        $rootScope.TypeNotification = "errormessage";
+                        $rootScope.MessageNotification = result.message;
+                        //callback(false,error);
                     });
+
+            }, function(error) {
+                navigator.notification.alert("Error:" + error, null);
+                console.log(error);
+            });
+
+            dataService.updateUserProfile(user, function (isResult, result) {
+
+                $scope.$apply(function () {
+                    if (isResult)
+                    {
+                        $location.path('/Main');
+                    }
+                    else
+                    {
+                        $rootScope.TypeNotification = "errormessage";
+                        $rootScope.MessageNotification = result.message;
+                    }
                 });
+            });
         }
 
         $scope.getPicture = function(){
