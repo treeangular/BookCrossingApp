@@ -62,26 +62,21 @@ angular.module('BookCrossingApp')
                 $scope.myPicture = value;
                 isFileToUpdate = true;
                 fileToUpdate = resolveLocalFileSystemURI(value);
-                navigator.notification.alert("File set to be updated!", null);
             }
         }, true);
 
         $scope.updateUserProfile = function (user) {
-
-                //navigator.notification.alert("file to update", null);
                 var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
 //                console.log(byteArray.length);
 //                console.log(parseFile.toString());
 //                console.log('trying to save');
                 parseFile.save().then(function(ob) {
-                    //navigator.notification.alert("Got it!", null);
                     //navigator.notification.alert(JSON.stringify(ob), null);
                     //console.log(JSON.stringify(ob));
-                    //navigator.notification.alert("Got it 2!", null);
 
                     var currentUser = Parse.User.current();
 
-                    //currentUser.set("myPicture",ob._url);
+                    currentUser.set("myPicture",ob._url);
                     currentUser.set("myFile",ob);
 
                     currentUser.save().then(function(){
@@ -91,7 +86,9 @@ angular.module('BookCrossingApp')
                         , function(error) {
                             // The file either could not be read, or could not be saved to Parse.
                             //navigator.notification.alert("error updating user!", null);
-                            console.log("Error: " + error.code + " " + error.message)
+                            console.log("Error: " + error.code + " " + error.message);
+                            $rootScope.TypeNotification = "errormessage";
+                            $rootScope.MessageNotification = result.message;
                             //callback(false,error);
                         });
 
