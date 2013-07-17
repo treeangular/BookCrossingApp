@@ -76,11 +76,11 @@ angular.module('BookCrossingApp')
 
                     var currentUser = Parse.User.current();
 
-                    //currentUser.set("myPicture",ob._url);
+                    currentUser.set("myPicture",ob.url());
                     currentUser.set("myFile",ob);
 
                     currentUser.save().then(function(){
-                            //navigator.notification.alert("success updating user!", null);
+                            navigator.notification.alert("success updating user!", null);
                             //callback(true);
                         }
                         , function(error) {
