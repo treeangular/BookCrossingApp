@@ -71,12 +71,12 @@ angular.module('BookCrossingApp')
 //                console.log(parseFile.toString());
 //                console.log('trying to save');
                 parseFile.save().then(function(ob) {
-                    navigator.notification.alert(JSON.stringify(ob), null);
+                    navigator.notification.alert(ob, null);
                     //console.log(JSON.stringify(ob));
 
                     var currentUser = Parse.User.current();
 
-                    currentUser.set("myPicture",ob._url);
+                    //currentUser.set("myPicture",ob._url);
                     currentUser.set("myFile",ob);
 
                     currentUser.save().then(function(){
