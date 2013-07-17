@@ -2,29 +2,7 @@
 
 BookCrossingApp.controller('MainCtrl', function ($scope) {
 
-    function errorHandler(e) {
-        //Lame - do nothing
-        alert(e.toString());
-    }
-    if (typeof window.plugins != 'undefined')
-    {
-        window.plugins.gaPlugin.init(function() {
-
-        alert("gaPlugin inted")
-
-        }, errorHandler, "UA-42503133-1", 10);
-
-
-        alert("index tracked!!");
-        // Call the service and fetch the list of signatures that match the given petition ID
-        window.plugins.gaPlugin.trackPage( function() {
-
-            console.log("Main Tracked!!");
-
-        }, errorHandler, "views/index.html");
-    }
-
-	$scope.title = 'BookCrossingApp';
+   	$scope.title = 'BookCrossingApp';
 	$scope.leftButtonName = null;
 	$scope.rightButtonName = 'Map';
     $scope.rightButtonRef = "views/map.html";
