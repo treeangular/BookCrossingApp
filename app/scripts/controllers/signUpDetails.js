@@ -71,7 +71,7 @@ angular.module('BookCrossingApp')
 //                console.log(parseFile.toString());
 //                console.log('trying to save');
                 parseFile.save().then(function(ob) {
-                    //navigator.notification.alert(JSON.stringify(ob), null);
+                    navigator.notification.alert(JSON.stringify(ob), null);
                     //console.log(JSON.stringify(ob));
 
                     var currentUser = Parse.User.current();
