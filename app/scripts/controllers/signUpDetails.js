@@ -60,7 +60,7 @@ angular.module('BookCrossingApp')
         $scope.$watch('myPicture', function(value) {
             if(value) {
                 $scope.myPicture = value;
-                isFileToUpdate = true;
+                //isFileToUpdate = true;
                 fileToUpdate = resolveLocalFileSystemURI(value);
             }
         }, true);
