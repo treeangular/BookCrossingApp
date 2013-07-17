@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('BookCrossingApp')
-  .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http,$rootScope) {
+  .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http,$rootScope, $q) {
 
         var fileToUpdate;
         var isFileToUpdate;
+        var pasrseFileUpdated;
 
         var disabledClass = 'disabling';
         $scope.maleClass = disabledClass;
@@ -61,9 +62,30 @@ angular.module('BookCrossingApp')
             if(value) {
                 $scope.myPicture = value;
                 //isFileToUpdate = true;
-                fileToUpdate = resolveLocalFileSystemURI(value);
+                //fileToUpdate = resolveLocalFileSystemURI(value);
+                var promise = asynResolveLocalFileSystemURI(value);
+                promise.then(function(filetoUpload) {
+                    fileToUpdate =  filetoUpload;
+
+
+
+                }, function(reason) {
+                    alert('Failed: ' + reason);
+                });
             }
         }, true);
+
+        function asynResolveLocalFileSystemURI(imageData)
+        {
+            var deferred = $q.defer();
+            fileToUpdate = resolveLocalFileSystemURI(imageData);
+
+            $scope.$apply(function ()
+            {
+                deferred.resolve(fileToUpdate);
+            });
+
+        }
 
         $scope.updateUserProfile = function (user) {
                 var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
@@ -76,7 +98,7 @@ angular.module('BookCrossingApp')
 
                     var currentUser = Parse.User.current();
 
-                    currentUser.set("myPicture",ob.url());
+                    //currentUser.set("myPicture",ob.url());
                     currentUser.set("myFile",ob);
 
                     currentUser.save().then(function(){
