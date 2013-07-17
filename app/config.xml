@@ -39,6 +39,7 @@
   <gap:splash src="styles/img/splash.png" width="768" height="1024" />
 
     <gap:plugin name="com.phonegap.plugins.barcodescanner" />
+    <gap:plugin name="com.adobe.plugins.gaplugin" />
 
   <gap:plugin name="com.phonegap.plugins.facebookconnect">
       <param name="APP_ID" value="160779410752321" />
