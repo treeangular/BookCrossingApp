@@ -66,9 +66,7 @@ angular.module('BookCrossingApp')
                 var promise = asynResolveLocalFileSystemURI(value);
                 promise.then(function(filetoUpload) {
                     fileToUpdate =  filetoUpload;
-
-
-
+                    navigator.notification.alert("filetoUploadUploaded", null);
                 }, function(reason) {
                     alert('Failed: ' + reason);
                 });
@@ -91,7 +89,7 @@ angular.module('BookCrossingApp')
                 var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
 //                console.log(byteArray.length);
 //                console.log(parseFile.toString());
-//                console.log('trying to save');
+
                 parseFile.save().then(function(ob) {
                     //navigator.notification.alert(ob, null);
                     //console.log(JSON.stringify(ob));
@@ -100,7 +98,7 @@ angular.module('BookCrossingApp')
 
                     //currentUser.set("myPicture",ob.url());
                     currentUser.set("myFile",ob);
-
+                    navigator.notification.alert("going to associate file and user", null);
                     currentUser.save().then(function(){
                             navigator.notification.alert("success updating user!", null);
                             //callback(true);
