@@ -7,7 +7,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
         alert(e.toString());
     }
 
-    
+
     $scope.alerts = [];
     $scope.currentPage = 0;
     $scope.isLastPage = true;

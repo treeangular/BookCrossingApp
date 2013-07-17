@@ -58,7 +58,7 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
     loadFastClick();
     loadParse();
     loadFB();
-    loadGoogleAnalytics();
+  //  loadGoogleAnalytics();
 
 }]);
 
