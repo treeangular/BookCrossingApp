@@ -4,28 +4,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope) {
 
     $scope.$on('$viewContentLoaded', function(event) {
 
-        if (typeof window.plugins != 'undefined')
-        {
-            window.plugins.gaPlugin.init(function() {
 
-                alert("gaPlugin inted")
-
-            }, errorHandler, "UA-42503133-1", 10);
-
-
-            alert("index tracked!!");
-            // Call the service and fetch the list of signatures that match the given petition ID
-            window.plugins.gaPlugin.trackPage( function() {
-
-                console.log("Main Tracked!!");
-
-            }, errorHandler, $location.path());
-        }
-        else
-        {
-            alert("undefined");
-
-        }
     });
 
    	$scope.title = 'BookCrossingApp';

@@ -1,13 +1,9 @@
 'use strict';
 
-var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters']);
+var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider']);
 
-//BookCrossingApp.run(function ($rootScope, $location) {
-//    /* PG */
-//    BookCrossingApp.initialize();
-//},
 
-BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
+BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider, analyticsProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/sign.html',
@@ -53,34 +49,20 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
         redirectTo: '/'
       });
 
+
+//        // initial configuration
+//        analyticsProvider.setAccount('UA-42503133-1');
+//        // track all routes (or not)
+//        analyticsProvider.trackPages(true);
+
+
+
     loadHttpInterceptor($httpProvider);
-    loadGoogleAnalytics();
     loadFastClick();
     loadParse();
     loadFB();
-  //  loadGoogleAnalytics();
 
 }]);
-
-function errorHandler(e) {
-    //Lame - do nothing
-    alert(e.toString());
-}
-
-function loadGoogleAnalytics()
-{
-    var myAnalyticsAccount = "UA-42503133-1";
-    var gaPlugin;
-    if (typeof window.plugins != 'undefined')
-    {
-        alert("ga loaded!!");
-        gaPlugin = window.plugins.gaPlugin;
-        gaPlugin.init(function() {
-            console.log("gaPlugin inted")
-
-        }, errorHandler, myAnalyticsAccount, 10);
-    }
-}
 
 function loadFastClick()
 {
