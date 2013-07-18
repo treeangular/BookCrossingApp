@@ -103,7 +103,7 @@ angular.module('BookCrossingApp')
 //                console.log('trying to save');
             navigator.notification.alert("file to update2", null);
 
-            parseFile.save().then(function(ob) {
+            parseFile.save().then(function(uploadedParseFile) {
                 navigator.notification.alert("Got it!", null);
                 //navigator.notification.alert(JSON.stringify(ob), null);
                 //console.log(JSON.stringify(ob));
@@ -112,7 +112,7 @@ angular.module('BookCrossingApp')
                 var currentUser = Parse.User.current();
 
                 //currentUser.set("myPicture",ob._url);
-                currentUser.set("myFile",ob);
+                currentUser.set("myFile",uploadedParseFile);
 
                 currentUser.save().then(function(){
                         navigator.notification.alert("success updating user!", null);
