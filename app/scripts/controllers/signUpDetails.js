@@ -82,17 +82,17 @@ angular.module('BookCrossingApp')
             }
         }, true);
 
-        function asynResolveLocalFileSystemURI(imageData)
-        {
-            var deferred = $q.defer();
-            fileToUpdate = resolveLocalFileSystemURI(imageData);
-
-            $scope.$apply(function ()
-            {
-                deferred.resolve(fileToUpdate);
-            });
-
-        }
+//        function asynResolveLocalFileSystemURI(imageData)
+//        {
+//            var deferred = $q.defer();
+//            fileToUpdate = resolveLocalFileSystemURI(imageData);
+//
+//            $scope.$apply(function ()
+//            {
+//                deferred.resolve(fileToUpdate);
+//            });
+//
+//        }
 
         $scope.updateUserProfile = function (user) {
 
@@ -101,6 +101,8 @@ angular.module('BookCrossingApp')
 //                console.log(byteArray.length);
 //                console.log(parseFile.toString());
 //                console.log('trying to save');
+            navigator.notification.alert("file to update2", null);
+
             parseFile.save().then(function(ob) {
                 navigator.notification.alert("Got it!", null);
                 //navigator.notification.alert(JSON.stringify(ob), null);
