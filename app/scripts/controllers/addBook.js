@@ -70,7 +70,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         }
         console.log('scanning');
         try {
-            window.plugins.barcodeScanner.scan(function(args) {
+            $window.plugins.barcodeScanner.scan(function(args) {
                 console.log("Scanner result: \n" +
                     "text: " + args.text + "\n" +
                     "format: " + args.format + "\n" +
