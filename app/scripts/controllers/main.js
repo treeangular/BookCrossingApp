@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('MainCtrl', function ($scope) {
+BookCrossingApp.controller('MainCtrl', function ($scope, $window) {
 
 
     function errorHandler(e) {
