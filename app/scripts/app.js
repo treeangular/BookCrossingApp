@@ -3,7 +3,7 @@
 var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider']);
 
 
-BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider, analyticsProvider) {
+BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/sign.html',
@@ -50,19 +50,46 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
       });
 
 
-//        // initial configuration
-//        analyticsProvider.setAccount('UA-42503133-1');
-//        // track all routes (or not)
-//        analyticsProvider.trackPages(true);
 
-
-
+    loadGoogleAnalytics(window);
     loadHttpInterceptor($httpProvider);
     loadFastClick();
     loadParse();
     loadFB();
 
 }]);
+
+function loadGoogleAnalytics($window)
+{
+    function errorHandler(e) {
+        //Lame - do nothing
+        alert(e.toString());
+    }
+
+    if (typeof window.plugins != 'undefined')
+    {
+        window.plugins.gaPlugin.init(function() {
+
+            alert("gaPlugin inted")
+
+        }, errorHandler, "UA-42503133-1", 10);
+
+
+        alert("index tracked!!");
+        // Call the service and fetch the list of signatures that match the given petition ID
+        window.plugins.gaPlugin.trackPage( function() {
+
+            console.log("Main Tracked!!");
+
+        }, errorHandler, "/Main");
+    }
+    else
+    {
+        alert("undefined");
+
+    }
+
+}
 
 function loadFastClick()
 {
