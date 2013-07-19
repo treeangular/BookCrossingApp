@@ -51,14 +51,13 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
                 alert("gaPlugin inted")
 
-            }, errorHandler, "UA-42503133-1", 10);
+            }, errorHandler, "UA-42576964-1", 10);
 
 
-            alert("index tracked!!");
             // Call the service and fetch the list of signatures that match the given petition ID
             $window.plugins.gaPlugin.trackPage( function() {
 
-                console.log("Main Tracked!!");
+                alert("Main Tracked!!");
 
             }, errorHandler, "/Main");
         }
