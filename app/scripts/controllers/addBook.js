@@ -47,7 +47,9 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
         if (typeof $window.plugins != 'undefined')
         {
-            $window.plugins.gaPlugin.init(function() {
+            var gaPlugin = $window.plugins.gaPlugin;
+
+            gaPlugin.init(function() {
 
                 alert("gaPlugin inted")
 
@@ -55,11 +57,11 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
 
             // Call the service and fetch the list of signatures that match the given petition ID
-            $window.plugins.gaPlugin.trackPage( function() {
+            gaPlugin.trackPage( function() {
 
                 alert("Main Tracked!!");
 
-            }, errorHandler, "/Main");
+            }, errorHandler, "/Main.html");
         }
         else
         {
