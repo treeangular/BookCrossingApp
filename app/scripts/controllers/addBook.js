@@ -3,39 +3,6 @@
 BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q, facebookService, $window) {
 
 
-
-    function errorHandler(e) {
-        //Lame - do nothing
-        alert(e.toString());
-    }
-
-    $scope.$on('$includeContentLoaded', function(event) {
-
-        if (typeof $window.plugins != 'undefined')
-        {
-            $window.plugins.gaPlugin.init(function() {
-
-                alert("gaPlugin inted")
-
-            }, errorHandler, "UA-42503133-1", 10);
-
-
-            alert("index tracked!!");
-            // Call the service and fetch the list of signatures that match the given petition ID
-            $window.plugins.gaPlugin.trackPage( function() {
-
-                console.log("Main Tracked!!");
-
-            }, errorHandler, $location.path());
-        }
-        else
-        {
-            alert("undefined");
-
-        }
-
-    });
-
     $scope.addBook = false;
 
     function shareFB(book, actionType)
@@ -69,9 +36,37 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         title:"",
         authors: null
     };
+    function errorHandler(e) {
+        //Lame - do nothing
+        alert(e.toString());
+    }
 
     $scope.scanBook = function () {
     {
+
+
+        if (typeof $window.plugins != 'undefined')
+        {
+            $window.plugins.gaPlugin.init(function() {
+
+                alert("gaPlugin inted")
+
+            }, errorHandler, "UA-42503133-1", 10);
+
+
+            alert("index tracked!!");
+            // Call the service and fetch the list of signatures that match the given petition ID
+            $window.plugins.gaPlugin.trackPage( function() {
+
+                console.log("Main Tracked!!");
+
+            }, errorHandler, "/Main");
+        }
+        else
+        {
+            alert("undefined");
+
+        }
         console.log('scanning');
         try {
             window.plugins.barcodeScanner.scan(function(args) {

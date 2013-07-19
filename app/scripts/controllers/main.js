@@ -2,8 +2,6 @@
 
 BookCrossingApp.controller('MainCtrl', function ($scope) {
 
-
-
     $scope.title = 'BookCrossingApp';
 	$scope.leftButtonName = null;
 	$scope.rightButtonName = 'Map';
