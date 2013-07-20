@@ -19,7 +19,7 @@ angular.module('dataServices', [])
 /**
  * Parse Service com as a back-end for the application.
  */
-    .factory('parseService', function ($http) {
+    .factory('parseService', function () {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
 
@@ -662,46 +662,53 @@ angular.module('dataServices', [])
                     // Include the post data with each comment
                     query.equalTo("objectId", releaseInfo.bookId);
                     query.first({
-                        success: function (booka) {
+                        success: function (book) {
 
-                            if(booka.get('registrationId') === registrationId)
+                            if(book.get("released") >= 1)
                             {
-                                var book = new Book({id: releaseInfo.bookId});
+                                var trackingQuery = new Parse.Query(Tracking);
+                                query.equalTo("book", book);
+                                query.descending("createdAt");
 
-                                book.fetch({
-                                    success: function (book)
-                                    {
-                                        book.set("releasedAt", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
-                                        book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
-                                        book.set("bookStatus", new BookStatus({id: BookStatusConst.Released}));
-                                        book.set("ownedBy", Parse.User.current());
+                                trackingQuery.first({
 
-                                        book.save(null, {
-                                            success: function (book) {
-                                                // The object was saved successfully, lets update the status
-                                                callback(true, book);
-                                            },
-                                            error: function (data,error) {
-                                                // The save failed.
-                                                // error is a Parse.Error with an error code and description.
-                                                console.log("Error: " + error.code + " " + error.message);
+                                    success: function(tracking){
+
+                                        var point1 = tracking.get("releasedAt");
+                                        var point2 = book.get("releasedAt");
+                                        var kilometers = updateBookKilometers(book, point1, point2);
+                                        saveBook(book,registrationId, releaseInfo, kilometers, function(isSuccess, result){
+
+                                            if(isSuccess)
+                                            {
+                                                callback(true, book)
+
+                                            }
+                                            else
+                                            {
+
                                                 callback(false, ErrorConst.GenericError);
                                             }
                                         });
-                                    } ,
-                                    error: function (object, error) {
-                                        // The object was not retrieved successfully.
+
+
+
+                                    },
+                                    error: function(){
+
+                                        // The save failed.
                                         // error is a Parse.Error with an error code and description.
                                         console.log("Error: " + error.code + " " + error.message);
                                         callback(false, ErrorConst.GenericError);
                                     }
-                                });
+
+                                })
 
                             }
                             else
                             {
+                                saveBook(book, registrationId, releaseInfo, undefined);
 
-                                callback(false, ErrorConst.RegistrationIdError);
                             }
 
                         },
@@ -876,3 +883,71 @@ angular.module('dataServices', [])
 
     return serviceToUse;
 });
+
+
+function updateBookKilometers(book,point1, point2)
+{
+
+    var numberOfKilometersSoFar;
+
+    if(book.get("kilometers")== undefined)
+    {
+
+        numberOfKilometersSoFar = point1.kilometersTo(point2);
+    }
+    else
+    {
+        numberOfKilometersSoFar= book.get("kilometers") + point1.kilometersTo(point2);
+
+    }
+
+    return numberOfKilometersSoFar;
+
+}
+
+function saveBook(book, registrationId, releaseInfo, kilometers, callback)
+{
+    var Book = Parse.Object.extend("Book");
+    var BookStatus = Parse.Object.extend("BookStatus");
+
+    if(book.get('registrationId') === registrationId)
+    {
+        var book = new Book({id: releaseInfo.bookId});
+
+        book.fetch({
+            success: function (book)
+            {
+                book.set("releasedAt", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
+                book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
+                book.set("kilometers", kilometers);
+                book.set("bookStatus", new BookStatus({id: BookStatusConst.Released}));
+                book.set("ownedBy", Parse.User.current());
+
+                book.save(null, {
+                    success: function (book) {
+
+                        callback(true, book)
+                    },
+                    error: function (data, error) {
+
+                      callback(false, null);
+                        
+                    }
+                });
+            } ,
+            error: function (object, error) {
+                // The object was not retrieved successfully.
+                // error is a Parse.Error with an error code and description.
+                console.log("Error: " + error.code + " " + error.message);
+                callback(false, ErrorConst.GenericError);
+            }
+        });
+
+    }
+    else
+    {
+
+        callback(false, ErrorConst.RegistrationIdError);
+    }
+
+}

@@ -56,7 +56,7 @@ Parse.Cloud.beforeSave("Book", function(request, response) {
             bookCounterToIncerement = "hunted";
             break;
         default:
-        //Do nothing
+            //Do nothing
     }
 
     request.object.increment(bookCounterToIncerement);
@@ -174,6 +174,8 @@ Parse.Cloud.afterSave("Comment", function(request){
         }
     });
 
+
+
     //Update User counters
     user = request.user;
     user.increment("comments");
@@ -275,77 +277,32 @@ Parse.Cloud.afterSave("Book", function (request) {
         //Save tracking if the book have been released
         if(actionTypeId == ActionTypesConst.Released)
         {
+            console.log("It is a release going to create the Tracking record ");
 
-            console.log("before getting tracking object")
-            var query = new Parse.Query("Tracking");
-            query.equalTo("book", request.object);
-            query.descending("createdAt");
+            //Set the new tracking record
+            tracking.set("releasedBy", request.object.get("ownedBy"));
+            tracking.set("releasedAt", request.object.get("releasedAt"));
+            tracking.set("releasedAtDescription", request.object.get("releasedAtDescription"));
+            tracking.set("book", request.object);
 
-            query.find({
-                success: function (trackingq) {
-
-                    if(trackingq.length > 0)
-                    {
-                        alert("success!!");
-                        console.log(trackingq[0].get("releasedAt"))
-                        console.log(request.object.get("releasedAt"))
-
-                        var point1 = trackingq[0].get("releasedAt");
-                        var point2 = request.object.get("releasedAt");
-
-                        console.log(trackingq.length);
-
-                        if(request.object.get("kilometers")== undefined)
-                        {
-                            console.log("undefined!!");
-                            console.log(point1.kilometersTo(point2));
-                             request.object.increment("kilometers", point1.kilometersTo(point2));
-                        }
-                        else
-                        {
-                            console.log("defined!!");
-                            console.log(numberOfKilometersSoFar);
-                            var numberOfKilometersSoFar = request.object.get("kilometers") + point1.kilometersTo(point2);
-                            console.log(numberOfKilometersSoFar);
-                            request.object.increment("kilometers", numberOfKilometersSoFar);
-                        }
-
-                        request.object.save({
-                            success: function(myObject) {
-
-                                console.log("book saved:" + myObject);
-                                saveTracking(request, tracking);
-
-                            },
-                            error: function(myObject, error) {
-
-                                console.error(error);
-                            }
-                        });
-
-                        console.log("It is a release going to create the Tracking record ");
-                    }
-                    else
-                    {
-                        saveTracking(request, tracking);
-                    }
-
+            tracking.save(null, {
+                success: function (tracking) {
+                    // The object was saved successfully.
+                    console.log("Tracking record was saved successfully." );
                 },
                 error: function (error) {
                     // The save failed.
                     // error is a Parse.Error with an error code and description.
                     console.log("Error tracking.save: " + error.code + " " + error.message);
                 }
-
             });
-
         }
 
         //Send email after registration
         if(actionTypeId == ActionTypesConst.Registered)
         {
-            var Mandrill = require('mandrill');
-            Mandrill.initialize(mandrillApiKey);
+        var Mandrill = require('mandrill');
+        Mandrill.initialize(mandrillApiKey);
             //var user = request.user;
             var nick = request.user.get("nick");
             var email = request.user.get("email");
@@ -389,25 +346,3 @@ Parse.Cloud.afterSave("Book", function (request) {
 
     }
 });
-
-function saveTracking(request, tracking)
-{
-    console.log("no tracking yet")
-    //Set the new tracking record
-    tracking.set("releasedBy", request.object.get("ownedBy"));
-    tracking.set("releasedAt", request.object.get("releasedAt"));
-    tracking.set("releasedAtDescription", request.object.get("releasedAtDescription"));
-    tracking.set("book", request.object);
-
-    tracking.save(null, {
-        success: function (tracking) {
-            // The object was saved successfully.
-            console.log("Tracking record was saved successfully." );
-        },
-        error: function (error) {
-            // The save failed.
-            // error is a Parse.Error with an error code and description.
-            console.log("Error tracking.save: " + error.code + " " + error.message);
-        }
-    });
-}
