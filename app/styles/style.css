@@ -433,6 +433,15 @@ li {
 
 }
 
+#positionOption {
+    background-image: url('./img/position.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 5px 5px 5px 40px;
+
+}
+
+
 .starSmall {
     display:inline-block;
     background-image: url('./img/blankstar_small.png');
