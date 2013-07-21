@@ -4,7 +4,7 @@
         <h1>{{book.get('title')}}</h1>
         <h3 ng-repeat="author in book.get('authors')">by {{author}}</h3>
         <p>Isbn: {{book.get('isbn')}}</p>
-        <p><strong>Status:</strong> {{book.get('bookStatus').get('status') | localizeIt}}</p>
+        <p>Status: {{book.get('bookStatus').get('status') | localizeIt}}</p>
         <p>Km: {{book.get('kilometers')}}</p>
         <p>Rating: 2 of 5 stars</p>
     </div>
