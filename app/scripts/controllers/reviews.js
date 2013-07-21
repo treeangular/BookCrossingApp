@@ -80,6 +80,38 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
         $rootScope.MessageNotification = reason;
     });
 
+    promise = getReviewLikeByUser($rootScope.currentUser.id, $scope.selectedBook.id)
+    promise.then(function(reviewLikes) {
+        $scope.reviewLikes = reviewLikes;
+        $rootScope.$broadcast(loadingRequestConst.Stop);
+    }, function(reason) {
+
+        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+        $rootScope.MessageNotification = reason;
+    });
+
+    $scope.isLike  = function(reviewId) {
+      var filterednames = $scope.reviewLikes.filter(function(obj) {
+            return (obj.get('review').id === reviewId  && (obj.get('isLike') == true));
+      });
+
+      if (filterednames.length > 0)
+        return true;
+      else
+        return false;
+    }
+
+    $scope.isUnlike  = function(reviewId) {
+        var filterednames = $scope.reviewLikes.filter(function(obj) {
+            return (obj.get('review').id === reviewId  && (obj.get('isLike') == false));
+        });
+
+        if (filterednames.length > 0)
+            return true;
+        else
+            return false;
+    }
+
 
     $scope.like  = function(review, isLike) {
 
@@ -87,16 +119,23 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
         if(isLike)
         {
             review.increment("likeCount");
-            $scope.LikeClicked=true;
-            $scope.UnLikeClicked=false;
         }
         else
         {
             review.increment("unLikeCount");
-            $scope.LikeClicked=false;
-            $scope.UnLikeClicked=true;
         }
+
         promise.then(function(reviewLike) {
+
+            promise = getReviewLikeByUser($rootScope.currentUser.id, $scope.selectedBook.id)
+            promise.then(function(reviewLikes) {
+                $scope.reviewLikes = reviewLikes;
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+            }, function(reason) {
+
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = reason;
+            });
 
             $rootScope.$broadcast(loadingRequestConst.Stop);
             $scope.clicked = false;

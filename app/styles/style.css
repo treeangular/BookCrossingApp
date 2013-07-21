@@ -469,6 +469,10 @@ li {
     height: 30px;
 }
 
+.disabled {
+    -webkit-filter: grayscale(100%);
+}
+
 .likeOption {
     display:inline-block;
     background-image: url('./img/like.png');
@@ -515,7 +519,7 @@ li {
 .commentItemList img {
     float: left;
     margin-right:5px;
-    width: 30;
+    width: 40px;
     height: 40px
 }
 

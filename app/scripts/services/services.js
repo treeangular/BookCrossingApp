@@ -102,13 +102,13 @@ angular.module('dataServices', [])
                 var user = new User();
                 user.id = userId;
                 // Include the post data with each comment
-                query.equalTo("book", book);
+                //query.equalTo("book", book);
                 query.equalTo("user", user);
 
                 query.find({
                     success: function (reviewLikes) {
 
-                        callback(true, reviewLikes.length)
+                        callback(true, reviewLikes)
                     },
                     error: function (data,error) {
                         // The save failed.
@@ -243,6 +243,8 @@ angular.module('dataServices', [])
                         review.set("book", booka);
                         review.set("user", Parse.User.current());
                         review.set("rating", reviewToRegister.rating);
+                        review.set("likeCount", 0);
+                        review.set("unLikeCount", 0);
 
                         review.save(null, {
                             success: function (review) {
