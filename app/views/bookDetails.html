@@ -1,17 +1,22 @@
 <div ng-controller="BookCtrl">
-<div  ng-switch on="seeMoreOrLess">
-    <img class="bookimg" ng-src="{{book.get('image')}}"/>
-    <h1>{{book.get('title')}}</h1>
-    <h3 ng-repeat="author in book.get('authors')">{{author}}</h3>
-    <p ng-hide="seeMoreOrLess=='See less'">{{book.get('description') | truncateString}}</p>
-    <p ng-hide="seeMoreOrLess=='See more'">{{book.get('description')}}</p>
-    <p><a ng-click="expand()">{{seeMoreOrLess}}</a></p>
-</div>
-<ul id="BookOptionList">
-    <li class="bookOption" ng-click="goTo('views/mapTracking.html')"><h2 id="positionOption">Position</h2></li>
-    <li class="bookOption" ng-click="goTo('views/mapTracking.html')"><h2 id="trackingOption">Tracking</h2></li>
-    <li class="bookOption"  ng-click="goTo('views/reviews.html')"><h2 id="reviewOption">Reviews</h2></li>
-    <li class="bookOption"  ng-click="goTo('views/comments.html')"><h2 id="commentOption">Comments</h2></li>
-</ul>
-
+    <div>
+        <img class="bookimg" ng-src="{{book.get('image')}}"/>
+        <h1>{{book.get('title')}}</h1>
+        <h3 ng-repeat="author in book.get('authors')">by {{author}}</h3>
+        <p>Isbn: {{book.get('isbn')}}</p>
+        <p><strong>Status:</strong> {{book.get('bookStatus').get('status') | localizeIt}}</p>
+        <p>Km: {{book.get('kilometers')}}</p>
+        <p>Rating: 2 of 5 stars</p>
+    </div>
+    <div class="bookDescription">
+        <h3>Description</h3>
+        <p ng-hide="seeMoreOrLess=='See less'">{{book.get('description') | truncateString}}<a ng-click="expand()">{{seeMoreOrLess}}</a></p>
+        <p ng-hide="seeMoreOrLess=='See more'">{{book.get('description')}} <a ng-click="expand()">{{seeMoreOrLess}}</a></p>
+    </div>
+    <ul id="BookOptionList">
+        <li class="bookOption" ng-click="goTo('views/mapTracking.html')"><h2 id="positionOption">Position</h2></li>
+        <li class="bookOption" ng-click="goTo('views/mapTracking.html')"><h2 id="trackingOption">Tracking</h2></li>
+        <li class="bookOption"  ng-click="goTo('views/reviews.html')"><h2 id="reviewOption">Reviews</h2></li>
+        <li class="bookOption"  ng-click="goTo('views/comments.html')"><h2 id="commentOption">Comments</h2></li>
+    </ul>
 </div>

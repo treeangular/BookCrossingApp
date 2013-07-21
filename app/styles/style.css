@@ -558,6 +558,12 @@ li {
     height: 110px;
 }
 
+.bookDescription {
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
 .h2button {
     position: absolute;
     top:5px;
