@@ -77,7 +77,7 @@ angular.module('BookCrossingApp')
             if(value) {
                 $scope.myPicture = value;
                 isFileToUpdate = true;
-                fileToUpdate = resolveLocalFileSystemURI(value);
+                fileToUpdate = resolveLocalFileTobyteArray(value);
                 navigator.notification.alert("File set to be updated!", null);
             }
         }, true);
