@@ -378,8 +378,6 @@ angular.module('dataServices', [])
                 currentUser.set("birthday", user.birthday);
                 //currentUser.set("myPicture", user.myPicture);
 
-
-
                 currentUser.save(null, {
                     success: function (user) {
                         // Hooray! Let them use the app now.
