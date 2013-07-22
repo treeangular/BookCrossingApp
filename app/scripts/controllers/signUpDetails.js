@@ -77,22 +77,59 @@ angular.module('BookCrossingApp')
             if(value) {
                 $scope.myPicture = value;
                 isFileToUpdate = true;
-                fileToUpdate = value;
-                //navigator.notification.alert("File set to be updated!", null);
+                //fileToUpdate = asynResolveLocalFileSystemURI(value);
+
+                window.resolveLocalFileSystemURI(value, function(entry) {
+
+                    var reader = new FileReader();
+
+                    reader.onloadend = function(evt) {
+                        console.log('read onloderend');
+                        console.log(JSON.stringify(evt.target));
+                        console.log(evt.target.result);
+                        var byteArray = new Uint8Array(evt.target.result);
+                        var output = new Array( byteArray.length );
+                        var i = 0;
+                        var n = output.length;
+                        while( i < n ) {
+                            output[i] = byteArray[i];
+                            i++;
+                        }
+
+                        fileToUpdate = output;
+                    }
+
+                    reader.onerror = function(evt) {
+                        console.log('read error');
+                        console.log(JSON.stringify(evt));
+                    }
+
+                    console.log('pre read');
+
+                    entry.file(function(s) {
+                        reader.readAsArrayBuffer(s);
+                    }, function(e) {
+                        console.log('ee');
+                    });
+
+                    //reader.readAsArrayBuffer(entry.file(function(s) { console.log('ss');}, function(e) { console.log('e');});
+                    console.log('fired off the read...');
+                });
+
             }
         }, true);
 
-//        function asynResolveLocalFileSystemURI(imageData)
-//        {
-//            var deferred = $q.defer();
-//            fileToUpdate = resolveLocalFileSystemURI(imageData);
-//
-//            $scope.$apply(function ()
-//            {
-//                deferred.resolve(fileToUpdate);
-//            });
-//
-//        }
+        function asynResolveLocalFileSystemURI(imageData)
+        {
+            var deferred = $q.defer();
+            fileToUpdate = resolveLocalFileTobyteArray(imageData);
+
+            $scope.$apply(function ()
+            {
+                deferred.resolve(fileToUpdate);
+            });
+
+        }
 
         $scope.updateUserProfile = function (user) {
 
