@@ -368,7 +368,7 @@ angular.module('dataServices', [])
                 });
             },
 
-            updateUserProfile: function updateUserProfile(user,parseFile, callback) {
+            updateUserProfile: function updateUserProfile(user, callback) {
                 //Get current user
                 var currentUser = Parse.User.current();
 
