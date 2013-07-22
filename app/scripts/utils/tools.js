@@ -28,7 +28,7 @@ function truncateString(stringToTruncate)
     if (stringToTruncate==null || stringToTruncate.length < 125)
         return stringToTruncate;
     else
-        return stringToTruncate.substring(0, 120) + "...";
+        return stringToTruncate.substring(0, 135) + "...";
 }
 
 function createRandomNick()

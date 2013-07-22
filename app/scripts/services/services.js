@@ -640,6 +640,7 @@ angular.module('dataServices', [])
                     book.set("isbn", bookk.isbn);
                     book.set("hunted", 0);
                     book.set("released", 0);
+                    book.set("kilometers", 0);
                     book.set("registeredBy", Parse.User.current());
                     book.set("bookStatus", new BookStatus({id: BookStatusConst.Registered}));
                     book.set("ownedBy", Parse.User.current());
@@ -842,6 +843,7 @@ angular.module('dataServices', [])
 
                      // Include the post data with each comment
                      qBook.include("user");
+                     qBook.include("bookStatus");
 
                      qBook.find({
                          success: function (books) {
