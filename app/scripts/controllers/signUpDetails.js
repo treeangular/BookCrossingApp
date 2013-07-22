@@ -77,8 +77,8 @@ angular.module('BookCrossingApp')
             if(value) {
                 $scope.myPicture = value;
                 isFileToUpdate = true;
-                fileToUpdate = resolveLocalFileTobyteArray(value);
-                navigator.notification.alert("File set to be updated!", null);
+                fileToUpdate = value;
+                //navigator.notification.alert("File set to be updated!", null);
             }
         }, true);
 
@@ -96,26 +96,26 @@ angular.module('BookCrossingApp')
 
         $scope.updateUserProfile = function (user) {
 
-            navigator.notification.alert("file to update", null);
+            //navigator.notification.alert("file to update", null);
             var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
 //                console.log(byteArray.length);
 //                console.log(parseFile.toString());
 //                console.log('trying to save');
-            navigator.notification.alert("file to update2", null);
+            //navigator.notification.alert("file to update2", null);
 
             parseFile.save().then(function(uploadedParseFile) {
-                navigator.notification.alert("Got it!", null);
+               // navigator.notification.alert("Got it!", null);
                 //navigator.notification.alert(JSON.stringify(ob), null);
                 //console.log(JSON.stringify(ob));
                 //navigator.notification.alert("Got it 2!", null);
 
                 var currentUser = Parse.User.current();
 
-                //currentUser.set("myPicture",ob._url);
+                currentUser.set("myPicture",ob._url);
                 currentUser.set("myFile",uploadedParseFile);
 
                 currentUser.save().then(function(){
-                        navigator.notification.alert("success updating user!", null);
+                       // navigator.notification.alert("success updating user!", null);
                         //callback(true);
                     }
                     , function(error) {
