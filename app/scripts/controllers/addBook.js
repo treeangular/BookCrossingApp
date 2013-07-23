@@ -68,7 +68,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         console.log('scanning');
         try {
 
-            window.plugins.barcodeScanner.scan(
+            $window.plugins.barcodeScanner.scan(
                 function(result) {
                     if (result.cancelled)
                         alert("the user cancelled the scan");
