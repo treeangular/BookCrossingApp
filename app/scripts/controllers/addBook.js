@@ -64,11 +64,27 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         else
         {
             alert("undefined");
-
         }
         console.log('scanning');
         try {
-            $window.plugins.barcodeScanner.scan(function(args) {
+
+            window.plugins.barcodeScanner.scan(
+                function(result) {
+                    if (result.cancelled)
+                        alert("the user cancelled the scan");
+                    else
+                        alert("we got a barcode: " + result.text);
+                    navigator.notification.alert("Scanner result: \n" +
+                        "text: " + args.text + "\n" +
+                        "format: " + args.format + "\n" +
+                        "cancelled: " + args.cancelled + "\n");
+                },
+                function(error) {
+                    alert("scanning failed: " + error)
+                }
+            )
+
+           /* $window.plugins.barcodeScanner.scan(function(args) {
                 console.log("Scanner result: \n" +
                     "text: " + args.text + "\n" +
                     "format: " + args.format + "\n" +
@@ -77,15 +93,15 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                 navigator.notification.alert("Scanner result: \n" +
                     "text: " + args.text + "\n" +
                     "format: " + args.format + "\n" +
-                    "cancelled: " + args.cancelled + "\n");
+                    "cancelled: " + args.cancelled + "\n");*/
                 /*
                  if (args.format == "QR_CODE") {
                  window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
                  }
                  */
                 //document.getElementById("info").innerHTML = args.text;
-                console.log(args);
-            });
+              //  console.log(args);
+            //});
         } catch (ex) {
             console.log(ex.message);
             navigator.notification.alert(ex.message);
