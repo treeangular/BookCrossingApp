@@ -49,7 +49,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
             gaPlugin.init(function() {
 
-                alert("gaPlugin inted")
+                navigator.notification.alert("gaPlugin inted")
 
             }, errorHandler, "UA-42576964-1", 10);
 
@@ -63,7 +63,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         }
         else
         {
-            alert("undefined");
+            navigator.notification.alert("undefined");
         }
         console.log('scanning');
         try {
@@ -71,7 +71,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
             $window.plugins.barcodeScanner.scan(
                 function(result) {
                     if (result.cancelled)
-                        alert("the user cancelled the scan");
+                        navigator.notification.alert("the user cancelled the scan");
                     else
                         alert("we got a barcode: " + result.text);
                     navigator.notification.alert("Scanner result: \n" +
@@ -104,7 +104,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
             //});
         } catch (ex) {
             console.log(ex.message);
-            navigator.notification.alert("Catch says" + ex.message);
+            navigator.notification.alert("Catch says: " + ex.message);
         }
     }
     };
