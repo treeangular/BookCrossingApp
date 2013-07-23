@@ -2,6 +2,7 @@
 BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $location, $window) {
 
 
+
     $scope.alerts = [];
     $scope.currentPage = 0;
     $scope.isLastPage = true;
@@ -14,12 +15,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
             }
         });
-//        localStorageService.createActionTable(function(result){
-//
-//                alert(result);
-//
-//
-//        });
+
     }
     function getActPage(pageNumber)
     {
