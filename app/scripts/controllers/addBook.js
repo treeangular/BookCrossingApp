@@ -43,8 +43,6 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.scanBook = function () {
     {
-
-
         if (typeof $window.plugins != 'undefined')
         {
             var gaPlugin = $window.plugins.gaPlugin;
@@ -90,6 +88,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
             });
         } catch (ex) {
             console.log(ex.message);
+            navigator.notification.alert(ex.message);
         }
     }
     };

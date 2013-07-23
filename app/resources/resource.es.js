@@ -168,6 +168,12 @@
 
     },
     {
+        "key":"_ScanBook_",
+        "value":"Scanea el codigo de barras",
+        "description":"Scan Book Barcode"
+
+    },
+    {
         "key":"_CheckBookInformation_",
         "value":"Información del libro",
         "description":"Check book Information"

@@ -167,6 +167,12 @@
 
     },
     {
+        "key":"_ScanBook_",
+        "value":"Scan Book Barcode",
+        "description":"Scan Book Barcode"
+
+    },
+    {
         "key":"_CheckBookInformation_",
         "value":"Check book Information",
         "description":"Check book Information"
