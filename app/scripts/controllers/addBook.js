@@ -104,7 +104,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
             //});
         } catch (ex) {
             console.log(ex.message);
-            navigator.notification.alert(ex.message);
+            navigator.notification.alert("Catch says" + ex.message);
         }
     }
     };
