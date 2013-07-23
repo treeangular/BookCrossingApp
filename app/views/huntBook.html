@@ -1,10 +1,10 @@
 <div ng-controller="HuntBookCtrl">
 <form name="registerNewBook-form" ng-submit="huntBook(book)">
-    <h2 class="huntOption">Hunt a book</h2>
-    <input name="bookBarcode" type="text" ng-model="book.registrationId"  placeholder="Registration Id" required />
+    <h2 class="huntOption">{{'_HuntABook_' | localizeIt}}</h2>
+    <input name="bookBarcode" type="text" ng-model="book.registrationId"  data-localize-it-attr="_RegistrationId_|placeholder" required />
     <input type="submit"  value="Hunt" class="buttonlarge" ng-disabled="clicked" />
 </form>
-<h2 class="releaseOption">Release a book</h2>
+<h2 class="releaseOption">{{'_ReleaseABook_' | localizeIt}}</h2>
 <ul>
     <li >
         <div class="bookReleaseItemList">
@@ -13,7 +13,7 @@
                 <img  ng-click="release(book.id)"  ng-src='{{book.get("image")}}' ng-switch-default>
             </div>
         </div>
-        <p ng-show="books.length==0">No books to release</p>
+        <p ng-show="books.length==0">{{'_NoBooksToRelease_' | localizeIt}}</p>
     </li>
 </ul>
 </div>

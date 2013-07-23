@@ -233,11 +233,33 @@
 
     },
     {
-        "key":"_ReleaseBookRegistrationHowToFindBook_",
-        "value":"Explain how other user will be able to find the book!",
-        "description":"Placeholder for how to find the book input"
+        "key":"_HuntABook_",
+        "value":"Hunt a Book",
+        "description":"hunt a book"
 
+    },
+    {
+        "key":"_RegistrationId_",
+        "value":"Registration Code",
+        "description":"Registration Code"
+    },
+    {
+        "key":"_ReleaseABook_",
+        "value":"Release a Book",
+        "description":"Release a Book"
+    },
+    {
+        "key":"_NoBooksToRelease_",
+        "value":"No books to release",
+        "description":"No books to release"
+    },
+    {
+        "key":"_SeeMoreAlerts_",
+        "value":"See more alerts",
+        "description":"See more alerts"
     }
+
+
 
 
 

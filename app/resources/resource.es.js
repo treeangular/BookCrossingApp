@@ -238,6 +238,34 @@
         "value":"Explica a los otros usuarios los detalles de como encontrar el libro",
         "description":"Placeholder for how to find the book input"
 
+    },
+
+    {
+        "key":"_HuntABook_",
+        "value":"Caza un libro",
+        "description":"hunt a book"
+
+    },
+    {
+        "key":"_RegistrationId_",
+        "value":"Codigo de registro",
+        "description":"Registration Code"
+    },
+    {
+        "key":"_ReleaseABook_",
+        "value":"Libera un libro",
+        "description":"Release a Book"
+    },
+    {
+        "key":"_NoBooksToRelease_",
+        "value":"No hay libros que liberar",
+        "description":"No books to release"
+    }
+    ,
+    {
+        "key":"_SeeMoreAlerts_",
+        "value":"Ver mas alertas",
+        "description":"See more alerts"
     }
 
 
