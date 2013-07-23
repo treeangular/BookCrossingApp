@@ -264,6 +264,24 @@
         "key":"_SeeMoreAlerts_",
         "value":"See more alerts",
         "description":"See more alerts"
+    },
+
+    {
+        "key":"_AddZobc_",
+        "value":"Add Zobc",
+        "description":"See more alerts"
+    }
+    ,
+    {
+        "key":"_UpdateYourProfile_",
+        "value":"Update your profile",
+        "description":"See more alerts"
+    }
+    ,
+    {
+        "key":"_SignOut_",
+        "value":"Sign out",
+        "description":"See more alerts"
     }
 
 
