@@ -50,7 +50,7 @@ angular.module('dataServices', [])
 
             //<editor-fold description="ReviewLike">
 
-            addLikeUnLikeToReview: function addLikeUnLikeToReview(reviewId, isLike, callback)
+            addLikeUnLikeToReview: function addLikeUnLikeToReview(book, reviewId, isLike, callback)
             {
 
                 var query = new Parse.Query(Review);
@@ -67,6 +67,7 @@ angular.module('dataServices', [])
                         reviewLike.set("review", review);
                         reviewLike.set("isLike", isLike)
                         reviewLike.set("user", Parse.User.current());
+                        reviewLike.set("book", book);
 
                         reviewLike.save(null, {
                             success: function (reviewLike2) {
@@ -102,7 +103,7 @@ angular.module('dataServices', [])
                 var user = new User();
                 user.id = userId;
                 // Include the post data with each comment
-                //query.equalTo("book", book);
+                query.equalTo("book", book);
                 query.equalTo("user", user);
 
                 query.find({

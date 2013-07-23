@@ -7,7 +7,7 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
-        dataService.addLikeUnLikeToReview(reviewId, isLike, function (isSuccess, results) {
+        dataService.addLikeUnLikeToReview($scope.selectedBook, reviewId, isLike, function (isSuccess, results) {
 
             $scope.$apply(function(){
                 if(isSuccess)
