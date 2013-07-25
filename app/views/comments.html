@@ -2,7 +2,7 @@
     <div class="selectedBookBar">
         <img ng-src="{{selectedBook.get('image')}}">
         <h3>{{selectedBook.get("title")}}</h3>
-        <p ng-repeat="author in selectedBook.get('authors')">{{author}}</p>
+        <p>by <span ng-repeat="author in selectedBook.get('authors')">{{author}}</span></p>
     </div>
     <ul id="commentList">
         <li ng-repeat='comment in comments'>
