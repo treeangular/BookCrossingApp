@@ -3,11 +3,6 @@
 BookCrossingApp.controller('MainCtrl', function ($scope, $window, $location) {
 
 
-    $scope.$on('$viewContentLoaded', function(event) {
-
-        $window._gaq.push(['_trackPageview', $location.path()]);
-    });
-
     $scope.title = 'BookCrossingApp';
 	$scope.leftButtonName = null;
 	$scope.rightButtonName = 'Map';

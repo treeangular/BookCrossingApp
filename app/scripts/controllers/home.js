@@ -1,5 +1,5 @@
 'use strict';
-BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $location, $window) {
+BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q) {
 
 
 
@@ -19,6 +19,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     }
     function getActPage(pageNumber)
     {
+
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
         dataService.getActionsForHomePage(pageNumber, function (isSuccess,results) {
@@ -46,7 +47,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
   $scope.nextPage  = function() {
     if ($scope.busy) return;
-    $rootScope.$broadcast(loadingRequestConst.Start);
+
     $scope.busy = true;
 
       var promise = getActPage($scope.currentPage);
@@ -59,11 +60,10 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
             $scope.alerts.push(alerts[i]);
           }
 
-          $rootScope.$broadcast(loadingRequestConst.Stop);
 
       }, function(reason) {
 
-          $rootScope.$broadcast(loadingRequestConst.Stop);
+
           $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
           $rootScope.MessageNotification = reason;
       });

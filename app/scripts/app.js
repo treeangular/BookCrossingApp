@@ -59,6 +59,11 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
 
 }]);
 
+BookCrossingApp.run(function ($rootScope) {
+
+    $rootScope.AppVersion = '1'; //global variable
+});
+
 function loadGoogleAnalytics($window)
 {
     function errorHandler(e) {

@@ -37,6 +37,7 @@ angular.module('dataServices', [])
         var Tracking = Parse.Object.extend("Tracking");
         var Review = Parse.Object.extend("Review");
         var ReviewLike = Parse.Object.extend("ReviewLike");
+        var ApplicationVersion = Parse.Object.extend("ApplicationVersion");
 
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
@@ -50,6 +51,24 @@ angular.module('dataServices', [])
         var parseService = {
             name: "Parse",
 
+            checkApplicationVersion: function checkApplicationVersion(callback)
+            {
+                var query = new Parse.Query(ApplicationVersion);
+                query.descending("createdAt");
+                query.find({
+                    success: function (applicationVersion) {
+
+                        callback(true, applicationVersion)
+                    },
+                    error: function (data,error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+
+            },
             //<editor-fold description="ReviewLike">
 
             addLikeUnLikeToReview: function addLikeUnLikeToReview(book, reviewId, isLike, callback)
