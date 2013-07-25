@@ -116,7 +116,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
 
             $rootScope.$broadcast(loadingRequestConst.Start);
-            var promise = updateStatus($scope.status)
+            var promise = updateStatus($scope.library.status)
             promise.then(function(result) {
 
 
