@@ -14,6 +14,8 @@ var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS"; //"khg4ef8Mks6oP2
 var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr"; //"8KZKpONdEWQZNBteRkJWCtBks3YxuO55THQhQ7qI";
 var PARSE_REST_API_KEY = "2iGS4EL4QHE2l50Kq7Xryd1TUGfc4h0AEk5xgDOZ";
 
+var KmToLookAroundUserPositionForMap = 500;
+
 angular.module('dataServices', [])
 
 /**
@@ -827,7 +829,7 @@ angular.module('dataServices', [])
                      //Get the Actions related to this books ordered chronologically
                      var qBook = new Parse.Query(Book);
 
-                     qBook.withinKilometers("releasedAt", geoPoint, 20)
+                     qBook.withinKilometers("releasedAt", geoPoint, KmToLookAroundUserPositionForMap)
 
                      //Only Released actions of others books. (Also Lost ones?)
                      var bookStatus = new BookStatus();

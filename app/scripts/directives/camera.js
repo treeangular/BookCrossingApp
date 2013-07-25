@@ -24,7 +24,7 @@ BookCrossingApp.directive('bcaCamera', function () {
                     }
 
                     function onFail(message) {
-                        alert('Failed because: ' + message);
+                        //alert('Failed because: ' + message);
                         ctrl.$setValidity('Failed because: ' + message, false);
                     }
 
@@ -58,7 +58,7 @@ BookCrossingApp.directive('bcaCameraTakePicture', function () {
                 }
 
                 function onFail(message) {
-                    alert('Failed because: ' + message);
+                    //alert('Failed because: ' + message);
                     ctrl.$setValidity('Failed because: ' + message, false);
                 }
 
