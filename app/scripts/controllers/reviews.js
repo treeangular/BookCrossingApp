@@ -3,6 +3,8 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
     var star = "styles/img/blankstar.png";
     var selectedStar = "styles/img/selectedstar.png";
 
+    $scope.reviewLikes = [];
+
     function like(reviewId, isLike)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
@@ -102,6 +104,7 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
     }
 
     $scope.isUnlike  = function(reviewId) {
+
         var filterednames = $scope.reviewLikes.filter(function(obj) {
             return (obj.get('review').id === reviewId  && (obj.get('isLike') == false));
         });
