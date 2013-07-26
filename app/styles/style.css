@@ -348,7 +348,7 @@ li {
 }
 
 .loading{
-    position: absolute;
+    position: fixed;
     margin: auto;
     left: 0;
     right: 0;
