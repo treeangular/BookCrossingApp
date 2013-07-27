@@ -60,6 +60,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     if($rootScope.currentUser == undefined)
     {
+        alert("Hola!");
         var promise2 = checkVersion();
         promise2.then(function()
         {
