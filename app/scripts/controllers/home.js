@@ -15,15 +15,15 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
             if(isResult)
             {
-                alert("inside service");
+
                 // request the resource file
                 $http({ method:"GET",
                     url:url,
                     cache:false,
                     transformResponse:function(data) {
-                        alert("transformResponse");
-                        var json = x2js.xml_str2json(data);
 
+                        var json = x2js.xml_str2json(data);
+                        alert(json.widget._version);
                         if(result.get("version") != json.widget._version)
                         {
                             if(result.get("isCritical"))
@@ -49,7 +49,6 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
             }
             else
             {
-                alert("something went wrong!");
                 deferred.reject();
             }
 
