@@ -49,6 +49,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
             }
             else
             {
+                alert("something went wrong!");
                 deferred.reject();
             }
 
