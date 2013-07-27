@@ -55,7 +55,7 @@ angular.module('dataServices', [])
             {
                 var query = new Parse.Query(ApplicationVersion);
                 query.descending("createdAt");
-                query.find({
+                query.first({
                     success: function (applicationVersion) {
 
                         callback(true, applicationVersion)

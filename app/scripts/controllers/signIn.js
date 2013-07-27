@@ -2,8 +2,6 @@
 
 BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $location, facebookService, $rootScope, $q) {
 
-
-
     function signInUser(email, password)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
