@@ -15,11 +15,13 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
             if(isResult)
             {
+                alert("inside service");
                 // request the resource file
                 $http({ method:"GET",
                     url:url,
                     cache:false,
                     transformResponse:function(data) {
+                        alert("transformResponse");
                         var json = x2js.xml_str2json(data);
 
                         if(result.get("version") != json.widget._version)
@@ -60,7 +62,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     if($rootScope.currentUser == undefined)
     {
-        alert("Hola!");
+
         var promise2 = checkVersion();
         promise2.then(function()
         {
