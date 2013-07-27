@@ -5,25 +5,6 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.addBook = false;
 
-    function shareFB(book, actionType)
-    {
-        var deferred = $q.defer();
-        facebookService.share(actionType, book.title, function(isSuccess, result){
-            if(!isSuccess)
-            {
-                deferred.reject(result);
-
-            }
-            else
-            {
-                deferred.resolve(result);
-            }
-
-        });
-        return deferred.promise;
-
-    }
-
 
     $scope.addNewBook = function () {
         $scope.addBook = true;

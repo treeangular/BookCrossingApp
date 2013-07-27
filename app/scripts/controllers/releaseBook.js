@@ -4,7 +4,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
     function shareFB(book, actionType)
     {
         var deferred = $q.defer();
-        facebookService.share(actionType,book.title, function(isSuccess, result){
+        facebookService.share(actionType, book.title, book.image, book.releasedAt, function(isSuccess, result){
             if(!isSuccess)
             {
                 deferred.reject(result);
@@ -99,6 +99,10 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         releaseInfo.geoPoint= geoPoint;
         releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
+        var promise2 = shareFB(result, "Released");
+        promise.then(function(result){
+
+        });
         var promise = releaseBook(releaseInfo, $scope.registrationId);
         promise.then(function(result) {
             $scope.setSelectedBook(result);

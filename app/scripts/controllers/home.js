@@ -5,13 +5,12 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     $scope.alerts = [];
     $scope.currentPage = 0;
     $scope.isLastPage = true;
-    var _versionMobile = "1.0.0";
+    var _versionMobile = "1.0.1";
 
     function checkVersion()
     {
         var deferred = $q.defer();
 
-        var url = 'config.xml';
         dataService.checkApplicationVersion(function (isResult, result) {
 
             if(isResult)
@@ -37,9 +36,6 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
             {
                 deferred.reject();
             }
-
-
-
         });
         return deferred.promise;
 

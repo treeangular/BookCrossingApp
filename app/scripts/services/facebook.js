@@ -6,16 +6,16 @@ angular.module('facebookProvider', [])
 
       return{
 
-          share: function shareInTimeLine(actionTypeName, bookTitle, callback){
+          share: function shareInTimeLine(actionTypeName, bookTitle, bookImage, bookLocation,callback){
 
               // calling the API ...
               var obj = {
                   method: 'feed',
                   link: 'https://www.bookcrossingapp.com/',
-                  picture: 'http://fbrell.com/f8.jpg',
+                  picture: bookImage,
                   name: actionTypeName +' '+ bookTitle,
                   caption: 'Reference Documentation',
-                  description: 'Book ' + actionTypeName + ' in BookCrossing app'
+                  description: bookTitle + ' ' + actionTypeName + ' in BookCrossing app'
               };
 
 
