@@ -5,6 +5,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     $scope.alerts = [];
     $scope.currentPage = 0;
     $scope.isLastPage = true;
+    var _versionMobile = "1.0.0";
 
     function checkVersion()
     {
@@ -15,37 +16,22 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
             if(isResult)
             {
-
-                // request the resource file
-                $http({ method:"GET",
-                    url:url,
-                    cache:false,
-                    transformResponse:function(data) {
-
-                        var json = x2js.xml_str2json(data);
-                        alert(json.widget._version);
-                        if(result.get("version") != json.widget._version)
-                        {
-                            if(result.get("isCritical"))
-                            {
-                                $window.navigator.notification.alert("There is a new critical version, please download it!", function(){}, "BookCrossingApp", "OK");
-                                $rootScope.isCritical = true;
+                if(result.get("version") != _versionMobile)
+                {
+                  if(result.get("isCritical"))
+                  {
+                     $window.navigator.notification.alert("There is a new critical version, please download it!", function(){}, "BookCrossingApp", "OK");
+                     $rootScope.isCritical = true;
 
 
-                            }
-                            else
-                            {
-                                navigator.notification.alert("There is a new version, download it!");
+                  }
+                  else
+                  {
+                     navigator.notification.alert("There is a new version, download it!");
+                  }
 
-
-                            }
-
-                        }
+                }
                         deferred.resolve();
-
-                    }}).success(function(){ }).error(function () { });
-
-
             }
             else
             {
