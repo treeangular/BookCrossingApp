@@ -10,7 +10,6 @@ angular.module('BookCrossingApp')
         var disabledClass = 'disabling';
         $scope.maleClass = disabledClass;
         $scope.femaleClass = disabledClass;
-        $scope.setDate = false;
 
         $scope.selectSex = function (sex) {
             if (sex=="Male"){
@@ -45,6 +44,8 @@ angular.module('BookCrossingApp')
                 {
                     $scope.myPicture = profilePhoto.url();
                 }
+                else{
+                    $scope.myPicture = "styles/img/user.png"                                     }
             }
 
             $scope.user = {
