@@ -3,9 +3,9 @@
     <div id="mapViewSmallWrapper">
         <div id="mapView" ui-map="myMap" ui-options="mapOptions" />
     </div>
-    <select class="select" type="text"  name="SelectZobc">
+    <!--<select class="select" type="text"  name="SelectZobc">
         <option ng-repeat="zobc in zobcList" value="zobc.id">{{zobc.name}}</option>
-    </select>
-    <textarea ng-model="bookLocationDescription" name="bookDescription" rows="4"  data-localize-it-attr="_ReleaseBookRegistrationHowToFindBook_|placeholder" />
+    </select>-->
+    <textarea ng-model="bookLocationDescription" name="bookDescription" rows="5"  data-localize-it-attr="_ReleaseBookRegistrationHowToFindBook_|placeholder" />
     <input ng-click="release()" type="submit" value="Confirm release" ng-disabled="clicked" class="buttonlarge" />
 </div>
