@@ -21,7 +21,7 @@ angular.module('dataServices', [])
 /**
  * Parse Service com as a back-end for the application.
  */
-    .factory('parseService', function () {
+    .factory('parseService', function ($q) {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
 
@@ -42,23 +42,195 @@ angular.module('dataServices', [])
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
 
+        //<editor-fold description="Miscellaneous">
+        var checkApplicationVersion = function(){
+
+            var deferred = $q.defer();
+
+            var query = new Parse.Query(ApplicationVersion);
+            query.descending("createdAt");
+            query.first({
+                success: function (applicationVersion) {
+
+                    deferred.resolve(applicationVersion);
+
+                },
+                error: function (data,error) {
+                    // The save failed.
+                    // error is a Parse.Error with an error code and description.
+                    console.log("Error: " + error.code + " " + error.message);
+                    deferred.reject(ErrorConst.GenericError);
+                }
+            });
+
+            return deferred.promise;
+        }
+        //</editor-fold>
+
+        //<editor-fold description="ReviewLike">
+
+        var findReview = function (reviewId){
+
+            var deferred = $q.defer();
+
+            var query = new Parse.Query(Review);
+            // Include the post data with each comment
+            query.equalTo("objectId", reviewId);
+
+            query.first({
+                success: function (review) {
+
+                    deferred.resolve(review);
+
+                },
+                error: function (data,error) {
+                    // The save failed.
+                    // error is a Parse.Error with an error code and description.
+                    console.log("Error: " + error.code + " " + error.message);
+                    deferred.reject(ErrorConst.GenericError);
+                }
+            })
+
+            return deferred.promise;
+
+        }
+
+        var addLikeUnLikeToReview = function(book,reviewId, isLike){
+
+            var deferred = $q.defer();
+            var reviewLike = new ReviewLike();
+
+            var findReviewPromise = findReview(reviewId);
+
+            findReviewPromise.then(function (review){
+
+                reviewLike.set("review", review);
+                reviewLike.set("user", Parse.User.current());
+                reviewLike.set("isLike", isLike)
+                reviewLike.set("book", book);
+                reviewLike.save(null, {
+                    success: function (result) {
+
+                        deferred.resolve(result);
+                    },
+                    error: function (reviewLike2, error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        deferred.reject(ErrorConst.GenericError);
+                    }
+                });
+
+            })
+            return deferred.promise;
+
+        }
+
+        var getReviewLike = function(userId, bookId)
+        {
+            var deferred = $q.defer();
+            var query = new Parse.Query(ReviewLike);
+
+            var book = new Book();
+            book.id = bookId;
+            var user = new User();
+            user.id = userId;
+            // Include the post data with each comment
+            query.equalTo("book", book);
+            query.equalTo("user", user);
+
+            query.find({
+                success: function (reviewLikes) {
+
+                    deferred.resolve(reviewLikes);
+                },
+                error: function (data,error) {
+                    // The save failed.
+                    // error is a Parse.Error with an error code and description.
+                    console.log("Error: " + error.code + " " + error.message);
+                    deferred.reject(ErrorConst.GenericError);
+                }
+            });
+
+            return deferred.promise;
+        }
+        //</editor-fold>
+
+        //<editor-fold description="Reviews">
+
+        var getReviewsFromBookId = function(bookId){
+
+            var deferred = $q.defer();
+            var query = new Parse.Query(Review);
+
+            var book = new Book();
+            book.id = bookId;
+
+            // Include the post data with each comment
+            query.equalTo("book", book);
+            query.include("user");
+            query.descending("createdAt");
+
+
+            query.find({
+                success: function (reviews) {
+                    // Comments now contains the last ten comments, and the "post" field
+                    // has been populated. For example:
+                    deferred.resolve(reviews);
+
+                },
+                error: function (data,error) {
+                    // The save failed.
+                    // error is a Parse.Error with an error code and description.
+                    console.log("Error: " + error.code + " " + error.message);
+                    deferred.reject(ErrorConst.GenericError);
+                }
+            });
+            return deferred.promise;
+
+        }
+
+        //</editor-fold>
+
         /**
-        * ParseService Object
-        * This is what is used by the main controller to save and retrieve data from Parse.com.
-        * Moving all the Parse.com specific stuff into a service allows me to later swap it out 
-        * with another back-end service provider without modifying my controller much, if at all.
-        */
+         * ParseService Object
+         * This is what is used by the main controller to save and retrieve data from Parse.com.
+         * Moving all the Parse.com specific stuff into a service allows me to later swap it out
+         * with another back-end service provider without modifying my controller much, if at all.
+         */
         var parseService = {
             name: "Parse",
 
-            checkApplicationVersion: function checkApplicationVersion(callback)
-            {
-                var query = new Parse.Query(ApplicationVersion);
-                query.descending("createdAt");
-                query.first({
-                    success: function (applicationVersion) {
+            checkApplicationVersion: checkApplicationVersion,
 
-                        callback(true, applicationVersion)
+            //<editor-fold description="ReviewLike">
+
+            addLikeUnLikeToReview: addLikeUnLikeToReview,
+
+            getReviewLike: getReviewLike,
+
+
+            //</editor-fold>
+
+            //<editor-fold description="Comments">
+
+            getCommentsByBookId: function getCommentsByBookId(bookId, callback){
+
+                var query = new Parse.Query(Comment);
+
+                var book = new Book();
+                book.id = bookId;
+
+                // Include the post data with each comment
+                query.equalTo("book", book);
+                query.include("user");
+                query.descending("createdAt");
+
+                query.find({
+                    success: function (comments) {
+                        // Comments now contains the last ten comments, and the "post" field
+                        // has been populated. For example:
+                        callback(true, comments);
                     },
                     error: function (data,error) {
                         // The save failed.
@@ -67,35 +239,31 @@ angular.module('dataServices', [])
                         callback(false, ErrorConst.GenericError);
                     }
                 });
-
             },
-            //<editor-fold description="ReviewLike">
 
-            addLikeUnLikeToReview: function addLikeUnLikeToReview(book, reviewId, isLike, callback)
+            addCommentToBook: function addCommentToBook(commentToRegister, callback)
             {
 
-                var query = new Parse.Query(Review);
+                var query = new Parse.Query(Book);
 
                 // Include the post data with each comment
-                query.equalTo("objectId", reviewId);
+                query.equalTo("objectId", commentToRegister.book.id);
 
-                query.first({
-                    success: function (review) {
+                query.find({
+                    success: function (books) {
 
-                        var reviewLike = new ReviewLike();
+                        var comment = new Comment();
 
+                        comment.set("content", commentToRegister.content);
+                        comment.set("book", books[0]);
+                        comment.set("user", Parse.User.current());
 
-                        reviewLike.set("review", review);
-                        reviewLike.set("isLike", isLike)
-                        reviewLike.set("user", Parse.User.current());
-                        reviewLike.set("book", book);
-
-                        reviewLike.save(null, {
-                            success: function (reviewLike2) {
+                        comment.save(null, {
+                            success: function (comment) {
                                 // The object was saved successfully.
-                                callback(true, reviewLike2);
+                                callback(true, comment);
                             },
-                            error: function (reviewLike2, error) {
+                            error: function (comment, error) {
                                 // The save failed.
                                 // error is a Parse.Error with an error code and description.
                                 console.log("Error: " + error.code + " " + error.message);
@@ -113,140 +281,14 @@ angular.module('dataServices', [])
                     }
                 });
 
-            },
-
-            getReviewLike: function getReviewLike(userId, bookId, callback)
-            {
-                var query = new Parse.Query(ReviewLike);
-
-                var book = new Book();
-                book.id = bookId;
-                var user = new User();
-                user.id = userId;
-                // Include the post data with each comment
-                query.equalTo("book", book);
-                query.equalTo("user", user);
-
-                query.find({
-                    success: function (reviewLikes) {
-
-                        callback(true, reviewLikes)
-                    },
-                    error: function (data,error) {
-                        // The save failed.
-                        // error is a Parse.Error with an error code and description.
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, ErrorConst.GenericError);
-                    }
-                });
 
             },
 
             //</editor-fold>
 
-        //<editor-fold description="Comments">
+            //<editor-fold description="Review">
 
-        getCommentsByBookId: function getCommentsByBookId(bookId, callback){
-
-            var query = new Parse.Query(Comment);
-
-            var book = new Book();
-            book.id = bookId;
-
-            // Include the post data with each comment
-            query.equalTo("book", book);
-            query.include("user");
-            query.descending("createdAt");
-
-            query.find({
-                success: function (comments) {
-                    // Comments now contains the last ten comments, and the "post" field
-                    // has been populated. For example:
-                    callback(true, comments);
-                },
-                error: function (data,error) {
-                    // The save failed.
-                    // error is a Parse.Error with an error code and description.
-                    console.log("Error: " + error.code + " " + error.message);
-                    callback(false, ErrorConst.GenericError);
-                }
-            });
-        },
-
-        addCommentToBook: function addCommentToBook(commentToRegister, callback)
-        {
-
-            var query = new Parse.Query(Book);
-
-            // Include the post data with each comment
-            query.equalTo("objectId", commentToRegister.book.id);
-
-            query.find({
-                success: function (books) {
-
-                    var comment = new Comment();
-
-                    comment.set("content", commentToRegister.content);
-                    comment.set("book", books[0]);
-                    comment.set("user", Parse.User.current());
-
-                    comment.save(null, {
-                        success: function (comment) {
-                            // The object was saved successfully.
-                            callback(true, comment);
-                        },
-                        error: function (comment, error) {
-                            // The save failed.
-                            // error is a Parse.Error with an error code and description.
-                            console.log("Error: " + error.code + " " + error.message);
-                            callback(false, ErrorConst.GenericError);
-                        }
-                    });
-
-
-                },
-                error: function (data,error) {
-                    // The save failed.
-                    // error is a Parse.Error with an error code and description.
-                    console.log("Error: " + error.code + " " + error.message);
-                    callback(false, ErrorConst.BookNotFound);
-                }
-            });
-
-
-        },
-
-        //</editor-fold>
-
-        //<editor-fold description="Review">
-
-            getReviewsFromBookId: function getReviewsFromBookId(bookId, callback)
-            {
-                var query = new Parse.Query(Review);
-
-                var book = new Book();
-                book.id = bookId;
-
-                // Include the post data with each comment
-                query.equalTo("book", book);
-                query.include("user");
-                query.descending("createdAt");
-
-
-                query.find({
-                    success: function (reviews) {
-                        // Comments now contains the last ten comments, and the "post" field
-                        // has been populated. For example:
-                        callback(true, reviews);
-                    },
-                    error: function (data,error) {
-                        // The save failed.
-                        // error is a Parse.Error with an error code and description.
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, ErrorConst.GenericError);
-                    }
-                });
-            },
+            getReviewsFromBookId: getReviewsFromBookId,
 
             addReviewToBook: function addReviewToBook(reviewToRegister, callback)
             {
@@ -292,9 +334,9 @@ angular.module('dataServices', [])
                 });
             },
 
-       //</editor-fold>
+            //</editor-fold>
 
-        //<editor-fold description="Sign">
+            //<editor-fold description="Sign">
 
 
             //Register new user
@@ -440,9 +482,9 @@ angular.module('dataServices', [])
                 });
             },
 
-        //</editor-fold>
+            //</editor-fold>
 
-        //<editor-fold description="User">
+            //<editor-fold description="User">
             updateStatus: function updateStatus(newStatus, callback){
 
                 //The file has been saved to Parse.
@@ -491,7 +533,7 @@ angular.module('dataServices', [])
                 query.find({
                     success: function (result) {
                         if(result.length > 0)
-                         callback(true, result[0]);
+                            callback(true, result[0]);
                         else
                             callback(true, ErrorConst.UserNotFound);
                     },
@@ -532,9 +574,9 @@ angular.module('dataServices', [])
                     }
                 });
             },
-        //</editor-fold>
+            //</editor-fold>
 
-        //<editor-fold description="Actions">
+            //<editor-fold description="Actions">
 
             getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
             {
@@ -603,311 +645,311 @@ angular.module('dataServices', [])
 
             //</editor-fold>
 
-        //<editor-fold description="Book">
-                getBooks: function getBooks(callback) {
+            //<editor-fold description="Book">
+            getBooks: function getBooks(callback) {
 
-                    // Instantiate a petition collection
-                    var books = new BookCollection();
+                // Instantiate a petition collection
+                var books = new BookCollection();
 
-                    // Use Parse's fetch method (a modified version of backbone.js fetch) to get all the petitions.
-                    books.fetch({
-                        success: function (results) {
-                            // Send the petition collection back to the caller if it is succesfully populated.
-                            callback(true, results);
-                        },
-                        error: function (results, error) {
-                            console.log("Error: " + error.code + " " + error.message);
-                            callback(false, ErrorConst.GenericError);
+                // Use Parse's fetch method (a modified version of backbone.js fetch) to get all the petitions.
+                books.fetch({
+                    success: function (results) {
+                        // Send the petition collection back to the caller if it is succesfully populated.
+                        callback(true, results);
+                    },
+                    error: function (results, error) {
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+            },
+
+
+            getBookById: function getBookById(id, callback)
+            {
+                var query = new Parse.Query(Book);
+
+                // Include the post data with each comment
+                query.equalTo("objectId", id);
+
+                query.find({
+                    success: function (books) {
+                        // Comments now contains the last ten comments, and the "post" field
+                        // has been populated. For example:
+                        if(books.length > 0)
+                            callback(true, books[0]);
+                        else
+                            callback(false, ErrorConst.BookNotFound);
+                    },
+                    error: function (data,error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+
+            },
+
+            registerBook: function registerBook(bookk, callback) {
+
+                var book = new Book();
+
+                book.set("title", bookk.title);
+                book.set("description", bookk.description);
+                book.set("registrationId", bookk.registrationId);
+                book.set("image", bookk.image);
+                book.set("authors", bookk.authors);
+                book.set("isbn", bookk.isbn);
+                book.set("hunted", 0);
+                book.set("released", 0);
+                book.set("kilometers", 0);
+                book.set("registeredBy", Parse.User.current());
+                book.set("bookStatus", new BookStatus({id: BookStatusConst.Registered}));
+                book.set("ownedBy", Parse.User.current());
+
+                book.save(null, {
+                    success: function (book) {
+                        // The object was saved successfully.
+                        callback(true, null);
+                    },
+                    error: function (book, error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+            },
+
+            releaseBook: function releaseBook(releaseInfo, registrationId, callback)
+            {
+                var query = new Parse.Query(Book);
+                // Include the post data with each comment
+                query.equalTo("objectId", releaseInfo.bookId);
+                query.first({
+                    success: function (book) {
+
+                        if(book.get("released") >= 1)
+                        {
+                            var trackingQuery = new Parse.Query(Tracking);
+                            query.equalTo("book", book);
+                            query.descending("createdAt");
+
+                            trackingQuery.first({
+
+                                success: function(tracking){
+
+                                    var point1 = tracking.get("releasedAt");
+                                    var point2 = book.get("releasedAt");
+                                    var kilometers = updateBookKilometers(book, point1, point2);
+                                    saveBook(book,registrationId, releaseInfo, kilometers, function(isSuccess, result){
+
+                                        if(isSuccess)
+                                        {
+                                            callback(true, book)
+
+                                        }
+                                        else
+                                        {
+
+                                            callback(false, ErrorConst.GenericError);
+                                        }
+                                    });
+
+
+
+                                },
+                                error: function(){
+
+                                    // The save failed.
+                                    // error is a Parse.Error with an error code and description.
+                                    console.log("Error: " + error.code + " " + error.message);
+                                    callback(false, ErrorConst.GenericError);
+                                }
+
+                            })
+
                         }
-                    });
-                },
+                        else
+                        {
+                            saveBook(book, registrationId, releaseInfo, undefined);
 
-
-                getBookById: function getBookById(id, callback)
-                {
-                    var query = new Parse.Query(Book);
-
-                    // Include the post data with each comment
-                    query.equalTo("objectId", id);
-
-                    query.find({
-                        success: function (books) {
-                            // Comments now contains the last ten comments, and the "post" field
-                            // has been populated. For example:
-                            if(books.length > 0)
-                                callback(true, books[0]);
-                            else
-                                callback(false, ErrorConst.BookNotFound);
-                        },
-                        error: function (data,error) {
-                            // The save failed.
-                            // error is a Parse.Error with an error code and description.
-                            console.log("Error: " + error.code + " " + error.message);
-                            callback(false, ErrorConst.GenericError);
                         }
-                    });
 
-                },
+                    },
+                    error: function (data,error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
 
-                registerBook: function registerBook(bookk, callback) {
 
-                    var book = new Book();
+            },
 
-                    book.set("title", bookk.title);
-                    book.set("description", bookk.description);
-                    book.set("registrationId", bookk.registrationId);
-                    book.set("image", bookk.image);
-                    book.set("authors", bookk.authors);
-                    book.set("isbn", bookk.isbn);
-                    book.set("hunted", 0);
-                    book.set("released", 0);
-                    book.set("kilometers", 0);
-                    book.set("registeredBy", Parse.User.current());
-                    book.set("bookStatus", new BookStatus({id: BookStatusConst.Registered}));
-                    book.set("ownedBy", Parse.User.current());
+            huntBook: function huntBook(registrationId, callback)
+            {
+                var qBook = new Parse.Query(Book);
+                qBook.equalTo("registrationId", registrationId);
+                qBook.include("bookStatus");
 
-                    book.save(null, {
-                        success: function (book) {
-                            // The object was saved successfully.
-                            callback(true, null);
-                        },
-                        error: function (book, error) {
-                            // The save failed.
-                            // error is a Parse.Error with an error code and description.
-                            console.log("Error: " + error.code + " " + error.message);
-                            callback(false, ErrorConst.GenericError);
-                        }
-                    });
-                },
+                qBook.first({
+                    success: function (book)
+                    {
+                        if(book != undefined)
+                        {
 
-                releaseBook: function releaseBook(releaseInfo, registrationId, callback)
-                {
-                    var query = new Parse.Query(Book);
-                    // Include the post data with each comment
-                    query.equalTo("objectId", releaseInfo.bookId);
-                    query.first({
-                        success: function (book) {
-
-                            if(book.get("released") >= 1)
+                            if(book.get("bookStatus") != BookStatusConst.Hunted)
                             {
-                                var trackingQuery = new Parse.Query(Tracking);
-                                query.equalTo("book", book);
-                                query.descending("createdAt");
+                                book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
+                                book.set("ownedBy", Parse.User.current());
 
-                                trackingQuery.first({
-
-                                    success: function(tracking){
-
-                                        var point1 = tracking.get("releasedAt");
-                                        var point2 = book.get("releasedAt");
-                                        var kilometers = updateBookKilometers(book, point1, point2);
-                                        saveBook(book,registrationId, releaseInfo, kilometers, function(isSuccess, result){
-
-                                            if(isSuccess)
-                                            {
-                                                callback(true, book)
-
-                                            }
-                                            else
-                                            {
-
-                                                callback(false, ErrorConst.GenericError);
-                                            }
-                                        });
-
-
-
+                                book.save(null, {
+                                    success: function (book) {
+                                        // The object was saved successfully, lets update the status
+                                        callback(true, book);
                                     },
-                                    error: function(){
-
+                                    error: function (data,error) {
                                         // The save failed.
                                         // error is a Parse.Error with an error code and description.
                                         console.log("Error: " + error.code + " " + error.message);
                                         callback(false, ErrorConst.GenericError);
                                     }
-
-                                })
-
+                                });
                             }
                             else
                             {
-                                saveBook(book, registrationId, releaseInfo, undefined);
-
+                                callback(false, ErrorConst.BookAlreadyHunted);
                             }
-
-                        },
-                        error: function (data,error) {
-                            // The save failed.
-                            // error is a Parse.Error with an error code and description.
-                            console.log("Error: " + error.code + " " + error.message);
-                            callback(false, ErrorConst.GenericError);
                         }
-                    });
-
-
-                },
-
-                huntBook: function huntBook(registrationId, callback)
-                {
-                    var qBook = new Parse.Query(Book);
-                    qBook.equalTo("registrationId", registrationId);
-                    qBook.include("bookStatus");
-
-                    qBook.first({
-                        success: function (book)
+                        else
                         {
-                            if(book != undefined)
-                            {
-
-                                if(book.get("bookStatus") != BookStatusConst.Hunted)
-                                {
-                                    book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
-                                    book.set("ownedBy", Parse.User.current());
-
-                                    book.save(null, {
-                                        success: function (book) {
-                                            // The object was saved successfully, lets update the status
-                                            callback(true, book);
-                                        },
-                                        error: function (data,error) {
-                                            // The save failed.
-                                            // error is a Parse.Error with an error code and description.
-                                            console.log("Error: " + error.code + " " + error.message);
-                                            callback(false, ErrorConst.GenericError);
-                                        }
-                                    });
-                                }
-                                else
-                                {
-                                    callback(false, ErrorConst.BookAlreadyHunted);
-                                }
-                            }
-                            else
-                            {
-                                callback(false, ErrorConst.BookNotFound);
-                            }
-
-                        },
-                        error: function (object, error) {
-                            // The object was not retrieved successfully.
-                            // error is a Parse.Error with an error code and description.
-                            console.log("Error: " + error.code + " " + error.message);
-                            callback(false, ErrorConst.GenericError);
+                            callback(false, ErrorConst.BookNotFound);
                         }
-                    });
-                },
 
-                getBookRegistrationId: function GetBookRegistrationId(callback)
-                {
+                    },
+                    error: function (object, error) {
+                        // The object was not retrieved successfully.
+                        // error is a Parse.Error with an error code and description.
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+            },
 
-                    Parse.Cloud.run('GetBookId', {}, {
-                        success: function (result) {
-                            callback(true, result);
-                        },
-                        error: function (error) {
-                            callback(false, ErrorConst.GenericError);
-                        }
-                    });
-                },
+            getBookRegistrationId: function GetBookRegistrationId(callback)
+            {
 
-                getBooksThatCanBeReleased: function GetBookThatCanBeReleased(callback)
-                {
-                    //Get the Actions related to this books ordered chronologically
-                    var qBook = new Parse.Query(Book);
+                Parse.Cloud.run('GetBookId', {}, {
+                    success: function (result) {
+                        callback(true, result);
+                    },
+                    error: function (error) {
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+            },
 
-                    //Only Released actions of others books. (Also Lost ones?)
-                    var bookStatus = new BookStatus();
-                    bookStatus.id = BookStatusConst.Registered;
-                    var bookStatus2 = new BookStatus();
-                    bookStatus2.id = BookStatusConst.Hunted;
-                    qBook.containedIn("bookStatus",[bookStatus,bookStatus2]);
+            getBooksThatCanBeReleased: function GetBookThatCanBeReleased(callback)
+            {
+                //Get the Actions related to this books ordered chronologically
+                var qBook = new Parse.Query(Book);
 
-                    //Book that I am the one that made the last action on it.
-                    qBook.equalTo("ownedBy", Parse.User.current());
+                //Only Released actions of others books. (Also Lost ones?)
+                var bookStatus = new BookStatus();
+                bookStatus.id = BookStatusConst.Registered;
+                var bookStatus2 = new BookStatus();
+                bookStatus2.id = BookStatusConst.Hunted;
+                qBook.containedIn("bookStatus",[bookStatus,bookStatus2]);
 
-                    //Do we need to order them?
-                    qBook.descending("createdAt");
+                //Book that I am the one that made the last action on it.
+                qBook.equalTo("ownedBy", Parse.User.current());
 
-                    // Include the post data with each comment
-                    qBook.include("user");
-                    //qAction.include("actionType");
+                //Do we need to order them?
+                qBook.descending("createdAt");
 
-                    qBook.find({
-                        success: function (books) {
-                            callback(true,books);
-                        },
-                        error: function (actions, error) {
-                            console.log("Error: " + error.code + " " + error.message);
-                            callback(false, ErrorConst.GenericError);
-                        }
-                    });
+                // Include the post data with each comment
+                qBook.include("user");
+                //qAction.include("actionType");
 
-                },
+                qBook.find({
+                    success: function (books) {
+                        callback(true,books);
+                    },
+                    error: function (actions, error) {
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
 
-                getBooksForMap: function  getBooksForMap(geoPoint, callback)
-                {
-                     //Get the Actions related to this books ordered chronologically
-                     var qBook = new Parse.Query(Book);
+            },
 
-                     qBook.withinKilometers("releasedAt", geoPoint, KmToLookAroundUserPositionForMap)
+            getBooksForMap: function  getBooksForMap(geoPoint, callback)
+            {
+                //Get the Actions related to this books ordered chronologically
+                var qBook = new Parse.Query(Book);
 
-                     //Only Released actions of others books. (Also Lost ones?)
-                     var bookStatus = new BookStatus();
-                     bookStatus.id = BookStatusConst.Released;
-                     qBook.equalTo("bookStatus",bookStatus);
+                qBook.withinKilometers("releasedAt", geoPoint, KmToLookAroundUserPositionForMap)
 
-                     //Book not belongs to me - do we need that one?
-                     qBook.notEqualTo("ownedBy", Parse.User.current());
+                //Only Released actions of others books. (Also Lost ones?)
+                var bookStatus = new BookStatus();
+                bookStatus.id = BookStatusConst.Released;
+                qBook.equalTo("bookStatus",bookStatus);
 
-                     //Do we need to order them?
-                     qBook.descending("createdAt");
+                //Book not belongs to me - do we need that one?
+                qBook.notEqualTo("ownedBy", Parse.User.current());
 
-                     // Include the post data with each comment
-                     qBook.include("user");
-                     qBook.include("bookStatus");
+                //Do we need to order them?
+                qBook.descending("createdAt");
 
-                     qBook.find({
-                         success: function (books) {
-                             callback(true, books);
-                         },
-                         error: function (actions, error) {
-                             console.log("Error: " + error.code + " " + error.message)
-                             callback(false, ErrorConst.GenericError);
-                         }
-                     });
-                },
+                // Include the post data with each comment
+                qBook.include("user");
+                qBook.include("bookStatus");
 
-                getTrackingForBook: function  getTrackingForBook(book, callback)
-                {
-                    //Get the tracking of the releases of the book
-                    var qTracking = new Parse.Query(Tracking);
+                qBook.find({
+                    success: function (books) {
+                        callback(true, books);
+                    },
+                    error: function (actions, error) {
+                        console.log("Error: " + error.code + " " + error.message)
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+            },
 
-                    qTracking.equalTo("book", book);
-                    qTracking.descending("createdAt");
+            getTrackingForBook: function  getTrackingForBook(book, callback)
+            {
+                //Get the tracking of the releases of the book
+                var qTracking = new Parse.Query(Tracking);
 
-                    qTracking.find({
-                        success: function (tracking) {
-                            callback(true, tracking);
-                        },
-                        error: function (tracking, error) {
-                            console.log("Error: " + error.code + " " + error.message)
-                            callback(false, ErrorConst.GenericError);
-                        }
-                    });
-                }
+                qTracking.equalTo("book", book);
+                qTracking.descending("createdAt");
 
-                //</editor-fold>
-    };
+                qTracking.find({
+                    success: function (tracking) {
+                        callback(true, tracking);
+                    },
+                    error: function (tracking, error) {
+                        console.log("Error: " + error.code + " " + error.message)
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+            }
+
+            //</editor-fold>
+        };
 
         return parseService;
     })
 
-.factory('dataService', function (parseService, $location) {
-    // Use the BackboneService by default
-    var serviceToUse = parseService;
+    .factory('dataService', function (parseService, $location) {
+        // Use the BackboneService by default
+        var serviceToUse = parseService;
 
-    return serviceToUse;
-});
+        return serviceToUse;
+    });
 
 
 function updateBookKilometers(book,point1, point2)
@@ -955,8 +997,8 @@ function saveBook(book, registrationId, releaseInfo, kilometers, callback)
                     },
                     error: function (data, error) {
 
-                      callback(false, null);
-                        
+                        callback(false, null);
+
                     }
                 });
             } ,
