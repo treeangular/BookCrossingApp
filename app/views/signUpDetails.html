@@ -1,30 +1,30 @@
 <div ng-controller="SignUpDetailsCtrl" >
     <form name="SignUpDetails-form" class="login-form" ng-submit="updateUserProfile(user)">
         <div class="loginheader">
-            <h2>{{'_SignUpDetailsHeader_' | localizeIt}}</h2>
+            <h1>{{'_SignUpDetailsHeader_' | localizeIt}}</h1>
         </div>
         <div class="content">
-            <p class="blanksmall"></p>
             <img id="libraryimg" ng-src="{{myPicture}}" />
-            <div style="margin-top: 25px; display: block; overflow: hidden;">
+            <div>
+                    <p class="blanksmall"></p>
                     <p><a bca-camera-take-picture ng-model="myPicture">{{'_TakePicture_' | localizeIt}}</a></p>
-                    <br>
+                    <p class="blanksmall"></p>
                     <p><a bca-camera ng-model="myPicture">{{'_SelectPicture_' | localizeIt}}</a><p>
             </div>
 
-            <h3 style="clear: both; margin-top: 5px">Nick name</h3>
+            <h3 style="clear: both; margin-top: 30px">Nick name</h3>
             <input name="nick" type="text" ng-model="user.nick" placeholder="Nickname"  />
             <h3 style="clear: both; margin-top: 5px">Date of birth</h3>
             <input ng-model="user.birthday" type="date" id="myDate" placeholder="Birth date"/>
-            <div style="width: 100%; float:left">
-                <div style="margin-top: 5px; margin-bottom: 5px; text-align: center">
+            <div>
+                <div style="margin-top: 5px; text-align: center">
                     <img ng-class="maleClass" ng-click="selectSex('Male')" src="styles/img/male.png">
                     <img ng-class="femaleClass" ng-click="selectSex('Female')" src="styles/img/female.png">
                 </div>
             </div>
         </div>
         <div class="footer" >
-            <input type="submit" class="buttonleft" data-localize-it-attr="_SaveUpdatedUserProfile_|value"/>
+            <input type="button" class="buttonleft" data-localize-it-attr="_SaveUpdatedUserProfile_|value" ng-click="updateUserProfile(user)" />
             <a href="#/Main"><input type="button" name="submit" data-localize-it-attr="_SkipSignUpDetails_|value" class="buttonright" /></a>
         </div>
     </form>

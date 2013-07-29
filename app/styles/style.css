@@ -65,7 +65,7 @@ a {
 }
 
 h1 {
-    font-size:18px;
+    font-size:17px;
 }
 
 h2 {
@@ -747,8 +747,8 @@ li {
 
 .login-form .loginheader h1 {
 	font-weight: 300;
-	font-size: 28px;
-	line-height:34px;
+	font-size: 22px;
+	line-height:20px;
 	color: #414848;
 	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
 	margin-bottom: 10px;
@@ -763,11 +763,11 @@ li {
 
 
 .login-form .content {
-	padding: 0 30px 25px 30px;
+	padding: 10px 30px 10px 30px;
 }
 
 .login-form .footer {
-	padding: 20px 30px 20px 30px;
+    padding: 10px 30px 10px 30px;
 	overflow: auto;
 	
 	background: #d4dedf;

@@ -117,30 +117,32 @@ angular.module('BookCrossingApp')
 */
         $scope.updateUserProfile = function (user) {
 
-            var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
+            if (fileToUpdate!=undefined){
+                var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
 
-            parseFile.save().then(function(uploadedParseFile) {
+                parseFile.save().then(function(uploadedParseFile) {
 
-                var currentUser = Parse.User.current();
-                currentUser.set("myPicture",uploadedParseFile._url);
-                currentUser.set("myFile",uploadedParseFile);
+                    var currentUser = Parse.User.current();
+                    currentUser.set("myPicture",uploadedParseFile._url);
+                    currentUser.set("myFile",uploadedParseFile);
 
-                currentUser.save().then(function(){
-                       // navigator.notification.alert("success updating user!", null);
-                        //callback(true);
-                    }
-                    , function(error) {
-                        // The file either could not be read, or could not be saved to Parse.
-                        //navigator.notification.alert("error updating user!", null);
-                        $rootScope.TypeNotification = "errormessage";
-                        $rootScope.MessageNotification = result.message;
-                        //callback(false,error);
-                    });
+                    currentUser.save().then(function(){
+                           // navigator.notification.alert("success updating user!", null);
+                            //callback(true);
+                        }
+                        , function(error) {
+                            // The file either could not be read, or could not be saved to Parse.
+                            //navigator.notification.alert("error updating user!", null);
+                            $rootScope.TypeNotification = "errormessage";
+                            $rootScope.MessageNotification = result.message;
+                            //callback(false,error);
+                        });
 
-            }, function(error) {
-                navigator.notification.alert("Error:" + error, null);
-                console.log(error);
-            });
+                }, function(error) {
+                    navigator.notification.alert("Error:" + error, null);
+                    console.log(error);
+                });
+            }
 
             dataService.updateUserProfile(user, function (isResult, result) {
 
