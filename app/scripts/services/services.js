@@ -90,8 +90,6 @@ angular.module('dataServices', [])
 
         }
 
-
-
         var addLikeUnLikeToReview = function(book, review, isLike){
 
             var deferred = $q.defer();
@@ -114,8 +112,7 @@ angular.module('dataServices', [])
             return deferred.promise;
         }
 
-        var getReviewLike = function(userId, bookId)
-        {
+        var getReviewLikes = function(userId, bookId){
             var deferred = $q.defer();
             var query = new Parse.Query(ReviewLike);
 
@@ -142,6 +139,7 @@ angular.module('dataServices', [])
 
             return deferred.promise;
         }
+
         //</editor-fold>
 
         //<editor-fold description="Reviews">
@@ -195,7 +193,9 @@ angular.module('dataServices', [])
 
             addLikeUnLikeToReview: addLikeUnLikeToReview,
 
-            getReviewLike: getReviewLike,
+            getReviewLikes: getReviewLikes,
+
+            findReview: findReview,
 
 
             //</editor-fold>
