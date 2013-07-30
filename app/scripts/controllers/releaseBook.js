@@ -105,6 +105,9 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
             $scope.setSelectedBook(result);
 
+
+            if(typeof(FB) != 'undefined')
+            {
             facebookService.share('released',result.get("title"),result.get("image"), result.get("releasedAt"), function(isSuccess, result){
                 if(!isSuccess)
                 {
@@ -113,6 +116,8 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
                 }
 
             });
+            }
+
 
             $scope.goTo('views/reviewBook.html');
 

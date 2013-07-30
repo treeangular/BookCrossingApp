@@ -39,6 +39,8 @@ BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, data
           $scope.clicked = false;
           $scope.setSelectedBook($scope.selectedBook);
 
+          if(typeof(FB) != 'undefined')
+          {
           facebookService.share('review',$scope.selectedBook.title,$scope.selectedBook.image, $scope.selectedBook.releasedAt, function(isSuccess, result){
               if(!isSuccess)
               {
@@ -47,6 +49,7 @@ BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, data
               }
 
           });
+          }
 
           $scope.goTo('views/bookDetails.html');
       }, function(reason) {

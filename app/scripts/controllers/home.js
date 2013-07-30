@@ -19,7 +19,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 {
                   if(result.get("isCritical"))
                   {
-                     $window.navigator.notification.alert("There is a new critical version, please download it!",
+                     $window.navigator.notification.confirmn("There is a new critical version, please download it!",
                          function(){
                              $scope.$apply(
                                  function () {
