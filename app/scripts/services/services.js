@@ -200,6 +200,29 @@ angular.module('dataServices', [])
         }
         //</editor-fold>
 
+        //<editor-fold description="SignIn">
+
+        var signIn = function signIn(email, password)
+        {
+            var deferred = $q.defer();
+
+            Parse.User.logIn(email.toLowerCase(), password).then(function(result) {
+
+                    deferred.resolve(result);
+                },
+                function (error) {
+                    // The login failed. Check error to see why.
+                    // alert("Error: " + error.code + " " + error.message);
+                    console.log("Error: " + error.code + " " + error.message);
+                    deferred.reject(ErrorConst.GenericError);
+                }
+            );
+
+            return deferred.promise;
+        }
+
+        //</editor-fold>
+
         /**
          * ParseService Object
          * This is what is used by the main controller to save and retrieve data from Parse.com.
@@ -387,21 +410,7 @@ angular.module('dataServices', [])
                 });
             },
             //Sign In User
-            signIn: function signIn(email, password, callback) {
-
-                Parse.User.logIn(email.toLowerCase(), password, {
-                    success: function (user) {
-                        // Do stuff after successful login.
-                        callback(true, user);
-                    },
-                    error: function (user, error) {
-                        // The login failed. Check error to see why.
-                        // alert("Error: " + error.code + " " + error.message);
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, ErrorConst.GenericError);
-                    }
-                });
-            },
+            signIn: signIn,
 
             signOut: function signOut() {
                 Parse.User.logOut();

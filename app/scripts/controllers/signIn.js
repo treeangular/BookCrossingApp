@@ -27,23 +27,20 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
         return deferred.promise;
 
     }
+    $scope.signInUser  = function(user){
 
-    $scope.signInUser = function (user) {
-
-
-        var promise = signInUser(user.Email, user.Password)
-        promise.then(function() {
-
+        dataService.signIn(user.Email, user.Password).then(
+        //it went well
+        function () {
             $location.path('/Main');
-
-        }, function(reason) {
+        },
+        //it when bad
+        function(reason){
 
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
             $rootScope.MessageNotification = reason;
-        });
-
-
-    };
+        }
+    )}
 
     $scope.fbSignIn = function()
     {
