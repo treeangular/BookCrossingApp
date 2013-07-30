@@ -75,6 +75,12 @@
 
     },
     {
+        "key":"_CityNotFound_",
+        "value":"Ciudad no encontrada",
+        "description":"City not found"
+
+    },
+    {
         "key":"_BookAlreadyHunted_",
         "value":"Lo sentimos, el libro ya fue cazado",
         "description":"book is already hunted"

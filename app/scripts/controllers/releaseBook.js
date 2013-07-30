@@ -105,21 +105,30 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
             $scope.setSelectedBook(result);
 
+            var promise2 = geolocationService.getCityFromGeopoint(result.get("releasedAt")._latitude, result.get("releasedAt")._longitude)
 
-            if(typeof(FB) != 'undefined')
-            {
-            facebookService.share('released',result.get("title"),result.get("image"), result.get("releasedAt"), function(isSuccess, result){
-                if(!isSuccess)
+            promise2.then(function(city){
+
+                if(typeof(FB) != 'undefined')
                 {
-                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                    $rootScope.MessageNotification = result;
+                    facebookService.share('released',result.get("title"),result.get("image"), city, function(isSuccess, result){
+                        if(!isSuccess)
+                        {
+                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                            $rootScope.MessageNotification = result;
+                        }
+
+                    });
                 }
+                $scope.goTo('views/reviewBook.html');
 
-            });
-            }
+            }, function(error){
 
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = error;
 
-            $scope.goTo('views/reviewBook.html');
+            })
+
 
         }, function(reason) {
 

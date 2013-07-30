@@ -13,9 +13,9 @@ angular.module('facebookProvider', [])
                   method: 'feed',
                   link: 'https://www.bookcrossingapp.com/',
                   picture: bookImage,
-                  name: actionTypeName +' '+ bookTitle,
-                  caption: 'Reference Documentation',
-                  description: bookTitle + ' ' + actionTypeName + ' in BookCrossing app'
+                  name: bookTitle + ' was ' + actionTypeName,
+                  caption: 'In' + bookLocation,
+                  description: bookTitle + ' was ' + actionTypeName + ' in BookCrossing app'
               };
 
 

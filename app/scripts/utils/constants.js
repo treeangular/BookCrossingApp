@@ -44,7 +44,8 @@ var ErrorConst=
     BookAlreadyHunted: "_BookAlreadyHunted_",
     UserLoginError: "_UserLoginError_",
     UserNotAuthorized: "_UserNotAuthorized_",
-    RegistrationIdError: "_RegistrationIdError_"
+    RegistrationIdError: "_RegistrationIdError_",
+    CityNotFound: "_CityNotFound_"
 
 
 };

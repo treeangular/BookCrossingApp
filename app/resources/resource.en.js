@@ -20,6 +20,12 @@
         "description":"Connect button on the application"
     },
     {
+        "key":"_CityNotFound_",
+        "value":"Ciudad no encontrada",
+        "description":"City not found"
+
+    },
+    {
         "key":"_Cancel_",
         "value":"Cancel",
         "description":"Cancel string for all the app"
