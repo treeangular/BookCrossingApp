@@ -107,10 +107,12 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
             var promise2 = geolocationService.getCityFromGeopoint(result.get("releasedAt")._latitude, result.get("releasedAt")._longitude)
 
+            alert("before promise")
             promise2.then(function(city){
 
                 if(typeof(FB) != 'undefined')
                 {
+                    alert("inside FB")
                     facebookService.share('released',result.get("title"),result.get("image"), city, function(isSuccess, result){
                         if(!isSuccess)
                         {

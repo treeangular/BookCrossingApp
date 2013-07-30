@@ -4,6 +4,7 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
 
         var getCityFromGeopoint = function getCityFromGeopoint(latitude, longitude){
 
+            alert("inside getCity"+latitude);
             var deferred = $q.defer();
             var queryFormat;
 
@@ -19,7 +20,7 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
                 cache: false
             }).
                 success(function(data, status) {
-
+                    alert(data.status);
                     if(data.status === "OK")
                     {
                         deferred.resolve(data.results[1].formatted_address);
