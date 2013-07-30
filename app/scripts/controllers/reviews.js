@@ -50,26 +50,22 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
 
     function getReviews(bookId)
     {
-
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
-        dataService.getReviewsFromBookId(bookId, function (isSuccess, results) {
+        dataService.getReviewsFromBookId(bookId).then(function(results) {
 
             $scope.$apply(function(){
-                if(isSuccess)
-                {
-                    deferred.resolve(results);
-                }
-                else
-                {
-                    deferred.reject();
-                }
-            });
 
-        });
+                    deferred.resolve(results);
+            })
+
+            }, function(){
+
+                    deferred.reject();
+
+            })
 
         return deferred.promise;
-
     }
 
     var promise = getReviews($scope.selectedBook.id)

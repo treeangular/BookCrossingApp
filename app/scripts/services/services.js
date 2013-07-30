@@ -98,17 +98,17 @@ angular.module('dataServices', [])
             reviewLike.set("user", Parse.User.current());
             reviewLike.set("isLike", isLike)
             reviewLike.set("book", book);
-            reviewLike.save(null, {
-               success: function (result) {
+            reviewLike.save(null).then(function(result){
+
                   deferred.resolve(result);
             },
-            error: function (reviewLike2, error) {
+            function (error) {
                // The save failed.
                // error is a Parse.Error with an error code and description.
                console.log("Error: " + error.code + " " + error.message);
                deferred.reject(ErrorConst.GenericError);
-            }
             })
+
             return deferred.promise;
         }
 
