@@ -14,7 +14,7 @@ angular.module('facebookProvider', [])
                   link: 'https://www.bookcrossingapp.com/',
                   picture: bookImage,
                   name: bookTitle + ' was ' + actionTypeName,
-                  caption: 'In' + bookLocation,
+                  caption: 'In ' + bookLocation,
                   description: bookTitle + ' was ' + actionTypeName + ' in BookCrossing app'
               };
 

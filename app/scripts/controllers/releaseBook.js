@@ -1,24 +1,7 @@
 'use strict';
 BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService, $rootScope, $q, facebookService) {
 
-    function shareFB(book, actionType)
-    {
-        var deferred = $q.defer();
-        facebookService.share(actionType, book.title, book.image, book.releasedAt, function(isSuccess, result){
-            if(!isSuccess)
-            {
-                deferred.reject(result);
 
-            }
-            else
-            {
-                deferred.resolve(result);
-            }
-
-        });
-        return deferred.promise;
-
-    }
 
     function releaseBook(releaseInfo, registrationId)
     {
@@ -105,7 +88,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
             $scope.setSelectedBook(result);
 
-            var promise2 = geolocationService.getCityFromGeopoint(result.get("releasedAt")._latitude, result.get("releasedAt")._longitude)
+            var promise2 = geolocationService.getCityFromGeopoint(geoPoint._latitude, geoPoint._longitude)
 
             alert("before promise")
             promise2.then(function(city){

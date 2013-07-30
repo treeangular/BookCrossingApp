@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootScope, $q, facebookService) {
+BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootScope, $q, facebookService, geolocationService) {
     $scope.books = null;
 
     function shareFB(book, actionType)
@@ -79,7 +79,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         promise.then(function(returnedBook) {
             $scope.setSelectedBook(returnedBook);
 
-            var promise2 = geolocationService.getCityFromGeopoint(result.get("releasedAt")._latitude, result.get("releasedAt")._longitude)
+            var promise2 = geolocationService.getCityFromGeopoint(returnedBook.get("releasedAt")._latitude, returnedBook.get("releasedAt")._longitude)
             promise2.then(function(city){
             if(typeof(FB) != 'undefined')
             {
