@@ -129,6 +129,18 @@
 
     },
     {
+        "key":"_commented_",
+        "value":"commented",
+        "description":"commented book"
+
+    },
+    {
+        "key":"_reviewed_",
+        "value":"reviewed",
+        "description":"reviewed book"
+
+    },
+    {
         "key":"_registered_",
         "value":"registered",
         "description":"registered book"

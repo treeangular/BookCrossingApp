@@ -26,6 +26,18 @@
 
     },
     {
+        "key":"_commented_",
+        "value":"commented",
+        "description":"commented book"
+
+    },
+    {
+        "key":"_reviewed_",
+        "value":"reviewed",
+        "description":"reviewed book"
+
+    },
+    {
         "key":"_Cancel_",
         "value":"Cancel",
         "description":"Cancel string for all the app"

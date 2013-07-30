@@ -13,7 +13,10 @@ var ActionTypesConst =
     Registered: "cacZr6Q9YL",
     Locked: "c8g1mW5GeK",
     Lost: "SXuWKfcmw5",
-    Joined: "Rqv9aPsb8z"
+    Joined: "Rqv9aPsb8z",
+    Commented: "s1sFLCZNWN",
+    Reviewed: "EIDZ8WwmZK"
+
 };
 
 var BookStatusConst =

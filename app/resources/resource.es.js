@@ -75,6 +75,18 @@
 
     },
     {
+        "key":"_commented_",
+        "value":"comentado",
+        "description":"commented book"
+
+    },
+    {
+        "key":"_reviewed_",
+        "value":"valoró",
+        "description":"reviewed book"
+
+    },
+    {
         "key":"_CityNotFound_",
         "value":"Ciudad no encontrada",
         "description":"City not found"

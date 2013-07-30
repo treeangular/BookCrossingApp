@@ -550,7 +550,11 @@ angular.module('dataServices', [])
                 actionType.id = ActionTypesConst.Released;
                 var actionType2 = new ActionType();
                 actionType2.id = ActionTypesConst.Hunted;
-                qAction.containedIn("actionType",[actionType, actionType2]);
+                var actionType3 = new ActionType();
+                actionType3.id = ActionTypesConst.Reviewed;
+                var actionType4 = new ActionType();
+                actionType4.id = ActionTypesConst.Commented;
+                qAction.containedIn("actionType",[actionType, actionType2, actionType3, actionType4]);
 
                 //qAction.notContainedIn("user",[Parse.User.current()]);
 

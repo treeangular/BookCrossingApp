@@ -5,8 +5,8 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     $scope.alerts = [];
     $scope.currentPage = 0;
     $scope.isLastPage = true;
-    var _versionMobile = "1.0.2";
-
+    var _versionMobile = "1.0.1";
+ 
     function checkVersion()
     {
         var deferred = $q.defer();
