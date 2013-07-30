@@ -1,4 +1,4 @@
-BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, dataService, $q) {
+BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, dataService, $q, facebookService) {
   $scope.review = {
       rating:0,
       reviewText: ""
@@ -38,6 +38,16 @@ BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, data
           $rootScope.$broadcast(loadingRequestConst.Stop);
           $scope.clicked = false;
           $scope.setSelectedBook($scope.selectedBook);
+
+          facebookService.share('review',$scope.selectedBook.title,$scope.selectedBook.image, $scope.selectedBook.releasedAt, function(isSuccess, result){
+              if(!isSuccess)
+              {
+                  $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                  $rootScope.MessageNotification = result;
+              }
+
+          });
+
           $scope.goTo('views/bookDetails.html');
       }, function(reason) {
 

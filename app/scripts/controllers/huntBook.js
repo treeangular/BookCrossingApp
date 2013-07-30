@@ -78,6 +78,15 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         var promise = huntBook(book);
         promise.then(function(returnedBook) {
             $scope.setSelectedBook(returnedBook);
+
+            facebookService.share('hunted',returnedBook.title,returnedBook.image, returnedBook.releasedAt, function(isSuccess, result){
+                if(!isSuccess)
+                {
+                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                    $rootScope.MessageNotification = result;
+                }
+
+            });
             $scope.goTo('views/bookDetails.html');
         }, function(reason) {
 

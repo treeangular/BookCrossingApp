@@ -1,11 +1,11 @@
 'use strict';
-BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $http, $window) {
+BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $http, $window, $location) {
 
 
     $scope.alerts = [];
     $scope.currentPage = 0;
     $scope.isLastPage = true;
-    var _versionMobile = "1.0.1";
+    var _versionMobile = "1.0.2";
 
     function checkVersion()
     {
@@ -19,9 +19,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 {
                   if(result.get("isCritical"))
                   {
-                     $window.navigator.notification.alert("There is a new critical version, please download it!", function(){ $window.navigator.app.exitApp();}, "BookCrossingApp", "OK");
-                     $rootScope.isCritical = true;
-
+                     $window.navigator.notification.alert("There is a new critical version, please download it!", function(){ $location.path('/Sign') }, "BookCrossingApp", "OK");
 
                   }
                   else

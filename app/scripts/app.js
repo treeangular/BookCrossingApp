@@ -29,6 +29,10 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
         templateUrl: 'views/addBook.html',
         controller: 'AddBookCtrl'
       })
+      .when('/UpdateApp', {
+            templateUrl: 'views/updateApp.html',
+            controller: 'UpdateAppCtrl'
+      })
       .when('/AddZobc', {
         templateUrl: 'views/addZobc.html',
         controller: 'AddZobcCtrl'

@@ -136,17 +136,10 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
                         if (isResult)
                         {
-                            alert($rootScope.currentUser.fbId);
+
 //                            if($rootScope.currentUser.fbId != undefined)
 //                            {
-                                facebookService.share('Registered',book.title, function(isSuccess, result){
-                                if(!isSuccess)
-                                {
-                                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                                    $rootScope.MessageNotification = result;
-                                }
 
-                                });
 //                            }
 
                             $scope.goTo('views/bookBarcode.html')

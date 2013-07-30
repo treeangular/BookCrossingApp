@@ -102,7 +102,18 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
         var promise = releaseBook(releaseInfo, $scope.registrationId);
         promise.then(function(result) {
+
             $scope.setSelectedBook(result);
+
+            facebookService.share('released',result.title,result.image, result.releasedAt, function(isSuccess, result){
+                if(!isSuccess)
+                {
+                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                    $rootScope.MessageNotification = result;
+                }
+
+            });
+
             $scope.goTo('views/reviewBook.html');
 
         }, function(reason) {
