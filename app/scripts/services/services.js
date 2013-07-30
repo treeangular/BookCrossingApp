@@ -178,6 +178,28 @@ angular.module('dataServices', [])
 
         //</editor-fold>
 
+        //<editor-fold description="User">
+
+        var isCurrentUser = function isCurrentUser() {
+
+            var deferred = $q.defer();
+
+            var currentUser = Parse.User.current();
+            if (currentUser) {
+                // do stuff with the user
+                console.log("currentUser" + currentUser.id);
+                deferred.resolve(currentUser);
+
+            } else {
+                // show the signup or login page
+                deferred.reject(ErrorConst.GenericError);
+            }
+
+            return deferred.promise;
+
+        }
+        //</editor-fold>
+
         /**
          * ParseService Object
          * This is what is used by the main controller to save and retrieve data from Parse.com.
@@ -492,18 +514,7 @@ angular.module('dataServices', [])
 
             },
 
-            isCurrentUser: function isCurrentUser(callback) {
-                var currentUser = Parse.User.current();
-                if (currentUser) {
-                    // do stuff with the user
-                    console.log("currentUser" + currentUser.id);
-                    callback(true, currentUser);
-                } else {
-                    // show the signup or login page
-                    callback(false, ErrorConst.GenericError);
-                }
-
-            },
+            isCurrentUser: isCurrentUser,
 
             //Need the data of the current user getting form LocalStorage first if possible.
             getCurrentUser: function getCurrentUser(callback)

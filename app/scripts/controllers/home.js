@@ -5,14 +5,14 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     $scope.alerts = [];
     $scope.currentPage = 0;
     $scope.isLastPage = true;
-    var _versionMobile = "1.0.0";
-
+    var _versionMobile = "1.0.1";
 
     if($rootScope.currentUser == undefined)
     {
-        var promise = dataService.checkApplicationVersion();
+        var promiseCheckApplicationVersion = dataService.checkApplicationVersion();
 
-        promise.then(function(result){
+        //We call to the promise and when the promise is finished it throws the then
+        promiseCheckApplicationVersion.then(function(result){
             if(result.get("version") != _versionMobile)
             {
                 if(result.get("isCritical"))
@@ -24,16 +24,22 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 {
                     navigator.notification.alert("There is a new version, download it!");
                 }
-                deferred.resolve();
 
             }
+           //When the first promise is executed we execute another piece of code
+           // this piece of code is to call a service that is already a promise so we can assign it directly to a $scope
+        }).then(function()
+            {
+                $scope.$apply(
+                    $rootScope.currentuser = dataService.isCurrentUser()
+                )
 
-        }, function(error)
-        {
-            alert("Holaaaa");
 
+            }, function(reason) {
 
-        })
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = reason;
+            });
     }
     function getActPage(pageNumber)
     {
