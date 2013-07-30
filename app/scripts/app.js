@@ -76,6 +76,7 @@ function loadGoogleAnalytics($window)
 
     if (typeof window.plugins != 'undefined')
     {
+        //For Web
         window.plugins.gaPlugin.init(function() {
 
             alert("gaPlugin inted")
@@ -90,6 +91,26 @@ function loadGoogleAnalytics($window)
             console.log("Main Tracked!!");
 
         }, errorHandler, "/Main");
+
+
+        //For App
+        window.plugins.gaPlugin.init(function() {
+
+            alert("gaPlugin inted")
+
+        }, errorHandler, "UA-42576964-2", 10);
+
+
+        alert("index tracked!!");
+        // Call the service and fetch the list of signatures that match the given petition ID
+        window.plugins.gaPlugin.trackPage( function() {
+
+            console.log("Main Tracked!!");
+
+        }, errorHandler, "/Main");
+
+
+
     }
     else
     {
