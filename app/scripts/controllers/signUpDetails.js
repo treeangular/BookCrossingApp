@@ -38,11 +38,11 @@ angular.module('BookCrossingApp')
 
             if(currentUser != null )
             {
-                profilePhoto = currentUser.get("myFile");
+                profilePhoto = currentUser.get("myPicture");
 
                 if(profilePhoto != undefined)
                 {
-                    $scope.myPicture = profilePhoto.url();
+                    $scope.myPicture = profilePhoto;//profilePhoto.url();
                 }
                 else{
                     $scope.myPicture = "styles/img/user.png"                                     }
@@ -103,18 +103,6 @@ angular.module('BookCrossingApp')
             }
         }, true);
 
-       /* function asynResolveLocalFileSystemURI(imageData)
-        {
-            var deferred = $q.defer();
-            fileToUpdate = resolveLocalFileTobyteArray(imageData);
-
-            $scope.$apply(function ()
-            {
-                deferred.resolve(fileToUpdate);
-            });
-
-        }
-*/
         $scope.updateUserProfile = function (user) {
 
             if (fileToUpdate!=undefined){
@@ -124,7 +112,7 @@ angular.module('BookCrossingApp')
 
                     var currentUser = Parse.User.current();
                     currentUser.set("myPicture",uploadedParseFile._url);
-                    currentUser.set("myFile",uploadedParseFile);
+                    //currentUser.set("myFile",uploadedParseFile);
 
                     currentUser.save().then(function(){
                            // navigator.notification.alert("success updating user!", null);
