@@ -80,7 +80,7 @@ function loadGoogleAnalytics($window)
 
             alert("gaPlugin inted")
 
-        }, errorHandler, "UA-42503133-1", 10);
+        }, errorHandler, "UA-42576964-1", 10);
 
 
         alert("index tracked!!");
