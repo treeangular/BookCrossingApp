@@ -79,7 +79,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         promise.then(function(returnedBook) {
             $scope.setSelectedBook(returnedBook);
 
-            facebookService.share('hunted',returnedBook.title,returnedBook.image, returnedBook.releasedAt, function(isSuccess, result){
+            facebookService.share('hunted',returnedBook.get("title"),returnedBook.get("image"), returnedBook.get("releasedAt"), function(isSuccess, result){
                 if(!isSuccess)
                 {
                     $rootScope.TypeNotification = ErrorConst.TypeNotificationError;

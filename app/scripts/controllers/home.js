@@ -19,7 +19,15 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 {
                   if(result.get("isCritical"))
                   {
-                     $window.navigator.notification.alert("There is a new critical version, please download it!", function(){ $location.path('/Sign') }, "BookCrossingApp", "OK");
+                     $window.navigator.notification.alert("There is a new critical version, please download it!",
+                         function(){
+                             $scope.$apply(
+                                 function () {
+                                     $scope.goTo('views/updateApp.html');
+                                 }
+                             )
+
+                         }, "BookCrossingApp", "OK");
 
                   }
                   else

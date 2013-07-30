@@ -105,7 +105,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
             $scope.setSelectedBook(result);
 
-            facebookService.share('released',result.title,result.image, result.releasedAt, function(isSuccess, result){
+            facebookService.share('released',result.get("title"),result.get("image"), result.get("releasedAt"), function(isSuccess, result){
                 if(!isSuccess)
                 {
                     $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
