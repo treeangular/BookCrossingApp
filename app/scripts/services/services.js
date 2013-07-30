@@ -46,22 +46,18 @@ angular.module('dataServices', [])
         var checkApplicationVersion = function(){
 
             var deferred = $q.defer();
-
             var query = new Parse.Query(ApplicationVersion);
             query.descending("createdAt");
-            query.first({
-                success: function (applicationVersion) {
+            query.first().then(function(applicationVersion){
 
                     deferred.resolve(applicationVersion);
-
                 },
-                error: function (data,error) {
+                function (data,error) {
                     // The save failed.
                     // error is a Parse.Error with an error code and description.
                     console.log("Error: " + error.code + " " + error.message);
                     deferred.reject(ErrorConst.GenericError);
-                }
-            });
+                })
 
             return deferred.promise;
         }
@@ -72,7 +68,6 @@ angular.module('dataServices', [])
         var findReview = function (reviewId){
 
             var deferred = $q.defer();
-
             var query = new Parse.Query(Review);
             // Include the post data with each comment
             query.equalTo("objectId", reviewId);
@@ -95,35 +90,28 @@ angular.module('dataServices', [])
 
         }
 
-        var addLikeUnLikeToReview = function(book,reviewId, isLike){
+
+
+        var addLikeUnLikeToReview = function(book, review, isLike){
 
             var deferred = $q.defer();
             var reviewLike = new ReviewLike();
-
-            var findReviewPromise = findReview(reviewId);
-
-            findReviewPromise.then(function (review){
-
-                reviewLike.set("review", review);
-                reviewLike.set("user", Parse.User.current());
-                reviewLike.set("isLike", isLike)
-                reviewLike.set("book", book);
-                reviewLike.save(null, {
-                    success: function (result) {
-
-                        deferred.resolve(result);
-                    },
-                    error: function (reviewLike2, error) {
-                        // The save failed.
-                        // error is a Parse.Error with an error code and description.
-                        console.log("Error: " + error.code + " " + error.message);
-                        deferred.reject(ErrorConst.GenericError);
-                    }
-                });
-
+            reviewLike.set("review", review);
+            reviewLike.set("user", Parse.User.current());
+            reviewLike.set("isLike", isLike)
+            reviewLike.set("book", book);
+            reviewLike.save(null, {
+               success: function (result) {
+                  deferred.resolve(result);
+            },
+            error: function (reviewLike2, error) {
+               // The save failed.
+               // error is a Parse.Error with an error code and description.
+               console.log("Error: " + error.code + " " + error.message);
+               deferred.reject(ErrorConst.GenericError);
+            }
             })
             return deferred.promise;
-
         }
 
         var getReviewLike = function(userId, bookId)
