@@ -65,60 +65,101 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window) {
 
+    document.addEventListener('deviceready', function () {
+
+        function errorHandler(e) {
+            //Lame - do nothing
+            alert(e.toString());
+        }
+
+        if (typeof window.plugins != 'undefined')
+        {
+            //For Web
+            window.plugins.gaPlugin.init(function() {
+
+                alert("gaPlugin inted")
+
+            }, errorHandler, "UA-42576964-1", 10);
+
+            alert("index tracked!!");
+            // Call the service and fetch the list of signatures that match the given petition ID
+            window.plugins.gaPlugin.trackPage( function() {
+
+                console.log("Main Tracked!!");
+
+            }, errorHandler, "/Main");
+
+            //For App
+            window.plugins.gaPlugin.init(function() {
+
+                alert("gaPlugin inted")
+
+            }, errorHandler, "UA-42576964-2", 10);
+
+
+            alert("index tracked!!");
+            // Call the service and fetch the list of signatures that match the given petition ID
+            window.plugins.gaPlugin.trackPage( function() {
+
+                console.log("Main Tracked!!");
+
+            }, errorHandler, "/Main");
+        }
+        else
+        {
+            alert("undefined");
+        }
+
+        });
+
 });
 
-function loadGoogleAnalytics($window)
-{
-    function errorHandler(e) {
-        //Lame - do nothing
-        alert(e.toString());
-    }
-
-    if (typeof window.plugins != 'undefined')
-    {
-        //For Web
-        window.plugins.gaPlugin.init(function() {
-
-            alert("gaPlugin inted")
-
-        }, errorHandler, "UA-42576964-1", 10);
-
-
-        alert("index tracked!!");
-        // Call the service and fetch the list of signatures that match the given petition ID
-        window.plugins.gaPlugin.trackPage( function() {
-
-            console.log("Main Tracked!!");
-
-        }, errorHandler, "/Main");
-
-
-        //For App
-        window.plugins.gaPlugin.init(function() {
-
-            alert("gaPlugin inted")
-
-        }, errorHandler, "UA-42576964-2", 10);
-
-
-        alert("index tracked!!");
-        // Call the service and fetch the list of signatures that match the given petition ID
-        window.plugins.gaPlugin.trackPage( function() {
-
-            console.log("Main Tracked!!");
-
-        }, errorHandler, "/Main");
-
-
-
-    }
-    else
-    {
-        alert("undefined");
-
-    }
-
-}
+//function loadGoogleAnalytics($window)
+//{
+//    function errorHandler(e) {
+//        //Lame - do nothing
+//        alert(e.toString());
+//    }
+//
+//    if (typeof window.plugins != 'undefined')
+//    {
+//        //For Web
+//        window.plugins.gaPlugin.init(function() {
+//
+//            alert("gaPlugin inted")
+//
+//        }, errorHandler, "UA-42576964-1", 10);
+//
+//        alert("index tracked!!");
+//        // Call the service and fetch the list of signatures that match the given petition ID
+//        window.plugins.gaPlugin.trackPage( function() {
+//
+//            console.log("Main Tracked!!");
+//
+//        }, errorHandler, "/Main");
+//
+//        //For App
+//        window.plugins.gaPlugin.init(function() {
+//
+//            alert("gaPlugin inted")
+//
+//        }, errorHandler, "UA-42576964-2", 10);
+//
+//
+//        alert("index tracked!!");
+//        // Call the service and fetch the list of signatures that match the given petition ID
+//        window.plugins.gaPlugin.trackPage( function() {
+//
+//            console.log("Main Tracked!!");
+//
+//        }, errorHandler, "/Main");
+//    }
+//    else
+//    {
+//        alert("undefined");
+//    }
+//
+//}
 
 function loadFastClick()
 {
