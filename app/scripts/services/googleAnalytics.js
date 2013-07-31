@@ -32,10 +32,12 @@ angular.module('googleAnalyticsProvider', [])
             gaPlugin.init(function() {
 
                 console.log("gaPlugint inited");
+                alert("gaPlugin inted");
 
             }, function()
             {
                 console.error("gaPlugIn problem");
+                alert("gaPlugin problem");
             }, id, 10);
 
         }
@@ -54,10 +56,11 @@ angular.module('googleAnalyticsProvider', [])
                         gaPlugin.trackPage( function() {
 
                             console.log("Main Tracked!!");
+                            alert("Main Tracked!!");
 
                         },  function() {
 
-                            alert("not tracked!")
+                            alert("not tracked!");
 
                         }, $location.path());
 
