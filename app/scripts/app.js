@@ -79,10 +79,10 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
                         var result = confirm("There is a new critical version, please download it!");
 
                         if (result) {
-                            $location.path('/UpdateApp');
+                            window.location = "views/UpdateApp.html";
                         }
                         else {
-                            $location.path('/UpdateApp');
+                            window.location = "views/UpdateApp.html";
                         }
                     }
                     else {
