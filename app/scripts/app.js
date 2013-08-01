@@ -65,42 +65,6 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
 var _versionMobile = "1.0.2";
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location) {
-
-    function checkVersion()
-    {
-        var deferred = $q.defer();
-
-        dataService.checkApplicationVersion(function (isResult, result) {
-
-            if(isResult)
-            {
-                if(result.get("version") != _versionMobile)
-                    if (result.get("isCritical")) {
-                        var result = alert("There is a new critical version, please download it!");
-                        $window.location = "views/UpdateApp.html";
-                    }
-                    else {
-                        alert("There is a new version, download it!");
-                    }
-                deferred.resolve();
-            }
-            else
-            {
-                deferred.reject();
-            }
-        });
-        return deferred.promise;
-
-    }
-
-    var promise= checkVersion();
-
-    promise.then(function(){
-
-    }, function(){
-
-    })
-
     var googleAnalyticsId = "UA-42576964-1";
     //var googleAnalyticsIdApp = "UA-42576964-2";
 
@@ -108,6 +72,43 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
         googleAnalyticsProvider.setAccount(googleAnalyticsId);
         googleAnalyticsProvider.trackPage("index.html");
+
+        function checkVersion()
+        {
+            var deferred = $q.defer();
+
+            dataService.checkApplicationVersion(function (isResult, result) {
+
+                if(isResult)
+                {
+                    if(result.get("version") != _versionMobile)
+                        if (result.get("isCritical")) {
+                            var result = alert("There is a new critical version, please download it!");
+                            $window.location = "views/UpdateApp.html";
+                        }
+                        else {
+                            alert("There is a new version, download it!");
+                        }
+                    deferred.resolve();
+                }
+                else
+                {
+                    deferred.reject();
+                }
+            });
+            return deferred.promise;
+
+        }
+
+        var promise= checkVersion();
+
+        promise.then(function(){
+
+        }, function(){
+
+        })
+
+
     });
 
 ////        function errorHandler(e) {
