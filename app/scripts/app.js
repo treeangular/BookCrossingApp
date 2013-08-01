@@ -123,13 +123,13 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
     }
     //@Javi una promise sin funcionalidad dentro podemos solo dejar la llamada async sin mas n?
     //  checkVersion();
-    var promise= checkVersion();
-
-    promise.then(function(){
-
-    }, function(){
-
-    })
+//    var promise= checkVersion();
+//
+//    promise.then(function(){
+//
+//    }, function(){
+//
+//    })
 
 //    var googleAnalyticsId = "UA-42576964-1";
 //    var googleAnalyticsIdApp = "UA-42576964-2";
