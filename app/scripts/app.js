@@ -65,52 +65,52 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
 var _versionMobile = "1.0.2";
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location) {
-    var googleAnalyticsId = "UA-42576964-1";
-    //var googleAnalyticsIdApp = "UA-42576964-2";
 
-    document.addEventListener('deviceready', function () {
+    function checkVersion()
+    {
+        var deferred = $q.defer();
 
-        googleAnalyticsProvider.setAccount(googleAnalyticsId);
-        googleAnalyticsProvider.trackPage("index.html");
+        dataService.checkApplicationVersion(function (isResult, result) {
 
-        function checkVersion()
-        {
-            var deferred = $q.defer();
+            if(isResult)
+            {
+                if(result.get("version") != _versionMobile)
+                    if (result.get("isCritical")) {
+                        var result = alert("There is a new critical version, please download it!");
+                        $window.location.href = "views/UpdateApp.html";
+                    }
+                    else {
+                        alert("There is a new version, download it!");
+                    }
+                deferred.resolve();
+            }
+            else
+            {
+                deferred.reject();
+            }
+        });
+        return deferred.promise;
 
-            dataService.checkApplicationVersion(function (isResult, result) {
+    }
 
-                if(isResult)
-                {
-                    if(result.get("version") != _versionMobile)
-                        if (result.get("isCritical")) {
-                            var result = alert("There is a new critical version, please download it!");
-                            $window.location = "views/UpdateApp.html";
-                        }
-                        else {
-                            alert("There is a new version, download it!");
-                        }
-                    deferred.resolve();
-                }
-                else
-                {
-                    deferred.reject();
-                }
-            });
-            return deferred.promise;
+    var promise= checkVersion();
 
-        }
+    promise.then(function(){
 
-        var promise= checkVersion();
+    }, function(){
 
-        promise.then(function(){
+    })
 
-        }, function(){
+//    var googleAnalyticsId = "UA-42576964-1";
+//    var googleAnalyticsIdApp = "UA-42576964-2";
 
-        })
-
-
-    });
-
+//    document.addEventListener('deviceready', function () {
+//
+//        googleAnalyticsProvider.setAccount(googleAnalyticsId);
+//
+//        googleAnalyticsProvider.trackPage("index.html");
+//
+//
 ////        function errorHandler(e) {
 ////            //Lame - do nothing
 ////            alert(e.toString());
