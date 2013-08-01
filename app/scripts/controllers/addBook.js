@@ -2,6 +2,8 @@
 
 BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q, facebookService, $window) {
 
+    alert("_gap Push location.path is: " + $location.path());
+    $window._gaq.push(['_trackPageview', $location.path()]);
 
     $scope.addBook = false;
 
@@ -24,6 +26,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.scanBook = function () {
     {
+
+
         console.log('scanning');
         try {
 
@@ -91,6 +95,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         return deferred.promise;
 
     }
+
 	$scope.findBook = function () {
 		if ($scope.isbn != null)
         {
