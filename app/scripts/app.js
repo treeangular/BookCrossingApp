@@ -101,16 +101,15 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
     })
 
-//    var googleAnalyticsId = "UA-42576964-1";
-//    var googleAnalyticsIdApp = "UA-42576964-2";
+    var googleAnalyticsId = "UA-42576964-1";
+    //var googleAnalyticsIdApp = "UA-42576964-2";
 
-//    document.addEventListener('deviceready', function () {
-//
-//        googleAnalyticsProvider.setAccount(googleAnalyticsId);
-//
-//        googleAnalyticsProvider.trackPage("index.html");
-//
-//
+    document.addEventListener('deviceready', function () {
+
+        googleAnalyticsProvider.setAccount(googleAnalyticsId);
+        googleAnalyticsProvider.trackPage("index.html");
+    });
+
 ////        function errorHandler(e) {
 ////            //Lame - do nothing
 ////            alert(e.toString());
