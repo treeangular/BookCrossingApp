@@ -62,7 +62,7 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
     loadFB();
 
 }]);
-var _versionMobile = "1.0.2";
+var _versionMobile = "1.0.3";
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location) {
 
@@ -82,7 +82,6 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
                     }
                     else {
                         alert("There is a new version, download it!");
-                        $location.path('/');
                     }
                 deferred.resolve();
             }
