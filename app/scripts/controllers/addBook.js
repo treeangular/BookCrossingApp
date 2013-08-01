@@ -24,12 +24,25 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         alert(e.toString());
     }
 
+    function nativePluginResultHandler (result) {
+        //alert('nativePluginResultHandler - '+result);
+        console.log('nativePluginResultHandler: '+result);
+
+    }
+
+    function nativePluginErrorHandler (error) {
+        //alert('nativePluginErrorHandler - '+error);
+        console.log('nativePluginErrorHandler: '+error);
+    }
+
     $scope.scanBook = function () {
     {
 
 
         console.log('scanning');
         try {
+
+            gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
 
             $window.plugins.barcodeScanner.scan(
                 function(result) {
