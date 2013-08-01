@@ -76,11 +76,13 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
             {
                 if(result.get("version") != _versionMobile)
                     if (result.get("isCritical")) {
-                        var result = alert("There is a new critical version, please download it!");
-                        $window.location.href = "views/UpdateApp.html";
+
+                        alert("There is a new critical version, please download it!");
+                        $location.path('/UpdateApp');
                     }
                     else {
                         alert("There is a new version, download it!");
+                        $location.path('/');
                     }
                 deferred.resolve();
             }
