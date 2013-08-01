@@ -5,71 +5,20 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     $scope.alerts = [];
     $scope.currentPage = 0;
     $scope.isLastPage = true;
-    var _versionMobile = "1.0.1";
- 
-    function checkVersion()
-    {
-        var deferred = $q.defer();
-
-        dataService.checkApplicationVersion(function (isResult, result) {
-
-            if(isResult)
-            {
-                if(result.get("version") != _versionMobile)
-                {
-                  if(result.get("isCritical"))
-                  {
-                     $window.navigator.notification.confirm("There is a new critical version, please download it!",
-                         function(){
-                             $scope.$apply(
-                                 function () {
-                                     $scope.goTo('views/updateApp.html');
-                                 }
-                             )
-
-                         }, "BookCrossingApp", "OK");
-
-                  }
-                  else
-                  {
-                     navigator.notification.alert("There is a new version, download it!");
-                  }
-
-                }
-                        deferred.resolve();
-            }
-            else
-            {
-                deferred.reject();
-            }
-        });
-        return deferred.promise;
-
-    }
-
 
     if($rootScope.currentUser == undefined)
     {
-
-        var promise2 = checkVersion();
-        promise2.then(function()
-        {
-
-            dataService.isCurrentUser(function (result, currentUser) {
+        dataService.isCurrentUser(function (result, currentUser) {
                 if (result) {
                     $rootScope.currentUser = currentUser;
 
                 }
+                else
+                {
+                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                    $rootScope.MessageNotification = ErrorConst.UserLoginError;
+                }
             });
-            
-        }, function(reason) {
-
-
-            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-            $rootScope.MessageNotification = reason;
-        });
-
-
 
     }
     function getActPage(pageNumber)
