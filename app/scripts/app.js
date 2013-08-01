@@ -70,9 +70,9 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
     var gaPlugin;
     var googleAnalyticsId = "UA-42576964-1";
 
-    function initialize() {
+    //function initialize() {
         document.addEventListener("deviceready", onDeviceReady, true);
-    }
+    //}
 
     function onDeviceReady() {
         gaPlugin = window.plugins.gaPlugin;

@@ -2,8 +2,10 @@
 
 BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q, facebookService, $window) {
 
-    alert("_gap Push location.path is: " + $location.path());
-    $window._gaq.push(['_trackPageview', $location.path()]);
+//    alert("_gap Push location.path is: " + $location.path());
+//    $window._gaq.push(['_trackPageview', $location.path()]);
+    gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
+
 
     $scope.addBook = false;
 
@@ -42,7 +44,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         console.log('scanning');
         try {
 
-            gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
+            //gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
 
             $window.plugins.barcodeScanner.scan(
                 function(result) {
