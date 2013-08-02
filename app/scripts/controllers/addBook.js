@@ -4,7 +4,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
 //    alert("_gap Push location.path is: " + $location.path());
 //    $window._gaq.push(['_trackPageview', $location.path()]);
-    gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
+//    gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
 
 
     $scope.addBook = false;
