@@ -81,19 +81,36 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         //navigator.notification.confirm('GA_PLUGIN would like your permission to collect usage data. No personal or user identifiable data will be collected.', permissionCallback, 'Attention', 'Allow,Deny');
 
         gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, googleAnalyticsId, 10);
+        alert('onDeviceReady - After init');
     }
 
     function nativePluginResultHandler (result) {
         alert('nativePluginResultHandler - '+result);
         console.log('nativePluginResultHandler: '+result);
 
-        gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
+        gaPlugin.trackPage("AddBook.ScanBook.com");
 
     }
 
     function nativePluginErrorHandler (error) {
         alert('nativePluginErrorHandler - '+error);
         console.log('nativePluginErrorHandler: '+error);
+    }
+
+    document.addEventListener("online", onOnline, false);
+
+    function onOnline() {
+        // Handle the online event
+        $rootScope.TypeNotification = "errormessage";
+        $rootScope.MessageNotification = "OnLine";
+    }
+
+    document.addEventListener("offline", onOffline, false);
+
+    function onOffline() {
+        // Handle the offline event
+        $rootScope.TypeNotification = "errormessage";
+        $rootScope.MessageNotification = "OffLine";
     }
 
     function checkVersion()
