@@ -88,9 +88,9 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
             $scope.setSelectedBook(result);
 
-            var promise2 = geolocationService.getCityFromGeopoint(geoPoint._latitude, geoPoint._longitude)
+            var promise2 = geolocationService.getCityFromGeopoint(geoPoint.latitude, geoPoint.longitude);
 
-            alert("before promise")
+
             promise2.then(function(city){
 
                 if(typeof(FB) != 'undefined')

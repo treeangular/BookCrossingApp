@@ -11,7 +11,7 @@ angular.module('facebookProvider', [])
               // calling the API ...
               var obj = {
                   method: 'feed',
-                  link: 'https://www.bookcrossingapp.com/',
+                  link: 'http://www.bookcrossingapp.com/',
                   picture: bookImage,
                   name: bookTitle + ' was ' + actionTypeName,
                   caption: 'In ' + bookLocation,

@@ -71,48 +71,67 @@ angular.module('dataServices', [])
             },
             //<editor-fold description="ReviewLike">
 
-            addLikeUnLikeToReview: function addLikeUnLikeToReview(book, reviewId, isLike, callback)
+            addOrUpdateLikeUnLikeToReview: function addOrUpdateLikeUnLikeToReview(book, reviewId, isLike, callback)
             {
 
+                var reviewFound;
                 var query = new Parse.Query(Review);
 
                 // Include the post data with each comment
                 query.equalTo("objectId", reviewId);
 
-                query.first({
-                    success: function (review) {
+                query.first().then(function (review) {
 
-                        var reviewLike = new ReviewLike();
+                        reviewFound = review;
+                        var queryReviewLike = new Parse.Query(ReviewLike);
 
+                        queryReviewLike.equalTo("review", review);
+                        queryReviewLike.equalTo("user", Parse.User.current());
 
-                        reviewLike.set("review", review);
-                        reviewLike.set("isLike", isLike)
-                        reviewLike.set("user", Parse.User.current());
-                        reviewLike.set("book", book);
+                        return queryReviewLike.first();
 
-                        reviewLike.save(null, {
-                            success: function (reviewLike2) {
-                                // The object was saved successfully.
-                                callback(true, reviewLike2);
-                            },
-                            error: function (reviewLike2, error) {
-                                // The save failed.
-                                // error is a Parse.Error with an error code and description.
-                                console.log("Error: " + error.code + " " + error.message);
-                                callback(false, ErrorConst.GenericError);
+                }).then(function(reviewLike){
+
+                        if(reviewLike)
+                        {
+                            if(reviewLike.get("isLike"))
+                            {
+                                reviewLike.set("isLike", false)
+                                reviewFound.increment("likeCount", -1);
+                                reviewFound.increment("unLikeCount", 1);
                             }
-                        });
+                            else
+                            {
+                                reviewLike.set("isLike", true)
+                                reviewFound.increment("likeCount", 1);
+                                reviewFound.increment("unLikeCount", -1);
 
+                            }
+                            reviewFound.save();
+                            return reviewLike.save()
+                        }
+                        else
+                        {
+                            var reviewLike = new ReviewLike();
 
-                    },
-                    error: function (data,error) {
+                            reviewLike.set("review", reviewFound);
+                            reviewLike.set("isLike", isLike)
+                            reviewLike.set("user", Parse.User.current());
+                            reviewLike.set("book", book);
+
+                            return reviewLike.save();
+                        }
+
+                    }).then(function(result){
+
+                        callback(true, result);
+
+                    },  function (error) {
                         // The save failed.
                         // error is a Parse.Error with an error code and description.
                         console.log("Error: " + error.code + " " + error.message);
-                        callback(false, ErrorConst.BookNotFound);
-                    }
-                });
-
+                        callback(false, ErrorConst.GenericError);
+                    })
             },
 
             getReviewLike: function getReviewLike(userId, bookId, callback)
