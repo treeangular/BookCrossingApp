@@ -65,6 +65,7 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
 var _versionMobile = "1.0.3";
 var gaPlugin;
 var googleAnalyticsId = "UA-42576964-2";
+var googleAnalyticsIdApp = "UA-42576964-2";
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location) {
 
@@ -83,6 +84,7 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         //navigator.notification.confirm('GA_PLUGIN would like your permission to collect usage data. No personal or user identifiable data will be collected.', permissionCallback, 'Attention', 'Allow,Deny');
 
         gaPlugin.init(SuccessInitGaPlugin, ErrorInitGaPlugin, googleAnalyticsId, 10);
+        gaPlugin.init(SuccessInitGaPlugin, ErrorInitGaPlugin, googleAnalyticsIdApp, 10);
         alert('onDeviceReady - After init');
     }
 
@@ -317,6 +319,8 @@ function SuccessInitGaPlugin (result) {
         alert('SuccessInitGaPlugin - '+result);
         console.log('SuccessInitGaPlugin: '+result);
 
+
+        gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Button", "Click", "event only", 1);
         gaPlugin.trackPage("Init.App.com");
 
     } catch (ex) {
@@ -336,4 +340,18 @@ function ErrorInitGaPlugin (error) {
         console.log(ex.message);
         navigator.notification.alert("Catch says: " + ex.message);
     }
+}
+
+function nativePluginResultHandler (result) {
+
+    try{
+        alert('Event Tracked - '+result);
+        console.log('Event Tracked: '+result);
+
+
+    } catch (ex) {
+        console.log(ex.message);
+        navigator.notification.alert("Catch says: " + ex.message);
+    }
+
 }
