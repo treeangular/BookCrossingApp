@@ -310,15 +310,30 @@ function loadParse()
 
     Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
 }
-function SuccessInitGaPlugin (result) {
-    alert('SuccessInitGaPlugin - '+result);
-    console.log('SuccessInitGaPlugin: '+result);
 
-    gaPlugin.trackPage("Init.App.com");
+function SuccessInitGaPlugin (result) {
+
+  try{
+        alert('SuccessInitGaPlugin - '+result);
+        console.log('SuccessInitGaPlugin: '+result);
+
+        gaPlugin.trackPage("Init.App.com");
+
+    } catch (ex) {
+        console.log(ex.message);
+        navigator.notification.alert("Catch says: " + ex.message);
+    }
 
 }
 
 function ErrorInitGaPlugin (error) {
-    alert('ErrorInitGaPlugin - '+error);
-    console.log('ErrorInitGaPlugin: '+error);
+
+    try{
+        alert('ErrorInitGaPlugin - '+error);
+        console.log('ErrorInitGaPlugin: '+error);
+
+    } catch (ex) {
+        console.log(ex.message);
+        navigator.notification.alert("Catch says: " + ex.message);
+    }
 }
