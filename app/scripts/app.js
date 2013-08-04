@@ -75,6 +75,12 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
     //}
 
     function onDeviceReady() {
+
+        if (typeof window.plugins == 'undefined')
+        {
+            alert('onDeviceReady- window.plugins == undefined' );
+        }
+
         gaPlugin = window.plugins.gaPlugin;
 
         // Note: A request for permission is REQUIRED by google. You probably want to do this just once, though, and remember the answer for subsequent runs.
