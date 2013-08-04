@@ -63,16 +63,12 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
 
 }]);
 var _versionMobile = "1.0.3";
+var gaPlugin;
+var googleAnalyticsId = "UA-42576964-2";
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location) {
 
-
-    var gaPlugin;
-    var googleAnalyticsId = "UA-42576964-1";
-
-    //function initialize() {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    //}
+    document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
 
@@ -86,21 +82,8 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         // Note: A request for permission is REQUIRED by google. You probably want to do this just once, though, and remember the answer for subsequent runs.
         //navigator.notification.confirm('GA_PLUGIN would like your permission to collect usage data. No personal or user identifiable data will be collected.', permissionCallback, 'Attention', 'Allow,Deny');
 
-        gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, googleAnalyticsId, 10);
+        gaPlugin.init(SuccessInitGaPlugin, ErrorInitGaPlugin, googleAnalyticsId, 10);
         alert('onDeviceReady - After init');
-    }
-
-    function nativePluginResultHandler (result) {
-        alert('nativePluginResultHandler - '+result);
-        console.log('nativePluginResultHandler: '+result);
-
-        gaPlugin.trackPage("AddBook.ScanBook.com");
-
-    }
-
-    function nativePluginErrorHandler (error) {
-        alert('nativePluginErrorHandler - '+error);
-        console.log('nativePluginErrorHandler: '+error);
     }
 
     document.addEventListener("online", onOnline, false);
@@ -326,4 +309,16 @@ function loadParse()
     var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr";
 
     Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
+}
+function SuccessInitGaPlugin (result) {
+    alert('SuccessInitGaPlugin - '+result);
+    console.log('SuccessInitGaPlugin: '+result);
+
+    gaPlugin.trackPage("Init.App.com");
+
+}
+
+function ErrorInitGaPlugin (error) {
+    alert('ErrorInitGaPlugin - '+error);
+    console.log('ErrorInitGaPlugin: '+error);
 }
