@@ -70,7 +70,7 @@ var googleAnalyticsIdApp = "UA-42576964-2";
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location) {
 
-    document.addEventListener("deviceready", onDeviceReady($window), false);
+    document.addEventListener("deviceready", onDeviceReady, false);
 
     document.addEventListener("online", onOnline, false);
 
@@ -285,7 +285,7 @@ function loadParse()
     Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
 }
 
-function onDeviceReady(window) {
+function onDeviceReady() {
 
     if (typeof window.plugins == 'undefined')
     {
