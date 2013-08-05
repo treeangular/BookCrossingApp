@@ -287,12 +287,12 @@ function loadParse()
 
 function onDeviceReady($window) {
 
-    if (typeof $window.plugins == 'undefined')
+    if (typeof window.plugins == 'undefined')
     {
         alert('onDeviceReady- window.plugins == undefined' );
     }
 
-    gaPlugin = $window.plugins.gaPlugin;
+    gaPlugin = window.plugins.gaPlugin;
 
     // Note: A request for permission is REQUIRED by google. You probably want to do this just once, though, and remember the answer for subsequent runs.
     //navigator.notification.confirm('GA_PLUGIN would like your permission to collect usage data. No personal or user identifiable data will be collected.', permissionCallback, 'Attention', 'Allow,Deny');
