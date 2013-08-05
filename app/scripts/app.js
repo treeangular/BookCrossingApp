@@ -62,47 +62,19 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
     loadFB();
 
 }]);
+
 var _versionMobile = "1.0.3";
 var gaPlugin;
-var googleAnalyticsId = "UA-42576964-2";
+var googleAnalyticsId = "UA-42576964-1";
 var googleAnalyticsIdApp = "UA-42576964-2";
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location) {
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    function onDeviceReady() {
-
-        if (typeof window.plugins == 'undefined')
-        {
-            alert('onDeviceReady- window.plugins == undefined' );
-        }
-
-        gaPlugin = window.plugins.gaPlugin;
-
-        // Note: A request for permission is REQUIRED by google. You probably want to do this just once, though, and remember the answer for subsequent runs.
-        //navigator.notification.confirm('GA_PLUGIN would like your permission to collect usage data. No personal or user identifiable data will be collected.', permissionCallback, 'Attention', 'Allow,Deny');
-
-        gaPlugin.init(SuccessInitGaPlugin, ErrorInitGaPlugin, googleAnalyticsId, 10);
-        gaPlugin.init(SuccessInitGaPlugin, ErrorInitGaPlugin, googleAnalyticsIdApp, 10);
-        alert('onDeviceReady - After init');
-    }
+    document.addEventListener("deviceready", onDeviceReady($window), false);
 
     document.addEventListener("online", onOnline, false);
 
-    function onOnline() {
-        // Handle the online event
-        $rootScope.TypeNotification = "errormessage";
-        $rootScope.MessageNotification = "OnLine";
-    }
-
     document.addEventListener("offline", onOffline, false);
-
-    function onOffline() {
-        // Handle the offline event
-        $rootScope.TypeNotification = "errormessage";
-        $rootScope.MessageNotification = "OffLine";
-    }
 
     function checkVersion()
     {
@@ -313,6 +285,23 @@ function loadParse()
     Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
 }
 
+function onDeviceReady($window) {
+
+    if (typeof $window.plugins == 'undefined')
+    {
+        alert('onDeviceReady- window.plugins == undefined' );
+    }
+
+    gaPlugin = $window.plugins.gaPlugin;
+
+    // Note: A request for permission is REQUIRED by google. You probably want to do this just once, though, and remember the answer for subsequent runs.
+    //navigator.notification.confirm('GA_PLUGIN would like your permission to collect usage data. No personal or user identifiable data will be collected.', permissionCallback, 'Attention', 'Allow,Deny');
+
+    gaPlugin.init(SuccessInitGaPlugin, ErrorInitGaPlugin, googleAnalyticsId, 10);
+    gaPlugin.init(SuccessInitGaPlugin, ErrorInitGaPlugin, googleAnalyticsIdApp, 10);
+    alert('onDeviceReady - After init');
+}
+
 function SuccessInitGaPlugin (result) {
 
   try{
@@ -354,4 +343,16 @@ function nativePluginResultHandler (result) {
         navigator.notification.alert("Catch says: " + ex.message);
     }
 
+}
+
+function onOnline() {
+    // Handle the online event
+    $rootScope.TypeNotification = "errormessage";
+    $rootScope.MessageNotification = "OnLine";
+}
+
+function onOffline() {
+    // Handle the offline event
+    $rootScope.TypeNotification = "errormessage";
+    $rootScope.MessageNotification = "OffLine";
 }

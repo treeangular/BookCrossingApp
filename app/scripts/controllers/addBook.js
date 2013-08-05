@@ -46,7 +46,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
             //gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
 
-            window.plugins.barcodeScanner.scan(
+            $window.plugins.barcodeScanner.scan(
                 function(result) {
                     if (result.cancelled)
                         navigator.notification.alert("the user cancelled the scan");
