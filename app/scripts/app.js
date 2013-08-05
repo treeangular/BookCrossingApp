@@ -285,7 +285,7 @@ function loadParse()
     Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
 }
 
-function onDeviceReady($window) {
+function onDeviceReady(window) {
 
     if (typeof window.plugins == 'undefined')
     {
