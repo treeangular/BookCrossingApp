@@ -70,6 +70,7 @@ angular.module('isbnProvider', [])
                             book.publishedDate = data.items[i].volumeInfo.publishedDate;
 
                             books.push(book);
+
                         }
 
                          callback(true, books);
