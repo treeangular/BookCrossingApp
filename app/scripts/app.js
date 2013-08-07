@@ -73,18 +73,18 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
     function onDeviceReady() {
 
-        if (typeof window.plugins == 'undefined')
+        if (typeof $window.plugins == 'undefined')
         {
             alert('onDeviceReady- window.plugins == undefined' );
         }
 
-        gaPlugin = window.plugins.gaPlugin;
+        gaPlugin = $window.plugins.gaPlugin;
 
         // Note: A request for permission is REQUIRED by google. You probably want to do this just once, though, and remember the answer for subsequent runs.
         //navigator.notification.confirm('GA_PLUGIN would like your permission to collect usage data. No personal or user identifiable data will be collected.', permissionCallback, 'Attention', 'Allow,Deny');
 
-        gaPlugin.init(SuccessInitGaPlugin, ErrorInitGaPlugin, googleAnalyticsId, 10);
-        gaPlugin.init(SuccessInitGaPlugin, ErrorInitGaPlugin, googleAnalyticsIdApp, 10);
+        gaPlugin.init(function(){alert("Hola")}, function(){alert("Error")}, googleAnalyticsId, 10);
+        gaPlugin.init(function(){alert("Hola")}, function(){alert("Error")}, googleAnalyticsIdApp, 10);
         alert('onDeviceReady - After init');
     }
 

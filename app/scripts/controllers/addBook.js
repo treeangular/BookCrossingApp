@@ -115,13 +115,9 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 		if ($scope.isbn != null)
         {
             var promise = findBook($scope.isbn)
-            promise.then(function(result) {
+            promise.then(function(results) {
 
-                $scope.book.description = result.description;
-                $scope.book.image = result.image;
-                $scope.book.title= result.title;
-                $scope.book.authors = result.authors;
-                $scope.book.isbn = result.isbn;
+                $scope.books = results;
 
 
             }, function(reason) {

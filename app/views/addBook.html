@@ -27,6 +27,26 @@
     </div>
     <input type="button" ng-click="registerNewBook(book)" ng-disabled="clicked" data-localize-it-attr="_Register_|value" class="buttonlarge" />
     </div>
+
+    <div>
+        <ul>
+            <li ng-repeat='book in books'>
+                <div class="bookItemList">
+                    <img ng-click="registerNewBook(book)"  ng-src='{{book.image}}'>
+                    <a ng-click="registerNewBook(book)"><h3>{{book.title}}</h3></a>
+                    <p>{{book.subtitle}}</p>
+                    <p>{{book.authors}}</p>
+                    <p>{{book.publisher}}</p>
+                    <p>{{book.publishedDate}}</p>
+
+
+
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
 </div>
 
 

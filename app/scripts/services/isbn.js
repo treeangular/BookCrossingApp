@@ -35,13 +35,15 @@ angular.module('isbnProvider', [])
 //              });
 //        },
 
-        getGoogleBookInfo: function getGoogleBookInfo(isbn, callback) {
-            var book ={};
-            var queryFormat;
+        getGoogleBookInfo: function getGoogleBookInfo(search, callback) {
 
-            if(isbn != null)
+            var queryFormat;
+            var books = [];
+
+
+            if(search != null)
             {
-                queryFormat = "isbn:" + isbn;
+                queryFormat = search + '&orderBy=relevance';
             }
 
             $http({
@@ -51,21 +53,31 @@ angular.module('isbnProvider', [])
                 cache: false
             }).
                 success(function(data, status) {
-                       if(data.totalItems > 0)
-                       {
-                            book.title = data.items[0].volumeInfo.title;
-                            book.description = data.items[0].volumeInfo.description;
-                            book.language = data.items[0].accessInfo.country;
-                            book.subtitle = data.items[0].volumeInfo.subtitle;
-                            book.authors = data.items[0].volumeInfo.authors;
-                            book.image = data.items[0].volumeInfo.imageLinks.thumbnail;
-                            book.isbn = isbn;
-                           callback(true, book);
-                       }
+                    if(data.totalItems > 0)
+                    {
+                        for (var i=0;i<4;i++)
+                        {
+                            //TODO: Add isbn, remove books without image,
+                            var book = {};
+                            book.title = data.items[i].volumeInfo.title;
+                            book.description = data.items[i].volumeInfo.description;
+                            book.language = data.items[i].accessInfo.country;
+                            book.subtitle = data.items[i].volumeInfo.subtitle;
+                            book.authors = data.items[i].volumeInfo.authors;
+                            book.image = data.items[i].volumeInfo.imageLinks === undefined ? "": data.items[i].volumeInfo.imageLinks.thumbnail ;
+                            //book.isbn = data.items[i].volumeInfo.industryIdentifiers === undefined ? "" : data.items[i].volumeInfo.industryIdentifiers[1].identifier;
+                            book.publisher = data.items[i].volumeInfo.publisher;
+                            book.publishedDate = data.items[i].volumeInfo.publishedDate;
+
+                            books.push(book);
+                        }
+
+                         callback(true, books);
+                     }
                     else
-                       {
+                    {
                            callback(false, ErrorConst.IsbnNotFound)
-                       }
+                    }
 
                 }).
                 error(function(data, status) {
