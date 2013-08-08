@@ -39,10 +39,11 @@ angular.module('isbnProvider', [])
 
             var queryFormat;
             var books = [];
-
+            
             if(search != null)
             {
-                queryFormat = search;
+                queryFormat = search + '&orderBy=relevance';
+                //alert(queryFormat);
             }
 
             try{
@@ -58,7 +59,7 @@ angular.module('isbnProvider', [])
                     alert("is success");
                     if(data.totalItems > 0)
                     {
-                        navigator.notification.alert("data.totalItems: " + data.totalItems);
+                        alert("data.totalItems: " + data.totalItems);
                         //TODO: make sure we have 4 items to iterate!
                         for (var i=0;i<4;i++)
                         {
@@ -85,6 +86,7 @@ angular.module('isbnProvider', [])
                         alert("is else success");
                         try
                         {
+                            alert(status);
                             alert(data);
                             callback(false, ErrorConst.IsbnNotFound);
                         }
@@ -112,7 +114,7 @@ angular.module('isbnProvider', [])
 
             }
             catch(ex)
-            {navigator.notification.alert("Outter catch says: " + ex.message);}
+            {alert("Outter catch says: " + ex.message);}
         }
     };
 }]);
