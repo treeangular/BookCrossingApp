@@ -85,19 +85,14 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
         gaPlugin.init(function(){}, function(){alert("Error")}, googleAnalyticsIdApp, 10);
 
+        //gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Button", "Click", "event only", 1);
+        gaPlugin.trackPage("BookCrossingApp.Init.Run");
+
         $rootScope.gaPlugIn = gaPlugin;
         if($rootScope.gaPlugIn === undefined)
         {
-            alert("GA undefined!!!!")
+            alert("GA undefined!!!!");
         }
-
-        // Call the service and fetch the list of signatures that match the given petition ID
-////            window.plugins.gaPlugin.trackPage( function() {
-////
-////                console.log("Main Tracked!!");
-////
-////            }, errorHandler, "/Main");
-
     }
 
     document.addEventListener("online", onOnline, false);
@@ -143,112 +138,9 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         return deferred.promise;
 
     }
-    //@Javi una promise sin funcionalidad dentro podemos solo dejar la llamada async sin mas n?
+    //Functionally for being cool if someone has not updated the version and we do not enter into data conflicts
     checkVersion();
-
-//    var googleAnalyticsId = "UA-42576964-1";
-//    var googleAnalyticsIdApp = "UA-42576964-2";
-
-//    document.addEventListener('deviceready', function () {
-//
-//        googleAnalyticsProvider.setAccount(googleAnalyticsId);
-//
-//        googleAnalyticsProvider.trackPage("index.html");
-//
-//
-////        function errorHandler(e) {
-////            //Lame - do nothing
-////            alert(e.toString());
-////        }
-////
-////        if (typeof window.plugins != 'undefined')
-////        {
-////            //For Web
-////            window.plugins.gaPlugin.init(function() {
-////
-////                alert("gaPlugin inted")
-////
-////            }, errorHandler, "UA-42576964-1", 10);
-////
-////            alert("index tracked!!");
-////            // Call the service and fetch the list of signatures that match the given petition ID
-////            window.plugins.gaPlugin.trackPage( function() {
-////
-////                console.log("Main Tracked!!");
-////
-////            }, errorHandler, "/Main");
-////
-////            //For App
-////            window.plugins.gaPlugin.init(function() {
-////
-////                alert("gaPlugin inted")
-////
-////            }, errorHandler, "UA-42576964-2", 10);
-////
-////
-////            alert("index tracked!!");
-////            // Call the service and fetch the list of signatures that match the given petition ID
-////            window.plugins.gaPlugin.trackPage( function() {
-////
-////                console.log("Main Tracked!!");
-////
-////            }, errorHandler, "/Main");
-////        }
-////        else
-////        {
-////            alert("undefined");
-////        }
-//
-//        });
-
 });
-
-//function loadGoogleAnalytics($window)
-//{
-//    function errorHandler(e) {
-//        //Lame - do nothing
-//        alert(e.toString());
-//    }
-//
-//    if (typeof window.plugins != 'undefined')
-//    {
-//        //For Web
-//        window.plugins.gaPlugin.init(function() {
-//
-//            alert("gaPlugin inted")
-//
-//        }, errorHandler, "UA-42576964-1", 10);
-//
-//        alert("index tracked!!");
-//        // Call the service and fetch the list of signatures that match the given petition ID
-//        window.plugins.gaPlugin.trackPage( function() {
-//
-//            console.log("Main Tracked!!");
-//
-//        }, errorHandler, "/Main");
-//
-//        //For App
-//        window.plugins.gaPlugin.init(function() {
-//
-//            alert("gaPlugin inted")
-//
-//        }, errorHandler, "UA-42576964-2", 10);
-//
-//
-//        alert("index tracked!!");
-//        // Call the service and fetch the list of signatures that match the given petition ID
-//        window.plugins.gaPlugin.trackPage( function() {
-//
-//            console.log("Main Tracked!!");
-//
-//        }, errorHandler, "/Main");
-//    }
-//    else
-//    {
-//        alert("undefined");
-//    }
-//
-//}
 
 function loadFastClick()
 {
@@ -316,47 +208,4 @@ function loadParse()
     var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr";
 
     Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
-}
-
-function SuccessInitGaPlugin (result) {
-
-  try{
-        alert('SuccessInitGaPlugin - '+result);
-        console.log('SuccessInitGaPlugin: '+result);
-
-
-        gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Button", "Click", "event only", 1);
-        gaPlugin.trackPage("Init.App.com");
-
-    } catch (ex) {
-        console.log(ex.message);
-        navigator.notification.alert("Catch says: " + ex.message);
-    }
-
-}
-
-function ErrorInitGaPlugin (error) {
-
-    try{
-        alert('ErrorInitGaPlugin - '+error);
-        console.log('ErrorInitGaPlugin: '+error);
-
-    } catch (ex) {
-        console.log(ex.message);
-        navigator.notification.alert("Catch says: " + ex.message);
-    }
-}
-
-function nativePluginResultHandler (result) {
-
-    try{
-        alert('Event Tracked - '+result);
-        console.log('Event Tracked: '+result);
-
-
-    } catch (ex) {
-        console.log(ex.message);
-        navigator.notification.alert("Catch says: " + ex.message);
-    }
-
 }

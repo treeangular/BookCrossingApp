@@ -21,7 +21,6 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.addBook = false;
 
-
     $scope.addNewBook = function () {
         $scope.addBook = true;
     };
