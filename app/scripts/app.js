@@ -83,18 +83,16 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         // Note: A request for permission is REQUIRED by google. You probably want to do this just once, though, and remember the answer for subsequent runs.
         //navigator.notification.confirm('GA_PLUGIN would like your permission to collect usage data. No personal or user identifiable data will be collected.', permissionCallback, 'Attention', 'Allow,Deny');
 
-        gaPlugin.init(function(){alert("Web Init went ok")}, function(){alert("Error")}, googleAnalyticsId, 10);
-        gaPlugin.init(function(){alert("App Init went ok")}, function(){alert("Error")}, googleAnalyticsIdApp, 10);
+        gaPlugin.init(function(){}, function(){alert("Error")}, googleAnalyticsIdApp, 10);
 
-        gaPlugin.trackEvent(function() {
+        $rootScope.gaPlugIn = gaPlugin;
 
-            alert("Page tracked!");
-
-        }, function() {
-
-            alert("Page not tracked!");
-
-        }, "Button", "Click", "Main Button", new Date());
+        // Call the service and fetch the list of signatures that match the given petition ID
+////            window.plugins.gaPlugin.trackPage( function() {
+////
+////                console.log("Main Tracked!!");
+////
+////            }, errorHandler, "/Main");
 
     }
 
@@ -142,14 +140,7 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
     }
     //@Javi una promise sin funcionalidad dentro podemos solo dejar la llamada async sin mas n?
-    //  checkVersion();
-//    var promise= checkVersion();
-//
-//    promise.then(function(){
-//
-//    }, function(){
-//
-//    })
+    checkVersion();
 
 //    var googleAnalyticsId = "UA-42576964-1";
 //    var googleAnalyticsIdApp = "UA-42576964-2";
