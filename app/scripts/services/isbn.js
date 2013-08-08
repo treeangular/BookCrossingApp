@@ -51,7 +51,7 @@ angular.module('isbnProvider', [])
             $http({
                 method: 'GET',
                 url: 'https://www.googleapis.com/books/v1/volumes',
-                params: {q: queryFormat},
+                params: {q: queryFormat, orderBy: "relevance"},
                 cache: false
             }).
                 success(function(data, status) {
@@ -69,7 +69,9 @@ angular.module('isbnProvider', [])
                     {
                         alert("is success");
                         //TODO: make sure we have 4 items to iterate!
-                        for (var i=0;i<4;i++)
+                        var max = Math.min(4, data.items.length);
+
+                        for (var i=0;i<max;i++)
                         {
                             //TODO: Add isbn, remove books without image,
                             var book = {};
