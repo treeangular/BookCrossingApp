@@ -86,6 +86,16 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         gaPlugin.init(function(){alert("Web Init went ok")}, function(){alert("Error")}, googleAnalyticsId, 10);
         gaPlugin.init(function(){alert("App Init went ok")}, function(){alert("Error")}, googleAnalyticsIdApp, 10);
 
+        gaPlugin.trackEvent(function() {
+
+            alert("Page tracked!");
+
+        }, function() {
+
+            alert("Page not tracked!");
+
+        }, "Button", "Click", "Main Button", new Date());
+
     }
 
     document.addEventListener("online", onOnline, false);
