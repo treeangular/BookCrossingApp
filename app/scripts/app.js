@@ -86,6 +86,10 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         gaPlugin.init(function(){}, function(){alert("Error")}, googleAnalyticsIdApp, 10);
 
         $rootScope.gaPlugIn = gaPlugin;
+        if($rootScope.gaPlugIn === undefined)
+        {
+            alert("GA undefined!!!!")
+        }
 
         // Call the service and fetch the list of signatures that match the given petition ID
 ////            window.plugins.gaPlugin.trackPage( function() {

@@ -6,15 +6,18 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 //    $window._gaq.push(['_trackPageview', $location.path()]);
 //    gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
 
-    $rootScope.gaPlugIn.trackEvent(function() {
+    if($rootScope.gaPlugIn !== undefined)
+    {
+        $rootScope.gaPlugIn.trackEvent(function() {
 
-        alert("Page tracked!");
+             alert("Page tracked!");
 
-    }, function() {
+        }, function() {
 
-        alert("Page not tracked!");
+            alert("Page not tracked!");
 
-    }, "/AddBook");
+        }, "/AddBook");
+    }
 
     $scope.addBook = false;
 
