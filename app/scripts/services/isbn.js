@@ -43,7 +43,7 @@ angular.module('isbnProvider', [])
             if(search != null)
             {
                 queryFormat = search + '&orderBy=relevance';
-                alert(queryFormat);
+                //alert(queryFormat);
             }
 
             $http({
@@ -53,8 +53,12 @@ angular.module('isbnProvider', [])
                 cache: false
             }).
                 success(function(data, status) {
+
+                    navigator.notification.alert("is success");
                     if(data.totalItems > 0)
                     {
+                        navigator.notification.alert("data.totalItems: " + data.totalItems);
+                        //TODO: make sure we have 4 items to iterate!
                         for (var i=0;i<4;i++)
                         {
                             //TODO: Add isbn, remove books without image,
