@@ -85,14 +85,14 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
         gaPlugin.init(function(){}, function(){alert("Error")}, googleAnalyticsIdApp, 10);
 
-        gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Button", "Click", "event only", 1);
+        gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "event only", 1);
         //gaPlugin.trackPage("BookCrossingApp.Init.Run");
 
-        $rootScope.gaPlugIn = gaPlugin;
-        if($rootScope.gaPlugIn === undefined)
-        {
-            alert("GA undefined!!!!");
-        }
+//        $rootScope.gaPlugIn = gaPlugin;
+//        if($rootScope.gaPlugIn === undefined)
+//        {
+//            alert("GA undefined!!!!");
+//        }
     }
 
     document.addEventListener("online", onOnline, false);
