@@ -8,7 +8,11 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     if($rootScope.gaPlugIn !== undefined)
     {
-        gaPlugin.trackPage(function(){}, function(){alert("Error")},"BookCrossingApp.addBook");
+        gaPlugin.trackPage(function(){}, function(){alert("Error")},"BookCrossingApp.addBook.com");
+    }
+    else
+    {
+        alert("$rootScope.gaPlugI =>  undefined  : ( ")
     }
 
     $scope.addBook = false;
