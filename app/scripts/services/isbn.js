@@ -76,7 +76,6 @@ angular.module('isbnProvider', [])
                             book.publishedDate = data.items[i].volumeInfo.publishedDate;
 
                             books.push(book);
-
                         }
 
                          callback(true, books);
@@ -86,8 +85,8 @@ angular.module('isbnProvider', [])
                         alert("is else success");
                         try
                         {
-                            alert(status);
-                            alert(data);
+                            alert("status: " + status);
+                            alert("data.totalItems: " + data.totalItems);
                             callback(false, ErrorConst.IsbnNotFound);
                         }
                         catch(ex)
