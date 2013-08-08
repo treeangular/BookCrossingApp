@@ -81,6 +81,7 @@ angular.module('isbnProvider', [])
                      }
                     else
                     {
+
                         try
                         {
                             navigator.notification.alert(status);
@@ -98,10 +99,12 @@ angular.module('isbnProvider', [])
                 }).
                 error(function(data, status) {
 
+                    navigator.notification.alert("is error");
                     try
                     {
-                        navigator.notification.alert(data);
+
                         navigator.notification.alert(status);
+                        navigator.notification.alert(data);
                         callback(false, ErrorConst.GenericError);
                     }
                     catch(ex)
