@@ -46,6 +46,8 @@ angular.module('isbnProvider', [])
                 //alert(queryFormat);
             }
 
+            try{
+
             $http({
                 method: 'GET',
                 url: 'https://www.googleapis.com/books/v1/volumes',
@@ -109,6 +111,10 @@ angular.module('isbnProvider', [])
                         navigator.notification.alert("Catch error: " + ex);
                     }
                 });
+
+            }
+            catch(ex)
+            {navigator.notification.alert("Outter catch says: " + ex.message);}
         }
     };
 }]);
