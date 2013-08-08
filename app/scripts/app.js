@@ -88,11 +88,11 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         //gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "event only", 1);
         gaPlugin.trackPage(function(){}, function(){alert("Error")},"BookCrossingApp.Init.Run");
 
-//        $rootScope.gaPlugIn = gaPlugin;
-//        if($rootScope.gaPlugIn === undefined)
-//        {
-//            alert("GA undefined!!!!");
-//        }
+        $rootScope.gaPlugIn = gaPlugin;
+        if($rootScope.gaPlugIn === undefined)
+        {
+            alert("GA undefined!!!!");
+        }
     }
 
     document.addEventListener("online", onOnline, false);
