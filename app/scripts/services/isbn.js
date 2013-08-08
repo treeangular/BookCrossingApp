@@ -40,10 +40,10 @@ angular.module('isbnProvider', [])
             var queryFormat;
             var books = [];
 
-
             if(search != null)
             {
                 queryFormat = search + '&orderBy=relevance';
+                alert(queryFormat);
             }
 
             $http({
@@ -77,6 +77,7 @@ angular.module('isbnProvider', [])
                      }
                     else
                     {
+                           alert(data.totalItems);
                            callback(false, ErrorConst.IsbnNotFound)
                     }
 
