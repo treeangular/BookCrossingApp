@@ -1,6 +1,9 @@
 'use strict';
 
 BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootScope, $q, facebookService, geolocationService) {
+
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"HuntBook");
+
     $scope.books = null;
 
     function shareFB(book, actionType)
@@ -74,6 +77,8 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     $scope.huntBook = function(book)
     {
+        $rootScope.gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Hunt Book", 1);
+
         $scope.clicked=true;
         var promise = huntBook(book);
         promise.then(function(returnedBook) {

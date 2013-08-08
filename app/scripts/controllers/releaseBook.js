@@ -1,11 +1,10 @@
 'use strict';
 BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService, $rootScope, $q, facebookService) {
 
-
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Release Book");
 
     function releaseBook(releaseInfo, registrationId)
     {
-
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 
@@ -73,6 +72,8 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
 
     $scope.release = function () {
+        $rootScope.gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Release Book", 1);
+
         //TODO: Validate registrationId is correct, if wrong show error with notification bar
         $scope.clicked=true;
         $rootScope.$broadcast(loadingRequestConst.Start);

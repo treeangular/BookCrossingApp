@@ -46,7 +46,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.scanBook = function () {
     {
-
+        $rootScope.gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Scan Book", 1);
 
         console.log('scanning');
         try {
@@ -97,7 +97,6 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     function findBook(isbn)
     {
-
         var deferred = $q.defer();
 
         isbnService.getGoogleBookInfo(isbn, function(isSuccess, result){
@@ -120,7 +119,10 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
     }
 
 	$scope.findBook = function () {
-		if ($scope.isbn != null)
+
+        $rootScope.gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Find Book", 1);
+
+        if ($scope.isbn != null)
         {
             $scope.clicked=true;
             $rootScope.$broadcast(loadingRequestConst.Start);
@@ -143,6 +145,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 	};
 
     $scope.registerNewBook = function (book) {
+
+        $rootScope.gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Register New Book", 1);
 
          $scope.clicked=true;
          $rootScope.$broadcast(loadingRequestConst.Start);
