@@ -57,7 +57,7 @@ angular.module('isbnProvider', [])
                 success(function(data, status) {
 
                     alert("is success");
-                    if(data.totalItems > 0)
+                    if(data.items.length > 0)
                     {
                         alert("data.totalItems: " + data.totalItems);
                         //TODO: make sure we have 4 items to iterate!
