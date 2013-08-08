@@ -39,11 +39,11 @@ angular.module('isbnProvider', [])
 
             var queryFormat;
             var books = [];
-
+            alert("Holaaa");
             if(search != null)
             {
                 queryFormat = search + '&orderBy=relevance';
-                alert(queryFormat);
+                navigator.notification.alert(queryFormat);
             }
 
             $http({
@@ -77,13 +77,15 @@ angular.module('isbnProvider', [])
                      }
                     else
                     {
-                           alert(data.totalItems);
+                        navigator.notification.alert(status);
+                        navigator.notification.alert(data);
                            callback(false, ErrorConst.IsbnNotFound)
                     }
 
                 }).
                 error(function(data, status) {
-
+                    navigator.notification.alert(data);
+                    navigator.notification.alert(status);
                     callback(false, ErrorConst.GenericError);
                 });
         }
