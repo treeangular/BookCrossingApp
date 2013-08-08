@@ -85,8 +85,8 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
         gaPlugin.init(function(){}, function(){alert("Error")}, googleAnalyticsIdApp, 10);
 
-        gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "/Main");
-        //gaPlugin.trackPage("BookCrossingApp.Init.Run");
+        //gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "event only", 1);
+        gaPlugin.trackPage(function(){}, function(){alert("Error")},"BookCrossingApp.Init.Run");
 
 //        $rootScope.gaPlugIn = gaPlugin;
 //        if($rootScope.gaPlugIn === undefined)
