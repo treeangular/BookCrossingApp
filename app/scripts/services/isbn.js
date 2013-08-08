@@ -81,7 +81,7 @@ angular.module('isbnProvider', [])
                      }
                     else
                     {
-
+                        navigator.notification.alert("is else success");
                         try
                         {
                             navigator.notification.alert(status);
@@ -93,28 +93,21 @@ angular.module('isbnProvider', [])
 
                             navigator.notification.alert("Catch error: " + ex);
                         }
-
                     }
-
                 }).
                 error(function(data, status) {
 
                     navigator.notification.alert("is error");
                     try
                     {
-
                         navigator.notification.alert(status);
                         navigator.notification.alert(data);
                         callback(false, ErrorConst.GenericError);
                     }
                     catch(ex)
                     {
-
                         navigator.notification.alert("Catch error: " + ex);
                     }
-
-
-
                 });
         }
     };
