@@ -42,7 +42,7 @@ angular.module('isbnProvider', [])
             
             if(search != null)
             {
-                queryFormat = search + '&orderBy=relevance';
+                queryFormat = search;
                 //alert(queryFormat);
             }
 
