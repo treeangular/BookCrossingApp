@@ -56,7 +56,15 @@ angular.module('isbnProvider', [])
             }).
                 success(function(data, status) {
 
-
+                    alert("success");
+                    if(data.items === undefined)
+                    {
+                        alert("items undefined");
+                    }
+                    else
+                    {
+                        alert(data.items.length);
+                    }
                     if(data.items.length > 0)
                     {
                         alert("is success");
