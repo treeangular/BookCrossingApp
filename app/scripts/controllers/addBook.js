@@ -115,16 +115,22 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 	$scope.findBook = function () {
 		if ($scope.isbn != null)
         {
+            $scope.clicked=true;
+            $rootScope.$broadcast(loadingRequestConst.Start);
             var promise = findBook($scope.isbn)
             promise.then(function(results) {
 
                 $scope.books = results;
+                $scope.clicked=false;
+                $rootScope.$broadcast(loadingRequestConst.Start);
 
 
             }, function(reason) {
 
                 $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                 $rootScope.MessageNotification = reason;
+                $scope.clicked=false;
+                $rootScope.$broadcast(loadingRequestConst.Start);
             });
 		}
 	};
