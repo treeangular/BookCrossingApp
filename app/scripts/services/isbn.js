@@ -43,33 +43,21 @@ angular.module('isbnProvider', [])
             if(search != null)
             {
                 queryFormat = search;
-                //alert(queryFormat);
             }
-
-            try{
 
             $http({
                 method: 'GET',
                 url: 'https://www.googleapis.com/books/v1/volumes',
-                params: {q: queryFormat, orderBy: "relevance"},
+                params: {q: queryFormat, orderBy: "relevance", maxResults: 20},
                 cache: false
             }).
                 success(function(data, status) {
 
-                    alert("success");
-                    if(data.items === undefined)
-                    {
-                        alert("items undefined");
-                    }
-                    else
-                    {
-                        alert(data.items.length);
-                    }
+
                     if(data.items.length > 0)
                     {
-                        alert("is success");
                         //TODO: make sure we have 4 items to iterate!
-                        var max = Math.min(4, data.items.length);
+                        var max = Math.min(20, data.items.length);
 
                         for (var i=0;i<max;i++)
                         {
@@ -92,38 +80,16 @@ angular.module('isbnProvider', [])
                      }
                     else
                     {
-                        alert("is else success");
-                        try
-                        {
-                            alert("status: " + status);
-                            alert("data.totalItems: " + data.totalItems);
-                            callback(false, ErrorConst.IsbnNotFound);
-                        }
-                        catch(ex)
-                        {
-
-                            alert("Catch error: " + ex);
-                        }
+                      callback(false, ErrorConst.IsbnNotFound);
                     }
                 }).
                 error(function(data, status) {
 
-                    alert("is error");
-                    try
-                    {
-                        alert(status);
-                        alert(data);
-                        callback(false, ErrorConst.GenericError);
-                    }
-                    catch(ex)
-                    {
-                        alert("Catch error: " + ex);
-                    }
+                    callback(false, ErrorConst.GenericError);
+
                 });
 
-            }
-            catch(ex)
-            {alert("Outter catch says: " + ex.message);}
+
         }
     };
 }]);

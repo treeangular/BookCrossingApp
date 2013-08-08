@@ -122,7 +122,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
                 $scope.books = results;
                 $scope.clicked=false;
-                $rootScope.$broadcast(loadingRequestConst.Start);
+                $rootScope.$broadcast(loadingRequestConst.Stop);
 
 
             }, function(reason) {
@@ -130,7 +130,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                 $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                 $rootScope.MessageNotification = reason;
                 $scope.clicked=false;
-                $rootScope.$broadcast(loadingRequestConst.Start);
+                $rootScope.$broadcast(loadingRequestConst.Stop);
             });
 		}
 	};
