@@ -39,11 +39,10 @@ angular.module('isbnProvider', [])
 
             var queryFormat;
             var books = [];
-            alert("Holaaa");
+
             if(search != null)
             {
-                queryFormat = search + '&orderBy=relevance';
-                //alert(queryFormat);
+                queryFormat = search;
             }
 
             try{
@@ -56,7 +55,7 @@ angular.module('isbnProvider', [])
             }).
                 success(function(data, status) {
 
-                    navigator.notification.alert("is success");
+                    alert("is success");
                     if(data.totalItems > 0)
                     {
                         navigator.notification.alert("data.totalItems: " + data.totalItems);
@@ -83,32 +82,31 @@ angular.module('isbnProvider', [])
                      }
                     else
                     {
-                        navigator.notification.alert("is else success");
+                        alert("is else success");
                         try
                         {
-                            navigator.notification.alert(status);
-                            navigator.notification.alert(data);
+                            alert(data);
                             callback(false, ErrorConst.IsbnNotFound);
                         }
                         catch(ex)
                         {
 
-                            navigator.notification.alert("Catch error: " + ex);
+                            alert("Catch error: " + ex);
                         }
                     }
                 }).
                 error(function(data, status) {
 
-                    navigator.notification.alert("is error");
+                    alert("is error");
                     try
                     {
-                        navigator.notification.alert(status);
-                        navigator.notification.alert(data);
+                        alert(status);
+                        alert(data);
                         callback(false, ErrorConst.GenericError);
                     }
                     catch(ex)
                     {
-                        navigator.notification.alert("Catch error: " + ex);
+                        alert("Catch error: " + ex);
                     }
                 });
 
