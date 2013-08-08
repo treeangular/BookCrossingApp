@@ -43,7 +43,7 @@ angular.module('isbnProvider', [])
             if(search != null)
             {
                 queryFormat = search + '&orderBy=relevance';
-                navigator.notification.alert(queryFormat);
+                alert(queryFormat);
             }
 
             $http({
@@ -77,16 +77,37 @@ angular.module('isbnProvider', [])
                      }
                     else
                     {
-                        navigator.notification.alert(status);
-                        navigator.notification.alert(data);
-                           callback(false, ErrorConst.IsbnNotFound)
+                        try
+                        {
+                            navigator.notification.alert(status);
+                            navigator.notification.alert(data);
+                            callback(false, ErrorConst.IsbnNotFound);
+                        }
+                        catch(ex)
+                        {
+
+                            navigator.notification.alert("Catch error: " + ex);
+                        }
+
                     }
 
                 }).
                 error(function(data, status) {
-                    navigator.notification.alert(data);
-                    navigator.notification.alert(status);
-                    callback(false, ErrorConst.GenericError);
+
+                    try
+                    {
+                        navigator.notification.alert(data);
+                        navigator.notification.alert(status);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                    catch(ex)
+                    {
+
+                        navigator.notification.alert("Catch error: " + ex);
+                    }
+
+
+
                 });
         }
     };
