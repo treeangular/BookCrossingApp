@@ -1,7 +1,7 @@
 'use strict';
 BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService, $rootScope, $q, facebookService) {
 
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Release Book");
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"ReleaseBook.html");
 
     function releaseBook(releaseInfo, registrationId)
     {
