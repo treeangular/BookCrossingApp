@@ -1,4 +1,7 @@
 BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataService) {
+
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Map");
+
     var geoPoint;
     var myPositionIcon = "styles/img/myPosition.gif";
     var bookIcon = "styles/img/book.png";
@@ -64,6 +67,9 @@ BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataS
     }
 
     $scope.openMarkerInfo = function(marker) {
+
+        $rootScope.gaPlugIn.trackEvent(function(){}, function(){}, "Button", "Click", "Book Detail From Map", 1);
+
         if (marker.title == "Me") return;
         $scope.book = getId($scope.books, marker.title);
         $scope.currentMarker = marker;

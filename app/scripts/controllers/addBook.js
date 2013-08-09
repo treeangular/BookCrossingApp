@@ -2,16 +2,7 @@
 
 BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q, facebookService, $window) {
 
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"addBook.html");
-
-//    if($rootScope.gaPlugIn !== undefined)
-//    {
-//        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"addBook.html");
-//    }
-//    else
-//    {
-//        alert("$rootScope.gaPlugI =>  undefined  : ( ")
-//    }
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"AddBook");
 
     $scope.addBook = false;
 
@@ -38,40 +29,21 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         console.log('scanning');
         try {
 
-            $window.plugins.barcodeScanner.scan(
-                function(result) {
-                    if (result.cancelled)
-                        navigator.notification.alert("the user cancelled the scan");
-                    else
-                        alert("we got a barcode: " + result.text);
-                    navigator.notification.alert("Scanner result: \n" +
-                        "text: " + args.text + "\n" +
-                        "format: " + args.format + "\n" +
-                        "cancelled: " + args.cancelled + "\n");
+            var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+            scanner.scan(
+                function (result) {
+                    alert("We got a barcode\n" +
+                        "Result: " + result.text + "\n" +
+                        "Format: " + result.format + "\n" +
+                        "Cancelled: " + result.cancelled);
+
                 },
-                function(error) {
-                    alert("scanning failed: " + error)
+                function (error) {
+                    alert("Scanning failed: " + error);
                 }
-            )
+            );
 
-           /* $window.plugins.barcodeScanner.scan(function(args) {
-                console.log("Scanner result: \n" +
-                    "text: " + args.text + "\n" +
-                    "format: " + args.format + "\n" +
-                    "cancelled: " + args.cancelled + "\n");
-
-                navigator.notification.alert("Scanner result: \n" +
-                    "text: " + args.text + "\n" +
-                    "format: " + args.format + "\n" +
-                    "cancelled: " + args.cancelled + "\n");*/
-                /*
-                 if (args.format == "QR_CODE") {
-                 window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
-                 }
-                 */
-                //document.getElementById("info").innerHTML = args.text;
-              //  console.log(args);
-            //});
         } catch (ex) {
             console.log(ex.message);
             navigator.notification.alert("Catch says: " + ex.message);
