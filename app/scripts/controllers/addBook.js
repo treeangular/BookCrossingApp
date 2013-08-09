@@ -33,10 +33,10 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
             scanner.scan(
                 function (result) {
-                    alert("We got a barcode\n" +
+                    /*alert("We got a barcode\n" +
                         "Result: " + result.text + "\n" +
                         "Format: " + result.format + "\n" +
-                        "Cancelled: " + result.cancelled);
+                        "Cancelled: " + result.cancelled);*/
 
                     if (result.format != null)
                     {

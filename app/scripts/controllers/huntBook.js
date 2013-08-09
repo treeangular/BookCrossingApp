@@ -2,7 +2,7 @@
 
 BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootScope, $q, facebookService, geolocationService) {
 
-    $rootScope.gaPlugIn.trackPage(function(){alert("Tracked huny book")}, function(){alert("Error")},"HuntBook");
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){},"HuntBook");
 
     $scope.books = null;
 
@@ -77,7 +77,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     $scope.huntBook = function(book)
     {
-        $rootScope.gaPlugIn.trackEvent(function(){alert("hunt book clicked")}, function(){alert("Error")}, "Button", "Click", "Hunt Book", 1);
+        $rootScope.gaPlugIn.trackEvent(function(){}, function(){}, "Button", "Click", "Hunt Book", 1);
 
         $scope.clicked=true;
         var promise = huntBook(book);
