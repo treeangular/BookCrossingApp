@@ -1,6 +1,7 @@
 'use strict';
 BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $http, $window, $location) {
 
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"home.html");
 
     $scope.alerts = [];
     $scope.currentPage = 0;

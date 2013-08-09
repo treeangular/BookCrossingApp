@@ -1,6 +1,8 @@
 'use strict';
 BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
 
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"bookDetails.html");
+
 
     $scope.seeMoreOrLess = "See more";
     var book = $scope.selectedBook;

@@ -1,5 +1,7 @@
 BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataService, $q) {
 
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"reviews.html");
+
     var star = "styles/img/blankstar.png";
     var selectedStar = "styles/img/selectedstar.png";
 
