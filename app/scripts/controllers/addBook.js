@@ -38,6 +38,27 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                         "Format: " + result.format + "\n" +
                         "Cancelled: " + result.cancelled);
 
+                    if (result.format != null)
+                    {
+                        $scope.clicked=true;
+                        $rootScope.$broadcast(loadingRequestConst.Start);
+                        var promise = findBook(result.format)
+                        promise.then(function(results) {
+
+                            $scope.books = results;
+                            $scope.clicked=false;
+                            $rootScope.$broadcast(loadingRequestConst.Stop);
+
+
+                        }, function(reason) {
+
+                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                            $rootScope.MessageNotification = reason;
+                            $scope.clicked=false;
+                            $rootScope.$broadcast(loadingRequestConst.Stop);
+                        });
+                    }
+
                 },
                 function (error) {
                     alert("Scanning failed: " + error);
