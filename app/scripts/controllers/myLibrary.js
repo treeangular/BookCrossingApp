@@ -2,7 +2,7 @@
 
 BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataService, $q) {
 
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"myLibrary.html");
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"MyLibrary");
 
 
     $scope.books = [];
@@ -117,8 +117,10 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
     $scope.updateUserStatus = function () {
 
+        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Update user status", 1);
 
-            $rootScope.$broadcast(loadingRequestConst.Start);
+
+        $rootScope.$broadcast(loadingRequestConst.Start);
             var promise = updateStatus($scope.library.status)
             promise.then(function(result) {
 
@@ -133,12 +135,10 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
     };
 
-
     $scope.busy = false;
 
     $scope.nextPage  = function() {
         if ($scope.busy) return;
-
 
             $scope.busy = true;
             var promise = getLibraryByUserId(id)

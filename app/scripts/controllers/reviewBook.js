@@ -1,6 +1,6 @@
 BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, dataService, $q, facebookService) {
 
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"ReviewBook.html");
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Review Book");
 
     $scope.review = {
       rating:0,
@@ -33,6 +33,8 @@ BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, data
     }
 
   $scope.sendReview = function (review) {
+
+      $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Send Review", 1);
 
       $scope.clicked = true;
       var promise = saveReview(review)

@@ -2,18 +2,16 @@
 
 BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q, facebookService, $window) {
 
-//    alert("_gap Push location.path is: " + $location.path());
-//    $window._gaq.push(['_trackPageview', $location.path()]);
-//    gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"addBook.html");
 
-    if($rootScope.gaPlugIn !== undefined)
-    {
-        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"addBook.html");
-    }
-    else
-    {
-        alert("$rootScope.gaPlugI =>  undefined  : ( ")
-    }
+//    if($rootScope.gaPlugIn !== undefined)
+//    {
+//        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"addBook.html");
+//    }
+//    else
+//    {
+//        alert("$rootScope.gaPlugI =>  undefined  : ( ")
+//    }
 
     $scope.addBook = false;
 
@@ -33,26 +31,12 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
         alert(e.toString());
     }
 
-    function nativePluginResultHandler (result) {
-        //alert('nativePluginResultHandler - '+result);
-        console.log('nativePluginResultHandler: '+result);
-
-    }
-
-    function nativePluginErrorHandler (error) {
-        //alert('nativePluginErrorHandler - '+error);
-        console.log('nativePluginErrorHandler: '+error);
-    }
-
     $scope.scanBook = function () {
     {
-        $rootScope.gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Scan Book", 1);
+        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Scan Book", 1);
 
         console.log('scanning');
         try {
-
-            //gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "AddBook.ScanBook.com");
-
 
             $window.plugins.barcodeScanner.scan(
                 function(result) {
@@ -120,7 +104,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
 	$scope.findBook = function () {
 
-        $rootScope.gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Find Book", 1);
+        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Find Book", 1);
 
         if ($scope.isbn != null)
         {
@@ -146,7 +130,7 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.registerNewBook = function (book) {
 
-        $rootScope.gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Register New Book", 1);
+        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Register New Book", 1);
 
          $scope.clicked=true;
          $rootScope.$broadcast(loadingRequestConst.Start);

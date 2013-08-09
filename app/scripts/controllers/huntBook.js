@@ -77,7 +77,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     $scope.huntBook = function(book)
     {
-        $rootScope.gaPlugin.trackEvent(function(){alert("hunt book clicked")}, function(){alert("Error")}, "Button", "Click", "Hunt Book", 1);
+        $rootScope.gaPlugIn.trackEvent(function(){alert("hunt book clicked")}, function(){alert("Error")}, "Button", "Click", "Hunt Book", 1);
 
         $scope.clicked=true;
         var promise = huntBook(book);

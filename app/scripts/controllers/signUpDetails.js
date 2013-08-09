@@ -3,7 +3,7 @@
 angular.module('BookCrossingApp')
   .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http,$rootScope, $q) {
 
-        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"SingUpDetails.html");
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"SingUpDetails");
 
         var fileToUpdate;
         var isFileToUpdate;
@@ -106,6 +106,8 @@ angular.module('BookCrossingApp')
         }, true);
 
         $scope.updateUserProfile = function (user) {
+
+            $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Update User Profile", 1);
 
             if (fileToUpdate!=undefined){
                 var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
