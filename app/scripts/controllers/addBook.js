@@ -38,11 +38,13 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                         "Format: " + result.format + "\n" +
                         "Cancelled: " + result.cancelled);*/
 
-                    if (result.format != null)
+                    alert(result.text);
+
+                    if (result.text != null)
                     {
                         $scope.clicked=true;
                         $rootScope.$broadcast(loadingRequestConst.Start);
-                        var promise = findBook(result.format)
+                        var promise = findBook(result.text)
                         promise.then(function(results) {
 
                             $scope.books = results;
