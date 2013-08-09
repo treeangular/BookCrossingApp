@@ -2,15 +2,7 @@
 
 BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootScope, $q, facebookService, geolocationService) {
 
-
-    if($rootScope.gaPlugIn !== undefined)
-    {
-        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"HuntBook.html");
-    }
-    else
-    {
-        alert("$rootScope.gaPlugI =>  undefined  : ( ")
-    }
+        $rootScope.gaPlugIn.trackPage(function(){alert("Tracked huny book")}, function(){alert("Error")},"HuntBook.html");
 
     $scope.books = null;
 
