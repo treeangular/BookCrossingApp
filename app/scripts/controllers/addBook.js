@@ -38,8 +38,6 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                         "Format: " + result.format + "\n" +
                         "Cancelled: " + result.cancelled);*/
 
-                    alert(result.text);
-
                     if (result.text != null)
                     {
                         $scope.clicked=true;
