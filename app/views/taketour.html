@@ -1,0 +1,47 @@
+<div style="background-color: #ffffff; position: absolute; top: 5px; bottom: 5px; left: 5px; right: 5px; padding: 5px" ng-controller="TakeTourCtrl">
+<a id="close" href="#/sign"></a>
+<div class="titleHelp"></div>
+<p>App for finding and sharing books with other people around the world.</p>
+<p class="blanksmall"></p>
+<div style="height: 160px" ng-switch on="stepSharing" ng-animate="'wave'" class="slide-frame">
+    <h1>Sharing books</h1>
+    <div style="position: relative; height: 60px;" class="middleline" ng-switch on="stepSharing">
+        <div ng-class="SharingStep1Class" ng-click="selectSharingStep(1)"></div>
+        <div class="stepMiddleWrapper" ng-click="selectSharingStep(2)"><div ng-class="SharingStep2Class"></div></div>
+        <div ng-class="SharingStep3Class" ng-click="selectSharingStep(3)"></div>
+    </div>
+    <div  style="padding: 10px;" ng-switch-default>
+        <h2 style="color:#E9857B">Register a book</h2>
+        <p>Register your book and paste the barcode on it that you will receive in your email.</p>
+        <p style="float: right"><a>See video</a></p>
+    </div>
+    <div style="padding: 10px" ng-switch-when="2">
+        <h2 style="color:#E9857B">Release a book</h2>
+        <p>Go to the location where you want to leave the book and use the app to release it.</p>
+        <p style="float: right"><a>See video</a></p>
+    </div>
+    <div style="padding: 10px" ng-switch-when="3">
+        <h2 style="color:#E9857B">Follow your book</h2>
+        <p>Go to your library and select the book to see the travel route, comments, and reviews of other people who hunted the book.</p>
+        <p style="float: right"><a>See video</a></p>
+    </div>
+</div>
+<p class="blanksmall"></p>
+<div ng-switch on="stepFinding" ng-animate="'wave'" class="slide-frame">
+    <h1>Finding books</h1>
+    <div style="position: relative; height: 60px;" class="middleline">
+        <div ng-class="FindingStep1Class" ng-click="selectFindingStep(1)"></div>
+        <div ng-class="FindingStep2Class" ng-click="selectFindingStep(2)"></div>
+    </div>
+    <div style="padding: 10px" ng-switch-default ng-animate="'wave'" class="slide-frame">
+        <h2 style="color:#E9857B">Find books around you</h2>
+        <p>Use the map to find a book around you and go to pick it up.</p>
+        <p style="float: right"><a>See video</a></p>
+    </div>
+    <div style="padding: 10px" ng-switch-when="2" ng-animate="'wave'" class="slide-frame">
+        <h2 style="color:#E9857B">Hunt a book</h2>
+        <p>Hunt the book with the app using the barcode that you will find in the book.</p>
+        <p style="float: right"><a>See video</a></p>
+    </div>
+</div>
+</div>

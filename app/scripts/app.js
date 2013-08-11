@@ -9,7 +9,11 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
         templateUrl: 'views/sign.html',
         controller: 'SignCtrl'
       })
-      .when('/SignIn', {
+      .when('/TakeTour', {
+        templateUrl: 'views/takeTour.html',
+        controller: 'TakeTourCtrl'
+      })
+    .when('/SignIn', {
         templateUrl: 'views/signIn.html',
         controller: 'SignInCtrl'
       })
