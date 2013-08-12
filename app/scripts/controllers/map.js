@@ -1,4 +1,4 @@
-BookCrossingApp.controller('MapCtrl', function($scope, geolocationService, dataService) {
+BookCrossingApp.controller('MapCtrl', function($scope,$rootScope, geolocationService, dataService) {
 
     $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Map");
 

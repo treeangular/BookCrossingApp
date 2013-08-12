@@ -1,5 +1,5 @@
 'use strict';
-BookCrossingApp.controller('BookCtrl', function($scope, dataService) {
+BookCrossingApp.controller('BookCtrl', function($scope,$rootScope, dataService) {
 
     $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"bookDetails.html");
 
