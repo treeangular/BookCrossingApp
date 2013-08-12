@@ -1,6 +1,6 @@
 BookCrossingApp.controller('MapTrackingCtrl', function ($scope, $rootScope, dataService) {
-
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){},"MapTracking");
+    if($rootScope.gaPlugIn !== undefined)
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){},"MapTracking");
 
     $scope.myMarkers = [];
     var markerCount = 0;

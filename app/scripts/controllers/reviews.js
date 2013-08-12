@@ -1,13 +1,13 @@
 BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataService, $q) {
-
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Reviews");
+    if($rootScope.gaPlugIn !== undefined)
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Reviews");
 
     var star = "styles/img/blankstar.png";
     var selectedStar = "styles/img/selectedstar.png";
 
     $scope.reviewLikes = [];
 
-    function like(reviewId, isLike)
+    /*function like(reviewId, isLike)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
@@ -27,7 +27,7 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
         });
 
         return deferred.promise;
-    }
+    }*/
     function getReviewLikeByUser(userId, bookId)
     {
 
@@ -94,7 +94,7 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
         $rootScope.MessageNotification = reason;
     });
 
-    $scope.isLike  = function(reviewId) {
+    /*$scope.isLike  = function(reviewId) {
       var filterednames = $scope.reviewLikes.filter(function(obj) {
             return (obj.get('review').id === reviewId  && (obj.get('isLike') == true));
       });
@@ -115,10 +115,10 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
             return true;
         else
             return false;
-    }
+    }*/
 
 
-    $scope.like  = function(review, isLike) {
+   /* $scope.like  = function(review, isLike) {
 
         var promise = like(review.id, isLike)
         if(isLike)
@@ -152,7 +152,7 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
         });
 
 
-    }
+    }*/
 
     $scope.nextPage  = function() {
         //TODO: Load Next Pages

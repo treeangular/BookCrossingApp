@@ -1,8 +1,8 @@
 'use strict';
 
 BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $location, facebookService, $q, $rootScope) {
-
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Sign Up");
+    if($rootScope.gaPlugIn !== undefined)
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Sign Up");
 
     function registerNewUser(user)
     {

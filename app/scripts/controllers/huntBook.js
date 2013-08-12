@@ -1,8 +1,8 @@
 'use strict';
 
 BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootScope, $q, facebookService, geolocationService) {
-
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){},"HuntBook");
+    if($rootScope.gaPlugIn !== undefined)
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){},"HuntBook");
 
     $scope.books = null;
 

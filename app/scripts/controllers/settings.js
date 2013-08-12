@@ -1,8 +1,8 @@
 'use strict';
 
 BookCrossingApp.controller('SettingsCtrl', function ($scope, dataService, $location, facebookService, $rootScope) {
-
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Settings");
+    if($rootScope.gaPlugIn !== undefined)
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Settings");
 
     $scope.SignOut = function()
     {

@@ -57,8 +57,6 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
         redirectTo: '/'
       });
 
-
-
     //loadGoogleAnalytics(window);
     loadHttpInterceptor($httpProvider);
     loadFastClick();
@@ -90,8 +88,6 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         $rootScope.gaPlugIn = gaPlugin;
 
         //App it s not a page we need to track. We just need to initize and set the rootscpe variable.
-
-
         if($rootScope.gaPlugIn === undefined)
         {
             //alert("GA undefined!!!!");

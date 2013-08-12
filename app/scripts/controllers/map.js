@@ -1,6 +1,6 @@
 BookCrossingApp.controller('MapCtrl', function($scope,$rootScope, geolocationService, dataService) {
-
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Map");
+    if($rootScope.gaPlugIn !== undefined)
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Map");
 
     var geoPoint;
     var myPositionIcon = "styles/img/myPosition.gif";

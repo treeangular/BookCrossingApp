@@ -1,8 +1,8 @@
 'use strict';
 
 BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q, facebookService, $window) {
-
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){},"AddBook");
+    if($rootScope.gaPlugIn !== undefined)
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){},"AddBook");
 
     $scope.addBook = false;
 
@@ -24,7 +24,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.scanBook = function () {
     {
-        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Scan Book", 1);
+        if($rootScope.gaPlugIn !== undefined)
+            $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Scan Book", 1);
 
         console.log('scanning');
         try {

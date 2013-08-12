@@ -1,8 +1,8 @@
 'use strict';
 
 BookCrossingApp.controller('TakeTourCtrl', function ($scope,$rootScope) {
-
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){},"Take a Tour");
+    if($rootScope.gaPlugIn !== undefined)
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){},"Take a Tour");
 
     $scope.SharingStep1Class = 'step1Selected stepLeft';
     $scope.SharingStep2Class = 'step2 stepMiddle';
