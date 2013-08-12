@@ -2,6 +2,8 @@
 
 BookCrossingApp.controller('SignCtrl', function ($scope, dataService, $location, $rootScope) {
 
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){},"Sign");
+
     dataService.isCurrentUser(function (result, currentUser) {
         if (result) {
             $rootScope.currentUser = currentUser;

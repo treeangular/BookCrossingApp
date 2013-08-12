@@ -1,6 +1,9 @@
 'use strict';
 
 BookCrossingApp.controller('SettingsCtrl', function ($scope, dataService, $location, facebookService, $rootScope) {
+
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Settings");
+
     $scope.SignOut = function()
     {
         console.log("Going to log out from ctrl");

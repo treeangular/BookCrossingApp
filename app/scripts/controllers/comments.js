@@ -1,6 +1,6 @@
 BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataService, $q) {
 
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"comment.html");
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){},"comment.html");
 
 
     $scope.comments = [];

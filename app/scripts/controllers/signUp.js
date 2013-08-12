@@ -2,6 +2,8 @@
 
 BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $location, facebookService, $q, $rootScope) {
 
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Sign Up");
+
     function registerNewUser(user)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
@@ -31,6 +33,8 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
 
     $scope.registerNewUser = function (user) {
 
+        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Sign Up", 1);
+
         user.language = $rootScope.language;
         var promise = registerNewUser(user);
         promise.then(function(result) {
@@ -47,6 +51,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
 
     $scope.fbSignIn = function()
     {
+        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Sign Up Fb", 1);
 
         facebookService.login(function(result, user)
         {

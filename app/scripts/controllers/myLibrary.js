@@ -2,8 +2,7 @@
 
 BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataService, $q) {
 
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){},"MyLibrary");
-
+    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"MyLibrary");
 
     $scope.books = [];
     $scope.currentPage = 0;
