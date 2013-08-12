@@ -1,9 +1,10 @@
 'use strict';
 
 BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q, facebookService, $window) {
-
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"AddBook");
-
+    if($rootScope.gaPlugIn !== undefined)
+    {
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"AddBook");
+    }
     $scope.addBook = false;
 
     $scope.addNewBook = function () {

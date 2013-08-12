@@ -1,7 +1,8 @@
 BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, dataService, $q, facebookService) {
-
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Review Book");
-
+    if($rootScope.gaPlugIn !== undefined)
+    {
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Review Book");
+    }
     $scope.review = {
       rating:0,
       reviewText: ""

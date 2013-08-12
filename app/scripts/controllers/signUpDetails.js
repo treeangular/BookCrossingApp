@@ -2,9 +2,10 @@
 
 angular.module('BookCrossingApp')
   .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http,$rootScope, $q) {
-
-        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"SingUpDetails");
-
+        if($rootScope.gaPlugIn !== undefined)
+        {
+            $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"SingUpDetails");
+        }
         var fileToUpdate;
         var isFileToUpdate;
         var pasrseFileUpdated;

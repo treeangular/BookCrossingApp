@@ -1,7 +1,11 @@
 'use strict';
 BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $http, $window, $location) {
 
-    $rootScope.gaPlugIn.trackPage(function(){}, function(){},"Home");
+    //We have this check so we can use the webVersion without issues.
+    if($rootScope.gaPlugIn !== undefined)
+    {
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){},"Home");
+    }
 
     $scope.alerts = [];
     $scope.currentPage = 0;

@@ -81,21 +81,21 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         {
             alert('onDeviceReady- window.plugins == undefined' );
         }
-
         gaPlugin = $window.plugins.gaPlugin;
 
         // Note: A request for permission is REQUIRED by google. You probably want to do this just once, though, and remember the answer for subsequent runs.
         //navigator.notification.confirm('GA_PLUGIN would like your permission to collect usage data. No personal or user identifiable data will be collected.', permissionCallback, 'Attention', 'Allow,Deny');
 
         gaPlugin.init(function(){}, function(){alert("Error")}, googleAnalyticsIdApp, 10);
-
-        //gaPlugin.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "event only", 1);
-        gaPlugin.trackPage(function(){}, function(){alert("Error")},"BookCrossingApp.Init.Run");
-
         $rootScope.gaPlugIn = gaPlugin;
+
+        //App it s not a page we need to track. We just need to initize and set the rootscpe variable.
+
+
         if($rootScope.gaPlugIn === undefined)
         {
-            alert("GA undefined!!!!");
+            //alert("GA undefined!!!!");
+            console.log("App: $rootScope.gaPlugIn === undefined ");
         }
     }
 

@@ -2,6 +2,11 @@
 
 BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $location, facebookService, $rootScope, $q) {
 
+    if($rootScope.gaPlugIn !== undefined)
+    {
+        $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Sign In");
+    }
+
     function signInUser(email, password)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
