@@ -38,6 +38,20 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
             return deferred.promise;
         }
 
+        var getCurrentPosition = function getCurrentPosition()
+        {
+            var deferred = $q.defer();
+
+            navigator.geolocation.getCurrentPosition(function (position) {
+                    deferred.resolve(position);
+                }, function () {
+                    deferred.reject(false, ErrorConst.GenericError);
+                },
+                options);
+
+            return deferred.promise;
+        }
+
         return {
             getCurrentPosition: phonegapReadyService(function (onSuccess, onError, options) {
                 navigator.geolocation.getCurrentPosition(function () {
@@ -64,6 +78,10 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
 
 
             }),
-            getCityFromGeopoint: getCityFromGeopoint
+            getCityFromGeopoint: getCityFromGeopoint,
+
+            getCurrentPositionPromise: getCurrentPosition
         };
+
+
     });

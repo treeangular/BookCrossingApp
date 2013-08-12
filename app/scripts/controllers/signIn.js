@@ -25,14 +25,13 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
             });
         });
 
-
         return deferred.promise;
-
     }
 
     $scope.signInUser = function (user) {
 
-        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Sign In", 1);
+        if($rootScope.gaPlugIn !== undefined)
+            $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Sign In", 1);
 
         var promise = signInUser(user.Email, user.Password)
         promise.then(function() {

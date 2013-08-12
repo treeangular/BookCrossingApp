@@ -77,32 +77,39 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     $scope.huntBook = function(book)
     {
+        if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackEvent(function(){}, function(){}, "Button", "Click", "Hunt Book", 1);
 
         $scope.clicked=true;
         var promise = huntBook(book);
+        var releasedAt;
         promise.then(function(returnedBook) {
             $scope.setSelectedBook(returnedBook);
 
-            var promise2 = geolocationService.getCityFromGeopoint(returnedBook.get("releasedAt")._latitude, returnedBook.get("releasedAt")._longitude)
-            promise2.then(function(city){
-            if(typeof(FB) != 'undefined')
-            {
-                facebookService.share('hunted',returnedBook.get("title"),returnedBook.get("image"), city, function(isSuccess, result){
-                    if(!isSuccess)
-                    {
-                        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                        $rootScope.MessageNotification = result;
-                    }
+            var getCurrentPositionPromise = geolocationService.getCurrentPositionPromise();
+            getCurrentPositionPromise.then(function(position){
+                $scope.$apply(function () {
+                    releasedAt = position;
 
+                    var promise2 = geolocationService.getCityFromGeopoint(releasedAt._latitude, releasedAt._longitude)
+                    promise2.then(function(city){
+                        if(typeof(FB) != 'undefined')
+                         {
+                               facebookService.share('hunted',returnedBook.get("title"),returnedBook.get("image"), city, function(isSuccess, result){
+                                   if(!isSuccess)
+                                       {
+                                           $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                                           $rootScope.MessageNotification = result;
+                                       }
+                                });
+                         }
+                    }, function(error){
+
+                         $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                         $rootScope.MessageNotification = error;
+
+                     })
                 });
-            }
-                $scope.goTo('views/bookDetails.html');
-            }, function(error){
-
-                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                $rootScope.MessageNotification = error;
-
             })
 
         }, function(reason) {
@@ -111,6 +118,8 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
             $rootScope.MessageNotification = reason;
         });
+
+        $scope.goTo('views/bookDetails.html');
     }
 
     $rootScope.$broadcast(loadingRequestConst.Start);
