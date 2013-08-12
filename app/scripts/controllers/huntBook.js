@@ -88,7 +88,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
             promise2.then(function(city){
             if(typeof(FB) != 'undefined')
             {
-                facebookService.share('hunted',returnedBook.get("title"),returnedBook.get("image"), returnedBook.get("releasedAt"), function(isSuccess, result){
+                facebookService.share('hunted',returnedBook.get("title"),returnedBook.get("image"), city, function(isSuccess, result){
                     if(!isSuccess)
                     {
                         $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
