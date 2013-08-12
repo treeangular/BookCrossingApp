@@ -6,17 +6,16 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
 
 
             var deferred = $q.defer();
+
             var queryFormat;
 
-            if(latitude && longitude)
-            {
-                queryFormat = "latlng=" + latitude + "," + longitude;
-            }
-            var url = 'http://maps.googleapis.com/maps/api/geocode/json?'+queryFormat+'&sensor=true';
+
+            var url = 'http://maps.googleapis.com/maps/api/geocode/json';
 
             $http({
                 method: 'GET',
                 url: url,
+                params: {latlng: latitude+","+longitude, sensor:true},
                 cache: false
             }).
                 success(function(data, status) {
