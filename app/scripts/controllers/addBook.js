@@ -39,26 +39,28 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                         "Format: " + result.format + "\n" +
                         "Cancelled: " + result.cancelled);*/
 
-                    if (result.text != null)
-                    {
-                        $scope.clicked=true;
-                        $rootScope.$broadcast(loadingRequestConst.Start);
-                        var promise = findBook(result.text)
-                        promise.then(function(results) {
+                    $scope.$apply(function () {
+                        if (result.text != null)
+                        {
+                            $scope.clicked=true;
+                            $rootScope.$broadcast(loadingRequestConst.Start);
+                            var promise = findBook(result.text)
+                            promise.then(function(results) {
 
-                            $scope.books = results;
-                            $scope.clicked=false;
-                            $rootScope.$broadcast(loadingRequestConst.Stop);
+                                $scope.books = results;
+                                $scope.clicked=false;
+                                $rootScope.$broadcast(loadingRequestConst.Stop);
 
 
-                        }, function(reason) {
+                            }, function(reason) {
 
-                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                            $rootScope.MessageNotification = reason;
-                            $scope.clicked=false;
-                            $rootScope.$broadcast(loadingRequestConst.Stop);
-                        });
-                    }
+                                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                                $rootScope.MessageNotification = reason;
+                                $scope.clicked=false;
+                                $rootScope.$broadcast(loadingRequestConst.Stop);
+                            });
+                        }
+                    });
 
                 },
                 function (error) {
