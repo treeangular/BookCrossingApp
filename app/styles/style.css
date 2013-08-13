@@ -232,6 +232,17 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
     text-decoration:none;
 }
 
+
+/* TAKE A TOUR */
+#whitePopup{
+    background-color: #ffffff;
+    position: absolute;
+    top: 5px; bottom:
+    5px; left:
+    5px; right:
+    5px; padding: 5px
+}
+
 .titleHelp {
     background-image: url('./img/bchelp.png');
     background-position: center;
@@ -239,7 +250,6 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
     width:233px;
     height: 40px;
 }
-
 
 .step1 {
     background-image: url('./img/steps/Step1.png');
@@ -299,11 +309,13 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
     top:0px;
 }
 
-.middleline {
+.middleLine {
     background-image: url('./img/line.png');
     background-position: center;
     background-repeat: repeat-x;
     margin: 5px;
+    position: relative;
+    height: 60px;
 }
 
 /*IMAGES*/

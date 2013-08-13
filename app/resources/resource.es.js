@@ -303,6 +303,89 @@
         "value":"Salir",
         "description":"See more alerts"
     }
-
+    ,
+    {
+        "key":"_HelpBookCrossingDefinition_",
+        "value":"App para encontrar y compartir libros con otras personas alrededor del mundo.",
+        "description":"App para encontrar y compartir libros con otras personas alrededor del mundo."
+    }
+    ,
+    {
+        "key":"_HelpRegisterBook_",
+        "value":"Registrar un libro",
+        "description":"Registrar un libro"
+    }
+    ,
+    {
+        "key":"_HelpRegisterBookDescription_",
+        "value":"Registra tu libro y pega el código que recibirás en tu email.",
+        "description":"Registra tu libro y pega el código que recibirás en tu email."
+    }
+    ,
+    {
+        "key":"_HelpReleaseBook_",
+        "value":"Liberar un libro",
+        "description":"Liberar un libro"
+    }
+    ,
+    {
+        "key":"_HelpReleaseBookDescription_",
+        "value":"ve al sitio donde quieras dejar el libro y utiliza la app para liberarlo.",
+        "description":"ve al sitio donde quieras dejar el libro y utiliza la app para liberarlo."
+    }
+    ,
+    {
+        "key":"_HelpFollowBook_",
+        "value":"Sigue tu libro",
+        "description":"Sigue tu libro"
+    }
+    ,
+    {
+        "key":"_HelpFollowBookDescription_",
+        "value":"Ve a tu librería y selecciona un libro para ver el recorrido, comentarios, críticas de otra gente que cazó el libro.",
+        "description":"Ve a tu librería y selecciona un libro para ver el recorrido, comentarios, críticas de otra gente que cazó el libro."
+    }
+    ,
+    {
+        "key":"_HelpFindingBooks_",
+        "value":"Buscar un libro",
+        "description":"Buscar un libro"
+    }
+    ,
+    {
+        "key":"_HelpFindingBooksAroundYou_",
+        "value":"Buscar libros alrededor de tí",
+        "description":"Buscar libros alrededor de tí"
+    }
+    ,
+    {
+        "key":"_HelpFindingBooksAroundYouDescription_",
+        "value":"Utiliza el mapa para encontrar un libro cerca de ti y ve a recogerlo.",
+        "description":"Utiliza el mapa para encontrar un libro cerca de ti y ve a recogerlo."
+    }
+    ,
+    {
+        "key":"_HelpHuntBook_",
+        "value":"Caza un libro",
+        "description":"Caza un libro"
+    }
+    ,
+    {
+        "key":"_HelpHuntBookDescription_",
+        "value":"Caza el libro con la app utilizando el código que encontrarás en el libro.",
+        "description":"Caza el libro con la app utilizando el código que encontrarás en el libro."
+    }
+    ,
+    {
+        "key":"_HelpSeeVideo_",
+        "value":"Ver video",
+        "description":"Ver video"
+    }
+    ,
+    {
+        "key":"_HelpSharingBook_",
+        "value":"Compartir libros",
+        "description":"Compartir libros"
+    }
 
 ]

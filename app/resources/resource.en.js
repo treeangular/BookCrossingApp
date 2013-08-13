@@ -301,6 +301,89 @@
         "value":"Sign out",
         "description":"See more alerts"
     }
-
+    ,
+    {
+        "key":"_HelpBookCrossingDefinition_",
+        "value":"App for finding and sharing books with other people around the world.",
+        "description":"App for finding and sharing books with other people around the world."
+    }
+    ,
+    {
+        "key":"_HelpRegisterBook_",
+        "value":"Register a book",
+        "description":"Register a book"
+    }
+    ,
+    {
+        "key":"_HelpRegisterBookDescription_",
+        "value":"Register your book and paste the barcode on it that you will receive in your email.",
+        "description":"Register your book and paste the barcode on it that you will receive in your email."
+    }
+    ,
+    {
+        "key":"_HelpReleaseBook_",
+        "value":"Release a book",
+        "description":"Release a book"
+    }
+    ,
+    {
+        "key":"_HelpReleaseBookDescription_",
+        "value":"Go to the location where you want to leave the book and use the app to release it.",
+        "description":"Go to the location where you want to leave the book and use the app to release it."
+    }
+    ,
+    {
+        "key":"_HelpFollowBook_",
+        "value":"Follow your book",
+        "description":"Follow your book"
+    }
+    ,
+    {
+        "key":"_HelpFollowBookDescription_",
+        "value":"Go to your library and select the book to see the travel route, comments, and reviews of other people who hunted the book.",
+        "description":"Go to your library and select the book to see the travel route, comments, and reviews of other people who hunted the book."
+    }
+    ,
+    {
+        "key":"_HelpFindingBooks_",
+        "value":"Finding a book",
+        "description":"Finding a book"
+    }
+    ,
+    {
+        "key":"_HelpFindingBooksAroundYou_",
+        "value":"Find books around you",
+        "description":"Find books around you"
+    }
+    ,
+    {
+        "key":"_HelpFindingBooksAroundYouDescription_",
+        "value":"Use the map to find a book around you and go to pick it up.",
+        "description":"Use the map to find a book around you and go to pick it up."
+    }
+    ,
+    {
+        "key":"_HelpHuntBook_",
+        "value":"Hunt a book",
+        "description":"Hunt a book"
+    }
+    ,
+    {
+        "key":"_HelpHuntBookDescription_",
+        "value":"Hunt the book with the app using the barcode that you will find in the book.",
+        "description":"Hunt the book with the app using the barcode that you will find in the book."
+    }
+    ,
+    {
+        "key":"_HelpSeeVideo_",
+        "value":"See video",
+        "description":"See video"
+    }
+    ,
+    {
+        "key":"_HelpSharingBook_",
+        "value":"Sharing books",
+        "description":"Sharing books"
+    }
 
 ]
