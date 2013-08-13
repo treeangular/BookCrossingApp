@@ -69,7 +69,7 @@ angular.module('dataServices', [])
                 });
 
             },
-            //<editor-fold description="ReviewLike">
+        //<editor-fold description="ReviewLike">
 
             addLikeToReview: function addLikeToReview(book, reviewId, isLike, callback)
             {
@@ -666,6 +666,7 @@ angular.module('dataServices', [])
                     book.set("hunted", 0);
                     book.set("released", 0);
                     book.set("kilometers", 0);
+                    book.set("averageRate", [0]);
                     book.set("registeredBy", Parse.User.current());
                     book.set("bookStatus", new BookStatus({id: BookStatusConst.Registered}));
                     book.set("ownedBy", Parse.User.current());
