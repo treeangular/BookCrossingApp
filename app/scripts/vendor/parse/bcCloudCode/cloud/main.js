@@ -26,19 +26,47 @@ var BookStatusConst =
     Registered: "wXbJK5Sljm",
     Lost: "XMFkXS9NVv"
 }
+function getRandomString()
+{
+    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
+    var string_length = 4;
+    var randomstring = '';
+
+    for (var i=0; i<string_length; i++) {
+        var rnum = Math.floor(Math.random() * chars.length);
+        randomstring += chars.substring(rnum,rnum + 1);
+    }
+    return randomstring;
+}
 
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // Gets the unique cool BC identificator. The real glue of BC!
 Parse.Cloud.define("GetBookId", function(request, response) {
-    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
-    var string_length = 6;
-    var randomstring = '';
-    for (var i=0; i<string_length; i++) {
-        var rnum = Math.floor(Math.random() * chars.length);
-        randomstring += chars.substring(rnum,rnum+1);
-    }
 
-    response.success(randomstring);
+    var randomString = getRandomString();
+
+    var query = new Parse.Query("Book");
+
+    query.equalTo("registrationId", randomString);
+
+    query.find({
+        success: function (results) {
+
+           if(results.length === 0)
+           {
+               response.success(randomString);
+           }
+           //if there is other registrationId we concatenate
+           else
+           {
+               response.success(randomString + getRandomString());
+           }
+
+        },
+        error: function (data,error) {
+            response.error(null);
+        }
+    })
 });
 
 //Update book counters before saving it
@@ -75,11 +103,7 @@ Parse.Cloud.afterSave("ReviewLike", function(request){
     if(isLike)
     {
         review.increment("likeCount");
-    }
-    else
-    {
-        review.increment("unLikeCount");
-
+        review.set("comingFrom", "ReviewLike");
     }
     review.save(null, {
         success: function (review) {
@@ -105,34 +129,38 @@ Parse.Cloud.afterSave("Review", function(request){
     //Check if we just save released or hunted the book
     console.log("Retreiving objects...");
 
-    query.get(ActionTypesConst.Reviewed, {
-        success: function (result){
-            //Add new Action
+    if(request.object.get("comingFrom")!== "ReviewLike")
+    {
 
-            //Set the action with the result
-            action.set("actionType", result);
-            action.set("book", request.object.get("book"));
-            action.set("user", request.user);
+        query.get(ActionTypesConst.Reviewed, {
+            success: function (result){
+                //Add new Action
 
-            action.save(null, {
-                success: function (action) {
+                //Set the action with the result
+                action.set("actionType", result);
+                action.set("book", request.object.get("book"));
+                action.set("user", request.user);
 
-                },
-                error: function (error) {
-                    // The save failed.
-                    // error is a Parse.Error with an error code and description.
-                    console.error("Insertion Error: " + error.message);
-                    //throw "Got an error " + error.code + " : " + error.message;
-                }
-            });
-        },
-        error: function (error) {
-            // The save failed.
-            // error is a Parse.Error with an error code and description.
-            console.error("Insertion Error: " + error.message);
-            throw "Got an error " + error.code + " : " + error.message;
-        }
-    });
+                action.save(null, {
+                    success: function (action) {
+
+                    },
+                    error: function (error) {
+                        // The save failed.
+                        // error is a Parse.Error with an error code and description.
+                        console.error("Insertion Error: " + error.message);
+                        //throw "Got an error " + error.code + " : " + error.message;
+                    }
+                });
+            },
+            error: function (error) {
+                // The save failed.
+                // error is a Parse.Error with an error code and description.
+                console.error("Insertion Error: " + error.message);
+                throw "Got an error " + error.code + " : " + error.message;
+            }
+        });
+    }
 });
 Parse.Cloud.afterSave("Comment", function(request){
 

@@ -72,7 +72,8 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
 
     $scope.release = function () {
-        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Release Book", 1);
+        if($rootScope.gaPlugIn !== undefined)
+        $rootScope.gaPlugIn.trackEvent(function(){}, function(){}, "Button", "Click", "Release Book", 1);
 
         //TODO: Validate registrationId is correct, if wrong show error with notification bar
         $scope.clicked=true;

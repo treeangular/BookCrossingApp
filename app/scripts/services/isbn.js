@@ -61,19 +61,23 @@ angular.module('isbnProvider', [])
 
                         for (var i=0;i<max;i++)
                         {
-                            //TODO: Add isbn, remove books without image,
-                            var book = {};
-                            book.title = data.items[i].volumeInfo.title;
-                            book.description = data.items[i].volumeInfo.description;
-                            book.language = data.items[i].accessInfo.country;
-                            book.subtitle = data.items[i].volumeInfo.subtitle;
-                            book.authors = data.items[i].volumeInfo.authors;
-                            book.image = data.items[i].volumeInfo.imageLinks === undefined ? "": data.items[i].volumeInfo.imageLinks.thumbnail ;
-                            //book.isbn = data.items[i].volumeInfo.industryIdentifiers === undefined ? "" : data.items[i].volumeInfo.industryIdentifiers[1].identifier;
-                            book.publisher = data.items[i].volumeInfo.publisher;
-                            book.publishedDate = data.items[i].volumeInfo.publishedDate;
+                            if(data.items[i].volumeInfo.imageLinks !== undefined)
+                            {
+                                //TODO: Add isbn, remove books without image,
+                                var book = {};
+                                book.title = data.items[i].volumeInfo.title;
+                                book.description = data.items[i].volumeInfo.description;
+                                book.language = data.items[i].accessInfo.country;
+                                book.subtitle = data.items[i].volumeInfo.subtitle;
+                                book.authors = data.items[i].volumeInfo.authors;
+                                book.image = data.items[i].volumeInfo.imageLinks === undefined ? "": data.items[i].volumeInfo.imageLinks.thumbnail ;
+                                book.isbn = data.items[i].volumeInfo.industryIdentifiers === undefined ? "" : data.items[i].volumeInfo.industryIdentifiers[0].identifier;
+                                book.publisher = data.items[i].volumeInfo.publisher;
+                                book.publishedDate = data.items[i].volumeInfo.publishedDate;
 
-                            books.push(book);
+                                books.push(book);
+                            }
+
                         }
 
                          callback(true, books);

@@ -175,7 +175,7 @@
 
     {
         "key":"_Isbn_",
-        "value":"ISBN",
+        "value":"ISBN, titulo, autor",
         "description":"ISBN"
 
     },
