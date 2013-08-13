@@ -7,11 +7,11 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
 
     $scope.reviewLikes = [];
 
-    /*function like(reviewId, isLike)
+    function like(reviewId, isLike)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
-        dataService.addOrUpdateLikeUnLikeToReview($scope.selectedBook, reviewId, isLike, function (isSuccess, results) {
+        dataService.addLikeToReview($scope.selectedBook, reviewId, isLike, function (isSuccess, results) {
 
             $scope.$apply(function(){
                 if(isSuccess)
@@ -27,7 +27,7 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
         });
 
         return deferred.promise;
-    }*/
+    }
     function getReviewLikeByUser(userId, bookId)
     {
 
@@ -94,7 +94,7 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
         $rootScope.MessageNotification = reason;
     });
 
-    /*$scope.isLike  = function(reviewId) {
+   $scope.isLike  = function(reviewId) {
       var filterednames = $scope.reviewLikes.filter(function(obj) {
             return (obj.get('review').id === reviewId  && (obj.get('isLike') == true));
       });
@@ -104,7 +104,7 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
       else
         return false;
     }
-
+    /*
     $scope.isUnlike  = function(reviewId) {
 
         var filterednames = $scope.reviewLikes.filter(function(obj) {
@@ -118,22 +118,19 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
     }*/
 
 
-   /* $scope.like  = function(review, isLike) {
+    $scope.like  = function(review, isLike) {
 
         var promise = like(review.id, isLike)
         if(isLike)
         {
             review.increment("likeCount");
         }
-        else
-        {
-            review.increment("unLikeCount");
-        }
 
         promise.then(function(reviewLike) {
 
             promise = getReviewLikeByUser($rootScope.currentUser.id, $scope.selectedBook.id)
             promise.then(function(reviewLikes) {
+
                 $scope.reviewLikes = reviewLikes;
                 $rootScope.$broadcast(loadingRequestConst.Stop);
             }, function(reason) {
@@ -152,7 +149,7 @@ BookCrossingApp.controller('ReviewsCtrl', function ($scope, $rootScope, dataServ
         });
 
 
-    }*/
+    }
 
     $scope.nextPage  = function() {
         //TODO: Load Next Pages

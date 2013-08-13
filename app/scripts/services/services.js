@@ -71,7 +71,7 @@ angular.module('dataServices', [])
             },
             //<editor-fold description="ReviewLike">
 
-            addOrUpdateLikeUnLikeToReview: function addOrUpdateLikeUnLikeToReview(book, reviewId, isLike, callback)
+            addLikeToReview: function addLikeToReview(book, reviewId, isLike, callback)
             {
 
                 var reviewFound;
@@ -92,35 +92,16 @@ angular.module('dataServices', [])
 
                 }).then(function(reviewLike){
 
-                        if(reviewLike)
-                        {
-                            if(reviewLike.get("isLike"))
-                            {
-                                reviewLike.set("isLike", false)
-                                reviewFound.increment("likeCount", -1);
-                                reviewFound.increment("unLikeCount", 1);
-                            }
-                            else
-                            {
-                                reviewLike.set("isLike", true)
-                                reviewFound.increment("likeCount", 1);
-                                reviewFound.increment("unLikeCount", -1);
 
-                            }
-                            reviewFound.save();
-                            return reviewLike.save()
-                        }
-                        else
-                        {
-                            var reviewLike = new ReviewLike();
+                     var reviewLike = new ReviewLike();
 
-                            reviewLike.set("review", reviewFound);
-                            reviewLike.set("isLike", isLike)
-                            reviewLike.set("user", Parse.User.current());
-                            reviewLike.set("book", book);
+                     reviewLike.set("review", reviewFound);
+                     reviewLike.set("isLike", isLike)
+                     reviewLike.set("user", Parse.User.current());
+                     reviewLike.set("book", book);
 
-                            return reviewLike.save();
-                        }
+                     return reviewLike.save();
+
 
                     }).then(function(result){
 

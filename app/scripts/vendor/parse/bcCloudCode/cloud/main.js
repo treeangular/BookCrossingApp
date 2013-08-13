@@ -65,34 +65,34 @@ Parse.Cloud.beforeSave("Book", function(request, response) {
 
 });
 
-//Parse.Cloud.afterSave("ReviewLike", function(request){
-//
-//    var review = new Parse.Object("Review");
-//    var isLike = request.object.get("isLike")
-//
-//    //Update User counters
-//    review = request.object.get("review");
-//    if(isLike)
-//    {
-//        review.increment("likeCount");
-//    }
-//    else
-//    {
-//        review.increment("unLikeCount");
-//
-//    }
-//    review.save(null, {
-//        success: function (review) {
-//            console.log("Like or unLike Incremented")
-//        },
-//        error: function (error) {
-//            // The save failed.
-//            // error is a Parse.Error with an error code and description.
-//            console.error("Insertion Error: " + error.message);
-//            throw "Got an error " + error.code + " : " + error.message;
-//        }
-//    });
-//});
+Parse.Cloud.afterSave("ReviewLike", function(request){
+
+    var review = new Parse.Object("Review");
+    var isLike = request.object.get("isLike")
+
+    //Update User counters
+    review = request.object.get("review");
+    if(isLike)
+    {
+        review.increment("likeCount");
+    }
+    else
+    {
+        review.increment("unLikeCount");
+
+    }
+    review.save(null, {
+        success: function (review) {
+            console.log("Like or unLike Incremented")
+        },
+        error: function (error) {
+            // The save failed.
+            // error is a Parse.Error with an error code and description.
+            console.error("Insertion Error: " + error.message);
+            throw "Got an error " + error.code + " : " + error.message;
+        }
+    });
+});
 
 Parse.Cloud.afterSave("Review", function(request){
 
