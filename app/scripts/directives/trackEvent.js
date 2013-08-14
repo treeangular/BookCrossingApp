@@ -6,11 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 //angular.module('BookCrossingApp')
-BookCrossingApp.directive('bcaTrackEvent', function ($rootScope) {
+BookCrossingApp.directive('bcaTrackEvent', function () {
     return {
         restrict: "A",
-        link: function ($rootScope, element) {
+        require: 'name',
+        link: function ($scope, elm, attrs, ctrl) {
 
+            $rootScope.gaPlugIn.trackEvent(function(){}, function(){}, element.type, "Click", element.name, 1);
         }
     };
 });
