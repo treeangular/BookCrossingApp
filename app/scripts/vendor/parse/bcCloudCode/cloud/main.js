@@ -28,7 +28,7 @@ var BookStatusConst =
 }
 function getRandomString()
 {
-    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
+    var chars = "01";
     var string_length = 4;
     var randomstring = '';
 
@@ -38,35 +38,52 @@ function getRandomString()
     }
     return randomstring;
 }
+function findRegistrationId()
+{
+    console.log("Enter findRegistrationId")
+    var randomString = getRandomString();
+    var query = new Parse.Query("Book");
+
+    query.equalTo("registrationId", randomString);
+
+    query.find.then(function(results){
+        if(results.length === 0)
+        {
+            console.log("no registrationId duplicated")
+            return randomString;
+        }
+        //if there is other registrationId we concatenate
+        else
+        {
+            console.log("registrationId duplicated let's recursive it")
+            return findRegistrationId();
+        }
+    },function(error){
+        return error;
+    })
+
+}
 
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // Gets the unique cool BC identificator. The real glue of BC!
 Parse.Cloud.define("GetBookId", function(request, response) {
 
-    var randomString = getRandomString();
 
-    var query = new Parse.Query("Book");
+    var promise = findRegistrationId();
 
-    query.equalTo("registrationId", randomString);
+    promise.then(function(result){
 
-    query.find({
-        success: function (results) {
+        console.log("success promise!!")
+        response.success(result);
 
-           if(results.length === 0)
-           {
-               response.success(randomString);
-           }
-           //if there is other registrationId we concatenate
-           else
-           {
-               response.success(randomString + getRandomString());
-           }
+    }, function(error){
+        console.error("Promise Error: " + error.message);
 
-        },
-        error: function (data,error) {
-            response.error(null);
-        }
-    })
+        response.error(error);
+
+    });
+
+
 });
 
 //Update book counters before saving it
