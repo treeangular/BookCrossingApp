@@ -101,8 +101,16 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                                            $rootScope.MessageNotification = result;
                                        }
+                                   else
+                                   {
+                                       $scope.goTo('views/bookDetails.html');
+                                   }
                                 });
                          }
+                        else
+                        {
+                            $scope.goTo('views/bookDetails.html');
+                        }
                     }, function(error){
 
                          $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
@@ -119,7 +127,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
             $rootScope.MessageNotification = reason;
         });
 
-        $scope.goTo('views/bookDetails.html');
+
     }
 
     $rootScope.$broadcast(loadingRequestConst.Start);
