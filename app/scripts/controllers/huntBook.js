@@ -90,9 +90,10 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
             getCurrentPositionPromise.then(function(position){
                 $scope.$apply(function () {
                     releasedAt = position;
-
+                    alert("getCityFromGeopoint");
                     var promise2 = geolocationService.getCityFromGeopoint(releasedAt._latitude, releasedAt._longitude)
                     promise2.then(function(city){
+                        alert("City: " + city);
                         if(typeof(FB) != 'undefined')
                          {
                                facebookService.share('hunted',returnedBook.get("title"),returnedBook.get("image"), city, function(isSuccess, result){
@@ -102,9 +103,9 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                                            $rootScope.MessageNotification = result;
                                        }
                                    else
-                                   {
-                                       $scope.goTo('views/bookDetails.html');
-                                   }
+                                       {
+                                           $scope.goTo('views/bookDetails.html');
+                                       }
                                 });
                          }
                         else
@@ -112,7 +113,6 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                             $scope.goTo('views/bookDetails.html');
                         }
                     }, function(error){
-
                          $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                          $rootScope.MessageNotification = error;
 
@@ -120,8 +120,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                 });
             })
 
-        }, function(reason) {
-
+        }, function(reason){
             $scope.clicked=false;
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
             $rootScope.MessageNotification = reason;
