@@ -8,23 +8,16 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 
-        dataService.releaseBook(releaseInfo,registrationId,function(isSuccess, result)
-        {
-            //How do I change to another view now?!!? Locate ??
-            $scope.$apply(function () {
-                if(isSuccess)
-                {
-                    deferred.resolve(result);
+        dataService.releaseBook(releaseInfo,registrationId).then(
+            function(result){
 
-                }
-                else
-                {
-                    deferred.reject(result);
+                deferred.resolve(result);
 
-                }
+            },function(error){
 
-            });
-        });
+                deferred.reject(error);
+
+            })
 
         return deferred.promise;
 
@@ -74,58 +67,55 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
     $scope.release = function () {
         if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackEvent(function(){}, function(){}, "Button", "Click", "Release Book", 1);
-
-        //TODO: Validate registrationId is correct, if wrong show error with notification bar
         $scope.clicked=true;
         $rootScope.$broadcast(loadingRequestConst.Start);
         var releaseInfo = new Object();
 
-        releaseInfo.bookId = $scope.selectedBook;
-        releaseInfo.geoPoint= geoPoint;
-        releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
+       var geoPoint;
 
+        //First we call the geoLocationService to get the current GeoPoint
+        var geoLocationPromise = geolocationService.getCurrentPositionPromise().then(function(geoLocationPoint){
 
-        var promise = releaseBook(releaseInfo, $scope.registrationId);
-        promise.then(function(result) {
+            geoPoint = geoLocationPoint;
+            releaseInfo.bookId = $scope.selectedBook;
+            releaseInfo.geoPoint= geoLocationPoint;
+            releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
-            $scope.setSelectedBook(result);
+            //After getting the release info we release the book
+            return releaseBook(releaseInfo, $scope.registrationId);
 
-            var promise2 = geolocationService.getCityFromGeopoint(geoPoint.latitude, geoPoint.longitude);
+        }).then(function(result){
 
+           //After release the book we get the city where has been released to pass it FB
+           $scope.setSelectedBook(result);
+           return geolocationService.getCityFromGeopoint(geoPoint.latitude, geoPoint.longitude);
 
-            promise2.then(function(city){
+        }).then(function(city){
+           //After everything has been saved correctly we will popup the FB dialog
+           if(typeof(FB) != 'undefined')
+            {
+                alert("inside FB")
+                facebookService.share('released',result.get("title"),result.get("image"), city, function(isSuccess, result){
+                    if(!isSuccess)
+                    {
+                        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                        $rootScope.MessageNotification = result;
+                    }
 
-                if(typeof(FB) != 'undefined')
-                {
-                    alert("inside FB")
-                    facebookService.share('released',result.get("title"),result.get("image"), city, function(isSuccess, result){
-                        if(!isSuccess)
-                        {
-                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                            $rootScope.MessageNotification = result;
-                        }
+                });
+            }
+            $scope.goTo('views/reviewBook.html');
 
-                    });
-                }
-                $scope.goTo('views/reviewBook.html');
-
-            }, function(error){
+         }, function(error){
 
                 $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                $rootScope.MessageNotification = error;
-
-            })
+                $rootScope.MessageNotification = reason;
 
 
-        }, function(reason) {
+         });
 
-            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-            $rootScope.MessageNotification = reason;
-            $scope.clicked=false;
-        });
+        $scope.clicked=false;
         $rootScope.$broadcast(loadingRequestConst.Stop);
-
-
 
     };
 });
