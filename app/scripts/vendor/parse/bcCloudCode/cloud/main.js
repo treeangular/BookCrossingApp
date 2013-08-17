@@ -39,34 +39,54 @@ function getRandomString()
     return randomstring;
 }
 
+function findRegistrationId()
+{
+    console.log("Enter findRegistrationId")
+    var randomString = getRandomString();
+    var query = new Parse.Query("Book").equalTo("registrationId", randomString);
+
+    var promise = new Parse.Promise();
+
+    query.find().then(function(results) {
+        if (results.length == 0)
+        {
+            promise.resolve(randomString);
+        }
+        else
+        {
+            findRegistrationId().then(function(result) {
+                promise.resolve(result);
+            }, function(error) {
+                promise.reject(error);
+            });
+        }
+    }, function(error) {
+        promise.reject(error);
+    });
+
+    return promise;
+}
+
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // Gets the unique cool BC identificator. The real glue of BC!
 Parse.Cloud.define("GetBookId", function(request, response) {
 
-    var randomString = getRandomString();
+    var promise = findRegistrationId();
 
-    var query = new Parse.Query("Book");
+    promise.then(function(result){
 
-    query.equalTo("registrationId", randomString);
+        console.log("successfully returned by the promise");
+        response.success(result);
 
-    query.find({
-        success: function (results) {
+    }, function(error){
 
-           if(results.length === 0)
-           {
-               response.success(randomString);
-           }
-           //if there is other registrationId we concatenate
-           else
-           {
-               response.success(randomString + getRandomString());
-           }
+        console.log("error returned the promise");
+        response.error(error);
 
-        },
-        error: function (data,error) {
-            response.error(null);
-        }
-    })
+    });
+
+
+
 });
 
 //Update book counters before saving it
