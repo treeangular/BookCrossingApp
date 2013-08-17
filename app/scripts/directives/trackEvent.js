@@ -9,8 +9,7 @@
 BookCrossingApp.directive('bcaTrackEvent', function () {
     return {
         restrict: "A",
-        require: 'name',
-        link: function ($scope, elm, attrs, ctrl) {
+        link: function ($rootScope, elm, attrs, ctrl) {
 
             $rootScope.gaPlugIn.trackEvent(function(){}, function(){}, element.type, "Click", element.name, 1);
         }
