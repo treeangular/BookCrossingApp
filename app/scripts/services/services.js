@@ -126,7 +126,7 @@ angular.module('dataServices', [])
                 if(tracking !== undefined)
                 {
                     var point1 = tracking.get("releasedAt");
-                    var point2 = book.get("releasedAt");
+                    var point2 = bookFromParse.get("releasedAt");
                     var kilometers = updateBookKilometers(book, point1, point2);
                     return saveBook(bookFromParse, registrationId, releaseInfo, kilometers);
                 }
