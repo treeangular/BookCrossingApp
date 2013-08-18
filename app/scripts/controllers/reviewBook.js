@@ -34,8 +34,7 @@ BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, data
 
   $scope.sendReview = function (review) {
 
-      if($rootScope.gaPlugIn !== undefined)
-      $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Send Review", 1);
+
 
       $scope.clicked = true;
       var promise = saveReview(review)

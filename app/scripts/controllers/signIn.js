@@ -30,8 +30,6 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
     $scope.signInUser = function (user) {
 
-        if($rootScope.gaPlugIn !== undefined)
-            $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Sign In", 1);
 
         var promise = signInUser(user.Email, user.Password)
         promise.then(function() {
@@ -49,8 +47,6 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
     $scope.fbSignIn = function()
     {
-        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Sign In Fb", 1);
-
         facebookService.login(function(result, user)
         {
             $scope.$apply(function () {

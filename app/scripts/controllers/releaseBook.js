@@ -66,8 +66,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     $scope.release = function () {
 
-        if($rootScope.gaPlugIn !== undefined)
-             $rootScope.gaPlugIn.trackEvent(function(){}, function(){}, "Button", "Click", "Release Book", 1);
+
 
         $scope.clicked=true;
         $rootScope.$broadcast(loadingRequestConst.Start);

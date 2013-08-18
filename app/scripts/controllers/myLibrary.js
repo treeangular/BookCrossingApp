@@ -117,9 +117,6 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
     $scope.updateUserStatus = function () {
 
-        $rootScope.gaPlugIn.trackEvent(function(){}, function(){}, "Button", "Click", "Update user status", 1);
-
-
         $rootScope.$broadcast(loadingRequestConst.Start);
             var promise = updateStatus($scope.library.status)
             promise.then(function(result) {

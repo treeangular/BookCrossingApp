@@ -68,8 +68,6 @@ BookCrossingApp.controller('MapCtrl', function($scope,$rootScope, geolocationSer
 
     $scope.openMarkerInfo = function(marker) {
 
-        $rootScope.gaPlugIn.trackEvent(function(){}, function(){}, "Button", "Click", "Book Detail From Map", 1);
-
         if (marker.title == "Me") return;
         $scope.book = getId($scope.books, marker.title);
         $scope.currentMarker = marker;

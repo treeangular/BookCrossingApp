@@ -24,9 +24,6 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.scanBook = function () {
     {
-        if($rootScope.gaPlugIn !== undefined)
-            $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Scan Book", 1);
-
         console.log('scanning');
         try {
 
@@ -99,9 +96,6 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
     }
 
 	$scope.findBook = function () {
-
-        if($rootScope.gaPlugIn !== undefined)
-        $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Find Book", 1);
 
         if ($scope.isbn != null)
         {

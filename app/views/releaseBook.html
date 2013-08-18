@@ -7,5 +7,5 @@
         <option ng-repeat="zobc in zobcList" value="zobc.id">{{zobc.name}}</option>
     </select>-->
     <textarea ng-model="bookLocationDescription" name="bookDescription" rows="5"  data-localize-it-attr="_ReleaseBookRegistrationHowToFindBook_|placeholder" />
-    <input ng-click="release()" type="submit" value="Confirm release" ng-disabled="clicked" class="buttonlarge" />
+    <input ng-click="release()" bca-track-event type="submit" value="Confirm release" ng-disabled="clicked" class="buttonlarge" />
 </div>

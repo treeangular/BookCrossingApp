@@ -107,9 +107,7 @@ angular.module('BookCrossingApp')
 
         $scope.updateUserProfile = function (user) {
 
-            $rootScope.gaPlugIn.trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Update User Profile", 1);
-
-            if (fileToUpdate!=undefined){
+          if (fileToUpdate!=undefined){
                 var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
 
                 parseFile.save().then(function(uploadedParseFile) {
