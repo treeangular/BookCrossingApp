@@ -81,13 +81,13 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         var promise = huntBook(book);
         var releasedAt;
         promise.then(function(returnedBook) {
-
-            $scope.setSelectedBook(returnedBook);
             
+            $scope.setSelectedBook(returnedBook);
+
         }).then(function(position){
 
             releasedAt = position;
-            return geolocationService.getCityFromGeopoint(releasedAt._latitude, releasedAt._longitude)
+            return geolocationService.getCityFromGeoPoint(releasedAt._latitude, releasedAt._longitude)
 
         }).then(function(city){
 
