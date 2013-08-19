@@ -47,7 +47,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
     geolocationService.getCurrentPosition(function (position) {
         geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
 
-        if (geoPoint!=null){
+        if (geoPoint != null){
 
             var marker = new google.maps.Marker({
                 map: $scope.myMap,
@@ -63,7 +63,6 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         }
     });
 
-
     $scope.release = function () {
 
        $scope.clicked=true;
@@ -75,17 +74,13 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
        //First we call the geoLocationService to get the current GeoPoint
        geolocationService.getCurrentPositionPromise().then(function(geoLocationPoint){
 
-
           geoPoint = {latitude:geoLocationPoint.coords.latitude, longitude:geoLocationPoint.coords.longitude};
           releaseInfo.bookId = $scope.selectedBook;
           releaseInfo.geoPoint= geoPoint;
           releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
-
-           //After getting the release info we release the book
-           return releaseBook(releaseInfo, $scope.registrationId);
-
-
+          //After getting the release info we release the book
+          return releaseBook(releaseInfo, $scope.registrationId);
 
         }).then(function(result){
 

@@ -77,54 +77,46 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     $scope.huntBook = function(book)
     {
-
         $scope.clicked=true;
         var promise = huntBook(book);
         var releasedAt;
         promise.then(function(returnedBook) {
+
             $scope.setSelectedBook(returnedBook);
+            
+        }).then(function(position){
 
-            var getCurrentPositionPromise = geolocationService.getCurrentPositionPromise();
-            getCurrentPositionPromise.then(function(position){
-                $scope.$apply(function () {
-                    releasedAt = position;
-                    alert("getCityFromGeopoint");
-                    var promise2 = geolocationService.getCityFromGeopoint(releasedAt._latitude, releasedAt._longitude)
-                    promise2.then(function(city){
-                        alert("City: " + city);
-                        if(typeof(FB) != 'undefined')
-                         {
-                               facebookService.share('hunted',returnedBook.get("title"),returnedBook.get("image"), city, function(isSuccess, result){
-                                   if(!isSuccess)
-                                       {
-                                           $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                                           $rootScope.MessageNotification = result;
-                                       }
-                                   else
-                                       {
-                                           $scope.goTo('views/bookDetails.html');
-                                       }
-                                });
-                         }
-                        else
-                        {
-                            $scope.goTo('views/bookDetails.html');
-                        }
-                    }, function(error){
-                         $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                         $rootScope.MessageNotification = error;
+            releasedAt = position;
+            return geolocationService.getCityFromGeopoint(releasedAt._latitude, releasedAt._longitude)
 
-                     })
+        }).then(function(city){
+
+            alert("City: " + city);
+            if(typeof(FB) != 'undefined')
+            {
+                facebookService.share('hunted',returnedBook.get("title"),returnedBook.get("image"), city, function(isSuccess, result){
+                    if(!isSuccess)
+                    {
+                        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                        $rootScope.MessageNotification = result;
+                    }
+                    else
+                    {
+                        $scope.goTo('views/bookDetails.html');
+                    }
                 });
+            }
+            else
+            {
+                $scope.goTo('views/bookDetails.html');
+            }
+
+            }, function(error){
+
+                $scope.clicked=false;
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = error;
             })
-
-        }, function(reason){
-            $scope.clicked=false;
-            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-            $rootScope.MessageNotification = reason;
-        });
-
-
     }
 
     $rootScope.$broadcast(loadingRequestConst.Start);

@@ -36,7 +36,6 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
 
         var getCurrentPosition = function getCurrentPosition(options)
         {
-
             var deferred = $q.defer();
 
             navigator.geolocation.getCurrentPosition(function (position) {
