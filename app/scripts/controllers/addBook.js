@@ -121,8 +121,6 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
 
     $scope.registerNewBook = function (book) {
 
-        if($rootScope.gaPlugIn !== undefined)
-        $rootScope.gaPlugIn.$trackEvent(function(){}, function(){alert("Error")}, "Button", "Click", "Register New Book", 1);
 
          $scope.clicked=true;
          $rootScope.$broadcast(loadingRequestConst.Start);
