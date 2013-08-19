@@ -81,13 +81,14 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         var promise = huntBook(book);
         var releasedAt;
         promise.then(function(returnedBook) {
-            
+
             $scope.setSelectedBook(returnedBook);
+            return  geolocationService.getCurrentPositionPromise();
 
-        }).then(function(position){
+        }).then(function(geoLocationPoint){
 
-            releasedAt = position;
-            return geolocationService.getCityFromGeoPoint(releasedAt._latitude, releasedAt._longitude)
+            var geoPoint = {latitude:geoLocationPoint.coords.latitude, longitude:geoLocationPoint.coords.longitude};
+            return geolocationService.getCityFromGeoPoint(geoPoint.latitude, geoPoint.longitude)
 
         }).then(function(city){
 
@@ -111,12 +112,13 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                 $scope.goTo('views/bookDetails.html');
             }
 
-            }, function(error){
+        }, function(error){
 
-                $scope.clicked=false;
-                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                $rootScope.MessageNotification = error;
-            })
+           $scope.clicked=false;
+           $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+           $rootScope.MessageNotification = error;
+
+        })
     }
 
     $rootScope.$broadcast(loadingRequestConst.Start);

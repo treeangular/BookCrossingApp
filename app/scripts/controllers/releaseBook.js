@@ -94,9 +94,10 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
            //After everything has been saved correctly we will popup the FB dialog
            alert("inside city");
            if(typeof(FB) != 'undefined')
-            {
+           {
                 alert("inside FB")
                 facebookService.share('released',result.get("title"),result.get("image"), city, function(isSuccess, result){
+
                     if(!isSuccess)
                     {
                         $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
@@ -104,7 +105,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
                     }
 
                 });
-            }
+           }
 
             $scope.clicked=false;
             $rootScope.$broadcast(loadingRequestConst.Stop);
@@ -113,8 +114,8 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
          }, function(error){
 
-                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                $rootScope.MessageNotification = error;
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = error;
          });
 
 
