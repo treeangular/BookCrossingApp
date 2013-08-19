@@ -141,15 +141,8 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                     //How do I change to another view now?!!? Locate ??
                     $scope.$apply(function () {
                         //isSuccess = isResult ? true : false;
-
                         if (isResult)
                         {
-
-//                            if($rootScope.currentUser.fbId != undefined)
-//                            {
-
-//                            }
-
                             $scope.goTo('views/bookBarcode.html')
 
                         }
@@ -158,6 +151,9 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
                             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                             $rootScope.MessageNotification = result;
                         }
+
+                        $scope.clicked=false;
+                        $rootScope.$broadcast(loadingRequestConst.Stop);
                     });
                 });
 
