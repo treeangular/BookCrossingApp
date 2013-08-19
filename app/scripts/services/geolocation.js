@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phonegapReadyService, $q, $scope) {
+BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phonegapReadyService, $q) {
 
         var getCityFromGeoPoint = function getCityFromGeoPoint(latitude, longitude){
 

@@ -81,8 +81,11 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
           releaseInfo.geoPoint= geoPoint;
           releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
-          //After getting the release info we release the book
-          return releaseBook(releaseInfo, $scope.registrationId);
+
+           //After getting the release info we release the book
+           return releaseBook(releaseInfo, $scope.registrationId);
+
+
 
         }).then(function(result){
 
