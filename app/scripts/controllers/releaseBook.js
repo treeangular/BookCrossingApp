@@ -66,40 +66,35 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     $scope.release = function () {
 
-
-
-        $scope.clicked=true;
-        $rootScope.$broadcast(loadingRequestConst.Start);
+       $scope.clicked=true;
+       $rootScope.$broadcast(loadingRequestConst.Start);
         var releaseInfo = new Object();
 
        var geoPoint;
 
+       //First we call the geoLocationService to get the current GeoPoint
+       geolocationService.getCurrentPositionPromise().then(function(geoLocationPoint){
 
-        //First we call the geoLocationService to get the current GeoPoint
-        var geoLocationPromise = geolocationService.getCurrentPositionPromise().then(function(geoLocationPoint){
 
-            $scope.$apply(function () {
-            geoPoint = {latitude:geoLocationPoint.coords.latitude, longitude:geoLocationPoint.coords.longitude};;
-            releaseInfo.bookId = $scope.selectedBook;
-            releaseInfo.geoPoint= geoPoint;
-            releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
+          geoPoint = {latitude:geoLocationPoint.coords.latitude, longitude:geoLocationPoint.coords.longitude};
+          releaseInfo.bookId = $scope.selectedBook;
+          releaseInfo.geoPoint= geoPoint;
+          releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
-            //After getting the release info we release the book
-            return releaseBook(releaseInfo, $scope.registrationId);
-            });
-
+          //After getting the release info we release the book
+          return releaseBook(releaseInfo, $scope.registrationId);
 
         }).then(function(result){
 
-
+            alert("inside release");
            //After release the book we get the city where has been released to pass it FB
            $scope.setSelectedBook(result);
-           return geolocationService.getCityFromGeopoint(geoPoint.latitude, geoPoint.longitude);
-
+           return geolocationService.getCityFromGeoPoint(geoPoint.latitude, geoPoint.longitude);
 
         }).then(function(city){
-           //After everything has been saved correctly we will popup the FB dialog
 
+           //After everything has been saved correctly we will popup the FB dialog
+           alert("inside city");
            if(typeof(FB) != 'undefined')
             {
                 alert("inside FB")
@@ -111,20 +106,17 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
                     }
 
                 });
-
             }
-
 
             $scope.clicked=false;
             $rootScope.$broadcast(loadingRequestConst.Stop);
             $scope.goTo('views/reviewBook.html');
 
+
          }, function(error){
 
                 $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                 $rootScope.MessageNotification = error;
-
-
          });
 
 

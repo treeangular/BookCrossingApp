@@ -1,15 +1,11 @@
 'use strict';
 
-BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phonegapReadyService, $q) {
+BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phonegapReadyService, $q, $scope) {
 
-        var getCityFromGeopoint = function getCityFromGeopoint(latitude, longitude){
-
+        var getCityFromGeoPoint = function getCityFromGeoPoint(latitude, longitude){
 
             var deferred = $q.defer();
-
             var queryFormat;
-
-
             var url = 'http://maps.googleapis.com/maps/api/geocode/json';
 
             $http({
@@ -44,9 +40,13 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
             var deferred = $q.defer();
 
             navigator.geolocation.getCurrentPosition(function (position) {
-                    deferred.resolve(position);
+
+                        deferred.resolve(position);
+
                 }, function () {
-                    deferred.reject(false, ErrorConst.GenericError);
+
+                        deferred.reject(false, ErrorConst.GenericError);
+
                 },
                 options);
 
@@ -79,7 +79,7 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
 
 
             }),
-            getCityFromGeopoint: getCityFromGeopoint,
+            getCityFromGeoPoint: getCityFromGeoPoint,
 
             getCurrentPositionPromise: getCurrentPosition
         };
