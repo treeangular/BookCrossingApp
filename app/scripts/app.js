@@ -59,7 +59,7 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
 
     //loadGoogleAnalytics(window);
     loadHttpInterceptor($httpProvider);
-    loadFastClick();
+
     loadParse();
     loadFB();
 
@@ -141,14 +141,6 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
     //Functionally for being cool if someone has not updated the version and we do not enter into data conflicts
     checkVersion();
 });
-
-function loadFastClick()
-{
-    window.addEventListener('load', function() {
-        FastClick.attach(document.body);
-    }, false);
-
-}
 
 function loadHttpInterceptor($httpProvider)
 {
