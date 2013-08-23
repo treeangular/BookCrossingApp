@@ -2,38 +2,44 @@
 
 
 angular.module('facebookProvider', [])
-  .factory('facebookService',function($rootScope){
+  .factory('facebookService',function($rootScope, $q){
+
+        var share = function shareInTimeLine(actionTypeName, bookTitle, bookImage, bookLocation,callback)
+        {
+            var deferred = $q.defer();
+
+            // calling the API ...
+            var obj = {
+                method: 'feed',
+                link: 'http://www.bookcrossingapp.com/',
+                picture: bookImage,
+                name: bookTitle + ' was ' + actionTypeName,
+                caption: 'In ' + bookLocation,
+                description: bookTitle + ' was ' + actionTypeName + ' in BookCrossing app'
+            };
+
+            FB.ui(obj, function(response){
+
+                if(response != undefined)
+                {
+                    deferred.resolve(response);
+                }
+                else
+                {
+                    deferred.reject(ErrorConst.GenericError);
+                }
+
+            });
+
+            return deferred.promise();
+        }
 
       return{
 
-          share: function shareInTimeLine(actionTypeName, bookTitle, bookImage, bookLocation,callback){
-
-              // calling the API ...
-              var obj = {
-                  method: 'feed',
-                  link: 'http://www.bookcrossingapp.com/',
-                  picture: bookImage,
-                  name: bookTitle + ' was ' + actionTypeName,
-                  caption: 'In ' + bookLocation,
-                  description: bookTitle + ' was ' + actionTypeName + ' in BookCrossing app'
-              };
 
 
-              FB.ui(obj, function(response){
+          share: share,
 
-                  if(response != undefined)
-                  {
-                      callback(true, null);
-                  }
-                  else
-                  {
-                      callback(false, ErrorConst.GenericError)
-                  }
-
-              });
-
-
-          },
           login:function (callback) {
 
               FB.getLoginStatus(function (response) {

@@ -18,8 +18,7 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
 
                     if(data.status === "OK")
                     {
-                        deferred.resolve(data.results[1].formatted_address);
-
+                       deferred.resolve(data.results[1].formatted_address);
                     }
                     else
                     {
@@ -38,14 +37,14 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
         {
             var deferred = $q.defer();
 
-            navigator.geolocation.getCurrentPosition(function (position) {
-
+            navigator.geolocation.getCurrentPosition(function (position){
+                    $rootScope.$apply(function () {
                         deferred.resolve(position);
-
+                    });
                 }, function () {
-
-                        deferred.reject(false, ErrorConst.GenericError);
-
+                    $rootScope.$apply(function () {
+                    deferred.reject(false, ErrorConst.GenericError);
+                });
                 });
 
             return deferred.promise;

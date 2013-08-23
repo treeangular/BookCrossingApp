@@ -21,7 +21,7 @@ angular.module('dataServices', [])
 /**
  * Parse Service com as a back-end for the application.
  */
-    .factory('parseService', function ($q) {
+    .factory('parseService', function ($q, $rootScope) {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
 
@@ -83,12 +83,20 @@ angular.module('dataServices', [])
 
                 }).then(function(book){
 
-                        deferred.resolve(book);
+                            deferred.resolve(book);
+
 
                     }, function(error){
 
-                        deferred.reject(error);
+                            deferred.reject(ErrorConst.GenericError);
+
                     });
+            }
+            else
+            {
+
+                    deferred.reject(ErrorConst.RegistrationIdError);
+
             }
             return deferred.promise;
         }
@@ -127,22 +135,28 @@ angular.module('dataServices', [])
                 {
                     var point1 = tracking.get("releasedAt");
                     var point2 = bookFromParse.get("releasedAt");
-                    var kilometers = updateBookKilometers(book, point1, point2);
-                    return saveBook(bookFromParse, registrationId, releaseInfo, kilometers);
+                    var kilometers = updateBookKilometers(bookFromParse, point1, point2);
+                    //$rootScope.$apply(function(){
+                        return saveBook(bookFromParse, registrationId, releaseInfo, kilometers);
+                   // });
+
                 }
                 //if it is the first time we don't calculate the km we simply save the book
                 else
                 {
-                    return saveBook(bookFromParse, registrationId, releaseInfo);
+                    //$rootScope.$apply(function(){
+                        return saveBook(bookFromParse, registrationId, releaseInfo);
+                   // });
                 }
 
             }).then(function(book){
 
-               deferred.resolve(book);
+                        deferred.resolve(book);
 
                }, function(error){
 
-               deferred.reject(error);
+                         deferred.reject(error);
+
 
             });
 

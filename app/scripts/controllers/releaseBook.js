@@ -11,17 +11,19 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         dataService.releaseBook(releaseInfo,registrationId).then(
             function(result){
 
-                deferred.resolve(result);
+                    deferred.resolve(result);
+
 
             },function(error){
 
-                deferred.reject(error);
+                    deferred.reject(error);
+
 
             })
 
         return deferred.promise;
-
     }
+
     //TODO: Get Zobc around the current location
     $scope.zobcList = [
         {id:'0', name:'Are you here?'},
@@ -79,15 +81,17 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
           releaseInfo.geoPoint= geoPoint;
           releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
+           $scope.$apply(function(){
           //After getting the release info we release the book
           return releaseBook(releaseInfo, $scope.registrationId);
-
+           });
         }).then(function(result){
 
             alert("inside release");
            //After release the book we get the city where has been released to pass it FB
            $scope.setSelectedBook(result);
            return geolocationService.getCityFromGeoPoint(geoPoint.latitude, geoPoint.longitude);
+
 
         }).then(function(city){
 
@@ -96,23 +100,18 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
            if(typeof(FB) != 'undefined')
            {
                 alert("inside FB")
-                facebookService.share('released',result.get("title"),result.get("image"), city, function(isSuccess, result){
-
-                    if(!isSuccess)
-                    {
-                        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                        $rootScope.MessageNotification = result;
-                    }
-
-                });
+                return facebookService.share('released',result.get("title"),result.get("image"), city);
+           }
+           else
+           {
+               return null;
            }
 
-            $scope.clicked=false;
-            $rootScope.$broadcast(loadingRequestConst.Stop);
-            $scope.goTo('views/reviewBook.html');
-
-
-         }, function(error){
+         }).then(function(response){
+               $scope.clicked=false;
+               $rootScope.$broadcast(loadingRequestConst.Stop);
+               $scope.goTo('views/reviewBook.html');
+           }, function(error){
 
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
             $rootScope.MessageNotification = error;
