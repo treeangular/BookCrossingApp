@@ -1,10 +1,14 @@
 <div ng-controller="MyLibraryCtrl" >
-    <input ng-show="selectedUser==null" id="mylibrarystatus" ng-model="library.status" name="status" type="text" placeholder="What's happening today?" />
-    <a ng-show="selectedUser==null" class="button" ng-click="updateUserStatus()">update</a></span>
+    <div ng-show="selectedUser==null">
+        <div id="mylibrarystatusWrapper"><input id="mylibrarystatus" ng-model="library.status" name="status" type="text" placeholder="What's happening today?" /></div>
+        <img class="buttonimage" id="saveComment" ng-click="updateUserStatus()" src="styles/img/save.png" />
+    </div>
     <div id="libraryheader">
         <img id="libraryimg" ng-src='{{library.image}}'/>
-        <div class="mainbox">
+        <div>
             <h2>{{library.nick}}</h2>
+            <p>Favorite genre: {{library.favoriteGenre}}</p>
+            <p>{{library.status}}</p>
             <div class="boxheader">
                 <p class="boxtext">Registers</p>
                 <p class="boxnum">{{library.registrations}}</p>
@@ -16,10 +20,6 @@
             <div class="boxheader">
                 <p class="boxtext">Comments</p>
                 <p class="boxnum">{{library.comments}}</p>
-            </div>
-            <div>
-                <p>Favorite genre: {{library.favoriteGenre}}</p>
-                <p>{{library.status}}</p>
             </div>
         </div>
     </div>
