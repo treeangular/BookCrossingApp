@@ -11,13 +11,11 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         dataService.releaseBook(releaseInfo,registrationId).then(
             function(result){
 
-                    deferred.resolve(result);
-
+              deferred.resolve(result);
 
             },function(error){
 
-                    deferred.reject(error);
-
+               deferred.reject(error);
 
             })
 
@@ -69,7 +67,8 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
        $scope.clicked=true;
        $rootScope.$broadcast(loadingRequestConst.Start);
-        var releaseInfo = new Object();
+       var releaseInfo = new Object();
+       var bookToRelease;
 
        var geoPoint;
 
@@ -81,36 +80,31 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
           releaseInfo.geoPoint= geoPoint;
           releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
-           $scope.$apply(function(){
           //After getting the release info we release the book
           return releaseBook(releaseInfo, $scope.registrationId);
-           });
+
+
         }).then(function(result){
 
-            alert("inside release");
-           //After release the book we get the city where has been released to pass it FB
-           $scope.setSelectedBook(result);
-           return geolocationService.getCityFromGeoPoint(geoPoint.latitude, geoPoint.longitude);
+          bookToRelease = result;
+          //After release the book we get the city where has been released to pass it FB
+          $scope.setSelectedBook(result);
+          return geolocationService.getCityFromGeoPoint(geoPoint.latitude, geoPoint.longitude);
 
 
         }).then(function(city){
 
            //After everything has been saved correctly we will popup the FB dialog
-           alert("inside city");
-           if(typeof(FB) != 'undefined')
-           {
-                alert("inside FB")
-                return facebookService.share('released',result.get("title"),result.get("image"), city);
-           }
-           else
-           {
-               return null;
-           }
+
+            return facebookService.share('released',bookToRelease.get("title"),bookToRelease.get("image"), city);
+
 
          }).then(function(response){
+
                $scope.clicked=false;
                $rootScope.$broadcast(loadingRequestConst.Stop);
                $scope.goTo('views/reviewBook.html');
+
            }, function(error){
 
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;

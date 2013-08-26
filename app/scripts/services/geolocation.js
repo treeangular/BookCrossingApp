@@ -39,11 +39,15 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
 
             navigator.geolocation.getCurrentPosition(function (position){
                     $rootScope.$apply(function () {
+
                         deferred.resolve(position);
+
                     });
                 }, function () {
                     $rootScope.$apply(function () {
+
                     deferred.reject(false, ErrorConst.GenericError);
+
                 });
                 });
 

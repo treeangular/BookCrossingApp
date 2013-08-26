@@ -83,12 +83,12 @@ angular.module('dataServices', [])
 
                 }).then(function(book){
 
-                            deferred.resolve(book);
-
+                    deferred.resolve(book);
 
                     }, function(error){
 
-                            deferred.reject(ErrorConst.GenericError);
+                    deferred.reject(ErrorConst.GenericError);
+
 
                     });
             }
@@ -136,26 +136,23 @@ angular.module('dataServices', [])
                     var point1 = tracking.get("releasedAt");
                     var point2 = bookFromParse.get("releasedAt");
                     var kilometers = updateBookKilometers(bookFromParse, point1, point2);
-                    //$rootScope.$apply(function(){
-                        return saveBook(bookFromParse, registrationId, releaseInfo, kilometers);
-                   // });
+                    return saveBook(bookFromParse, registrationId, releaseInfo, kilometers);
+
 
                 }
                 //if it is the first time we don't calculate the km we simply save the book
                 else
                 {
-                    //$rootScope.$apply(function(){
-                        return saveBook(bookFromParse, registrationId, releaseInfo);
-                   // });
+                   return saveBook(bookFromParse, registrationId, releaseInfo);
                 }
 
             }).then(function(book){
 
-                        deferred.resolve(book);
+               deferred.resolve(book);
 
                }, function(error){
 
-                         deferred.reject(error);
+               deferred.reject(error);
 
 
             });

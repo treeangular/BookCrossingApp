@@ -8,28 +8,35 @@ angular.module('facebookProvider', [])
         {
             var deferred = $q.defer();
 
-            // calling the API ...
-            var obj = {
-                method: 'feed',
-                link: 'http://www.bookcrossingapp.com/',
-                picture: bookImage,
-                name: bookTitle + ' was ' + actionTypeName,
-                caption: 'In ' + bookLocation,
-                description: bookTitle + ' was ' + actionTypeName + ' in BookCrossing app'
-            };
+            if(typeof(FB) != 'undefined')
+            {
+                // calling the API ...
+                var obj = {
+                    method: 'feed',
+                    link: 'http://www.bookcrossingapp.com/',
+                    picture: bookImage,
+                    name: bookTitle + ' was ' + actionTypeName,
+                    caption: 'In ' + bookLocation,
+                    description: bookTitle + ' was ' + actionTypeName + ' in BookCrossing app'
+                };
 
-            FB.ui(obj, function(response){
+                FB.ui(obj, function(response){
 
-                if(response != undefined)
-                {
-                    deferred.resolve(response);
-                }
-                else
-                {
-                    deferred.reject(ErrorConst.GenericError);
-                }
+                    if(response != undefined)
+                    {
+                        deferred.resolve(response);
+                    }
+                    else
+                    {
+                        deferred.reject(ErrorConst.GenericError);
+                    }
 
-            });
+                });
+            }
+            else
+            {
+                deferred.reject(ErrorConst.GenericError);
+            }
 
             return deferred.promise();
         }
