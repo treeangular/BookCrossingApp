@@ -4,16 +4,16 @@
         <h1>{{book.get('title')}}</h1>
         <h3> by <span ng-repeat="author in book.get('authors')">{{author}}</span></h3>
         <div style="margin-top: 5px">
-            <div ng-show="book.get('rating')<1" class="starSmall"></div>
-            <div ng-hide="book.get('rating')<1" class="selectedStarSmall"></div>
-            <div ng-show="book.get('rating')<2" class="starSmall"></div>
-            <div ng-hide="book.get('rating')<2" class="selectedStarSmall"></div>
-            <div ng-show="book.get('rating')<3" class="starSmall"></div>
-            <div ng-hide="book.get('rating')<3" class="selectedStarSmall"></div>
-            <div ng-show="book.get('rating')<4" class="starSmall"></div>
-            <div ng-hide="book.get('rating')<4" class="selectedStarSmall"></div>
-            <div ng-show="book.get('rating')<5" class="starSmall"></div>
-            <div ng-hide="book.get('rating')<5" class="selectedStarSmall"></div>
+            <div ng-show="book.get('average')<1" class="starSmall"></div>
+            <div ng-hide="book.get('average')<1" class="selectedStarSmall"></div>
+            <div ng-show="book.get('average')<2" class="starSmall"></div>
+            <div ng-hide="book.get('average')<2" class="selectedStarSmall"></div>
+            <div ng-show="book.get('average')<3" class="starSmall"></div>
+            <div ng-hide="book.get('average')<3" class="selectedStarSmall"></div>
+            <div ng-show="book.get('average')<4" class="starSmall"></div>
+            <div ng-hide="book.get('average')<4" class="selectedStarSmall"></div>
+            <div ng-show="book.get('average')<5" class="starSmall"></div>
+            <div ng-hide="book.get('average')<5" class="selectedStarSmall"></div>
         </div>
         <p><strong>Status:</strong> {{book.get('bookStatus').get('status') | localizeIt}}</p>
         <p><strong>Travel:</strong> {{book.get('kilometers')}} km</p>

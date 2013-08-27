@@ -92,7 +92,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
         }).then(function(city){
 
-            alert("City: " + city);
+
             if(typeof(FB) != 'undefined')
             {
                 facebookService.share('hunted',returnedBook.get("title"),returnedBook.get("image"), city, function(isSuccess, result){
