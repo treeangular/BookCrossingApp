@@ -80,11 +80,12 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
           releaseInfo.geoPoint= geoPoint;
           releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
+
           //After getting the release info we release the book
           return releaseBook(releaseInfo, $scope.registrationId);
 
-
         }).then(function(result){
+
 
           bookToRelease = result;
           //After release the book we get the city where has been released to pass it FB
@@ -93,8 +94,10 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
 
         }).then(function(city){
+
            //After everything has been saved correctly we will popup the FB dialog
-           $timeout(function() { return facebookService.share('released',bookToRelease.get("title"),bookToRelease.get("image"), city); }, 2000);
+           return facebookService.share('released',bookToRelease.get("title"),bookToRelease.get("image"), city);
+
          }).then(function(response){
 
                $scope.clicked=false;

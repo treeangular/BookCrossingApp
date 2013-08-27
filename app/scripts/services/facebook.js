@@ -35,10 +35,10 @@ angular.module('facebookProvider', [])
             }
             else
             {
-                deferred.reject(ErrorConst.GenericError);
+                deferred.resolve();
             }
 
-            return deferred.promise();
+            return deferred.promise;
         }
 
       return{

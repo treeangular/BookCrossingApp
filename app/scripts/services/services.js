@@ -61,50 +61,12 @@ angular.module('dataServices', [])
 
         }
 
-        function saveBook(book, registrationId, releaseInfo, kilometers){
-            var deferred = $q.defer();
-
-            var Book = Parse.Object.extend("Book");
-            var BookStatus = Parse.Object.extend("BookStatus");
-
-            if(book.get('registrationId') === registrationId)
-            {
-                var book = new Book({id: releaseInfo.bookId});
-
-                book.fetch().then(function(book){
-
-                    book.set("releasedAt", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
-                    book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
-                    book.set("kilometers", kilometers);
-                    book.set("bookStatus", new BookStatus({id: BookStatusConst.Released}));
-                    book.set("ownedBy", Parse.User.current());
-
-                    return book.save();
-
-                }).then(function(book){
-
-                    deferred.resolve(book);
-
-                    }, function(error){
-
-                    deferred.reject(ErrorConst.GenericError);
-
-
-                    });
-            }
-            else
-            {
-
-                    deferred.reject(ErrorConst.RegistrationIdError);
-
-            }
-            return deferred.promise;
-        }
-
         var releaseBook = function releaseBook(releaseInfo, registrationId){
 
             var deferred = $q.defer();
+
             var bookFromParse;
+            var kilometers;
 
             var query = new Parse.Query(Book);
 
@@ -135,25 +97,43 @@ angular.module('dataServices', [])
                 {
                     var point1 = tracking.get("releasedAt");
                     var point2 = bookFromParse.get("releasedAt");
-                    var kilometers = updateBookKilometers(bookFromParse, point1, point2);
-                    return saveBook(bookFromParse, registrationId, releaseInfo, kilometers);
-
-
+                    kilometers = updateBookKilometers(bookFromParse, point1, point2);
                 }
-                //if it is the first time we don't calculate the km we simply save the book
+
+                var Book = Parse.Object.extend("Book");
+                var BookStatus = Parse.Object.extend("BookStatus");
+
+                if(bookFromParse.get('registrationId') === registrationId)
+                {
+                    var book = new Book({id: releaseInfo.bookId});
+                    return book.fetch()
+                }
                 else
                 {
-                   return saveBook(bookFromParse, registrationId, releaseInfo);
+                    deferred.reject(ErrorConst.RegistrationIdError);
                 }
+
 
             }).then(function(book){
 
-               deferred.resolve(book);
+                    book.set("releasedAt", new Parse.GeoPoint({latitude:releaseInfo.geoPoint.latitude, longitude:releaseInfo.geoPoint.longitude}));
+                    book.set("releasedAtDescription", releaseInfo.bookLocationDescription);
+                    book.set("kilometers", kilometers);
+                    book.set("bookStatus", new BookStatus({id: BookStatusConst.Released}));
+                    book.set("ownedBy", Parse.User.current());
 
-               }, function(error){
+                    return book.save();
 
-               deferred.reject(error);
 
+            }).then(function(book){
+
+                    $rootScope.$apply(function () {
+                        deferred.resolve(book);
+                    });
+
+            }, function(error){
+
+                    deferred.reject(ErrorConst.GenericError);
 
             });
 
