@@ -1,5 +1,5 @@
 'use strict';
-BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService, $rootScope, $q, facebookService) {
+BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService, $rootScope, $q, facebookService, $timeout) {
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"ReleaseBook");
 
@@ -93,12 +93,8 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
 
         }).then(function(city){
-
            //After everything has been saved correctly we will popup the FB dialog
-
-            return facebookService.share('released',bookToRelease.get("title"),bookToRelease.get("image"), city);
-
-
+           $timeout(function() { return facebookService.share('released',bookToRelease.get("title"),bookToRelease.get("image"), city); }, 2000);
          }).then(function(response){
 
                $scope.clicked=false;
