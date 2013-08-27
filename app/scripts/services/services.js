@@ -49,11 +49,11 @@ angular.module('dataServices', [])
             if(book.get("kilometers")== undefined)
             {
 
-                numberOfKilometersSoFar = point1.kilometersTo(point2);
+                numberOfKilometersSoFar = Math.round(point1.kilometersTo(point2));
             }
             else
             {
-                numberOfKilometersSoFar= book.get("kilometers") + point1.kilometersTo(point2);
+                numberOfKilometersSoFar= Math.round(book.get("kilometers") + point1.kilometersTo(point2));
 
             }
 
