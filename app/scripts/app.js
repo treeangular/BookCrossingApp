@@ -1,6 +1,6 @@
 'use strict';
 
-var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider']);
+var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider', 'ngMobile']);
 
 
 BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
