@@ -116,25 +116,35 @@ Parse.Cloud.define("GetBookId", function(request, response) {
 
 //Update book counters before saving it
 Parse.Cloud.beforeSave("Book", function(request, response) {
-    var bookCounterToIncerement;
 
-    switch (request.object.get("bookStatus").id) {
-        case BookStatusConst.Registered:
-            bookCounterToIncerement = "registered";
-            break;
-        case BookStatusConst.Released:
-            bookCounterToIncerement = "released";
-            break;
-        case BookStatusConst.Hunted:
-            bookCounterToIncerement = "hunted";
-            break;
-        default:
-            //Do nothing
-    }
+     if(request.object.get("bookStatus") !== undefined)
+     {
+        var bookCounterToIncerement;
 
-    request.object.increment(bookCounterToIncerement);
+        switch (request.object.get("bookStatus").id) {
+            case BookStatusConst.Registered:
+                bookCounterToIncerement = "registered";
+                break;
+            case BookStatusConst.Released:
+                bookCounterToIncerement = "released";
+                break;
+            case BookStatusConst.Hunted:
+                bookCounterToIncerement = "hunted";
+                break;
+            default:
+                //Do nothing
+        }
 
-    response.success();
+        request.object.increment(bookCounterToIncerement);
+
+        response.success();
+     }
+      else
+     {
+         console.error("** request undefined");
+         response.success();
+     }
+
 
 });
 
@@ -171,7 +181,7 @@ Parse.Cloud.afterSave("Review", function(request){
     var book = new Parse.Object("Book");
     var query = new Parse.Query("ActionType");
     query.equalTo("objectId", ActionTypesConst.Reviewed);
-
+    var bookFromReview;
 
     //Check if we just save released or hunted the book
     console.log("Retreiving objects...");
@@ -182,18 +192,19 @@ Parse.Cloud.afterSave("Review", function(request){
         //First we get the king of ActionType
         query.first().then(function(result){
 
+            bookFromReview = request.object.get("book");
             console.log("ActionType correctly gotten");
             action.set("actionType", result);
-            action.set("book", request.object.get("book"));
+            action.set("book", bookFromReview);
             action.set("user", request.user);
             return action.save();
 
          //Then we save the action
-        }).then(function(){
+        }).then(function(actionSaved){
 
         //Once the action is saved we calculate the new average of the book
                 console.log("ActionType correctly saved");
-                return CalculateAverageFromBook(request.Object.get("book").id);
+                return CalculateAverageFromBook(bookFromReview.id);
 
         //The review has an average so after we have saved the review we calculate the new Average
         }).then(function(average){
@@ -281,7 +292,7 @@ Parse.Cloud.afterSave("Comment", function(request){
 //Updates user counters
 Parse.Cloud.afterSave("Book", function (request) {
 
-    if(request.object.get("comingFrom")!== "Review")
+    if(request.object.get("comingFrom") !== "Review")
     {
         var bookStatus = request.object.get("bookStatus").id;
 
