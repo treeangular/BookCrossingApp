@@ -80,8 +80,10 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         $scope.clicked=true;
         var promise = huntBook(book);
         var releasedAt;
+        var bookHunted;
         promise.then(function(returnedBook) {
 
+            bookHunted = returnedBook;
             $scope.setSelectedBook(returnedBook);
             return  geolocationService.getCurrentPositionPromise();
 
@@ -92,31 +94,16 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
         }).then(function(city){
 
+                return facebookService.share('hunted',bookHunted.get("title"),bookHunted.get("image"), city);
 
-            if(typeof(FB) != 'undefined')
-            {
-                facebookService.share('hunted',returnedBook.get("title"),returnedBook.get("image"), city, function(isSuccess, result){
-                    if(!isSuccess)
-                    {
-                        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                        $rootScope.MessageNotification = result;
-                    }
-                    else
-                    {
-                        $scope.goTo('views/bookDetails.html');
-                    }
-                });
-            }
-            else
-            {
+        }).then(function(){
+
                 $scope.goTo('views/bookDetails.html');
-            }
 
         }, function(error){
-
-           $scope.clicked=false;
-           $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-           $rootScope.MessageNotification = error;
+            $scope.clicked=false;
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = error;
 
         })
     }

@@ -24,11 +24,14 @@ angular.module('facebookProvider', [])
 
                     if(response != undefined)
                     {
+                        $rootScope.$apply(function () {
                         deferred.resolve(response);
+                        });
                     }
                     else
-                    {
-                        deferred.reject(ErrorConst.GenericError);
+                    {   $rootScope.$apply(function () {
+                            deferred.reject(ErrorConst.GenericError);
+                        });
                     }
 
                 });

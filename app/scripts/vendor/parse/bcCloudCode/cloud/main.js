@@ -198,7 +198,7 @@ Parse.Cloud.afterSave("Review", function(request){
 
                 console.log("average correctly gotten");
                 book.set("comingFrom", "Review");
-                book.set("average", average);
+                book.set("averageRate", average);
                 return book.save();
 
         //We must save the average in the book,
@@ -218,6 +218,7 @@ Parse.Cloud.afterSave("Review", function(request){
     }
 });
 Parse.Cloud.afterSave("Comment", function(request){
+
 
     var user = new Parse.Object("User");
     var action = new Parse.Object("Action");
