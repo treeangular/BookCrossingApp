@@ -170,6 +170,8 @@ Parse.Cloud.afterSave("Review", function(request){
     //Need to retrieve the ActionType
     var book = new Parse.Object("Book");
     var query = new Parse.Query("ActionType");
+    query.equalTo("objectId", ActionTypesConst.Reviewed);
+
 
     //Check if we just save released or hunted the book
     console.log("Retreiving objects...");
@@ -178,7 +180,7 @@ Parse.Cloud.afterSave("Review", function(request){
     if(request.object.get("comingFrom")!== "ReviewLike")
     {
         //First we get the king of ActionType
-        query.get(ActionTypesConst.Reviewed).then(function(result){
+        query.first().then(function(result){
 
             console.log("ActionType correctly gotten");
             action.set("actionType", result);
