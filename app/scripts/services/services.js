@@ -103,7 +103,7 @@ angular.module('dataServices', [])
                 var Book = Parse.Object.extend("Book");
                 var BookStatus = Parse.Object.extend("BookStatus");
 
-                if(bookFromParse.get('registrationId') === registrationId)
+                if(bookFromParse.get('registrationId') === registrationId.toUpperCase())
                 {
                     var book = new Book({id: releaseInfo.bookId});
                     return book.fetch()
@@ -111,7 +111,7 @@ angular.module('dataServices', [])
                 else
                 {
                     $rootScope.$apply(function () {
-                    deferred.reject(ErrorConst.RegistrationIdError);
+                        deferred.reject(ErrorConst.RegistrationIdError);
                     });
                 }
 
@@ -791,7 +791,7 @@ angular.module('dataServices', [])
                 huntBook: function huntBook(registrationId, callback)
                 {
                     var qBook = new Parse.Query(Book);
-                    qBook.equalTo("registrationId", registrationId);
+                    qBook.equalTo("registrationId", registrationId.toUpperCase());
                     qBook.include("bookStatus");
 
                     qBook.first({

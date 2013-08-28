@@ -34,8 +34,6 @@ BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, data
 
   $scope.sendReview = function (review) {
 
-
-
       $scope.clicked = true;
       var promise = saveReview(review)
       promise.then(function(review) {
