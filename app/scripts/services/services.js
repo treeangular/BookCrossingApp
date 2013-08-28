@@ -110,7 +110,9 @@ angular.module('dataServices', [])
                 }
                 else
                 {
+                    $rootScope.$apply(function () {
                     deferred.reject(ErrorConst.RegistrationIdError);
+                    });
                 }
 
 
