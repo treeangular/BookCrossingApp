@@ -1,11 +1,13 @@
 <div ng-controller="ReleaseBookCtrl">
-    <input name="bookBarcode" pattern=".{4,}" type="text" ng-model="registrationId"  data-localize-it-attr="_ReleaseBookRegistrationId_|placeholder" required />
-    <div id="mapViewSmallWrapper">
-        <div id="mapView" ui-map="myMap" ui-options="mapOptions" />
-    </div>
-    <!--<select class="select" type="text"  name="SelectZobc">
-        <option ng-repeat="zobc in zobcList" value="zobc.id">{{zobc.name}}</option>
-    </select>-->
-    <textarea ng-model="bookLocationDescription" name="bookDescription" rows="5"  data-localize-it-attr="_ReleaseBookRegistrationHowToFindBook_|placeholder" />
-    <input ng-click="release()" bca-track-event type="submit" value="Confirm release" ng-disabled="clicked" class="buttonlarge" />
+    <form name="releaseBook-form" ng-submit="release()">
+        <input name="bookBarcode" pattern=".{4,}" type="text" ng-model="registrationId"  data-localize-it-attr="_ReleaseBookRegistrationId_|placeholder" required />
+        <div id="mapViewSmallWrapper">
+            <div id="mapView" ui-map="myMap" ui-options="mapOptions" />
+        </div>
+        <!--<select class="select" type="text"  name="SelectZobc">
+            <option ng-repeat="zobc in zobcList" value="zobc.id">{{zobc.name}}</option>
+        </select>-->
+        <textarea ng-model="bookLocationDescription" name="bookDescription" rows="5"  data-localize-it-attr="_ReleaseBookRegistrationHowToFindBook_|placeholder" />
+        <input  bca-track-event type="submit" value="Confirm release" ng-disabled="clicked" class="buttonlarge" />
+    </form>
 </div>
