@@ -2,7 +2,7 @@
     <div ng-show="addBook==false">
         <div ng-hide="book.isbn!=null && book.isbn!=''">
             <a ng-click="addNewBook()" style="margin-top:5px; float: right; clear: left">{{'_IsbnNotFoundButton_' | localizeIt}}</a>
-    <input name="bookIsbn" type="text" ng-model="isbn" data-localize-it-attr="_Isbn_|placeholder" />
+    <input name="bookIsbn" pattern=".{3,}" type="text" ng-model="isbn" data-localize-it-attr="_Isbn_|placeholder" />
     <input type="button" name="FindBook" ng-click="findBook()" ng-disabled="clicked"  data-localize-it-attr="_FindBook_|value" class="buttonlarge" />
             <input type="button" ng-click="scanBook()" ng-disabled="clicked"  data-localize-it-attr="_ScanBook_|value" class="buttonlarge" />
             </div>

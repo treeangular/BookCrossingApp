@@ -1,5 +1,5 @@
 <div ng-controller="ReleaseBookCtrl">
-    <input name="bookBarcode" type="text" ng-model="registrationId"  data-localize-it-attr="_ReleaseBookRegistrationId_|placeholder" required />
+    <input name="bookBarcode" pattern=".{4,}" type="text" ng-model="registrationId"  data-localize-it-attr="_ReleaseBookRegistrationId_|placeholder" required />
     <div id="mapViewSmallWrapper">
         <div id="mapView" ui-map="myMap" ui-options="mapOptions" />
     </div>
