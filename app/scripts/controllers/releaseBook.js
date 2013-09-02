@@ -44,24 +44,32 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         disableDefaultUI: true
     };
 
-    geolocationService.getCurrentPosition(function (position) {
-        geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-
-        if (geoPoint != null){
-
-            var marker = new google.maps.Marker({
-                map: $scope.myMap,
-                position: new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude),
-                title: "Me",
-                icon:myPositionIcon
-            });
-
-            $scope.myMarkers.push(marker);
-
-            $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
-
-        }
+    $scope.$on('$destroy', function(e) {
+       clearInterval(timer);
     });
+
+    var getPosition = function(position){
+        geolocationService.getCurrentPosition(function (position) {
+            geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+
+            if (geoPoint != null){
+
+                var marker = new google.maps.Marker({
+                    map: $scope.myMap,
+                    position: new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude),
+                    title: "Me",
+                    icon:myPositionIcon
+                });
+
+                $scope.myMarkers.push(marker);
+
+                $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
+
+            }
+        });
+    }
+
+   var timer =  setInterval(getPosition, 5000);
 
     $scope.release = function () {
 
