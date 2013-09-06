@@ -9,7 +9,6 @@ BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, data
 
     function saveReview(review)
     {
-
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
         review.book = $scope.selectedBook;
@@ -25,11 +24,9 @@ BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, data
                     deferred.reject(result);
                 }
             });
-
         });
 
         return deferred.promise;
-
     }
 
   $scope.sendReview = function (review) {

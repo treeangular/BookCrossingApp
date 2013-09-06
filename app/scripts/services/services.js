@@ -38,6 +38,7 @@ angular.module('dataServices', [])
         var Review = Parse.Object.extend("Review");
         var ReviewLike = Parse.Object.extend("ReviewLike");
         var ApplicationVersion = Parse.Object.extend("ApplicationVersion");
+        var BookAverage = Parse.Object.extend("BookAverage");
 
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
@@ -772,6 +773,13 @@ angular.module('dataServices', [])
                     book.set("registeredBy", Parse.User.current());
                     book.set("bookStatus", new BookStatus({id: BookStatusConst.Registered}));
                     book.set("ownedBy", Parse.User.current());
+
+                    var bookAverage = new BookAverage();
+
+                    bookAverage.set("book",book);
+                    bookAverage.set("average",0);
+                    bookAverage.set("numberReviews",0);
+                    bookAverage.save();
 
                     book.save(null, {
                         success: function (book) {

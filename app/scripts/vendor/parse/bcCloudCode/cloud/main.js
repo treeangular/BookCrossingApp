@@ -66,31 +66,6 @@ function findRegistrationId()
 
     return promise;
 }
-//This is used for calculating the average from a book
-function CalculateAverageFromBook(bookId)
-{
-    var query = new Parse.Query("Review").equalTo("bookId", bookId);
-
-    var promise = new Parse.Promise();
-
-    query.find().then(function(results) {
-
-        var averageResult = 0;
-
-        for(var i=0; i < results.length; i++)
-        {
-            averageResult += results[i];
-        }
-
-        averageResult = averageResult/results.length;
-        promise.resolve(averageResult);
-
-    }, function(error) {
-        promise.reject(error);
-    });
-
-    return promise;
-}
 
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // Gets the unique cool BC identificator. The real glue of BC!
@@ -179,9 +154,12 @@ Parse.Cloud.afterSave("Review", function(request){
     var action = new Parse.Object("Action");
     //Need to retrieve the ActionType
     var book = new Parse.Object("Book");
+    var bookAverage = new Parse.Object("BookAverage");
+    var queryCurrentAverage = new Parse.Query("BookAverage");
     var query = new Parse.Query("ActionType");
     query.equalTo("objectId", ActionTypesConst.Reviewed);
     var bookFromReview;
+    var newAverageValue = request.object.get("rating");
 
     //Check if we just save released or hunted the book
     console.log("Retreiving objects...");
@@ -201,24 +179,26 @@ Parse.Cloud.afterSave("Review", function(request){
 
          //Then we save the action
         }).then(function(actionSaved){
-
-        //Once the action is saved we calculate the new average of the book
+        //Get the current average
                 console.log("ActionType correctly saved");
-                return CalculateAverageFromBook(bookFromReview.id);
+                queryCurrentAverage.equalTo("book", bookFromReview);
+                return queryCurrentAverage.first();
 
-        //The review has an average so after we have saved the review we calculate the new Average
-        }).then(function(average){
-
+        }).then(function(currentAverage){
+        //Once we have the  we calculate the new average of the book
+                console.log("Found current book average");
+                bookAverage = currentAverage;
                 console.log("average correctly gotten");
-                book.set("comingFrom", "Review");
-                book.set("averageRate", average);
-                return book.save();
+                var newAverage = (currentAverage.get("average") + newAverageValue) / ( currentAverage.get("numberReviews") + 1 )
+                bookAverage.set("average", newAverage);
+                bookAverage.increment("numberReviews");
+                return bookAverage.save();
 
         //We must save the average in the book,
         // but we put a "flag" in order to avoid the after save book on the server
         }).then(function(){
 
-                console.log("Book correctly saved");
+                console.log("Book average correctly updated");
 
            }, function(error){
 
