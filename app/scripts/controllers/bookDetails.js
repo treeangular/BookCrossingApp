@@ -3,6 +3,21 @@ BookCrossingApp.controller('BookCtrl', function($scope,$rootScope, dataService) 
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"bookDetails.html");
 
+    dataService.getBookAverage($scope.selectedBook, function (isSuccess, result) {
+        $rootScope.$broadcast(loadingRequestConst.Start);
+        $scope.$apply(function(){
+            if(isSuccess)
+            {
+                $scope.bookAverage = result;
+            }
+            else
+            {
+                $scope.bookAverage = 0;
+            }
+        });
+        $rootScope.$broadcast(loadingRequestConst.Stop);
+    });
+
     $scope.seeMoreOrLess = "See more";
     var book = $scope.selectedBook;
     console.log("book.bookStatus " + book.get("bookStatus").id);

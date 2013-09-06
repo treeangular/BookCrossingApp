@@ -276,6 +276,21 @@ angular.module('dataServices', [])
             });
         },
 
+        getBookAverage: function getBookAverage(book, callback)
+        {
+            var queryCurrentAverage = new Parse.Query("BookAverage");
+            queryCurrentAverage.equalTo("book", book);
+            queryCurrentAverage.first().then(function(result){
+                callback(true,result.get("average"));
+            }, function(error){
+
+                // The save failed.
+                // error is a Parse.Error with an error code and description.
+                console.error("GetBookAverage: " + error.message);
+                callback(false,ErrorConst.GenericError);
+            });
+        },
+
         addCommentToBook: function addCommentToBook(commentToRegister, callback)
         {
 
