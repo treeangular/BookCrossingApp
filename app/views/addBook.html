@@ -1,51 +1,23 @@
 <div ng-controller="AddBookCtrl">
-    <div ng-show="addBook==false">
-        <div ng-hide="book.isbn!=null && book.isbn!=''">
-            <a ng-click="addNewBook()" style="margin-top:5px; float: right; clear: left">{{'_IsbnNotFoundButton_' | localizeIt}}</a>
-            <!--<form name="addBook-form" ng-submit="findBook()">-->
-                <input name="bookIsbn" pattern=".{3,}" type="text" ng-model="isbn" data-localize-it-attr="_Isbn_|placeholder" />
-                <input type="button" ng-click="findBook()" name="FindBook" ng-disabled="clicked"  data-localize-it-attr="_FindBook_|value" class="buttonlarge" />
-            <!--</form>-->
-                <input type="button" ng-click="scanBook()" ng-disabled="clicked"  data-localize-it-attr="_ScanBook_|value" class="buttonlarge" />
-
-        </div>
-    <div ng-show="book.isbn!=null && book.isbn!=''">
-        <h2 class="bookResultOption" class="bookFound">{{'_CheckBookInformation_' | localizeIt}}</h2>
-        <input name="bookName" type="text" ng-model="book.title"  data-localize-it-attr="_Title_|placeholder" />
-        <img class="bookimg" style="margin-right: 5px; margin-top: 10px" ng-src="{{book.image}}"/>
-        <span style="display: block; overflow: hidden;">
-            <textarea style="height: 180px" name="bookDescription" ng-model="book.description"  data-localize-it-attr="_Description_|placeholder" />
-        </span>
-        <input type="button" ng-click="registerNewBook(book)" ng-disabled="clicked" data-localize-it-attr="_Register_|value" class="buttonlarge" />
-    </div>
-    </div>
-    <div ng-show="addBook==true">
-    <h2 class="bookResultOption" class="bookFound">{{'_AddBookInformation_' | localizeIt}}</h2>
-    <input name="bookName" type="text" ng-model="book.title"  data-localize-it-attr="_Title_|placeholder" />
-    <div style="width: 100%">
-        <img class="bookimg" style="margin-right: 5px; margin-top: 10px" ng-src="{{book.image}}"/>
-        <span style="display: block; overflow: hidden;">
-        <textarea style="height: 230px" name="bookDescription" ng-model="book.description"  data-localize-it-attr="_Description_|placeholder" />
-        </span>
-    </div>
-    <input name="RegisterBook" type="button" bca-track-event ng-click="registerNewBook(book)" ng-disabled="clicked" data-localize-it-attr="_Register_|value" class="buttonlarge" />
-    </div>
-
     <div>
+        <a ng-click="addNewBook()" style="margin-top:5px; float: right; clear: left">{{'_IsbnNotFoundButton_' | localizeIt}}</a>
+        <input name="bookIsbn" pattern=".{3,}" type="text" ng-model="isbn" data-localize-it-attr="_Isbn_|placeholder" />
+        <input type="button" ng-click="findBook()" name="FindBook" ng-disabled="clicked"  data-localize-it-attr="_FindBook_|value" class="buttonlarge" />
+    </div>
+    <div ng-show="books!=null">
         <ul>
+            <li style="text-align: center">
+                <p>{{books.length}} {{'_ResultsFound_' | localizeIt}}</p>
+            </li>
             <li ng-repeat='book in books'>
                 <div class="bookItemList">
-                    <img ng-click="registerNewBook(book)"  ng-src='{{book.image}}'>
-                    <a ng-click="registerNewBook(book)"><h3>{{book.title}}</h3></a>
-                    <p>{{book.subtitle}}</p>
-                    <p>{{book.authors}}</p>
-                    <p>{{book.publisher}}</p>
-                    <p>{{book.publishedDate}}</p>
+                    <img ng-click="goToRegiter(book)"  ng-src='{{book.image}}'>
+                    <a ng-click="goToRegiter(book)"><h3>{{book.title}}</h3></a>
+                    <p><span ng-repeat='author in book.authors'>{{author}}</span></p>
+                    <p>{{book.publisher}} ({{book.publishedDate}})</p>
                 </div>
             </li>
-
         </ul>
-
     </div>
 </div>
 

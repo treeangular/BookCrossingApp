@@ -378,5 +378,23 @@
         "value":"Sharing books",
         "description":"Sharing books"
     }
+    ,
+    {
+        "key":"_ResultsFound_",
+        "value":"results found",
+        "description":"results found"
+    }
+    ,
+    {
+        "key":"_Publisher_",
+        "value":"Publisher",
+        "description":"Publisher"
+    }
+    ,
+    {
+        "key":"_PublishingDate_",
+        "value":"Publishing Date",
+        "description":"Publishing Date"
+    }
 
 ]

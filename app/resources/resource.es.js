@@ -387,5 +387,23 @@
         "value":"Compartir libros",
         "description":"Compartir libros"
     }
+    ,
+    {
+        "key":"_ResultsFound_",
+        "value":"resultados encontrados",
+        "description":"resultados encontrados"
+    }
+    ,
+    {
+        "key":"_Publisher_",
+        "value":"Editorial",
+        "description":"Editorial"
+    }
+    ,
+    {
+        "key":"_PublishingDate_",
+        "value":"Fecha de edición",
+        "description":"Fecha de edición"
+    }
 
 ]

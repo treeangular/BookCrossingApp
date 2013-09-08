@@ -63,9 +63,19 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $window, $location) {
 			case 'views/addBook.html':
 				$scope.title = 'Register Book';
 				$scope.leftButtonName = null;
-				$scope.rightButtonName = null;
+				$scope.rightButtonName = "Scan";
+                $scope.rightButtonRef = "views/addBook.html?scan=true";
                 $scope.selectOption('addBook');
 				break;
+            case 'views/registerBook.html':
+                $scope.title = 'Register Book';
+                $scope.leftButtonName = "Back";
+                $scope.leftButtonRef = "views/addBook.html";
+                $scope.rightButtonName = null;
+                break;
+            case 'views/addBook.html?scan=true':
+                $scope.scanBook();
+                return;
 			case 'views/bookBarcode.html':
 				$scope.title = 'Register Book';
 				$scope.leftButtonName = null;
@@ -163,5 +173,59 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $window, $location) {
 
     $scope.setSelectedBook  = function(book){
         $scope.selectedBook = book;
+    };
+
+    $scope.setFoundBook  = function(book){
+        $scope.foundBook = book;
+    };
+
+    $scope.scanBook = function () {
+        {
+            console.log('scanning');
+            try {
+
+                var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+                scanner.scan(
+                    function (result) {
+                        /*alert("We got a barcode\n" +
+                         "Result: " + result.text + "\n" +
+                         "Format: " + result.format + "\n" +
+                         "Cancelled: " + result.cancelled);*/
+
+                        $scope.$apply(function () {
+                            if (result.text != null)
+                            {
+                                $scope.clicked=true;
+                                $rootScope.$broadcast(loadingRequestConst.Start);
+                                var promise = findBook(result.text)
+                                promise.then(function(results) {
+
+                                    $scope.books = results;
+                                    $scope.clicked=false;
+                                    $rootScope.$broadcast(loadingRequestConst.Stop);
+
+
+                                }, function(reason) {
+
+                                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                                    $rootScope.MessageNotification = reason;
+                                    $scope.clicked=false;
+                                    $rootScope.$broadcast(loadingRequestConst.Stop);
+                                });
+                            }
+                        });
+
+                    },
+                    function (error) {
+                        alert("Scanning failed: " + error);
+                    }
+                );
+
+            } catch (ex) {
+                console.log(ex.message);
+                navigator.notification.alert("Catch says: " + ex.message);
+            }
+        }
     };
 });
