@@ -202,15 +202,13 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $window, $location) {
                                 promise.then(function(results) {
 
                                     $scope.books = results;
-                                    $scope.clicked=false;
                                     $rootScope.$broadcast(loadingRequestConst.Stop);
-
-
+                                    $scope.setFoundBook(selectedBook);
+                                    $scope.goTo("views/registerBook.html");
                                 }, function(reason) {
 
                                     $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                                     $rootScope.MessageNotification = reason;
-                                    $scope.clicked=false;
                                     $rootScope.$broadcast(loadingRequestConst.Stop);
                                 });
                             }
