@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('MainCtrl', function ($scope, $window, $location) {
+BookCrossingApp.controller('MainCtrl', function ($scope, $location, isbnService, $rootScope, $q, $window) {
 
 
     $scope.title = 'BookCrossingApp';
@@ -223,4 +223,27 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $window, $location) {
             }
         }
     };
+
+    function findBook(isbn)
+    {
+        var deferred = $q.defer();
+
+        isbnService.getGoogleBookInfo(isbn, function(isSuccess, result){
+
+            if(isSuccess)
+            {
+
+                deferred.resolve(result);
+
+            }
+            else
+            {
+                deferred.reject(result);
+
+            }
+        });
+
+        return deferred.promise;
+
+    }
 });
