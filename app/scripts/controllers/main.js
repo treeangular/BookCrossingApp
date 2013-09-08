@@ -199,9 +199,17 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $location, isbnService,
                                 $rootScope.$broadcast(loadingRequestConst.Start);
                                 var promise = findBook(result.text)
                                 promise.then(function(results) {
-                                    $rootScope.$broadcast(loadingRequestConst.Stop);
-                                    $scope.setFoundBook(results[0]);
-                                    $scope.goTo("views/registerBook.html");
+                                    if (results.lenght==0)
+                                    {
+                                        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                                        $rootScope.MessageNotification = "Book not found!";
+                                        $rootScope.$broadcast(loadingRequestConst.Stop);
+                                    }
+                                    else{
+                                        $rootScope.$broadcast(loadingRequestConst.Stop);
+                                        $scope.setFoundBook(results[0]);
+                                        $scope.goTo("views/registerBook.html");
+                                    }
                                 }, function(reason) {
 
                                     $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
