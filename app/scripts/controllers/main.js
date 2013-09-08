@@ -196,14 +196,11 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $window, $location) {
                         $scope.$apply(function () {
                             if (result.text != null)
                             {
-                                $scope.clicked=true;
                                 $rootScope.$broadcast(loadingRequestConst.Start);
                                 var promise = findBook(result.text)
                                 promise.then(function(results) {
-
-                                    $scope.books = results;
                                     $rootScope.$broadcast(loadingRequestConst.Stop);
-                                    $scope.setFoundBook(selectedBook);
+                                    $scope.setFoundBook(results[0]);
                                     $scope.goTo("views/registerBook.html");
                                 }, function(reason) {
 
