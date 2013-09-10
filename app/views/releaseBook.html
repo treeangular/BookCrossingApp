@@ -1,6 +1,6 @@
 <div ng-controller="ReleaseBookCtrl">
     <form name="releaseBook-form" ng-submit="release()">
-        <input name="bookBarcode" pattern=".{4,}" type="text" ng-model="registrationId"  data-localize-it-attr="_ReleaseBookRegistrationId_|placeholder" required />
+        <input class="registrationId" ng-minlength=4 ng-maxlength=5 name="bookBarcode" pattern=".{4,}" type="text" ng-model="registrationId"  data-localize-it-attr="_ReleaseBookRegistrationId_|placeholder" required />
         <div id="mapViewSmallWrapper">
             <div id="mapView" ui-map="myMap" ui-options="mapOptions" />
         </div>
