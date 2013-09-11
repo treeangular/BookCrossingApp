@@ -347,10 +347,10 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
 #registrationId{
     position: absolute;
     top: 300px;
-    left: 70px;
+    left: 0px;
     font-weight: bold;
     font-size:20px;
-    width: 160px;
+    width: 100%;
     text-align: center;
 }
 
