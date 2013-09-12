@@ -1,7 +1,7 @@
 <div ng-controller="HuntBookCtrl">
 <form name="registerNewBook-form" ng-submit="huntBook(book)">
     <h2 class="huntOption">{{'_HuntABook_' | localizeIt}}</h2>
-    <input class="registrationId" ng-minlength=4 ng-maxlength=5 name="bookBarcode" pattern=".{4,}" type="text" ng-model="book.registrationId"  data-localize-it-attr="_RegistrationId_|placeholder" required />
+    <input class="registrationId" name="bookBarcode" pattern=".{4,}" type="text" ng-model="book.registrationId"  data-localize-it-attr="_RegistrationId_|placeholder" bca-to-upper-case required />
     <input type="submit"  value="Hunt" bca-track-event class="buttonlarge" ng-disabled="clicked" />
 </form>
 <h2 class="releaseOption">{{'_ReleaseABook_' | localizeIt}}</h2>
