@@ -1,7 +1,9 @@
 'use strict';
-BookCrossingApp.controller('BookCtrl', function($scope,$rootScope, dataService) {
+BookCrossingApp.controller('BookCtrl', function($scope,$rootScope, dataService, facebookService) {
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"bookDetails.html");
+
+    facebookService.share('released',$scope.selectedBook.get("title"),$scope.selectedBook.get("image"), $scope.selectedBook.city);
 
     dataService.getBookAverage($scope.selectedBook, function (isSuccess, result) {
         $rootScope.$broadcast(loadingRequestConst.Start);

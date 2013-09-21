@@ -94,11 +94,8 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
         }).then(function(city){
 
-                return facebookService.share('hunted',bookHunted.get("title"),bookHunted.get("image"), city);
-
-        }).then(function(){
-
-                $scope.goTo('views/bookDetails.html');
+          $scope.selectedBook.city = city;
+          $scope.goTo('views/bookDetails.html');
 
         }, function(error){
             $scope.clicked=false;
