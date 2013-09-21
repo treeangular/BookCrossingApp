@@ -110,12 +110,14 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
          }).then(function(response){
 
+               alert("X pressed correct");
                $scope.clicked=false;
                $rootScope.$broadcast(loadingRequestConst.Stop);
                $scope.goTo('views/reviewBook.html');
 
            }, function(error){
 
+               alert("X pressed incorrect");
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
             $rootScope.MessageNotification = error;
          });
