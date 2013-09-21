@@ -30,7 +30,7 @@ angular.module('facebookProvider', [])
                     }
                     else
                     {
-                        alert("X pressed");
+
                         $rootScope.$apply(function () {
                             deferred.reject(ErrorConst.GenericError);
                         });

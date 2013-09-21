@@ -29,6 +29,9 @@ BookCrossingApp.controller('ReviewsBookCtrl', function ($scope, $rootScope, data
         return deferred.promise;
     }
 
+
+  facebookService.share('released',$scope.selectedBook.get("title"),$scope.selectedBook.get("image"), $scope.selectedBook.city);
+
   $scope.sendReview = function (review) {
 
       $scope.clicked = true;
