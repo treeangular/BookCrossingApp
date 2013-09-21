@@ -44,13 +44,12 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
         disableDefaultUI: true
     };
 
+    //TODO hev: see how to make it with $timeout
     $scope.$on('$destroy', function(e) {
        clearInterval(timer);
     });
 
     var getPosition = function(position){
-
-
 
         geolocationService.getCurrentPosition(function (position) {
             geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
@@ -64,7 +63,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
                     icon:myPositionIcon
                 });
 
-                $scope.myMarkers = [];
+                $scope.myMarkers.length = 0;
                 $scope.myMarkers.push(marker);
                 $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
 
