@@ -29,7 +29,9 @@ angular.module('facebookProvider', [])
                         });
                     }
                     else
-                    {   $rootScope.$apply(function () {
+                    {
+                        alert("X pressed");
+                        $rootScope.$apply(function () {
                             deferred.reject(ErrorConst.GenericError);
                         });
                     }
