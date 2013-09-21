@@ -50,8 +50,8 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     var getPosition = function(position){
 
-        $scope.myMarkers = [];
-        
+       // $scope.myMarkers = [];
+
         geolocationService.getCurrentPosition(function (position) {
             geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
 
