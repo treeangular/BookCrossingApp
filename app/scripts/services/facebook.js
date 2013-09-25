@@ -48,8 +48,6 @@ angular.module('facebookProvider', [])
 
       return{
 
-
-
           share: share,
 
           login:function (callback) {
