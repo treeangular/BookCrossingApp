@@ -21,7 +21,7 @@ angular.module('dataServices', [])
 /**
  * Parse Service com as a back-end for the application.
  */
-    .factory('parseService', function ($q, $rootScope) {
+    .factory('parseService', function ($q, $rootScope, logIt) {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
 
@@ -794,6 +794,8 @@ angular.module('dataServices', [])
                     book.save(null, {
                         success: function (book) {
                             // The object was saved successfully.
+                            logIt.incrementParseCounter();
+                            alert(logIt.getNumberOfCalls());
                             callback(true, null);
                             bookAverage.set("book",book);
                             bookAverage.set("numberReviews",0);

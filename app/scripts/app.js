@@ -1,9 +1,14 @@
 'use strict';
 
-var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider', 'ngMobile', 'loggerProvider']);
+var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider', 'ngMobile', 'logger']);
 
 
-BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
+BookCrossingApp.config(['$routeProvider','$httpProvider','logItProvider', function ($routeProvider, $httpProvider, logIt) {
+
+    var file = "myFile";
+    logIt.setFile(file);
+    logIt.setLogEnable(true);
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/sign.html',
@@ -59,7 +64,6 @@ BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvid
 
     //loadGoogleAnalytics(window);
     loadHttpInterceptor($httpProvider);
-
     loadParse();
     loadFB();
 
