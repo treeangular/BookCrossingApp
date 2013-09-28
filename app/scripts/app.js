@@ -32,6 +32,10 @@ function gotFileWriter(writer) {
     writer.write("some sample text");
 }
 
+function fail(evt) {
+    alert(evt.target.error.code);
+}
+
 BookCrossingApp.config(['$routeProvider','$httpProvider','logItProvider', function ($routeProvider, $httpProvider, logIt) {
 
     var file = "myFile";
