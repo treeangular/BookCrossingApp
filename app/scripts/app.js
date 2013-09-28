@@ -35,8 +35,11 @@ BookCrossingApp.config(['$routeProvider','$httpProvider','logItProvider', functi
     logIt.setFile(file);
     logIt.setLogEnable(true);
 
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-    
+    if(typeof(LocalFileSystem) != 'undefined')
+    {
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+    }
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/sign.html',
