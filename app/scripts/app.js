@@ -16,6 +16,7 @@ function gotFileEntry(fileEntry) {
 function gotFileWriter(writer) {
     writer.onwriteend = function(evt) {
         console.log("contents of file now 'some sample text'");
+        alert("contents of file now 'some sample text'");
         writer.truncate(11);
         writer.onwriteend = function(evt) {
             console.log("contents of file now 'some sample'");
@@ -37,6 +38,7 @@ BookCrossingApp.config(['$routeProvider','$httpProvider','logItProvider', functi
 
     if(typeof(LocalFileSystem) != 'undefined')
     {
+        alert("inside Local File System")
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     }
 
