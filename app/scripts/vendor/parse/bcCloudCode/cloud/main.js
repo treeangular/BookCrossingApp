@@ -305,7 +305,7 @@ Parse.Cloud.afterSave("Book", function (request) {
         if(actionTypeId != "")
         {
             //Check if we just save released or hunted the book
-            console.log("Retreiving objects...");
+            console.log("Retreiving objects for after save book...");
 
             query.get(actionTypeId, {
                 success: function (result){

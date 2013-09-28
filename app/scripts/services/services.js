@@ -791,15 +791,14 @@ angular.module('dataServices', [])
 
                     var bookAverage = new BookAverage();
 
-                    bookAverage.set("book",book);
-                    bookAverage.set("average",0);
-                    bookAverage.set("numberReviews",0);
-                    bookAverage.save();
-
                     book.save(null, {
                         success: function (book) {
                             // The object was saved successfully.
                             callback(true, null);
+                            bookAverage.set("book",book);
+                            bookAverage.set("numberReviews",0);
+                            bookAverage.set("average",0);
+                            bookAverage.save();
                         },
                         error: function (book, error) {
                             // The save failed.
@@ -808,6 +807,8 @@ angular.module('dataServices', [])
                             callback(false, ErrorConst.GenericError);
                         }
                     });
+
+
                 },
                 releaseBook: releaseBook,
 
