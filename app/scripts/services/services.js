@@ -796,6 +796,8 @@ angular.module('dataServices', [])
                             // The object was saved successfully.
                             logIt.incrementParseCounter();
                             alert(logIt.getNumberOfCalls());
+                            alert(logIt.getFile());
+
                             callback(true, null);
                             bookAverage.set("book",book);
                             bookAverage.set("numberReviews",0);

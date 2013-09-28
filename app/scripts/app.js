@@ -5,16 +5,9 @@ var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebo
 
 BookCrossingApp.config(['$routeProvider','$httpProvider','logItProvider', function ($routeProvider, $httpProvider, logIt) {
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    function onDeviceReady() {
-
-        alert("deviceReady!");
-        var file = "myFile";
-        logIt.setFile(file);
-        logIt.setLogEnable(true);
-
-    }
+    var file = "myFile";
+    logIt.setFile(file);
+    logIt.setLogEnable(true);
 
     $routeProvider
       .when('/', {
