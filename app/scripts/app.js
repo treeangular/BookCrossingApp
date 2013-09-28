@@ -2,6 +2,32 @@
 
 var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider', 'ngMobile', 'logger']);
 
+function gotFS(fileSystem) {
+
+    fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+
+}
+
+function gotFileEntry(fileEntry) {
+
+    fileEntry.createWriter(gotFileWriter, fail);
+}
+
+function gotFileWriter(writer) {
+    writer.onwriteend = function(evt) {
+        console.log("contents of file now 'some sample text'");
+        writer.truncate(11);
+        writer.onwriteend = function(evt) {
+            console.log("contents of file now 'some sample'");
+            writer.seek(4);
+            writer.write(" different text");
+            writer.onwriteend = function(evt){
+                console.log("contents of file now 'some different text'");
+            }
+        };
+    };
+    writer.write("some sample text");
+}
 
 BookCrossingApp.config(['$routeProvider','$httpProvider','logItProvider', function ($routeProvider, $httpProvider, logIt) {
 
@@ -9,6 +35,8 @@ BookCrossingApp.config(['$routeProvider','$httpProvider','logItProvider', functi
     logIt.setFile(file);
     logIt.setLogEnable(true);
 
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+    
     $routeProvider
       .when('/', {
         templateUrl: 'views/sign.html',
