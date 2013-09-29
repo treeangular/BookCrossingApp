@@ -416,7 +416,7 @@ Parse.Cloud.afterSave("Book", function (request) {
                 htmlMSG += '<tr>';
                 htmlMSG += '<td style="padding: 15px 0 15px; border-bottom: 1px solid #d2b49b;"  valign="top">';
                 htmlMSG += '<p style="font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 12px;">Hi ' + nick + ',</p>';
-                htmlMSG += '<p style="font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 12px; ">Congratulations! Your book ' + bookTitle + ' was registered succesful.</p>';
+                htmlMSG += '<p style="font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 12px; ">Congratulations! Your book <strong>' + bookTitle + '</strong> was registered succesful.</p>';
                 htmlMSG += '<p style="font-weight: bold; margin: 0; padding: 15px; line-height: 20px; font-size: 14px;"><span style="padding: 5px; border: #169691 2px solid;">Registration code: ' + registrationId +'</span></p><br>';
                 htmlMSG += '<p style="font-weight: bold; margin: 0; padding: 0; line-height: 20px; font-size: 18px;">So now what?</p>';
                 htmlMSG += '<p style="font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 12px;"><span style="font-size: 20px;font-weight: bold; color:#169691;">1-</span>Print the next bookCrossingApp label.</p>';
