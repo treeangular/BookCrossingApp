@@ -345,6 +345,7 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
 }
 
 #registrationId{
+    font-family: Helvetica, Arial, Sans-Serif;
     position: absolute;
     top: 300px;
     left: 0px;
@@ -472,8 +473,13 @@ li {
 }
 
 .bookPopUp {
-    width: 140px;
-    height: 60px;
+    min-width: 200px;
+}
+
+/*overwrite google styles gm-styles*/
+.bookPopUp p, .bookPopUp a{
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 11px;
 }
 
 .bookPopUp img {
@@ -538,8 +544,6 @@ li {
 }
 
 .registrationId {
-    font-family: Helvetica, Arial, Sans-Serif;
-    font-size: 14px;
     text-align: center;
     font-weight: bold;
 }
