@@ -538,6 +538,8 @@ li {
 }
 
 .registrationId {
+    font-family: Helvetica, Arial, Sans-Serif;
+    font-size: 14px;
     text-align: center;
     font-weight: bold;
 }
