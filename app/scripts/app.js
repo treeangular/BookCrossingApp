@@ -2,16 +2,15 @@
 
 var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider', 'ngMobile', 'logger']);
 
-function gotFS(fileSystem) {
+function gotFS(fileSystem, logIt) {
 
-    alert("gotFS")
-    fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+    fileSystem.root.getFile("myBookCrossingAppLogFile.txt", {create: true, exclusive: false}, gotFileEntry(logIt), fail);
 
 }
 
-function gotFileEntry(fileEntry) {
+function gotFileEntry(fileEntry, logIt) {
 
-    alert("gotFileEntry")
+    logIt.setFile(fileEntry);
     fileEntry.createWriter(gotFileWriter, fail);
 }
 
@@ -38,18 +37,15 @@ function fail(evt) {
 
 BookCrossingApp.config(['$routeProvider','$httpProvider','logItProvider', function ($routeProvider, $httpProvider, logIt) {
 
-    var file = "myFile";
-    logIt.setFile(file);
-    logIt.setLogEnable(true);
-
     document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
-        alert("OndeviceReady!")
+
+        logIt.setLogEnable(true);
+
         if(typeof(LocalFileSystem) != 'undefined')
         {
-            alert("inside Local File System")
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS(logIt), fail);
         }
     }
 
