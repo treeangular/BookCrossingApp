@@ -63,8 +63,10 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
                     icon:myPositionIcon
                 });
                 for (var i = 0; i < $scope.myMarkers.length; i++) {
-                    $scope.myMarkers[i].setMap($scope.myMap);
+                    $scope.myMarkers[i].setMap(null);
                 }
+                $scope.myMarkers = new Array();
+                
                 $scope.myMarkers.push(marker);
                 $scope.myMap.setCenter(new google.maps.LatLng(geoPoint.latitude, geoPoint.longitude));
 

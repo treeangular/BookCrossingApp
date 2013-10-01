@@ -2,54 +2,9 @@
 
 var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider', 'ngMobile', 'logger']);
 
-function gotFS(fileSystem, logIt) {
+BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
 
-    fileSystem.root.getFile("myBookCrossingAppLogFile.txt", {create: true, exclusive: false}, gotFileEntry(logIt), fail);
-
-}
-
-function gotFileEntry(fileEntry, logIt) {
-
-    logIt.setFile(fileEntry);
-    fileEntry.createWriter(gotFileWriter, fail);
-}
-
-function gotFileWriter(writer) {
-    writer.onwriteend = function(evt) {
-        console.log("contents of file now 'some sample text'");
-        alert("contents of file now 'some sample text'");
-        writer.truncate(11);
-        writer.onwriteend = function(evt) {
-            alert("contents of file now 'some sample'");
-            writer.seek(4);
-            writer.write(" different text");
-            writer.onwriteend = function(evt){
-                alert("contents of file now 'some different text'");
-            }
-        };
-    };
-    writer.write("some sample text");
-}
-
-function fail(evt) {
-    alert(evt.target.error.code);
-}
-
-BookCrossingApp.config(['$routeProvider','$httpProvider','logItProvider', function ($routeProvider, $httpProvider, logIt) {
-
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    function onDeviceReady() {
-
-        logIt.setLogEnable(true);
-
-        if(typeof(LocalFileSystem) != 'undefined')
-        {
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS(logIt), fail);
-        }
-    }
-
-    $routeProvider
+     $routeProvider
       .when('/', {
         templateUrl: 'views/sign.html',
         controller: 'SignCtrl'
