@@ -121,6 +121,7 @@
             // Global click handler that prevents the click if it's in a bustable zone and preventGhostClick
             // was called recently.
             function onClick(event) {
+                alert("It is an ngMobileTouch")
                 if (Date.now() - lastPreventedTime > PREVENT_DURATION) {
                     return; // Too old.
                 }
@@ -151,6 +152,7 @@
             // Global touchstart handler that creates an allowable region for a click event.
             // This allowable region can be removed by preventGhostClick if we want to bust it.
             function onTouchStart(event) {
+                alert("It is an ngMobileTouch")
                 var touches = event.touches && event.touches.length ? event.touches : [event];
                 var x = touches[0].clientX;
                 var y = touches[0].clientY;
