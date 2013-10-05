@@ -4,7 +4,7 @@
         id		   = "com.crossers.bookcrossingapp"
         version 	= "1.0.0">
 
-  <name>BookCrossing</name>
+  <name>BookCrossingApp</name>
 
   <description>The best mobile implementation for book crossing!</description>
 
@@ -38,8 +38,8 @@
   <gap:splash src="styles/img/splash.png" width="1024" height="768" />
   <gap:splash src="styles/img/splash.png" width="768" height="1024" />
 
-    <gap:plugin name="com.phonegap.plugins.barcodescanner" />
-    <gap:plugin name="com.adobe.plugins.gaplugin" />
+  <gap:plugin name="com.phonegap.plugins.barcodescanner" />
+  <gap:plugin name="com.adobe.plugins.gaplugin" />
 
   <gap:plugin name="com.phonegap.plugins.facebookconnect">
       <param name="APP_ID" value="160779410752321" />
