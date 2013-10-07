@@ -74,22 +74,6 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
     function onDeviceReady() {
 
-        document.addEventListener("online", onOnline, false);
-
-        function onOnline() {
-            // Handle the online event
-            $rootScope.TypeNotification = "errormessage";
-            $rootScope.MessageNotification = "OnLine";
-        }
-
-        document.addEventListener("offline", onOffline, false);
-
-        function onOffline() {
-            // Handle the offline event
-            $rootScope.TypeNotification = "errormessage";
-            $rootScope.MessageNotification = "OffLine";
-        }
-
         if (typeof $window.plugins == 'undefined')
         {
             alert('onDeviceReady- window.plugins == undefined' );
@@ -108,7 +92,23 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
             //alert("GA undefined!!!!");
             console.log("App: $rootScope.gaPlugIn === undefined ");
         }
-    }rootScope.TypeNotification
+    }
+
+    document.addEventListener("online", onOnline, false);
+
+    function onOnline() {
+        // Handle the online event
+        $rootScope.TypeNotification = "errormessage";
+        $rootScope.MessageNotification = "OnLine";
+    }
+
+    document.addEventListener("offline", onOffline, false);
+
+    function onOffline() {
+        // Handle the offline event
+        $rootScope.TypeNotification = "errormessage";
+        $rootScope.MessageNotification = "OffLine";
+    }
 
     function checkVersion()
     {
