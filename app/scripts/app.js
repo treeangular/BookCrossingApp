@@ -98,7 +98,7 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
     function onOnline() {
         // Handle the online event
-        $rootScope.TypeNotification = "errormessage";
+        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
         $rootScope.MessageNotification = "OnLine";
     }
 
@@ -106,7 +106,7 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
     function onOffline() {
         // Handle the offline event
-        $rootScope.TypeNotification = "errormessage";
+        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
         $rootScope.MessageNotification = "OffLine";
     }
 
