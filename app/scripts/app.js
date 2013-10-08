@@ -71,6 +71,9 @@ var googleAnalyticsIdApp = "UA-42576964-2";
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location) {
 
     document.addEventListener("deviceready", onDeviceReady, false);
+    $rootScope.IsActionFirstTimeExecuted = true;
+    $rootScope.IsBooksToReleaseFirstTimeExecuted = true;
+    $rootScope.IsMyLibraryFirstTimeExecuted = true;
 
     function onDeviceReady() {
 

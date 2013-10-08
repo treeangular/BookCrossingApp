@@ -5,11 +5,24 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"MyLibrary");
 
+
+
     $scope.books = [];
     $scope.currentPage = 0;
     $scope.listView = true;
     var user;
     var id = $rootScope.currentUser.id;
+
+    if($rootScope.IsMyLibraryFirstTimeExecuted && $rootScope.cacheMyLibrary == undefined)
+    {
+        $rootScope.IsMyLibraryFirstTimeExecuted = false;
+        getNextPage();
+        setInterval(getNextPage, 60000);
+    }
+    else
+    {
+        $scope.books = $rootScope.cacheMyLibrary;
+    }
 
     function updateStatus(status)
     {
@@ -134,20 +147,23 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
     $scope.busy = false;
 
-    $scope.nextPage  = function() {
-        if ($scope.busy) return;
+    function getNextPage(){
+        $scope.nextPage  = function() {
+            if ($scope.busy) return;
 
-            $scope.busy = true;
-            var promise = getLibraryByUserId(id)
-            promise.then(function(books) {
-                $scope.books = books;
-            }, function(reason) {
+                $scope.busy = true;
+                var promise = getLibraryByUserId(id)
+                promise.then(function(books) {
+                    $scope.books = books;
+                    $rootScope.cacheMyLibrary = $scope.books;
+                }, function(reason) {
 
-                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                $rootScope.MessageNotification = reason;
-            });
-            $scope.currentPage = $scope.currentPage + 1
-            $scope.busy = false;
-    };
+                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                    $rootScope.MessageNotification = reason;
+                });
+                $scope.currentPage = $scope.currentPage + 1
+                $scope.busy = false;
+        };
+    }
 
   });

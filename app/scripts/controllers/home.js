@@ -1,5 +1,6 @@
 'use strict';
 BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $http, $window, $location) {
+
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"Home");
 
@@ -7,8 +8,19 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     $scope.currentPage = 0;
     $scope.isLastPage = true;
 
+    if($rootScope.IsActionFirstTimeExecuted && $rootScope.cacheAlerts == undefined)
+    {
+        $rootScope.IsActionFirstTimeExecuted = false;
+        getNextPage();
+        $scope.nextPage  =  setInterval(getNextPage, 60000);
+    }
+    else
+    {
+        $scope.alerts = $rootScope.cacheAlerts;
+    }
     if($rootScope.currentUser == undefined)
     {
+
         dataService.isCurrentUser(function (result, currentUser) {
                 if (result) {
                     $rootScope.currentUser = currentUser;
@@ -49,31 +61,36 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
   $scope.busy = false;
 
-  $scope.nextPage  = function() {
-    if ($scope.busy) return;
+  function getNextPage(){
 
-    $scope.busy = true;
+            if ($scope.busy) return;
 
-      var promise = getActPage($scope.currentPage);
-      promise.then(function(alerts) {
+            $scope.busy = true;
 
-          if (alerts.length == 10) $scope.isLastPage = false;
-          else $scope.isLastPage = true;
+            var promise = getActPage($scope.currentPage);
+            promise.then(function(alerts) {
 
-          for(var i = 0; i <= alerts.length-1; i++) {
-            $scope.alerts.push(alerts[i]);
-          }
+                if (alerts.length == 10) $scope.isLastPage = false;
+                else $scope.isLastPage = true;
+
+                for(var i = 0; i <= alerts.length-1; i++) {
+                    $scope.alerts.push(alerts[i]);
+                }
+                $rootScope.cacheAlerts = $scope.alerts;
 
 
-      }, function(reason) {
+            }, function(reason) {
 
 
-          $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-          $rootScope.MessageNotification = reason;
-      });
-      $scope.currentPage = $scope.currentPage + 1
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = reason;
+            });
+            $scope.currentPage = $scope.currentPage + 1
 
-	$scope.busy = false;
+            $scope.busy = false;
   };
+
+
+
 
 });

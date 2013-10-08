@@ -6,6 +6,18 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     $scope.books = null;
 
+    if($rootScope.IsBooksToReleaseFirstTimeExecuted && $rootScope.cacheBooks == undefined)
+    {
+        $rootScope.IsBooksToReleaseFirstTimeExecuted = false;
+        getBooks();
+        setInterval(getBooks, 60000);
+    }
+    else
+    {
+        $scope.books = $rootScope.cacheBooks;
+    }
+
+
     function shareFB(book, actionType)
     {
         var deferred = $q.defer();
@@ -105,17 +117,21 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         })
     }
 
-    $rootScope.$broadcast(loadingRequestConst.Start);
-    var promise = getBooksThatCanBeReleased();
-    promise.then(function(books) {
+    function getBooks(){
 
-        $scope.books = books
+        $rootScope.$broadcast(loadingRequestConst.Start);
+        var promise = getBooksThatCanBeReleased();
+        promise.then(function(books) {
 
-    }, function(reason) {
+            $scope.books = books
+            $rootScope.cacheBooks = $scope.books;
 
-        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-        $rootScope.MessageNotification = reason;
-    });
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
+        });
+    }
 
     $scope.release = function (bookId) {
         //Go to releaseBook view
