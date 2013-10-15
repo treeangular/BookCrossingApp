@@ -1,27 +1,73 @@
 'use strict';
 
-BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataService, $q) {
+BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataService, $q, cache) {
 
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"MyLibrary");
 
-
-
     $scope.books = [];
-    $scope.currentPage = 0;
+
     $scope.listView = true;
     var user;
     var id = $rootScope.currentUser.id;
 
-    if($rootScope.IsMyLibraryFirstTimeExecuted && $rootScope.cacheMyLibrary == undefined)
+
+    if(cache.getIsLibraryFirstTimeExecuted())
     {
-        $rootScope.IsMyLibraryFirstTimeExecuted = false;
-        getNextPage();
-        setInterval(getNextPage, 60000);
+        if($scope.selectedUser != null)
+        {
+            id = $scope.selectedUser.id;
+
+            var promise = getLibraryByUserId(id)
+            promise.then(function(books) {
+
+                $scope.books = books;
+
+            }, function(reason) {
+
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = reason;
+            });
+        }
+        else
+        {
+            var promise = getLibraryByUserId(id)
+            promise.then(function(books) {
+
+                $scope.books = books;
+
+            }, function(reason) {
+
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = reason;
+            });
+
+            $scope.books = cache.getCachedBooksFromMyLibrary(id);
+            cache.setIsLibraryFirstTimeExecuted(false);
+        }
+
+
+
     }
     else
     {
-        $scope.books = $rootScope.cacheMyLibrary;
+        if($scope.selectedUser == null)
+        {
+            $scope.books = cache.getCachedBooksFromMyLibrary(id);
+        }
+        else
+        {
+            var promise = getLibraryByUserId($scope.selectedUser.id)
+            promise.then(function(books) {
+
+                $scope.books = books;
+
+            }, function(reason) {
+
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = reason;
+            });
+        }
     }
 
     function updateStatus(status)
@@ -82,6 +128,7 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
         return deferred.promise;
     }
+
     function getLibraryByUserId(id){
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
@@ -145,25 +192,5 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
 
     };
 
-    $scope.busy = false;
-
-    function getNextPage(){
-        $scope.nextPage  = function() {
-            if ($scope.busy) return;
-
-                $scope.busy = true;
-                var promise = getLibraryByUserId(id)
-                promise.then(function(books) {
-                    $scope.books = books;
-                    $rootScope.cacheMyLibrary = $scope.books;
-                }, function(reason) {
-
-                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                    $rootScope.MessageNotification = reason;
-                });
-                $scope.currentPage = $scope.currentPage + 1
-                $scope.busy = false;
-        };
-    }
 
   });

@@ -38,6 +38,52 @@ angular.module('parseCache', [])
                         }
                 });
                 return deferred.promise;
+            };
+
+            function getBooksFromRelease()
+            {
+                var deferred = $q.defer();
+
+                dataService.getBooksThatCanBeReleased(function (isSuccess, results) {
+
+                        if(isSuccess)
+                        {
+
+                            booksFromRelease = results;
+                            deferred.resolve(results);
+
+                        }
+                        else
+                        {
+                            deferred.reject(results);
+
+                        }
+
+                });
+
+                return deferred.promise;
+            }
+
+            function getLibraryByUserId(id){
+
+                var deferred = $q.defer();
+                dataService.getLibraryByUserId(id, function (isSuccess, results) {
+
+                        if(isSuccess)
+                        {
+                            //TODO: Load only first page and then use paging in the NextPage function!
+                            deferred.resolve(results);
+                            booksFromMyLibrary = results;
+
+
+                        }
+                        else
+                        {
+                            deferred.reject(results);
+                        }
+
+                    });
+                return deferred.promise;
             }
 
             var actions = this.actions;
@@ -75,16 +121,58 @@ angular.module('parseCache', [])
                         return actions;
                 },
                 getCachedBooksFromRelease: function() {
-                    return
+                    if(isReleaseFirstTimeExecuted)
+                    {
+                        var promise = getBooksFromRelease();
+                        promise.then(function(books) {
+
+                            return books;
+
+                        }, function(reason)
+                        {
+                            return reason;
+                        });
+                        setInterval(getBooksFromRelease, 6000);
+                    }
+                    else
+                        return booksFromRelease;
                 },
-                getCachedBooksFromMyLibrary: function() {
-                    return
+                getCachedBooksFromMyLibrary: function(id) {
+                    if(isLibraryFirstTimeExecuted)
+                    {
+                        var promise = getLibraryByUserId(id);
+                        promise.then(function(books) {
+
+                            return books;
+
+                        }, function(reason)
+                        {
+                            return reason;
+                        });
+                        setInterval(getLibraryByUserId(id), 6000);
+                    }
+                    else
+                        return booksFromMyLibrary;
                 },
+
+                //Getters and setters for handling cache
                 setIsHomeFirstTimeExecuted: function(value){
                     isHomeFirstTimeExecuted = value;
                 },
                 getIsHomeFirstTimeExecuted: function(){
                     return isHomeFirstTimeExecuted;
+                },
+                setIsReleaseFirstTimeExecuted: function(value){
+                    isReleaseFirstTimeExecuted = value;
+                },
+                getIsReleaseFirstTimeExecuted: function(){
+                    return isReleaseFirstTimeExecuted;
+                },
+                setIsLibraryFirstTimeExecuted: function(value){
+                    isLibraryFirstTimeExecuted = value;
+                },
+                getIsLibraryFirstTimeExecuted: function(){
+                    return isLibraryFirstTimeExecuted;
                 }
 
             }

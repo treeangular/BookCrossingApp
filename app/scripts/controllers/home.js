@@ -20,7 +20,6 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
             $scope.alerts = [];
             if (alerts.length == 10) $scope.isLastPage = false;
             else $scope.isLastPage = true;
-
             for(var i = 0; i <= alerts.length-1; i++) {
                 $scope.alerts.push(alerts[i]);
             }

@@ -1,20 +1,33 @@
 'use strict';
 
-BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootScope, $q, facebookService, geolocationService) {
+BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootScope, $q, facebookService, geolocationService, cache) {
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"HuntBook");
 
     $scope.books = null;
 
-    if($rootScope.IsBooksToReleaseFirstTimeExecuted && $rootScope.cacheBooks == undefined)
+
+    if(cache.getIsReleaseFirstTimeExecuted())
     {
-        $rootScope.IsBooksToReleaseFirstTimeExecuted = false;
-        getBooks();
-        setInterval(getBooks, 60000);
+
+        var promise = getBooksThatCanBeReleased()
+        promise.then(function(books) {
+
+            $scope.books = books;
+
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
+        });
+
+        $scope.books = cache.getCachedBooksFromRelease();
+        cache.setIsReleaseFirstTimeExecuted(false);
+
     }
     else
     {
-        $scope.books = $rootScope.cacheBooks;
+        $scope.books = cache.getCachedBooksFromRelease();
     }
 
 
@@ -115,22 +128,6 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
             $rootScope.MessageNotification = error;
 
         })
-    }
-
-    function getBooks(){
-
-        $rootScope.$broadcast(loadingRequestConst.Start);
-        var promise = getBooksThatCanBeReleased();
-        promise.then(function(books) {
-
-            $scope.books = books
-            $rootScope.cacheBooks = $scope.books;
-
-        }, function(reason) {
-
-            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-            $rootScope.MessageNotification = reason;
-        });
     }
 
     $scope.release = function (bookId) {
