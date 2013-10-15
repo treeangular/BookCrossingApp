@@ -1,8 +1,14 @@
 'use strict';
 
-var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider', 'ngMobile', 'logger']);
+var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebookProvider', 'infinite-scroll',  'localization', 'isbnProvider', 'ui.map', 'filters', 'googleAnalyticsProvider', 'ngMobile', 'logger', 'parseCache']);
 
-BookCrossingApp.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
+BookCrossingApp.config(['$routeProvider','$httpProvider','cacheProvider', function ($routeProvider, $httpProvider, cache) {
+
+    cache.setCacheEnable(true);
+   // cache.setCaheTime(30000);
+    cache.setIsHomeFirstTimeExecuted(true);
+    cache.setIsReleaseFirstTimeExecuted(true);
+    cache.setIsLibraryFirstTimeExecuted(true);
 
      $routeProvider
       .when('/', {

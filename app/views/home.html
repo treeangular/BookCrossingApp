@@ -1,4 +1,4 @@
-<div ng-controller="HomeCtrl" infinite-scroll="nextPage()" infinite-scroll-distance="3">
+<div ng-controller="HomeCtrl">
  <ul>
     <li ng-repeat='alert in alerts'>
 	    <div class="bookItemList">
@@ -8,6 +8,6 @@
 			<p class="time">{{alert.createdAt | roundedTime}}</p>
 		</div>
 	</li>
-    <li ng-hide="isLastPage" ng-click="nextPage()" style="text-align: center; "><a ng-click="nextPage()">{{'_SeeMoreAlerts_' | localizeIt}}</a></li>
+    <li ng-hide="isLastPage" style="text-align: center; "><a ng-click="nextPage()">{{'_SeeMoreAlerts_' | localizeIt}}</a></li>
   </ul>
 </div>

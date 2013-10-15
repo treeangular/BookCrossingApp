@@ -1,23 +1,51 @@
 'use strict';
-BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $http, $window, $location) {
+BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $http, $window, $location, cache) {
 
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"Home");
 
-    $scope.alerts = [];
     $scope.currentPage = 0;
-    $scope.isLastPage = true;
 
-    if($rootScope.IsActionFirstTimeExecuted && $rootScope.cacheAlerts == undefined)
+
+    if(cache.getIsHomeFirstTimeExecuted())
     {
-        $rootScope.IsActionFirstTimeExecuted = false;
-        getNextPage();
-        $scope.nextPage  =  setInterval(getNextPage, 60000);
+        $scope.isLastPage = true;
+        $scope.busy = false;
+        if ($scope.busy) return;
+
+        $scope.busy = true;
+        var promise = getActPage(0);
+        promise.then(function(alerts) {
+
+            $scope.alerts = [];
+            if (alerts.length == 10) $scope.isLastPage = false;
+            else $scope.isLastPage = true;
+
+            for(var i = 0; i <= alerts.length-1; i++) {
+                $scope.alerts.push(alerts[i]);
+            }
+
+
+        }, function(reason) {
+
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
+        });
+
+
+        $scope.currentPage = 1;
+        $scope.alerts = cache.getCachedActions();
+        cache.setIsHomeFirstTimeExecuted(false);
+
     }
     else
     {
-        $scope.alerts = $rootScope.cacheAlerts;
+        $scope.currentPage = 1;
+        $scope.alerts = cache.getCachedActions();
     }
+
+
     if($rootScope.currentUser == undefined)
     {
 
@@ -59,38 +87,28 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
         return deferred.promise;
     }
 
-  $scope.busy = false;
+    $scope.nextPage  = function() {
 
-  function getNextPage(){
+        var promise = getActPage($scope.currentPage);
+        promise.then(function(alerts) {
 
-            if ($scope.busy) return;
+            if (alerts.length == 10) $scope.isLastPage = false;
+            else $scope.isLastPage = true;
 
-            $scope.busy = true;
+            for(var i = 0; i <= alerts.length-1; i++) {
+                $scope.alerts.push(alerts[i]);
+            }
 
-            var promise = getActPage($scope.currentPage);
-            promise.then(function(alerts) {
-
-                if (alerts.length == 10) $scope.isLastPage = false;
-                else $scope.isLastPage = true;
-
-                for(var i = 0; i <= alerts.length-1; i++) {
-                    $scope.alerts.push(alerts[i]);
-                }
-                $rootScope.cacheAlerts = $scope.alerts;
+        }, function(reason) {
 
 
-            }, function(reason) {
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
+        });
+        $scope.currentPage++;
 
-
-                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                $rootScope.MessageNotification = reason;
-            });
-            $scope.currentPage = $scope.currentPage + 1
-
-            $scope.busy = false;
-  };
-
-
+        $scope.busy = false;
+    };
 
 
 });
