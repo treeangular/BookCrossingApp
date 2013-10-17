@@ -9,12 +9,12 @@ BookCrossingApp.directive('bcaCamera', function () {
                 elm.bind('click', function() {
 
                     navigator.camera.getPicture(onSuccess, onFail,
-                        { quality: 50,
+                        { quality: 100,
                             destinationType:Camera.DestinationType.FILE_URI,
                             encodingType: Camera.EncodingType.JPEG,
                             sourceType : Camera.PictureSourceType.PHOTOLIBRARY ,//CAMERA,
-                            targetWidth: 100,
-                            targetHeight: 100
+                            targetWidth: 95,
+                            targetHeight: 95
                         });
                     function onSuccess(imageData) {
 
@@ -43,12 +43,12 @@ BookCrossingApp.directive('bcaCameraTakePicture', function () {
 
                 navigator.camera.getPicture(onSuccess, onFail,
                     //Options => http://docs.phonegap.com/en/2.6.0/cordova_camera_camera.md.html#Camera
-                    { quality: 50,
+                    { quality: 100,
                         destinationType:Camera.DestinationType.FILE_URI,
                         encodingType: Camera.EncodingType.JPEG,
                         sourceType : Camera.PictureSourceType.CAMERA,
-                        targetWidth: 100,
-                        targetHeight: 100
+                        targetWidth: 95,
+                        targetHeight: 95
                     });
                 function onSuccess(imageData) {
 //
