@@ -395,6 +395,35 @@
         "key":"_PublishingDate_",
         "value":"Publishing Date",
         "description":"Publishing Date"
+    },
+    {
+        "key":"_BookRegisteredSuccessfully_",
+        "value":"Book registered successfully!",
+        "description":"Book registered succesfully"
+    },
+    {
+        "key":"_FollowTheNextSteps_",
+        "value":"Follow the next steps:",
+        "description":"Book registered succesfully"
     }
+    ,
+    {
+        "key":"_PrintABookCrossingAppLabel_",
+        "value":"1-Print a bookCrossingApp label.",
+        "description":"Book registered succesfully"
+    }
+    ,
+    {
+        "key":"_WriteYourRegistrationIdInTheLabel_",
+        "value":"2-Write your registration Id in the label.",
+        "description":"Book registered succesfully"
+    }
+    ,
+    {
+        "key":"_PasteTheLabelInYourBook_",
+        "value":"3-Paste the label in your book.",
+        "description":"Book registered succesfully"
+    }
+
 
 ]

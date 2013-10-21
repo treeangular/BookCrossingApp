@@ -5,7 +5,7 @@ var BookCrossingApp = angular.module('BookCrossingApp', ['dataServices', 'facebo
 BookCrossingApp.config(['$routeProvider','$httpProvider','cacheProvider', function ($routeProvider, $httpProvider, cache) {
 
     cache.setIsCacheEnable(true);
-    cache.setCacheTime(120000);
+    cache.setCacheTime(60000);
     cache.setIsHomeFirstTimeExecuted(true);
     cache.setIsReleaseFirstTimeExecuted(true);
     cache.setIsLibraryFirstTimeExecuted(true);
