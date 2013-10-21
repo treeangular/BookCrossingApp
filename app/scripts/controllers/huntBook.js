@@ -6,48 +6,26 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     $scope.books = null;
 
-
     if(cache.getIsReleaseFirstTimeExecuted())
     {
-
-        var promise = getBooksThatCanBeReleased()
-        promise.then(function(books) {
-
-            $scope.books = books;
-
-        }, function(reason) {
-
-            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-            $rootScope.MessageNotification = reason;
-        });
-
-        $scope.books = cache.getCachedBooksFromRelease();
+        $rootScope.$broadcast(loadingRequestConst.Start);
+        var promise = cache.getCachedBooksFromRelease();
         cache.setIsReleaseFirstTimeExecuted(false);
+            promise.then(function(books) {
 
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+                $scope.books = books;
+
+            }, function(reason)
+            {
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = ErrorConst.GenericError;
+
+            });
     }
     else
     {
         $scope.books = cache.getCachedBooksFromRelease();
-    }
-
-
-    function shareFB(book, actionType)
-    {
-        var deferred = $q.defer();
-        facebookService.share(actionType,book.title, function(isSuccess, result){
-            if(!isSuccess)
-            {
-                deferred.reject(result);
-
-            }
-            else
-            {
-                deferred.resolve(result);
-            }
-
-        });
-        return deferred.promise;
-
     }
 
     function huntBook(book)
@@ -73,31 +51,6 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         });
 
         return deferred.promise;
-    }
-
-    function getBooksThatCanBeReleased()
-    {
-        var deferred = $q.defer();
-
-        dataService.getBooksThatCanBeReleased(function (isSuccess, results) {
-            $scope.$apply(function () {
-                if(isSuccess)
-                {
-
-                    deferred.resolve(results);
-
-                }
-                else
-                {
-                    deferred.reject(results);
-
-                }
-                $rootScope.$broadcast(loadingRequestConst.Stop);
-            });
-        });
-
-        return deferred.promise;
-
     }
 
     $scope.huntBook = function(book)

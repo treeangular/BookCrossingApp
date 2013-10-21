@@ -15,27 +15,25 @@ angular.module('parseCache', [])
         this.isReleaseFirstTimeExecuted = true;
         this.isLibraryFirstTimeExecuted = true;
         this.isCacheEnable = false;
-        this.cacheTime = 6000;
+        this.cacheTime = 0;
 
-        this.$get = function(dataService, $q) {
+        this.$get = function(dataService, $q, $rootScope) {
 
             function getActPage(pageNumber)
             {
-
                 var deferred = $q.defer();
                 dataService.getActionsForHomePage(pageNumber, function (isSuccess,results) {
 
+                    $rootScope.$apply(function () {
                         if(isSuccess)
                         {
-                            actions = results;
                             deferred.resolve(results);
-
-                            // send notification a request has started
                         }
                         else
                         {
                             deferred.reject(results);
                         }
+                    });
                 });
                 return deferred.promise;
             };
@@ -43,39 +41,36 @@ angular.module('parseCache', [])
             function getBooksFromRelease()
             {
                 var deferred = $q.defer();
-
                 dataService.getBooksThatCanBeReleased(function (isSuccess, results) {
 
+                    $rootScope.$apply(function () {
                         if(isSuccess)
                         {
-
                             booksFromRelease = results;
                             deferred.resolve(results);
-
                         }
                         else
                         {
                             deferred.reject(results);
-
                         }
+                    });
 
                 });
-
                 return deferred.promise;
             }
 
             function getLibraryByUserId(id){
 
                 var deferred = $q.defer();
+
                 dataService.getLibraryByUserId(id, function (isSuccess, results) {
 
+                    $rootScope.$apply(function () {
                         if(isSuccess)
                         {
                             //TODO: Load only first page and then use paging in the NextPage function!
-                            deferred.resolve(results);
                             booksFromMyLibrary = results;
-
-
+                            deferred.resolve(results);
                         }
                         else
                         {
@@ -83,6 +78,8 @@ angular.module('parseCache', [])
                         }
 
                     });
+                });
+
                 return deferred.promise;
             }
 
@@ -97,25 +94,23 @@ angular.module('parseCache', [])
 
             return {
 
-                getCacheTime: function(){
-
-                    return cacheTime;
-                },
-
-                getCachedActions: function() {
+                 getCachedActions: function() {
 
                     if(isHomeFirstTimeExecuted)
                     {
-                        var promise = getActPage();
+                        var deferred = $q.defer();
+                        var promise = getActPage(0);
                         promise.then(function(alerts) {
 
-                            return alerts;
+                            actions = alerts;
+                            deferred.resolve(alerts);
 
                         }, function(reason)
                         {
-                            return reason;
+                            deferred.reject(reason);
                         });
-                        setInterval(getActPage, 6000);
+                        setInterval(getActPage, cacheTime);
+                        return deferred.promise;
                     }
                     else
                         return actions;
@@ -123,16 +118,19 @@ angular.module('parseCache', [])
                 getCachedBooksFromRelease: function() {
                     if(isReleaseFirstTimeExecuted)
                     {
+                        var deferred = $q.defer();
                         var promise = getBooksFromRelease();
                         promise.then(function(books) {
 
-                            return books;
+                            deferred.resolve(books);
 
                         }, function(reason)
                         {
-                            return reason;
+                            deferred.reject(reason);
                         });
-                        setInterval(getBooksFromRelease, 6000);
+                        setInterval(getBooksFromRelease, cacheTime);
+                        return deferred.promise;
+
                     }
                     else
                         return booksFromRelease;
@@ -140,16 +138,19 @@ angular.module('parseCache', [])
                 getCachedBooksFromMyLibrary: function(id) {
                     if(isLibraryFirstTimeExecuted)
                     {
+                        var deferred = $q.defer();
                         var promise = getLibraryByUserId(id);
                         promise.then(function(books) {
 
-                            return books;
+                            deferred.resolve(books);
 
                         }, function(reason)
                         {
-                            return reason;
+                            deferred.reject(reason);
                         });
-                        setInterval(getLibraryByUserId(id), 6000);
+                        setInterval(getLibraryByUserId(id), cacheTime);
+                        return deferred.promise;
+
                     }
                     else
                         return booksFromMyLibrary;
@@ -173,7 +174,17 @@ angular.module('parseCache', [])
                 },
                 getIsLibraryFirstTimeExecuted: function(){
                     return isLibraryFirstTimeExecuted;
+                },
+
+                setCacheTime: function(time){
+                    cacheTime = time;
+                },
+
+                setIsCacheEnable: function (value){
+                    isCacheEnable = value;
                 }
+
+
 
             }
         };
@@ -187,7 +198,7 @@ angular.module('parseCache', [])
         {
             this.isLibraryFirstTimeExecuted = isLibraryFirstTimeExecuted;
         };
-        this.setCacheEnable = function(isCacheEnable)
+        this.setIsCacheEnable = function(isCacheEnable)
         {
             this.isCacheEnable = isCacheEnable;
         }

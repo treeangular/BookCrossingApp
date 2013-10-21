@@ -28,7 +28,7 @@
         <img class="h2button" ng-hide="listView" ng-click="changeView()" ng-src="styles/img/mosaic.png"/>
         <img class="h2button" ng-show="listView" ng-click="changeView()" ng-src="styles/img/list.png"/>
     </h2>
-    <div ng-hide="listView" infinite-scroll="nextPage()" infinite-scroll-distance="5">
+    <div ng-hide="listView">
         <ul>
             <li ng-repeat='book in books'>
                 <div class="bookItemList">

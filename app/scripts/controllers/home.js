@@ -5,38 +5,26 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"Home");
 
     $scope.currentPage = 0;
-
+    $scope.alerts = [];
 
     if(cache.getIsHomeFirstTimeExecuted())
     {
-        $scope.isLastPage = true;
-        $scope.busy = false;
-        if ($scope.busy) return;
-
-        $scope.busy = true;
-        var promise = getActPage(0);
+        $rootScope.$broadcast(loadingRequestConst.Start);
+        var promise = cache.getCachedActions();
+        cache.setIsHomeFirstTimeExecuted(false);
         promise.then(function(alerts) {
 
-            $scope.alerts = [];
-            if (alerts.length == 10) $scope.isLastPage = false;
-            else $scope.isLastPage = true;
-            for(var i = 0; i <= alerts.length-1; i++) {
-                $scope.alerts.push(alerts[i]);
-            }
+            $rootScope.$broadcast(loadingRequestConst.Stop);
+            $scope.alerts = alerts;
 
-
-        }, function(reason) {
-
-
+        }, function(reason)
+        {
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-            $rootScope.MessageNotification = reason;
+            $rootScope.MessageNotification = ErrorConst.GenericError;
+            $rootScope.$broadcast(loadingRequestConst.Stop);
+
         });
-
-
         $scope.currentPage = 1;
-        $scope.alerts = cache.getCachedActions();
-        cache.setIsHomeFirstTimeExecuted(false);
-
     }
     else
     {
@@ -47,20 +35,21 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     if($rootScope.currentUser == undefined)
     {
-
         dataService.isCurrentUser(function (result, currentUser) {
-                if (result) {
-                    $rootScope.currentUser = currentUser;
+            if (result) {
 
-                }
-                else
-                {
-                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                    $rootScope.MessageNotification = ErrorConst.UserLoginError;
-                }
-            });
+                $rootScope.currentUser = currentUser;
+
+            }
+            else
+            {
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = ErrorConst.UserLoginError;
+            }
+        });
 
     }
+
     function getActPage(pageNumber)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);

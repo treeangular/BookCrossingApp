@@ -18,9 +18,11 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
         {
             id = $scope.selectedUser.id;
 
+            $rootScope.$broadcast(loadingRequestConst.Start);
             var promise = getLibraryByUserId(id)
             promise.then(function(books) {
 
+                $rootScope.$broadcast(loadingRequestConst.Stop);
                 $scope.books = books;
 
             }, function(reason) {
@@ -31,19 +33,19 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
         }
         else
         {
-            var promise = getLibraryByUserId(id)
+
+            var promise = cache.getCachedBooksFromMyLibrary(id);
+            cache.setIsLibraryFirstTimeExecuted(false);
             promise.then(function(books) {
 
                 $scope.books = books;
 
-            }, function(reason) {
-
+            }, function(reason)
+            {
                 $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                $rootScope.MessageNotification = reason;
-            });
+                $rootScope.MessageNotification = ErrorConst.GenericError;
 
-            $scope.books = cache.getCachedBooksFromMyLibrary(id);
-            cache.setIsLibraryFirstTimeExecuted(false);
+            });
         }
 
 
@@ -138,8 +140,6 @@ BookCrossingApp.controller('MyLibraryCtrl', function ($scope, $rootScope, dataSe
                 {
                    //TODO: Load only first page and then use paging in the NextPage function!
                     deferred.resolve(results);
-
-
                 }
                 else
                 {
