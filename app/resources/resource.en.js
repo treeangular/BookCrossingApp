@@ -402,6 +402,106 @@
         "key":"_PublishingDate_",
         "value":"Publishing Date",
         "description":"Publishing Date"
+    },
+    {
+        "key":"_BookRegisteredSuccessfully_",
+        "value":"Book registered successfully!",
+        "description":"Book registered succesfully"
+    },
+    {
+        "key":"_FollowTheNextSteps_",
+        "value":"Follow the next steps:",
+        "description":"Book registered succesfully"
+    },
+    {
+        "key":"_PrintABookCrossingAppLabel_",
+        "value":"1-Print a bookCrossingApp label.",
+        "description":"Book registered succesfully"
+    },
+    {
+        "key":"_WriteYourRegistrationIdInTheLabel_",
+        "value":"2-Write your registration Id in the label.",
+        "description":"Book registered succesfully"
+    },
+    {
+        "key":"_PasteTheLabelInYourBook_",
+        "value":"3-Paste the label in your book.",
+        "description":"Book registered succesfully"
+    },
+    {
+        "key":"_By_",
+        "value":"by",
+        "description":"title action by user"
+    },
+    {
+        "key":"_Map_",
+        "value":"Map",
+        "description":"Map button in the header"
+    } ,
+    {
+        "key":"_YourReview_",
+        "value":"Your Review",
+        "description":"Your review title of the review"
+    },
+    {
+        "key":"_Back_",
+        "value":"Back",
+        "description":"Back Button"
+    },
+    {
+        "key":"_Reviews_",
+        "value":"Reviews",
+        "description":"Review title"
+    },
+    {
+        "key":"_Comments_",
+        "value":"Comments",
+        "description":"Comments title"
+    },
+    {
+        "key":"_Tracking_",
+        "value":"Tracking",
+        "description":"Tracking title"
+    },
+    {
+        "key":"_BookCrossingAction_",
+        "value":"BookCrossing Actions",
+        "description":"BookCrossing Actions title"
+    },
+    {
+        "key":"_Settings_",
+        "value":"Settings",
+        "description":"Settings title"
+    },
+    {
+        "key":"_RegisterBook_",
+        "value":"Register Book",
+        "description":"Register Book title"
+    },
+    {
+        "key":"_Scan_",
+        "value":"Scan",
+        "description":"Scan book"
+    },
+    {
+        "key":"_Detail_",
+        "value":"Detail",
+        "description":"Detail title"
+    },
+    {
+        "key":"_Library_",
+        "value":"Library",
+        "description":"Library title"
+    },
+    {
+        "key":"_MyLibrary_",
+        "value":"My Library",
+        "description":"Library title"
+    },
+    {
+        "key":"_List_",
+        "value":"List",
+        "description":"List Button"
     }
 
 ]

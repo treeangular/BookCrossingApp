@@ -19,7 +19,7 @@
         <ul>
             <li>
                 <div class="bookPopUp">
-                    <img ng-click="selectBook(selectedBook)"  ng-src={{selectedBook.get('image')}}>
+                    <img ng-click="selectBook(selectedBook)"  ng-src={{selectedBook.get('title')}}>
                     <a ng-click="selectBook(selectedBook)"><h3>{{selectedBook.get('title')}}</h3></a>
                     <p>{{selectedBook.get('releasedAtDescription')}} <a ng-click="selectUser(selectedBook.user)">{{selectedBook.user}}</a></p>
                     <p class="time">{{selectedBook.time}}</p>
