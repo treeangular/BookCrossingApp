@@ -584,7 +584,6 @@ angular.module('dataServices', [])
                 var currentUser = Parse.User.current();
                 if (currentUser) {
                     // do stuff with the user
-                    console.log("currentUser" + currentUser.id);
                     callback(true, currentUser);
                 } else {
                     // show the signup or login page

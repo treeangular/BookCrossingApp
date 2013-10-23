@@ -20,7 +20,7 @@ BookCrossingApp.controller('BookCtrl', function($scope,$rootScope, dataService) 
 
     $scope.seeMoreOrLess = "See more";
     var book = $scope.selectedBook;
-    console.log("book.bookStatus " + book.get("bookStatus").id);
+    //console.log("book.bookStatus " + book.get("bookStatus").id);
     var bookStatus = book.get("bookStatus").id;
 
     //If it has been registered or hunted then can be released
