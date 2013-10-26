@@ -251,7 +251,7 @@
     },
     {
         "key":"_ReleaseBookRegistrationHowToFindBook_",
-        "value":"Explica a los otros usuarios los detalles de como encontrar el libro",
+        "value":"Da detalles de donde esta el libro!",
         "description":"Placeholder for how to find the book input"
 
     },

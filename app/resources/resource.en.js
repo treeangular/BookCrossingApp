@@ -581,6 +581,12 @@
         "key":"_NickName_",
         "value":"Nick Name",
         "description":"Add your comment place holder"
+    },
+    {
+        "key":"_ReleaseBookRegistrationHowToFindBook_",
+        "value":"Give to other users where the book is placed!",
+        "description":"Placeholder for how to find the book input"
+
     }
 
 ]
