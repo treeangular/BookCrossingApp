@@ -1,12 +1,12 @@
 [
     {
         "key":"_SignIn_",
-        "value":"Sign In",
+        "value":"Sign in",
         "description":"Sign In button"
     },
     {
         "key":"_SignUp_",
-        "value":"Sign Up",
+        "value":"Sign up",
         "description":"Sign In button"
     },
     {
@@ -21,20 +21,8 @@
     },
     {
         "key":"_CityNotFound_",
-        "value":"Ciudad no encontrada",
+        "value":"City not found",
         "description":"City not found"
-
-    },
-    {
-        "key":"_commented_",
-        "value":"commented",
-        "description":"commented book"
-
-    },
-    {
-        "key":"_reviewed_",
-        "value":"reviewed",
-        "description":"reviewed book"
 
     },
     {
@@ -59,7 +47,7 @@
     },
     {
         "key":"_SeePassword_",
-        "value":"See the Password",
+        "value":"See the password",
         "description":"Checkbox for see the password"
     },
     {
@@ -88,7 +76,7 @@
     },
     {
         "key":"_UserNotFound_",
-        "value":"Sorry, User not found",
+        "value":"Sorry, user not found",
         "description":"User not found"
 
     },
@@ -112,7 +100,7 @@
     },
     {
         "key":"_UserLoginError_",
-        "value":"Sorry, User login error",
+        "value":"Sorry, user login error",
         "description":"book not found"
 
     },
@@ -130,44 +118,56 @@
     },
     {
         "key":"_hunted_",
-        "value":"hunted",
-        "description":"hunted book"
+        "value":"Hunted",
+        "description":"hunted book in home"
 
     },
     {
         "key":"_released_",
-        "value":"released",
-        "description":"released book"
+        "value":"Released",
+        "description":"released book in home"
+
+    },
+    {
+        "key":"_commented_",
+        "value":"Commented",
+        "description":"commented book in home"
+
+    },
+    {
+        "key":"_reviewed_",
+        "value":"Reviewed",
+        "description":"reviewed book"
 
     },
     {
         "key":"_registered_",
-        "value":"registered",
+        "value":"Registered",
         "description":"registered book"
 
     },
     {
         "key":"_lost_",
-        "value":"lost",
+        "value":"Lost",
         "description":"lost book"
 
     },
     {
         "key":"_locked_",
-        "value":"locked",
+        "value":"Locked",
         "description":"locked book"
 
     },
     {
         "key":"_joined_",
-        "value":"joined",
+        "value":"Joined",
         "description":"joined user"
 
     },
 
     {
-        "key":"_IsbnNotFound_",
-        "value":"ISBN not found",
+        "key":"_IsbnNotFoundButton_",
+        "value":"ISBN not found?",
         "description":"ISBN not found"
 
     },
@@ -180,19 +180,19 @@
     },
     {
         "key":"_FindBook_",
-        "value":"Find Book",
+        "value":"Find book",
         "description":"Find book"
 
     },
     {
         "key":"_ScanBook_",
-        "value":"Scan Book Barcode",
+        "value":"Scan book barcode",
         "description":"Scan Book Barcode"
 
     },
     {
         "key":"_CheckBookInformation_",
-        "value":"Check book Information",
+        "value":"Check book information",
         "description":"Check book Information"
 
     },
@@ -246,38 +246,31 @@
     },
     {
         "key":"_ReleaseBookRegistrationId_",
-        "value":"Registration Id",
+        "value":"Registration code",
         "description":"Placeholder for release book registration id input"
 
     },
     {
-        "key":"_ReleaseBookRegistrationHowToFindBook_",
-        "value":"Explain how other user will be able to find the book!",
-        "description":"Placeholder for how to find the book input"
-
-    },
-    {
         "key":"_HuntABook_",
-        "value":"Hunt a Book",
+        "value":"Hunt a book",
         "description":"hunt a book"
 
     },
     {
         "key":"_RegistrationId_",
-        "value":"Registration Code",
+        "value":"Registration code",
         "description":"Registration Code"
     },
     {
         "key":"_ReleaseABook_",
-        "value":"Release a Book",
+        "value":"Release a book",
         "description":"Release a Book"
     },
     {
         "key":"_NoBooksToRelease_",
         "value":"No books to release",
         "description":"No books to release"
-    }
-    ,
+    },
     {
         "key":"_SeeMoreAlerts_",
         "value":"See more alerts",
@@ -286,7 +279,7 @@
 
     {
         "key":"_AddZobc_",
-        "value":"Add Zobc",
+        "value":"Add zobc",
         "description":"See more alerts"
     }
     ,
@@ -388,7 +381,7 @@
     ,
     {
         "key":"_ResultsFound_",
-        "value":"results found",
+        "value":"Results found",
         "description":"results found"
     }
     ,
@@ -400,7 +393,7 @@
     ,
     {
         "key":"_PublishingDate_",
-        "value":"Publishing Date",
+        "value":"Publishing date",
         "description":"Publishing Date"
     },
     {
@@ -415,17 +408,17 @@
     },
     {
         "key":"_PrintABookCrossingAppLabel_",
-        "value":"1-Print a bookCrossingApp label.",
+        "value":"1- Print a BookCrossingApp label.",
         "description":"Book registered succesfully"
     },
     {
         "key":"_WriteYourRegistrationIdInTheLabel_",
-        "value":"2-Write your registration Id in the label.",
+        "value":"2- Write your registration Id in the label.",
         "description":"Book registered succesfully"
     },
     {
         "key":"_PasteTheLabelInYourBook_",
-        "value":"3-Paste the label in your book.",
+        "value":"3- Paste the label in your book.",
         "description":"Book registered succesfully"
     },
     {
@@ -440,13 +433,13 @@
     } ,
     {
         "key":"_YourReview_",
-        "value":"Your Review",
+        "value":"Your review",
         "description":"Your review title of the review"
     },
     {
         "key":"_Back_",
         "value":"Back",
-        "description":"Back Button"
+        "description":"Boton de atras"
     },
     {
         "key":"_Reviews_",
@@ -465,7 +458,7 @@
     },
     {
         "key":"_BookCrossingAction_",
-        "value":"BookCrossing Actions",
+        "value":"BookCrossing actions",
         "description":"BookCrossing Actions title"
     },
     {
@@ -495,7 +488,7 @@
     },
     {
         "key":"_MyLibrary_",
-        "value":"My Library",
+        "value":"My library",
         "description":"Library title"
     },
     {
@@ -507,16 +500,17 @@
         "key":"_Hunt_",
         "value":"Hunt",
         "description":"Hunt Button"
-    },
+    } ,
     {
         "key":"_FavoriteGenre_",
-        "value":"Favorite Genre",
-        "description":"Hunt Button"
-    },
+        "value":"Favorite genre:",
+        "description":"My library favorite genre"
+    }
+    ,
     {
         "key":"_WhatHappeningToday_",
         "value":"What's happening today?",
-        "description":"Whats happening today placeholder"
+        "description":"What's happening today"
     },
     {
         "key":"_Registers_",
@@ -575,7 +569,17 @@
     },
     {
         "key":"_AddYourComment_",
-        "value":"Add Your Comment",
+        "value":"Add your comment",
+        "description":"Add your comment place holder"
+    },
+    {
+        "key":"_DateOfBirth_",
+        "value":"Date of Birth",
+        "description":"Add your comment place holder"
+    },
+    {
+        "key":"_NickName_",
+        "value":"Nick Name",
         "description":"Add your comment place holder"
     }
 

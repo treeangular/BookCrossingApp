@@ -1,12 +1,12 @@
 [
     {
         "key":"_SignIn_",
-        "value":"Entrar",
+        "value":"Entra",
         "description":"Sign In button"
     },
     {
         "key":"_SignUp_",
-        "value":"Registrarse",
+        "value":"Registrate",
         "description":"Sign In button"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
         "key":"_Register_",
-        "value":"Registrarse",
+        "value":"Registralo",
         "description":"Register button"
 
     },
@@ -76,13 +76,13 @@
     },
     {
         "key":"_commented_",
-        "value":"comentado",
+        "value":"Comentado",
         "description":"commented book"
 
     },
     {
         "key":"_reviewed_",
-        "value":"valoró",
+        "value":"Valorado",
         "description":"reviewed book"
 
     },
@@ -130,42 +130,40 @@
     },
     {
         "key":"_hunted_",
-        "value":"cazado",
+        "value":"Cazado",
         "description":"hunted book"
 
     },
     {
         "key":"_released_",
-        "value":"liberado",
+        "value":"Liberado",
         "description":"released book"
 
     },
     {
         "key":"_registered_",
-        "value":"registrado",
+        "value":"Registrado",
         "description":"registered book"
 
     },
     {
         "key":"_lost_",
-        "value":"perdido",
+        "value":"Perdido",
         "description":"lost book"
 
     },
     {
         "key":" _locked_",
-        "value":"bloqueado",
+        "value":"Bloqueado",
         "description":"locked book"
 
     },
     {
         "key":" _joined_",
-        "value":"unido",
+        "value":"se ha unido",
         "description":"joined user"
 
     },
-
-
     {
         "key":"_IsbnNotFound_",
         "value":"ISBN no encontrado",
@@ -175,7 +173,7 @@
 
     {
         "key":"_Isbn_",
-        "value":"ISBN, titulo, autor",
+        "value":"ISBN, título, autor",
         "description":"ISBN"
 
     },
@@ -199,7 +197,7 @@
     },
     {
         "key":"_Title_",
-        "value":"Titulo",
+        "value":"Título",
         "description":"Title"
 
     },
@@ -217,7 +215,7 @@
     },
     {
         "key":"_TakePicture_",
-        "value":"Toma una foto",
+        "value":"Haz una foto",
         "description":"Take a picture"
 
     },
@@ -235,13 +233,13 @@
     },
     {
         "key":"_SaveUpdatedUserProfile_",
-        "value":"Salva",
+        "value":"Guardar",
         "description":"Save value for button in sign up details"
 
     },
     {
         "key":"_SkipSignUpDetails_",
-        "value":"Ahora no",
+        "value":"Cancelar",
         "description":"skip saving sign up details"
 
     },
@@ -330,7 +328,7 @@
     ,
     {
         "key":"_HelpReleaseBookDescription_",
-        "value":"ve al sitio donde quieras dejar el libro y utiliza la app para liberarlo.",
+        "value":"Ve al sitio donde quieras dejar el libro y utiliza la app para liberarlo.",
         "description":"ve al sitio donde quieras dejar el libro y utiliza la app para liberarlo."
     }
     ,
@@ -390,7 +388,7 @@
     ,
     {
         "key":"_ResultsFound_",
-        "value":"resultados encontrados",
+        "value":"Resultados encontrados",
         "description":"resultados encontrados"
     }
     ,
@@ -407,27 +405,27 @@
     },
     {
         "key":"_BookRegisteredSuccessfully_",
-        "value":"Book registered successfully!",
+        "value":"Libro registrado!",
         "description":"Book registered succesfully"
     },
     {
         "key":"_FollowTheNextSteps_",
-        "value":"Follow the next steps:",
+        "value":"Sigue los siguientes pasos:",
         "description":"Book registered succesfully"
     },
     {
         "key":"_PrintABookCrossingAppLabel_",
-        "value":"1-Print a bookCrossingApp label.",
+        "value":"1-Imprime la etiqueta BookCrossingApp.",
         "description":"Book registered succesfully"
     },
     {
         "key":"_WriteYourRegistrationIdInTheLabel_",
-        "value":"2-Write your registration Id in the label.",
+        "value":"2-Escribe el codigo BookCrossingApp en la etiqueta.",
         "description":"Book registered succesfully"
     },
     {
         "key":"_PasteTheLabelInYourBook_",
-        "value":"3-Paste the label in your book.",
+        "value":"3-Pegala en el libro.",
         "description":"Book registered succesfully"
     },
     {
@@ -512,7 +510,7 @@
     },
     {
         "key":"_FavoriteGenre_",
-        "value":"Genero Favorito",
+        "value":"Genero Favorito:",
         "description":"Hunt Button"
     },
     {
@@ -547,7 +545,7 @@
     },
     {
         "key":"_Travel_",
-        "value":"Viajados:",
+        "value":"Km Viajados:",
         "description":"Number of kilometers to travel"
     },
     {
@@ -578,6 +576,16 @@
     {
         "key":"_AddYourComment_",
         "value":"Añade tu comentario",
+        "description":"Add your comment place holder"
+    },
+    {
+        "key":"_DateOfBirth_",
+        "value":"Cumpleaños",
+        "description":"Add your comment place holder"
+    },
+    {
+        "key":"_NickName_",
+        "value":"Alias",
         "description":"Add your comment place holder"
     }
 
