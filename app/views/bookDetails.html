@@ -15,18 +15,18 @@
             <div ng-show="bookAverage<5" class="starSmall"></div>
             <div ng-hide="bookAverage<5" class="selectedStarSmall"></div>
         </div>
-        <p><strong>Status:</strong> {{book.get('bookStatus').get('status') | localizeIt}}</p>
-        <p><strong>Travel:</strong> {{book.get('kilometers')}} km</p>
+        <p><strong>{{'_Status_' | localizeIt}}</strong> {{book.get('bookStatus').get('status') | localizeIt}}</p>
+        <p><strong>{{'_Travel_' | localizeIt}}</strong> {{book.get('kilometers')}} km</p>
     </div>
     <div class="bookDescription">
-        <h3>Description</h3>
+        <h3>{{'_Description_' | localizeIt}}</h3>
         <p ng-hide="seeMoreOrLess=='See less'">{{book.get('description') | truncateString}}<a ng-click="expand()">{{seeMoreOrLess}}</a></p>
         <p ng-hide="seeMoreOrLess=='See more'">{{book.get('description')}} <a ng-click="expand()"> {{seeMoreOrLess}}</a></p>
     </div>
     <ul id="BookOptionList">
-        <li class="bookOption" ng-click="goTo('views/bookPosition.html')"><h2 id="positionOption">Position</h2></li>
-        <li class="bookOption" ng-click="goTo('views/mapTracking.html')"><h2 id="trackingOption">Route</h2></li>
-        <li class="bookOption"  ng-click="goTo('views/reviews.html')"><h2 id="reviewOption">Reviews</h2></li>
-        <li class="bookOption"  ng-click="goTo('views/comments.html')"><h2 id="commentOption">Comments</h2></li>
+        <li class="bookOption" ng-click="goTo('views/bookPosition.html')"><h2 id="positionOption">{{'_Position_' | localizeIt}}</h2></li>
+        <li class="bookOption" ng-click="goTo('views/mapTracking.html')"><h2 id="trackingOption">{{'_Route_' | localizeIt}}</h2></li>
+        <li class="bookOption"  ng-click="goTo('views/reviews.html')"><h2 id="reviewOption">{{'_Reviews_' | localizeIt}}</h2></li>
+        <li class="bookOption"  ng-click="goTo('views/comments.html')"><h2 id="commentOption">{{'_Comments_' | localizeIt}}</h2></li>
     </ul>
 </div>

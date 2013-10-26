@@ -1,30 +1,30 @@
 <div ng-controller="MyLibraryCtrl" >
     <div ng-show="selectedUser==null">
-        <div id="mylibrarystatusWrapper"><input id="mylibrarystatus" ng-model="library.status" name="status" type="text" placeholder="What's happening today?" /></div>
+        <div id="mylibrarystatusWrapper"><input id="mylibrarystatus" ng-model="library.status" name="status" type="text" data-localize-it-attr="_WhatHappeningToday_|placeholder" /></div>
         <img class="buttonimage" id="saveComment" ng-click="updateUserStatus()" src="styles/img/save.png" />
     </div>
     <div id="libraryheader">
         <img id="libraryimg" ng-src='{{library.image}}'/>
         <div>
             <h2>{{library.nick}}</h2>
-            <p>Favorite genre: {{library.favoriteGenre}}</p>
+            <p>{{'_FavoriteGenre_' | localizeIt}} {{library.favoriteGenre}}</p>
             <p>{{library.status}}</p>
             <div class="boxheader">
-                <p class="boxtext">Registers</p>
+                <p class="boxtext">{{'_Registers_' | localizeIt}}</p>
                 <p class="boxnum">{{library.registrations}}</p>
             </div>
             <div class="boxheader">
-                <p class="boxtext">Hunts</p>
+                <p class="boxtext">{{'_Hunts_' | localizeIt}}</p>
                 <p class="boxnum">{{library.hunts}}</p>
             </div>
             <div class="boxheader">
-                <p class="boxtext">Comments</p>
+                <p class="boxtext">{{'_Comments_' | localizeIt}}</p>
                 <p class="boxnum">{{library.comments}}</p>
             </div>
         </div>
     </div>
     <h2 class="bookListOption">
-        List of books
+        {{'_ListOfBooks_' | localizeIt}}
         <img class="h2button" ng-hide="listView" ng-click="changeView()" ng-src="styles/img/mosaic.png"/>
         <img class="h2button" ng-show="listView" ng-click="changeView()" ng-src="styles/img/list.png"/>
     </h2>
@@ -34,7 +34,7 @@
                 <div class="bookItemList">
                     <img ng-click="selectBook(book)"  ng-src='{{book.get("image")}}'>
                     <a ng-click="selectBook(book)"><h3>{{book.get("title")}}</h3></a>
-                    <p><strong>Status:</strong> {{book.get('bookStatus').get('status') | localizeIt}}</p>
+                    <p><strong>{{'_Status_' | localizeIt}}</strong> {{book.get('bookStatus').get('status') | localizeIt}}</p>
                 </div>
             </li>
         </ul>

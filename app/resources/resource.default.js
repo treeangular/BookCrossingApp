@@ -495,6 +495,82 @@
         "key":"_List_",
         "value":"List",
         "description":"List Button"
+    },
+    {
+        "key":"_Hunt_",
+        "value":"Hunt",
+        "description":"Hunt Button"
+    } ,
+    {
+        "key":"_FavoriteGenre_",
+        "value":"Favorite Genre:",
+        "description":"My library favorite genre"
+    }
+    ,
+    {
+        "key":"_WhatHappeningToday_",
+        "value":"What's happening today?",
+        "description":"What's happening today"
+    },
+    {
+        "key":"_Registers_",
+        "value":"Registers",
+        "description":"Registers in my library"
+    },
+    {
+        "key":"_Hunts_",
+        "value":"Hunts",
+        "description":"Hunt in my library"
+    },
+    {
+        "key":"_Comments_",
+        "value":"Comments",
+        "description":"Comments in my library"
+    },
+    {
+        "key":"_ListOfBooks_",
+        "value":"List of Books",
+        "description":"List of books in my library"
+    },
+    {
+        "key":"_Status_",
+        "value":"Status:",
+        "description":"Status in my Library"
+    },
+    {
+        "key":"_Travel_",
+        "value":"Travel:",
+        "description":"Number of kilometers to travel"
+    },
+    {
+        "key":"_Position_",
+        "value":"Position",
+        "description":"Number of kilometers to travel"
+    },
+    {
+        "key":"_Route_",
+        "value":"Route",
+        "description":"Number of kilometers to travel"
+    },
+    {
+        "key":"_Reviews_",
+        "value":"Reviews",
+        "description":"Number of kilometers to travel"
+    },
+    {
+        "key":"_Comments_",
+        "value":"Comments",
+        "description":"Number of kilometers to travel"
+    },
+    {
+        "key":"_Add_",
+        "value":"Add",
+        "description":"Number of kilometers to travel"
+    },
+    {
+        "key":"_AddYourComment_",
+        "value":"Add Your Comment",
+        "description":"Number of kilometers to travel"
     }
 
 ]

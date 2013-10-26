@@ -502,6 +502,21 @@
         "key":"_List_",
         "value":"List",
         "description":"List Button"
+    },
+    {
+        "key":"_Hunt_",
+        "value":"Hunt",
+        "description":"Hunt Button"
+    },
+    {
+        "key":"_FavoriteGenre_",
+        "value":"Favorite Genre",
+        "description":"Hunt Button"
+    },
+    {
+        "key":"_WhatHappeningToday_",
+        "value":"What's happening today?",
+        "description":"Whats happening today placeholder"
     }
 
 ]

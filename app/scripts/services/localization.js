@@ -37,7 +37,7 @@ angular.module('localization', []).
                             $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
                         });
                     },
-                    function () {alert('Error getting language\n');} 
+                    function () {alert('Error getting language\n');}
                 );
             }
             else

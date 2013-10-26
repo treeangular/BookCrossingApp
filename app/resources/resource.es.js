@@ -504,6 +504,21 @@
         "key":"_List_",
         "value":"Lista",
         "description":"List Button"
+    },
+    {
+        "key":"_Hunt_",
+        "value":"Cazar",
+        "description":"Hunt Button"
+    },
+    {
+        "key":"_FavoriteGenre_",
+        "value":"Genero Favorito",
+        "description":"Hunt Button"
+    },
+    {
+        "key":"_WhatHappeningToday_",
+        "value":"Que te cuentas?",
+        "description":"Hunt Button"
     }
 
 ]
