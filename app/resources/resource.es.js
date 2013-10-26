@@ -519,6 +519,66 @@
         "key":"_WhatHappeningToday_",
         "value":"Que te cuentas?",
         "description":"Hunt Button"
+    },
+    {
+        "key":"_Registers_",
+        "value":"Registros",
+        "description":"Registers in my library"
+    },
+    {
+        "key":"_Hunts_",
+        "value":"Cazados",
+        "description":"Hunt in my library"
+    },
+    {
+        "key":"_Comments_",
+        "value":"Comments",
+        "description":"Comments in my library"
+    },
+    {
+        "key":"_ListOfBooks_",
+        "value":"Lista de libros",
+        "description":"List of books in my library"
+    },
+    {
+        "key":"_Status_",
+        "value":"Estado:",
+        "description":"Status in my Library"
+    },
+    {
+        "key":"_Travel_",
+        "value":"Viajados:",
+        "description":"Number of kilometers to travel"
+    },
+    {
+        "key":"_Position_",
+        "value":"Posición",
+        "description":"Position in the map"
+    },
+    {
+        "key":"_Route_",
+        "value":"Ruta",
+        "description":"Where the book has been to"
+    },
+    {
+        "key":"_Reviews_",
+        "value":"Reseñas",
+        "description":"Number of reviews"
+    },
+    {
+        "key":"_Comments_",
+        "value":"Comentarios",
+        "description":"Number of comments"
+    },
+    {
+        "key":"_Add_",
+        "value":"Comentar",
+        "description":"Add button in comments"
+    },
+    {
+        "key":"_AddYourComment_",
+        "value":"Añade tu comentario",
+        "description":"Add your comment place holder"
     }
 
 ]

@@ -517,6 +517,66 @@
         "key":"_WhatHappeningToday_",
         "value":"What's happening today?",
         "description":"Whats happening today placeholder"
+    },
+    {
+        "key":"_Registers_",
+        "value":"Registers",
+        "description":"Registers in my library"
+    },
+    {
+        "key":"_Hunts_",
+        "value":"Hunts",
+        "description":"Hunt in my library"
+    },
+    {
+        "key":"_Comments_",
+        "value":"Comments",
+        "description":"Comments in my library"
+    },
+    {
+        "key":"_ListOfBooks_",
+        "value":"List of Books",
+        "description":"List of books in my library"
+    },
+    {
+        "key":"_Status_",
+        "value":"Status:",
+        "description":"Status in my Library"
+    },
+    {
+        "key":"_Travel_",
+        "value":"Travel:",
+        "description":"Number of kilometers to travel"
+    },
+    {
+        "key":"_Position_",
+        "value":"Position",
+        "description":"Position in the map"
+    },
+    {
+        "key":"_Route_",
+        "value":"Route",
+        "description":"Where the book has been to"
+    },
+    {
+        "key":"_Reviews_",
+        "value":"Reviews",
+        "description":"Number of reviews"
+    },
+    {
+        "key":"_Comments_",
+        "value":"Comments",
+        "description":"Number of comments"
+    },
+    {
+        "key":"_Add_",
+        "value":"Add",
+        "description":"Add button in comments"
+    },
+    {
+        "key":"_AddYourComment_",
+        "value":"Add Your Comment",
+        "description":"Add your comment place holder"
     }
 
 ]

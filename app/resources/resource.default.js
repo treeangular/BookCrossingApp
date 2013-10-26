@@ -545,32 +545,32 @@
     {
         "key":"_Position_",
         "value":"Position",
-        "description":"Number of kilometers to travel"
+        "description":"Position in the map"
     },
     {
         "key":"_Route_",
         "value":"Route",
-        "description":"Number of kilometers to travel"
+        "description":"Where the book has been to"
     },
     {
         "key":"_Reviews_",
         "value":"Reviews",
-        "description":"Number of kilometers to travel"
+        "description":"Number of reviews"
     },
     {
         "key":"_Comments_",
         "value":"Comments",
-        "description":"Number of kilometers to travel"
+        "description":"Number of comments"
     },
     {
         "key":"_Add_",
         "value":"Add",
-        "description":"Number of kilometers to travel"
+        "description":"Add button in comments"
     },
     {
         "key":"_AddYourComment_",
         "value":"Add Your Comment",
-        "description":"Number of kilometers to travel"
+        "description":"Add your comment place holder"
     }
 
 ]
