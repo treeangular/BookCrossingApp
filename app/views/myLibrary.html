@@ -7,7 +7,7 @@
         <img id="libraryimg" ng-src='{{library.image}}'/>
         <div>
             <h2>{{library.nick}}</h2>
-            <p>{{'_FavoriteGenre_' | localizeIt}} {{library.favoriteGenre}}</p>
+            <p>{{'_FavoriteGenre_' | localizeIt}}: {{library.favoriteGenre}}</p>
             <p>{{library.status}}</p>
             <div class="boxheader">
                 <p class="boxtext">{{'_Registers_' | localizeIt}}</p>
@@ -23,8 +23,7 @@
             </div>
         </div>
     </div>
-    <h2 class="bookListOption">
-        {{'_ListOfBooks_' | localizeIt}}
+    <h2 class="bookListOption" data-localize-it="_ListOfBooks_">
         <img class="h2button" ng-hide="listView" ng-click="changeView()" ng-src="styles/img/mosaic.png"/>
         <img class="h2button" ng-show="listView" ng-click="changeView()" ng-src="styles/img/list.png"/>
     </h2>
