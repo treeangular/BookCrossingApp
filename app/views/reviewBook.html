@@ -1,5 +1,5 @@
 <div ng-controller="ReviewsBookCtrl">
-    <h2>Send your rating and review:</h2>
+    <h2>{{'_SendYourRatingAndReview_' | localizeIt}}</h2>
     <div style="margin-top: 10px">
         <div ng-click="review.rating=1" ng-show="review.rating<1" class="star"></div>
         <div ng-click="review.rating=1" ng-hide="review.rating<1" class="selectedStar"></div>
@@ -12,8 +12,8 @@
         <div ng-click="review.rating=5" ng-show="review.rating<5" class="star"></div>
         <div ng-click="review.rating=5" ng-hide="review.rating<5" class="selectedStar"></div>
     </div>
-    <textarea rows="10" placeholder="Write your review" ng-model="review.reviewText"/>
+    <textarea rows="10" data-localize-it-attr="_WriteYourReview_|placeholder" ng-model="review.reviewText"/>
     <div class="clearfix">
-    <input ng-click="sendReview(review)" bca-track-event type="submit" value="Send" ng-disabled="clicked" class="buttonlarge" />
+    <input ng-click="sendReview(review)" bca-track-event type="submit" data-localize-it-attr="_Send_|value" ng-disabled="clicked" class="buttonlarge" />
     </div>
 </div>

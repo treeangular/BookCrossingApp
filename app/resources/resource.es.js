@@ -587,6 +587,26 @@
         "key":"_NickName_",
         "value":"Alias",
         "description":"Add your comment place holder"
+    } ,
+    {
+        "key":"_SendYourRatingAndReview_",
+        "value":"Envia tu nota y la reseña:",
+        "description":"Title of the review page"
+
+    }
+    ,
+    {
+        "key":"_WriteYourReview_",
+        "value":"Escribe aquí tu reseña:",
+        "description":"place holder review"
+
+    },
+    ,
+    {
+        "key":"_Send_",
+        "value":"Enviar",
+        "description":"send button for the review"
+
     }
 
 ]
