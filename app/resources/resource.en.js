@@ -587,21 +587,19 @@
         "value":"Give to other users where the book is placed!",
         "description":"Placeholder for how to find the book input"
 
-    } ,
+    },
     {
         "key":"_SendYourRatingAndReview_",
         "value":"Send your rating and review:",
         "description":"Title of the review page"
 
-    }
-    ,
+    },
     {
         "key":"_WriteYourReview_",
-        "value":"Write your review:",
+        "value":"Write your review",
         "description":"place holder review"
 
     },
-    ,
     {
         "key":"_Send_",
         "value":"Send",

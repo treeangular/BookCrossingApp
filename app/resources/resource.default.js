@@ -598,7 +598,7 @@
     ,
     {
         "key":"_WriteYourReview_",
-        "value":"Write your review:",
+        "value":"Write your review",
         "description":"place holder review"
 
     },
