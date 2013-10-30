@@ -10,37 +10,53 @@
 
   <author email="treeangular@gmail.com">BookCrossingApp</author>
 
+  <!-- Platform Build Selection -->
+  <gap:platform name="ios" />
+  <gap:platform name="android" />
+  <gap:platform name="winphone" />
+
+  <!-- Preferences -->
+  <preference name="phonegap-version" value="3.0.0" />
+  <preference name="orientation" value="portrait" />
+  <!-- <preference name="webviewbounce" value="false" /> DEJ => Not in use anymore? -->
+
+  <!-- Preferences iOS only-->
+  <preference name="prerendered-icon" value="true" />
+  <preference name="target-device" value="universal" />
+
+  <!-- Define app icon for each platform. -->
   <icon src="styles/img/icon/icon.png" gap:role="default" />
   <icon src="styles/img/icon/icon57x57.png" gap:platform="ios" width="57" height="57" />
   <icon src="styles/img/icon/icon72x72.png" gap:platform="ios" width="72" height="72" />
   <icon src="styles/img/icon/icon114x114.png" gap:platform="ios" width="114" height="114" />
-
-  <feature name="http://api.phonegap.com/1.0/network"/>
-  <feature name="http://api.phonegap.com/1.0/geolocation"/>
-  <feature name="http://api.phonegap.com/1.0/camera"/>
-
-  <preference name="orientation" value="portrait" />
-
-  <preference name="phonegap-version" value="2.9.0" />
-  <preference name="target-device" value="universal" />
-  <preference name="webviewbounce" value="false" />
-  <preference name="prerendered-icon" value="true" />
 
   <!-- Splash Screens -->
   <gap:splash src="styles/img/splash.png" />
   <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="ldpi" />
   <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="mdpi" />
   <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="hdpi" />
-
   <gap:splash src="styles/img/splash/splash320x480.png" width="320" height="480" />
   <gap:splash src="styles/img/splash/splash640x960.png" width="640" height="960" />
   <gap:splash src="styles/img/splash.png" width="640" height="1136" />
   <gap:splash src="styles/img/splash.png" width="1024" height="768" />
   <gap:splash src="styles/img/splash.png" width="768" height="1024" />
 
+  <!--Usage-->
+  <feature name="http://api.phonegap.com/1.0/network"/>
+  <feature name="http://api.phonegap.com/1.0/geolocation"/>
+  <feature name="http://api.phonegap.com/1.0/camera"/>
+
+  <!--Plugins-->
+  <gap:plugin name="org.apache.cordova.core.camera" />
+  <gap:plugin name="org.apache.cordova.core.geolocation" />
+    <gap:plugin name="org.apache.cordova.console" />
+    <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.network-information" />
+
+
+  <gap:plugin name="org.apache.cordova.core.dialogs" />
   <gap:plugin name="com.phonegap.plugins.barcodescanner" />
   <gap:plugin name="com.adobe.plugins.gaplugin" />
-
   <gap:plugin name="com.phonegap.plugins.facebookconnect">
       <param name="APP_ID" value="160779410752321" />
       <param name="APP_NAME" value="BookCrossing Mobile Application" />
