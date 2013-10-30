@@ -361,16 +361,16 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
 
 #mapTrackingViewWrapper {
     position: absolute;
-    top: 105px;
-    bottom: 50px;
+    top: 55px;
+    bottom: 0px;
     left: 5px;
     right: 5px;
 }
 
 #mapViewWrapper {
     position: absolute;
-    top: 50px;
-    bottom: 50px;
+    top: 0px;
+    bottom: 0px;
     left: 0px;
     right: 0px;
 }
