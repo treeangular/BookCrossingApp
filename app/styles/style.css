@@ -412,6 +412,12 @@ ul {
     margin-right: 5px
 }
 
+.bookReleaseItemList {
+    margin: 0 auto;
+    position: relative;
+}
+
+
 .bookReleaseItemList img {
     float: left;
     margin-right:5px;

@@ -88,7 +88,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $location, isbnService,
                 $scope.rightButtonName = null;
                 break;
             case 'views/releaseBook.html':
-                $scope.title = localize.getLocalizedString('_ReleaseBook_');
+                $scope.title = localize.getLocalizedString('_ReleaseABook_');
                 $scope.leftButtonRef = "views/book.html";
                 $scope.rightButtonName = null;
                 break;
