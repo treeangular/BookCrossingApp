@@ -47,14 +47,14 @@
   <feature name="http://api.phonegap.com/1.0/camera"/>
 
   <!--Plugins-->
-  <gap:plugin name="org.apache.cordova.core.camera" />
-  <gap:plugin name="org.apache.cordova.core.geolocation" />
-    <gap:plugin name="org.apache.cordova.console" />
-    <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.network-information" />
+  <gap:plugin name="org.apache.cordova.camera" />
+  <gap:plugin name="org.apache.cordova.geolocation" />
+  <gap:plugin name="org.apache.cordova.console" />
+  <gap:plugin name="org.apache.cordova.device" />
+  <gap:plugin name="org.apache.cordova.network-information" />
+  <gap:plugin name="org.apache.cordova.file" />
 
-
-  <gap:plugin name="org.apache.cordova.core.dialogs" />
+  <gap:plugin name="org.apache.cordova.dialogs" />
   <gap:plugin name="com.phonegap.plugins.barcodescanner" />
   <gap:plugin name="com.adobe.plugins.gaplugin" />
   <gap:plugin name="com.phonegap.plugins.facebookconnect">
