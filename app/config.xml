@@ -18,7 +18,7 @@
   <!-- Preferences -->
   <preference name="phonegap-version" value="3.1.0" />
   <preference name="orientation" value="portrait" />
-  <!-- <preference name="webviewbounce" value="false" /> DEJ => Not in use anymore? -->
+  <preference name="webviewbounce" value="false" />
 
   <!-- Preferences iOS only-->
   <preference name="prerendered-icon" value="true" />
@@ -45,6 +45,12 @@
   <feature name="http://api.phonegap.com/1.0/network"/>
   <feature name="http://api.phonegap.com/1.0/geolocation"/>
   <feature name="http://api.phonegap.com/1.0/camera"/>
+  <feature name="Geolocation">
+      <param name="ios-package" value="CDVLocation" />
+  </feature>
+  <feature name="Geolocation">
+      <param name="android-package" value="org.apache.cordova.GeoBroker" />
+  </feature>
 
   <!--Plugins-->
   <gap:plugin name="org.apache.cordova.camera" />
@@ -53,7 +59,6 @@
   <gap:plugin name="org.apache.cordova.device" />
   <gap:plugin name="org.apache.cordova.network-information" />
   <gap:plugin name="org.apache.cordova.file" />
-
   <gap:plugin name="org.apache.cordova.dialogs" />
   <gap:plugin name="com.phonegap.plugins.barcodescanner" />
   <gap:plugin name="com.adobe.plugins.gaplugin" />
