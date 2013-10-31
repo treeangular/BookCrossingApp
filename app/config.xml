@@ -23,6 +23,7 @@
   <!-- Preferences iOS only-->
   <preference name="prerendered-icon" value="true" />
   <preference name="target-device" value="universal" />
+  <preference name="EnableLocation" value="true" />
 
   <!-- Define app icon for each platform. -->
   <icon src="styles/img/icon/icon.png" gap:role="default" />
