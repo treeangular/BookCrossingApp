@@ -83,6 +83,12 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
     function onDeviceReady() {
 
+        if (typeof navigator.globalization != 'undefined')
+        {
+            setTimeout(function() {
+                navigator.splashscreen.hide();
+            }, 2000);
+        }
         if (typeof $window.plugins == 'undefined')
         {
             alert('onDeviceReady- window.plugins == undefined' );
