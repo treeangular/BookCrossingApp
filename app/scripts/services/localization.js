@@ -43,7 +43,7 @@ angular.module('localization', []).
             }
             else
             {
-                alert("language undefined");
+
                 var url = 'resources/resource.' + 'en' + '.js';
                 $rootScope.language = 'en';
 
