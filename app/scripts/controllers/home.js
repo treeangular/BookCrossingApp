@@ -7,6 +7,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     $scope.currentPage = 0;
     $scope.alerts = [];
 
+    alert(navigator.globalization);
     if(cache.getIsHomeFirstTimeExecuted())
     {
         $rootScope.$broadcast(loadingRequestConst.Start);

@@ -44,6 +44,7 @@ angular.module('localization', []).
             else
             {
 
+                alert(navigator.globalization);
                 var url = 'resources/resource.' + 'en' + '.js';
                 $rootScope.language = 'en';
 
