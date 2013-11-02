@@ -605,6 +605,24 @@
         "value":"Send",
         "description":"send button for the review"
 
+    },
+    {
+        "key":"_Suggestion_",
+        "value":"Send a suggestion",
+        "description":"Suggestion button"
+
+    },
+    {
+        "key":"_SendYourSuggestion_",
+        "value":"Send a suggestion",
+        "description":"Suggestion title"
+
+    },
+    {
+        "key":"_WriteYourSuggestion_",
+        "value":"Write a suggestion",
+        "description":"Suggestion content"
+
     }
 
 ]

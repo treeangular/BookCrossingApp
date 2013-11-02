@@ -4,6 +4,10 @@ BookCrossingApp.controller('SettingsCtrl', function ($scope, dataService, $locat
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Settings");
 
+    $scope.SendSuggestion = function()
+    {
+        $scope.goTo('views/suggestion.html')
+    }
     $scope.SignOut = function()
     {
         console.log("Going to log out from ctrl");

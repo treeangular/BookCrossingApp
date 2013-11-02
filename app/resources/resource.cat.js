@@ -523,5 +523,23 @@
         "key": "_NickName_",
         "value": "Nom d'usuari",
         "description": "Add your comment place holder"
+    },
+    {
+        "key":"_Suggestion_",
+        "value":"Envía una sugerencia",
+        "description":"Suggestion button"
+
+    },
+    {
+        "key":"_SendYourSuggestion_",
+        "value":"Envía una sugerencia",
+        "description":"Suggestion button"
+
+    },
+    {
+        "key":"_WriteYourSuggestion_",
+        "value":"Escríbe una sugerencia",
+        "description":"Suggestion content"
+
     }
 ]

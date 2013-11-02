@@ -27,6 +27,7 @@ angular.module('parseCache', [])
                     $rootScope.$apply(function () {
                         if(isSuccess)
                         {
+                            actions = results;
                             deferred.resolve(results);
                         }
                         else
@@ -102,7 +103,6 @@ angular.module('parseCache', [])
                         var promise = getActPage(0);
                         promise.then(function(alerts) {
 
-                            actions = alerts;
                             deferred.resolve(alerts);
 
                         }, function(reason)

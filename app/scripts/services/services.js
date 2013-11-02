@@ -39,6 +39,7 @@ angular.module('dataServices', [])
         var ReviewLike = Parse.Object.extend("ReviewLike");
         var ApplicationVersion = Parse.Object.extend("ApplicationVersion");
         var BookAverage = Parse.Object.extend("BookAverage");
+        var Suggestion = Parse.Object.extend("Suggestion");
 
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
@@ -154,6 +155,27 @@ angular.module('dataServices', [])
         var parseService = {
             name: "Parse",
 
+            addSuggestion: function addSuggestion(suggestion, callback)
+            {
+                var mySuggestion = new Suggestion();
+
+                mySuggestion.set("content", suggestion.content);
+                mySuggestion.set("user", Parse.User.current());
+                //currentUser.set("myPicture", user.myPicture);
+
+                mySuggestion.save(null, {
+                    success: function (suggestion) {
+                        // Hooray! Let them use the app now.
+                        callback(true, null);
+                    },
+                    error: function (suggestion, error) {
+                        // Show the error message somewhere and let the user try again.
+                        //alert("Error: " + error.code + " " + error.message);
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+            },
             checkApplicationVersion: function checkApplicationVersion(callback)
             {
                 var query = new Parse.Query(ApplicationVersion);

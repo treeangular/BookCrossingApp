@@ -59,6 +59,10 @@ BookCrossingApp.config(['$routeProvider','$httpProvider','cacheProvider', functi
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       })
+      .when('/Suggestion', {
+             templateUrl: 'views/suggestion.html',
+             controller: 'SuggestionCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

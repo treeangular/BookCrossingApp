@@ -125,6 +125,13 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $location, isbnService,
                 $scope.rightButtonRef = "views/home.html";
                 $scope.selectedBook = '';
                 break;
+            case 'views/suggestion.html':
+                $scope.title = localize.getLocalizedString('_Suggestion_');
+                $scope.leftButtonName = localize.getLocalizedString('_Back_');
+                $scope.rightButtonName = null;
+                $scope.leftButtonRef = "views/settings.html";
+                $scope.selectedBook = '';
+                break;
             default:
 		}
 		$scope.subPage = page;

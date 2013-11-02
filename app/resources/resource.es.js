@@ -605,6 +605,24 @@
         "value":"Enviar",
         "description":"send button for the review"
 
+    },
+    {
+        "key":"_Suggestion_",
+        "value":"Envía una sugerencia",
+        "description":"Suggestion button"
+
+    },
+    {
+        "key":"_SendYourSuggestion_",
+        "value":"Envía una sugerencia",
+        "description":"Suggestion button"
+
+    },
+    {
+        "key":"_WriteYourSuggestion_",
+        "value":"Escríbe una sugerencia",
+        "description":"Suggestion content"
+
     }
 
 ]
