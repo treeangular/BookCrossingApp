@@ -12,16 +12,16 @@ angular.module('localization', []).
         // flag to indicate if the service hs loaded the resource file
         resourceFileLoaded:false,
 
-        successCallback:function (data) {
+        successCallback:phonegapReadyService(function (data) {
             // store the returned array in the dictionary
             localize.dictionary = data;
             // set the flag that the resource are loaded
             localize.resourceFileLoaded = true;
             // broadcast that the file has been loaded
             $rootScope.$broadcast('localizeResourcesUpdates');
-        },
+        }),
 
-        initLocalizedResources: function() {
+        initLocalizedResources: phonegapReadyService(function() {
             if (typeof navigator.globalization != 'undefined')
             {
                 navigator.globalization.getPreferredLanguage(
@@ -59,9 +59,9 @@ angular.module('localization', []).
             }
 
 
-        },
+        }),
 
-        getLocalizedString:function (value) {
+        getLocalizedString: phonegapReadyService(function (value) {
 
             // default the result to an empty string
             var result = '';
@@ -88,7 +88,7 @@ angular.module('localization', []).
             // return the value to the call
             return result;
 
-        }
+        })
     };
     return localize;
 }]).
