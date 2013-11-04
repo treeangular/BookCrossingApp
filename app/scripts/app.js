@@ -93,7 +93,7 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 //                navigator.splashscreen.hide();
 //            }, 2000);
 //        }
-
+        alert('not defined!!');
         if(navigator.globalization == 'undefined')
         {
             alert('not defined!!');

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('localization', []).
-    factory('localize', ['$http','$rootScope', '$window', '$filter', function ($http, $rootScope, $window, $filter,phonegapReadyService) {
+    factory('localize', ['$http','$rootScope', '$window', '$filter', function ($http, $rootScope, $window, $filter, phonegapReadyService) {
 
     var localize = {
 
@@ -61,7 +61,7 @@ angular.module('localization', []).
 
         },
 
-        getLocalizedString:function (value) {
+        getLocalizedString: function (value) {
 
             // default the result to an empty string
             var result = '';
