@@ -21,7 +21,7 @@ angular.module('localization', []).
             $rootScope.$broadcast('localizeResourcesUpdates');
         },
 
-        initLocalizedResources: phonegapReadyService(function() {
+        initLocalizedResources: function() {
             if (typeof navigator.globalization != 'undefined')
             {
                 navigator.globalization.getPreferredLanguage(
@@ -59,7 +59,7 @@ angular.module('localization', []).
             }
 
 
-        }),
+        },
 
         getLocalizedString:function (value) {
 
