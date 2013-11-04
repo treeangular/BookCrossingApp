@@ -116,17 +116,16 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
             //alert("GA undefined!!!!");
             console.log("App: $rootScope.gaPlugIn === undefined ");
         }
-    }
 
-    document.addEventListener("online", onOnline, false);
+        document.addEventListener("online", onOnline, false);
+        document.addEventListener("offline", onOffline, false);
+    }
 
     function onOnline() {
         // Handle the online event
         $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
         $rootScope.MessageNotification = "OnLine";
     }
-
-    document.addEventListener("offline", onOffline, false);
 
     function onOffline() {
         // Handle the offline event
