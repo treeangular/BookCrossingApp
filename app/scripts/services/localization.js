@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('localization', []).
-    factory('localize', ['$http','$rootScope', '$window', '$filter', function ($http, $rootScope, $window, $filter) {
+    factory('localize', ['$http','$rootScope', '$window', '$filter', function ($http, $rootScope, $window, $filter,phonegapReadyService) {
 
     var localize = {
 
@@ -21,7 +21,7 @@ angular.module('localization', []).
             $rootScope.$broadcast('localizeResourcesUpdates');
         },
 
-        initLocalizedResources:function() {
+        initLocalizedResources: phonegapReadyService(function() {
             if (typeof navigator.globalization != 'undefined')
             {
                 navigator.globalization.getPreferredLanguage(
@@ -59,7 +59,7 @@ angular.module('localization', []).
             }
 
 
-        },
+        }),
 
         getLocalizedString:function (value) {
 
