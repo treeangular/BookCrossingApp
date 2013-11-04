@@ -78,7 +78,7 @@ var gaPlugin;
 var googleAnalyticsId = "UA-42576964-2";
 var googleAnalyticsIdApp = "UA-42576964-2";
 
-BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location) {
+BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location, localize) {
 
     document.addEventListener("deviceready", onDeviceReady, false);
     $rootScope.IsActionFirstTimeExecuted = true;
@@ -93,11 +93,8 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 //                navigator.splashscreen.hide();
 //            }, 2000);
 //        }
-        alert('not defined!!');
-        if(navigator.globalization == 'undefined')
-        {
-            alert('not defined!!');
-        }
+       localize.initLocalizedResources();
+
         if (typeof $window.plugins == 'undefined')
         {
             alert('onDeviceReady- window.plugins == undefined' );

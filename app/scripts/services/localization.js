@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('localization', []).
-    factory('localize', ['$http','$rootScope', '$window', '$filter', function ($http, $rootScope, $window, $filter, phonegapReadyService) {
+    factory('localize', ['$http','$rootScope', '$window', '$filter', function ($http, $rootScope, $window, $filter) {
 
     var localize = {
 
@@ -44,8 +44,7 @@ angular.module('localization', []).
             else
             {
 
-                alert(navigator.globalization);
-                var url = 'resources/resource.' + 'en' + '.js';
+                 var url = 'resources/resource.' + 'en' + '.js';
                 $rootScope.language = 'en';
 
                 // request the resource file
