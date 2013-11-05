@@ -8,7 +8,7 @@
 
   <description>The best mobile implementation for book crossing!</description>
 
-  <author email="treeangular@gmail.com">BookCrossingApp</author>
+  <author email="treeangular@gmail.com">BookCrossing</author>
 
   <!-- Platform Build Selection -->
   <gap:platform name="ios" />
