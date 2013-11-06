@@ -76,7 +76,9 @@ BookCrossingApp.config(['$routeProvider','$httpProvider','cacheProvider', functi
 var _versionMobile = "1.0.3";
 var gaPlugin;
 var googleAnalyticsId = "UA-42576964-2";
-var googleAnalyticsIdApp = "UA-42576964-2";
+//Production
+var googleAnalyticsIdApp = "UA-42576964-3";
+//Test var googleAnalyticsIdApp = "UA-42576964-2";
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location, localize) {
 
@@ -215,8 +217,12 @@ function loadFB()
 
 function loadParse()
 {
-    var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS";
-    var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr";
+   /* Test
+   var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS";
+    var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr";*/
+    //Production
+    var PARSE_APP_ID = "j7SSabUR9BT5xXM0r466Wthn7FSEDdIT1RcjqWnP";
+    var PARSE_JS_ID = "tHuZdyxD04OY6S4ejMlUeqPrIoKoKJi6TJItcmlN";
 
     Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
 }
