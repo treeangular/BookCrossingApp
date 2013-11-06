@@ -4,11 +4,11 @@
         id		   = "com.treeangular.BookCrossingApp"
         version 	= "1.0.0">
 
-  <name>BookCrossingApp</name>
+  <name>BookCrossing</name>
 
   <description>The best mobile implementation for book crossing!</description>
 
-  <author email="treeangular@gmail.com">BookCrossing</author>
+  <author email="treeangular@gmail.com">TreeAngular</author>
 
   <!-- Platform Build Selection -->
   <gap:platform name="ios" />
