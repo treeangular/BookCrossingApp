@@ -56,17 +56,17 @@
     },
     {
         "key": "_GenericError_",
-        "value": "Disculpa, an error occurred, try it later",
+        "value": "Disculpa, hi ha hagut un error, torna a provar-ho!",
         "description": "Generic Error"
     },
     {
         "key": "_UserNotRegisteredCorrectly_",
-        "value": "Disculpa, user not registered",
+        "value": "Disculpa, usuari no registrat",
         "description": "User not registered"
     },
     {
         "key": "_UserNotUpdatedCorrectly_",
-        "value": "Disculpa, user was not updated",
+        "value": "Disculpa, l'usuari no ha sigut actualitzat",
         "description": "User not registered"
     },
     {
@@ -76,7 +76,7 @@
     },
     {
         "key": "_BookAlreadyHunted_",
-        "value": "Disculpa, el llibre ja ha estat caÃ§at",
+        "value": "Disculpa, el llibre ja ha estat caçat",
         "description": "book is already hunted"
     },
     {
@@ -106,7 +106,7 @@
     },
     {
         "key": "_hunted_",
-        "value": "CaÃ§at",
+        "value": "Caçat",
         "description": "hunted book in home"
     },
     {
@@ -121,7 +121,7 @@
     },
     {
         "key": "_reviewed_",
-        "value": "OpiniÃ³",
+        "value": "Opinió³",
         "description": "reviewed book"
     },
     {
@@ -171,22 +171,22 @@
     },
     {
         "key": "_Title_",
-        "value": "TÃ­tol",
+        "value": "Títol",
         "description": "Title"
     },
     {
         "key": "_Description_",
-        "value": "DescripciÃ³",
+        "value": "Descripció³",
         "description": "Description"
     },
     {
         "key": "_AddBookInformation_",
-        "value": "Afegeix informaciÃ³ del llibre",
+        "value": "Afegeix informació del llibre",
         "description": "Add book information"
     },
     {
         "key": "_TakePicture_",
-        "value": "fes una foto",
+        "value": "Fes una foto",
         "description": "Take a picture"
     },
     {
@@ -216,7 +216,7 @@
     },
     {
         "key": "_HuntABook_",
-        "value": "CaÃ§a un llibre",
+        "value": "Caça un llibre",
         "description": "hunt a book"
     },
     {
@@ -306,12 +306,12 @@
     },
     {
         "key": "_HelpHuntBook_",
-        "value": "CaÃ§a un llibre",
+        "value": "Caça un llibre",
         "description": "Hunt a book"
     },
     {
         "key": "_HelpHuntBookDescription_",
-        "value": "CaÃ§a un llibre amb la app utilitzant el codi de registre que trobarÃ s al llibre.",
+        "value": "Caça un llibre amb la app utilitzant el codi de registre que trobarÃ s al llibre.",
         "description": "Hunt the book with the app using the barcode that you will find in the book."
     },
     {
@@ -336,7 +336,7 @@
     },
     {
         "key": "_PublishingDate_",
-        "value": "data de publicaciÃ³",
+        "value": "data de publicació",
         "description": "Publishing Date"
     },
     {
@@ -376,7 +376,7 @@
     },
     {
         "key": "_YourReview_",
-        "value": "La teva opiniÃ³",
+        "value": "La teva opinió",
         "description": "Your review title of the review"
     },
     {
@@ -441,7 +441,7 @@
     },
     {
         "key": "_Hunt_",
-        "value": "CaÃ§a",
+        "value": "Caça",
         "description": "Hunt Button"
     },
     {
@@ -451,7 +451,7 @@
     },
     {
         "key": "_WhatHappeningToday_",
-        "value": "Com va aixÃ²?",
+        "value": "Com va això?",
         "description": "What's happening today"
     },
     {
@@ -461,7 +461,7 @@
     },
     {
         "key": "_Hunts_",
-        "value": "CaÃ§ats",
+        "value": "Caçats",
         "description": "Hunt in my library"
     },
     {
@@ -486,7 +486,7 @@
     },
     {
         "key": "_Position_",
-        "value": "PosiciÃ³",
+        "value": "Posició",
         "description": "Position in the map"
     },
     {
@@ -538,7 +538,7 @@
     },
     {
         "key":"_WriteYourSuggestion_",
-        "value":"Escríbe una sugerencia",
+        "value":"Escriu una sugerencia",
         "description":"Suggestion content"
 
     }

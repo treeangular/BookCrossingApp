@@ -97,7 +97,7 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
         if (typeof $window.plugins == 'undefined')
         {
-            alert('onDeviceReady- window.plugins == undefined' );
+            //alert('onDeviceReady- window.plugins == undefined' );
         }
         gaPlugin = $window.plugins.gaPlugin;
 
