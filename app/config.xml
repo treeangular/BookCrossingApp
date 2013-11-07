@@ -28,26 +28,32 @@
 
     <!-- Define app icon for each platform. -->
     <icon src="styles/img/icon/icon.png" gap:role="default" />
-    <icon src="styles/img/icon/icon57x57.png" gap:platform="ios" width="57" height="57" />
-    <icon src="styles/img/icon/icon72x72.png" gap:platform="ios" width="72" height="72" />
-    <icon src="styles/img/icon/icon114x114.png" gap:platform="ios" width="114" height="114" />
+    <!-- IOS -->
+    <icon src="styles/img/icon/icon.png" /> <!-- default 72 pixels -->
+    <icon src="styles/img/icon/icon57x57.png" gap:platform="ios" width="57" height="57" /> <!-- iPhone & iPod Touch non retina iOS6 -->
+    <icon src="styles/img/icon/icon72x72.png" gap:platform="ios" width="72" height="72" /> <!-- iPad non retina iOS6 -->
+    <icon src="styles/img/icon/icon76x76.png" gap:platform="ios" width="76" height="76" /> <!-- iPad non retina iOS7 -->
+    <icon src="styles/img/icon/icon114x114.png" gap:platform="ios" width="114" height="114" /> <!-- iPhone & iPod Touch retina iOS6 -->
+    <icon src="styles/img/icon/icon120x120.png" gap:platform="ios" width="120" height="120" /> <!-- iPhone & iPod Touch retina iOS7 -->
+    <icon src="styles/img/icon/icon144x144.png" gap:platform="ios" width="144" height="144" /> <!-- iPad retina iOS6 -->
+    <icon src="styles/img/icon/icon152x152.png" gap:platform="ios" width="152" height="152" /> <!-- iPad retina iOS7 -->
 
     <!-- Splash Screens -->
     <gap:splash src="styles/img/splash.png" />
     <!-- Launch images for Android -->
-    <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="ldpi" />
-    <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="mdpi" />
-    <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="hdpi" />
-    <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="xhdpi" />
+    <gap:splash src="styles/img/splash/ios/splash320x480.png" gap:platform="android" gap:density="ldpi" /> <!-- 200x320 -->
+    <gap:splash src="styles/img/splash/ios/splash320x480.png" gap:platform="android" gap:density="mdpi" /> <!-- 320x480 -->
+    <gap:splash src="styles/img/splash/ios/splash320x480.png" gap:platform="android" gap:density="hdpi" /> <!-- 480x800 -->
+    <gap:splash src="styles/img/splash/ios/splash320x480.png" gap:platform="android" gap:density="xhdpi" /> <!-- 720x1280 -->
+
     <!-- Launch images for IOS -->
-    <gap:splash src="styles/img/splash/ios/Default.png" gap:platform="ios" width="320" height="480" />
-    <gap:splash src="styles/img/splash/ios/Default_at_2x.png" gap:platform="ios" width="640" height="960" />
-    <gap:splash src="styles/img/splash/ios/Default_iphone5.png" gap:platform="ios" width="640" height="1136" />
-    <!--<gap:splash src="styles/img/splash/ios/Default-Landscape.png" gap:platform="ios" width="1024" height="748" /> Not necessary-->
-    <gap:splash src="styles/img/splash/ios/Default-Portrait.png" gap:platform="ios" width="768" height="1004" />
-    <!-- retina iPad support: PhoneGap 2.5.0+ only -->
-    <!--<gap:splash src="styles/img/splash/ios/Default-Landscape_at_2x.png" gap:platform="ios" width="2048" height="1496" />Not necessary-->
-    <gap:splash src="styles/img/splash/ios/Default-Portrait_at_2x.png" gap:platform="ios" width="1536" height="2008" />
+    <gap:splash src="styles/img/splash/ios/splash320x480.png" gap:platform="ios" width="320" height="480" /> <!-- iPhone & iPod Touch non retina -->
+    <gap:splash src="styles/img/splash/ios/splash640x960.png" gap:platform="ios" width="640" height="960" /> <!-- iPhone & iPod Touch retina 4- -->
+    <gap:splash src="styles/img/splash/ios/splash640x1136.png" gap:platform="ios" width="640" height="1136" /> <!-- iPhone & iPod Touch retina 5+ -->
+    <gap:splash src="styles/img/splash/ios/splash1024x768.png" gap:platform="ios" width="1024" height="768" /> <!-- iPad non retina -->     no
+    <gap:splash src="styles/img/splash/ios/splash768x1024.png" gap:platform="ios" width="768" height="1024" /> <!-- iPad non retina -->
+    <gap:splash src="styles/img/splash/ios/splash2048x1496.png" gap:platform="ios" width="2048" height="1496" /> <!-- iPad retina -->  no
+    <gap:splash src="styles/img/splash/ios/splash1536x2048.png" gap:platform="ios" width="1536" height="2008" /> <!-- iPad retina -->
 
   <!--Usage-->
   <feature name="http://api.phonegap.com/1.0/network"/>
