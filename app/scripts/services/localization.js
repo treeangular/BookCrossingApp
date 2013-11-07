@@ -26,7 +26,7 @@ angular.module('localization', []).
             {
                 navigator.globalization.getPreferredLanguage(
                     function (language) {
-                        alert(language.value);
+                        //alert(language.value);
                         var url = 'resources/resource.' + language.value + '.js';
                         $rootScope.language = language.value;
 

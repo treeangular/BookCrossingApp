@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns		= "http://www.w3.org/ns/widgets"
         xmlns:gap	= "http://phonegap.com/ns/1.0"
-        id		   = "BookCrossingApp"
+        id		   = "com.treeangular.BookCrossingApp"
         version 	= "1.0.0">
 
   <name>BookCrossing</name>
@@ -39,9 +39,9 @@
   <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="hdpi" />
   <gap:splash src="styles/img/splash/splash320x480.png" width="320" height="480" />
   <gap:splash src="styles/img/splash/splash640x960.png" width="640" height="960" />
-  <gap:splash src="styles/img/splash.png" width="640" height="1136" />
-  <gap:splash src="styles/img/splash.png" width="1024" height="768" />
-  <gap:splash src="styles/img/splash.png" width="768" height="1024" />
+  <gap:splash src="styles/img/splash.png" gap:platform="ios" width="640" height="1136" />
+  <gap:splash src="styles/img/splash.png" gap:platform="ios" width="1024" height="768" />
+  <gap:splash src="styles/img/splash.png" gap:platform="ios" width="768" height="1024" />
 
   <!--Usage-->
   <feature name="http://api.phonegap.com/1.0/network"/>
