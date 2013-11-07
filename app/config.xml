@@ -26,22 +26,28 @@
   <preference name="target-device" value="universal" />
   <preference name="EnableLocation" value="true" />
 
-  <!-- Define app icon for each platform. -->
-  <icon src="styles/img/icon/icon.png" gap:role="default" />
-  <icon src="styles/img/icon/icon57x57.png" gap:platform="ios" width="57" height="57" />
-  <icon src="styles/img/icon/icon72x72.png" gap:platform="ios" width="72" height="72" />
-  <icon src="styles/img/icon/icon114x114.png" gap:platform="ios" width="114" height="114" />
+    <!-- Define app icon for each platform. -->
+    <icon src="styles/img/icon/icon.png" gap:role="default" />
+    <icon src="styles/img/icon/icon57x57.png" gap:platform="ios" width="57" height="57" />
+    <icon src="styles/img/icon/icon72x72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="styles/img/icon/icon114x114.png" gap:platform="ios" width="114" height="114" />
 
-  <!-- Splash Screens -->
-  <gap:splash src="styles/img/splash.png" />
-  <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="ldpi" />
-  <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="mdpi" />
-  <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="hdpi" />
-  <gap:splash src="styles/img/splash/splash320x480.png" width="320" height="480" />
-  <gap:splash src="styles/img/splash/splash640x960.png" width="640" height="960" />
-  <gap:splash src="styles/img/splash.png" gap:platform="ios" width="640" height="1136" />
-  <gap:splash src="styles/img/splash.png" gap:platform="ios" width="1024" height="768" />
-  <gap:splash src="styles/img/splash.png" gap:platform="ios" width="768" height="1024" />
+    <!-- Splash Screens -->
+    <gap:splash src="styles/img/splash.png" />
+    <!-- Launch images for Android -->
+    <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="ldpi" />
+    <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="mdpi" />
+    <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="hdpi" />
+    <gap:splash src="styles/img/splash.png" gap:platform="android" gap:density="xhdpi" />
+    <!-- Launch images for IOS -->
+    <gap:splash src="styles/img/splash/ios/Default.png" gap:platform="ios" width="320" height="480" />
+    <gap:splash src="styles/img/splash/ios/Default_at_2x.png" gap:platform="ios" width="640" height="960" />
+    <gap:splash src="styles/img/splash/ios/Default_iphone5.png" gap:platform="ios" width="640" height="1136" />
+    <!--<gap:splash src="styles/img/splash/ios/Default-Landscape.png" gap:platform="ios" width="1024" height="748" /> Not necessary-->
+    <gap:splash src="styles/img/splash/ios/Default-Portrait.png" gap:platform="ios" width="768" height="1004" />
+    <!-- retina iPad support: PhoneGap 2.5.0+ only -->
+    <!--<gap:splash src="styles/img/splash/ios/Default-Landscape_at_2x.png" gap:platform="ios" width="2048" height="1496" />Not necessary-->
+    <gap:splash src="styles/img/splash/ios/Default-Portrait_at_2x.png" gap:platform="ios" width="1536" height="2008" />
 
   <!--Usage-->
   <feature name="http://api.phonegap.com/1.0/network"/>
