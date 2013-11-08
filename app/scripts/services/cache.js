@@ -62,6 +62,11 @@ angular.module('parseCache', [])
 
             function getLibraryByUserId(id){
 
+                if(id===undefined)
+                {
+                   id = $rootScope.currentUser.id;
+                }
+
                 var deferred = $q.defer();
 
                 dataService.getLibraryByUserId(id, function (isSuccess, results) {
@@ -148,7 +153,7 @@ angular.module('parseCache', [])
                         {
                             deferred.reject(reason);
                         });
-                        setInterval(getLibraryByUserId(id), cacheTime);
+                        setInterval(getLibraryByUserId, cacheTime);
                         return deferred.promise;
 
                     }
