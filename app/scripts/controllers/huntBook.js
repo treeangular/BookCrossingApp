@@ -22,7 +22,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                 $rootScope.MessageNotification = ErrorConst.GenericError;
 
             });
-    }
+    } 
     else
     {
         $scope.books = cache.getCachedBooksFromRelease();
@@ -39,6 +39,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                 if(isSuccess)
                 {
                     deferred.resolve(result);
+
                 }
                 else
                 {
@@ -73,6 +74,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
         }).then(function(city){
 
             facebookService.share('hunted',bookHunted.get("title"),bookHunted.get("image"), city);
+            cache.restart();
             $scope.goTo('views/bookDetails.html');
 
         }, function(error){

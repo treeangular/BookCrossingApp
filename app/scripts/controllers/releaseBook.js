@@ -1,5 +1,5 @@
 'use strict';
-BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService, $rootScope, $q, facebookService, $timeout) {
+BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geolocationService, $rootScope, $q, facebookService, cache) {
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"ReleaseBook");
 
@@ -110,6 +110,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
                $scope.selectedBook.city = city;
                $scope.clicked=false;
                $rootScope.$broadcast(loadingRequestConst.Stop);
+               cache.restart();
                $scope.goTo('views/reviewBook.html');
 
            }, function(error){

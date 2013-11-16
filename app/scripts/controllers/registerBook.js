@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('RegisterBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, $q, facebookService, $window) {
+BookCrossingApp.controller('RegisterBookCtrl', function ($scope, dataService, $location, isbnService, $rootScope, cache) {
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"registerBook");
 
@@ -32,6 +32,7 @@ BookCrossingApp.controller('RegisterBookCtrl', function ($scope, dataService, $l
                         //isSuccess = isResult ? true : false;
                         if (isResult)
                         {
+                            cache.restart();
                             $scope.goTo('views/bookBarcode.html')
 
                         }

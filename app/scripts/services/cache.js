@@ -100,6 +100,12 @@ angular.module('parseCache', [])
 
             return {
 
+                restart: function()
+                {
+                    isLibraryFirstTimeExecuted= true;
+                    isReleaseFirstTimeExecuted = true;
+                    isHomeFirstTimeExecuted = true;
+                },
                  getCachedActions: function() {
 
                     if(isHomeFirstTimeExecuted)

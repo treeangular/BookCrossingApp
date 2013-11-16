@@ -1,6 +1,6 @@
 'use strict';
 
-BookCrossingApp.controller('MainCtrl', function ($scope, $location, isbnService, $rootScope, $q, localize) {
+BookCrossingApp.controller('MainCtrl', function ($scope, $location, isbnService, $rootScope, $q, localize, cache) {
 
 
     $scope.title = 'BookCrossingApp';
@@ -13,6 +13,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $location, isbnService,
 	$scope.settings='flip';
 	$scope.addBook='flip';
 	$scope.huntBook='flip';
+
 
 
 	$scope.goTo = function(page)
@@ -109,6 +110,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $location, isbnService,
                 $scope.rightButtonName = null;
                 $scope.selectOption('myLibrary');
                 $scope.selectedUser = null;
+//                $scope.leftButtonRef = "views/myLibrary.html?refresh=true";
                 break;
             case 'views/home.html':
 				$scope.title = 'BookCrossingApp';

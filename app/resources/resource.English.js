@@ -623,6 +623,12 @@
         "value":"Write a suggestion",
         "description":"Suggestion content"
 
+    },
+    {
+        "key":"_Refresh_",
+        "value":"Refresh",
+        "description":"Refresh button"
+
     }
 
 ]

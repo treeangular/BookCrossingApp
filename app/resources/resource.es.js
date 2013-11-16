@@ -623,6 +623,12 @@
         "value":"Escríbe una sugerencia",
         "description":"Suggestion content"
 
+    },
+    {
+        "key":"_Refresh_",
+        "value":"Actualizar",
+        "description":"Refresh button"
+
     }
 
 ]

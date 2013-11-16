@@ -8,7 +8,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
-        alert(user.language);
+
         dataService.registerNewUser(user, function (isResult, result) {
 
             $scope.$apply(function () {
