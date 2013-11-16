@@ -22,7 +22,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                 $rootScope.MessageNotification = ErrorConst.GenericError;
 
             });
-    } 
+    }
     else
     {
         $scope.books = cache.getCachedBooksFromRelease();
