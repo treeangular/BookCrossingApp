@@ -24,25 +24,25 @@ BookCrossingApp.controller('MapCtrl', function($scope,$rootScope, geolocationSer
 
     var style = [{
         url: 'styles/img/books.png',
-        height: 38,
+        height: 40,
         width: 40,
-        opt_anchor: [16, 0],
-        opt_textColor: '#ffffff',
-        opt_textSize: 10
+        anchor: [16, 0],
+        textColor: '#ffffff',
+        textSize: 9
     }, {
         url: 'styles/img/books.png',
-        height: 38,
+        height: 40,
         width: 40,
-        opt_anchor: [24, 0],
-        opt_textColor: '#ffffff',
-        opt_textSize: 11
+        anchor: [16, 0],
+        textColor: '#ffffff',
+        textSize: 9
     }, {
         url: 'styles/img/books.png',
-        height: 38,
+        height: 40,
         width: 40,
-        opt_textColor: '#ffffff',
-        opt_anchor: [32, 0],
-        opt_textSize: 12
+        textColor: '#ffffff',
+        anchor: [16, 0],
+        textSize: 9
     }
     ];
 
