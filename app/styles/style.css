@@ -656,8 +656,8 @@ li {
 #commentList{
     overflow: auto;
     position: absolute;
-    top: 100px;
-    bottom: 170px
+    top: 50px;
+    bottom: 110px
 }
 
 .commentItemList img {
@@ -679,7 +679,7 @@ li {
 }
 
 #addComment{
-    bottom: 55px;
+    bottom: 0px;
     position: absolute;
     left: 0px;
     right: 0px;

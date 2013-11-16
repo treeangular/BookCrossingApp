@@ -720,30 +720,75 @@ angular.module('dataServices', [])
 
             getLibraryByUserId: function getLibraryByUserId(userId, callback){
 
-                var qBook = new Parse.Query(Book);
 
+                var qAction = new Parse.Query(Action);
+                var recordsPerPage = 10;
                 var user = new User();
                 user.id = userId;
-
                 // Retrieve the most recent ones
-                qBook.descending("createdAt");
-                qBook.equalTo('registeredBy', user);
+                qAction.descending("createdAt");
+
+                var actionType = new ActionType();
+                actionType.id = ActionTypesConst.Registered;
+                var actionType2 = new ActionType();
+                actionType2.id = ActionTypesConst.Hunted;
+
+                qAction.containedIn("actionType",[actionType, actionType2]);
+
+                qAction.equalTo("user",user);
+                //qAction.notContainedIn("user",[Parse.User.current()]);
+
                 // Include the post data with each comment
-                qBook.include("user");
-                qBook.include("bookStatus");
+                qAction.include("book");
+                //qAction.include(["book.image"]);
+                qAction.include("user");
+                qAction.include("actionType");
 
+                qAction.find({
+                    success: function (actions) {
 
-                qBook.find({
-                    success: function (books) {
-                        // Comments now contains the last ten comments, and the "post" field
-                        // has been populated. For example:
-                        callback(true, books);
+                        var booksToReturn = [];
+                        for(var i = 0; i <= actions.length-1; i++)
+                        {
+                           var book;
+                           book = actions[i].get("book");
+                           booksToReturn.push(book);
+                        }
 
+                        callback(true, booksToReturn);
                     },
-                    error: function (error) {
+                    error: function (actions, error) {
+                        console.log("Error: " + error.code + " " + error.message);
                         callback(false, ErrorConst.GenericError);
                     }
                 });
+
+
+//                var qBook = new Parse.Query(Book);
+//
+//                var user = new User();
+//                user.id = userId;
+//
+//                // Retrieve the most recent ones
+//                qBook.descending("createdAt");
+//                qBook.equalTo('registeredBy', user);
+//
+//                // Include the post data with each comment
+//                qBook.include("user");
+//                qBook.include("bookStatus");
+//
+//
+//                qBook.find({
+//                    success: function (books) {
+//                        // Comments now contains the last ten comments, and the "post" field
+//                        // has been populated. For example:
+//                        callback(true, books);
+//
+//                    },
+//                    error: function (error) {
+//                        callback(false, ErrorConst.GenericError);
+//                    }
+//                });
             },
 
             //</editor-fold>
