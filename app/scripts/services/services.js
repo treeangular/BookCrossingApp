@@ -740,7 +740,7 @@ angular.module('dataServices', [])
 
                 // Include the post data with each comment
                 qAction.include("book");
-                //qAction.include(["book.image"]);
+                qAction.include(["book.bookStatus"]);
                 qAction.include("user");
                 qAction.include("actionType");
 
