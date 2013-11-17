@@ -6,7 +6,7 @@
     },
     {
         "key": "_SignUp_",
-        "value": "Registrat",
+        "value": "Registrar",
         "description": "Sign In button"
     },
     {
@@ -16,7 +16,7 @@
     },
     {
         "key": "_Connect_",
-        "value": "Connectar amb Facebook",
+        "value": "Connectar",
         "description": "Connect button on the application"
     },
     {
@@ -121,7 +121,7 @@
     },
     {
         "key": "_reviewed_",
-        "value": "Opinió",
+        "value": "Criticat",
         "description": "reviewed book"
     },
     {
@@ -156,7 +156,7 @@
     },
     {
         "key": "_FindBook_",
-        "value": "Trobar un llibre",
+        "value": "Buscar un llibre",
         "description": "Find book"
     },
     {
@@ -216,7 +216,7 @@
     },
     {
         "key": "_HuntABook_",
-        "value": "Caça un llibre",
+        "value": "Caçar un llibre",
         "description": "hunt a book"
     },
     {
@@ -226,8 +226,13 @@
     },
     {
         "key": "_ReleaseABook_",
-        "value": "Allibera un llibre",
+        "value": "Alliberar un llibre",
         "description": "Release a Book"
+    },
+    {
+        "key": "_Release_",
+        "value": "Alliberar",
+        "description": "Release"
     },
     {
         "key": "_NoBooksToRelease_",
@@ -281,12 +286,12 @@
     },
     {
         "key": "_HelpFollowBook_",
-        "value": "Segueix el teu llibre",
+        "value": "Seguir el teu llibre",
         "description": "Follow your book"
     },
     {
         "key": "_HelpFollowBookDescription_",
-        "value": "Ves a la teva llibreria i selecciona el llibre que vols veure com ha viatjat, comentaris, opinions d'altres persones d'arreu del mon.",
+        "value": "Ves a la teva llibreria i selecciona el llibre que vols veure el recorregut, comentaris, crítiques d'altres persones d'arreu del mon.",
         "description": "Go to your library and select the book to see the travel route, comments, and reviews of other people who hunted the book."
     },
     {
@@ -301,7 +306,7 @@
     },
     {
         "key": "_HelpFindingBooksAroundYouDescription_",
-        "value": "Utilitza el mapa per trobar un llibre al teu voltant i agafa'l.",
+        "value": "Utilitza el mapa per trobar un llibre al teu voltant i ves a recollir-lo.",
         "description": "Use the map to find a book around you and go to pick it up."
     },
     {
@@ -386,7 +391,7 @@
     },
     {
         "key": "_Reviews_",
-        "value": "Opinions",
+        "value": "Crítiques",
         "description": "Review title"
     },
     {
@@ -496,7 +501,7 @@
     },
     {
         "key": "_Reviews_",
-        "value": "Opinions",
+        "value": "Crítiques",
         "description": "Number of reviews"
     },
     {
@@ -526,21 +531,26 @@
     },
     {
         "key":"_Suggestion_",
-        "value":"Enviar una suggeriment",
+        "value":"Enviar un suggeriment",
         "description":"Suggestion button"
 
     },
     {
         "key":"_SendYourSuggestion_",
-        "value":"Enviar una suggeriment",
+        "value":"Enviar un suggeriment",
         "description":"Suggestion button"
 
     },
     {
         "key":"_WriteYourSuggestion_",
-        "value":"Escriu una suggeriment",
+        "value":"Escriu un suggeriment",
         "description":"Suggestion content"
 
+    },
+    {
+        "key":"_Send_",
+        "value":"Enviar",
+        "description":"Send"
     },
     {
         "key":"_Refresh_",

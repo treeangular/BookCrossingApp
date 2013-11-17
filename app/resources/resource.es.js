@@ -258,7 +258,7 @@
 
     {
         "key":"_HuntABook_",
-        "value":"Caza un libro",
+        "value":"Cazar un libro",
         "description":"hunt a book"
 
     },
@@ -269,8 +269,13 @@
     },
     {
         "key":"_ReleaseABook_",
-        "value":"Libera un libro",
+        "value":"Liberar un libro",
         "description":"Release a Book"
+    },
+    {
+        "key": "_Release_",
+        "value": "Liberar",
+        "description": "Release"
     },
     {
         "key":"_NoBooksToRelease_",
@@ -334,7 +339,7 @@
     ,
     {
         "key":"_HelpFollowBook_",
-        "value":"Sigue tu libro",
+        "value":"Seguir tu libro",
         "description":"Sigue tu libro"
     }
     ,
@@ -623,6 +628,11 @@
         "value":"Escríbe una sugerencia",
         "description":"Suggestion content"
 
+    },
+    {
+        "key":"_Send_",
+        "value":"Enviar",
+        "description":"Send"
     },
     {
         "key":"_Refresh_",

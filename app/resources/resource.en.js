@@ -267,6 +267,11 @@
         "description":"Release a Book"
     },
     {
+        "key": "_Release_",
+        "value": "Release",
+        "description": "Release"
+    },
+    {
         "key":"_NoBooksToRelease_",
         "value":"No books to release",
         "description":"No books to release"
@@ -623,6 +628,11 @@
         "value":"Write a suggestion",
         "description":"Suggestion content"
 
+    },
+    {
+        "key":"_Send_",
+        "value":"Send",
+        "description":"Send"
     },
     {
         "key":"_Refresh_",

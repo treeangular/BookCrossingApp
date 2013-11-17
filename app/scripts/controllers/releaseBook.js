@@ -33,7 +33,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     var geoPoint;
     $scope.myMarkers = [];
-    var myPositionIcon = "styles/img/myPosition.gif";
+    var myPositionIcon = "styles/img/myPosition.png";
     var bookIcon = "styles/img/book.png";
     var zobcIcon = "styles/img/zobc.png";
 

@@ -4,7 +4,7 @@ BookCrossingApp.controller('BookPositionCtrl', function($scope,$rootScope, geolo
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"bookPosition.html");
 
     var geoPoint;
-    var myPositionIcon = "styles/img/myPosition.gif";
+    var myPositionIcon = "styles/img/myPosition.png";
     var bookIcon = "styles/img/book.png";
 
     $scope.myMarkers = [];
