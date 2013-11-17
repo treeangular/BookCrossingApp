@@ -1,7 +1,7 @@
 [
     {
         "key": "_SignIn_",
-        "value": "Entra",
+        "value": "Connectar",
         "description": "Sign In button"
     },
     {
@@ -11,12 +11,12 @@
     },
     {
         "key": "_TakeTour_",
-        "value": "Take a tour",
+        "value": "Fes una volta",
         "description": "Take a tour link to a youtube video"
     },
     {
         "key": "_Connect_",
-        "value": "Conecta amb Facebook",
+        "value": "Connectar amb Facebook",
         "description": "Connect button on the application"
     },
     {
@@ -26,17 +26,17 @@
     },
     {
         "key": "_Cancel_",
-        "value": "Cancela",
+        "value": "Cancel·lar",
         "description": "Cancel string for all the app"
     },
     {
         "key": "_ConnectFacebook_",
-        "value": "Conecta amb Facebook",
+        "value": "Connectar amb Facebook",
         "description": "Connect to FB button"
     },
     {
         "key": "_Email_",
-        "value": "Email",
+        "value": "Correu",
         "description": "Email placeholder"
     },
     {
@@ -51,12 +51,12 @@
     },
     {
         "key": "_Register_",
-        "value": "Registrat",
+        "value": "Registrar",
         "description": "Register button"
     },
     {
         "key": "_GenericError_",
-        "value": "Disculpa, hi ha hagut un error, torna a provar-ho!",
+        "value": "Disculpa hi ha hagut un error, torna a provar-ho!",
         "description": "Generic Error"
     },
     {
@@ -66,12 +66,12 @@
     },
     {
         "key": "_UserNotUpdatedCorrectly_",
-        "value": "Disculpa, l'usuari no ha sigut actualitzat",
+        "value": "Disculpa, l'usuari no ha estat actualitzat",
         "description": "User not registered"
     },
     {
         "key": "_UserNotFound_",
-        "value": "Disculpa, no 'sha trbat l'usuari",
+        "value": "Disculpa, no s'ha trobat l'usuari",
         "description": "User not found"
     },
     {
@@ -91,7 +91,7 @@
     },
     {
         "key": "_UserLoginError_",
-        "value": "Disculpa, error de login",
+        "value": "Disculpa, error al connectar",
         "description": "book not found"
     },
     {
@@ -121,7 +121,7 @@
     },
     {
         "key": "_reviewed_",
-        "value": "Opinió³",
+        "value": "Opinió",
         "description": "reviewed book"
     },
     {
@@ -141,7 +141,7 @@
     },
     {
         "key": "_joined_",
-        "value": "Unit",
+        "value": "s'ha unit",
         "description": "joined user"
     },
     {
@@ -151,7 +151,7 @@
     },
     {
         "key": "_Isbn_",
-        "value": "ISBN, titol, autor",
+        "value": "ISBN, títol, autor",
         "description": "ISBN"
     },
     {
@@ -161,12 +161,12 @@
     },
     {
         "key": "_ScanBook_",
-        "value": "Scaneja el codi de barres",
+        "value": "Escaneja el codi de barres",
         "description": "Scan Book Barcode"
     },
     {
         "key": "_CheckBookInformation_",
-        "value": "Check book information",
+        "value": "Informatió del llibre",
         "description": "Check book Information"
     },
     {
@@ -176,7 +176,7 @@
     },
     {
         "key": "_Description_",
-        "value": "Descripció³",
+        "value": "Descripció",
         "description": "Description"
     },
     {
@@ -191,7 +191,7 @@
     },
     {
         "key": "_SelectPicture_",
-        "value": "Selecciona de la galeria",
+        "value": "Selecciona una foto",
         "description": "Select a picture"
     },
     {
@@ -221,32 +221,32 @@
     },
     {
         "key": "_RegistrationId_",
-        "value": "Codi de Registre",
+        "value": "Codi de registre",
         "description": "Registration Code"
     },
     {
         "key": "_ReleaseABook_",
-        "value": "Allibera el llibre",
+        "value": "Allibera un llibre",
         "description": "Release a Book"
     },
     {
         "key": "_NoBooksToRelease_",
-        "value": "No hi han llibres per a lliberar",
+        "value": "No hi han llibres per alliberar",
         "description": "No books to release"
     },
     {
         "key": "_SeeMoreAlerts_",
-        "value": "Veure mes alertes",
+        "value": "Veure més alertes",
         "description": "See more alerts"
     },
     {
         "key": "_AddZobc_",
-        "value": "Afegeix un ZOBC",
+        "value": "Afegir un ZOBC",
         "description": "See more alerts"
     },
     {
         "key": "_UpdateYourProfile_",
-        "value": "Actualitza el teu perfil",
+        "value": "Actualitzar el teu perfil",
         "description": "See more alerts"
     },
     {
@@ -261,17 +261,17 @@
     },
     {
         "key": "_HelpRegisterBook_",
-        "value": "Registra el llibre",
+        "value": "Registrar un llibre",
         "description": "Register a book"
     },
     {
         "key": "_HelpRegisterBookDescription_",
-        "value": "Registra el teu llibre i copia el codi que rebrÃ s al teu correu.",
+        "value": "Registra el teu llibre i pega-li el codi que rebràs al teu correu.",
         "description": "Register your book and paste the barcode on it that you will receive in your email."
     },
     {
         "key": "_HelpReleaseBook_",
-        "value": "Allibera un llibre",
+        "value": "Alliberar un llibre",
         "description": "Release a book"
     },
     {
@@ -296,7 +296,7 @@
     },
     {
         "key": "_HelpFindingBooksAroundYou_",
-        "value": "Troba llibres al teu voltant",
+        "value": "Trobar llibres al teu voltant",
         "description": "Find books around you"
     },
     {
@@ -306,12 +306,12 @@
     },
     {
         "key": "_HelpHuntBook_",
-        "value": "Caça un llibre",
+        "value": "Caçar un llibre",
         "description": "Hunt a book"
     },
     {
         "key": "_HelpHuntBookDescription_",
-        "value": "Caça un llibre amb la app utilitzant el codi de registre que trobarÃ s al llibre.",
+        "value": "Caça un llibre amb la app utilitzant el codi de registre que trobaràs al llibre.",
         "description": "Hunt the book with the app using the barcode that you will find in the book."
     },
     {
@@ -346,12 +346,12 @@
     },
     {
         "key": "_FollowTheNextSteps_",
-        "value": "Segueix els seguents pasos:",
+        "value": "Segueix els següents passos:",
         "description": "Book registered succesfully"
     },
     {
         "key": "_PrintABookCrossingAppLabel_",
-        "value": "1- Imprimeix/Escriu/Dibuixa la estiqueta BookCorssingApp",
+        "value": "1- Imprimeix la etiqueta BookCrossingApp",
         "description": "Book registered succesfully"
     },
     {
@@ -361,7 +361,7 @@
     },
     {
         "key": "_PasteTheLabelInYourBook_",
-        "value": "3- Engantxa l'etiqueta al llibre",
+        "value": "3- Pega l'etiqueta al llibre",
         "description": "Book registered succesfully"
     },
     {
@@ -396,7 +396,7 @@
     },
     {
         "key": "_Tracking_",
-        "value": "Mapa del viatge",
+        "value": "Seguiment",
         "description": "Tracking title"
     },
     {
@@ -411,7 +411,7 @@
     },
     {
         "key": "_RegisterBook_",
-        "value": "Registra un llibre",
+        "value": "Registrar un llibre",
         "description": "Register Book title"
     },
     {
@@ -426,7 +426,7 @@
     },
     {
         "key": "_Library_",
-        "value": "Bilbioteca",
+        "value": "Biblioteca",
         "description": "Library title"
     },
     {
@@ -441,17 +441,17 @@
     },
     {
         "key": "_Hunt_",
-        "value": "Caça",
+        "value": "Caçar",
         "description": "Hunt Button"
     },
     {
         "key": "_FavoriteGenre_",
-        "value": "Genere preferit:",
+        "value": "Gènere preferit:",
         "description": "My library favorite genre"
     },
     {
         "key": "_WhatHappeningToday_",
-        "value": "Com va això?",
+        "value": "Què expliques?",
         "description": "What's happening today"
     },
     {
@@ -476,7 +476,7 @@
     },
     {
         "key": "_Status_",
-        "value": "Status:",
+        "value": "Estat:",
         "description": "Status in my Library"
     },
     {
@@ -501,7 +501,7 @@
     },
     {
         "key": "_Comments_",
-        "value": "comentaris",
+        "value": "Comentaris",
         "description": "Number of comments"
     },
     {
@@ -526,25 +526,25 @@
     },
     {
         "key":"_Suggestion_",
-        "value":"Envía una sugerencia",
+        "value":"Enviar una suggeriment",
         "description":"Suggestion button"
 
     },
     {
         "key":"_SendYourSuggestion_",
-        "value":"Envía una sugerencia",
+        "value":"Enviar una suggeriment",
         "description":"Suggestion button"
 
     },
     {
         "key":"_WriteYourSuggestion_",
-        "value":"Escriu una sugerencia",
+        "value":"Escriu una suggeriment",
         "description":"Suggestion content"
 
     },
     {
         "key":"_Refresh_",
-        "value":"Actualizar",
+        "value":"Actualitzar",
         "description":"Refresh button"
 
     }

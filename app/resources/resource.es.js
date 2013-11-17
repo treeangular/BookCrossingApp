@@ -1,12 +1,12 @@
 [
     {
         "key":"_SignIn_",
-        "value":"Entra",
+        "value":"Conectar",
         "description":"Sign In button"
     },
     {
         "key":"_SignUp_",
-        "value":"Registrate",
+        "value":"Registrar",
         "description":"Sign In button"
     },
     {
@@ -316,8 +316,8 @@
     ,
     {
         "key":"_HelpRegisterBookDescription_",
-        "value":"Registra tu libro y pega el código que recibirás en tu email.",
-        "description":"Registra tu libro y pega el código que recibirás en tu email."
+        "value":"Registra tu libro y pegale el código que recibirás en tu email.",
+        "description":"Registra tu libro y pegale el código que recibirás en tu email."
     }
     ,
     {
@@ -580,7 +580,7 @@
     },
     {
         "key":"_DateOfBirth_",
-        "value":"Cumpleaños",
+        "value":"Fecha de nacimiento",
         "description":"Add your comment place holder"
     },
     {
