@@ -3,7 +3,7 @@ BookCrossingApp.controller('MapCtrl', function($scope,$rootScope, geolocationSer
         $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"Map");
 
     var geoPoint;
-    var myPositionIcon = "styles/img/myPosition.gif";
+    var myPositionIcon = "styles/img/myPosition.png";
     var bookIcon = "styles/img/book.png";
     var zobcIcon = "styles/img/zobc.png";
 
