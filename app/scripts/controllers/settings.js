@@ -12,7 +12,7 @@ BookCrossingApp.controller('SettingsCtrl', function ($scope, dataService, $locat
     {
         console.log("Going to log out from ctrl");
 
-        $rootScope.currentUser = null;
+       // $rootScope.currentUser = null;
         //Call DataService signOut function
         dataService.signOut();
 
