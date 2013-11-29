@@ -506,6 +506,7 @@ li {
     padding-bottom: 5px;
     border-top: 1px solid #9d9e9e;
     border-bottom: 1px solid #9d9e9e;
+    background: #ffffff;
 }
 
 .bookListOption{
@@ -705,6 +706,16 @@ li {
     right: 0
 }
 
+#wrapperMyLibrary {
+    position: absolute;
+    top:5px;
+    bottom: 5px;
+    right: 5px;
+    left: 5px;
+    background-image: url('./img/tileable_wood_texture.png');
+    background-repeat:repeat;
+}
+
 #librarymosaic {
     margin: 0 auto;
     text-align: center;
@@ -744,18 +755,19 @@ li {
 
 #libraryheader {
     position: relative;
+    background: #ffffff;
     clear: both;
     margin-bottom: 5px;
     min-height: 95px;
 }
 
 #mylibrarystatusWrapper{
-    margin-right: 30px;
+    margin-right: 35px;
 }
 
 #mylibrarystatus{
     padding-bottom:3px;
-    padding-top:3px;
+    padding-top:5px;
     margin-top: 0px;
     margin-bottom: 5px;
     margin-right: 35px;
@@ -763,8 +775,8 @@ li {
 
 #saveComment{
     position: absolute;
-    top: 2px;
-    right: 2px;
+    top: 0px;
+    right: 0px;
     width: 20px;
     height: 20px;
 }

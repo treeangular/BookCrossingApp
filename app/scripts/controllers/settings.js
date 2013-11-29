@@ -27,4 +27,9 @@ BookCrossingApp.controller('SettingsCtrl', function ($scope, dataService, $locat
     {
         $location.path('/SignUpDetails');
     };
+
+    $scope.GoToTakeTour = function()
+    {
+        $location.path('/TakeTour');
+    };
   });
