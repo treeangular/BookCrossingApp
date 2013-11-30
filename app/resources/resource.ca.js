@@ -325,6 +325,11 @@
         "description": "See video"
     },
     {
+        "key":"_HelpSeeScreenShots_",
+        "value":"Veure pantalles",
+        "description":"See video"
+    },
+    {
         "key": "_HelpSharingBook_",
         "value": "Compartint llibres",
         "description": "Sharing books"

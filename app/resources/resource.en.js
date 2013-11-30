@@ -379,6 +379,12 @@
     }
     ,
     {
+        "key":"_HelpSeeScreenShots_",
+        "value":"See screens",
+        "description":"See video"
+    }
+    ,
+    {
         "key":"_HelpSharingBook_",
         "value":"Sharing books",
         "description":"Sharing books"

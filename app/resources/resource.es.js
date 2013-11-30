@@ -386,6 +386,12 @@
     }
     ,
     {
+        "key":"_HelpSeeScreenShots_",
+        "value":"Ver pantallas",
+        "description":"See video"
+    }
+    ,
+    {
         "key":"_HelpSharingBook_",
         "value":"Compartir libros",
         "description":"Compartir libros"

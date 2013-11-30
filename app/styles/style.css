@@ -1252,3 +1252,81 @@ height: 100%;
 .wave-leave-start {
     left:100%;
 }
+
+.positionScreen,.reviewsScreen,.commentsScreen,.trackingScreen,.bookScreen,.findScreen, .barcodeScreen, .registerScreen, .releaseScreen, .mapScreen, .optionsScreen{
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: auto;
+    height: 300px;
+    width: 200px;
+    margin-right: auto;
+    margin-top:5px;
+    margin-bottom:10px;
+    border: 1px solid #000000;
+}
+
+.trackingScreen{
+    background-image: url('./img/screenshots/tracking.png');
+}
+
+.positionScreen{
+    background-image: url('./img/screenshots/position.png');
+}
+
+.reviewsScreen{
+    background-image: url('./img/screenshots/reviews.png');
+}
+
+.commentsScreen{
+    background-image: url('./img/screenshots/comments.png');
+}
+
+.findScreen{
+    background-image: url('./img/screenshots/find.png');
+}
+
+.registerScreen{
+    background-image: url('./img/screenshots/register.png');
+}
+
+.barcodeScreen{
+    background-image: url('./img/screenshots/barcode.png');
+}
+
+.mapScreen{
+    background-image: url('./img/screenshots/map.png');
+}
+
+.bookScreen{
+    background-image: url('./img/screenshots/book.png');
+}
+
+.huntScreen{
+    background-image: url('./img/screenshots/hunt.png');
+}
+
+.optionsScreen{
+    background-image: url('./img/screenshots/options.png');
+}
+
+
+.releaseScreen{
+    background-image: url('./img/screenshots/release.png');
+}
+.screenShotsview {
+    padding: 5px 5px 5px 5px;
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    overflow: auto;
+    -webkit-transition-property: top, bottom;
+    transition-property: top, bottom;
+    -webkit-transition-duration: .2s, .2s;
+    transition-duration: .2s, .2s;
+    -webkit-transition-timing-function: linear, linear;
+    transition-timing-function: linear, linear;
+    -webkit-overflow-scrolling: touch;
+}
+
