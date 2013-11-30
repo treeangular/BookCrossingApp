@@ -350,24 +350,34 @@
         "description": "Book registered succesfully"
     },
     {
+        "key":"_CheckYourEmail_",
+        "value":"Revisa el correu electrònic",
+        "description":"Check you email"
+    },
+    {
         "key": "_FollowTheNextSteps_",
-        "value": "Segueix els següents passos:",
+        "value": " i segueix els següents passos:",
         "description": "Book registered succesfully"
     },
     {
         "key": "_PrintABookCrossingAppLabel_",
-        "value": "1- Imprimeix la etiqueta BookCrossingApp",
+        "value": "Imprimeix l'etiqueta BookCrossingApp",
         "description": "Book registered succesfully"
     },
     {
         "key": "_WriteYourRegistrationIdInTheLabel_",
-        "value": "2- Escriu el codi de registre a l'etiqueta.",
+        "value": "Escriu-hi el codi de registre.",
         "description": "Book registered succesfully"
     },
     {
         "key": "_PasteTheLabelInYourBook_",
-        "value": "3- Pega l'etiqueta al llibre",
+        "value": "Pega l'etiqueta al llibre",
         "description": "Book registered succesfully"
+    },
+    {
+        "key":"_GoToRelease_",
+        "value":"Estàs llest per alliberar el llibre! Utilitza per això BookCrossingApp.",
+        "description":"Book registered succesfully"
     },
     {
         "key": "_By_",

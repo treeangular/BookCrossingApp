@@ -251,6 +251,36 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
     height: 40px;
 }
 
+
+
+#step1Small {
+    background-image: url('./img/steps/Step1Small.png');
+    background-position: left top;
+    background-repeat: no-repeat;
+    padding: 1px 20px;
+}
+
+#step2Small {
+    background-image: url('./img/steps/Step2Small.png');
+    background-position: left top;
+    background-repeat: no-repeat;
+    padding: 1px 20px;
+}
+
+#step3Small {
+    background-image: url('./img/steps/Step3Small.png');
+    background-position: left top;
+    background-repeat: no-repeat;
+    padding: 1px 20px;
+}
+
+#step4Small {
+    background-image: url('./img/steps/Step4Small.png');
+    background-position: left top;
+    background-repeat: no-repeat;
+    padding: 1px 20px;
+}
+
 .step1 {
     background-image: url('./img/steps/Step1.png');
 }
@@ -347,7 +377,7 @@ input[type=text]:focus,input[type=date]:focus, input[type=email]:focus, input[ty
 #registrationId{
     font-family: Helvetica, Arial, Sans-Serif;
     position: absolute;
-    top: 300px;
+    top: 335px;
     left: 0px;
     font-weight: bold;
     font-size:20px;

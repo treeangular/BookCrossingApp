@@ -414,23 +414,33 @@
         "description":"Book registered succesfully"
     },
     {
+        "key":"_CheckYourEmail_",
+        "value":"Revisa tu correo electrónico",
+        "description":"Check you email"
+    },
+    {
         "key":"_FollowTheNextSteps_",
-        "value":"Sigue los siguientes pasos:",
+        "value":" y sigue los siguientes pasos:",
         "description":"Book registered succesfully"
     },
     {
         "key":"_PrintABookCrossingAppLabel_",
-        "value":"1-Imprime la etiqueta BookCrossingApp.",
+        "value":"Imprime la etiqueta BookCrossingApp.",
         "description":"Book registered succesfully"
     },
     {
         "key":"_WriteYourRegistrationIdInTheLabel_",
-        "value":"2-Escribe el codigo BookCrossingApp en la etiqueta.",
+        "value":"Escribe el código de registro en ella.",
         "description":"Book registered succesfully"
     },
     {
         "key":"_PasteTheLabelInYourBook_",
-        "value":"3-Pegala en el libro.",
+        "value":"Pégala en tu libro.",
+        "description":"Book registered succesfully"
+    },
+    {
+        "key":"_GoToRelease_",
+        "value":"Estás listo para liberar tu libro! Utiliza para ello BookCrossingApp.",
         "description":"Book registered succesfully"
     },
     {
