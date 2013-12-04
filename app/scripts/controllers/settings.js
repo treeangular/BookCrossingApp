@@ -32,5 +32,12 @@ BookCrossingApp.controller('SettingsCtrl', function ($scope, dataService, $locat
     $scope.GoToTakeTour = function()
     {
         $location.path('/TakeTour');
+
+    };
+
+    $scope.GoToLabels = function()
+    {
+        $location.path('http://www.bookcrossingapp.com/BookCrossingApp_Labels.pdf');
+
     };
   });

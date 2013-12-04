@@ -495,6 +495,12 @@
         "description":"Settings title"
     },
     {
+        "key":"_GetLabels_",
+        "key":"_GetLabels_",
+        "value":"Descargar etiquetas",
+        "description":"Download BookCrosingApp labels"
+    },
+    {
         "key":"_RegisterBook_",
         "value":"Registrar un libro",
         "description":"Register Book title"
