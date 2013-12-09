@@ -296,7 +296,7 @@
     },
     {
         "key": "_HelpFindingBooks_",
-        "value": "Trobar un llibre",
+        "value": "ID del llibre que has trobat",
         "description": "Finding a book"
     },
     {
@@ -401,7 +401,7 @@
     },
     {
         "key": "_Back_",
-        "value": "Enrrera",
+        "value": "Tornar",
         "description": "Boton de atras"
     },
     {
@@ -441,7 +441,7 @@
     },
     {
         "key": "_Scan_",
-        "value": "Escanejar",
+        "value": "Scan",
         "description": "Scan book"
     },
     {
