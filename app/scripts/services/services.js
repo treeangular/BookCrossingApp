@@ -898,21 +898,28 @@ angular.module('dataServices', [])
 
                                 if(book.get("bookStatus") != BookStatusConst.Hunted)
                                 {
-                                    book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
-                                    book.set("ownedBy", Parse.User.current());
+                                    if(book.get("released") > 0)
+                                    {
+                                        book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
+                                        book.set("ownedBy", Parse.User.current());
 
-                                    book.save(null, {
-                                        success: function (book) {
-                                            // The object was saved successfully, lets update the status
-                                            callback(true, book);
-                                        },
-                                        error: function (data,error) {
-                                            // The save failed.
-                                            // error is a Parse.Error with an error code and description.
-                                            console.log("Error: " + error.code + " " + error.message);
-                                            callback(false, ErrorConst.GenericError);
-                                        }
-                                    });
+                                        book.save(null, {
+                                            success: function (book) {
+                                                // The object was saved successfully, lets update the status
+                                                callback(true, book);
+                                            },
+                                            error: function (data,error) {
+                                                // The save failed.
+                                                // error is a Parse.Error with an error code and description.
+                                                console.log("Error: " + error.code + " " + error.message);
+                                                callback(false, ErrorConst.GenericError);
+                                            }
+                                        });
+                                    }
+                                    else
+                                    {
+                                        callback(false, ErrorConst.BookMustBeReleased);
+                                    }
                                 }
                                 else
                                 {

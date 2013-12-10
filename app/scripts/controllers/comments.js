@@ -69,6 +69,8 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
 
     $scope.addNewComment = function(comment)
     {
+        if($scope.content != undefined)
+        {
             $scope.clicked = true;
             var promise = saveComment(comment)
             promise.then(function(comment) {
@@ -82,6 +84,12 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
                 $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                 $rootScope.MessageNotification = reason;
             });
+        }
+        else
+        {
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = ErrorConst.CommentMustBeSet;
+        }
 
     };
 

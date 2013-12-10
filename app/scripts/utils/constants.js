@@ -48,7 +48,11 @@ var ErrorConst=
     UserLoginError: "_UserLoginError_",
     UserNotAuthorized: "_UserNotAuthorized_",
     RegistrationIdError: "_RegistrationIdError_",
-    CityNotFound: "_CityNotFound_"
+    CityNotFound: "_CityNotFound_",
+    BookMustBeReleased: "_BookMustBeReleasedFirst_",
+    ProvideDescription: "_ProvideDescription_",
+    HuntRegistrationId: "_ProvideRegistrationId_",
+    CommentMustBeSet: "_ProvideComment_"
 
 
 };

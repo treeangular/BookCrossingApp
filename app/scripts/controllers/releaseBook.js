@@ -78,48 +78,56 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
     $scope.release = function () {
 
-       $scope.clicked=true;
-       $rootScope.$broadcast(loadingRequestConst.Start);
-       var releaseInfo = new Object();
-       var bookToRelease;
+       if($scope.bookLocationDescription != undefined && $scope.registrationId != undefined)
+       {
+           $scope.clicked=true;
+           $rootScope.$broadcast(loadingRequestConst.Start);
+           var releaseInfo = new Object();
+           var bookToRelease;
 
-       var geoPoint;
+           var geoPoint;
 
-       //First we call the geoLocationService to get the current GeoPoint
-       geolocationService.getCurrentPositionPromise().then(function(geoLocationPoint){
+           //First we call the geoLocationService to get the current GeoPoint
+           geolocationService.getCurrentPositionPromise().then(function(geoLocationPoint){
 
-          geoPoint = {latitude:geoLocationPoint.coords.latitude, longitude:geoLocationPoint.coords.longitude};
-          releaseInfo.bookId = $scope.selectedBook;
-          releaseInfo.geoPoint= geoPoint;
-          releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
-
-
-          //After getting the release info we release the book
-          return releaseBook(releaseInfo, $scope.registrationId);
-
-        }).then(function(result){
+              geoPoint = {latitude:geoLocationPoint.coords.latitude, longitude:geoLocationPoint.coords.longitude};
+              releaseInfo.bookId = $scope.selectedBook;
+              releaseInfo.geoPoint= geoPoint;
+              releaseInfo.bookLocationDescription = $scope.bookLocationDescription;
 
 
-          bookToRelease = result;
-          //After release the book we get the city where has been released to pass it FB
-          $scope.setSelectedBook(result);
-          return geolocationService.getCityFromGeoPoint(geoPoint.latitude, geoPoint.longitude);
+              //After getting the release info we release the book
+              return releaseBook(releaseInfo, $scope.registrationId);
 
-        }).then(function(city){
-
-               $scope.selectedBook.city = city;
-               $scope.clicked=false;
-               $rootScope.$broadcast(loadingRequestConst.Stop);
-               cache.restart();
-               $scope.goTo('views/reviewBook.html');
-
-           }, function(error){
+            }).then(function(result){
 
 
-            $scope.clicked=false;
-            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-            $rootScope.MessageNotification = error;
-         });
+              bookToRelease = result;
+              //After release the book we get the city where has been released to pass it FB
+              $scope.setSelectedBook(result);
+              return geolocationService.getCityFromGeoPoint(geoPoint.latitude, geoPoint.longitude);
+
+            }).then(function(city){
+
+                   $scope.selectedBook.city = city;
+                   $scope.clicked=false;
+                   $rootScope.$broadcast(loadingRequestConst.Stop);
+                   cache.restart();
+                   $scope.goTo('views/reviewBook.html');
+
+               }, function(error){
+
+
+                $scope.clicked=false;
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = error;
+             });
+       }
+       else
+       {
+           $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+           $rootScope.MessageNotification = ErrorConst.ProvideDescription;
+       }
 
 
 

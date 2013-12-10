@@ -661,6 +661,30 @@
         "value":"Actualizar",
         "description":"Refresh button"
 
+    },
+    {
+        "key":"_BookMustBeReleasedFirst_",
+        "value":"Lo siento, El libro debe ser liberado primero ",
+        "description":"Error message book must be released first"
+
+    },
+    {
+        "key":"_ProvideDescription_",
+        "value":"Por favor, rellena los campos descripción y registro",
+        "description":"Error message book must be released"
+
+    },
+    {
+        "key":"_ProvideRegistrationId_",
+        "value":"Please provide a registration Id",
+        "description":"Error message book must be released first"
+
+    },
+    {
+        "key":"_ProvideComment_",
+        "value":"Please provide a comment",
+        "description":"Error comment"
+
     }
 
 ]
