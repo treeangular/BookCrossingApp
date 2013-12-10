@@ -47,20 +47,25 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
     $scope.fbSignIn = function()
     {
+        alert("signin in!");
         facebookService.login(function(result, user)
         {
             $scope.$apply(function () {
                 if(result)
                 {
+                    alert("result true!");
                     if(user != null)
                     {
+                        alert("user not null");
                         dataService.getUserByFbId(user.id, function(isSuccess, result){
                             $scope.$apply(function () {
                             if(isSuccess)
                             {
+                                alert("success connecting");
                                 if(result != null)
                                 {
 
+                                    alert("already registered");
                                     var promise = signInUser(result.get("email"), "123456")
                                     promise.then(function() {
 
@@ -75,8 +80,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                                 }
                                 else
                                 {
-
-
+                                    alert("not registered");
                                     user.language = $rootScope.language;
                                     dataService.registerNewUserFromFB(user, function(isSuccess, result2)
                                     {

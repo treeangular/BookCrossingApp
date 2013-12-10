@@ -488,7 +488,7 @@ angular.module('dataServices', [])
                         // The login failed. Check error to see why.
                         // alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
-                        callback(false, ErrorConst.GenericError);
+                        callback(false, ErrorConst.UserNotFound);
                     }
                 });
             },
@@ -649,8 +649,6 @@ angular.module('dataServices', [])
             {
                 var query = new Parse.Query(User);
                 query.equalTo("fbId", userFbId);
-
-
 
                 query.find({
                     success: function (result) {
