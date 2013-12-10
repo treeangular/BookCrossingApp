@@ -26,8 +26,8 @@ angular.module('localization', []).
             {
                 navigator.globalization.getLocaleName(
                     function (language) {
-                        alert(language.value);
-                        alert(language.value.substring(0,2));
+                        //alert(language.value);
+                        //alert(language.value.substring(0,2));
 
                         var url = 'resources/resource.' + language.value.substring(0,2) + '.js';
                         $rootScope.language = language.value;
