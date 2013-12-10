@@ -24,10 +24,12 @@ angular.module('localization', []).
         initLocalizedResources: function() {
             if (typeof navigator.globalization != 'undefined')
             {
-                navigator.globalization.getPreferredLanguage(
+                navigator.globalization.getLocaleName(
                     function (language) {
-                        //alert(language.value);
-                        var url = 'resources/resource.' + language.value + '.js';
+                        alert(language.value);
+                        alert(language.value.substring(0,2));
+
+                        var url = 'resources/resource.' + language.value.substring(0,2) + '.js';
                         $rootScope.language = language.value;
 
                         // request the resource file
