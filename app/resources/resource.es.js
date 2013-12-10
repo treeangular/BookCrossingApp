@@ -664,25 +664,25 @@
     },
     {
         "key":"_BookMustBeReleasedFirst_",
-        "value":"Lo siento, El libro debe ser liberado primero ",
+        "value":"Intenta liberar el libro primero!",
         "description":"Error message book must be released first"
 
     },
     {
         "key":"_ProvideDescription_",
-        "value":"Por favor, rellena los campos descripción y registro",
+        "value":"Intenta rellenar todos los campos",
         "description":"Error message book must be released"
 
     },
     {
         "key":"_ProvideRegistrationId_",
-        "value":"Please provide a registration Id",
+        "value":"Intenta rellenar el código BC!",
         "description":"Error message book must be released first"
 
     },
     {
         "key":"_ProvideComment_",
-        "value":"Please provide a comment",
+        "value":"Intenta escribir un comentario!",
         "description":"Error comment"
 
     }

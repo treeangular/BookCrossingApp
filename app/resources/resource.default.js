@@ -666,7 +666,7 @@
     },
     {
         "key":"_BookMustBeReleasedFirst_",
-        "value":"Sorry, This book must be released first",
+        "value":"Try to release the book first!",
         "description":"Error message book must be released first"
 
     },
