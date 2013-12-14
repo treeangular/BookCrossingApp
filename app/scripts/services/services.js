@@ -85,8 +85,6 @@ angular.module('dataServices', [])
                         //It is a normal user will not login
                         alert("User already registered normal way!");
                         return undefined;
-
-
                     }
                     else
                     {

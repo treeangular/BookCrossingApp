@@ -11,7 +11,7 @@
     },
     {
         "key":"_TakeTour_",
-        "value":"Da una vuelta",
+        "value":"Ayuda",
         "description":"Take a tour link to a youtube video"
     },
     {

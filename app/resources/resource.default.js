@@ -1,17 +1,17 @@
 [
     {
         "key":"_SignIn_",
-        "value":"Sign in",
+        "value":"login",
         "description":"Sign In button"
     },
     {
         "key":"_SignUp_",
-        "value":"Sign up",
+        "value":"register",
         "description":"Sign In button"
     },
     {
         "key":"_TakeTour_",
-        "value":"Take a tour",
+        "value":"How to use it",
         "description":"Take a tour link to a youtube video"
     },
     {
