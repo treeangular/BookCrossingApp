@@ -47,39 +47,86 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
     $scope.fbSignIn = function()
     {
+
         facebookService.login(function(result, user)
         {
+
             $scope.$apply(function () {
                 if(result)
                 {
-                    alert(user.email);
-                    var promise = dataService.fbParseLogin(user);
 
-                    $scope.$apply(function () {
+                    if(user != null)
+                    {
 
-                        promise.then(function(userRegistered){
+                        dataService.getUserByFbId(user.id, function(isSuccess, result){
+                            $scope.$apply(function () {
+                                if(isSuccess)
+                                {
 
-                            return signInUser(userRegistered);
+                                    if(result != null)
+                                    {
 
-                        }).then(function(){
 
-                                $location.path('/Main');
+                                        var promise = signInUser(result.get("email"), "123456")
+                                        promise.then(function() {
 
-                            }, function(error){
-                                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                                $rootScope.MessageNotification = error;
-                            }
-                        );
+                                            $location.path('/Main');
 
-                    });
+                                        }, function(reason) {
+
+                                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                                            $rootScope.MessageNotification = reason;
+                                        });
+
+                                    }
+                                    else
+                                    {
+
+                                        user.language = $rootScope.language;
+                                        dataService.registerNewUserFromFB(user, function(isSuccess, result2)
+                                        {
+                                            $scope.$apply(function () {
+                                                if(isSuccess)
+                                                {
+                                                    $location.path('/Main');
+                                                }
+                                                else
+                                                {
+
+                                                    $rootScope.TypeNotification = "errormessage";
+                                                    $rootScope.MessageNotification = result2;
+                                                }
+                                            });
+
+                                        });
+
+                                    }
+                                }
+                                else
+                                {
+                                    $rootScope.TypeNotification = "errormessage";
+                                    $rootScope.MessageNotification = result;
+                                }
+                            });
+
+                        })
+
+                    }
+                    else
+                    {
+                        $rootScope.TypeNotification = "errormessage";
+                        $rootScope.MessageNotification = result;
+                    }
                 }
                 else
                 {
-                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                    $rootScope.MessageNotification = user;
+                    $rootScope.TypeNotification = "errormessage";
+                    $rootScope.MessageNotification = "User has not accepted the conditions";
                 }
+
+
             });
-        })
+        });
     };
 
 });

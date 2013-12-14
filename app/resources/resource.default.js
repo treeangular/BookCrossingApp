@@ -11,7 +11,7 @@
     },
     {
         "key":"_TakeTour_",
-        "value":"How to use it",
+        "value":"Get started",
         "description":"Take a tour link to a youtube video"
     },
     {

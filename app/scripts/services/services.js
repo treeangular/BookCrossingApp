@@ -67,35 +67,35 @@ angular.module('dataServices', [])
 
         var fbLogin = function fbLogin(userToLogin)
         {
-            alert("inside dataService: " + userToLogin.email);
+            //alert("inside dataService: " + userToLogin.email);
             var deferred = $q.defer();
 
             var query = new Parse.Query(User);
-            query.equalTo("email", userToLogin.email);
+            query.equalTo("fbId", userToLogin.id);
             //query.equalTo("fbId", userToLogin.id);
 
             query.first().then(function(user){
 
-                alert("Inside fbParseLogin Promise: " + user.id);
+                //alert("Inside fbParseLogin Promise: " + user.id);
 
                 if(user != undefined)
                 {
                     if(user.fbId === undefined)
                     {
                         //It is a normal user will not login
-                        alert("User already registered normal way!");
+                        //alert("User already registered normal way!");
                         return undefined;
                     }
                     else
                     {
-                        alert("Already an user lets login");
+                        //alert("Already an user lets login");
                         //It is already a user!!
                         deferred.resolve(user);
                     }
                 }
                 else
                 {
-                    alert("It is not an user so far lets create one");
+                    //alert("It is not an user so far lets create one");
                     //It is not an user
                     return this.registerNewUserFromFB(userToLogin);
                 }
@@ -108,14 +108,14 @@ angular.module('dataServices', [])
                     }
                     else
                     {
-                        alert("user registered!!");
+                        //alert("user registered!!");
                         deferred.resolve(user);
                     }
 
 
             }, function()
             {
-                alert("something went wrong");
+                //alert("something went wrong");
                deferred.reject(ErrorConst.GenericError);
             });
 
