@@ -84,7 +84,9 @@ angular.module('dataServices', [])
                     {
                         //It is a normal user will not login
                         alert("User already registered normal way!");
-                        deferred.reject(ErrorConst.UserAlreadyRegisteredWithoutFB);
+                        return undefined;
+
+
                     }
                     else
                     {
@@ -102,8 +104,16 @@ angular.module('dataServices', [])
 
             }).then(function(user){
 
-                  alert("user already registered!!");
-                  deferred.resolve(user);
+                    if(user === undefined)
+                    {
+                        deferred.reject(ErrorConst.UserAlreadyRegisteredWithoutFB);
+                    }
+                    else
+                    {
+                        alert("user registered!!");
+                        deferred.resolve(user);
+                    }
+
 
             }, function()
             {

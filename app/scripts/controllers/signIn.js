@@ -47,40 +47,51 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
     $scope.fbSignIn = function()
     {
-        facebookService.login(function(result, user)
+        facebookService.logout(function(result)
         {
-            $scope.$apply(function () {
-                if(result)
+            if(result)
+            {
+                alert("loging out successful");
+                facebookService.login(function(result, user)
                 {
-                    alert("Everything ok with FB plugin");
-                    //Everything went ok with FB login plugin
-                    //Let's see if is already registered
-                    var promise = dataService.fbParseLogin(user);
-
                     $scope.$apply(function () {
+                        if(result)
+                        {
+                            var promise = dataService.fbParseLogin(user);
 
-                        promise.then(function(userRegistered){
+                            $scope.$apply(function () {
 
-                            return signInUser(userRegistered);
+                                promise.then(function(userRegistered){
 
-                        }).then(function(){
+                                    return signInUser(userRegistered);
 
-                             $location.path('/Main');
+                                }).then(function(){
 
-                        }, function(error){
+                                        $location.path('/Main');
+
+                                    }, function(error){
+                                        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                                        $rootScope.MessageNotification = error;
+                                    }
+                                );
+
+                            });
+                        }
+                        else
+                        {
                             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                            $rootScope.MessageNotification = error;
-                            }
-                        );
-
+                            $rootScope.MessageNotification = user;
+                        }
                     });
-                }
-                else
-                {
-                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                    $rootScope.MessageNotification = user;
-                }
-            });
+                })
+            }
+            else
+            {
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = ErrorConst.GenericError;
+            }
+
+
         });
     };
 

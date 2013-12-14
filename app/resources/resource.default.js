@@ -687,6 +687,13 @@
         "value":"Please provide a comment",
         "description":"Error comment"
 
+    },
+    {
+        "key":"_UserAlreadyRegisteredWithoutFB_",
+        "value":"User already registered by email",
+        "description":"Error when trying to login with FB when the user fist login with email"
+
     }
+
 
 ]

@@ -685,6 +685,12 @@
         "value":"Intenta escribir un comentario!",
         "description":"Error comment"
 
+    },
+    {
+        "key":"_UserAlreadyRegisteredWithoutFB_",
+        "value":"Usuario ya registrado por email",
+        "description":"Error when trying to login with FB when the user fist login with email"
+
     }
 
 ]
