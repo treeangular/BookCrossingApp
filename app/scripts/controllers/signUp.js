@@ -49,29 +49,27 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
 
     $scope.fbSignIn = function()
     {
-        alert("signin in!");
         facebookService.login(function(result, user)
         {
-            alert("result true!");
+
             $scope.$apply(function () {
                 if(result)
                 {
-                    alert("result true!");
+
                     if(user != null)
                     {
-                        alert("user not null");
+
                         dataService.getUserByFbId(user.id, function(isSuccess, result){
                             if(isSuccess)
                             {
-                                alert("success connecting");
+
                                 if(result != null)
                                 {
-                                    alert("already registered");
+
                                     $location.path('/Main');
                                 }
                                 else
                                 {
-                                    alert("not registered");
                                     user.language = $rootScope.language;
                                     dataService.registerNewUserFromFB(user, function(isSuccess, result2)
                                     {
@@ -83,7 +81,6 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                                             }
                                             else
                                             {
-
                                                 $rootScope.TypeNotification = "errormessage";
                                                 $rootScope.MessageNotification = result2;
                                             }

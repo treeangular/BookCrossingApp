@@ -54,12 +54,11 @@ angular.module('facebookProvider', [])
 
               FB.getLoginStatus(function (response) {
 
-
                   switch (response.status) {
 
                       case 'connected':
+                          alert("getLoginStatus: connected!");
                           FB.api('/me', function(response) {
-
                               callback(true, response);
 
                           });
@@ -67,7 +66,7 @@ angular.module('facebookProvider', [])
                           break;
                       case 'not_authorized' || 'unknown':
                           if (response.authResponse) {
-
+                              alert("getLoginStatus: not_authorized!");
                               callback(false, ErrorConst.UserNotAuthorized);
 
 
@@ -76,20 +75,17 @@ angular.module('facebookProvider', [])
                           }
                           break;
                       default:
-
-
                           FB.login(
                               function(response) {
                                   if (response.authResponse) {
-
+                                      alert("FB.login: not connected --> connecting!");
                                       FB.api('/me', function(response) {
-
+                                          alert("FB.login: connected --> connecting!");
                                           callback(true, response);
-
                                       });
 
                                   } else {
-
+                                      alert("FB.login: not connected --> Error!");
                                       callback(false, ErrorConst.UserLoginError)
 
                                   }
@@ -101,10 +97,13 @@ angular.module('facebookProvider', [])
               }, true);
           },
           logout:function () {
+
               FB.logout(function (response) {
                   if (response) {
+                      alert("FB.logout: disconnecting --> disconnected!");
                       $rootScope.$broadcast('fb_logout_succeded');
                   } else {
+                      alert("FB.logout: disconnecting --> failed!");
                       $rootScope.$broadcast('fb_logout_failed');
                   }
               });
