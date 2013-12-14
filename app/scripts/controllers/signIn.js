@@ -49,6 +49,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
     {
         facebookService.logout(function(result)
         {
+            $scope.$apply(function () {
             if(result)
             {
                 alert("loging out successful");
@@ -93,6 +94,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
 
         });
+      });
     };
 
 });

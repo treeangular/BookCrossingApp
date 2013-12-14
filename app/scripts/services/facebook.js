@@ -99,7 +99,7 @@ angular.module('facebookProvider', [])
                   if (response) {
                       alert("FB.logout: disconnecting --> disconnected!");
                       callback(true);
-                      $rootScope.$broadcast('fb_logout_succeded');
+                      //$rootScope.$broadcast('fb_logout_succeded');
                   } else {
                       alert("FB.logout: disconnecting --> failed!");
                       callback(false);
