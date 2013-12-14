@@ -47,81 +47,40 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
     $scope.fbSignIn = function()
     {
-
         facebookService.login(function(result, user)
         {
             $scope.$apply(function () {
                 if(result)
                 {
-                    if(user != null)
-                    {
-                        alert(user.id);
-                        dataService.getUserByFbId(user.id, function(isSuccess, result){
-                            $scope.$apply(function () {
-                            if(isSuccess)
-                            {
-                                if(result != null)
-                                {
-                                    var promise = signInUser(result.get("email"), "123456")
-                                    promise.then(function() {
+                    alert("Everything ok with FB plugin");
+                    //Everything went ok with FB login plugin
+                    //Let's see if is already registered
+                    var promise = dataService.fbParseLogin(user);
 
-                                        $location.path('/Main');
+                    $scope.$apply(function () {
 
-                                    }, function(reason) {
+                        promise.then(function(userRegistered){
 
-                                        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                                        $rootScope.MessageNotification = reason;
-                                    });
+                            return signInUser(userRegistered);
 
-                                }
-                                else
-                                {
-                                    user.language = $rootScope.language;
-                                    dataService.registerNewUserFromFB(user, function(isSuccess, result2)
-                                    {
-                                        $scope.$apply(function () {
-                                           if(isSuccess)
-                                           {
+                        }).then(function(){
 
+                             $location.path('/Main');
 
-                                               $location.path('/Main');
-                                           }
-                                            else
-                                           {
-
-                                               $rootScope.TypeNotification = "errormessage";
-                                               $rootScope.MessageNotification = result2;
-                                           }
-                                        });
-
-                                    });
-
-                                }
+                        }, function(error){
+                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                            $rootScope.MessageNotification = error;
                             }
-                            else
-                            {
-                                $rootScope.TypeNotification = "errormessage";
-                                $rootScope.MessageNotification = result;
-                            }
-                            });
+                        );
 
-                        })
-
-                    }
-                    else
-                    {
-                        $rootScope.TypeNotification = "errormessage";
-                        $rootScope.MessageNotification = result;
-                    }
+                    });
                 }
                 else
                 {
-                    $rootScope.TypeNotification = "errormessage";
-                    $rootScope.MessageNotification = "User has not accepted the conditions";
+                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                    $rootScope.MessageNotification = user;
                 }
-
-
-         });
+            });
         });
     };
 

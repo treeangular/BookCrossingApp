@@ -52,7 +52,8 @@ var ErrorConst=
     BookMustBeReleased: "_BookMustBeReleasedFirst_",
     ProvideDescription: "_ProvideDescription_",
     HuntRegistrationId: "_ProvideRegistrationId_",
-    CommentMustBeSet: "_ProvideComment_"
+    CommentMustBeSet: "_ProvideComment_",
+    UserAlreadyRegisteredWithoutFB: "_UserAlreadyRegisteredWithoutFB_"
 
 
 };
