@@ -30,6 +30,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     function huntBook(book)
     {
+
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 
@@ -56,33 +57,42 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     $scope.huntBook = function(book)
     {
-        $scope.clicked=true;
-        var promise = huntBook(book);
-        var releasedAt;
-        var bookHunted;
-        promise.then(function(returnedBook) {
 
-            bookHunted = returnedBook;
-            $scope.setSelectedBook(returnedBook);
-            return  geolocationService.getCurrentPositionPromise();
+        if(book != undefined)
+        {
+            $scope.clicked=true;
+            var promise = huntBook(book);
+            var releasedAt;
+            var bookHunted;
+            promise.then(function(returnedBook) {
 
-        }).then(function(geoLocationPoint){
+                bookHunted = returnedBook;
+                $scope.setSelectedBook(returnedBook);
+                return  geolocationService.getCurrentPositionPromise();
 
-            var geoPoint = {latitude:geoLocationPoint.coords.latitude, longitude:geoLocationPoint.coords.longitude};
-            return geolocationService.getCityFromGeoPoint(geoPoint.latitude, geoPoint.longitude)
+            }).then(function(geoLocationPoint){
 
-        }).then(function(city){
+                var geoPoint = {latitude:geoLocationPoint.coords.latitude, longitude:geoLocationPoint.coords.longitude};
+                return geolocationService.getCityFromGeoPoint(geoPoint.latitude, geoPoint.longitude)
 
-            facebookService.share('hunted',bookHunted.get("title"),bookHunted.get("image"), city);
-            cache.restart();
-            $scope.goTo('views/bookDetails.html');
+            }).then(function(city){
 
-        }, function(error){
-            $scope.clicked=false;
+                facebookService.share('hunted',bookHunted.get("title"),bookHunted.get("image"), city);
+                cache.restart();
+                $scope.goTo('views/bookDetails.html');
+
+            }, function(error){
+                $scope.clicked=false;
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = error;
+
+            })
+        }
+        else
+        {
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-            $rootScope.MessageNotification = error;
-
-        })
+            $rootScope.MessageNotification = ErrorConst.HuntRegistrationId;
+        }
     }
 
     $scope.release = function (bookId) {

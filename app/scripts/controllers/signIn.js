@@ -52,77 +52,35 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
             $scope.$apply(function () {
                 if(result)
                 {
-                    if(user != null)
-                    {
-                        dataService.getUserByFbId(user.id, function(isSuccess, result){
-                            $scope.$apply(function () {
-                            if(isSuccess)
-                            {
-                                if(result != null)
-                                {
+                    alert("Everything ok with FB plugin");
+                    //Everything went ok with FB login plugin
+                    //Let's see if is already registered
+                    var promise = dataService.fbParseLogin(user);
 
-                                    var promise = signInUser(result.get("email"), "123456")
-                                    promise.then(function() {
+                    $scope.$apply(function () {
 
-                                        $location.path('/Main');
+                        promise.then(function(userRegistered){
 
-                                    }, function(reason) {
+                            return signInUser(userRegistered);
 
-                                        $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                                        $rootScope.MessageNotification = reason;
-                                    });
+                        }).then(function(){
 
-                                }
-                                else
-                                {
+                             $location.path('/Main');
 
-
-                                    user.language = $rootScope.language;
-                                    dataService.registerNewUserFromFB(user, function(isSuccess, result2)
-                                    {
-                                        $scope.$apply(function () {
-                                           if(isSuccess)
-                                           {
-
-
-                                               $location.path('/Main');
-                                           }
-                                            else
-                                           {
-
-                                               $rootScope.TypeNotification = "errormessage";
-                                               $rootScope.MessageNotification = result2;
-                                           }
-                                        });
-
-                                    });
-
-                                }
+                        }, function(error){
+                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                            $rootScope.MessageNotification = error;
                             }
-                            else
-                            {
-                                $rootScope.TypeNotification = "errormessage";
-                                $rootScope.MessageNotification = result;
-                            }
-                            });
+                        );
 
-                        })
-
-                    }
-                    else
-                    {
-                        $rootScope.TypeNotification = "errormessage";
-                        $rootScope.MessageNotification = result;
-                    }
+                    });
                 }
                 else
                 {
-                    $rootScope.TypeNotification = "errormessage";
-                    $rootScope.MessageNotification = "User has not accepted the conditions";
+                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                    $rootScope.MessageNotification = user;
                 }
-
-
-         });
+            });
         });
     };
 

@@ -660,6 +660,29 @@
         "value":"Refresh",
         "description":"Refresh button"
 
-    }
+    },
+    {
+        "key":"_BookMustBeReleasedFirst_",
+        "value":"Try to release the book first!",
+        "description":"Error message book must be released first"
 
+    },
+    {
+        "key":"_ProvideDescription_",
+        "value":"Please fill in all the fields",
+        "description":"Error message book must be released first"
+
+    },
+    {
+        "key":"_ProvideRegistrationId_",
+        "value":"Please provide a registration Id",
+        "description":"Error message book must be released first"
+
+    },
+    {
+        "key":"_ProvideComment_",
+        "value":"Please provide a comment",
+        "description":"Error comment"
+
+    }
 ]

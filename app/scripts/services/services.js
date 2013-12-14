@@ -65,6 +65,56 @@ angular.module('dataServices', [])
 
         }
 
+        var fbLogin = function fbLogin(userToLogin)
+        {
+            alert("inside dataService: " + userToLogin.email);
+            var deferred = $q.defer();
+
+            var query = new Parse.Query(User);
+            query.equalTo("email", userToLogin.email);
+            //query.equalTo("fbId", userToLogin.id);
+
+            query.first().then(function(user){
+
+                alert("Inside fbParseLogin Promise: " + user.id);
+
+                if(user != undefined)
+                {
+                    if(user.fbId === undefined)
+                    {
+                        //It is a normal user will not login
+                        alert("User already registered normal way!");
+                        deferred.reject(ErrorConst.UserAlreadyRegisteredWithoutFB);
+                    }
+                    else
+                    {
+                        alert("Already an user lets login");
+                        //It is already a user!!
+                        deferred.resolve(user);
+                    }
+                }
+                else
+                {
+                    alert("It is not an user so far lets create one");
+                    //It is not an user
+                    return this.registerNewUserFromFB(userToLogin);
+                }
+
+            }).then(function(user){
+
+                  alert("user already registered!!");
+                  deferred.resolve(user);
+
+            }, function()
+            {
+                alert("something went wrong");
+               deferred.reject(ErrorConst.GenericError);
+            });
+
+
+            return deferred.promise;
+        }
+
         var releaseBook = function releaseBook(releaseInfo, registrationId){
 
             var deferred = $q.defer();
@@ -440,13 +490,16 @@ angular.module('dataServices', [])
 
 
             //Register new user
-            registerNewUserFromFB: function registerNewUserFromFB(user, callback) {
+            registerNewUserFromFB: function registerNewUserFromFB(user) {
+
+                var deferred = $q.defer();
+
                 var newUser = new Parse.User();
                 //Basic info
                 newUser.set("nick", user.name);
                 newUser.set("email", user.email);
-                newUser.set("username", user.email);
-                newUser.set("password", "123456");
+                newUser.set("username", user.name);
+                newUser.set("password", user.id);
                 newUser.set("fbId", user.id);
                 newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
                 newUser.set("language", user.language);
@@ -462,19 +515,17 @@ angular.module('dataServices', [])
                 newUser.set("genere", "");
                 newUser.set("birth", "");
 
-                newUser.signUp(null, {
-                    success: function (userr) {
-                        // Hooray! Let them use the app now.
+                newUser.signUp().then(function(userr)
+                {
+                    deferred.resolve(userr);
 
-                        callback(true, null);
-                    },
-                    error: function (userr, error) {
-                        // Show the error message somewhere and let the user try again.
+                }, function()
+                {
+                    deferred.reject(ErrorConst.GenericError);
 
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, ErrorConst.UserNotRegisteredCorrectly);
-                    }
                 });
+
+                return deferred.promise;
             },
             //Sign In User
             signIn: function signIn(email, password, callback) {
@@ -488,7 +539,7 @@ angular.module('dataServices', [])
                         // The login failed. Check error to see why.
                         // alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
-                        callback(false, ErrorConst.GenericError);
+                        callback(false, ErrorConst.UserNotFound);
                     }
                 });
             },
@@ -645,10 +696,39 @@ angular.module('dataServices', [])
 
 
             },
-            getUserByFbId: function getUserByFbId(userFbId, callback)
+            getUserByEmail: function getUserByEmail(email, callback)
             {
                 var query = new Parse.Query(User);
+
+                query.equalTo("email", email);
+                query.find({
+                    success: function (result) {
+                        if(result.length > 0)
+                        {
+
+                            callback(true, result[0]);
+
+                        }
+                        else
+                        {
+
+                            callback(true, null);
+                        }
+                    },
+                    error: function (user,error) {
+
+                        console.log("Error: " + error.code + " " + error.message);
+                        callback(false, ErrorConst.GenericError);
+                    }
+                });
+            },
+
+            getUserByFbId: function getUserByFbId(email,userFbId, callback)
+            {
+                var query = new Parse.Query(User);
+
                 query.equalTo("fbId", userFbId);
+
 
 
 
@@ -884,6 +964,8 @@ angular.module('dataServices', [])
                 },
                 releaseBook: releaseBook,
 
+                fbParseLogin: fbLogin,
+
                 huntBook: function huntBook(registrationId, callback)
                 {
                     var qBook = new Parse.Query(Book);
@@ -898,21 +980,28 @@ angular.module('dataServices', [])
 
                                 if(book.get("bookStatus") != BookStatusConst.Hunted)
                                 {
-                                    book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
-                                    book.set("ownedBy", Parse.User.current());
+                                    if(book.get("released") > 0)
+                                    {
+                                        book.set("bookStatus", new BookStatus({id: BookStatusConst.Hunted}));
+                                        book.set("ownedBy", Parse.User.current());
 
-                                    book.save(null, {
-                                        success: function (book) {
-                                            // The object was saved successfully, lets update the status
-                                            callback(true, book);
-                                        },
-                                        error: function (data,error) {
-                                            // The save failed.
-                                            // error is a Parse.Error with an error code and description.
-                                            console.log("Error: " + error.code + " " + error.message);
-                                            callback(false, ErrorConst.GenericError);
-                                        }
-                                    });
+                                        book.save(null, {
+                                            success: function (book) {
+                                                // The object was saved successfully, lets update the status
+                                                callback(true, book);
+                                            },
+                                            error: function (data,error) {
+                                                // The save failed.
+                                                // error is a Parse.Error with an error code and description.
+                                                console.log("Error: " + error.code + " " + error.message);
+                                                callback(false, ErrorConst.GenericError);
+                                            }
+                                        });
+                                    }
+                                    else
+                                    {
+                                        callback(false, ErrorConst.BookMustBeReleased);
+                                    }
                                 }
                                 else
                                 {

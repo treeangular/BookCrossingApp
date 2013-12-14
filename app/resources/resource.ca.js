@@ -577,5 +577,29 @@
         "value":"Actualitzar",
         "description":"Refresh button"
 
+    },
+    {
+        "key":"_BookMustBeReleasedFirst_",
+        "value":"Em sap greu, el llibre ha de ser lliberat primer",
+        "description":"Error message book must be released first"
+
+    },
+    {
+        "key":"_ProvideDescription_",
+        "value":"Please fill in all the fields",
+        "description":"Error message book must be released first"
+
+    },
+    {
+        "key":"_ProvideRegistrationId_",
+        "value":"Please provide a registration Id",
+        "description":"Error message book must be released first"
+
+    },
+    {
+        "key":"_ProvideComment_",
+        "value":"Please provide a comment",
+        "description":"Error comment"
+
     }
 ]

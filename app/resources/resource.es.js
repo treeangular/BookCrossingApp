@@ -661,6 +661,30 @@
         "value":"Actualizar",
         "description":"Refresh button"
 
+    },
+    {
+        "key":"_BookMustBeReleasedFirst_",
+        "value":"Intenta liberar el libro primero!",
+        "description":"Error message book must be released first"
+
+    },
+    {
+        "key":"_ProvideDescription_",
+        "value":"Intenta rellenar todos los campos",
+        "description":"Error message book must be released"
+
+    },
+    {
+        "key":"_ProvideRegistrationId_",
+        "value":"Intenta rellenar el código BC!",
+        "description":"Error message book must be released first"
+
+    },
+    {
+        "key":"_ProvideComment_",
+        "value":"Intenta escribir un comentario!",
+        "description":"Error comment"
+
     }
 
 ]
