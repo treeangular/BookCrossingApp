@@ -601,5 +601,11 @@
         "value":"Please provide a comment",
         "description":"Error comment"
 
+    },
+    {
+        "key":"_UserAlreadyRegisteredWithoutFB_",
+        "value":"Usario ya registrado por email",
+        "description":"Error when trying to login with FB when the user fist login with email"
+
     }
 ]

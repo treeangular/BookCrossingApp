@@ -11,7 +11,7 @@
     },
     {
         "key":"_TakeTour_",
-        "value":"Da una vuelta",
+        "value":"Ayuda",
         "description":"Take a tour link to a youtube video"
     },
     {
@@ -684,6 +684,12 @@
         "key":"_ProvideComment_",
         "value":"Intenta escribir un comentario!",
         "description":"Error comment"
+
+    },
+    {
+        "key":"_UserAlreadyRegisteredWithoutFB_",
+        "value":"Usuario ya registrado por email",
+        "description":"Error when trying to login with FB when the user fist login with email"
 
     }
 

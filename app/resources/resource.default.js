@@ -1,17 +1,17 @@
 [
     {
         "key":"_SignIn_",
-        "value":"Sign in",
+        "value":"login",
         "description":"Sign In button"
     },
     {
         "key":"_SignUp_",
-        "value":"Sign up",
+        "value":"register",
         "description":"Sign In button"
     },
     {
         "key":"_TakeTour_",
-        "value":"Take a tour",
+        "value":"Get started",
         "description":"Take a tour link to a youtube video"
     },
     {
@@ -687,6 +687,13 @@
         "value":"Please provide a comment",
         "description":"Error comment"
 
+    },
+    {
+        "key":"_UserAlreadyRegisteredWithoutFB_",
+        "value":"User already registered by email",
+        "description":"Error when trying to login with FB when the user fist login with email"
+
     }
+
 
 ]
