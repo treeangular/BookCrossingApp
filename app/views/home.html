@@ -1,4 +1,10 @@
 <div ng-controller="HomeCtrl">
+ <div id="topFilter">
+     <input type="radio" id="world" name="radios" value="world" checked>
+     <label for="world">World</label>
+     <input type="radio" id="aroundYou" name="radios" value="you">
+     <label for="aroundYou">Around you</label>
+ </div>
  <ul>
     <li ng-repeat='alert in alerts'>
 	    <div class="bookItemList">
