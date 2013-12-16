@@ -58,21 +58,49 @@ angular.module('facebookProvider', [])
 
                       case 'connected':
 
-                              FB.api('/me', function(response) {
-                              callback(true, response);
+                          FB.logout(function (response, callback) {
+                              if (response)
+                              {
+                                  alert("logout success");
+                                  FB.login(
+                                      function(response) {
+                                          if (response.authResponse) {
 
+                                              alert("login connecting!!");
+                                              FB.api('/me', function(response) {
+
+                                                  alert(response.email);
+                                                  callback(true, response);
+
+                                              });
+
+                                          } else {
+
+                                              callback(false, ErrorConst.UserLoginError)
+
+                                          }
+                                      },
+                                      { scope: "email, publish_actions" }
+                                  );
+                              }
+                              else
+                              {
+
+
+                              }
                           });
 
                           break;
+
                       case 'not_authorized' || 'unknown':
                           if (response.authResponse) {
                               callback(false, ErrorConst.UserNotAuthorized);
-
 
                           } else {
                               console.log('Facebook login failed', response);
                           }
                           break;
+
                       default:
                           FB.login(
                               function(response) {
