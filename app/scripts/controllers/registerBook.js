@@ -4,7 +4,6 @@ BookCrossingApp.controller('RegisterBookCtrl', function ($scope, dataService, $l
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"registerBook");
 
-
     $scope.book = $scope.foundBook;
     $scope.seeMoreOrLess = "See more";
 
@@ -32,6 +31,7 @@ BookCrossingApp.controller('RegisterBookCtrl', function ($scope, dataService, $l
                         //isSuccess = isResult ? true : false;
                         if (isResult)
                         {
+                            avocarrot.createStory('Released', { name: 'Book' }, "Another book on the way to be shared!");
                             cache.restart();
                             $scope.goTo('views/bookBarcode.html')
 

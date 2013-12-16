@@ -75,6 +75,7 @@ BookCrossingApp.config(['$routeProvider','$httpProvider','cacheProvider', functi
     loadHttpInterceptor($httpProvider);
     loadParse();
     loadFB();
+    loadAvoCarrot();
 
 }]);
 var _versionMobile = "1.0.3";
@@ -229,4 +230,9 @@ function loadParse()
     var PARSE_JS_ID = "tHuZdyxD04OY6S4ejMlUeqPrIoKoKJi6TJItcmlN";
 
     Parse.initialize(PARSE_APP_ID, PARSE_JS_ID);
+}
+
+function loadAvoCarrot()
+{
+    avocarrot.init("dfd4ded247e18eecd5c5cc4887f69f0d5d0a1c8c");
 }
