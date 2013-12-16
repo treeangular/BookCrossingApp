@@ -75,7 +75,7 @@ BookCrossingApp.config(['$routeProvider','$httpProvider','cacheProvider', functi
     loadHttpInterceptor($httpProvider);
     loadParse();
     loadFB();
-    loadAvoCarrot();
+    //loadAvoCarrot();
 
 }]);
 var _versionMobile = "1.0.3";
