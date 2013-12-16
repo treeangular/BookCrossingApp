@@ -58,7 +58,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
 
                     if(user != null)
                     {
-
+                        alert(user.email);
                         dataService.getUserByFbId(user.id, function(isSuccess, result){
                             if(isSuccess)
                             {

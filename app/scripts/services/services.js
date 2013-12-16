@@ -67,7 +67,7 @@ angular.module('dataServices', [])
 
         var fbLogin = function fbLogin(userToLogin)
         {
-            //alert("inside dataService: " + userToLogin.email);
+            alert("inside dataService: " + userToLogin.id);
             var deferred = $q.defer();
 
             var query = new Parse.Query(User);
@@ -77,25 +77,25 @@ angular.module('dataServices', [])
             query.first().then(function(user){
 
                 //alert("Inside fbParseLogin Promise: " + user.id);
-
                 if(user != undefined)
                 {
                     if(user.fbId === undefined)
                     {
                         //It is a normal user will not login
-                        //alert("User already registered normal way!");
+                        alert("User already registered normal way!");
                         return undefined;
                     }
                     else
                     {
-                        //alert("Already an user lets login");
+                        alert("Already an user lets login");
                         //It is already a user!!
                         deferred.resolve(user);
                     }
                 }
                 else
                 {
-                    //alert("It is not an user so far lets create one");
+
+                    alert("It is not an user so far lets create one");
                     //It is not an user
                     return this.registerNewUserFromFB(userToLogin);
                 }
@@ -108,7 +108,7 @@ angular.module('dataServices', [])
                     }
                     else
                     {
-                        //alert("user registered!!");
+                        alert("user registered!!");
                         deferred.resolve(user);
                     }
 
