@@ -55,28 +55,29 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
             $scope.$apply(function () {
                 if(result)
                 {
-
                     if(user != null)
                     {
                         alert(user.email);
                         dataService.getUserByFbId(user.id, function(isSuccess, result){
+                            $scope.$apply(function () {
+                                alert("getUserByFbId");
                             if(isSuccess)
                             {
-
                                 if(result != null)
                                 {
-
+                                    alert("/Main");
                                     $location.path('/Main');
                                 }
                                 else
                                 {
+                                    alert("registering new user");
                                     user.language = $rootScope.language;
                                     dataService.registerNewUserFromFB(user, function(isSuccess, result2)
                                     {
                                         $scope.$apply(function () {
                                             if(isSuccess)
                                             {
-
+                                                alert("successfully registered");
                                                 $location.path('/Main');
                                             }
                                             else
@@ -97,8 +98,9 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                             }
 
                         })
-
+                        });
                     }
+
                     else
                     {
                         $rootScope.TypeNotification = "errormessage";

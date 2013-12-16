@@ -53,9 +53,8 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
             $scope.$apply(function () {
             if(result)
             {
-                alert(user.id);
+                alert(user.email);
                 var promise = dataService.fbParseLogin(user);
-
                 $scope.$apply(function () {
 
                     promise.then(function(userRegistered){
