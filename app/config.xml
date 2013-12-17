@@ -78,6 +78,9 @@
   <feature name="Geolocation">
       <param name="android-package" value="org.apache.cordova.GeoBroker" />
   </feature>
+  <feature name="FacebookConnect">
+      <param name="ios-package" value="FacebookConnectPlugin" />
+  </feature>
 
   <!--Plugins-->
   <gap:plugin name="org.apache.cordova.camera" />
@@ -97,3 +100,4 @@
   </gap:plugin>
 
  </widget>
+

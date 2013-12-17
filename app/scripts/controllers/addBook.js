@@ -5,8 +5,6 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"AddBook");
 
-    avocarrot.createStory('Add book', { name: 'YOUR_OBJECT' }, "Book Released");
-
     $scope.addBook = false;
 
     $scope.addNewBook = function () {

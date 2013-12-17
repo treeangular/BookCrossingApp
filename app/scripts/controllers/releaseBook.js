@@ -10,7 +10,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
 
         dataService.releaseBook(releaseInfo,registrationId).then(
             function(result){
-
+              avocarrot.createStory('Released', { name: releaseInfo }, "Releasing is caring!");
               deferred.resolve(result);
 
             },function(error){
