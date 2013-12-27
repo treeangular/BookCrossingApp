@@ -84,7 +84,6 @@ angular.module('facebookProvider', [])
                                                alert("login connecting!!");
                                                FB.api('/me', function(response) {
 
-                                                   alert(response.email);
                                                    callback(true, response);
 
                                                });
