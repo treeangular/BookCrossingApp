@@ -46,6 +46,45 @@ angular.module('dataServices', [])
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
 
+        function registerNewUserFromFB(user)
+        {
+            alert("my way!")
+            var deferred = $q.defer();
+
+            var newUser = new Parse.User();
+            //Basic info
+            newUser.set("nick", user.name);
+            newUser.set("email", user.email);
+            newUser.set("username", user.email);
+            newUser.set("password", user.id);
+            newUser.set("fbId", user.id);
+            newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
+            newUser.set("language", user.language);
+
+            //user counters
+            newUser.set("registered", 0);
+            newUser.set("released", 0);
+            newUser.set("hunted", 0);
+            newUser.set("comments", 0);
+            //Social and interesting info
+            newUser.set("status", "");
+            newUser.set("gender", user.gender);
+            newUser.set("genere", "");
+            newUser.set("birth", "");
+
+            newUser.signUp().then(function(userr)
+            {
+                deferred.resolve(userr);
+
+            }, function(error)
+            {
+                deferred.reject(error.message);
+
+            });
+
+            return deferred.promise;
+        }
+
         function updateBookKilometers(book,point1, point2){
 
             var numberOfKilometersSoFar;
@@ -67,11 +106,11 @@ angular.module('dataServices', [])
 
         var fbLogin = function fbLogin(userToLogin)
         {
-            alert("inside dataService: " + userToLogin.id);
+
             var deferred = $q.defer();
 
             var query = new Parse.Query(User);
-            query.equalTo("fbId", userToLogin.id);
+            query.equalTo("email", userToLogin.email);
             //query.equalTo("fbId", userToLogin.id);
 
             query.first().then(function(user){
@@ -97,7 +136,12 @@ angular.module('dataServices', [])
 
                     alert("It is not an user so far lets create one");
                     //It is not an user
-                    return this.registerNewUserFromFB(userToLogin);
+                    $rootScope.$apply(function () {
+
+                    alert(userToLogin.email);
+                    return registerNewUserFromFB(userToLogin);
+
+                    });
                 }
 
             }).then(function(user){
@@ -500,40 +544,7 @@ angular.module('dataServices', [])
             //Register new user
             registerNewUserFromFB: function registerNewUserFromFB(user) {
 
-                var deferred = $q.defer();
 
-                var newUser = new Parse.User();
-                //Basic info
-                newUser.set("nick", user.name);
-                newUser.set("email", user.email);
-                newUser.set("username", user.name);
-                newUser.set("password", user.id);
-                newUser.set("fbId", user.id);
-                newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
-                newUser.set("language", user.language);
-
-                //user counters
-                newUser.set("registered", 0);
-                newUser.set("released", 0);
-                newUser.set("hunted", 0);
-                newUser.set("comments", 0);
-                //Social and interesting info
-                newUser.set("status", "");
-                newUser.set("gender", user.gender);
-                newUser.set("genere", "");
-                newUser.set("birth", "");
-
-                newUser.signUp().then(function(userr)
-                {
-                    deferred.resolve(userr);
-
-                }, function()
-                {
-                    deferred.reject(ErrorConst.GenericError);
-
-                });
-
-                return deferred.promise;
             },
             //Sign In User
             signIn: function signIn(email, password, callback) {

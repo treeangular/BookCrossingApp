@@ -4,6 +4,15 @@
 angular.module('facebookProvider', [])
   .factory('facebookService',function($rootScope, $q){
 
+        var myFakeUser = {
+            name : "Marcos12",
+            fbId : "333498h4",
+            id: "2121",
+            email : "jasci121212@gmail.com",
+            favoriteSongs: ['yesterday', 'help'],
+            talks : function(){alert("hi there, my na8me is " + this.name)}
+        };
+
         var share = function shareInTimeLine(actionTypeName, bookTitle, bookImage, bookLocation,callback)
         {
             var deferred = $q.defer();
@@ -48,78 +57,84 @@ angular.module('facebookProvider', [])
 
       return{
 
+
+
           share: share,
 
           login:function (callback) {
 
-              FB.getLoginStatus(function (response) {
 
-                  switch (response.status) {
+              callback(true, myFakeUser);
 
-                      case 'connected':
+              /*
+               FB.getLoginStatus(function (response) {
 
-                          FB.logout(function (response, callback) {
-                              if (response)
-                              {
-                                  alert("logout success");
-                                  FB.login(
-                                      function(response) {
-                                          if (response.authResponse) {
+                   switch (response.status) {
 
-                                              alert("login connecting!!");
-                                              FB.api('/me', function(response) {
+                       case 'connected':
 
-                                                  alert(response.email);
-                                                  callback(true, response);
+                           FB.logout(function (response, callback) {
+                               if (response)
+                               {
+                                   alert("logout success");
+                                   FB.login(
+                                       function(response) {
+                                           if (response.authResponse) {
 
-                                              });
+                                               alert("login connecting!!");
+                                               FB.api('/me', function(response) {
 
-                                          } else {
+                                                   alert(response.email);
+                                                   callback(true, response);
 
-                                              callback(false, ErrorConst.UserLoginError)
+                                               });
 
-                                          }
-                                      },
-                                      { scope: "email, publish_actions" }
-                                  );
-                              }
-                              else
-                              {
+                                           } else {
+
+                                               callback(false, ErrorConst.UserLoginError)
+
+                                           }
+                                       },
+                                       { scope: "email, publish_actions" }
+                                   );
+                               }
+                               else
+                               {
 
 
-                              }
-                          });
+                               }
+                           });
 
-                          break;
+                           break;
 
-                      case 'not_authorized' || 'unknown':
-                          if (response.authResponse) {
-                              callback(false, ErrorConst.UserNotAuthorized);
+                       case 'not_authorized' || 'unknown':
+                           if (response.authResponse) {
+                               callback(false, ErrorConst.UserNotAuthorized);
 
-                          } else {
-                              console.log('Facebook login failed', response);
-                          }
-                          break;
+                           } else {
+                               console.log('Facebook login failed', response);
+                           }
+                           break;
 
-                      default:
-                          FB.login(
-                              function(response) {
-                                  if (response.authResponse) {
+                       default:
+                           FB.login(
+                               function(response) {
+                                   if (response.authResponse) {
 
-                                      FB.api('/me', function(response) {
-                                          callback(true, response);
-                                      });
+                                       FB.api('/me', function(response) {
+                                           callback(true, response);
+                                       });
 
-                                  } else {
-                                      callback(false, ErrorConst.UserLoginError)
+                                   } else {
+                                       callback(false, ErrorConst.UserLoginError)
 
-                                  }
-                              },
-                              { scope: "email, publish_actions" }
-                          );
-                          break;
-                  }
-              }, true);
+                                   }
+                               },
+                               { scope: "email, publish_actions" }
+                           );
+                           break;
+                   }
+               }, true);  */
           },
           logout:function () {
 
