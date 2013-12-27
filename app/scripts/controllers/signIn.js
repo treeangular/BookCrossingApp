@@ -7,24 +7,22 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
     function signInUser(email, password)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
-        alert("signIn!");
         var deferred = $q.defer();
 
         dataService.signIn(email, password, function (isSuccess, result) {
 
-            $scope.$apply(function () {
                 if (isSuccess) {
-                    alert("signIn after apply!");
+                    $rootScope.$apply(function () {
                     deferred.resolve(result);
+                    });
 
                 } else {
-
+                    $rootScope.$apply(function () {
                     deferred.reject(result);
-
+                    });
                 }
 
             });
-        });
 
         return deferred.promise;
     }
@@ -32,7 +30,6 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
     $scope.signInUser = function (user) {
 
         var promise = signInUser(user.Email, user.Password);
-
         promise.then(function() {
 
             $location.path('/Main');
@@ -53,26 +50,21 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
         {
             if(result)
             {
-
                 var promise = dataService.fbParseLogin(user);
 
-                    promise.then(function(userRegistered){
+                promise.then(function(userRegistered){
 
-                        return signInUser(userRegistered);
+                    return signInUser(userRegistered.get("email"), userRegistered.get("fbId"));
 
-                    }).then(function(){
-                            $scope.$apply(function () {
+                }).then(function(){
 
-                                $location.path('/Main');
+                    $location.path('/Main');
 
-                            });
+                }, function(error){
 
-                        }, function(error){
-
-                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                            $rootScope.MessageNotification = error;
-                        }
-                    );
+                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                    $rootScope.MessageNotification = error;
+                });
             }
             else
             {

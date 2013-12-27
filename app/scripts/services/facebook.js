@@ -8,7 +8,7 @@ angular.module('facebookProvider', [])
             name : "Marcos12",
             fbId : "333498h4",
             id: "2121",
-            email : "jasci121212@gmail.com",
+            email : "qwqw@gmail.com",
             favoriteSongs: ['yesterday', 'help'],
             talks : function(){alert("hi there, my na8me is " + this.name)}
         };
@@ -64,9 +64,9 @@ angular.module('facebookProvider', [])
           login:function (callback) {
 
 
-              callback(true, myFakeUser);
+              //callback(true, myFakeUser);
 
-              /*
+
                FB.getLoginStatus(function (response) {
 
                    switch (response.status) {
@@ -134,7 +134,7 @@ angular.module('facebookProvider', [])
                            );
                            break;
                    }
-               }, true);  */
+               }, true);
           },
           logout:function () {
 

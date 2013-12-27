@@ -48,8 +48,8 @@ angular.module('dataServices', [])
 
         function registerNewUserFromFB(user)
         {
-            alert("my way!")
-            var deferred = $q.defer();
+            alert("inside register New User!");
+
 
             var newUser = new Parse.User();
             //Basic info
@@ -72,17 +72,18 @@ angular.module('dataServices', [])
             newUser.set("genere", "");
             newUser.set("birth", "");
 
-            newUser.signUp().then(function(userr)
+            newUser.signUp().then(function(registeredUser)
             {
-                deferred.resolve(userr);
+                alert("New user registered correctly");
+                return registeredUser;
+
 
             }, function(error)
             {
-                deferred.reject(error.message);
+                alert("New user registered NOT correctly"+ error.message);
+                return error;
 
             });
-
-            return deferred.promise;
         }
 
         function updateBookKilometers(book,point1, point2){
@@ -106,7 +107,6 @@ angular.module('dataServices', [])
 
         var fbLogin = function fbLogin(userToLogin)
         {
-
             var deferred = $q.defer();
 
             var query = new Parse.Query(User);
@@ -118,7 +118,7 @@ angular.module('dataServices', [])
                 //alert("Inside fbParseLogin Promise: " + user.id);
                 if(user != undefined)
                 {
-                    if(user.fbId === undefined)
+                    if(user.get("fbId") == undefined)
                     {
                         //It is a normal user will not login
                         alert("User already registered normal way!");
@@ -134,36 +134,55 @@ angular.module('dataServices', [])
                 else
                 {
 
-                    alert("It is not an user so far lets create one");
-                    //It is not an user
-                    $rootScope.$apply(function () {
+                    var newUser = new Parse.User();
+                    //Basic info
+                    newUser.set("nick", userToLogin.name);
+                    newUser.set("email", userToLogin.email);
+                    newUser.set("username", userToLogin.email);
+                    newUser.set("password", userToLogin.id);
+                    newUser.set("fbId", userToLogin.id);
+                    newUser.set("myPicture", 'http://graph.facebook.com/' + userToLogin.id + '/picture');
+                    newUser.set("language", userToLogin.language);
 
-                    alert(userToLogin.email);
-                    return registerNewUserFromFB(userToLogin);
+                    //user counters
+                    newUser.set("registered", 0);
+                    newUser.set("released", 0);
+                    newUser.set("hunted", 0);
+                    newUser.set("comments", 0);
+                    //Social and interesting info
+                    newUser.set("status", "");
+                    newUser.set("gender", userToLogin.gender);
+                    newUser.set("genere", "");
+                    newUser.set("birth", "");
 
-                    });
+                    return newUser.signUp();
                 }
 
-            }).then(function(user){
+            }).then(function(registeredUser){
 
-                    if(user === undefined)
-                    {
-                        deferred.reject(ErrorConst.UserAlreadyRegisteredWithoutFB);
-                    }
+                    if(registeredUser !== undefined)
+
+                        $rootScope.$apply(function () {
+
+                            deferred.resolve(registeredUser);
+
+                        });
+
                     else
-                    {
-                        alert("user registered!!");
-                        deferred.resolve(user);
-                    }
 
+                        $rootScope.$apply(function () {
+                            deferred.reject(ErrorConst.GenericError);
+                        });
 
-            }, function()
+            }, function(error)
             {
-                //alert("something went wrong");
-               deferred.reject(ErrorConst.GenericError);
+
+                $rootScope.$apply(function () {
+
+                    deferred.reject(ErrorConst.GenericError);
+
+                });
             });
-
-
             return deferred.promise;
         }
 
@@ -550,7 +569,9 @@ angular.module('dataServices', [])
             signIn: function signIn(email, password, callback) {
 
                 Parse.User.logIn(email.toLowerCase(), password, {
+
                     success: function (user) {
+                        alert("login success!!!");
                         // Do stuff after successful login.
                         callback(true, user);
                     },
