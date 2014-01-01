@@ -1,6 +1,6 @@
 <div ng-controller="AddBookCtrl">
     <div>
-        <!--<a ng-click="addNewBook()" style="margin-top:5px; float: right; clear: left">{{'_IsbnNotFoundButton_' | localizeIt}}</a>-->
+        <a ng-click="addNewBook()" style="margin-top:5px; float: right; clear: left">{{'_IsbnNotFoundButton_' | localizeIt}}</a>
         <input name="bookIsbn" ng-minlength=1 type="text" ng-model="isbn" data-localize-it-attr="_Isbn_|placeholder" />
         <input type="button" ng-click="findBook()" name="FindBook" ng-disabled="clicked"  data-localize-it-attr="_FindBook_|value" class="buttonlarge" />
     </div>

@@ -5,10 +5,9 @@ BookCrossingApp.controller('AddBookCtrl', function ($scope, dataService, $locati
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"AddBook");
 
-    $scope.addBook = false;
 
     $scope.addNewBook = function () {
-        $scope.addBook = true;
+        $scope.goTo("views/addBlankBook.html");
     };
 
     $scope.book = {
