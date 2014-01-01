@@ -2,8 +2,6 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"addBlankBook");
 
-    $scope.book = $scope.foundBook;
-
     $scope.registerNewBook = function (book) {
         $scope.clicked=true;
         $rootScope.$broadcast(loadingRequestConst.Start);
@@ -15,6 +13,10 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
             {
                 //Set book registraionID
                 book.registrationId = result;
+
+                //Set author
+                book.authors = [];
+                book.authors.push(book.author);
 
                 //Save registartionId in parent scope (main) so I can get it in bookBarCode
                 $scope.setRegisterId(result);
