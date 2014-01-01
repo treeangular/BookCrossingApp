@@ -80,6 +80,8 @@ angular.module('facebookProvider', [])
                                        function(response) {
                                            if (response.authResponse) {
                                                FB.api('/me', function(response) {
+                                                   alert(response.email);
+                                                   alert(response.name);
                                                    callback(true, response);
 
                                                });
