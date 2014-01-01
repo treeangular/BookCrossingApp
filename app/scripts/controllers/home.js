@@ -6,6 +6,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     $scope.currentPage = 0;
     $scope.alerts = [];
+    $scope.alertsFilter = "world";
 
     //alert(navigator.globalization);
     if(cache.getIsHomeFirstTimeExecuted())

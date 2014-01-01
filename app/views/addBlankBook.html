@@ -6,9 +6,9 @@
         <p class="blanksmall"></p>
         <p><a bca-camera ng-model="book.image">{{'_SelectPicture_' | localizeIt}}</a><p>
     </div>
-    <input name="title" type="text" ng-model="book.title"  placeholder="Title" />
-    <input name="author" type="text" ng-model="book.author"  placeholder="Author" />
-    <textarea name="description" rows="6" ng-model="book.description"  placeholder="Description" />
+    <input name="title" type="text" ng-model="book.title"  data-localize-it-attr="_Title_|placeholder"/>
+    <input name="author" type="text" ng-model="book.author"  data-localize-it-attr="_Author_|placeholder" />
+    <textarea name="description" rows="6" ng-model="book.description" data-localize-it-attr="_Description_|placeholder" />
     <input name="RegisterBook" type="button" bca-track-event ng-click="registerNewBook(book)" ng-disabled="clicked" data-localize-it-attr="_Register_|value" class="buttonlarge" />
     <div>
     </div>

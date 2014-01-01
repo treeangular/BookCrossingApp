@@ -145,14 +145,19 @@
         "description": "joined user"
     },
     {
-        "key": "_IsbnNotFoundButton_",
-        "value": "No ho trobes per ISBN?",
-        "description": "ISBN not found"
+        "key": "_BookNotFoundButton_",
+        "value": "No trobes el llibre?",
+        "description": "Book not found?"
     },
     {
         "key": "_Isbn_",
         "value": "ISBN, títol, autor",
         "description": "ISBN"
+    },
+    {
+        "key":"_Author_",
+        "value":"Autor",
+        "description":"Author"
     },
     {
         "key": "_FindBook_",

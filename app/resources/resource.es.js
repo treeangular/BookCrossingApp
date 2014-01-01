@@ -165,8 +165,8 @@
 
     },
     {
-        "key":"_IsbnNotFound_",
-        "value":"ISBN no encontrado",
+        "key":"_BookNotFoundButton_",
+        "value":"No encuentras el libro?",
         "description":"ISBN not found"
 
     },
@@ -200,6 +200,11 @@
         "value":"Título",
         "description":"Title"
 
+    },
+    {
+        "key":"_Author_",
+        "value":"Autor",
+        "description":"Author"
     },
     {
         "key":"_Description_",
