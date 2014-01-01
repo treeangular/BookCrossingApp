@@ -48,31 +48,32 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
         facebookService.login(function(result, user)
         {
-            alert("after FB Login")
-                if(result)
-                {
+            $scope.$apply(function () {
+                alert("after FB Login")
+                    if(result)
+                    {
+                        var promise = dataService.fbParseLogin(user);
+                        promise.then(function(userRegistered){
 
-                    var promise = dataService.fbParseLogin(user);
-                    promise.then(function(userRegistered){
+                            return signInUser(userRegistered.get("email"), userRegistered.get("fbId"));
 
-                        return signInUser(userRegistered.get("email"), userRegistered.get("fbId"));
+                        }).then(function(){
 
-                    }).then(function(){
+                            $location.path('/Main');
 
-                        $location.path('/Main');
+                        }, function(error){
 
-                    }, function(error){
-
+                            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                            $rootScope.MessageNotification = error;
+                        });
+                    }
+                    else
+                    {
                         $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                        $rootScope.MessageNotification = error;
-                    });
-                }
-                else
-                {
-                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                    $rootScope.MessageNotification = user;
-                }
-            });
+                        $rootScope.MessageNotification = user;
+                    }
+                });
+        });
     };
 
 });
