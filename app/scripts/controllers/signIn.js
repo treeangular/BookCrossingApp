@@ -51,9 +51,8 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
             $scope.$apply(function () {
                 if(result)
                 {
-                    alert(result.email);
+                    alert("Hola!!");
                     var promise = dataService.fbParseLogin(user);
-
                     promise.then(function(userRegistered){
 
                         return signInUser(userRegistered.get("email"), userRegistered.get("fbId"));
@@ -73,8 +72,8 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                     $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                     $rootScope.MessageNotification = user;
                 }
-                });
-           });
-        };
+            });
+        });
+    };
 
 });

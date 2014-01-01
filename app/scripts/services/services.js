@@ -108,7 +108,7 @@ angular.module('dataServices', [])
         var fbLogin = function fbLogin(userToLogin)
         {
             var deferred = $q.defer();
-
+            alert("Inside FB Login")
             var query = new Parse.Query(User);
             query.equalTo("email", userToLogin.email);
             //query.equalTo("fbId", userToLogin.id);

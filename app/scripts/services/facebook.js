@@ -76,18 +76,13 @@ angular.module('facebookProvider', [])
                            FB.logout(function (response, callback) {
                                if (response)
                                {
-                                   alert("logout success");
                                    FB.login(
                                        function(response) {
                                            if (response.authResponse) {
-
-                                               alert("login connecting!!");
                                                FB.api('/me', function(response) {
-
                                                    callback(true, response);
 
                                                });
-
                                            } else {
 
                                                callback(false, ErrorConst.UserLoginError)
