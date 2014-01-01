@@ -48,10 +48,10 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
         facebookService.login(function(result, user)
         {
-            $scope.$apply(function () {
+            alert("after FB Login")
                 if(result)
                 {
-                    alert("Hola!!");
+
                     var promise = dataService.fbParseLogin(user);
                     promise.then(function(userRegistered){
 
@@ -73,7 +73,6 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                     $rootScope.MessageNotification = user;
                 }
             });
-        });
     };
 
 });
