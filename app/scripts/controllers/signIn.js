@@ -48,7 +48,7 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
 
         facebookService.login(function(result, user)
         {
-            $scope.$apply(function () {
+
                 alert("after FB Login")
                     if(result)
                     {
@@ -72,7 +72,6 @@ BookCrossingApp.controller('SignInCtrl', function ($scope, dataService, $locatio
                         $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                         $rootScope.MessageNotification = user;
                     }
-                });
         });
     };
 

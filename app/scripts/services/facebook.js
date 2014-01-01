@@ -80,14 +80,15 @@ angular.module('facebookProvider', [])
                                        function(response) {
                                            if (response.authResponse) {
                                                FB.api('/me', function(response) {
-                                                   alert(response.email);
-                                                   alert(response.name);
-                                                   callback(true, response);
+                                                   $rootScope.$apply(function () {
+                                                        callback(true, response);
+                                                   });
 
                                                });
                                            } else {
-
-                                               callback(false, ErrorConst.UserLoginError)
+                                               $rootScope.$apply(function () {
+                                                callback(false, ErrorConst.UserLoginError)
+                                               });
 
                                            }
                                        },
