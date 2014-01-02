@@ -64,7 +64,7 @@ angular.module('facebookProvider', [])
           login:function (callback) {
 
               //callback(true, myFakeUser);
-              
+
                FB.getLoginStatus(function (response) {
 
                    switch (response.status) {
