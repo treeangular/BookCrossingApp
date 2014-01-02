@@ -63,10 +63,8 @@ angular.module('facebookProvider', [])
 
           login:function (callback) {
 
-
               //callback(true, myFakeUser);
-
-
+              
                FB.getLoginStatus(function (response) {
 
                    switch (response.status) {
@@ -80,15 +78,13 @@ angular.module('facebookProvider', [])
                                        function(response) {
                                            if (response.authResponse) {
                                                FB.api('/me', function(response) {
-                                                   $rootScope.$apply(function () {
-                                                        callback(true, response);
-                                                   });
+                                                    callback(true, response);
 
                                                });
                                            } else {
-                                               $rootScope.$apply(function () {
+
                                                 callback(false, ErrorConst.UserLoginError)
-                                               });
+
 
                                            }
                                        },
