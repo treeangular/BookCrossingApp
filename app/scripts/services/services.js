@@ -23,7 +23,7 @@ angular.module('dataServices', [])
 /**
  * Parse Service com as a back-end for the application.
  */
-    .factory('parseService', function ($q, $rootScope, logIt) {
+    .factory('parseService', function ($q, $rootScope, logIt, geolocationService) {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
 
@@ -162,17 +162,17 @@ angular.module('dataServices', [])
 
                     if(registeredUser !== undefined)
 
-                        $rootScope.$apply(function () {
+                        //$rootScope.$apply(function () {
 
                             deferred.resolve(registeredUser);
 
-                        });
+//                        });
 
                     else
 
-                        $rootScope.$apply(function () {
+  //                      $rootScope.$apply(function () {
                             deferred.reject(ErrorConst.GenericError);
-                        });
+  //                      });
 
             }, function(error)
             {
@@ -797,13 +797,15 @@ angular.module('dataServices', [])
 
         //<editor-fold description="Actions">
 
-            getActionsForHomePage: function  getActionsForHomePage(pageNumber, callback)
+            getActionsForHomePage: function  getActionsForHomePage(pageNumber, filter, callback)
             {
+                if(filter === undefined) filter = 'world';
+
                 var qAction = new Parse.Query(Action);
                 var recordsPerPage = 10;
 
                 qAction.limit(recordsPerPage);
-                qAction.skip(pageNumber*recordsPerPage);
+                qAction.skip(pageNumber * recordsPerPage);
                 // Retrieve the most recent ones
                 qAction.descending("createdAt");
 
@@ -825,15 +827,55 @@ angular.module('dataServices', [])
                 qAction.include("user");
                 qAction.include("actionType");
 
-                qAction.find({
-                    success: function (actions) {
-                        callback(true, actions);
-                    },
-                    error: function (actions, error) {
-                        console.log("Error: " + error.code + " " + error.message);
-                        callback(false, ErrorConst.GenericError);
-                    }
-                });
+                if(filter === 'world')
+                {
+                    qAction.find({
+                        success: function (actions) {
+                            callback(true, actions);
+                        },
+                        error: function (actions, error) {
+                            console.log("Error: " + error.code + " " + error.message);
+                            callback(false, ErrorConst.GenericError);
+                        }
+                    });
+                }
+                else
+                {
+
+                    qAction.find({
+                               success: function (actions) {
+                                    callback(true, actions);
+                               },
+                               error: function (actions, error) {
+                                   console.log("Error: " + error.code + " " + error.message);
+                                   callback(false, ErrorConst.GenericError);
+                                }
+                            });
+//                    var geoPoint;
+//
+//                    geolocationService.getCurrentPosition(function (position) {
+//                        geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+//                        if (geoPoint!=null){
+//
+//                            alert(geoPoint.latitude);
+//
+//                            qAction.find({
+//                                success: function (actions) {
+//                                    callback(true, actions);
+//                                },
+//                                error: function (actions, error) {
+//                                    console.log("Error: " + error.code + " " + error.message);
+//                                    callback(false, ErrorConst.GenericError);
+//                                }
+//                            });
+//
+//                        }
+//                    });
+
+
+                }
+
+
 
             },
 

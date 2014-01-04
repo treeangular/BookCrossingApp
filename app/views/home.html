@@ -1,8 +1,8 @@
 <div ng-controller="HomeCtrl">
  <div id="topFilter">
-     <input type="radio" id="world" ng-model="alertsFilter" value="world">
+     <input type="radio" id="world" ng-model="alertsFilter" value="world" ng-change='newValue(alertsFilter)'>
      <label for="world">World</label>
-     <input type="radio" id="aroundYou" ng-model="alertsFilter" value="you">
+     <input type="radio" id="aroundYou" ng-model="alertsFilter" value="you" ng-change='newValue(alertsFilter)'>
      <label for="aroundYou">Around you</label>
  </div>
  <ul>

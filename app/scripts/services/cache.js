@@ -19,10 +19,10 @@ angular.module('parseCache', [])
 
         this.$get = function(dataService, $q, $rootScope) {
 
-            function getActPage(pageNumber)
+            function getActPage(pageNumber, filter)
             {
                 var deferred = $q.defer();
-                dataService.getActionsForHomePage(pageNumber, function (isSuccess,results) {
+                dataService.getActionsForHomePage(pageNumber, filter, function (isSuccess,results) {
 
                     $rootScope.$apply(function () {
                         if(isSuccess)

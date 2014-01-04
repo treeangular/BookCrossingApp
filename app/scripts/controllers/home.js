@@ -52,11 +52,11 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     }
 
-    function getActPage(pageNumber)
+    function getActPage(pageNumber, filter)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
-        dataService.getActionsForHomePage(pageNumber, function (isSuccess,results) {
+        dataService.getActionsForHomePage(pageNumber, filter, function (isSuccess,results) {
             $scope.$apply(function () {
 
                 if(isSuccess)
@@ -99,6 +99,31 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
         $scope.busy = false;
     };
+    $scope.newValue = function(alertsFilter) {
+
+        var promise = getActPage($scope.currentPage, alertsFilter);
+        promise.then(function(alerts) {
+
+            if (alerts.length == 10) $scope.isLastPage = false;
+            else $scope.isLastPage = true;
+
+            for(var i = 0; i <= alerts.length-1; i++) {
+                $scope.alerts.push(alerts[i]);
+            }
+
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
+        });
+        $scope.currentPage++;
+
+        $scope.busy = false;
+
+
+    }
+
+
 
 
 });
