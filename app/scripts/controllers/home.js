@@ -105,31 +105,26 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
         geolocationService.getCurrentPosition(function (position) {
 
             geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-            
-            alert(geoPoint.latitude);
-            alert(geoPoint.longitude);
-
-            var promise = getActPage($scope.currentPage, alertsFilter, geoPoint);
-            promise.then(function(alerts) {
-
-                if (alerts.length == 10) $scope.isLastPage = false;
-                else $scope.isLastPage = true;
-
-                for(var i = 0; i <= alerts.length-1; i++) {
-                    $scope.alerts.push(alerts[i]);
-                }
-
-            }, function(reason) {
-
-                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                $rootScope.MessageNotification = reason;
-            });
-            $scope.currentPage++;
-
-            $scope.busy = false;
-
-
         });
+
+        var promise = getActPage($scope.currentPage, alertsFilter, geoPoint);
+        promise.then(function(alerts) {
+
+            if (alerts.length == 10) $scope.isLastPage = false;
+            else $scope.isLastPage = true;
+
+            for(var i = 0; i <= alerts.length-1; i++) {
+                $scope.alerts.push(alerts[i]);
+            }
+
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
+        });
+        $scope.currentPage++;
+
+        $scope.busy = false;
     }
 
 

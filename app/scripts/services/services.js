@@ -844,13 +844,19 @@ angular.module('dataServices', [])
                 else
                 {
 
-                    alert(geoPoint.latitude);
-                    alert(geoPoint.longitude);
+                    geoPoint = {latitude:41.421779, longitude:1.8606777};
+
+                    var qAction2 = new Parse.Query(Action);
+                    qAction2.include("book");
                     var Book = Parse.Object.extend("Book");
                     var innerQuery = new Parse.Query(Book);
                     innerQuery.withinKilometers("releasedAt", geoPoint, KmToLookAroundUserPositionForMap);
-                    qAction.matchesQuery("book", innerQuery);
-                    qAction.find({
+                    //innerQuery.equalTo("title", "Change in the Countryside");
+                    qAction2.matchesQuery("book", innerQuery);
+                    //qAction2.skip(pageNumber * recordsPerPage);
+                    //qAction2.descending("createdAt");
+
+                    qAction2.find({
                                success: function (actions) {
                                     callback(true, actions);
                                },
