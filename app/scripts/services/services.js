@@ -317,6 +317,8 @@ angular.module('dataServices', [])
                 });
 
             },
+
+
         //<editor-fold description="ReviewLike">
 
             addLikeToReview: function addLikeToReview(book, reviewId, isLike, callback)
@@ -834,7 +836,7 @@ angular.module('dataServices', [])
                             callback(true, actions);
                         },
                         error: function (actions, error) {
-                            console.log("Error: " + error.code + " " + error.message);
+
                             callback(false, ErrorConst.GenericError);
                         }
                     });
@@ -842,7 +844,12 @@ angular.module('dataServices', [])
                 else
                 {
 
-                    qAction.withinKilometers("releasedAt", geoPoint, KmToLookAroundUserPositionForMap);
+                    alert(geoPoint.latitude);
+                    alert(geoPoint.longitude);
+                    var Book = Parse.Object.extend("Book");
+                    var innerQuery = new Parse.Query(Book);
+                    innerQuery.withinKilometers("releasedAt", geoPoint, KmToLookAroundUserPositionForMap);
+                    qAction.matchesQuery("book", innerQuery);
                     qAction.find({
                                success: function (actions) {
                                     callback(true, actions);

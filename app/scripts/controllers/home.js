@@ -102,12 +102,14 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     $scope.newValue = function(alertsFilter) {
 
         var geoPoint;
-        geolocationService.getCurrentPosition(function (position) {
+//        geolocationService.getCurrentPosition(function (position) {
+//
+//            geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+//
+//
+//        });
 
-            geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-            alert(geoPoint.latitude);
-        });
-        var promise = getActPage($scope.currentPage, geoPoint, alertsFilter);
+        var promise = getActPage($scope.currentPage, alertsFilter, geoPoint);
         promise.then(function(alerts) {
 
             if (alerts.length == 10) $scope.isLastPage = false;
@@ -125,6 +127,8 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
         $scope.currentPage++;
 
         $scope.busy = false;
+
+
 
 
     }
