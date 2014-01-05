@@ -23,7 +23,7 @@ angular.module('dataServices', [])
 /**
  * Parse Service com as a back-end for the application.
  */
-    .factory('parseService', function ($q, $rootScope, logIt, geolocationService) {
+    .factory('parseService', function ($q, $rootScope) {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
 
@@ -797,7 +797,7 @@ angular.module('dataServices', [])
 
         //<editor-fold description="Actions">
 
-            getActionsForHomePage: function  getActionsForHomePage(pageNumber, filter, callback)
+            getActionsForHomePage: function  getActionsForHomePage(pageNumber, filter, geoPoint, callback)
             {
                 if(filter === undefined) filter = 'world';
 
@@ -842,6 +842,7 @@ angular.module('dataServices', [])
                 else
                 {
 
+                    qAction.withinKilometers("releasedAt", geoPoint, KmToLookAroundUserPositionForMap);
                     qAction.find({
                                success: function (actions) {
                                     callback(true, actions);

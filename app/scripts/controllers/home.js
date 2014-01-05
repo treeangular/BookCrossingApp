@@ -1,5 +1,5 @@
 'use strict';
-BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $http, $window, $location, cache) {
+BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope, $q, $http, $window, $location, cache, geolocationService) {
 
     if($rootScope.gaPlugIn !== undefined)
         $rootScope.gaPlugIn.trackPage(function(){}, function(){},"Home");
@@ -52,11 +52,11 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     }
 
-    function getActPage(pageNumber, filter)
+    function getActPage(pageNumber, filter, geoPoint)
     {
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
-        dataService.getActionsForHomePage(pageNumber, filter, function (isSuccess,results) {
+        dataService.getActionsForHomePage(pageNumber, filter, geoPoint, function (isSuccess,results) {
             $scope.$apply(function () {
 
                 if(isSuccess)
@@ -101,7 +101,13 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     };
     $scope.newValue = function(alertsFilter) {
 
-        var promise = getActPage($scope.currentPage, alertsFilter);
+        var geoPoint;
+        geolocationService.getCurrentPosition(function (position) {
+
+            geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+            alert(geoPoint.latitude);
+        });
+        var promise = getActPage($scope.currentPage, geoPoint, alertsFilter);
         promise.then(function(alerts) {
 
             if (alerts.length == 10) $scope.isLastPage = false;
