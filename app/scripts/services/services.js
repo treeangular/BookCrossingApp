@@ -833,6 +833,7 @@ angular.module('dataServices', [])
                 {
                     qAction.find({
                         success: function (actions) {
+
                             callback(true, actions);
                         },
                         error: function (actions, error) {
@@ -847,46 +848,39 @@ angular.module('dataServices', [])
                     geoPoint = {latitude:41.421779, longitude:1.8606777};
 
                     var qAction2 = new Parse.Query(Action);
+                    qAction.include(["book.bookStatus"]);
+                    qAction.include("user");
+                    qAction.include("actionType");
                     qAction2.include("book");
                     var Book = Parse.Object.extend("Book");
                     var innerQuery = new Parse.Query(Book);
                     innerQuery.withinKilometers("releasedAt", geoPoint, KmToLookAroundUserPositionForMap);
-                    //innerQuery.equalTo("title", "Change in the Countryside");
                     qAction2.matchesQuery("book", innerQuery);
-                    //qAction2.skip(pageNumber * recordsPerPage);
-                    //qAction2.descending("createdAt");
+
+                    var actionType = new ActionType();
+                    actionType.id = ActionTypesConst.Released;
+                    var actionType2 = new ActionType();
+                    actionType2.id = ActionTypesConst.Hunted;
+                    var actionType3 = new ActionType();
+                    actionType3.id = ActionTypesConst.Reviewed;
+                    var actionType4 = new ActionType();
+                    actionType4.id = ActionTypesConst.Commented;
+                    qAction2.containedIn("actionType",[actionType, actionType2, actionType3, actionType4]);
+
+                    qAction2.skip(pageNumber * recordsPerPage);
+                    qAction2.descending("createdAt");
 
                     qAction2.find({
                                success: function (actions) {
+
                                     callback(true, actions);
+
                                },
                                error: function (actions, error) {
                                    console.log("Error: " + error.code + " " + error.message);
                                    callback(false, ErrorConst.GenericError);
                                 }
                             });
-//                    var geoPoint;
-//
-//                    geolocationService.getCurrentPosition(function (position) {
-//                        geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-//                        if (geoPoint!=null){
-//
-//                            alert(geoPoint.latitude);
-//
-//                            qAction.find({
-//                                success: function (actions) {
-//                                    callback(true, actions);
-//                                },
-//                                error: function (actions, error) {
-//                                    console.log("Error: " + error.code + " " + error.message);
-//                                    callback(false, ErrorConst.GenericError);
-//                                }
-//                            });
-//
-//                        }
-//                    });
-
-
                 }
 
 
