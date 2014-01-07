@@ -3,11 +3,10 @@
 angular.module('BookCrossingApp')
   .controller('SignUpDetailsCtrl', function ($scope, dataService, $location, $http,$rootScope, $q) {
         if($rootScope.gaPlugIn !== undefined)
-            $rootScope.gaPlugIn.trackPage(function(){}, function(){alert("Error")},"SingUpDetails");
+            $rootScope.gaPlugIn.trackPage(function(){}, function(){consloe.log("Error - trackPage SingUpDetails")},"SingUpDetails");
 
         var fileToUpdate;
         var isFileToUpdate;
-        var pasrseFileUpdated;
 
         var disabledClass = 'disabling';
         $scope.maleClass = disabledClass;

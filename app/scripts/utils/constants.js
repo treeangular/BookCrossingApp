@@ -53,7 +53,8 @@ var ErrorConst=
     ProvideDescription: "_ProvideDescription_",
     HuntRegistrationId: "_ProvideRegistrationId_",
     CommentMustBeSet: "_ProvideComment_",
-    UserAlreadyRegisteredWithoutFB: "_UserAlreadyRegisteredWithoutFB_"
+    UserAlreadyRegisteredWithoutFB: "_UserAlreadyRegisteredWithoutFB_",
+    ValidationError: "All the fields are mandatory"
 
 
 };

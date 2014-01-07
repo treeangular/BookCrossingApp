@@ -10,6 +10,7 @@ function resolveLocalFileTobyteArray(imageData)
 
         reader.onloadend = function(evt) {
             console.log('read onloderend');
+            alert('read onloderend');
             console.log(JSON.stringify(evt.target));
             console.log(evt.target.result);
             var byteArray = new Uint8Array(evt.target.result);
@@ -30,6 +31,7 @@ function resolveLocalFileTobyteArray(imageData)
         }
 
         console.log('pre read');
+        alert('pre read');
 
         entry.file(function(s) {
             reader.readAsArrayBuffer(s);

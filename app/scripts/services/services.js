@@ -1009,6 +1009,14 @@ angular.module('dataServices', [])
 
                 },
 
+
+                uploadBlackRegisteredPicture: function(fileToUpdate, bookId, callback)
+                {
+                    var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
+
+
+                },
+
                 registerBook: function registerBook(bookk, callback) {
 
                     var book = new Book();

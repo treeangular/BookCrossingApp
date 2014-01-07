@@ -5,7 +5,7 @@ BookCrossingApp.factory('cameraService', function ($rootScope, phonegapReadyServ
         takePicture: phonegapReadyService(function (onSuccess, onError, options) {
 
             navigator.camera.getPicture(gotPic, failHandler,
-                {quality:50,
+                {   quality:50,
                     destinationType:Camera.DestinationType.FILE_URI,
                     sourceType:navigator.camera.PictureSourceType.CAMERA,
                     targetWidth: 100,
