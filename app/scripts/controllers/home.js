@@ -40,6 +40,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
                 });
                 $scope.currentPage = 1;
+                //
             }
         });
 
