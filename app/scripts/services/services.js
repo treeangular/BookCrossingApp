@@ -845,30 +845,12 @@ angular.module('dataServices', [])
                 else
                 {
 
-                    var qAction2 = new Parse.Query(Action);
-                    qAction.include(["book.bookStatus"]);
-                    qAction.include("user");
-                    qAction.include("actionType");
-                    qAction2.include("book");
                     var Book = Parse.Object.extend("Book");
                     var innerQuery = new Parse.Query(Book);
                     innerQuery.withinKilometers("releasedAt", geoPoint, KmToLookAroundUserPositionForMap);
-                    qAction2.matchesQuery("book", innerQuery);
+                    qAction.matchesQuery("book", innerQuery);
 
-                    var actionType = new ActionType();
-                    actionType.id = ActionTypesConst.Released;
-                    var actionType2 = new ActionType();
-                    actionType2.id = ActionTypesConst.Hunted;
-                    var actionType3 = new ActionType();
-                    actionType3.id = ActionTypesConst.Reviewed;
-                    var actionType4 = new ActionType();
-                    actionType4.id = ActionTypesConst.Commented;
-                    qAction2.containedIn("actionType",[actionType, actionType2, actionType3, actionType4]);
-
-                    qAction2.skip(pageNumber * recordsPerPage);
-                    qAction2.descending("createdAt");
-
-                    qAction2.find({
+                    qAction.find({
                         success: function (actions) {
 
                             callback(true, actions);
