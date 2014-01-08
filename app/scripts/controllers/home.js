@@ -6,27 +6,50 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     $scope.currentPage = 0;
     $scope.alerts = [];
-    $scope.alertsFilter = "world";
+    $scope.alertsFilter = "you";
+
+    var geoPoint;
 
     //alert(navigator.globalization);
     if(cache.getIsHomeFirstTimeExecuted())
     {
-        $rootScope.$broadcast(loadingRequestConst.Start);
-        var promise = cache.getCachedActions();
-        cache.setIsHomeFirstTimeExecuted(false);
-        promise.then(function(alerts) {
+        geolocationService.getCurrentPosition(function (position) {
 
-            $rootScope.$broadcast(loadingRequestConst.Stop);
-            $scope.alerts = alerts;
 
-        }, function(reason)
-        {
-            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-            $rootScope.MessageNotification = ErrorConst.GenericError;
-            $rootScope.$broadcast(loadingRequestConst.Stop);
-
+            if(position === undefined)
+            {
+                geoPoint = {latitude:52.22407, longitude:4.53719};
+            }
+            else
+            {
+                geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+            }
         });
-        $scope.currentPage = 1;
+
+        if(geoPoint === undefined)
+        {
+            geoPoint = {latitude:52.22407, longitude:4.53719};
+        }
+
+            $rootScope.$broadcast(loadingRequestConst.Start);
+            var promise = cache.getCachedActions(cache.getHomeFilterType(),geoPoint);
+            cache.setIsHomeFirstTimeExecuted(false);
+            promise.then(function(alerts) {
+
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+                $scope.alerts = alerts;
+
+            }, function(reason)
+            {
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = ErrorConst.GenericError;
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+
+            });
+            $scope.currentPage = 1;
+
+
+
     }
     else
     {
@@ -101,15 +124,24 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     };
     $scope.newValue = function(alertsFilter) {
 
+        cache.setHomeFilterType(alertsFilter);
         var geoPoint;
+
         geolocationService.getCurrentPosition(function (position) {
 
-            geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+           geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+
         });
 
-        var promise = getActPage($scope.currentPage, alertsFilter, geoPoint);
+        if(geoPoint === undefined)
+        {
+            geoPoint = {latitude:52.22407, longitude:4.53719};
+        }
+
+        var promise = getActPage(0, alertsFilter, geoPoint);
         promise.then(function(alerts) {
 
+            $scope.alerts = [];
             if (alerts.length == 10) $scope.isLastPage = false;
             else $scope.isLastPage = true;
 
@@ -125,6 +157,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
         $scope.currentPage++;
 
         $scope.busy = false;
+
     }
 
 

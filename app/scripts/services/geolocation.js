@@ -36,9 +36,9 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
         var getCurrentPosition = function getCurrentPosition()
         {
             var deferred = $q.defer();
-
-            navigator.geolocation.getCurrentPosition(function (position){
+                navigator.geolocation.getCurrentPosition(function (position){
                     $rootScope.$apply(function () {
+
 
                         deferred.resolve(position);
 
@@ -46,37 +46,42 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
                 }, function () {
                     $rootScope.$apply(function () {
 
-                    deferred.reject(false, ErrorConst.GenericError);
 
+                        deferred.reject(false, ErrorConst.GenericError);
+
+                    });
                 });
-                });
+
+
 
             return deferred.promise;
         }
 
         return {
             getCurrentPosition: phonegapReadyService(function (onSuccess, onError, options) {
-                navigator.geolocation.getCurrentPosition(function () {
-                        var that = this,
-                            args = arguments;
 
-                        if (onSuccess) {
-                            $rootScope.$apply(function () {
-                                onSuccess.apply(that, args);
-                            });
-                        }
-                    }, function () {
-                        var that = this,
-                            args = arguments;
+                    navigator.geolocation.getCurrentPosition(function () {
+                            var that = this,
+                                args = arguments;
 
-                        if (onError) {
-                            $rootScope.$apply(function () {
-                                onError.apply(that, args);
-                                alert("getCurrentPosition - onError - "+ args);
-                            });
-                        }
-                    },
-                    options);
+                            if (onSuccess) {
+                                $rootScope.$apply(function () {
+                                    onSuccess.apply(that, args);
+                                });
+                            }
+                        }, function () {
+                            var that = this,
+                                args = arguments;
+
+                            if (onError) {
+                                $rootScope.$apply(function () {
+                                    onError.apply(that, args);
+                                    alert("getCurrentPosition - onError - "+ args);
+                                });
+                            }
+                        },
+                        options);
+
 
 
             }),

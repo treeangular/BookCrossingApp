@@ -15,14 +15,15 @@ angular.module('parseCache', [])
         this.isReleaseFirstTimeExecuted = true;
         this.isLibraryFirstTimeExecuted = true;
         this.isCacheEnable = false;
+        this.homeFilterType = "you";
         this.cacheTime = 0;
 
         this.$get = function(dataService, $q, $rootScope) {
 
-            function getActPage(pageNumber, filter, geoPoint)
+            function getActPage(pageNumber, geoPoint)
             {
                 var deferred = $q.defer();
-                dataService.getActionsForHomePage(pageNumber, filter, geoPoint, function (isSuccess,results) {
+                dataService.getActionsForHomePage(pageNumber, homeFilterType, geoPoint, function (isSuccess,results) {
 
                     $rootScope.$apply(function () {
                         if(isSuccess)
@@ -97,6 +98,7 @@ angular.module('parseCache', [])
             var isLibraryFirstTimeExecuted = this.isLibraryFirstTimeExecuted;
             var isCacheEnable = this.isCacheEnable;
             var cacheTime = this.cacheTime;
+            var homeFilterType = this.homeFilterType;
 
             return {
 
@@ -106,12 +108,12 @@ angular.module('parseCache', [])
                     isReleaseFirstTimeExecuted = true;
                     isHomeFirstTimeExecuted = true;
                 },
-                 getCachedActions: function() {
+                 getCachedActions: function(filter, geoPoint) {
 
                     if(isHomeFirstTimeExecuted)
                     {
                         var deferred = $q.defer();
-                        var promise = getActPage(0);
+                        var promise = getActPage(0, geoPoint);
                         promise.then(function(alerts) {
 
                             deferred.resolve(alerts);
@@ -167,6 +169,14 @@ angular.module('parseCache', [])
                         return booksFromMyLibrary;
                 },
 
+                setHomeFilterType: function(value)
+                {
+                    homeFilterType = value;
+                },
+                getHomeFilterType: function()
+                {
+                    return homeFilterType;
+                },
                 //Getters and setters for handling cache
                 setIsHomeFirstTimeExecuted: function(value){
                     isHomeFirstTimeExecuted = value;
@@ -199,6 +209,9 @@ angular.module('parseCache', [])
 
             }
         };
+        this.setHomeFilterType = function(homeFilterType){
+            this.homeFilterType = homeFilterType;
+        }
         this.setIsHomeFirstTimeExecuted = function(isHomeFirstTimeExecuted) {
             this.isHomeFirstTimeExecuted = isHomeFirstTimeExecuted;
         };

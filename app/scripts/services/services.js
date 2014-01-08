@@ -801,7 +801,7 @@ angular.module('dataServices', [])
 
             getActionsForHomePage: function  getActionsForHomePage(pageNumber, filter, geoPoint, callback)
             {
-                if(filter === undefined) filter = 'world';
+                if(filter === undefined) filter = 'you';
 
                 var qAction = new Parse.Query(Action);
                 var recordsPerPage = 10;
@@ -845,8 +845,6 @@ angular.module('dataServices', [])
                 else
                 {
 
-                    geoPoint = {latitude:41.421779, longitude:1.8606777};
-
                     var qAction2 = new Parse.Query(Action);
                     qAction.include(["book.bookStatus"]);
                     qAction.include("user");
@@ -871,23 +869,21 @@ angular.module('dataServices', [])
                     qAction2.descending("createdAt");
 
                     qAction2.find({
-                               success: function (actions) {
+                        success: function (actions) {
 
-                                    callback(true, actions);
+                            callback(true, actions);
 
-                               },
-                               error: function (actions, error) {
-                                   console.log("Error: " + error.code + " " + error.message);
-                                   callback(false, ErrorConst.GenericError);
-                                }
-                            });
+                        },
+                        error: function (actions, error) {
+                            console.log("Error: " + error.code + " " + error.message);
+                            callback(false, ErrorConst.GenericError);
+                        }
+                    });
                 }
 
 
 
             },
-
-
             getLibraryByUserId: function getLibraryByUserId(userId, callback){
 
 
