@@ -6,7 +6,7 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
     var isFileToUpdate;
 
     $scope.$watch('bookPicture', function(value) {
-        alert(">> $scope.$watch('bookPicture");
+        //alert(">> $scope.$watch('bookPicture");
         if(value) {
             $scope.bookPicture = value;
             isFileToUpdate = true;
@@ -15,7 +15,7 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
                 var reader = new FileReader();
 
                 reader.onloadend = function(evt) {
-                    alert('read onloderend');
+                    //alert('read onloderend');
                     console.log(JSON.stringify(evt.target));
                     console.log(evt.target.result);
                     var byteArray = new Uint8Array(evt.target.result);
@@ -28,20 +28,20 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
                     }
 
                     fileToUpdate = output;
-                    alert("fileToUpdate = output");
+                    //alert("fileToUpdate = output");
                 }
 
                 reader.onerror = function(evt) {
-                    alert('read error');
+                    //alert('read error');
                     console.log(JSON.stringify(evt));
                 }
 
-                console.log('pre read');
+                //console.log('pre read');
 
                 entry.file(function(s) {
                     reader.readAsArrayBuffer(s);
                 }, function(e) {
-                    alert('ee');
+                    //alert('ee');
                 });
 
                 //reader.readAsArrayBuffer(entry.file(function(s) { console.log('ss');}, function(e) { console.log('e');});
@@ -57,18 +57,18 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
     $scope.registerNewBook = function (book) {
         $scope.clicked=true;
         $rootScope.$broadcast(loadingRequestConst.Start);
-        alert(">> Start to : registerNewBook1");
+        //alert(">> Start to : registerNewBook1");
 
         if (fileToUpdate!=undefined){
 
-            $scope.$apply(function () {
-                alert(">> Start to : registerNewBook2");
+            //$scope.$apply(function () {
+                //alert(">> Start to : registerNewBook2");
 
                 dataService.getBookRegistrationId(function (isResult, result) {
                     //Without the registration Id we cannot let the book to be registered!
                     if(isResult)
                     {
-                        alert(">> Start to : registerNewBook3");
+                        //alert(">> Start to : registerNewBook3");
 
                         //Set book registraionID
                         book.registrationId = result;
@@ -85,7 +85,8 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
                         parseFile.save().then(function(uploadedParseFile) {
 
                         alert("Parse file uploaded");
-                        book.set("image",uploadedParseFile._url);
+                        //book.set("image",uploadedParseFile._url);
+                        book.image =  uploadedParseFile._url;
                                 //Save book data with registration Id
                                 dataService.registerBook(book, function (isResult, result) {
                                     //How do I change to another view now?!!? Locate ??
@@ -113,7 +114,7 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
                             function(error) {
                             navigator.notification.alert("Error:" + error, null);
                             console.log(error);
-                            alert("error - when Parse file uploading");
+
                         });
                     }
                     else
@@ -124,14 +125,14 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
                         alert("error  - getBookRegistrationId");
                     }
                 });
-        });
+        //});
      }
      else
      {
          $rootScope.TypeNotification = ErrorConst.ValidationError;
          $rootScope.MessageNotification = "Validation - All fields must be filled";
          alert("Validation error with result: ")
-         alert(result);
+         //alert(result);
      }
     };
 });
