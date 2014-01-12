@@ -7,10 +7,7 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
     var fileToUpdate = undefined;
     var isFileToUpdate;
 
-    $scope.bookPicture = "styles/img/blankBookToAdd.png";
-
     $scope.$watch('bookPicture', function (value) {
-        //alert(">> $scope.$watch('bookPicture");
         if (value) {
             $scope.bookPicture = value;
             isFileToUpdate = true;
@@ -52,7 +49,8 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
             });
         }
         else {
-            alert(">> $scope.$watch(else value is not set or something like this.");
+            console.log(">> $scope.$watch(else value is not set or something like this.");
+            $scope.bookPicture = "styles/img/bookToAdd.png";
         }
     }, true);
 
@@ -75,7 +73,7 @@ BookCrossingApp.controller('AddBlankBookCtrl', function ($scope, dataService, $l
                     $scope.setRegisterId(result);
 
                     //Set book image
-                    var parseFile = new Parse.File("mypic.jpg", fileToUpdate);
+                    var parseFile = new Parse.File("bookCover.jpg", fileToUpdate);
                     parseFile.save().then(function (uploadedParseFile) {
 
                             book.image = uploadedParseFile._url;

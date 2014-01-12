@@ -46,7 +46,8 @@ angular.module('BookCrossingApp')
                     $scope.myPicture = profilePhoto;//profilePhoto.url();
                 }
                 else{
-                    $scope.myPicture = "styles/img/user.png"                                     }
+                    $scope.myPicture = "styles/img/user.png";
+                }
             }
 
             $scope.user = {
