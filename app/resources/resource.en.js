@@ -257,7 +257,7 @@
     },
     {
         "key":"_HuntABook_",
-        "value":"Hunt a book",
+        "value":"Hunt a book - Did you find a book? Write the code down",
         "description":"hunt a book"
 
     },
@@ -269,7 +269,7 @@
     {
         "key":"_ReleaseABook_",
         "value":"Release a book",
-        "description":"Release a Book"
+        "description":"Release a Book - Share the books you registered or hunted"
     },
     {
         "key": "_Release_",
