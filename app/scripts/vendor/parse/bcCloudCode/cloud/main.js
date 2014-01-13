@@ -123,6 +123,89 @@ Parse.Cloud.beforeSave("Book", function(request, response) {
 
 });
 
+Parse.Cloud.afterSave("Suggestion", function(request){
+
+    var Mandrill = require('mandrill');
+    Mandrill.initialize(mandrillApiKey);
+    //var user = request.user;
+    var email = request.user.get("email");
+    var suggestion = request.object.get("content");
+
+
+    var htmlMSG = "";
+
+    htmlMSG += '<html lang="en">';
+    htmlMSG += '<head>';
+    htmlMSG += '<meta content="text/html; charset=utf-8" http-equiv="Content-Type">';
+    htmlMSG += '<title>BookCrossingApp - Suggestion</title>';
+    htmlMSG += '</head>';
+    htmlMSG += '<body style="margin: 0; padding: 0; background: #bccdd9; font: normal Helvetica">';
+    htmlMSG += '<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">';
+    htmlMSG += '<tr>';
+    htmlMSG += '<td align="center" style="margin: 0; padding: 0; background:#bccdd9 ;padding:0">';
+    htmlMSG += '<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" class="header">';
+    htmlMSG += '<tr>';
+    htmlMSG += '<td bgcolor="#080808" height="150" align="center">';
+    htmlMSG += '<h1 style="color: #fff; margin: 0; padding: 0; line-height: 33px;"><a href="http://www.bookcrossingapp.com" target="_blank"><img src="http://www.bookcrossingapp.com/img/email_logo.gif"/></a></h1>';
+    htmlMSG += '</td>';
+    htmlMSG += '</tr>';
+    htmlMSG += '</table><!-- header-->';
+    htmlMSG += '<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" bgcolor="#ffffff">';
+    htmlMSG += '<tr>';
+    htmlMSG += '<td width="14" style="font-size: 0px;" bgcolor="#ffffff">&nbsp;</td>';
+    htmlMSG += '<td valign="top" align="left" bgcolor="#ffffff"style="background: #fff;">';
+    htmlMSG += '<table cellpadding="0" cellspacing="0" border="0"  style="color:#767676;; margin: 0; padding: 0;" class="content">';
+    htmlMSG += '<tr>';
+    htmlMSG += '<td style="padding: 15px 0 15px; border-bottom: 1px solid #d2b49b;"  valign="top">';
+    htmlMSG += '<p style="font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 12px;">' + email + ',</p>';
+    htmlMSG += '<p style="font-weight: normal; margin: 0; padding: 0; line-height: 20px; font-size: 12px;">' + suggestion + ',</p>';
+    htmlMSG += '</td>';
+    htmlMSG += '</tr>';
+    htmlMSG += '</table>';
+    htmlMSG += '</td>';
+    htmlMSG += '<td width="16" bgcolor="#ffffff" style=" background: #fff;">&nbsp;</td>';
+    htmlMSG += '</tr>';
+    htmlMSG += '</table><!-- body -->';
+    htmlMSG += '<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%" style="line-height: 10px;" bgcolor="#698291" class="footer">';
+    htmlMSG += '<tr>';
+    htmlMSG += '<td bgcolor="#169691"  align="center" style="padding: 15px 0 10px; font-size: 11px; color:#fff; margin: 0; line-height: 1.2;" valign="top">';
+    htmlMSG += '<p style="padding: 0; font-size: 11px; color:#fff; margin: 0;">Sharing books around the world.</p>';
+    htmlMSG += '</td>';
+    htmlMSG += '</tr>';
+    htmlMSG += '</table><!-- footer-->';
+    htmlMSG += '</td>';
+    htmlMSG += '</tr>';
+    htmlMSG += '</table>';
+    htmlMSG += '</body>';
+    htmlMSG += '</html>';
+
+    Mandrill.sendEmail({
+        message: {
+            html: htmlMSG,
+            subject: "Suggestion from " + email,
+            from_email: "registration@bookcrossingapp.com",
+            from_name: "BookCrossingApp suggestion",
+            to: [
+                {
+                    email: "treeangular@gmail.com",
+                    name: email
+                }
+            ]
+        },
+        async: true
+    },{
+        success: function(httpResponse) {
+            console.log("Email sent successfully");
+            console.log(httpResponse);
+        },
+        error: function(httpResponse) {
+            console.error("Error sending email");
+            console.error(httpResponse);
+        }
+    })
+
+});
+
 Parse.Cloud.afterSave("ReviewLike", function(request){
 
     var review = new Parse.Object("Review");
@@ -307,7 +390,7 @@ Parse.Cloud.afterSave("Book", function (request) {
             //Check if we just save released or hunted the book
             console.log("Retreiving objects for after save book...");
 
-            query.get(actionTypeId, {
+            query.get(actionTypeId, { 
                 success: function (result){
                     //Add new Action
 
