@@ -6,67 +6,68 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     $scope.currentPage = 0;
     $scope.alerts = [];
-    $scope.alertsFilter = "you";
+    $scope.alertsFilter = cache.getHomeFilterType()
 
     var geoPoint;
 
     //alert(navigator.globalization);
     if(cache.getIsHomeFirstTimeExecuted())
     {
-        geolocationService.getCurrentPosition(function (position) {
 
-
-            if(position === undefined)
-            {
-                geoPoint = {latitude:52.22407, longitude:4.53719};
-            }
-            else
-            {
-                geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-
-                $rootScope.$broadcast(loadingRequestConst.Start);
-                var promise = cache.getCachedActions(cache.getHomeFilterType(),geoPoint);
-                cache.setIsHomeFirstTimeExecuted(false);
-                promise.then(function(alerts) {
-
-                    $rootScope.$broadcast(loadingRequestConst.Stop);
-                    $scope.alerts = alerts;
-
-                }, function(reason)
-                {
-                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                    $rootScope.MessageNotification = ErrorConst.GenericError;
-                    $rootScope.$broadcast(loadingRequestConst.Stop);
-
-                });
-                $scope.currentPage = 1;
-                //
-            }
-        });
-
-//        if(geoPoint === undefined)
-//        {
-//            geoPoint = {latitude:52.22407, longitude:4.53719};
-//        }
+//        geolocationService.getCurrentPosition(function (position) {
 //
-//            $rootScope.$broadcast(loadingRequestConst.Start);
-//            var promise = cache.getCachedActions(cache.getHomeFilterType(),geoPoint);
-//            cache.setIsHomeFirstTimeExecuted(false);
-//            promise.then(function(alerts) {
 //
-//                $rootScope.$broadcast(loadingRequestConst.Stop);
-//                $scope.alerts = alerts;
-//
-//            }, function(reason)
+//            if(position === undefined)
 //            {
-//                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-//                $rootScope.MessageNotification = ErrorConst.GenericError;
-//                $rootScope.$broadcast(loadingRequestConst.Stop);
+//                geoPoint = {latitude:52.22407, longitude:4.53719};
+//            }
+//            else
+//            {
+//                geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
 //
-//            });
-//            $scope.currentPage = 1;
+//                $rootScope.$broadcast(loadingRequestConst.Start);
+//                var promise = cache.getCachedActions(cache.getHomeFilterType(),geoPoint);
+//                cache.setIsHomeFirstTimeExecuted(false);
+//                promise.then(function(alerts) {
 //
+//                    $rootScope.$broadcast(loadingRequestConst.Stop);
+//                    $scope.alerts = alerts;
 //
+//                }, function(reason)
+//                {
+//                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+//                    $rootScope.MessageNotification = ErrorConst.GenericError;
+//                    $rootScope.$broadcast(loadingRequestConst.Stop);
+//
+//                });
+//                $scope.currentPage = 1;
+//                //
+//            }
+//        });
+
+        if(geoPoint === undefined)
+        {
+            geoPoint = {latitude:52.22407, longitude:4.53719};
+        }
+
+            $rootScope.$broadcast(loadingRequestConst.Start);
+            var promise = cache.getCachedActions(cache.getHomeFilterType(),geoPoint);
+            cache.setIsHomeFirstTimeExecuted(false);
+            promise.then(function(alerts) {
+
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+                $scope.alerts = alerts;
+
+            }, function(reason)
+            {
+                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+                $rootScope.MessageNotification = ErrorConst.GenericError;
+                $rootScope.$broadcast(loadingRequestConst.Stop);
+
+            });
+            $scope.currentPage = 1;
+
+
 
     }
     else
@@ -145,54 +146,54 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
         cache.setHomeFilterType(alertsFilter);
         var geoPoint;
 
-        geolocationService.getCurrentPosition(function (position) {
-
-           geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
-
-            var promise = getActPage(0, alertsFilter, geoPoint);
-            promise.then(function(alerts) {
-
-                $scope.alerts = [];
-                if (alerts.length == 10) $scope.isLastPage = false;
-                else $scope.isLastPage = true;
-
-                for(var i = 0; i <= alerts.length-1; i++) {
-                    $scope.alerts.push(alerts[i]);
-                }
-
-            }, function(reason) {
-
-                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                $rootScope.MessageNotification = reason;
-            });
-            $scope.currentPage++;
-
-        });
-
-//        if(geoPoint === undefined)
-//        {
-//            geoPoint = {latitude:52.22407, longitude:4.53719};
-//        }
+//        geolocationService.getCurrentPosition(function (position) {
 //
-//        var promise = getActPage(0, alertsFilter, geoPoint);
-//        promise.then(function(alerts) {
+//           geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
 //
-//            $scope.alerts = [];
-//            if (alerts.length == 10) $scope.isLastPage = false;
-//            else $scope.isLastPage = true;
+//            var promise = getActPage(0, alertsFilter, geoPoint);
+//            promise.then(function(alerts) {
 //
-//            for(var i = 0; i <= alerts.length-1; i++) {
-//                $scope.alerts.push(alerts[i]);
-//            }
+//                $scope.alerts = [];
+//                if (alerts.length == 10) $scope.isLastPage = false;
+//                else $scope.isLastPage = true;
 //
-//        }, function(reason) {
+//                for(var i = 0; i <= alerts.length-1; i++) {
+//                    $scope.alerts.push(alerts[i]);
+//                }
 //
-//            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-//            $rootScope.MessageNotification = reason;
+//            }, function(reason) {
+//
+//                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+//                $rootScope.MessageNotification = reason;
+//            });
+//            $scope.currentPage++;
+//
 //        });
-//        $scope.currentPage++;
-//
-//        $scope.busy = false;
+
+        if(geoPoint === undefined)
+        {
+            geoPoint = {latitude:52.22407, longitude:4.53719};
+        }
+
+        var promise = getActPage(0, alertsFilter, geoPoint);
+        promise.then(function(alerts) {
+
+            $scope.alerts = [];
+            if (alerts.length == 10) $scope.isLastPage = false;
+            else $scope.isLastPage = true;
+
+            for(var i = 0; i <= alerts.length-1; i++) {
+                $scope.alerts.push(alerts[i]);
+            }
+
+        }, function(reason) {
+
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = reason;
+        });
+        $scope.currentPage++;
+
+        $scope.busy = false;
 
     }
 
