@@ -9,12 +9,13 @@
  *  and retrieving data. Parse.com is Backend-as-a-Service company.
  *  They provide easy to use databases for mobile and HTML5 applications.
  */
-var PARSE_APP_ID = "j7SSabUR9BT5xXM0r466Wthn7FSEDdIT1RcjqWnP";
+/*var PARSE_APP_ID = "j7SSabUR9BT5xXM0r466Wthn7FSEDdIT1RcjqWnP";
 var PARSE_JS_ID = "tHuZdyxD04OY6S4ejMlUeqPrIoKoKJi6TJItcmlN";
-var PARSE_REST_API_KEY = "Py7bbPQmWzJlbl6Fv1Kq4fqMXXlGG5ZXAgHDuqs2";
-/*TEST var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS"; //"khg4ef8Mks6oP2AjjVlvYHnoEIzLnsaW7Tb23jow";
+var PARSE_REST_API_KEY = "Py7bbPQmWzJlbl6Fv1Kq4fqMXXlGG5ZXAgHDuqs2";*/
+//TEST KEYS
+var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS"; //"khg4ef8Mks6oP2AjjVlvYHnoEIzLnsaW7Tb23jow";
 var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr"; //"8KZKpONdEWQZNBteRkJWCtBks3YxuO55THQhQ7qI";
-var PARSE_REST_API_KEY = "2iGS4EL4QHE2l50Kq7Xryd1TUGfc4h0AEk5xgDOZ";*/
+var PARSE_REST_API_KEY = "2iGS4EL4QHE2l50Kq7Xryd1TUGfc4h0AEk5xgDOZ";
 
 var KmToLookAroundUserPositionForMap = 500;
 
