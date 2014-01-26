@@ -48,8 +48,6 @@
     <icon src="styles/img/icon/winphone/icon.png" gap:platform="winphone" /> <!-- 57 pixels -->
     <icon src="styles/img/icon/winphone/tileicon.png" gap:platform="winphone" gap:role="background" /> <!-- 72 pixels -->
 
-
-
     <!-- Splash Screens -->
     <gap:splash src="styles/img/splash.png" />
     <!-- IOS -->
@@ -78,9 +76,16 @@
   <feature name="Geolocation">
       <param name="android-package" value="org.apache.cordova.GeoBroker" />
   </feature>
-  <feature name="FacebookConnect">
+
+  <feature name="org.apache.cordova.facebook.Connect">
       <param name="ios-package" value="FacebookConnectPlugin" />
   </feature>
+
+  <feature name="org.apache.cordova.facebook.Connect">
+      <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
+  </feature>
+
+  <access origin="*" />
 
   <!--Plugins-->
   <gap:plugin name="org.apache.cordova.camera" />

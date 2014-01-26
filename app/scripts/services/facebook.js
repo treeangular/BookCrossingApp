@@ -26,7 +26,7 @@ angular.module('facebookProvider', [])
                     picture: bookImage,
                     name: bookTitle + ' was ' + actionTypeName,
                     caption: 'In ' + bookLocation,
-                    description: bookTitle + ' was ' + actionTypeName + ' in BookCrossing app'
+                    description: bookTitle + ' was ' + actionTypeName + ' in #BookCrossingApp'
                 };
 
                 FB.ui(obj, function(response){
@@ -57,8 +57,6 @@ angular.module('facebookProvider', [])
 
       return{
 
-
-
           share: share,
 
           login:function (callback) {
@@ -70,34 +68,19 @@ angular.module('facebookProvider', [])
                    switch (response.status) {
 
                        case 'connected':
-
-                           FB.logout(function (response, callback) {
-                               if (response)
-                               {
                                    FB.login(
                                        function(response) {
                                            if (response.authResponse) {
                                                FB.api('/me', function(response) {
                                                     callback(true, response);
-
                                                });
-                                           } else {
-
+                                           }
+                                           else {
                                                 callback(false, ErrorConst.UserLoginError)
-
-
                                            }
                                        },
                                        { scope: "email, publish_actions" }
                                    );
-                               }
-                               else
-                               {
-
-
-                               }
-                           });
-
                            break;
 
                        case 'not_authorized' || 'unknown':

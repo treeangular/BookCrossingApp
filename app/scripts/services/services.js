@@ -46,7 +46,7 @@ angular.module('dataServices', [])
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
 
-        function registerNewUserFromFB(user)
+        /*function registerNewUserFromFB(user)
         {
             alert("inside register New User!");
 
@@ -84,7 +84,7 @@ angular.module('dataServices', [])
                 return error;
 
             });
-        }
+        }*/
 
         function updateBookKilometers(book,point1, point2){
 
@@ -563,8 +563,43 @@ angular.module('dataServices', [])
 
 
             //Register new user
-            registerNewUserFromFB: function registerNewUserFromFB(user) {
+            registerNewUserFromFB: function registerNewUserFromFB(user, callback) {
+                console.log("inside register New User!");
 
+
+                var newUser = new Parse.User();
+                //Basic info
+                newUser.set("nick", user.name);
+                newUser.set("email", user.email);
+                newUser.set("username", user.email);
+                newUser.set("password", user.id);
+                newUser.set("fbId", user.id);
+                newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
+                newUser.set("language", user.language);
+
+                //user counters
+                newUser.set("registered", 0);
+                newUser.set("released", 0);
+                newUser.set("hunted", 0);
+                newUser.set("comments", 0);
+                //Social and interesting info
+                newUser.set("status", "");
+                newUser.set("gender", user.gender);
+                newUser.set("genere", "");
+                newUser.set("birth", "");
+
+                newUser.signUp().then(function(registeredUser)
+                {
+                    alert("New user registered correctly");
+                    callback(true, registeredUser);
+
+
+                }, function(error)
+                {
+                    alert("New user registered NOT correctly"+ error.message);
+                    callback(false, error);
+
+                });
 
             },
             //Sign In User
@@ -765,26 +800,20 @@ angular.module('dataServices', [])
                 });
             },
 
-            getUserByFbId: function getUserByFbId(email,userFbId, callback)
+            getUserByFbId: function getUserByFbId(fbId, callback)
             {
                 var query = new Parse.Query(User);
-
-                query.equalTo("fbId", userFbId);
-
-
-
+                console.log("Querying for fbId" + fbId);
+                query.equalTo("fbId", fbId);
 
                 query.find({
                     success: function (result) {
                         if(result.length > 0)
                         {
-
                             callback(true, result[0]);
-
                         }
                         else
                         {
-
                             callback(true, null);
                         }
                     },

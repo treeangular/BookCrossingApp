@@ -52,15 +52,15 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
         facebookService.login(function(result, user)
         {
 
-            $scope.$apply(function () {
+            //$scope.$apply(function () {
                 if(result)
                 {
                     if(user != null)
                     {
                         alert(user.email);
                         dataService.getUserByFbId(user.id, function(isSuccess, result){
-                            $scope.$apply(function () {
-                                alert("getUserByFbId");
+                            //$scope.$apply(function () {
+                            console.log("getUserByFbId");
                             if(isSuccess)
                             {
                                 if(result != null)
@@ -70,14 +70,14 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                                 }
                                 else
                                 {
-                                    alert("registering new user");
+                                    console.log("registering new user");
                                     user.language = $rootScope.language;
                                     dataService.registerNewUserFromFB(user, function(isSuccess, result2)
                                     {
                                         $scope.$apply(function () {
                                             if(isSuccess)
                                             {
-                                                alert("successfully registered");
+                                                console.log("successfully registered");
                                                 $location.path('/Main');
                                             }
                                             else
@@ -98,7 +98,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                             }
 
                         })
-                        });
+                        //});
                     }
 
                     else
@@ -115,7 +115,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
 
 
             });
-        });
+        //});
     };
 
 });
