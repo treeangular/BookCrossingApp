@@ -38,21 +38,13 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
             var deferred = $q.defer();
                 navigator.geolocation.getCurrentPosition(function (position){
                     $rootScope.$apply(function () {
-
-
                         deferred.resolve(position);
-
                     });
                 }, function () {
                     $rootScope.$apply(function () {
-
-
                         deferred.reject(false, ErrorConst.GenericError);
-
                     });
                 });
-
-
 
             return deferred.promise;
         }
@@ -81,9 +73,6 @@ BookCrossingApp.factory('geolocationService', function ($rootScope, $http, phone
                             }
                         },
                         options);
-
-
-
             }),
             getCityFromGeoPoint: getCityFromGeoPoint,
 

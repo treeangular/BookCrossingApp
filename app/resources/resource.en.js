@@ -692,7 +692,7 @@
     },
     {
         "key":"_UserAlreadyRegisteredWithoutFB_",
-        "value":"User already registered by email",
+        "value":"Email already registered without FB",
         "description":"Error when trying to login with FB when the user fist login with email"
 
     }

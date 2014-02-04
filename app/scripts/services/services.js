@@ -109,7 +109,7 @@ angular.module('dataServices', [])
         var fbLogin = function fbLogin(userToLogin)
         {
             var deferred = $q.defer();
-            alert("Inside FB Login")
+            console.log("Inside FB Login going to log " + userToLogin.email);
             var query = new Parse.Query(User);
             query.equalTo("email", userToLogin.email);
             //query.equalTo("fbId", userToLogin.id);
@@ -119,22 +119,23 @@ angular.module('dataServices', [])
                 //alert("Inside fbParseLogin Promise: " + user.id);
                 if(user != undefined)
                 {
+
                     if(user.get("fbId") == undefined)
                     {
                         //It is a normal user will not login
-                        alert("User already registered normal way!");
+                        console.log("Cannot register a user "+ userToLogin.email +" already registered normal way!");
                         return undefined;
                     }
                     else
                     {
-                        alert("Already an user lets login");
+                        console.log("Already an user lets login");
                         //It is already a user!!
                         deferred.resolve(user);
                     }
                 }
                 else
                 {
-
+                    console.log("Creating new user with id" + userToLogin.id);
                     var newUser = new Parse.User();
                     //Basic info
                     newUser.set("nick", userToLogin.name);
@@ -144,7 +145,6 @@ angular.module('dataServices', [])
                     newUser.set("fbId", userToLogin.id);
                     newUser.set("myPicture", 'http://graph.facebook.com/' + userToLogin.id + '/picture');
                     newUser.set("language", userToLogin.language);
-
                     //user counters
                     newUser.set("registered", 0);
                     newUser.set("released", 0);
@@ -161,27 +161,22 @@ angular.module('dataServices', [])
 
             }).then(function(registeredUser){
 
-                    if(registeredUser !== undefined)
-
-                        //$rootScope.$apply(function () {
-
-                            deferred.resolve(registeredUser);
-
-//                        });
-
+                    if(registeredUser !== undefined){
+                        $rootScope.$apply(function () {
+                        deferred.resolve(registeredUser);
+                        });
+                    }
                     else
-
-  //                      $rootScope.$apply(function () {
-                            deferred.reject(ErrorConst.GenericError);
-  //                      });
+                    {
+                        $rootScope.$apply(function () {
+                        deferred.reject(ErrorConst.UserAlreadyRegisteredWithoutFB);
+                        });
+                    }
 
             }, function(error)
             {
-
                 $rootScope.$apply(function () {
-
                     deferred.reject(ErrorConst.GenericError);
-
                 });
             });
             return deferred.promise;
@@ -591,13 +586,13 @@ angular.module('dataServices', [])
 
                 newUser.signUp().then(function(registeredUser)
                 {
-                    alert("New user registered correctly");
+                    //alert("New user registered correctly");
                     callback(true, registeredUser);
 
 
                 }, function(error)
                 {
-                    alert("New user registered NOT correctly"+ error.message);
+                    //alert("New user registered NOT correctly"+ error.message);
                     callback(false, error);
 
                 });
@@ -609,7 +604,7 @@ angular.module('dataServices', [])
                 Parse.User.logIn(email.toLowerCase(), password, {
 
                     success: function (user) {
-                        alert("login success!!!");
+                        //alert("login success!!!");
                         // Do stuff after successful login.
                         callback(true, user);
                     },

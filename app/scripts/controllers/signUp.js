@@ -57,7 +57,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                 {
                     if(user != null)
                     {
-                        alert(user.email);
+                        //alert(user.email);
                         dataService.getUserByFbId(user.id, function(isSuccess, result){
                             //$scope.$apply(function () {
                             console.log("getUserByFbId");
@@ -65,7 +65,7 @@ BookCrossingApp.controller('SignUpCtrl', function ($scope, dataService, $locatio
                             {
                                 if(result != null)
                                 {
-                                    alert("/Main");
+                                    //alert("/Main");
                                     $location.path('/Main');
                                 }
                                 else
