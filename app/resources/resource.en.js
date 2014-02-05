@@ -257,7 +257,7 @@
     },
     {
         "key":"_HuntABook_",
-        "value":"Hunt a book - Did you find a book? Write the code down",
+        "value":"Hunt a book",
         "description":"hunt a book"
 
     },
