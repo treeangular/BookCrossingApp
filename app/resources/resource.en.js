@@ -269,7 +269,7 @@
     {
         "key":"_ReleaseABook_",
         "value":"Release a book",
-        "description":"Release a Book - Share the books you registered or hunted"
+        "description":"Release a Book"
     },
     {
         "key": "_Release_",

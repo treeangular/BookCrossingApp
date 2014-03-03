@@ -30,7 +30,6 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
 
     function huntBook(book)
     {
-
         $rootScope.$broadcast(loadingRequestConst.Start);
         var deferred = $q.defer();
 
@@ -45,10 +44,8 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
                 else
                 {
                     deferred.reject(result);
-
                 }
                 $rootScope.$broadcast(loadingRequestConst.Stop);
-
             });
         });
 
