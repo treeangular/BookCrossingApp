@@ -192,9 +192,7 @@ BookCrossingApp.controller('MainCtrl', function ($scope, $location, isbnService,
         {
             console.log('scanning');
             try {
-
-                var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-
+                var scanner = cordova.require('cordova/plugin/BarcodeScanner');
                 scanner.scan(
                     function (result) {
                         /*alert("We got a barcode\n" +
