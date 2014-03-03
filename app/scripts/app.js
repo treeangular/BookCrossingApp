@@ -95,6 +95,7 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
     function onDeviceReady() {
 
+        FastClick.attach(document.body);
 //        if (typeof navigator.globalization != 'undefined')
 //        {
 //            setTimeout(function() {
