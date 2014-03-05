@@ -82,8 +82,9 @@ var _versionMobile = "1.0.3";
 var gaPlugin;
 var googleAnalyticsId = "UA-42576964-2";
 //Production
-var googleAnalyticsIdApp = "UA-42576964-3";
-//Test var googleAnalyticsIdApp = "UA-42576964-2";
+//var googleAnalyticsIdApp = "UA-42576964-3";
+//Test
+var googleAnalyticsIdApp = "UA-42576964-2";
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location, localize) {
 
