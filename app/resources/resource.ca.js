@@ -555,6 +555,13 @@
         "description": "Add your comment place holder"
     },
     {
+        "key":"_ReleaseBookRegistrationHowToFindBook_",
+        "value":"Explica com trobar el llibre!",
+        "description":"Placeholder for how to find the book input"
+
+    }
+    ,
+    {
         "key":"_Suggestion_",
         "value":"Enviar un suggeriment",
         "description":"Suggestion button"

@@ -1,13 +1,16 @@
 <div ng-controller="ReleaseBookCtrl">
     <form name="releaseBook-form" ng-submit="release()">
         <input class="registrationId" name="bookBarcode" pattern="^[A-Z0-9]+$" type="text" ng-model="registrationId" data-localize-it-attr="_ReleaseBookRegistrationId_|placeholder" bca-to-upper-case />
+
+        <textarea ng-model="bookLocationDescription" name="bookDescription" rows="5"  data-localize-it-attr="_ReleaseBookRegistrationHowToFindBook_|placeholder"/>
+
         <div id="mapViewSmallWrapper">
             <div id="mapView" ui-map="myMap" ui-options="mapOptions" />
         </div>
         <!--<select class="select" type="text"  name="SelectZobc">
             <option ng-repeat="zobc in zobcList" value="zobc.id">{{zobc.name}}</option>
         </select>-->
-        <textarea ng-model="bookLocationDescription" name="bookDescription" rows="5"  data-localize-it-attr="_ReleaseBookRegistrationHowToFindBook_|placeholder"/>
+
         <input  bca-track-event type="submit" data-localize-it-attr="_Release_|value" ng-disabled="clicked" class="buttonlarge" />
     </form>
 </div>
