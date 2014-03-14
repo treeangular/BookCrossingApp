@@ -694,10 +694,9 @@
 
     },
     {
-        "key":"_UserAlreadyRegisteredWithoutFB_",
-        "value":"Email already registered without FB",
-        "description":"Error when trying to login with FB when the user fist login with email"
-
+        "key":"_FillBookInfo_",
+        "value":"Fill your book information",
+        "description":"Fill your book information"
     }
 
 

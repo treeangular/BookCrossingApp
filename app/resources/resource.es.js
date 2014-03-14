@@ -696,6 +696,11 @@
         "value":"Usuario ya registrado por email",
         "description":"Error when trying to login with FB when the user fist login with email"
 
+    },
+    {
+        "key":"_FillBookInfo_",
+        "value":"Rellena la info de tu libro",
+        "description":"Fill your book information"
     }
 
 ]

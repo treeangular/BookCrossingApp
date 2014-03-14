@@ -578,7 +578,7 @@ li {
     border-bottom: 1px solid #9d9e9e;
 }
 
-.huntOption, .releaseOption, .bookResultOption, .bookListOption{
+.huntOption, .releaseOption, .bookResultOption, .bookListOption, .fillBook{
     padding-top: 5px;
     padding-bottom: 5px;
     border-top: 1px solid #9d9e9e;
@@ -589,6 +589,15 @@ li {
 .bookListOption{
     position: relative;
     background-image: url('./img/booklist.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 10px 40px;
+
+}
+
+.fillBook {
+    margin-top: 5px;
+    background-image: url('./img/fillBook.png');
     background-position: left center;
     background-repeat: no-repeat;
     padding: 10px 40px;
@@ -822,7 +831,10 @@ li {
     margin-bottom: 5px;
     width: 95px;
     height: 95px;
+    border: 1px solid #000000;
 }
+
+
 
 #librarylist {
     border-top: 3px solid #169691;
