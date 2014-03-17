@@ -38,7 +38,7 @@ BookCrossingApp.controller('HuntBookCtrl', function ($scope, dataService, $rootS
             $scope.$apply(function () {
                 if(isSuccess)
                 {
-                    avocarrot.createStory('Hunted', { name: book }, "You deserve that reading now!");
+                    //avocarrot.createStory('Hunted', { name: book }, "You deserve that reading now!");
                     deferred.resolve(result);
                 }
                 else

@@ -31,7 +31,7 @@ BookCrossingApp.controller('RegisterBookCtrl', function ($scope, dataService, $l
                         //isSuccess = isResult ? true : false;
                         if (isResult)
                         {
-                            avocarrot.createStory('Registered', { name: 'Book Registration' }, "Another book on the way to be shared!");
+                            //avocarrot.createStory('Registered', { name: 'Book Registration' }, "Another book on the way to be shared!");
                             cache.restart();
                             $scope.goTo('views/bookBarcode.html')
 
