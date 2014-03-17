@@ -16,7 +16,7 @@
   <gap:platform name="winphone" />
 
   <!-- Preferences -->
-  <preference name="phonegap-version" value="3.0.0" />
+  <preference name="phonegap-version" value="3.3.0" />
   <preference name="orientation" value="portrait" />
   <preference name="webviewbounce" value="false" />
   <!--<preference name="auto-hide-splash-screen" value="false" />-->
