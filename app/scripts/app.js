@@ -92,7 +92,7 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
     $rootScope.IsActionFirstTimeExecuted = true;
     $rootScope.IsBooksToReleaseFirstTimeExecuted = true;
     $rootScope.IsMyLibraryFirstTimeExecuted = true;
-    $rootScope.homeFilterType = "you";
+    $rootScope.homeFilterType = "world";
 
     function onDeviceReady() {
 
