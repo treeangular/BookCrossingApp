@@ -624,5 +624,17 @@
         "key":"_FillBookInfo_",
         "value":"Omple la info del teu llibre",
         "description":"Fill your book information"
+    },
+    {
+        "key":"_World_",
+        "value":"Mundial",
+        "description":"FilterWorld"
+
+    },
+    {
+        "key":"_AroundYou_",
+        "value":"Cerca tuyo",
+        "description":"FilterAroundYou"
+
     }
 ]

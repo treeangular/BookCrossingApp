@@ -695,7 +695,19 @@
     {
         "key":"_FillBookInfo_",
         "value":"Fill your book information",
-        "description":"Fill your book information" 
+        "description":"Fill your book information"
+    },
+    {
+        "key":"_World_",
+        "value":"World",
+        "description":"FilterWorld"
+
+    },
+    {
+        "key":"_AroundYou_",
+        "value":"Around You",
+        "description":"FilterAroundYou"
+
     }
 
 

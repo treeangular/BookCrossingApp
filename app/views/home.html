@@ -1,9 +1,10 @@
 <div ng-controller="HomeCtrl">
  <div id="topFilter">
-     <input type="radio" id="world" ng-model="alertsFilter" value="world" ng-change='newValue(alertsFilter)'>
-     <label for="world">World</label>
+
      <input type="radio" id="aroundYou" ng-model="alertsFilter" value="you" ng-change='newValue(alertsFilter)'>
-     <label for="aroundYou">Around you</label>
+     <label for="aroundYou" data-localize-it="_AroundYou_"></label>
+     <input type="radio" id="world" ng-model="alertsFilter" value="world" ng-change='newValue(alertsFilter)'>
+     <label for="world" data-localize-it="_World_"></label>
  </div>
  <ul>
     <li ng-repeat='alert in alerts'>
