@@ -10,10 +10,9 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     var geoPoint;
 
-    //alert(navigator.globalization);
+    //TODO: Make this if a promise. Async pattern so we do not wait for the geolocation
     if(cache.getIsHomeFirstTimeExecuted())
     {
-
         geolocationService.getCurrentPosition(function (position) {
 
 
@@ -44,35 +43,12 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 //
             }
         });
-
-//        if(geoPoint === undefined)
-//        {
-//            geoPoint = {latitude:52.22407, longitude:4.53719};
-//        }
-//
-//            $rootScope.$broadcast(loadingRequestConst.Start);
-//            var promise = cache.getCachedActions(cache.getHomeFilterType(),geoPoint);
-//            cache.setIsHomeFirstTimeExecuted(false);
-//            promise.then(function(alerts) {
-//
-//                $rootScope.$broadcast(loadingRequestConst.Stop);
-//                $scope.alerts = alerts;
-//
-//            }, function(reason)
-//            {
-//                $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-//                $rootScope.MessageNotification = ErrorConst.GenericError;
-//                $rootScope.$broadcast(loadingRequestConst.Stop);
-//
-//            });
-//            $scope.currentPage = 1;
     }
     else
     {
         $scope.currentPage = 1;
         $scope.alerts = cache.getCachedActions();
     }
-
 
     if($rootScope.currentUser == undefined)
     {
@@ -88,7 +64,6 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 $rootScope.MessageNotification = ErrorConst.UserLoginError;
             }
         });
-
     }
 
     function getActPage(pageNumber, filter, geoPoint)
@@ -164,34 +139,6 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 $rootScope.MessageNotification = reason;
             });
             $scope.currentPage++;
-
         });
-
-//        if(geoPoint === undefined)
-//        {
-//            geoPoint = {latitude:52.22407, longitude:4.53719};
-//        }
-//
-//        var promise = getActPage(0, alertsFilter, geoPoint);
-//        promise.then(function(alerts) {
-//
-//            $scope.alerts = [];
-//            if (alerts.length == 10) $scope.isLastPage = false;
-//            else $scope.isLastPage = true;
-//
-//            for(var i = 0; i <= alerts.length-1; i++) {
-//                $scope.alerts.push(alerts[i]);
-//            }
-//
-//        }, function(reason) {
-//
-//            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-//            $rootScope.MessageNotification = reason;
-//        });
-//        $scope.currentPage++;
-//
-//        $scope.busy = false;
-
     }
-
 });

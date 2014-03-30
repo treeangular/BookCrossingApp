@@ -47,63 +47,20 @@ angular.module('dataServices', [])
         var ActionCollection = Parse.Collection.extend({ model: Action });
         var LocalizeFile = Parse.Object.extend("LocalizeFiles");
 
-        /*function registerNewUserFromFB(user)
-        {
-            alert("inside register New User!");
-
-
-            var newUser = new Parse.User();
-            //Basic info
-            newUser.set("nick", user.name);
-            newUser.set("email", user.email);
-            newUser.set("username", user.email);
-            newUser.set("password", user.id);
-            newUser.set("fbId", user.id);
-            newUser.set("myPicture", 'http://graph.facebook.com/' + user.id + '/picture');
-            newUser.set("language", user.language);
-
-            //user counters
-            newUser.set("registered", 0);
-            newUser.set("released", 0);
-            newUser.set("hunted", 0);
-            newUser.set("comments", 0);
-            //Social and interesting info
-            newUser.set("status", "");
-            newUser.set("gender", user.gender);
-            newUser.set("genere", "");
-            newUser.set("birth", "");
-
-            newUser.signUp().then(function(registeredUser)
-            {
-                alert("New user registered correctly");
-                return registeredUser;
-
-
-            }, function(error)
-            {
-                alert("New user registered NOT correctly"+ error.message);
-                return error;
-
-            });
-        }*/
-
         function updateBookKilometers(book,point1, point2){
 
             var numberOfKilometersSoFar;
 
             if(book.get("kilometers")== undefined)
             {
-
                 numberOfKilometersSoFar = Math.round(point1.kilometersTo(point2));
             }
             else
             {
                 numberOfKilometersSoFar= Math.round(book.get("kilometers") + point1.kilometersTo(point2));
-
             }
 
             return numberOfKilometersSoFar;
-
         }
 
         var fbLogin = function fbLogin(userToLogin)
@@ -112,11 +69,8 @@ angular.module('dataServices', [])
             console.log("Inside FB Login going to log " + userToLogin.email);
             var query = new Parse.Query(User);
             query.equalTo("email", userToLogin.email);
-            //query.equalTo("fbId", userToLogin.id);
 
             query.first().then(function(user){
-
-                //alert("Inside fbParseLogin Promise: " + user.id);
                 if(user != undefined)
                 {
 
@@ -261,8 +215,6 @@ angular.module('dataServices', [])
             });
 
             return deferred.promise;
-
-
         };
 
         /**
@@ -289,7 +241,6 @@ angular.module('dataServices', [])
                     },
                     error: function (suggestion, error) {
                         // Show the error message somewhere and let the user try again.
-                        //alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false, ErrorConst.GenericError);
                     }
