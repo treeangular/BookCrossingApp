@@ -168,7 +168,7 @@
     {
         "key":"_BookNotFoundButton_",
         "value":"Book not found?",
-        "description":"ISBN not found"
+        "description":"Book not found"
 
     },
 
@@ -618,15 +618,13 @@
         "value":"Give to other users where the book is placed!",
         "description":"Placeholder for how to find the book input"
 
-    }
-    ,
+    },
     {
         "key":"_SendYourRatingAndReview_",
         "value":"Send your rating and review:",
         "description":"Title of the review page"
 
-    }
-    ,
+    },
     {
         "key":"_WriteYourReview_",
         "value":"Write your review",
@@ -693,6 +691,12 @@
 
     },
     {
+        "key":"_UserAlreadyRegisteredWithoutFB_",
+        "value":"Email already registered without FB",
+        "description":"Error when trying to login with FB when the user fist login with email"
+
+    },
+    {
         "key":"_FillBookInfo_",
         "value":"Fill your book information",
         "description":"Fill your book information"
@@ -709,6 +713,4 @@
         "description":"FilterAroundYou"
 
     }
-
-
 ]
