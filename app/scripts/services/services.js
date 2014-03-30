@@ -27,8 +27,6 @@ angular.module('dataServices', [])
     .factory('parseService', function ($q, $rootScope) {
         // Initialize Parse API and objects. Please don't use this key in your own apps. It won't work anyway.
 
-
-
         //Create Object/Table names with capital first letter, following Parse guidelines.
         var Book = Parse.Object.extend("Book");
         var BookStatus = Parse.Object.extend("BookStatus");
@@ -513,7 +511,6 @@ angular.module('dataServices', [])
             registerNewUserFromFB: function registerNewUserFromFB(user, callback) {
                 console.log("inside register New User!");
 
-
                 var newUser = new Parse.User();
                 //Basic info
                 newUser.set("nick", user.name);
@@ -537,31 +534,23 @@ angular.module('dataServices', [])
 
                 newUser.signUp().then(function(registeredUser)
                 {
-                    //alert("New user registered correctly");
                     callback(true, registeredUser);
-
-
                 }, function(error)
                 {
-                    //alert("New user registered NOT correctly"+ error.message);
+                    console.log("Error: " + error.code + " " + error.message);
                     callback(false, error);
-
                 });
-
             },
             //Sign In User
             signIn: function signIn(email, password, callback) {
 
                 Parse.User.logIn(email.toLowerCase(), password, {
-
                     success: function (user) {
-                        //alert("login success!!!");
                         // Do stuff after successful login.
                         callback(true, user);
                     },
                     error: function (user, error) {
                         // The login failed. Check error to see why.
-                        // alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false, ErrorConst.UserNotFound);
                     }
@@ -600,7 +589,6 @@ angular.module('dataServices', [])
                     },
                     error: function (userr, error) {
                         // Show the error message somewhere and let the user try again.
-                        //alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false, ErrorConst.UserNotRegisteredCorrectly);
                     }
@@ -624,7 +612,6 @@ angular.module('dataServices', [])
                     },
                     error: function (user, error) {
                         // Show the error message somewhere and let the user try again.
-                        //alert("Error: " + error.code + " " + error.message);
                         console.log("Error: " + error.code + " " + error.message);
                         callback(false, ErrorConst.UserNotUpdatedCorrectly);
                     }
@@ -994,10 +981,6 @@ angular.module('dataServices', [])
                     book.save(null, {
                         success: function (book) {
                             // The object was saved successfully.
-//                            logIt.incrementParseCounter();
-//                            alert(logIt.getNumberOfCalls());
-//                            alert(logIt.getFile());
-
                             callback(true, null);
                             bookAverage.set("book",book);
                             bookAverage.set("numberReviews",0);

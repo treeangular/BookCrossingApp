@@ -39,8 +39,6 @@ BookCrossingApp.factory('cameraService', function ($rootScope, phonegapReadyServ
                             output[i] = byteArray[i];
                             i++;
                         }
-                        //return output
-
                     }
 
                     reader.onerror = function(evt) {

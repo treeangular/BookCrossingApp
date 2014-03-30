@@ -71,16 +71,17 @@ BookCrossingApp.config(['$routeProvider','$httpProvider','cacheProvider', functi
         redirectTo: '/'
       });
 
-    //loadGoogleAnalytics(window);
     loadHttpInterceptor($httpProvider);
     loadParse();
     loadFB();
+    //TODO: DEJ Use avocarrot through a service.
+    // enable and disable it will happen from here and there will be no need to update code somewhere else.
     //loadAvoCarrot();
 
 }]);
 var _versionMobile = "1.0.3";
 var gaPlugin;
-//var googleAnalyticsId = "UA-42576964-2";
+
 //Production
 var googleAnalyticsIdApp = "UA-42576964-3";
 //Test
@@ -96,13 +97,8 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
 
     function onDeviceReady() {
 
-        FastClick.attach(document.body);
-//        if (typeof navigator.globalization != 'undefined')
-//        {
-//            setTimeout(function() {
-//                navigator.splashscreen.hide();
-//            }, 2000);
-//        }
+       FastClick.attach(document.body);
+
        localize.initLocalizedResources();
 
         if (typeof $window.plugins == 'undefined')
@@ -120,7 +116,6 @@ BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $loca
         //App it s not a page we need to track. We just need to initize and set the rootscpe variable.
         if($rootScope.gaPlugIn === undefined)
         {
-            //alert("GA undefined!!!!");
             console.log("App: $rootScope.gaPlugIn === undefined ");
         }
 
@@ -179,7 +174,6 @@ function loadHttpInterceptor($httpProvider)
 
             function success(response) {
                 // get $http via $injector because of circular dependency problem
-
                 $http = $http || $injector.get('$http');
 
                 if($http.pendingRequests.length < 1) {

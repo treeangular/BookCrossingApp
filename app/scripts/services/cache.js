@@ -204,9 +204,6 @@ angular.module('parseCache', [])
                 setIsCacheEnable: function (value){
                     isCacheEnable = value;
                 }
-
-
-
             }
         };
         this.setHomeFilterType = function(homeFilterType){

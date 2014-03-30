@@ -15,7 +15,6 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     {
         geolocationService.getCurrentPosition(function (position) {
 
-
             if(position === undefined)
             {
                 geoPoint = {latitude:52.22407, longitude:4.53719};
@@ -40,7 +39,6 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
                 });
                 $scope.currentPage = 1;
-                //
             }
         });
     }
@@ -54,9 +52,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
     {
         dataService.isCurrentUser(function (result, currentUser) {
             if (result) {
-
                 $rootScope.currentUser = currentUser;
-
             }
             else
             {
@@ -76,14 +72,11 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 if(isSuccess)
                 {
                     deferred.resolve(results);
-
-                    // send notification a request has started
                 }
                 else
                 {
                     deferred.reject(results);
                 }
-
 
                 $rootScope.$broadcast(loadingRequestConst.Stop);
             });
@@ -95,22 +88,18 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
         var promise = getActPage($scope.currentPage);
         promise.then(function(alerts) {
-
             if (alerts.length == 10) $scope.isLastPage = false;
             else $scope.isLastPage = true;
 
             for(var i = 0; i <= alerts.length-1; i++) {
                 $scope.alerts.push(alerts[i]);
             }
-
         }, function(reason) {
-
 
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
             $rootScope.MessageNotification = reason;
         });
         $scope.currentPage++;
-
         $scope.busy = false;
     };
     $scope.newValue = function(alertsFilter) {
@@ -132,9 +121,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 for(var i = 0; i <= alerts.length-1; i++) {
                     $scope.alerts.push(alerts[i]);
                 }
-
             }, function(reason) {
-
                 $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                 $rootScope.MessageNotification = reason;
             });

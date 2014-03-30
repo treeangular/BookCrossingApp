@@ -14,9 +14,7 @@ BookCrossingApp.controller('ReleaseBookCtrl', function($scope, dataService, geol
               deferred.resolve(result);
 
             },function(error){
-
                deferred.reject(error);
-
             })
 
         return deferred.promise;

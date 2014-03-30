@@ -45,7 +45,6 @@ angular.module('localization', []).
             }
             else
             {
-
                  var url = 'resources/resource.' + 'en' + '.js';
                 $rootScope.language = 'en';
 
@@ -56,10 +55,7 @@ angular.module('localization', []).
                     // request the default resource file
                     $http({ method:"GET", url:url, cache:false }).success(localize.successCallback);
                 });
-
             }
-
-
         },
 
         getLocalizedString: function (value) {
