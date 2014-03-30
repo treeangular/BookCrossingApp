@@ -701,6 +701,18 @@
         "key":"_FillBookInfo_",
         "value":"Rellena la info de tu libro",
         "description":"Fill your book information"
+    },
+    {
+        "key":"_World_",
+        "value":"Mundial",
+        "description":"FilterWorld"
+
+    },
+    {
+        "key":"_AroundYou_",
+        "value":"Cerca tuyo",
+        "description":"FilterAroundYou"
+
     }
 
 ]
