@@ -6,41 +6,35 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     $scope.currentPage = 0;
     $scope.alerts = [];
-    $scope.alertsFilter = "world";
+    $scope.alertsFilter = "world"
 
     var geoPoint;
 
-    //TODO: Make this if a promise. Async pattern so we do not wait for the geolocation
+    //alert(navigator.globalization);
     if(cache.getIsHomeFirstTimeExecuted())
     {
-        geolocationService.getCurrentPosition(function (position) {
 
-            if(position === undefined)
-            {
-                geoPoint = {latitude:52.22407, longitude:4.53719};
-            }
-            else
-            {
-                geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+        if(geoPoint === undefined)
+        {
+            geoPoint = {latitude:52.22407, longitude:4.53719};
+        }
 
-                $rootScope.$broadcast(loadingRequestConst.Start);
-                var promise = cache.getCachedActions(cache.getHomeFilterType(),geoPoint);
-                cache.setIsHomeFirstTimeExecuted(false);
-                promise.then(function(alerts) {
+        $rootScope.$broadcast(loadingRequestConst.Start);
+        var promise = cache.getCachedActions($scope.alertsFilter,geoPoint);
+        cache.setIsHomeFirstTimeExecuted(false);
+        promise.then(function(alerts) {
 
-                    $rootScope.$broadcast(loadingRequestConst.Stop);
-                    $scope.alerts = alerts;
+            $rootScope.$broadcast(loadingRequestConst.Stop);
+            $scope.alerts = alerts;
 
-                }, function(reason)
-                {
-                    $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-                    $rootScope.MessageNotification = ErrorConst.GenericError;
-                    $rootScope.$broadcast(loadingRequestConst.Stop);
+        }, function(reason)
+        {
+            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+            $rootScope.MessageNotification = ErrorConst.GenericError;
+            $rootScope.$broadcast(loadingRequestConst.Stop);
 
-                });
-                $scope.currentPage = 1;
-            }
         });
+        $scope.currentPage = 1;
     }
     else
     {
@@ -48,11 +42,14 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
         $scope.alerts = cache.getCachedActions();
     }
 
+
     if($rootScope.currentUser == undefined)
     {
         dataService.isCurrentUser(function (result, currentUser) {
             if (result) {
+
                 $rootScope.currentUser = currentUser;
+
             }
             else
             {
@@ -60,6 +57,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 $rootScope.MessageNotification = ErrorConst.UserLoginError;
             }
         });
+
     }
 
     function getActPage(pageNumber, filter, geoPoint)
@@ -72,11 +70,14 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 if(isSuccess)
                 {
                     deferred.resolve(results);
+
+                    // send notification a request has started
                 }
                 else
                 {
                     deferred.reject(results);
                 }
+
 
                 $rootScope.$broadcast(loadingRequestConst.Stop);
             });
@@ -88,18 +89,22 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
         var promise = getActPage($scope.currentPage);
         promise.then(function(alerts) {
+
             if (alerts.length == 10) $scope.isLastPage = false;
             else $scope.isLastPage = true;
 
             for(var i = 0; i <= alerts.length-1; i++) {
                 $scope.alerts.push(alerts[i]);
             }
+
         }, function(reason) {
+
 
             $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
             $rootScope.MessageNotification = reason;
         });
         $scope.currentPage++;
+
         $scope.busy = false;
     };
     $scope.newValue = function(alertsFilter) {
@@ -109,7 +114,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
         geolocationService.getCurrentPosition(function (position) {
 
-           geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
+            geoPoint = {latitude:position.coords.latitude, longitude:position.coords.longitude};
 
             var promise = getActPage(0, alertsFilter, geoPoint);
             promise.then(function(alerts) {
@@ -121,11 +126,41 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
                 for(var i = 0; i <= alerts.length-1; i++) {
                     $scope.alerts.push(alerts[i]);
                 }
+
             }, function(reason) {
+
                 $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
                 $rootScope.MessageNotification = reason;
             });
             $scope.currentPage++;
+
         });
+
+//        if(geoPoint === undefined)
+//        {
+//            geoPoint = {latitude:52.22407, longitude:4.53719};
+//        }
+//
+//        var promise = getActPage(0, alertsFilter, geoPoint);
+//        promise.then(function(alerts) {
+//
+//            $scope.alerts = [];
+//            if (alerts.length == 10) $scope.isLastPage = false;
+//            else $scope.isLastPage = true;
+//
+//            for(var i = 0; i <= alerts.length-1; i++) {
+//                $scope.alerts.push(alerts[i]);
+//            }
+//
+//        }, function(reason) {
+//
+//            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
+//            $rootScope.MessageNotification = reason;
+//        });
+//        $scope.currentPage++;
+//
+//        $scope.busy = false;
+
     }
+
 });
