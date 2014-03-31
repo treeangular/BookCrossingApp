@@ -2,7 +2,7 @@
 <widget xmlns		= "http://www.w3.org/ns/widgets"
         xmlns:gap	= "http://phonegap.com/ns/1.0"
         id		   = "com.treeangular.BookCrossingApp"
-        versionCode = "21"
+        versionCode = "22"
         version 	= "1.0.1">
 
   <name>BookCrossing</name>
