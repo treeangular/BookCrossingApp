@@ -627,14 +627,12 @@
     },
     {
         "key":"_World_",
-        "value":"Mundial",
+        "value":"Tot el món",
         "description":"FilterWorld"
-
     },
     {
         "key":"_AroundYou_",
-        "value":"Cerca tuyo",
+        "value":"Al voltant",
         "description":"FilterAroundYou"
-
     }
 ]
