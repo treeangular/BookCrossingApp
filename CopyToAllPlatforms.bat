@@ -1,0 +1,5 @@
+xcopy /s/e/y ".\app\views" ".\Android\www\views"
+xcopy /s/e/y ".\app\scripts" ".\Android\www\scripts"
+xcopy /s/e/y ".\app\resources" ".\Android\www\resources"
+xcopy /s/e/y ".\app\styles" ".\Android\www\styles"
+xcopy /s/e/y ".\app\index.html" ".\Android\www"
