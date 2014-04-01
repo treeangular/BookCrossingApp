@@ -1,0 +1,19 @@
+<div ng-controller="HomeCtrl">
+ <div id="topFilter">
+     <input type="radio" id="world" ng-model="alertsFilter" value="world" ng-change='newValue(alertsFilter)'>
+     <label for="world">World</label>
+     <input type="radio" id="aroundYou" ng-model="alertsFilter" value="you" ng-change='newValue(alertsFilter)'>
+     <label for="aroundYou">Around you</label>
+ </div>
+ <ul>
+    <li ng-repeat='alert in alerts'>
+	    <div class="bookItemList">
+			<img ng-click="selectBook(alert.get('book'))"  ng-src='{{alert.get("book").get("image")}}'>
+			<a ng-click="selectBook(alert.get('book'))"><h3>{{alert.get("book").get("title")}}</h3></a>
+			<p>{{alert.get("actionType").get('description') | localizeIt}} {{'_By_'| localizeIt}} <a ng-click="selectUser(alert.get('user'))">{{alert.get("user").get('nick')}}</a></p>
+			<p class="time">{{alert.createdAt | roundedTime}}</p>
+		</div>
+	</li>
+    <li ng-hide="isLastPage" style="text-align: center; "><a ng-click="nextPage()">{{'_SeeMoreAlerts_' | localizeIt}}</a></li>
+  </ul>
+</div>

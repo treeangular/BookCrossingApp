@@ -1,0 +1,15 @@
+<div ng-controller="AddBlankBookCtrl">
+    <h2 class="fillBook">{{'_FillBookInfo_' | localizeIt}}</h2>
+    <div style="margin-top: 5px">
+    <img id="libraryimg" ng-src="{{bookPicture}}" height="120px" width="120px"/>
+    <p class="blanksmall"></p>
+    <p><a bca-camera-take-picture ng-model="bookPicture">{{'_TakePicture_' | localizeIt}}</a></p>
+    <p class="blanksmall"></p>
+    <p><a bca-camera ng-model="bookPicture">{{'_SelectPicture_' | localizeIt}}</a><p>
+
+    </div>
+    <input name="title" type="text" ng-model="book.title"  data-localize-it-attr="_Title_|placeholder"/>
+    <input name="author" type="text" ng-model="book.author"  data-localize-it-attr="_Author_|placeholder" />
+    <textarea name="description" rows="6" ng-model="book.description" data-localize-it-attr="_Description_|placeholder" />
+    <input name="RegisterBook" type="button" bca-track-event ng-click="registerNewBook(book)" ng-disabled="clicked" data-localize-it-attr="_Register_|value" class="buttonlarge" />
+</div>

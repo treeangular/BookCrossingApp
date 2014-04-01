@@ -1,0 +1,17 @@
+<div ng-controller="RegisterBookCtrl">
+    <img class="bookimg" ng-src="{{book.image}}"/>
+    <h1>{{book.title}}</h1>
+    <h2> by <span ng-repeat="author in book.authors">{{author}}</span></h2>
+    <p class="blanksmall"></p>
+    <p><strong>ISBN: </strong>{{book.isbn}}</p>
+    <p><strong>{{'_Publisher_' | localizeIt}}: </strong>{{book.publisher}}</p>
+    <p><strong>{{'_PublishingDate_' | localizeIt}}: </strong>{{book.publishedDate}}</p>
+    <div class="bookDescription">
+        <h3>{{'_Description_' | localizeIt}}</h3>
+        <p ng-hide="seeMoreOrLess=='See less'">{{book.description | truncateString}}<a ng-click="expand()">{{seeMoreOrLess}}</a></p>
+        <p ng-hide="seeMoreOrLess=='See more'">{{book.description}} <a ng-click="expand()"> {{seeMoreOrLess}}</a></p>
+    </div>
+    <input name="RegisterBook" type="button" bca-track-event ng-click="registerNewBook(book)" ng-disabled="clicked" data-localize-it-attr="_Register_|value" class="buttonlarge" />
+</div>
+
+

@@ -1,0 +1,40 @@
+<div ng-controller="MapCtrl">
+    <div id="mapViewWrapper">
+        <div id="mapView" ui-map="myMap"
+             ui-options="mapOptions"
+             ui-event="{'map-idle' : 'onMapIdle()'}" />
+    </div>
+    <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+         ui-event="{'map-click': 'openMarkerInfo(marker)'}">
+    </div>
+    <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+         ui-event="{'click': 'openMarkerInfo(marker)'}">
+    </div>
+    <div ui-map-info-window="myInfoWindow">
+        <ul>
+            <li>
+                <div class="bookPopUp">
+                    <img ng-click="selectBook(book)"  ng-src={{book.image}}>
+                    <a ng-click="selectBook(book)"><p><strong>{{book.get('title')}}</strong></p></a>
+                    <p>{{book.get('releasedAtDescription')}} <a ng-click="selectUser(book.user)">{{book.user}}</a></p>
+                    <p class="time">{{book.time}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div ui-map-info-window="myInfoWindowList">
+        <div class="mapGroupBooks">
+            <div ng-switch on="bookgr1.get('image')">
+                <img ng-click="selectBook(bookgr1)"  ng-src='{{bookgr1.get("image")}}'>
+            </div>
+            <div ng-show="bookgr2!=null" ng-switch on="bookgr2.get('image')">
+                <img ng-click="selectBook(bookgr2)"  ng-src='{{bookgr2.get("image")}}'>
+            </div>
+            <div ng-show="bookgr3!=null" ng-switch on="bookgr3.get('image')">
+                <img  ng-click="selectBook(bookgr3)"  ng-src='{{bookgr3.get("image")}}'>
+            </div>
+            <div ng-show="IsNextGroupPage"><a class="mapGroupBooksMore" ng-click="nextBooks()">More</a></div>
+        </div>
+    </div>
+
+</div>

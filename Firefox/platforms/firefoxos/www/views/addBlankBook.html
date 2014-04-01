@@ -1,0 +1,28 @@
+<div ng-controller="AddBlankBookCtrl">
+
+    <table border="1">
+        <tr>
+            <th>
+                <img id="libraryimg" ng-src="{{bookPicture}}" height="120px" width="120px"/>
+                <p align="center" class="blanksmall"></p>
+                <p align="center"><a bca-camera-take-picture ng-model="bookPicture">{{'_TakePicture_' | localizeIt}}</a></p>
+                <p  align="center" class="blanksmall"></p>
+                <p align="center"><a bca-camera ng-model="bookPicture">{{'_SelectPicture_' | localizeIt}}</a><p>
+            </th>
+            <th>
+                <p align="center"> Are you registering a book we counld't find? No worries add a few details here. </p>
+                <p align="center"> All the fields are mandatory, a picture of the book too! </p>
+
+            </th>
+        </tr>
+    </table>
+
+    <div>
+
+    </div>
+    <input name="title" type="text" ng-model="book.title"  data-localize-it-attr="_Title_|placeholder"/>
+    <input name="author" type="text" ng-model="book.author"  data-localize-it-attr="_Author_|placeholder" />
+    <textarea name="description" rows="6" ng-model="book.description" data-localize-it-attr="_Description_|placeholder" />
+    <input name="RegisterBook" type="button" bca-track-event ng-click="registerNewBook(book)" ng-disabled="clicked" data-localize-it-attr="_Register_|value" class="buttonlarge" />
+
+</div>

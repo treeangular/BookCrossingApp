@@ -1,0 +1,21 @@
+<form name="login-form" class="login-form" ng-submit="registerNewUser(user)" ng-controller="SignUpCtrl">
+	<div class="loginheader">
+		<h1 data-localize-it="_SignUp_"></h1>
+	</div>
+
+	<div class="content">
+		<bca-sign-up-password>
+			<input name="username" type="email" ng-model="user.Email"  data-localize-it-attr="_Email_|placeholder" required/>
+			<input  name="password" type="text" ng-model="user.Password"  data-localize-it-attr="_Password_|placeholder" required/>
+			<input  name="password" type="password" ng-model="user.Password"  data-localize-it-attr="_Password_|placeholder" required/>
+            <input name="viewPasswordCheckbox" id="viewPasswordCheck"  type="checkbox" ng-model="viewPasswordCheckbox">
+			<label for="viewPasswordCheck" data-localize-it="_SeePassword_"/>
+		</bca-sign-up-password>
+	</div>
+
+	<div class="footer" >
+		<input type="submit" data-localize-it-attr="_Register_|value" class="buttonleft" />
+		<a href="#/sign"><input type="button" name="submit" data-localize-it-attr="_Cancel_|value" class="buttonright" /></a>
+        <input  type="button" data-localize-it-attr="_ConnectFacebook_|value" bca-track-event ng-click="fbSignIn()" class="buttonfacebook" />
+	</div>
+</form>

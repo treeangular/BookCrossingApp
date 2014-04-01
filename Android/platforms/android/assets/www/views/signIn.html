@@ -1,0 +1,17 @@
+<form name="login-form" class="login-form" ng-submit="signInUser(user)" >
+	<div class="loginheader">
+	<h1 data-localize-it="_SignIn_"></h1>
+	</div>		
+	<div class="content">
+		<input name="username" type="email"  data-localize-it-attr="_Email_|placeholder" ng-model="user.Email" required />
+		<input name="password" type="password" data-localize-it-attr="_Password_|placeholder" ng-model="user.Password" required />
+	</div>
+
+	<div class="footer">
+		<input type="submit" data-localize-it-attr="_Connect_|value" class="buttonleft" />
+		
+		<a href="#/sign"><input type="button" data-localize-it-attr="_Cancel_|value" class="buttonright" /></a>
+		<!-- type="submit" how do we hadle 2 submits? 2 forms? -->
+		<input  type="button" data-localize-it-attr="_ConnectFacebook_|value" bca-track-event ng-click="fbSignIn()" class="buttonfacebook" />
+	</div>
+</form>
