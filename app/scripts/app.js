@@ -83,9 +83,9 @@ var _versionMobile = "1.0.3";
 var gaPlugin;
 
 //Production
-var googleAnalyticsIdApp = "UA-42576964-3";
+//var googleAnalyticsIdApp = "UA-42576964-3";
 //Test
-//var googleAnalyticsIdApp = "UA-42576964-2";
+var googleAnalyticsIdApp = "UA-42576964-2";
 
 BookCrossingApp.run(function ($rootScope, $http, dataService, $window, $q, $location, localize) {
 
@@ -220,7 +220,7 @@ function loadFB()
 function loadParse()
 {
     // Test
-   var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS";
+    var PARSE_APP_ID = "MyXalB83PFKV15BOPSO2lKBBzkYeyLKGNYsNI5DS";
     var PARSE_JS_ID = "7pNuZLzLEArqUc2BlQNmDgD5HMVL4l3G9ZIKP3Qr";
     //Production
     //var PARSE_APP_ID = "j7SSabUR9BT5xXM0r466Wthn7FSEDdIT1RcjqWnP";
