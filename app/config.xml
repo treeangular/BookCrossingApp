@@ -19,7 +19,7 @@
   <!-- Preferences -->
   <preference name="phonegap-version" value="3.4.0" />
   <preference name="orientation" value="portrait" />
-  <preference name="webviewbounce" value="true" />
+  <preference name="webviewbounce" value="false" />
   <!--<preference name="auto-hide-splash-screen" value="false" />-->
 
   <!-- Preferences iOS only-->

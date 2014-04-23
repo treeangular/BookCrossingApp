@@ -69,7 +69,7 @@ BookCrossingApp.controller('CommentsCtrl', function ($scope, $rootScope, dataSer
 
     $scope.addNewComment = function(comment)
     {
-        if($scope.content != undefined)
+        if(comment.content != undefined)
         {
             $scope.clicked = true;
             var promise = saveComment(comment)
