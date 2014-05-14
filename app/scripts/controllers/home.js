@@ -87,6 +87,7 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
 
     $scope.nextPage  = function() {
 
+        $scope.currentPage++;
         var promise = getActPage($scope.currentPage);
         promise.then(function(alerts) {
 
@@ -135,32 +136,5 @@ BookCrossingApp.controller('HomeCtrl', function($scope, dataService, $rootScope,
             $scope.currentPage++;
 
         });
-
-//        if(geoPoint === undefined)
-//        {
-//            geoPoint = {latitude:52.22407, longitude:4.53719};
-//        }
-//
-//        var promise = getActPage(0, alertsFilter, geoPoint);
-//        promise.then(function(alerts) {
-//
-//            $scope.alerts = [];
-//            if (alerts.length == 10) $scope.isLastPage = false;
-//            else $scope.isLastPage = true;
-//
-//            for(var i = 0; i <= alerts.length-1; i++) {
-//                $scope.alerts.push(alerts[i]);
-//            }
-//
-//        }, function(reason) {
-//
-//            $rootScope.TypeNotification = ErrorConst.TypeNotificationError;
-//            $rootScope.MessageNotification = reason;
-//        });
-//        $scope.currentPage++;
-//
-//        $scope.busy = false;
-
     }
-
 });

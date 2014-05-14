@@ -20,10 +20,10 @@ angular.module('parseCache', [])
 
         this.$get = function(dataService, $q, $rootScope) {
 
-            function getActPage(pageNumber, geoPoint)
+            function getActPage(pageNumber, filter, geoPoint)
             {
                 var deferred = $q.defer();
-                dataService.getActionsForHomePage(pageNumber, homeFilterType, geoPoint, function (isSuccess,results) {
+                dataService.getActionsForHomePage(pageNumber, filter, geoPoint, function (isSuccess,results) {
 
                     $rootScope.$apply(function () {
                         if(isSuccess)
@@ -65,7 +65,7 @@ angular.module('parseCache', [])
 
                 if(id===undefined)
                 {
-                   id = $rootScope.currentUser.id;
+                    id = $rootScope.currentUser.id;
                 }
 
                 var deferred = $q.defer();
@@ -108,12 +108,12 @@ angular.module('parseCache', [])
                     isReleaseFirstTimeExecuted = true;
                     isHomeFirstTimeExecuted = true;
                 },
-                 getCachedActions: function(filter, geoPoint) {
+                getCachedActions: function(filter, geoPoint) {
 
                     if(isHomeFirstTimeExecuted)
                     {
                         var deferred = $q.defer();
-                        var promise = getActPage(0, geoPoint);
+                        var promise = getActPage(0, filter, geoPoint);
                         promise.then(function(alerts) {
 
                             deferred.resolve(alerts);
@@ -227,7 +227,4 @@ angular.module('parseCache', [])
         {
             this.cacheTime = cacheTime;
         }
-
     });
-
-
